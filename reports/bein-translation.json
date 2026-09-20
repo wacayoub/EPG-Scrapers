@@ -1,10 +1,18 @@
 {
-  "programmes": 989,
-  "titles_changed": 4,
-  "descriptions_translated": 0,
-  "metadata_moved_from_title": 0,
-  "description_total": 588,
-  "remaining_english_descriptions": 0,
+  "programmes": 955,
+  "titles_changed": 635,
+  "descriptions_translated": 564,
+  "metadata_moved_from_title": 73,
+  "description_total": 573,
+  "remaining_english_descriptions": 2,
   "new_cache_entries": 0,
-  "translation_failures": []
+  "translation_failures": [
+    {
+      "text": "UEFA Nations League 2026/27 - Magazine EP1",
+      "error": "HTTP 429 Too Many Requests; translation disabled for remainder of run"
+    }
+  ],
+  "rate_limited": true,
+  "skipped_after_rate_limit": 31,
+  "translation_policy": "best-effort; source text preserved on rate limit/error"
 }
