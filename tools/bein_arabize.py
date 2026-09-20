@@ -196,6 +196,8 @@ class Translator:
             self.cache = {}
         self.new_count = 0
         self.failures = []
+        self.rate_limited = False
+        self.skipped_after_rate_limit = 0
 
     @staticmethod
     def key(text: str) -> str:
@@ -209,10 +211,24 @@ class Translator:
         cached = self.cache.get(k)
         if cached and isinstance(cached, dict) and cached.get("source") == text and cached.get("ar"):
             return cached["ar"]
+
+        # Google Translate is a best-effort enrichment only. A public 429 must
+        # never invalidate an otherwise healthy beIN XMLTV feed.
+        if self.rate_limited:
+            self.skipped_after_rate_limit += 1
+            return text
+
         params = {"client": "gtx", "sl": "en", "tl": "ar", "dt": "t", "q": text}
-        for attempt in range(3):
+        for attempt in range(4):
             try:
                 r = self.session.get(TRANSLATE_URL, params=params, timeout=20)
+                if r.status_code == 429:
+                    self.rate_limited = True
+                    self.failures.append({
+                        "text": text[:180],
+                        "error": "HTTP 429 Too Many Requests; translation disabled for remainder of run",
+                    })
+                    return text
                 r.raise_for_status()
                 data = r.json()
                 ar = "".join(x[0] for x in data[0] if x and x[0])
@@ -222,10 +238,14 @@ class Translator:
                     self.new_count += 1
                     time.sleep(self.delay)
                     return ar
-            except Exception as e:
-                if attempt == 2:
+            except requests.RequestException as e:
+                if attempt == 3:
                     self.failures.append({"text": text[:180], "error": str(e)})
-                time.sleep(0.8 * (attempt + 1))
+                    return text
+                time.sleep(1.5 * (2 ** attempt))
+            except Exception as e:
+                self.failures.append({"text": text[:180], "error": str(e)})
+                return text
         return text
 
     def save(self):
@@ -347,11 +367,16 @@ def main() -> int:
         "remaining_english_descriptions": remaining_english_desc,
         "new_cache_entries": tr.new_count,
         "translation_failures": tr.failures[:20],
+        "rate_limited": tr.rate_limited,
+        "skipped_after_rate_limit": tr.skipped_after_rate_limit,
+        "translation_policy": "best-effort; source text preserved on rate limit/error",
     }
     Path(args.report).parent.mkdir(parents=True, exist_ok=True)
     Path(args.report).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("BEIN_ARABIZE", json.dumps(report, ensure_ascii=False))
-    return 0 if remaining_english_desc == 0 else 2
+    # Translation quality is reported, but must not block feed publication.
+    # XMLTV validity/coverage are enforced by the dedicated validators.
+    return 0
 
 
 if __name__ == "__main__":
