@@ -1,0 +1,102 @@
+name: Test beIN only
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-bein-only.yml"
+      - "tools/build_catalogues.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-feed-publish
+  cancel-in-progress: false
+
+jobs:
+  test-bein:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+      - name: Install upstream grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+      - name: Build catalogues
+        run: python tools/build_catalogues.py
+      - name: Grab beIN
+        working-directory: vendor/iptv-org-epg
+        run: |
+          npm run grab --- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/bein.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/source-build/bein.raw.xml" \
+            --days=2 \
+            --maxConnections=1 \
+            --timeout=20000 \
+            --delay=500
+      - name: Pack beIN
+        run: |
+          mkdir -p output/final
+          python tools/source_feed_pack.py \
+            --input output/source-build/bein.raw.xml \
+            --output-gz output/final/bein.xml.gz \
+            --output-txt output/final/bein.txt \
+            --stats output/final/bein.json \
+            --label bein \
+            --window-hours 48
+      - name: Audit descriptions and zero channels
+        run: |
+          python - <<'PY'
+          import json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          cat=ET.parse("output/source-build/bein.channels.xml").getroot()
+          raw=ET.parse("output/source-build/bein.raw.xml").getroot()
+          all_ids=[(c.get("xmltv_id") or "").strip() for c in cat.findall("channel") if (c.get("xmltv_id") or "").strip()]
+          pids={p.get("channel") for p in raw.findall("programme")}
+          zero=[x for x in all_ids if x not in pids]
+          progs=raw.findall("programme")
+          with_desc=sum(1 for p in progs if any((d.text or "").strip() for d in p.findall("desc")))
+          sports=[p for p in progs if (p.get("channel") or "").startswith("beINSports")]
+          sports_desc=sum(1 for p in sports if any((d.text or "").strip() for d in p.findall("desc")))
+          print("BEIN_AUDIT",json.dumps({
+              "catalogue_ids":len(all_ids),
+              "raw_programmes":len(progs),
+              "programmes_with_desc":with_desc,
+              "desc_pct":round(with_desc*100/len(progs),1) if progs else 0,
+              "sports_programmes":len(sports),
+              "sports_with_desc":sports_desc,
+              "sports_desc_pct":round(sports_desc*100/len(sports),1) if sports else 0,
+              "zero_ids":zero,
+              "afc_ids":[x for x in all_ids if "afc" in x.lower()]
+          },ensure_ascii=False))
+          PY
+      - name: Publish beIN only
+        run: |
+          cp output/final/bein.xml.gz feeds/bein.xml.gz
+          cp output/final/bein.json feeds/bein.json
+          cp output/final/bein.txt feeds/bein.txt
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds/bein.xml.gz feeds/bein.json feeds/bein.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh beIN only"
+            git pull --rebase origin main
+            git push
+          fi
