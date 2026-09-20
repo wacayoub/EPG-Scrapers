@@ -80,9 +80,9 @@ def build_bein():
         base=ROOT/site
         files=sorted(base.glob("*.channels.xml"))
         if site=="beinsports.com":
-            files=[p for p in files if "_mena-" in p.name.lower()]
+            files=[p for p in files if "_mena-ar.channels.xml" in p.name.lower()]
         elif site=="bein.com":
-            files=[p for p in files if p.name.lower().endswith(("_ar.channels.xml","_en.channels.xml"))]
+            files=[p for p in files if p.name.lower().endswith("_ar.channels.xml")]
         for p in files:
             try:
                 rr=ET.parse(p).getroot()
@@ -104,14 +104,10 @@ def build_bein():
                 # for entertainment and any IDs missing from the sports API.
                 if site=="beinsports.com" and "mena-ar" in name:
                     rank=0
-                elif site=="beinsports.com" and "mena-en" in name:
-                    rank=1
                 elif site=="bein.com" and lang.startswith("ar"):
-                    rank=2
-                elif site=="bein.com" and lang.startswith("en"):
-                    rank=3
+                    rank=1
                 else:
-                    rank=4
+                    rank=2
                 rows.append((cid,rank,name,ch))
     best={}
     for cid,rank,name,ch in rows:
