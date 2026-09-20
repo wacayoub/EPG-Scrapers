@@ -175,7 +175,7 @@ jobs:
           set +e
           mkdir -p output/morocco output/source-build
           if [ -s feeds/morocco.xml.gz ]; then
-            python tools/morocco_epg.py               --output-dir output/morocco               --days 7               --previous feeds/morocco.xml.gz
+            python tools/morocco_epg.py               --output-dir output/morocco               --days 3               --previous feeds/morocco.xml.gz
           else
             python tools/morocco_epg.py               --output-dir output/morocco               --days 7
           fi
