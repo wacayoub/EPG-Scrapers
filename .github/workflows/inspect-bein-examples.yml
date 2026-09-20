@@ -1,0 +1,36 @@
+name: Inspect beIN examples
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-bein-examples.yml"
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print sample events
+        run: |
+          python - <<'PY'
+          import gzip, xml.etree.ElementTree as ET, json
+          targets=[
+            "beINSports1.qa@MENA",
+            "beINSports2.qa@MENA",
+            "beINSports3.qa@MENA",
+            "beINSportsNews.qa@SD",
+          ]
+          root=ET.fromstring(gzip.decompress(open("feeds/bein.xml.gz","rb").read()))
+          for cid in targets:
+              rows=[]
+              for p in root.findall("programme"):
+                  if p.get("channel")!=cid:
+                      continue
+                  title=next(((x.text or "").strip() for x in p.findall("title") if (x.text or "").strip()),"")
+                  desc=next(((x.text or "").strip() for x in p.findall("desc") if (x.text or "").strip()),"")
+                  rows.append({"start":p.get("start"),"stop":p.get("stop"),"title":title,"desc":desc})
+                  if len(rows)>=3: break
+              print("BEIN_EXAMPLE",cid,json.dumps(rows,ensure_ascii=False))
+          PY
