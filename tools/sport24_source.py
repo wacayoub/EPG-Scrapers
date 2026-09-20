@@ -25,9 +25,7 @@ TARGETS = [
     ("sport24.thmanyah.1", "Thmanyah 1", f"{BASE}/thmanyah/1"),
     ("sport24.thmanyah.2", "Thmanyah 2", f"{BASE}/thmanyah/2"),
     ("sport24.thmanyah.3", "Thmanyah 3", f"{BASE}/thmanyah/3"),
-    ("sport24.bein.news", "beIN SPORTS News", f"{BASE}/bein/news"),
-    ("sport24.bein.0", "beIN SPORTS Free", f"{BASE}/bein/0"),
-] + [(f"sport24.bein.{n}", f"beIN SPORTS {n}", f"{BASE}/bein/{n}") for n in range(1, 10)]
+]
 
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPGManager/1.3"
 TITLE_KEYS = ("title","name","program","programme","program_title","programme_title","eventTitle","event_name","eventName")
