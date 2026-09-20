@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T10:47:54.475000+00:00",
+  "generated_at": "2026-09-20T11:00:55.931302+00:00",
   "sources": [
     {
       "provider": "epgshare",
@@ -12,6 +12,12 @@
       "source": "SA1",
       "reason": "ZERO_ACTIVE_CHANNELS",
       "detail": "97 channels, 0 active"
+    },
+    {
+      "provider": "epgshare",
+      "source": "AR1",
+      "reason": "INVALID_SOURCE_XML",
+      "detail": ""
     },
     {
       "provider": "openepg",

@@ -1,11 +1,11 @@
 # Arab fallback final analysis
 
-Active fallback rows: **1611**  
-Zero-EPG IDs blacklisted: **936**  
-Canonical groups: **1357**  
+Active fallback rows: **1535**  
+Zero-EPG IDs blacklisted: **930**  
+Canonical groups: **1281**  
 Duplicate groups: **210**  
 Extra duplicate rows collapsed: **254**  
-New IDs after zero/LatAm filtering: **1309**
+New IDs after zero/LatAm filtering: **1146**
 
 ## Source blacklist
 
@@ -13,6 +13,7 @@ New IDs after zero/LatAm filtering: **1309**
 |---|---|---|---|
 | epgshare | EG1 | ZERO_ACTIVE_CHANNELS | 238 channels, 0 active |
 | epgshare | SA1 | ZERO_ACTIVE_CHANNELS | 97 channels, 0 active |
+| epgshare | AR1 | INVALID_SOURCE_XML |  |
 | openepg | arabiapremiumar | INVALID_SOURCE_XML | no element found: line 1, column 0 |
 
 ## Integration rule

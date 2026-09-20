@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-20T10:47:54.475000+00:00",
-  "active_rows": 1611,
-  "zero_epg_blacklisted_ids": 936,
+  "generated_at": "2026-09-20T11:00:55.931302+00:00",
+  "active_rows": 1535,
+  "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
     {
       "provider": "epgshare",
@@ -16,21 +16,32 @@
       "detail": "97 channels, 0 active"
     },
     {
+      "provider": "epgshare",
+      "source": "AR1",
+      "reason": "INVALID_SOURCE_XML",
+      "detail": ""
+    },
+    {
       "provider": "openepg",
       "source": "arabiapremiumar",
       "reason": "INVALID_SOURCE_XML",
       "detail": "no element found: line 1, column 0"
     }
   ],
-  "canonical_groups": 1357,
+  "canonical_groups": 1281,
   "duplicate_groups": 210,
   "duplicate_extra_rows": 254,
   "decision_counts": {
-    "WINNER_OF_DUPLICATES": 210,
-    "UNIQUE": 1109,
-    "BLACKLIST_LATAM": 38
+    "UNIQUE": 1071,
+    "WINNER_OF_DUPLICATES": 210
   },
-  "new_ids_after_zero_and_latam_filter": 1309,
+  "new_ids_after_zero_and_latam_filter": 1146,
+  "language_duplicates_removed": 125,
+  "language_policy": "ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
+  "sort_order": "CHANNEL_NAME_ASC",
+  "excluded_sources": [
+    "epgshare:AR1"
+  ],
   "integration_policy": {
     "healthy_direct_feed": "always_keep",
     "fallback": "only_for_receiver_or_catalogue_channels_with_zero_epg",
