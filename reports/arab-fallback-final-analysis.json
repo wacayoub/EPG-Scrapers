@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-09-20T10:47:54.475000+00:00",
+  "active_rows": 1611,
+  "zero_epg_blacklisted_ids": 936,
+  "source_blacklist": [
+    {
+      "provider": "epgshare",
+      "source": "EG1",
+      "reason": "ZERO_ACTIVE_CHANNELS",
+      "detail": "238 channels, 0 active"
+    },
+    {
+      "provider": "epgshare",
+      "source": "SA1",
+      "reason": "ZERO_ACTIVE_CHANNELS",
+      "detail": "97 channels, 0 active"
+    },
+    {
+      "provider": "openepg",
+      "source": "arabiapremiumar",
+      "reason": "INVALID_SOURCE_XML",
+      "detail": "no element found: line 1, column 0"
+    }
+  ],
+  "canonical_groups": 1357,
+  "duplicate_groups": 210,
+  "duplicate_extra_rows": 254,
+  "decision_counts": {
+    "WINNER_OF_DUPLICATES": 210,
+    "UNIQUE": 1109,
+    "BLACKLIST_LATAM": 38
+  },
+  "new_ids_after_zero_and_latam_filter": 1309,
+  "integration_policy": {
+    "healthy_direct_feed": "always_keep",
+    "fallback": "only_for_receiver_or_catalogue_channels_with_zero_epg",
+    "duplicate": "use winner; keep alternatives for failover",
+    "zero_epg": "dynamic_blacklist_until_future_programmes_return",
+    "source_zero_or_invalid": "source_blacklist"
+  }
+}
