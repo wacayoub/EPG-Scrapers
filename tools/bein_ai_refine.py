@@ -13,8 +13,9 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import requests
 
-API="https://models.github.ai/inference/chat/completions"
-MODEL=os.environ.get("BEIN_AI_MODEL","openai/gpt-4.1-mini")
+OPENAI_API="https://api.openai.com/v1/chat/completions"
+GEMINI_API_BASE="https://generativelanguage.googleapis.com/v1beta/models"
+MODEL=os.environ.get("BEIN_AI_MODEL","gpt-5.6-mini")
 AR=re.compile(r"[\u0600-\u06FF]")
 LATIN=re.compile(r"[A-Za-z]")
 BAD_TOKENS=re.compile(r"\b(?:Spanish|French|Weekly Review|Final|Finals|W/M|M|MD\d+|FBL\d+|EP\.\d+)\b",re.I)
@@ -70,14 +71,17 @@ def main():
     ap.add_argument("--cache",default="data/bein_ai_cache.json")
     ap.add_argument("--report",default="reports/bein-ai-refine.json")
     a=ap.parse_args()
-    token=os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    openai_key=os.environ.get("OPENAI_API_KEY","").strip()
+    gemini_key=os.environ.get("GEMINI_API_KEY","").strip()
+    provider="openai" if openai_key else ("gemini" if gemini_key else "none")
     root=read(a.input)
     cache_path=Path(a.cache)
     try: cache=json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
     except Exception: cache={}
-    stats={"candidates":0,"changed":0,"cache_hits":0,"api_calls":0,"failures":[]}
+    stats={"provider":provider,"candidates":0,"changed":0,"cache_hits":0,"api_calls":0,"failures":[]}
     ses=requests.Session()
-    if token: ses.headers.update({"Authorization":f"Bearer {token}","Content-Type":"application/json"})
+    if openai_key:
+        ses.headers.update({"Authorization":f"Bearer {openai_key}","Content-Type":"application/json"})
 
     for p in root.findall("programme"):
         t=p.find("title"); d=p.find("desc")
@@ -89,16 +93,32 @@ def main():
         result=cache.get(k)
         if result:
             stats["cache_hits"]+=1
-        elif token:
+        elif provider=="openai":
             payload={"model":MODEL,"messages":[
                 {"role":"system","content":SYSTEM_PROMPT},
                 {"role":"user","content":json.dumps({"title":title,"desc":desc},ensure_ascii=False)}
             ],"temperature":0.1,"response_format":{"type":"json_object"}}
             try:
-                r=ses.post(API,json=payload,timeout=30); r.raise_for_status()
+                r=ses.post(OPENAI_API,json=payload,timeout=45); r.raise_for_status()
                 txt=r.json()["choices"][0]["message"]["content"]
                 result=json.loads(txt)
-                cache[k]=result; stats["api_calls"]+=1; time.sleep(0.15)
+                cache[k]=result; stats["api_calls"]+=1; time.sleep(0.12)
+            except Exception as e:
+                stats["failures"].append({"title":title[:120],"error":str(e)})
+                continue
+        elif provider=="gemini":
+            payload={
+                "system_instruction":{"parts":[{"text":SYSTEM_PROMPT}]},
+                "contents":[{"role":"user","parts":[{"text":json.dumps({"title":title,"desc":desc},ensure_ascii=False)}]}],
+                "generationConfig":{"temperature":0.1,"responseMimeType":"application/json"}
+            }
+            try:
+                model=os.environ.get("BEIN_GEMINI_MODEL","gemini-2.5-flash")
+                url=f"{GEMINI_API_BASE}/{model}:generateContent?key={gemini_key}"
+                r=ses.post(url,json=payload,timeout=45); r.raise_for_status()
+                txt=r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                result=json.loads(txt)
+                cache[k]=result; stats["api_calls"]+=1; time.sleep(0.12)
             except Exception as e:
                 stats["failures"].append({"title":title[:120],"error":str(e)})
                 continue
@@ -118,6 +138,9 @@ def main():
     Path(a.report).parent.mkdir(parents=True,exist_ok=True)
     Path(a.report).write_text(json.dumps(stats,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     write(a.output,root)
+    if provider=="none":
+        stats["note"]="AI provider not configured; deterministic Arabic normalization applied, AI pass skipped."
+        Path(a.report).write_text(json.dumps(stats,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("BEIN_AI_REFINE",json.dumps(stats,ensure_ascii=False))
     return 0
 
