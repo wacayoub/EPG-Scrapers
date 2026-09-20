@@ -71,6 +71,7 @@ KNOWN_BAD_FALLBACK_IDS={"baby-tv-2.qa","cbeebies-1.qa","fatafeat-1.qa"}
 BEIN_IMPLICIT_RE=re.compile(r"^(?:movies[1-4]\b.*|boxoffice[12]\b.*|4k\s+digital\b.*)$",re.I)
 SPORT24_RE=re.compile(r"(?:\bsport\s*24\b|\besport\s*24\b)",re.I)
 AFC_BEIN_RE=re.compile(r"^\s*afc(?:\s|[-_]|\d)",re.I)
+ALKASS_BAD_SAMPLE_RE=re.compile(r"^(?:beIN Sports MAX|News|Akhbar|أخبار)$",re.I)
 
 def norm(s:str)->str:
     s=unicodedata.normalize("NFKC",s or "").casefold()
@@ -172,6 +173,8 @@ def main():
             if BEIN_IMPLICIT_RE.search(rname) or BEIN_IMPLICIT_RE.search((r.get("id") or "")):
                 continue
             if (r.get("country") or "").casefold()=="qatar" and (AFC_BEIN_RE.search(rname) or AFC_BEIN_RE.search((r.get("id") or ""))):
+                continue
+            if "alkass" in name_blob.casefold() and ALKASS_BAD_SAMPLE_RE.search((r.get("sample_title") or "").strip()):
                 continue
             if SPORT24_RE.search(name_blob):
                 continue
