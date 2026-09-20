@@ -11,7 +11,7 @@
 | Jordan | 200 | 5.4 | 0 | 0 | 0 | 2 | REACHABLE_NEEDS_API |
 | Kuwait | 200 | 11.8 | 0 | 0 | 0 | 50 | REACHABLE_NEEDS_API |
 | Lebanon | 200 | 10.3 | 0 | 0 | 0 | 9 | REACHABLE_NEEDS_API |
-| Libya | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
+| Libya | 200 | 14.3 | 0 | 1 | 1 | 50 | PROMISING |
 | Mauritania | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
 | Morocco | 200 | 17.5 | 0 | 19 | 0 | 50 | PROMISING |
 | Oman | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
