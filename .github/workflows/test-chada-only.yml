@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/test-chada-only.yml"
       - "tools/run_chada_only.py"
+      - "tools/morocco_epg.py"
   workflow_dispatch:
 permissions:
   contents: write
