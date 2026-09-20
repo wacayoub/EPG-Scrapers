@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T11:17:59.149227+00:00",
+  "generated_at": "2026-09-20T11:19:25.005627+00:00",
   "active_rows": 1535,
   "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
@@ -35,12 +35,21 @@
     "UNIQUE": 1071,
     "WINNER_OF_DUPLICATES": 210
   },
-  "merged_fallback_winners_before_direct_filter": 936,
-  "already_covered_by_direct_sources": 121,
+  "merged_fallback_winners_before_direct_filter": 849,
+  "already_covered_by_direct_sources": 97,
   "bein_family_fallback_policy": "ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
-  "missing_ids_final": 815,
-  "new_ids_after_zero_and_latam_filter": 815,
-  "language_duplicates_removed": 186,
+  "protected_direct_families": [
+    "bein",
+    "osn",
+    "mbc",
+    "rotana",
+    "dubai_dmi",
+    "adm",
+    "morocco"
+  ],
+  "missing_ids_final": 752,
+  "new_ids_after_zero_and_latam_filter": 752,
+  "language_duplicates_removed": 115,
   "language_policy": "ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
   "sort_order": "CHANNEL_NAME_ASC",
   "excluded_sources": [
