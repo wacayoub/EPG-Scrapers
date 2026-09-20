@@ -12,7 +12,6 @@ on:
       - "tools/source_gap_retry.py"
       - "tools/validate_48h.py"
       - "tools/sport24_source.py"
-      - "tools/morocco_epg.py"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
@@ -22,7 +21,7 @@ permissions:
 
 concurrency:
   group: epg-feed-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -168,20 +167,6 @@ jobs:
           fi
           exit 0
 
-      - name: Scrape Morocco
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          set +e
-          mkdir -p output/morocco output/source-build
-          if [ -s feeds/morocco.xml.gz ]; then
-            python tools/morocco_epg.py               --output-dir output/morocco               --days 3               --previous feeds/morocco.xml.gz
-          else
-            python tools/morocco_epg.py               --output-dir output/morocco               --days 7
-          fi
-          echo "$?" > output/source-build/morocco.grab.rc
-          exit 0
-
       - name: Pack candidate feeds
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -192,10 +177,6 @@ jobs:
             python tools/source_feed_pack.py               --input "output/source-build/$key.raw.xml"               --output-gz "output/final/$key.xml.gz"               --output-txt "output/final/$key.txt"               --stats "output/final/$key.json"               --label "$key"               --window-hours 48
             echo "$?" > "output/final/$key.pack.rc"
           done
-          if [ -s output/morocco/morocco.xml.gz ]; then
-            cp output/morocco/morocco.xml.gz output/final/morocco.xml.gz
-            cp output/morocco/manifest.json output/final/morocco.json
-          fi
           exit 0
 
       - name: Arabize beIN MENA titles and descriptions
