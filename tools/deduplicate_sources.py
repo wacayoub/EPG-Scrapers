@@ -60,6 +60,18 @@ def canonical_id(cid,name):
             "thmanyah1":"thmanyah1.sa",
             "thmanyah2":"thmanyah2.sa",
             "thmanyah3":"thmanyah3.sa",
+            "beinsports":"beinsports.qa",
+            "beinsportsfree":"beinsports.qa",
+            "beinsports1":"beinsports1.qa",
+            "beinsports2":"beinsports2.qa",
+            "beinsports3":"beinsports3.qa",
+            "beinsports4":"beinsports4.qa",
+            "beinsports5":"beinsports5.qa",
+            "beinsports6":"beinsports6.qa",
+            "beinsports7":"beinsports7.qa",
+            "beinsports8":"beinsports8.qa",
+            "beinsports9":"beinsports9.qa",
+            "beinsportsnews":"beinsportsnews.qa",
         }
         return aliases.get(n,base)
     return base
