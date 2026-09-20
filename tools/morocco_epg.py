@@ -122,7 +122,11 @@ def previous(path):
  try:
   raw=gzip.decompress(path.read_bytes()) if path.suffix==".gz" else path.read_bytes(); root=ET.fromstring(raw); out=[]
   for p in root.findall("programme"):
-   def dt(v): return datetime.strptime(v[:19],"%Y%m%d%H%M%S %z").astimezone(TZ)
+   def dt(v):
+    raw=clean(v)
+    mm=re.match(r"^(\\d{14})\\s+([+-]\\d{4})",raw)
+    if not mm: raise ValueError("invalid XMLTV datetime: %r"%raw)
+    return datetime.strptime(mm.group(1)+" "+mm.group(2),"%Y%m%d%H%M%S %z").astimezone(TZ)
    t=p.find("title"); d=p.find("desc"); out.append(Event(p.get("channel"),dt(p.get("start")),t.text or "",d.text if d is not None else "",dt(p.get("stop")) if p.get("stop") else None,t.get("lang") or "ar",d.get("lang") if d is not None else "ar","old"))
   return out
  except Exception as e: log("Previous feed unreadable: %s"%e); return []
