@@ -266,34 +266,83 @@ def scrape_2m(days):
  log("2M total: %d events"%len(out))
  return out
 
-def scrape_chada(days):
+def _chada_title_desc(raw):
+ title=clean(raw).strip(" .-|:")
+ n=norm(title)
+ meta=next((CHADA[k] for k in sorted(CHADA,key=len,reverse=True) if k in n),None)
+ if meta:return meta
+ if "capsule sport" in n:return ("Capsule sport","Capsule sportive sur Chada TV.")
+ if "capsule culinaire" in n:return ("Capsule culinaire","Capsule culinaire sur Chada TV.")
+ if "capsule beaute" in n:return ("Capsule beauté","Capsule beauté sur Chada TV.")
+ if "capsule mode" in n:return ("Capsule mode","Capsule mode sur Chada TV.")
+ if "capsule bien etre" in n:return ("Capsule bien-être","Capsule bien-être sur Chada TV.")
+ return (title,"Programme diffusé sur Chada TV.")
+
+def _parse_chada_piisas(text,day):
+ soup=BeautifulSoup(text,"lxml");raw=[]
+ body=clean(soup.get_text("\n",strip=True))
+ for m in re.finditer(r"(?m)(?:^|\n)\s*([0-2]?\d:[0-5]\d)\s*-\s*([^\n]+)",body):
+  hm=clean(m.group(1));title=clean(m.group(2))
+  if len(title)<2:continue
+  hr,mi=map(int,hm.split(":"))
+  raw.append((datetime.combine(day,dtime(hr,mi),TZ),title))
+ out=[];seen=set()
+ for start,title in sorted(raw,key=lambda x:x[0]):
+  k=(start,title.casefold())
+  if k in seen:continue
+  seen.add(k)
+  t,d=_chada_title_desc(title)
+  out.append(Event("Chada TV",start,t,d,None,lang(t,"fr"),lang(d,"fr"),"piisas"))
+ infer(out)
+ return out
+
+def _scrape_chada_official(days):
  h=Http();today=datetime.now(TZ).date();out=[]
  try:r=h.get("https://chada.ma/fr/chada-tv/grille-tv/")
  except Exception:r=None
- if r:
-  tree=LH.fromstring(r.text)
-  for bad in tree.xpath("//script|//style|//nav|//footer|//header"):
-   if bad.getparent() is not None:bad.getparent().remove(bad)
-  area=(tree.xpath("//div[contains(@class,'elementor-text-editor')]") or tree.xpath("//div[contains(@class,'posts-area')]") or tree.xpath("//body"));full="  ".join(clean(x) for x in area[0].xpath(".//text()") if clean(x)) if area else ""; raw=[]
-  for m in re.finditer(r"(\d{2}:\d{2})(?:\s*(?:à|-)\s*\d{2}:\d{2})?\s*[.\-]?\s*(.*?)(?=\s*(?:\d{2}:\d{2})|$)",full):
-   title=clean(m.group(2)).strip(" .-|:")
-   if len(title)>2:raw.append((datetime.strptime(m.group(1),"%H:%M").time(),title))
-  seq=[];last=None
-  for t,title in raw:
-   if last is None or t>last or (t<last and last.hour>=18 and t.hour<=5):seq.append((t,title));last=t
-  proc=[]
+ if not r:return out
+ tree=LH.fromstring(r.text)
+ for bad in tree.xpath("//script|//style|//nav|//footer|//header"):
+  if bad.getparent() is not None:bad.getparent().remove(bad)
+ area=(tree.xpath("//div[contains(@class,'elementor-text-editor')]") or tree.xpath("//div[contains(@class,'posts-area')]") or tree.xpath("//body"))
+ full="  ".join(clean(x) for x in area[0].xpath(".//text()") if clean(x)) if area else ""
+ raw=[]
+ for m in re.finditer(r"(\d{2}:\d{2})(?:\s*(?:à|-)\s*\d{2}:\d{2})?\s*[.\-]?\s*(.*?)(?=\s*(?:\d{2}:\d{2})|$)",full):
+  title=clean(m.group(2)).strip(" .-|:")
+  if len(title)>2:raw.append((datetime.strptime(m.group(1),"%H:%M").time(),title))
+ seq=[];last=None
+ for t,title in raw:
+  if last is None or t>last or (t<last and last.hour>=18 and t.hour<=5):seq.append((t,title));last=t
+ for i in range(min(days,1)):
+  cur=today+timedelta(days=i);prev=seq[0][0] if seq else dtime(0)
   for t,orig in seq:
-   low=orig.casefold(); presenter=next((v for k,v in HOSTS.items() if k in low),""); cleaned=orig
-   for k in HOSTS:cleaned=re.sub(re.escape(k),"",cleaned,flags=re.I)
-   cleaned=clean(cleaned).strip(" .-|:") or "برنامج شدى تي في"; n=norm(cleaned); meta=next((CHADA[k] for k in sorted(CHADA,key=len,reverse=True) if k in n),None); title,desc=meta or (cleaned,"برنامج ضمن شبكة شدى تي في.")
-   if presenter and presenter not in desc:desc=desc.rstrip(" .")+". تقديم "+presenter+"."
-   proc.append((t,title,desc))
-  for i in range(days):
-   cur=today+timedelta(days=i);prev=proc[0][0] if proc else dtime(0)
-   for t,title,desc in proc:
-    if t<prev:cur+=timedelta(days=1)
-    prev=t;out.append(Event("Chada TV",datetime.combine(cur,t,TZ),title,desc,None,lang(title),"ar","chada"))
+   if t<prev:cur+=timedelta(days=1)
+   prev=t
+   title,desc=_chada_title_desc(orig)
+   out.append(Event("Chada TV",datetime.combine(cur,t,TZ),title,desc,None,lang(title,"fr"),lang(desc,"fr"),"chada-official"))
  infer(out);return out
+
+def scrape_chada(days):
+ h=Http();today=datetime.now(TZ).date();out=[]
+ pages=[(today,"https://piisas.com/chada-tv/aujourdhui")]
+ if days>1:pages.append((today+timedelta(days=1),"https://piisas.com/chada-tv/demain"))
+ for day,url in pages:
+  try:
+   rows=_parse_chada_piisas(h.get(url,headers={"Referer":"https://piisas.com/chada-tv/"}).text,day)
+   log("Chada %s piisas: %d events"%(day.isoformat(),len(rows)))
+   out+=rows
+  except Exception as ex:
+   log("Chada %s piisas failed: %s"%(day.isoformat(),ex))
+ if not out:
+  out=_scrape_chada_official(days)
+  log("Chada official fallback: %d events"%len(out))
+ seen=set();cleanrows=[]
+ for ev in sorted(out,key=lambda ev:ev.start):
+  k=(ev.start,ev.title.casefold())
+  if k not in seen:
+   seen.add(k);cleanrows.append(ev)
+ infer(cleanrows)
+ return cleanrows
 
 def scrape_snrt(days):
  def one(cid,url):
