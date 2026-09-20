@@ -44,5 +44,33 @@ def choose(key, sites, arabic_only=False):
         raise SystemExit(f"{key}: empty catalogue")
 
 choose("elcinema",["elcinema.com"],arabic_only=True)
+
+def build_elcinema_fallback():
+    base=ROOT/"elcinema.com"
+    ar_file=base/"elcinema.com_ar.channels.xml"
+    en_file=base/"elcinema.com_en.channels.xml"
+    ar_root=ET.parse(ar_file).getroot()
+    en_root=ET.parse(en_file).getroot()
+    en_by_id={(c.get("xmltv_id") or "").strip():c for c in en_root.findall("channel")
+              if (c.get("xmltv_id") or "").strip() and (c.get("site_id") or "").strip()}
+    root=ET.Element("channels")
+    recovered=0
+    for ar in ar_root.findall("channel"):
+        cid=(ar.get("xmltv_id") or "").strip()
+        sid=(ar.get("site_id") or "").strip()
+        if not cid or not sid:
+            continue
+        node=en_by_id.get(cid)
+        if node is not None:
+            root.append(ET.fromstring(ET.tostring(node,encoding="utf-8")))
+            recovered+=1
+        else:
+            root.append(ET.fromstring(ET.tostring(ar,encoding="utf-8")))
+    ET.indent(root,space="  ")
+    path=OUT/"elcinema_fallback.channels.xml"
+    path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
+    print(f"elcinema fallback: {len(root)} channels ({recovered} English alternates)")
+
+build_elcinema_fallback()
 choose("osn",["osn.com"])
 choose("bein",["bein.com","beinsports.com"])
