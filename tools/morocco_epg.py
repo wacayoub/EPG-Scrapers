@@ -4,7 +4,7 @@
 Runs on GitHub Actions. The Vu+ only downloads morocco.xml.gz.
 """
 from __future__ import annotations
-import argparse,gzip,hashlib,html,json,re,time,unicodedata,difflib
+import argparse,gzip,hashlib,html,json,re,time,unicodedata
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from dataclasses import dataclass
@@ -39,7 +39,18 @@ ARR_IDS=["Arryadia_HD","Arryadia_TNT","Arryadia_HD1","Arryadia_HD2","Arryadia_HD
 ARR_TAGS={r"\btnt\b":"Arryadia_TNT",r"\bsat\b":"Arryadia_HD",r"\bhd1\b":"Arryadia_HD1",r"\bhd2\b":"Arryadia_HD2",r"\bhd3\b":"Arryadia_HD3"}
 NEWS={"الظهيرة":"أخبار الظهيرة","الأمازيغية":"الأخبار الأمازيغية","الفرنسية":"الأخبار الفرنسية",
  "الإسبانية":"الأخبار الإسبانية","الرئيسية":"الأخبار الرئيسية","الأخيرة":"الأخبار الأخيرة","الرياضية":"أخبار الرياضة"}
-T2M={"al akhbar":"الأخبار","sabahiyat 2m":"2M صباحيات","sabahiyat":"2M صباحيات",
+T2M={
+ "al akhbar":"الأخبار","sabahiyat 2m":"صباحيات 2M","sabahiyat":"صباحيات 2M",
+ "ahsane patissier":"أحسن حلواني","andaloussiyat":"أندلسيات","lharba":"الهربة",
+ "sahatna jmi3":"صحتنا جميع","tajwid al qor an":"تجويد القرآن","ch hiwat bladi":"شهيوات بلادي",
+ "kif al hal":"كيف الحال","al barlamane wa annass":"البرلمان والناس","alhane 3chaqnaha":"ألحان عشقناها",
+ "salon shehrazade":"صالون شهرزاد","ch hiwa ma3a choumicha":"شهيوة مع شميشة","al amana":"الأمانة",
+ "asrar al mondial":"أسرار المونديال","bulletin meteo":"النشرة الجوية","journal amazigh":"الأخبار بالأمازيغية",
+ "3ailti":"عائلتي","sir al morjane":"سر المرجان","bahr addalam":"بحر الظلام","qalb aswad":"قلب أسود",
+ "mondial stories":"حكايات المونديال","info soir":"أخبار المساء","eco news":"أخبار الاقتصاد",
+ "al massaiya":"المسائية","planete foot":"عالم كرة القدم","hikayat chama":"حكايات شامة",
+ "jabha f rassou":"جبهة فراسو",
+
  "charqi ou gharbi":"شرقي أو غربي","charqi ou lgharbi":"شرقي أو غربي","soiree chaabi":"سهرة شعبية",
  "soiree cha3bi":"سهرة شعبية","attahssina":"التحصينة","at tahssina":"التحصينة",
  "priere du vendredi":"صلاة الجمعة","priere vendredi":"صلاة الجمعة","ayne lkebrite":"عين الكبريت",
@@ -171,7 +182,7 @@ def scrape_medi1(days):
    if k not in seen:seen.add(k);out.append(e)
  infer(out);return out
 
-def _telerama_title(raw):
+def _telerama_card(raw):
  s=clean(raw)
  m=re.search(r"(?<!\d)([0-2]?\d)h([0-5]\d)(?!\d)",s)
  if not m:return None
@@ -180,108 +191,68 @@ def _telerama_title(raw):
        "Magazine de services","Magazine de société","Magazine culturel",
        "Série dramatique","Série sentimentale","Divertissement","Documentaire",
        "Feuilleton","Magazine","Journal","Météo","Débat","Théâtre","Film","Série")
+ category=""
+ title=prefix
  for cat in sorted(cats,key=len,reverse=True):
   if prefix.casefold().startswith(cat.casefold()+" "):
-   prefix=clean(prefix[len(cat):])
+   category=cat
+   title=clean(prefix[len(cat):])
    break
- return (int(m.group(1)),int(m.group(2)),prefix) if prefix else None
+ return (int(m.group(1)),int(m.group(2)),title,category) if title else None
 
-def _official_replay_items(text,lang_code):
- soup=BeautifulSoup(text,"lxml");items={}
- for a in soup.find_all("a",href=True):
-  href=a.get("href") or ""
-  if "/replay/" not in href:continue
-  key=re.sub(r"^https?://[^/]+","",href)
-  key=re.sub(r"^/(?:ar|fr)(?=/)","",key).split("?",1)[0].rstrip("/")
-  if not key or key.count("/")<2:continue
-  parts=[clean(x) for x in a.stripped_strings if clean(x)]
-  title=clean(a.get("title") or a.get("aria-label") or "")
-  if not title and parts:title=parts[0]
-  img=a.find("img")
-  if (not title or len(title)<2) and img:
-   title=clean(img.get("alt") or img.get("title") or "")
-  if not title or len(title)>160:continue
-  desc=clean(" ".join(parts[1:])) if len(parts)>1 else ""
-  cur=items.get(key);score=(1 if title else 0)+(1 if desc else 0)
-  if not cur or score>cur["score"]:
-   items[key]={"title":title,"desc":desc,"lang":lang_code,"score":score}
- return items
+def _2m_title(raw):
+ n=norm(raw)
+ if n in T2M:return T2M[n],"dictionary"
+ return clean(raw),"original"
 
-def official_2m_catalog(h):
- pairs=[]
- for kind in ("series","programs"):
-  got={}
-  for lc in ("fr","ar"):
-   url=f"https://2m.ma/{lc}/replay/{kind}"
-   try:
-    r=h.get(url,headers={"Referer":"https://2m.ma/"})
-    got[lc]=_official_replay_items(r.text,lc)
-    log("2M official %s/%s: %d items"%(lc,kind,len(got[lc])))
-   except Exception as e:
-    log("2M official %s/%s failed: %s"%(lc,kind,e));got[lc]={}
-  for key in sorted(set(got["fr"]) & set(got["ar"])):
-   fr=got["fr"][key];arx=got["ar"][key]
-   if ar(arx["title"]) and fr["title"]:
-    pairs.append({"fr":fr["title"],"ar":arx["title"],"desc_ar":arx["desc"],"desc_fr":fr["desc"],"key":key})
- log("2M official paired catalogue: %d titles"%len(pairs))
- return pairs
-
-def _official_match(title,catalog):
+def _2m_desc(title,category):
+ cat=norm(category)
+ if "meteo" in cat:return "نشرة جوية على قناة 2M تقدم توقعات الطقس ودرجات الحرارة."
+ if "journal" in cat or "information" in cat:return "موعد إخباري على قناة 2M لمتابعة أبرز الأخبار والمستجدات."
+ if "sport" in cat:return "برنامج رياضي على قناة 2M يتابع الأخبار والمنافسات الرياضية."
+ if "serie" in cat or "feuilleton" in cat:return "مسلسل يُعرض على قناة 2M."
+ if "film" in cat:return "فيلم يُعرض على قناة 2M."
+ if "documentaire" in cat:return "برنامج وثائقي يُعرض على قناة 2M."
+ if "debat" in cat:return "برنامج حواري على قناة 2M."
+ if "theatre" in cat:return "عرض مسرحي يُعرض على قناة 2M."
+ if "divertissement" in cat:return "برنامج ترفيهي يُعرض على قناة 2M."
+ if "magazine" in cat:return "مجلة تلفزيونية تُعرض على قناة 2M."
  n=norm(title)
- if not n:return None
- best=None;bestscore=0.0
- for item in catalog:
-  fn=norm(item["fr"])
-  if not fn:continue
-  if n==fn:return item
-  if n in fn or fn in n:score=.93
-  else:score=difflib.SequenceMatcher(None,n,fn).ratio()
-  if score>bestscore:bestscore=score;best=item
- return best if bestscore>=0.78 else None
+ if "akhbar" in n or "info" in n or "journal" in n:return "موعد إخباري على قناة 2M."
+ return "برنامج يُعرض على قناة 2M."
 
-def _2m_official_title_desc(raw_title,catalog):
- hit=_official_match(raw_title,catalog)
- if hit:
-  desc=clean(hit.get("desc_ar") or hit.get("desc_fr") or "")
-  return clean(hit["ar"]),desc,"official"
- n=norm(raw_title)
- if n in T2M:return T2M[n],"","dictionary"
- return clean(raw_title),"","original"
-
-def parse_2m_telerama(h,text,day,catalog):
+def parse_2m_telerama(text,day):
  soup=BeautifulSoup(text,"lxml");out=[];seen=set()
  for a in soup.find_all("a"):
   raw=clean(" ".join(a.stripped_strings))
-  parsed=_telerama_title(raw)
+  parsed=_telerama_card(raw)
   if not parsed:continue
-  hr,mi,title=parsed
+  hr,mi,title,category=parsed
   if len(title)<2 or len(title)>120:continue
   if re.fullmatch(r"[0-2]?\d[h:]?[0-5]\d",title):continue
   k=(hr,mi,title.casefold())
   if k in seen:continue
   seen.add(k)
   start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
-  at,official_desc,mode=_2m_official_title_desc(title,catalog)
-  n=norm(title)
-  desc=official_desc or ("برنامج إخباري من قناة 2M." if ("info" in n or "journal" in n or "akhbar" in n) else "برنامج يُعرض على قناة 2M.")
-  out.append(Event("2M",start,at,desc,None,lang(at,"fr"),lang(desc,"ar"),"telerama+"+mode))
+  at,mode=_2m_title(title)
+  desc=_2m_desc(title,category)
+  out.append(Event("2M",start,at,desc,None,lang(at,"fr"),"ar","telerama+"+mode))
  out.sort(key=lambda e:e.start)
  return out
 
 def scrape_2m(days):
  h=Http();today=datetime.now(TZ).date();out=[]
- catalog=official_2m_catalog(h)
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
  for i in range(days):
   d=today+timedelta(days=i)
   url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
   try:
    r=h.get(url,headers={"Referer":"https://television.telerama.fr/"})
-   rows=parse_2m_telerama(h,r.text,d,catalog)
+   rows=parse_2m_telerama(r.text,d)
    log("2M %s telerama: %d events"%(d.isoformat(),len(rows)))
    out+=rows
-  except Exception as e:
-   log("2M %s telerama failed: %s"%(d.isoformat(),e))
+  except Exception as ex:
+   log("2M %s telerama failed: %s"%(d.isoformat(),ex))
  seen=set();cleanrows=[]
  for e in sorted(out,key=lambda e:(e.start,e.title.casefold())):
   k=(e.start,e.title.casefold())
@@ -290,7 +261,7 @@ def scrape_2m(days):
  infer(cleanrows)
  cleanrows=[e for e in cleanrows if e.stop and e.stop>e.start and e.stop-e.start<=timedelta(hours=4)]
  modes=defaultdict(int)
- for e in cleanrows:modes[e.source]+=1
+ for ev in cleanrows:modes[ev.source]+=1
  log("2M title modes: %s"%dict(modes))
  log("2M total: %d events"%len(cleanrows))
  return cleanrows
