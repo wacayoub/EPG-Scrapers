@@ -3,12 +3,20 @@
 from __future__ import annotations
 import json,re
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
 UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPG-Scrapers-ScheduleProbe/1.0"
+CASABLANCA=ZoneInfo("Africa/Casablanca")
+
+def rotana_tz_minutes():
+  # Rotana uses the browser Date.getTimezoneOffset convention:
+  # UTC+1 => -60, UTC+0 => 0.
+  off=datetime.now(CASABLANCA).utcoffset() or timedelta(0)
+  return -int(off.total_seconds()//60)
 
 ROTANA={
   "official.rotana.cinema.ksa":("Rotana Cinema KSA",431),
@@ -55,7 +63,8 @@ def prefer_arabic_text(candidates):
   return vals[0]
 
 def rotana_channel(sess,cid,name,chid):
-  url=f"https://www.rotana.net/ar/streams?channel={chid}&tz=-60"
+  tz=rotana_tz_minutes()
+  url=f"https://www.rotana.net/ar/streams?channel={chid}&tz={tz}"
   r=get(sess,url)
   soup=BeautifulSoup(r.text,"html.parser")
   text=soup.get_text("\n",strip=True)
@@ -72,7 +81,7 @@ def rotana_channel(sess,cid,name,chid):
       if not title or title.lower() in {"search","live"}:
         continue
       try:
-        dt=datetime.strptime(date+" "+hhmm,"%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
+        dt=datetime.strptime(date+" "+hhmm,"%Y-%m-%d %H:%M").replace(tzinfo=CASABLANCA).astimezone(timezone.utc)
       except Exception:
         continue
       events.append({"start":dt.isoformat(),"title":title})
@@ -187,7 +196,8 @@ def main():
   for cid,(name,chid) in ROTANA.items():
     try: rows.append(rotana_channel(s,cid,name,chid))
     except Exception as e:
-      rows.append({"id":cid,"name":name,"provider":"official","source":"rotana","url":f"https://www.rotana.net/ar/streams?channel={chid}&tz=-60","programmes":0,"future_hours":0.0,"sample_title":"","sample_desc":"","events":[],"status":"ERROR","error":str(e)[:200]})
+      tz=rotana_tz_minutes()
+      rows.append({"id":cid,"name":name,"provider":"official","source":"rotana","url":f"https://www.rotana.net/ar/streams?channel={chid}&tz={tz}","programmes":0,"future_hours":0.0,"sample_title":"","sample_desc":"","events":[],"status":"ERROR","error":str(e)[:200]})
   rows.extend(art_channels(s))
   report={"generated_at":datetime.now(timezone.utc).isoformat(),"channels":rows}
   Path("reports").mkdir(exist_ok=True)
