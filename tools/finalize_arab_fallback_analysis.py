@@ -44,6 +44,7 @@ DIRECT_FAMILY_PATTERNS={
     "morocco": re.compile(r"(?:\b2m\b|al\s*aoula|alaoula|arryadia|arrabiaa|almaghribiya|assadisa|tamazight|snrt|الأولى|الاولى|الرياضية|الثقافية|المغربية|السادسة|تمازيغت)",re.I),
 }
 PREFIX_RE=re.compile(r"^(?:en|ar)\s*:\s*",re.I)
+PROTECTED_DIRECT_FEED_STEMS={"bein","osn","elcinema","sport24","2m","morocco","snrt"}
 
 ALIASES={
     "mbc 3":"mbc3","mbc3":"mbc3",
@@ -151,6 +152,28 @@ def norm(s):
     s=" ".join(s.split())
     return ALIASES.get(s,s)
 
+def direct_identity_keys(raw):
+    """Aggressive-but-safe identity keys for direct-feed protection."""
+    raw=(raw or "").strip()
+    if not raw:
+        return set()
+    vals={raw}
+    vals.add(re.sub(r"\.(?:ae|sa|eg|qa|net|bein)$","",raw,flags=re.I))
+    out=set()
+    for v in vals:
+        n=norm(v)
+        if not n:
+            continue
+        out.add(n)
+        stripped=re.sub(r"\b(?:live|digital|arabic|english|mono)\b"," ",n,flags=re.I)
+        stripped=" ".join(stripped.split())
+        if stripped:
+            out.add(stripped)
+        compact=re.sub(r"[^\w\u0600-\u06ff]+","",stripped or n)
+        if compact:
+            out.add(compact)
+    return out
+
 def direct_family_match(r):
     txt=" ".join(str(r.get(k,"") or "") for k in ("name","id","source","provider"))
     for family,pat in DIRECT_FAMILY_PATTERNS.items():
@@ -249,11 +272,15 @@ def dynamic_quarantined_sources(health):
     return out
 
 def load_direct_catalogue():
-    """Return healthy published direct IDs and normalized channel names."""
+    """Return healthy published direct IDs and protected direct identities."""
     direct_ids=set()
     direct_names=defaultdict(list)
+    protected_names=defaultdict(list)
     now_dt=datetime.now(timezone.utc)
     for path in sorted(Path("feeds").glob("*.xml.gz")):
+        stem=path.name.replace(".xml.gz","").casefold()
+        protected=(stem in PROTECTED_DIRECT_FEED_STEMS or
+                   any(x in stem for x in ("bein","osn","elcinema","sport24","morocco","snrt")))
         try:
             data=path.read_bytes()
             if data[:2]==b"\x1f\x8b":
@@ -280,14 +307,13 @@ def load_direct_catalogue():
             if not names:
                 names=[cid]
             direct_ids.add(cid)
-            for name in names:
-                key=norm(name)
-                if key:
-                    direct_names[key].append({"id":cid,"feed":path.name,"name":name})
-            id_key=norm(cid)
-            if id_key:
-                direct_names[id_key].append({"id":cid,"feed":path.name,"name":names[0]})
-    return direct_ids,direct_names
+            entries=[{"id":cid,"feed":path.name,"name":names[0]}]
+            for raw in names+[cid]:
+                for key in direct_identity_keys(raw):
+                    direct_names[key].extend(entries)
+                    if protected:
+                        protected_names[key].extend(entries)
+    return direct_ids,direct_names,protected_names
 
 def rank(r):
     fp=min(int(float(r["future_programmes"])),300)
@@ -386,7 +412,7 @@ def main():
     with (OUT/"arab-fallback-duplicate-decisions.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=dfields); w.writeheader(); w.writerows(decisions)
 
-    direct_ids,direct_names=load_direct_catalogue()
+    direct_ids,direct_names,protected_direct_names=load_direct_catalogue()
 
     # New IDs list = current unmapped candidates after analysis, excluding obvious
     # LATAM pollution and excluding zero-EPG IDs.
@@ -527,10 +553,18 @@ def main():
         direct_matches=[]
         if (r.get("id") or "") in direct_ids:
             direct_matches.append({"id":r["id"],"feed":"exact-id","name":r.get("name","")})
-        keys={norm(r.get("name") or ""),bilingual_key(r),norm(r.get("id") or "")}
+        keys=set()
+        for raw in (r.get("name") or "",r.get("id") or "",bilingual_key(r)):
+            keys.update(direct_identity_keys(raw))
+        # Explicit hard protection for OSN, beIN, ElCinema, Sport24 and Morocco/2M/SNRT.
         for key in keys:
-            if key and key in direct_names:
-                direct_matches.extend(direct_names[key])
+            if key in protected_direct_names:
+                direct_matches.extend(protected_direct_names[key])
+        # Also keep the generic exact/normalized protection for any other healthy direct feed.
+        if not direct_matches:
+            for key in keys:
+                if key in direct_names:
+                    direct_matches.extend(direct_names[key])
 
         if direct_matches:
             seen=set()
@@ -580,6 +614,7 @@ def main():
         "already_covered_by_direct_sources":len(already_covered),
         "bein_family_fallback_policy":"ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
         "protected_direct_families":["bein","osn","mbc","rotana","dubai_dmi","adm","morocco"],
+        "protected_direct_feeds":["bein","osn","elcinema","sport24","2m","morocco","snrt"],
         "missing_ids_final":len(new),
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
