@@ -26,6 +26,7 @@ OUT=Path("reports")
 
 AR=re.compile(r"[\u0600-\u06ff]")
 LATAM_BAD=re.compile(r"\b(argentina|latinoam[eé]rica|latin america|pakapaka|tooncast)\b",re.I)
+EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
 PREFIX_RE=re.compile(r"^(?:en|ar)\s*:\s*",re.I)
 
 ALIASES={
@@ -102,6 +103,7 @@ def rank(r):
 def main():
     now=datetime.now(timezone.utc).isoformat()
     rows=list(csv.DictReader(ALL.open(encoding="utf-8")))
+    rows=[r for r in rows if (r.get("provider",""),r.get("source","")) not in EXCLUDED_SOURCE_KEYS]
     for r in rows:
         r["future_programmes"]=int(float(r.get("future_programmes") or 0))
         r["future_hours"]=float(r.get("future_hours") or 0)
@@ -186,7 +188,7 @@ def main():
         new.append(r)
     new.sort(key=lambda r:(r["country"],r["name"].casefold(),r["id"]))
 
-    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","alternatives","alternative_sources","url"]
+    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","alternatives","alternative_sources","url"]
     with (OUT/"new-arab-epg-ids.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=nfields); w.writeheader()
         for r in new: w.writerow({k:r.get(k,"") for k in nfields})
@@ -206,6 +208,7 @@ def main():
         "duplicate_extra_rows":sum(max(0,len(a)-1) for a in groups.values()),
         "decision_counts":dict(counts),
         "new_ids_after_zero_and_latam_filter":len(new),
+        "excluded_sources":["epgshare:AR1"],
         "integration_policy":{
             "healthy_direct_feed":"always_keep",
             "fallback":"only_for_receiver_or_catalogue_channels_with_zero_epg",
