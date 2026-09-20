@@ -51,6 +51,7 @@ jobs:
           import json, xml.etree.ElementTree as ET
           from pathlib import Path
 
+          # sat.tv intentionally excluded: scraping blocked in prior tests.
           TRUSTED = {
               "shahid.mbc.net",
               "osn.com",
