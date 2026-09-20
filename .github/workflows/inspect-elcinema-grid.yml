@@ -1,0 +1,38 @@
+name: Inspect ElCinema grid
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-elcinema-grid.yml"
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml
+      - name: Inspect target rows
+        run: |
+          python - <<'PY'
+          import re,requests
+          from bs4 import BeautifulSoup
+          ids=["1136","1272","1308","1334","1330","1275","1212","1329"]
+          r=requests.get("https://elcinema.com/tvguide/",headers={"User-Agent":"Mozilla/5.0"},timeout=20)
+          print("HTTP",r.status_code,"LEN",len(r.text))
+          s=BeautifulSoup(r.text,"lxml")
+          print("TV_LINES",len(s.select(".tv-line")))
+          for sid in ids:
+              a=s.find("a",href=re.compile(rf"/tvguide/{sid}/?$"))
+              print("\nSID",sid,"FOUND_LINK",bool(a))
+              row=a.find_parent(class_=lambda c:c and "tv-line" in (c if isinstance(c,list) else c.split())) if a else None
+              print("ROW",bool(row))
+              if row:
+                  txt=" | ".join(row.stripped_strings)
+                  print("TEXT",txt[:2500])
+                  print("HTML",str(row)[:5000])
+          PY
