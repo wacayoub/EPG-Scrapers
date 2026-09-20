@@ -61,6 +61,7 @@ SOURCE_PRIORITY={
 }
 
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
+BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin)",re.I)
 
 def norm(s:str)->str:
     s=unicodedata.normalize("NFKC",s or "").casefold()
@@ -124,7 +125,8 @@ def main():
             r["desc_pct"]=float(r["desc_pct"] or 0)
             r["suspicious_clone"]=str(r.get("suspicious_clone","")).strip().casefold() in ("1","true","yes")
             r["clone_group_size"]=int(float(r.get("clone_group_size") or 1))
-            if r["future_programmes"]<=0 or r["suspicious_clone"]:
+            sample_blob=((r.get("sample_title") or "")+" "+(r.get("sample_desc") or "")).strip()
+            if r["future_programmes"]<=0 or r["suspicious_clone"] or BAD_SAMPLE_RE.search(sample_blob):
                 continue
             r["country"]=SOURCE_COUNTRY.get(r["source"],"Unknown/Regional")
             r["norm_name"]=norm(r["name"])
