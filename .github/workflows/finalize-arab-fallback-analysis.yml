@@ -9,6 +9,7 @@ on:
       - "reports/arab-fallback-all-channels.csv"
       - "reports/unmapped-arab-fallback.csv"
       - "reports/arab-fallback-health.json"
+      - "reports/rotana-art-programmes.json"
   workflow_dispatch:
 
 concurrency:
