@@ -11,6 +11,19 @@ ANALYSIS=Path("analysis/arab-fallback")
 FEEDS=Path("feeds")
 FEEDS.mkdir(exist_ok=True)
 
+# Explicit IDs removed after manual EPG validation.
+OTHERS_EXCLUDE_IDS = {
+    "Bloomberg-1.qa",
+    "Discovery ID.sa",
+    "Nessma.eg",
+    "Ten.sa",
+    "Utv.eg",
+}
+
+# All current Rotana mappings are quarantined until channel IDs are revalidated
+# against the live/current programme shown on rotana.net.
+ROTANA_QUARANTINE = True
+
 def read_xml_gz(path):
     return ET.fromstring(gzip.decompress(Path(path).read_bytes()))
 
@@ -24,6 +37,8 @@ def valid_winners():
             if r.get("integration_status")!="VALIDATED_MISSING":
                 continue
             if r.get("provider") not in ("openepg","epgshare"):
+                continue
+            if r.get("id") in OTHERS_EXCLUDE_IDS:
                 continue
             try:
                 if int(float(r.get("future_programmes") or 0))<=0:
@@ -68,6 +83,10 @@ def add_rotana_art(root):
     data=json.loads(p.read_text(encoding="utf-8"))
     chn=0;prg=0;origin={}
     for row in data.get("channels",[]):
+        if row.get("id") in OTHERS_EXCLUDE_IDS:
+            continue
+        if ROTANA_QUARANTINE and row.get("source")=="rotana":
+            continue
         if row.get("status") not in ("VALID_SCHEDULE","PROGRAMME_SAMPLES_FOUND"):
             continue
         if int(row.get("programmes") or 0)<=0:
@@ -135,7 +154,7 @@ def main():
             "rotana_art":{"channels":rc,"programmes":rp},
             "validated_fallback":{"channels":fc,"programmes":fp},
         },
-        "policy":"Rotana/ART validated direct schedules + validated missing winners from OpenEPG/EPGShare only",
+        "policy":"ART validated schedules + validated missing winners from OpenEPG/EPGShare; Rotana quarantined pending remap",
     }
     (FEEDS/"others.json").write_text(json.dumps(stats,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     origins={**fo,**ro}
