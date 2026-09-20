@@ -1,12 +1,12 @@
 # Unmapped Arab fallback analysis
 
 Production channel IDs: **175**  
-Active fallback rows analyzed: **643**  
+Active fallback rows analyzed: **628**  
 Exact IDs already present: **0**  
 Name collisions requiring review: **0**  
-Unmapped rows before dedup: **643**  
-Unique unmapped candidates: **437**  
-Alternative duplicate rows collapsed: **206**
+Unmapped rows before dedup: **628**  
+Unique unmapped candidates: **429**  
+Alternative duplicate rows collapsed: **199**
 
 ## By country / region
 
@@ -14,8 +14,8 @@ Alternative duplicate rows collapsed: **206**
 |---|---:|
 | Saudi Arabia | 192 |
 | Egypt | 188 |
-| Qatar | 31 |
 | UAE | 24 |
+| Qatar | 23 |
 | Qatar/MENA | 2 |
 
 ## Top 100 candidates
