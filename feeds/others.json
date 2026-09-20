@@ -1,0 +1,16 @@
+{
+  "generated": "2026-09-20T12:42:47.654817+00:00",
+  "channels": 158,
+  "programmes": 58506,
+  "components": {
+    "rotana_art": {
+      "channels": 8,
+      "programmes": 930
+    },
+    "validated_fallback": {
+      "channels": 150,
+      "programmes": 57576
+    }
+  },
+  "policy": "Rotana/ART validated direct schedules + validated missing winners from OpenEPG/EPGShare only"
+}
