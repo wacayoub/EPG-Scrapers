@@ -171,103 +171,124 @@ def scrape_medi1(days):
    if k not in seen:seen.add(k);out.append(e)
  infer(out);return out
 
-def _duration_minutes(text):
- m=re.search(r"\b(?:(\d+)\s*h(?:\s*(\d{1,2}))?|(?:(\d+)\s*min))\b",clean(text),re.I)
+def _telerama_title(raw):
+ s=clean(raw)
+ # Télérama cards are "Category Title HHhMM". Keep the stable old 2M
+ # model: extract only start + title and let infer() derive stop from next event.
+ m=re.search(r"(?<!\\d)([0-2]?\\d)h([0-5]\\d)(?!\\d)",s)
  if not m:return None
- if m.group(3):return int(m.group(3))
- return int(m.group(1) or 0)*60+int(m.group(2) or 0)
+ prefix=clean(s[:m.start()])
+ cats=("Magazine sportif","Documentaire de société","Magazine d'information",
+       "Magazine de services","Magazine de société","Magazine culturel",
+       "Série dramatique","Série sentimentale","Divertissement","Documentaire",
+       "Feuilleton","Magazine","Journal","Météo","Débat","Théâtre","Film","Série")
+ for cat in sorted(cats,key=len,reverse=True):
+  if prefix.casefold().startswith(cat.casefold()+" "):
+   prefix=clean(prefix[len(cat):])
+   break
+ return (int(m.group(1)),int(m.group(2)),prefix) if prefix else None
 
-def _parse_2m_links(h,text,day,source):
- soup=BeautifulSoup(text,"lxml"); rows=[]; seen=set()
- category_words={"film","série","serie","journal","météo","meteo","magazine","débat","debat","documentaire","feuilleton","divertissement","théâtre","theatre","dessin animé","dessin anime","clips"}
+def parse_2m_telerama(h,text,day):
+ soup=BeautifulSoup(text,"lxml");out=[];seen=set()
  for a in soup.find_all("a"):
-  parts=[clean(x) for x in a.stripped_strings if clean(x)]
-  if not parts:continue
-  joined=clean(" ".join(parts))
-  mt=re.search(r"(?<!\d)([0-2]?\d)[h:]([0-5]\d)(?!\d)",joined)
-  if not mt:continue
-  hr,mi=int(mt.group(1)),int(mt.group(2))
-  title=""
-  desc=""
-  # Best case: separate DOM chunks (Soirmag/Télérama).
-  for idx,p in enumerate(parts):
-   if re.search(r"(?<!\d)[0-2]?\d[h:][0-5]\d(?!\d)",p):
-    if idx+1<len(parts):
-     title=parts[idx+1]
-     desc=clean(" ".join(parts[idx+2:]))
-    break
-  # Fallback for Télérama compact link text: "Category Title 20h35 ..."
-  if not title:
-   prefix=clean(joined[:mt.start()])
-   low=prefix.casefold()
-   for cat in sorted(category_words,key=len,reverse=True):
-    if low.startswith(cat+" "):
-     prefix=clean(prefix[len(cat):])
-     break
-   title=prefix
-  if not title or len(title)>160:continue
-  # Strip obvious category accidentally captured as title.
-  if title.casefold() in category_words:continue
-  key=(hr,mi,title.casefold())
-  if key in seen:continue
-  seen.add(key)
+  raw=clean(" ".join(a.stripped_strings))
+  parsed=_telerama_title(raw)
+  if not parsed:continue
+  hr,mi,title=parsed
+  if len(title)<2 or len(title)>120:continue
+  k=(hr,mi,title.casefold())
+  if k in seen:continue
+  seen.add(k)
   start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
-  mins=_duration_minutes(joined)
-  stop=start+timedelta(minutes=mins) if mins and mins>0 else None
   at=tr2m_title(h,title)
-  rows.append(Event("2M",start,at,tr2m_desc(h,desc or title),stop,lang(at),"ar",source))
- rows.sort(key=lambda e:e.start)
- # Handle post-midnight entries printed after evening listings.
- rolled=False; prev=None
+  out.append(Event("2M",start,at,tr2m_desc(h,title),None,lang(at),"ar","telerama"))
+ out.sort(key=lambda e:e.start)
+ return out
+
+def parse_2m_soirmag(text,day):
+ # One page contains the complete current-day grid and descriptions.
+ soup=BeautifulSoup(text,"lxml");out=[]
+ for a in soup.find_all("a"):
+  raw=clean(" ".join(a.stripped_strings))
+  m=re.match(r"^([0-2]?\\d):([0-5]\\d)\\s+(.+)$",raw)
+  if not m:continue
+  hr,mi=int(m.group(1)),int(m.group(2));rest=clean(m.group(3))
+  # Description is followed by a programme category / audience marker.
+  markers=(" Documentaire "," Magazine "," Débat "," Série "," Journal "," Météo ",
+           " Feuilleton "," Divertissement "," Film "," Théâtre ")
+  cut=len(rest)
+  for mark in markers:
+   p=rest.find(mark)
+   if p>0:cut=min(cut,p)
+  head=clean(rest[:cut])
+  # Find title using conservative known split: first sentence belongs to desc,
+  # so title is the leading segment before description prose begins.
+  title=head
+  desc=""
+  # Prefer nested text chunks if the page exposes them separately.
+  parts=[clean(x) for x in a.stripped_strings if clean(x)]
+  if len(parts)>=2:
+   first=parts[0]
+   mm=re.match(r"^([0-2]?\\d):([0-5]\\d)\\s*(.*)$",first)
+   if mm and clean(mm.group(3)):
+    title=clean(mm.group(3))
+    desc=clean(" ".join(parts[1:]))
+   elif len(parts)>=3:
+    title=parts[1];desc=clean(" ".join(parts[2:]))
+  start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
+  out.append((start,norm(title),title,desc))
+ return out
+
+def enrich_2m_soirmag(rows,backup):
+ if not rows or not backup:return rows
+ bytime=defaultdict(list)
+ for s,n,t,d in backup:bytime[(s.hour,s.minute)].append((n,t,d))
  for e in rows:
-  local=e.start.astimezone(PARIS)
-  if prev is not None and prev.hour>=18 and local.hour<6:
-   rolled=True
-  if rolled:
-   e.start=(local+timedelta(days=1)).astimezone(TZ)
-   if e.stop:
-    e.stop=e.stop+timedelta(days=1)
-  prev=local
+  cand=bytime.get((e.start.hour,e.start.minute),[])
+  best=None
+  en=norm(e.title)
+  for n,t,d in cand:
+   if n==en or (n and en and (n in en or en in n)):
+    best=(t,d);break
+  if best and clean(best[1]):
+   e.desc=clean(best[1]);e.dl=lang(e.desc,"fr")
  return rows
 
 def scrape_2m(days):
- h=Http(); today=datetime.now(TZ).date(); out=[]
+ h=Http();today=datetime.now(TZ).date();out=[]
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
  for i in range(days):
   d=today+timedelta(days=i)
-  # Télérama is primary. It is reachable outside Sudinfo's 403 path and exposes
-  # today plus weekday-specific future pages.
-  if i==0:
-   turl="https://television.telerama.fr/chaine/2m-maroc"
-  else:
-   turl=f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
-  dayrows=[]
+  url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
+  rows=[]
   try:
-   r=h.get(turl,headers={"Referer":"https://television.telerama.fr/"})
-   dayrows=_parse_2m_links(h,r.text,d,"telerama")
-   if len(dayrows)>=6:
-    log("2M %s telerama: %d events"%(d.isoformat(),len(dayrows)))
+   r=h.get(url,headers={"Referer":"https://television.telerama.fr/"})
+   rows=parse_2m_telerama(h,r.text,d)
+   log("2M %s telerama: %d events"%(d.isoformat(),len(rows)))
   except Exception as e:
    log("2M %s telerama failed: %s"%(d.isoformat(),e))
-   dayrows=[]
-  # Soirmag is backup. Its generic channel page is mainly used for the current
-  # day if Télérama is unavailable or returns an implausibly small schedule.
-  if len(dayrows)<6 and i==0:
+  # Soirmag is enrichment + fallback for today only: one request, no per-event hits.
+  if i==0:
    try:
-    r=h.get("https://soirmag.lesoir.be/programme-tv/c/340/2m-monde",headers={"Referer":"https://soirmag.lesoir.be/"})
-    backup=_parse_2m_links(h,r.text,d,"soirmag")
-    if len(backup)>len(dayrows):
-     dayrows=backup
-    log("2M %s soirmag fallback: %d events"%(d.isoformat(),len(backup)))
+    sr=h.get("https://soirmag.lesoir.be/programme-tv/c/340/2m-monde",headers={"Referer":"https://soirmag.lesoir.be/"})
+    sb=parse_2m_soirmag(sr.text,d)
+    if rows:
+     rows=enrich_2m_soirmag(rows,sb)
+    elif sb:
+     for s,n,t,desc in sb:
+      at=tr2m_title(h,t);rows.append(Event("2M",s,at,tr2m_desc(h,desc or t),None,lang(at),"ar","soirmag"))
+    log("2M %s soirmag: %d candidates"%(d.isoformat(),len(sb)))
    except Exception as e:
     log("2M %s soirmag failed: %s"%(d.isoformat(),e))
-  out+=dayrows
- seen=set(); cleanrows=[]
+  out+=rows
+ seen=set();cleanrows=[]
  for e in sorted(out,key=lambda e:(e.start,e.title.casefold())):
   k=(e.start,e.title.casefold())
   if k not in seen:
    seen.add(k);cleanrows.append(e)
  infer(cleanrows)
+ # Hard sanity checks inherited from the old 2M design.
+ cleanrows=[e for e in cleanrows if e.stop and e.stop>e.start and e.stop-e.start<=timedelta(hours=4)]
  log("2M total: %d events"%len(cleanrows))
  return cleanrows
 
