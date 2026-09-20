@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T12:02:54.944465+00:00",
+  "generated_at": "2026-09-20T12:03:49.831098+00:00",
   "active_rows": 1527,
   "zero_epg_blacklisted_ids": 929,
   "source_blacklist": [
@@ -53,7 +53,7 @@
     "UNIQUE": 1063,
     "WINNER_OF_DUPLICATES": 210
   },
-  "merged_fallback_winners_before_direct_filter": 265,
+  "merged_fallback_winners_before_direct_filter": 257,
   "already_covered_by_direct_sources": 107,
   "bein_family_fallback_policy": "ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
   "protected_direct_families": [
@@ -75,9 +75,9 @@
     "morocco",
     "snrt"
   ],
-  "missing_ids_final": 158,
+  "missing_ids_final": 150,
   "compare_only_channels": 6,
-  "new_ids_after_zero_and_latam_filter": 158,
+  "new_ids_after_zero_and_latam_filter": 150,
   "language_duplicates_removed": 54,
   "language_policy": "ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
   "event_text_policy": "EN_TITLE_AR_DESC_ONLY_FOR_MULTINATIONAL_CHANNELS",
