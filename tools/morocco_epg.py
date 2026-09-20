@@ -29,9 +29,9 @@ CHANNELS={
 GROUPS={"snrt":{"AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","AFLAM.ma"},
  "arryadia":{"Arryadia_HD","Arryadia_TNT","Arryadia_HD1","Arryadia_HD2","Arryadia_HD3"},
  "2m":{"2M"},"chada":{"Chada TV"},"medi1":{"MEDI1TV_AR.ma","MEDI1TV_MAGHREB.ma"}}
-SNRT={"AlAoula":"https://www.snrt.ma/ar/node/1208","Arrabiaa":"https://www.snrt.ma/ar/node/4071",
- "AlMaghribiya":"https://www.snrt.ma/ar/node/4072","Assadisa":"https://www.snrt.ma/ar/node/4073",
- "Tamazight":"https://www.snrt.ma/ar/node/4075"}
+SNRT={"AlAoula":"https://www.snrt.ma/fr/programmes/alaoula","Arrabiaa":"https://www.snrt.ma/fr/node/4071",
+ "AlMaghribiya":"https://www.snrt.ma/fr/node/4072","Assadisa":"https://www.snrt.ma/fr/node/4073",
+ "Tamazight":"https://www.snrt.ma/fr/node/4075"}
 MEDI1=(
  ("MEDI1TV_AR.ma",("https://www.medi1tv.com/ar/grille/arabic","https://www.medi1tv.ma/ar/grille/arabic")),
  ("MEDI1TV_MAGHREB.ma",("https://www.medi1tv.ma/ar/grille/maghreb","https://www.medi1tv.com/ar/grille/maghreb")))
@@ -386,7 +386,7 @@ def scrape_snrt(days):
 def scrape_arryadia(days):
  h=Http();start=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0);end=start+timedelta(days=min(days,3));parsed=[]
  try:
-  soup=BeautifulSoup(h.get("https://www.snrt.ma/ar/node/4070").text,"lxml")
+  soup=BeautifulSoup(h.get("https://www.snrt.ma/fr/node/4070").text,"lxml")
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
    dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8];tt=row.find("div",class_="grille-time")
    if not dc or not tt:continue
