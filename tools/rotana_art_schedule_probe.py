@@ -55,7 +55,7 @@ def prefer_arabic_text(candidates):
   return vals[0]
 
 def rotana_channel(sess,cid,name,chid):
-  url=f"https://www.rotana.net/ar/streams?channel={chid}"
+  url=f"https://www.rotana.net/ar/streams?channel={chid}&tz=-60"
   r=get(sess,url)
   soup=BeautifulSoup(r.text,"html.parser")
   text=soup.get_text("\n",strip=True)
@@ -187,7 +187,7 @@ def main():
   for cid,(name,chid) in ROTANA.items():
     try: rows.append(rotana_channel(s,cid,name,chid))
     except Exception as e:
-      rows.append({"id":cid,"name":name,"provider":"official","source":"rotana","url":f"https://www.rotana.net/en/streams?channel={chid}","programmes":0,"future_hours":0.0,"sample_title":"","sample_desc":"","events":[],"status":"ERROR","error":str(e)[:200]})
+      rows.append({"id":cid,"name":name,"provider":"official","source":"rotana","url":f"https://www.rotana.net/ar/streams?channel={chid}&tz=-60","programmes":0,"future_hours":0.0,"sample_title":"","sample_desc":"","events":[],"status":"ERROR","error":str(e)[:200]})
   rows.extend(art_channels(s))
   report={"generated_at":datetime.now(timezone.utc).isoformat(),"channels":rows}
   Path("reports").mkdir(exist_ok=True)
