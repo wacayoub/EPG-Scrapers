@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "config/full-refresh-trigger.txt"
       - ".github/workflows/analyze-unmapped-arab-fallback.yml"
       - "tools/analyze_unmapped_arab_fallback.py"
       - "reports/arab-fallback-all-channels.csv"
