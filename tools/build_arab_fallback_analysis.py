@@ -18,6 +18,9 @@ OUT=Path("analysis/arab-fallback")
 REPORT=Path("reports")
 UA="Mozilla/5.0 EPGManager-ArabFallback/1.0"
 
+# Explicit non-MENA sources that must never enter Arab fallback analysis.
+EXCLUDED_SOURCES={("epgshare","AR1"): "ARGENTINA_LATAM_NOT_ARAB"}
+
 def parse_dt(raw):
     raw=(raw or "").strip()
     if len(raw)<14: return None
@@ -59,12 +62,21 @@ def source_metrics(root):
             if any((d.text or "").strip() for d in p.findall("desc")):
                 descs+=1
         latest=max((e for _,_,e in arr),default=now)
+        sample_title=""
+        sample_desc=""
+        if arr:
+            # Earliest future event is the most useful human-review sample.
+            sample_p=min(arr,key=lambda item:item[1])[0]
+            sample_title=" | ".join((t.text or "").strip() for t in sample_p.findall("title") if (t.text or "").strip())
+            sample_desc=" | ".join((d.text or "").strip() for d in sample_p.findall("desc") if (d.text or "").strip())
         rows.append({
             "id":cid,
             "name":names[0] if names else cid,
             "future_programmes":len(arr),
             "future_hours":round(max(0,(latest-now).total_seconds()/3600),1),
             "desc_pct":round(100*descs/len(arr),1) if arr else 0.0,
+            "sample_title":sample_title,
+            "sample_desc":sample_desc,
         })
     return rows, invalid
 
@@ -120,6 +132,11 @@ def main():
         roots=[]
         for spec in cfg[provider]:
             row={"provider":provider,"source":spec["name"],"url":spec["url"]}
+            excluded_reason=EXCLUDED_SOURCES.get((provider,spec["name"]))
+            if excluded_reason:
+                row.update({"status":"excluded","reason":excluded_reason})
+                health.append(row)
+                continue
             try:
                 data,r=fetch(sess,spec["url"])
                 root=read_xml_bytes(data)
@@ -150,7 +167,7 @@ def main():
     rescue.sort(key=lambda r:(-r["future_programmes"],-r["future_hours"],-r["desc_pct"],r["name"].casefold()))
 
     # Deduplicate rescue candidates by provider/source/id; keep all alternatives for analysis.
-    fields=["provider","source","id","name","future_programmes","future_hours","desc_pct","url"]
+    fields=["provider","source","id","name","future_programmes","future_hours","desc_pct","sample_title","sample_desc","url"]
     with (REPORT/"arab-fallback-candidates.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=fields); w.writeheader()
         for r in rescue: w.writerow({k:r[k] for k in fields})
