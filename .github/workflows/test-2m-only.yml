@@ -14,8 +14,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: test-2m-only
-  cancel-in-progress: true
+  group: epg-feed-publish
+  cancel-in-progress: false
 
 jobs:
   test-2m:
@@ -44,5 +44,6 @@ jobs:
             echo "No 2M changes."
           else
             git commit -m "Refresh 2M only"
+            git pull --rebase origin main
             git push
           fi
