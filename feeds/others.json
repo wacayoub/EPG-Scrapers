@@ -1,13 +1,16 @@
 {
-  "label": "others",
-  "channels": 158,
-  "input_channels": 158,
-  "coverage_pct": 100.0,
-  "programmes": 13154,
-  "rejected_invalid_time": 0,
-  "inferred_stop": 0,
-  "window_hours": 48,
-  "size_bytes": 345252,
-  "sha256": "e32796416af1279eefd6ca05cb4c1f370d127f6fbca9a6a51b0e718ecfee4d4a",
-  "generated_utc": "2026-09-20T12:53:45.914102+00:00"
+  "generated": "2026-09-20T13:12:17.550155+00:00",
+  "channels": 145,
+  "programmes": 56669,
+  "components": {
+    "rotana_art": {
+      "channels": 0,
+      "programmes": 0
+    },
+    "validated_fallback": {
+      "channels": 145,
+      "programmes": 56669
+    }
+  },
+  "policy": "ART validated schedules + validated missing winners from OpenEPG/EPGShare; Rotana quarantined pending remap"
 }
