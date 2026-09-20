@@ -379,58 +379,95 @@ def load_direct_catalogue():
 
 def load_compare_only_channels():
     """Discovery-only channel rows shown in new-arab-epg-ids.csv for comparison."""
-    path=OUT/"commercial-arab-platforms.json"
-    if not path.exists():
-        return []
-    try:
-        data=json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return []
-    shahid=(data.get("platforms") or {}).get("shahid") or {}
-    blob=json.dumps(shahid,ensure_ascii=False)
-    urls=sorted(set(re.findall(r'https://shahid\.mbc\.net/en/livestream/[^"\\]+/livechannel-\d+',blob,re.I)))
     rows=[]
     seen=set()
-    for u in urls:
-        m=re.search(r'/livestream/([^/]+)/livechannel-(\d+)',u,re.I)
-        if not m:
-            continue
-        slug=m.group(1)
-        chid=m.group(2)
-        key=chid
+
+    # Shahid/MBC public live-channel discovery.
+    path=OUT/"commercial-arab-platforms.json"
+    if path.exists():
+        try:
+            data=json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            data={}
+        shahid=(data.get("platforms") or {}).get("shahid") or {}
+        blob=json.dumps(shahid,ensure_ascii=False)
+        urls=sorted(set(re.findall(r'https://shahid\.mbc\.net/en/livestream/[^"\\]+/livechannel-\d+',blob,re.I)))
+        for u in urls:
+            m=re.search(r'/livestream/([^/]+)/livechannel-(\d+)',u,re.I)
+            if not m:
+                continue
+            slug=m.group(1)
+            chid=m.group(2)
+            key=("shahid",chid)
+            if key in seen:
+                continue
+            seen.add(key)
+            name=slug.replace("-"," ").replace("’","'").strip()
+            name=" ".join(w.capitalize() if not w.upper().startswith("MBC") else w.upper() for w in name.split())
+            aliases={
+                "Mbc1":"MBC1","Mbc Drama":"MBC Drama","Mbc Masr":"MBC Masr",
+                "Al Arabiya":"Al Arabiya","Al Hadath":"Al Hadath",
+                "Boq’at Daw’ Channel":"Boq’at Daw’ Channel",
+                "Boq'at Daw' Channel":"Boq’at Daw’ Channel",
+            }
+            name=aliases.get(name,name)
+            rows.append({
+                "country":"MENA","name":name,"id":f"shahid.livechannel.{chid}",
+                "provider":"shahid","source":"public-livestream-discovery",
+                "future_programmes":0,"future_hours":0,"desc_pct":0,
+                "sample_title":"","sample_desc":"","title_source":"","desc_source":"",
+                "title_desc_policy":"DISCOVERY_ONLY","language_audit":"NOT_VALIDATED_YET",
+                "alternatives":0,"alternative_sources":"","merged_alternatives":"",
+                "url":u,"integration_status":"COMPARE_ONLY",
+            })
+
+    # Official Arab broadcaster channels confirmed by the deep probe.
+    official_rows=[
+        {
+            "country":"Egypt","name":"Maspero Channel 1 / القناة الأولى",
+            "id":"maspero.egypt.channel1","provider":"official","source":"maspero",
+            "url":"https://www.maspero.eg/stream/2"
+        },
+        {
+            "country":"Egypt","name":"Maspero Channel 2 / القناة الثانية",
+            "id":"maspero.egypt.channel2","provider":"official","source":"maspero",
+            "url":"https://www.maspero.eg/stream/3"
+        },
+        {
+            "country":"Yemen","name":"Yemen TV / قناة اليمن",
+            "id":"official.yemen.tv","provider":"official","source":"yementv",
+            "url":"https://yementv.tv/live"
+        },
+        {
+            "country":"Palestine","name":"Palestine TV",
+            "id":"official.palestine.tv","provider":"official","source":"pbc",
+            "url":"https://www.pbc.ps/live/"
+        },
+        {
+            "country":"Palestine","name":"Palestine Mubasher / فلسطين مباشر",
+            "id":"official.palestine.mubasher","provider":"official","source":"pbc",
+            "url":"https://www.pbc.ps/palestinemubasherchannel/"
+        },
+        {
+            "country":"Palestine","name":"Musawa / مساواة",
+            "id":"official.palestine.musawa","provider":"official","source":"pbc",
+            "url":"https://www.pbc.ps/musawa/"
+        },
+    ]
+    for x in official_rows:
+        key=(x["provider"],x["id"])
         if key in seen:
             continue
         seen.add(key)
-        name=slug.replace("-"," ").replace("’","'").strip()
-        name=" ".join(w.capitalize() if not w.upper().startswith("MBC") else w.upper() for w in name.split())
-        aliases={
-            "Mbc1":"MBC1","Mbc Drama":"MBC Drama","Mbc Masr":"MBC Masr",
-            "Al Arabiya":"Al Arabiya","Al Hadath":"Al Hadath",
-            "Boq’at Daw’ Channel":"Boq’at Daw’ Channel",
-            "Boq'at Daw' Channel":"Boq’at Daw’ Channel",
-        }
-        name=aliases.get(name,name)
         rows.append({
-            "country":"MENA",
-            "name":name,
-            "id":f"shahid.livechannel.{chid}",
-            "provider":"shahid",
-            "source":"public-livestream-discovery",
-            "future_programmes":0,
-            "future_hours":0,
-            "desc_pct":0,
-            "sample_title":"",
-            "sample_desc":"",
-            "title_source":"",
-            "desc_source":"",
-            "title_desc_policy":"DISCOVERY_ONLY",
-            "language_audit":"NOT_VALIDATED_YET",
-            "alternatives":0,
-            "alternative_sources":"",
-            "merged_alternatives":"",
-            "url":u,
+            **x,
+            "future_programmes":0,"future_hours":0,"desc_pct":0,
+            "sample_title":"","sample_desc":"","title_source":"","desc_source":"",
+            "title_desc_policy":"DISCOVERY_ONLY","language_audit":"NOT_VALIDATED_YET",
+            "alternatives":0,"alternative_sources":"","merged_alternatives":"",
             "integration_status":"COMPARE_ONLY",
         })
+
     return rows
 
 def rank(r):
