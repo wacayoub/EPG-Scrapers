@@ -1,8 +1,8 @@
 # Arab fallback final analysis
 
-Active fallback rows: **1534**  
-Zero-EPG IDs blacklisted: **931**  
-Canonical groups: **1280**  
+Active fallback rows: **1611**  
+Zero-EPG IDs blacklisted: **936**  
+Canonical groups: **1357**  
 Duplicate groups: **210**  
 Extra duplicate rows collapsed: **254**  
 New IDs after zero/LatAm filtering: **1309**
