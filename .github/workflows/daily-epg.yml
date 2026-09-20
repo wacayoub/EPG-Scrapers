@@ -9,8 +9,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: daily-epg-scrape
-  cancel-in-progress: true
+  group: epg-feed-publish
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -179,5 +179,6 @@ jobs:
             echo "No feed changes."
           else
             git commit -m "Daily EPG refresh $(TZ=Africa/Casablanca date +%F)"
+            git pull --rebase origin main
             git push
           fi
