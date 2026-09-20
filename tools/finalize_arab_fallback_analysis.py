@@ -190,7 +190,26 @@ def provider_score(r):
     # OpenEPG slightly preferred when all else is equal; EPGShare remains fallback.
     return 8 if r["provider"]=="openepg" else 4
 
-def language_rank(r):
+def epg_arabic_score(r):
+    """Arabic share across channel name + sample event title/description."""
+    blob=" ".join(str(r.get(k,"") or "") for k in ("name","sample_title","sample_desc"))
+    return arabic_pct(blob)
+
+def has_arabic_epg(r):
+    return epg_arabic_score(r) >= 20.0 or language_rank_marker(r)==0
+
+def language_rank_marker(r):
+    name=(r.get("name") or "").strip()
+    cid=(r.get("id") or "").strip()
+    txt=(name+" "+cid).casefold()
+    ar_marker=re.search(r"(?:^|[_.\s-])ar(?:$|[_.\s-])",txt,re.I)
+    en_marker=re.search(r"(?:^|[_.\s-])en(?:$|[_.\s-])",txt,re.I)
+    if AR.search(name) or AR.search(cid) or ar_marker or re.match(r"^\s*arabic\b",name,re.I):
+        return 0
+    if en_marker or re.match(r"^\s*english\b",name,re.I) or " english" in txt:
+        return 2
+    return 1
+
     """Prefer Arabic variant, then neutral/original, then explicit English."""
     name=(r.get("name") or "").strip()
     cid=(r.get("id") or "").strip()
@@ -368,19 +387,59 @@ def main():
             continue
         raw_new.append(r)
 
-    # Merge all fallback variants by real channel identity. Arabic wins over
-    # neutral/original, and English is used only if no Arabic variant exists.
+    # Merge all fallback variants by real channel identity.
+    # Arabic EPG is mandatory first. English can be accepted only after 4 audits.
     lang_groups=defaultdict(list)
     for r in raw_new:
         lang_groups[bilingual_key(r)].append(r)
 
+    # Cross-source index used by audits 2 and 3.
+    all_by_key=defaultdict(list)
+    for r in rows:
+        all_by_key[bilingual_key(r)].append(r)
+        n=norm(r.get("name") or "")
+        if n:
+            all_by_key[n].append(r)
+
     merged=[]
+    english_audit=[]
     language_duplicates_removed=0
+    english_rejected_for_arabic=0
+    english_accepted_after_4_audits=0
+
     for canonical,arr in lang_groups.items():
-        arr=sorted(
-            arr,
+        # Audit 1: Arabic candidate inside the immediate duplicate group.
+        arabic_local=[x for x in arr if has_arabic_epg(x)]
+
+        # Audit 2: Arabic candidate for same canonical channel across every fallback source.
+        cross_candidates=all_by_key.get(canonical,[])
+        arabic_cross=[x for x in cross_candidates if has_arabic_epg(x) and int(float(x.get("future_programmes") or 0))>0]
+
+        # Audit 3: Arabic candidate through normalized/alias channel name.
+        alias_keys={norm(x.get("name") or "") for x in arr}
+        arabic_alias=[]
+        for key in alias_keys:
+            if not key:
+                continue
+            arabic_alias.extend(
+                x for x in all_by_key.get(key,[])
+                if has_arabic_epg(x) and int(float(x.get("future_programmes") or 0))>0
+            )
+
+        # Prefer the strongest Arabic pool found by the first three audits.
+        arabic_pool=[]
+        seen_ar=set()
+        for x in arabic_local+arabic_cross+arabic_alias:
+            k=(x.get("provider",""),x.get("source",""),x.get("id",""))
+            if k not in seen_ar:
+                seen_ar.add(k); arabic_pool.append(x)
+
+        pool=arabic_pool if arabic_pool else arr
+        pool=sorted(
+            pool,
             key=lambda r:(
                 language_rank(r),
+                -epg_arabic_score(r),
                 -int(float(r.get("future_programmes") or 0)),
                 -float(r.get("desc_pct") or 0),
                 -float(r.get("future_hours") or 0),
@@ -389,14 +448,47 @@ def main():
                 r.get("id") or ""
             )
         )
-        winner=dict(arr[0])
+        winner=dict(pool[0])
+
+        # Audit 4: if winner is English/non-Arabic, accept only when all prior
+        # Arabic searches failed AND content itself contains no meaningful Arabic alternative.
+        is_english=language_rank_marker(winner)==2 or epg_arabic_score(winner)<5.0
+        audit_record={
+            "canonical":canonical,
+            "winner_id":winner.get("id",""),
+            "winner_name":winner.get("name",""),
+            "provider":winner.get("provider",""),
+            "source":winner.get("source",""),
+            "audit1_local_arabic":bool(arabic_local),
+            "audit2_cross_source_arabic":bool(arabic_cross),
+            "audit3_alias_arabic":bool(arabic_alias),
+            "audit4_content_arabic_pct":round(epg_arabic_score(winner),1),
+            "english_candidate":is_english,
+            "decision":"ARABIC_SELECTED" if arabic_pool else "ENGLISH_ACCEPTED_AFTER_4_AUDITS",
+        }
+
+        if is_english and arabic_pool:
+            english_rejected_for_arabic+=1
+            audit_record["decision"]="ENGLISH_REJECTED_ARABIC_AVAILABLE"
+        elif is_english:
+            english_accepted_after_4_audits+=1
+
         winner["merge_key"]=canonical
+        winner["language_audit"]=audit_record["decision"]
         winner["merged_alternatives"]=";".join(
             f'{x.get("provider","")}:{x.get("source","")}:{x.get("id","")}'
-            for x in arr[1:]
+            for x in arr if (x.get("provider"),x.get("source"),x.get("id")) != (winner.get("provider"),winner.get("source"),winner.get("id"))
         )
         merged.append(winner)
+        english_audit.append(audit_record)
         language_duplicates_removed += max(0,len(arr)-1)
+
+    with (OUT/"arab-fallback-language-audit.csv").open("w",newline="",encoding="utf-8") as f:
+        afields=["canonical","winner_id","winner_name","provider","source",
+                 "audit1_local_arabic","audit2_cross_source_arabic","audit3_alias_arabic",
+                 "audit4_content_arabic_pct","english_candidate","decision"]
+        w=csv.DictWriter(f,fieldnames=afields); w.writeheader(); w.writerows(english_audit)
+
 
     # Remove anything already covered by a healthy priority/direct source.
     # Match exact XMLTV ID plus normalized/bilingual channel identity.
@@ -430,7 +522,7 @@ def main():
     new.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
     already_covered.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
 
-    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","alternatives","alternative_sources","merged_alternatives","url"]
+    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","language_audit","alternatives","alternative_sources","merged_alternatives","url"]
     with (OUT/"new-arab-epg-ids.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=nfields); w.writeheader()
         for r in new: w.writerow({k:r.get(k,"") for k in nfields})
@@ -462,7 +554,9 @@ def main():
         "missing_ids_final":len(new),
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
-        "language_policy":"ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
+        "language_policy":"ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
+        "english_rejected_for_arabic":english_rejected_for_arabic,
+        "english_accepted_after_4_audits":english_accepted_after_4_audits,
         "sort_order":"CHANNEL_NAME_ASC",
         "excluded_sources":["epgshare:AR1"],
         "integration_policy":{
