@@ -2,10 +2,10 @@
 
 | Country | Verdict | Pages 200 | Best schedule score | Confirmed JSON APIs |
 |---|---|---:|---:|---:|
-| Egypt | VISIBLE_SCHEDULE | 10 | 207 | 0 |
-| Libya | UNREACHABLE | 0 | 0 | 0 |
+| Egypt | UNREACHABLE | 0 | 0 | 0 |
+| Libya | VISIBLE_SCHEDULE | 1 | 12 | 0 |
 | Palestine | VISIBLE_SCHEDULE | 6 | 39 | 0 |
-| Yemen | VISIBLE_SCHEDULE | 6 | 397 | 0 |
+| Yemen | VISIBLE_SCHEDULE | 6 | 389 | 0 |
 | Kuwait | REACHABLE_NO_EPG_YET | 3 | 5 | 0 |
 | UAE-Dubai | REACHABLE_NO_EPG_YET | 1 | 0 | 0 |
 | Jordan | REACHABLE_NO_EPG_YET | 1 | 0 | 0 |
