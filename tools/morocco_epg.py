@@ -251,9 +251,13 @@ def parse_2m(h,text,day):
  return out
 
 def scrape_2m(days):
- h=Http();today=datetime.now(TZ).date();out=[]
+ # Strict receiver policy: publish only the next 48 hours.
+ # We may need up to 3 calendar pages when the run starts late in the day,
+ # but events beyond now+48h are never kept.
+ h=Http();now=datetime.now(TZ);today=now.date();target=now+timedelta(hours=48);out=[]
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
- for i in range(days):
+ page_days=(target.date()-today).days+1
+ for i in range(page_days):
   d=today+timedelta(days=i)
   url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
   try:
@@ -264,10 +268,10 @@ def scrape_2m(days):
    log("2M %s telerama failed: %s"%(d.isoformat(),ex))
  seen=set()
  out=[ev for ev in sorted(out,key=lambda ev:ev.start)
-      if not ((ev.start,ev.title.casefold()) in seen or seen.add((ev.start,ev.title.casefold())))]
+      if ev.start < target and not ((ev.start,ev.title.casefold()) in seen or seen.add((ev.start,ev.title.casefold())))]
  infer(out)
- out=[ev for ev in out if ev.stop and ev.stop>ev.start and ev.stop-ev.start<=timedelta(hours=4)]
- log("2M total: %d events"%len(out))
+ out=[ev for ev in out if ev.stop and ev.stop>now-timedelta(hours=2) and ev.start<target and ev.stop>ev.start and ev.stop-ev.start<=timedelta(hours=4)]
+ log("2M strict 48h total: %d events; cutoff=%s"%(len(out),target.isoformat()))
  return out
 
 def _chada_title_desc(raw):
