@@ -55,9 +55,9 @@ jobs:
             --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.channels.xml" \
             --output="$GITHUB_WORKSPACE/output/source-build/elcinema.raw.xml" \
             --days=2 \
-            --maxConnections=6 \
-            --timeout=15000 \
-            --delay=200
+            --maxConnections=1 \
+            --timeout=20000 \
+            --delay=1000
 
       - name: Retry only zero-EPG IDs in English
         shell: bash
@@ -75,9 +75,9 @@ jobs:
               --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.channels.xml" \
               --output="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.raw.xml" \
               --days=2 \
-              --maxConnections=4 \
-              --timeout=15000 \
-              --delay=300
+              --maxConnections=1 \
+              --timeout=20000 \
+              --delay=1200
             cd "$GITHUB_WORKSPACE"
             python tools/source_gap_retry.py merge \
               --primary output/source-build/elcinema.raw.xml \
