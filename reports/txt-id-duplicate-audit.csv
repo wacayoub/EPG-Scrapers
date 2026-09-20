@@ -1,0 +1,34 @@
+type,canonical,similarity,source,origin,id,name,other_source,other_origin,other_id,other_name
+CERTAIN,alaoula,1.00,morocco,morocco,AlAoula,Al Aoula,elcinema,elcinema,AlAoula.ma@MiddleEast,الأولى المغربية
+CERTAIN,alaoula,1.00,elcinema,elcinema,AlAoula.ma@MiddleEast,الأولى المغربية,morocco,morocco,AlAoula,Al Aoula
+CERTAIN,bloomberg,1.00,osn,osn,BloombergTV.us@MiddleEast,Bloomberg,others,others,Bloomberg-1.qa,Bloomberg-1.qa
+CERTAIN,bloomberg,1.00,others,others,Bloomberg-1.qa,Bloomberg-1.qa,osn,osn,BloombergTV.us@MiddleEast,Bloomberg
+CERTAIN,investigationdiscovery,1.00,osn,osn,InvestigationDiscovery.uk@SD,Discovery IDX HD,others,others,Discovery ID.sa,Discovery ID.sa
+CERTAIN,investigationdiscovery,1.00,others,others,Discovery ID.sa,Discovery ID.sa,osn,osn,InvestigationDiscovery.uk@SD,Discovery IDX HD
+CERTAIN,nessma,1.00,elcinema,elcinema,NessmaElJadida.tn@SD,نسمة,others,others,Nessma.eg,Nessma.eg
+CERTAIN,nessma,1.00,others,others,Nessma.eg,Nessma.eg,elcinema,elcinema,NessmaElJadida.tn@SD,نسمة
+CERTAIN,rotanacinemaegypt,1.00,elcinema,elcinema,RotanaCinemaEgypt.eg@SD,روتانا سينما مصر,others,others,official.rotana.cinema.egypt,Rotana Cinema Egypt
+CERTAIN,rotanacinemaegypt,1.00,others,others,official.rotana.cinema.egypt,Rotana Cinema Egypt,elcinema,elcinema,RotanaCinemaEgypt.eg@SD,روتانا سينما مصر
+CERTAIN,rotanacinemaksa,1.00,elcinema,elcinema,RotanaCinemaKSA.sa@SD,روتانا سينما,others,others,official.rotana.cinema.ksa,Rotana Cinema KSA
+CERTAIN,rotanacinemaksa,1.00,others,others,official.rotana.cinema.ksa,Rotana Cinema KSA,elcinema,elcinema,RotanaCinemaKSA.sa@SD,روتانا سينما
+CERTAIN,rotanaclassic,1.00,elcinema,elcinema,RotanaClassic.sa@SD,روتانا كلاسيك,others,others,official.rotana.classic,Rotana Classic
+CERTAIN,rotanaclassic,1.00,others,others,official.rotana.classic,Rotana Classic,elcinema,elcinema,RotanaClassic.sa@SD,روتانا كلاسيك
+CERTAIN,rotanacomedy,1.00,elcinema,elcinema,RotanaComedy.sa@SD,روتانا كوميدي,others,others,official.rotana.comedy,Rotana Comedy
+CERTAIN,rotanacomedy,1.00,others,others,official.rotana.comedy,Rotana Comedy,elcinema,elcinema,RotanaComedy.sa@SD,روتانا كوميدي
+CERTAIN,rotanadrama,1.00,elcinema,elcinema,RotanaDrama.sa@SD,روتانا دراما,others,others,official.rotana.drama,Rotana Drama
+CERTAIN,rotanadrama,1.00,others,others,official.rotana.drama,Rotana Drama,elcinema,elcinema,RotanaDrama.sa@SD,روتانا دراما
+CERTAIN,rotanakhalijia,1.00,elcinema,elcinema,RotanaKhalijia.sa@SD,روتانا خليجية,others,others,official.rotana.khalijia,Rotana Khalijia
+CERTAIN,rotanakhalijia,1.00,others,others,official.rotana.khalijia,Rotana Khalijia,elcinema,elcinema,RotanaKhalijia.sa@SD,روتانا خليجية
+CERTAIN,ten,1.00,elcinema,elcinema,TeN.eg@SD,تن,others,others,Ten.sa,Ten.sa
+CERTAIN,ten,1.00,others,others,Ten.sa,Ten.sa,elcinema,elcinema,TeN.eg@SD,تن
+CERTAIN,utv,1.00,elcinema,elcinema,UTV.iq@SD,يو تي في,others,others,Utv.eg,Utv.eg
+CERTAIN,utv,1.00,others,others,Utv.eg,Utv.eg,elcinema,elcinema,UTV.iq@SD,يو تي في
+REVIEW,,1.00,elcinema,elcinema,Althania.sy@SD,الثانية,others,others,Althania.eg,Althania.eg
+REVIEW,,1.00,elcinema,elcinema,MTV.lb@SD,إم تي في,others,others,MTV.eg,MTV.eg
+REVIEW,,0.90,elcinema,elcinema,AlMasriyah.eg@SD,المصرية,others,others,Al Masriya.sa,Al Masriya.sa
+REVIEW,,0.89,bein,bein,BeJunior.qa@SD,21,others,others,beJUNIOR-1.qa,beJUNIOR-1.qa
+REVIEW,,0.83,elcinema,elcinema,HadhramautTV.ye@SD,تلفزيون حضرموت,others,others,Hadhramaut TV.eg,Hadhramaut TV.eg
+REVIEW,,0.82,osn,osn,DiscoveryChannelMiddleEastAfrica.us@SD,Discovery Channel HD,others,others,Discovery ID.sa,Discovery ID.sa
+REVIEW,,0.80,osn,osn,OSNMoviesAction.ae@SD,OSNtv Movies Action,others,others,Movies Action.ae,Movies Action.ae
+REVIEW,,0.80,elcinema,elcinema,EchoroukTV.dz@SD,الشروق الجزائرية,others,others,Echorouk TV.eg,Echorouk TV.eg
+REVIEW,,0.73,bein,bein,FoodNetworkEMEA.us@SD,14,others,others,Food Network.sa,Food Network.sa
