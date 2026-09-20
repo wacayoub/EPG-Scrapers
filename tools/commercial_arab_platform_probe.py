@@ -37,6 +37,15 @@ PLATFORMS = {
         "https://www.stctv.com/",
         "https://stctv.com/",
     ],
+    "rotana": [
+        "https://www.rotana.net/tv/channels",
+        "https://www.rotana.net/en/channels",
+        "https://www.rotana.net/en/streams",
+    ],
+    "artonline": [
+        "https://www.artonline.tv/",
+        "https://www.artonline.tv/guide",
+    ],
 }
 
 KEYWORDS=(
