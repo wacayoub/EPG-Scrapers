@@ -1,0 +1,1512 @@
+{
+  "generated_utc": "2026-09-20T09:44:42.842326+00:00",
+  "duplicate_groups": 30,
+  "losers_removed": {
+    "osn": 12,
+    "elcinema": 3,
+    "bein": 4,
+    "sport24": 11
+  },
+  "duplicates": [
+    {
+      "canonical": "abudhabisports1.ae",
+      "winner": {
+        "source": "sport24",
+        "id": "sport24.adsports.1",
+        "name": "Abu Dhabi Sports 1",
+        "metrics": {
+          "programmes": 16,
+          "future_programmes": 13,
+          "future_hours": 14.3,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 131.26,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "sport24",
+          "id": "sport24.adsports.1",
+          "name": "Abu Dhabi Sports 1",
+          "metrics": {
+            "programmes": 16,
+            "future_programmes": 13,
+            "future_hours": 14.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 131.26,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "osn",
+          "id": "AbuDhabiSports1.ae@SD",
+          "name": "AD Sports 1 HD",
+          "metrics": {
+            "programmes": 35,
+            "future_programmes": 32,
+            "future_hours": 50.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 79.6,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "alarabytv2.qa",
+      "winner": {
+        "source": "osn",
+        "id": "AlArabyTV2.qa@SD",
+        "name": "Al Araby 2",
+        "metrics": {
+          "programmes": 50,
+          "future_programmes": 46,
+          "future_hours": 38.3,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 78.36,
+        "specialty_bonus": 0
+      },
+      "candidates": [
+        {
+          "source": "osn",
+          "id": "AlArabyTV2.qa@SD",
+          "name": "Al Araby 2",
+          "metrics": {
+            "programmes": 50,
+            "future_programmes": 46,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.36,
+          "specialty_bonus": 0
+        },
+        {
+          "source": "elcinema",
+          "id": "AlArabyTV2.qa@SD",
+          "name": "التلفزيون العربي 2",
+          "metrics": {
+            "programmes": 17,
+            "future_programmes": 14,
+            "future_hours": 35.3,
+            "desc_pct": 17.6,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 72.61,
+          "specialty_bonus": 18
+        }
+      ]
+    },
+    {
+      "canonical": "beinmovies1premiere.qa",
+      "winner": {
+        "source": "elcinema",
+        "id": "beINMovies1Premiere.qa@SD",
+        "name": "بي إن موفيز بريمير",
+        "metrics": {
+          "programmes": 7,
+          "future_programmes": 5,
+          "future_hours": 10.0,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 0.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 57.25,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "beINMovies1Premiere.qa@SD",
+          "name": "بي إن موفيز بريمير",
+          "metrics": {
+            "programmes": 7,
+            "future_programmes": 5,
+            "future_hours": 10.0,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 57.25,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "bein",
+          "id": "beINMovies1Premiere.qa@SD",
+          "name": "beINMOVIES1",
+          "metrics": {
+            "programmes": 18,
+            "future_programmes": 17,
+            "future_hours": 34.3,
+            "desc_pct": 0.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 43.96,
+          "specialty_bonus": 8
+        }
+      ]
+    },
+    {
+      "canonical": "beinmovies2action.qa",
+      "winner": {
+        "source": "elcinema",
+        "id": "beINMovies2Action.qa@SD",
+        "name": "بي إن موفيز أكشن",
+        "metrics": {
+          "programmes": 6,
+          "future_programmes": 5,
+          "future_hours": 8.3,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 0.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 56.61,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "beINMovies2Action.qa@SD",
+          "name": "بي إن موفيز أكشن",
+          "metrics": {
+            "programmes": 6,
+            "future_programmes": 5,
+            "future_hours": 8.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 56.61,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "bein",
+          "id": "beINMovies2Action.qa@SD",
+          "name": "beINMOVIES2",
+          "metrics": {
+            "programmes": 15,
+            "future_programmes": 15,
+            "future_hours": 35.0,
+            "desc_pct": 0.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 43.62,
+          "specialty_bonus": 8
+        }
+      ]
+    },
+    {
+      "canonical": "beinmovies3drama.qa",
+      "winner": {
+        "source": "elcinema",
+        "id": "beINMovies3Drama.qa@SD",
+        "name": "بي إن موفيز دراما",
+        "metrics": {
+          "programmes": 7,
+          "future_programmes": 6,
+          "future_hours": 9.5,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 0.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 57.36,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "beINMovies3Drama.qa@SD",
+          "name": "بي إن موفيز دراما",
+          "metrics": {
+            "programmes": 7,
+            "future_programmes": 6,
+            "future_hours": 9.5,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 57.36,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "bein",
+          "id": "beINMovies3Drama.qa@SD",
+          "name": "beINMOVIES3",
+          "metrics": {
+            "programmes": 20,
+            "future_programmes": 19,
+            "future_hours": 34.2,
+            "desc_pct": 0.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 44.53,
+          "specialty_bonus": 8
+        }
+      ]
+    },
+    {
+      "canonical": "beinseries1.qa",
+      "winner": {
+        "source": "elcinema",
+        "id": "beINSeries1.qa@SD",
+        "name": "بي إن سيريس",
+        "metrics": {
+          "programmes": 35,
+          "future_programmes": 32,
+          "future_hours": 38.3,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 0.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 75.96,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "beINSeries1.qa@SD",
+          "name": "بي إن سيريس",
+          "metrics": {
+            "programmes": 35,
+            "future_programmes": 32,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 75.96,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "bein",
+          "id": "beINSeries1.qa@SD",
+          "name": "beINSERIES1",
+          "metrics": {
+            "programmes": 13,
+            "future_programmes": 11,
+            "future_hours": 10.3,
+            "desc_pct": 0.0,
+            "arabic_title_pct": 84.6,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 30.39,
+          "specialty_bonus": 8
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports.qa@MENA",
+        "name": "beIN SPORTS",
+        "metrics": {
+          "programmes": 23,
+          "future_programmes": 23,
+          "future_hours": 52.3,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 146.9,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports.qa@MENA",
+          "name": "beIN SPORTS",
+          "metrics": {
+            "programmes": 23,
+            "future_programmes": 23,
+            "future_hours": 52.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 146.9,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.0",
+          "name": "beIN SPORTS Free",
+          "metrics": {
+            "programmes": 10,
+            "future_programmes": 9,
+            "future_hours": 15.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 26.44,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports1.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports1.qa@MENA",
+        "name": "beIN SPORTS 1",
+        "metrics": {
+          "programmes": 37,
+          "future_programmes": 37,
+          "future_hours": 48.4,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 151.1,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports1.qa@MENA",
+          "name": "beIN SPORTS 1",
+          "metrics": {
+            "programmes": 37,
+            "future_programmes": 37,
+            "future_hours": 48.4,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 151.1,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.1",
+          "name": "beIN SPORTS 1",
+          "metrics": {
+            "programmes": 12,
+            "future_programmes": 8,
+            "future_hours": 14.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 25.76,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports2.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports2.qa@MENA",
+        "name": "beIN SPORTS 2",
+        "metrics": {
+          "programmes": 19,
+          "future_programmes": 19,
+          "future_hours": 49.0,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 145.7,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports2.qa@MENA",
+          "name": "beIN SPORTS 2",
+          "metrics": {
+            "programmes": 19,
+            "future_programmes": 19,
+            "future_hours": 49.0,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 145.7,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.2",
+          "name": "beIN SPORTS 2",
+          "metrics": {
+            "programmes": 10,
+            "future_programmes": 8,
+            "future_hours": 17.1,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 26.81,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports3.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports3.qa@MENA",
+        "name": "beIN SPORTS 3",
+        "metrics": {
+          "programmes": 31,
+          "future_programmes": 31,
+          "future_hours": 48.0,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 149.3,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports3.qa@MENA",
+          "name": "beIN SPORTS 3",
+          "metrics": {
+            "programmes": 31,
+            "future_programmes": 31,
+            "future_hours": 48.0,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 149.3,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.3",
+          "name": "beIN SPORTS 3",
+          "metrics": {
+            "programmes": 12,
+            "future_programmes": 10,
+            "future_hours": 16.8,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 27.3,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports4.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports4.qa@MENA",
+        "name": "beIN SPORTS 4",
+        "metrics": {
+          "programmes": 24,
+          "future_programmes": 24,
+          "future_hours": 49.0,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 147.2,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports4.qa@MENA",
+          "name": "beIN SPORTS 4",
+          "metrics": {
+            "programmes": 24,
+            "future_programmes": 24,
+            "future_hours": 49.0,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 147.2,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.4",
+          "name": "beIN SPORTS 4",
+          "metrics": {
+            "programmes": 12,
+            "future_programmes": 10,
+            "future_hours": 14.7,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 26.51,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports5.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports5.qa@MENA",
+        "name": "beIN SPORTS 5",
+        "metrics": {
+          "programmes": 21,
+          "future_programmes": 21,
+          "future_hours": 48.1,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 146.3,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports5.qa@MENA",
+          "name": "beIN SPORTS 5",
+          "metrics": {
+            "programmes": 21,
+            "future_programmes": 21,
+            "future_hours": 48.1,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 146.3,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.5",
+          "name": "beIN SPORTS 5",
+          "metrics": {
+            "programmes": 11,
+            "future_programmes": 9,
+            "future_hours": 15.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 26.44,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports6.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports6.qa@MENA",
+        "name": "beIN SPORTS 6",
+        "metrics": {
+          "programmes": 25,
+          "future_programmes": 25,
+          "future_hours": 48.3,
+          "desc_pct": 96.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 146.78,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports6.qa@MENA",
+          "name": "beIN SPORTS 6",
+          "metrics": {
+            "programmes": 25,
+            "future_programmes": 25,
+            "future_hours": 48.3,
+            "desc_pct": 96.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 146.78,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.6",
+          "name": "beIN SPORTS 6",
+          "metrics": {
+            "programmes": 11,
+            "future_programmes": 8,
+            "future_hours": 16.1,
+            "desc_pct": 90.9,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 24.8,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports7.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports7.qa@MENA",
+        "name": "beIN SPORTS 7",
+        "metrics": {
+          "programmes": 45,
+          "future_programmes": 44,
+          "future_hours": 48.3,
+          "desc_pct": 88.9,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 150.0,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports7.qa@MENA",
+          "name": "beIN SPORTS 7",
+          "metrics": {
+            "programmes": 45,
+            "future_programmes": 44,
+            "future_hours": 48.3,
+            "desc_pct": 88.9,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 150.0,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.7",
+          "name": "beIN SPORTS 7",
+          "metrics": {
+            "programmes": 13,
+            "future_programmes": 9,
+            "future_hours": 14.3,
+            "desc_pct": 69.2,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 20.52,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports8.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports8.qa@MENA",
+        "name": "beIN SPORTS 8",
+        "metrics": {
+          "programmes": 26,
+          "future_programmes": 26,
+          "future_hours": 50.3,
+          "desc_pct": 88.5,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 145.73,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports8.qa@MENA",
+          "name": "beIN SPORTS 8",
+          "metrics": {
+            "programmes": 26,
+            "future_programmes": 26,
+            "future_hours": 50.3,
+            "desc_pct": 88.5,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 145.73,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.8",
+          "name": "beIN SPORTS 8",
+          "metrics": {
+            "programmes": 14,
+            "future_programmes": 12,
+            "future_hours": 15.3,
+            "desc_pct": 78.6,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 23.49,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsports9.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSports9.qa@MENA",
+        "name": "beINSPORTS9",
+        "metrics": {
+          "programmes": 15,
+          "future_programmes": 14,
+          "future_hours": 10.8,
+          "desc_pct": 20.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 115.85,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSports9.qa@MENA",
+          "name": "beINSPORTS9",
+          "metrics": {
+            "programmes": 15,
+            "future_programmes": 14,
+            "future_hours": 10.8,
+            "desc_pct": 20.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 115.85,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.9",
+          "name": "beIN SPORTS 9",
+          "metrics": {
+            "programmes": 11,
+            "future_programmes": 10,
+            "future_hours": 14.3,
+            "desc_pct": 63.6,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 19.81,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "beinsportsnews.qa",
+      "winner": {
+        "source": "bein",
+        "id": "beINSportsNews.qa@SD",
+        "name": "beIN SPORTS NEWS",
+        "metrics": {
+          "programmes": 69,
+          "future_programmes": 69,
+          "future_hours": 50.3,
+          "desc_pct": 95.7,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 151.23,
+        "specialty_bonus": 70
+      },
+      "candidates": [
+        {
+          "source": "bein",
+          "id": "beINSportsNews.qa@SD",
+          "name": "beIN SPORTS NEWS",
+          "metrics": {
+            "programmes": 69,
+            "future_programmes": 69,
+            "future_hours": 50.3,
+            "desc_pct": 95.7,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 151.23,
+          "specialty_bonus": 70
+        },
+        {
+          "source": "sport24",
+          "id": "sport24.bein.news",
+          "name": "beIN SPORTS News",
+          "metrics": {
+            "programmes": 27,
+            "future_programmes": 26,
+            "future_hours": 14.3,
+            "desc_pct": 92.6,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 0.0
+          },
+          "score": 29.83,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "cartoonnetworkarabic.ae",
+      "winner": {
+        "source": "osn",
+        "id": "CartoonNetworkArabic.ae@SD",
+        "name": "CN Arabia",
+        "metrics": {
+          "programmes": 80,
+          "future_programmes": 77,
+          "future_hours": 38.5,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 98.8
+        },
+        "score": 78.25,
+        "specialty_bonus": 0
+      },
+      "candidates": [
+        {
+          "source": "osn",
+          "id": "CartoonNetworkArabic.ae@SD",
+          "name": "CN Arabia",
+          "metrics": {
+            "programmes": 80,
+            "future_programmes": 77,
+            "future_hours": 38.5,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 98.8
+          },
+          "score": 78.25,
+          "specialty_bonus": 0
+        },
+        {
+          "source": "elcinema",
+          "id": "CartoonNetworkArabic.ae@SD",
+          "name": "نتورك بالعربية",
+          "metrics": {
+            "programmes": 13,
+            "future_programmes": 10,
+            "future_hours": 33.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 0.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 67.49,
+          "specialty_bonus": 18
+        }
+      ]
+    },
+    {
+      "canonical": "dmc.eg",
+      "winner": {
+        "source": "elcinema",
+        "id": "DMC.eg@SD",
+        "name": "دي إم سي",
+        "metrics": {
+          "programmes": 10,
+          "future_programmes": 7,
+          "future_hours": 8.8,
+          "desc_pct": 50.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 66.4,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "DMC.eg@SD",
+          "name": "دي إم سي",
+          "metrics": {
+            "programmes": 10,
+            "future_programmes": 7,
+            "future_hours": 8.8,
+            "desc_pct": 50.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 66.4,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "DMC.eg@SD",
+          "name": "DMC HD",
+          "metrics": {
+            "programmes": 33,
+            "future_programmes": 30,
+            "future_hours": 38.8,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 54.5,
+            "arabic_desc_pct": 54.5
+          },
+          "score": 60.08,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "dubaitv.ae",
+      "winner": {
+        "source": "osn",
+        "id": "DubaiTV.ae@SD",
+        "name": "Dubai TV HD",
+        "metrics": {
+          "programmes": 50,
+          "future_programmes": 46,
+          "future_hours": 38.3,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 78.36,
+        "specialty_bonus": 0
+      },
+      "candidates": [
+        {
+          "source": "osn",
+          "id": "DubaiTV.ae@SD",
+          "name": "Dubai TV HD",
+          "metrics": {
+            "programmes": 50,
+            "future_programmes": 46,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.36,
+          "specialty_bonus": 0
+        },
+        {
+          "source": "elcinema",
+          "id": "DubaiTV.ae@SD",
+          "name": "دبي",
+          "metrics": {
+            "programmes": 14,
+            "future_programmes": 10,
+            "future_hours": 7.8,
+            "desc_pct": 42.9,
+            "arabic_title_pct": 64.3,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 59.22,
+          "specialty_bonus": 18
+        }
+      ]
+    },
+    {
+      "canonical": "mbc1.ae",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBC1.ae@SD",
+        "name": "إم بي سي",
+        "metrics": {
+          "programmes": 46,
+          "future_programmes": 41,
+          "future_hours": 38.3,
+          "desc_pct": 89.1,
+          "arabic_title_pct": 84.8,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 91.66,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBC1.ae@SD",
+          "name": "إم بي سي",
+          "metrics": {
+            "programmes": 46,
+            "future_programmes": 41,
+            "future_hours": 38.3,
+            "desc_pct": 89.1,
+            "arabic_title_pct": 84.8,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 91.66,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBC1.ae@SD",
+          "name": "MBC 1",
+          "metrics": {
+            "programmes": 50,
+            "future_programmes": 48,
+            "future_hours": 38.5,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.44,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "mbc3.ae",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBC3.ae@SD",
+        "name": "إم بي سي 3",
+        "metrics": {
+          "programmes": 71,
+          "future_programmes": 65,
+          "future_hours": 38.3,
+          "desc_pct": 91.5,
+          "arabic_title_pct": 16.9,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 79.87,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBC3.ae@SD",
+          "name": "إم بي سي 3",
+          "metrics": {
+            "programmes": 71,
+            "future_programmes": 65,
+            "future_hours": 38.3,
+            "desc_pct": 91.5,
+            "arabic_title_pct": 16.9,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 79.87,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBC3.ae@SD",
+          "name": "MBC 3",
+          "metrics": {
+            "programmes": 141,
+            "future_programmes": 125,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.36,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "mbc5.ae",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBC5.ae@SD",
+        "name": "إم بي سي 5",
+        "metrics": {
+          "programmes": 26,
+          "future_programmes": 25,
+          "future_hours": 39.0,
+          "desc_pct": 92.3,
+          "arabic_title_pct": 84.6,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 87.97,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBC5.ae@SD",
+          "name": "إم بي سي 5",
+          "metrics": {
+            "programmes": 26,
+            "future_programmes": 25,
+            "future_hours": 39.0,
+            "desc_pct": 92.3,
+            "arabic_title_pct": 84.6,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 87.97,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBC5.ae@SD",
+          "name": "MBC 5",
+          "metrics": {
+            "programmes": 49,
+            "future_programmes": 45,
+            "future_hours": 38.7,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.51,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "mbcdrama.ae",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBCDrama.ae@SD",
+        "name": "إم بي سي دراما",
+        "metrics": {
+          "programmes": 36,
+          "future_programmes": 33,
+          "future_hours": 38.3,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 61.1,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 87.26,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBCDrama.ae@SD",
+          "name": "إم بي سي دراما",
+          "metrics": {
+            "programmes": 36,
+            "future_programmes": 33,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 61.1,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 87.26,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBCDrama.ae@SD",
+          "name": "MBC Drama",
+          "metrics": {
+            "programmes": 41,
+            "future_programmes": 38,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 77.76,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "mbciraq.iq",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBCIraq.iq@SD",
+        "name": "إم بي سي العراق",
+        "metrics": {
+          "programmes": 43,
+          "future_programmes": 40,
+          "future_hours": 38.8,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 76.7,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 92.36,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBCIraq.iq@SD",
+          "name": "إم بي سي العراق",
+          "metrics": {
+            "programmes": 43,
+            "future_programmes": 40,
+            "future_hours": 38.8,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 76.7,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 92.36,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBCIraq.iq@SD",
+          "name": "MBC Iraq",
+          "metrics": {
+            "programmes": 50,
+            "future_programmes": 46,
+            "future_hours": 38.8,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.55,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "mbcmasr.eg",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBCMasr.eg@SD",
+        "name": "إم بي سي مصر",
+        "metrics": {
+          "programmes": 29,
+          "future_programmes": 28,
+          "future_hours": 38.8,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 75.9,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 88.61,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBCMasr.eg@SD",
+          "name": "إم بي سي مصر",
+          "metrics": {
+            "programmes": 29,
+            "future_programmes": 28,
+            "future_hours": 38.8,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 75.9,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 88.61,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBCMasr.eg@SD",
+          "name": "MBC Masr",
+          "metrics": {
+            "programmes": 33,
+            "future_programmes": 31,
+            "future_hours": 38.7,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 75.81,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "mbcmasr2.eg",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBCMasr2.eg@SD",
+        "name": "إم بي سي مصر 2",
+        "metrics": {
+          "programmes": 33,
+          "future_programmes": 31,
+          "future_hours": 38.3,
+          "desc_pct": 87.9,
+          "arabic_title_pct": 84.8,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 88.75,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBCMasr2.eg@SD",
+          "name": "إم بي سي مصر 2",
+          "metrics": {
+            "programmes": 33,
+            "future_programmes": 31,
+            "future_hours": 38.3,
+            "desc_pct": 87.9,
+            "arabic_title_pct": 84.8,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 88.75,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBCMasr2.eg@SD",
+          "name": "MBC Masr2",
+          "metrics": {
+            "programmes": 38,
+            "future_programmes": 36,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 77.16,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "mbcplusdrama.sa",
+      "winner": {
+        "source": "elcinema",
+        "id": "MBCPlusDrama.sa@SD",
+        "name": "إم بي سي دراما +",
+        "metrics": {
+          "programmes": 43,
+          "future_programmes": 42,
+          "future_hours": 38.7,
+          "desc_pct": 100.0,
+          "arabic_title_pct": 62.8,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 89.82,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "MBCPlusDrama.sa@SD",
+          "name": "إم بي سي دراما +",
+          "metrics": {
+            "programmes": 43,
+            "future_programmes": 42,
+            "future_hours": 38.7,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 62.8,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 89.82,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "MBCPlusDrama.sa@SD",
+          "name": "MBC+ Drama",
+          "metrics": {
+            "programmes": 55,
+            "future_programmes": 50,
+            "future_hours": 38.3,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.36,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "omantv.om",
+      "winner": {
+        "source": "elcinema",
+        "id": "OmanTV.om@SD",
+        "name": "عمان",
+        "metrics": {
+          "programmes": 69,
+          "future_programmes": 61,
+          "future_hours": 38.8,
+          "desc_pct": 40.6,
+          "arabic_title_pct": 81.2,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 82.47,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "OmanTV.om@SD",
+          "name": "عمان",
+          "metrics": {
+            "programmes": 69,
+            "future_programmes": 61,
+            "future_hours": 38.8,
+            "desc_pct": 40.6,
+            "arabic_title_pct": 81.2,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 82.47,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "OmanTV.om@SD",
+          "name": "Oman TV",
+          "metrics": {
+            "programmes": 80,
+            "future_programmes": 75,
+            "future_hours": 38.8,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 78.55,
+          "specialty_bonus": 0
+        }
+      ]
+    },
+    {
+      "canonical": "royatv.jo",
+      "winner": {
+        "source": "elcinema",
+        "id": "RoyaTV.jo@SD",
+        "name": "رؤيا",
+        "metrics": {
+          "programmes": 31,
+          "future_programmes": 28,
+          "future_hours": 38.3,
+          "desc_pct": 67.7,
+          "arabic_title_pct": 100.0,
+          "arabic_desc_pct": 100.0
+        },
+        "score": 86.95,
+        "specialty_bonus": 18
+      },
+      "candidates": [
+        {
+          "source": "elcinema",
+          "id": "RoyaTV.jo@SD",
+          "name": "رؤيا",
+          "metrics": {
+            "programmes": 31,
+            "future_programmes": 28,
+            "future_hours": 38.3,
+            "desc_pct": 67.7,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 86.95,
+          "specialty_bonus": 18
+        },
+        {
+          "source": "osn",
+          "id": "RoyaTV.jo@SD",
+          "name": "Roya TV HD",
+          "metrics": {
+            "programmes": 42,
+            "future_programmes": 38,
+            "future_hours": 38.8,
+            "desc_pct": 100.0,
+            "arabic_title_pct": 100.0,
+            "arabic_desc_pct": 100.0
+          },
+          "score": 77.95,
+          "specialty_bonus": 0
+        }
+      ]
+    }
+  ]
+}
