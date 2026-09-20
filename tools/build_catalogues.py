@@ -73,4 +73,52 @@ def build_elcinema_fallback():
 
 build_elcinema_fallback()
 choose("osn",["osn.com"])
-choose("bein",["bein.com","beinsports.com"])
+
+def build_bein():
+    rows=[]
+    for site in ["beinsports.com","bein.com"]:
+        base=ROOT/site
+        for p in sorted(base.glob("*.channels.xml")):
+            try:
+                rr=ET.parse(p).getroot()
+            except Exception:
+                continue
+            for ch in rr.findall("channel"):
+                cid=(ch.get("xmltv_id") or "").strip()
+                sid=(ch.get("site_id") or "").strip()
+                if not cid or not sid:
+                    continue
+                lang=(ch.get("lang") or "").lower()
+                name=p.name.lower()
+                # MENA sports API is preferred because its parser includes full
+                # event descriptions. The legacy bein.com HTML adapter is kept
+                # for entertainment and any IDs missing from the sports API.
+                if site=="beinsports.com" and "mena-ar" in name:
+                    rank=0
+                elif site=="beinsports.com" and "mena-en" in name:
+                    rank=1
+                elif site=="bein.com" and lang.startswith("ar"):
+                    rank=2
+                elif site=="bein.com" and lang.startswith("en"):
+                    rank=3
+                elif site=="beinsports.com":
+                    rank=4
+                else:
+                    rank=5
+                rows.append((cid,rank,name,ch))
+    best={}
+    for cid,rank,name,ch in rows:
+        key=(rank,name)
+        if cid not in best or key < best[cid][0]:
+            best[cid]=(key,ch)
+    root=ET.Element("channels")
+    for cid in sorted(best,key=str.casefold):
+        root.append(ET.fromstring(ET.tostring(best[cid][1],encoding="utf-8")))
+    ET.indent(root,space="  ")
+    path=OUT/"bein.channels.xml"
+    path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
+    print(f"bein: {len(root)} channels (MENA sports API preferred for descriptions)")
+    if len(root)==0:
+        raise SystemExit("bein: empty catalogue")
+
+build_bein()
