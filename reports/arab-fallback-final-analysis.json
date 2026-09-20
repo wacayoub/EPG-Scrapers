@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-20T10:47:54.475000+00:00",
-  "active_rows": 1611,
-  "zero_epg_blacklisted_ids": 936,
+  "generated_at": "2026-09-20T10:58:11.641040+00:00",
+  "active_rows": 1534,
+  "zero_epg_blacklisted_ids": 931,
   "source_blacklist": [
     {
       "provider": "epgshare",
@@ -22,15 +22,17 @@
       "detail": "no element found: line 1, column 0"
     }
   ],
-  "canonical_groups": 1357,
+  "canonical_groups": 1280,
   "duplicate_groups": 210,
   "duplicate_extra_rows": 254,
   "decision_counts": {
     "WINNER_OF_DUPLICATES": 210,
-    "UNIQUE": 1109,
-    "BLACKLIST_LATAM": 38
+    "UNIQUE": 1070
   },
   "new_ids_after_zero_and_latam_filter": 1309,
+  "excluded_sources": [
+    "epgshare:AR1"
+  ],
   "integration_policy": {
     "healthy_direct_feed": "always_keep",
     "fallback": "only_for_receiver_or_catalogue_channels_with_zero_epg",
