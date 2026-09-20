@@ -280,12 +280,27 @@ def _chada_title_desc(raw):
 
 def _parse_chada_piisas(text,day):
  soup=BeautifulSoup(text,"lxml");raw=[]
- body=clean(soup.get_text("\n",strip=True))
- for m in re.finditer(r"(?m)(?:^|\n)\s*([0-2]?\d:[0-5]\d)\s*-\s*([^\n]+)",body):
-  hm=clean(m.group(1));title=clean(m.group(2))
-  if len(title)<2:continue
-  hr,mi=map(int,hm.split(":"))
-  raw.append((datetime.combine(day,dtime(hr,mi),TZ),title))
+ # Piisas renders each schedule item as a list row. Parse DOM rows first,
+ # then fall back to every text node / raw HTML so minor markup changes
+ # do not zero the feed.
+ candidates=[]
+ for el in soup.find_all(["li","p","div","span","a"]):
+  t=clean(" ".join(el.stripped_strings))
+  if t and re.search(r"\b[0-2]?\d:[0-5]\d\b",t):
+   candidates.append(t)
+ candidates.extend(clean(x) for x in soup.stripped_strings if x)
+ candidates.append(clean(soup.get_text(" ",strip=True)))
+ candidates.append(clean(re.sub(r"<[^>]+>"," ",text)))
+ rx=re.compile(r"(?<!\d)([0-2]?\d:[0-5]\d)\s*(?:-|–|—|:|\u00a0)*\s*([^|\n]+?)(?=(?:\s+[0-2]?\d:[0-5]\d\b)|$)")
+ for cand in candidates:
+  for m in rx.finditer(cand):
+   hm=clean(m.group(1));title=clean(m.group(2)).strip(" .-|–—:")
+   # avoid swallowing navigation/footer text when a whole-page candidate is used
+   title=re.split(r"\s+(?:HIER|CE MOMENT|AUJOURD.HUI|CE SOIR|DEMAIN)\b",title,1,flags=re.I)[0].strip()
+   if len(title)<2 or len(title)>140:continue
+   hr,mi=map(int,hm.split(":"))
+   if hr>23:continue
+   raw.append((datetime.combine(day,dtime(hr,mi),TZ),title))
  out=[];seen=set()
  for start,title in sorted(raw,key=lambda x:x[0]):
   k=(start,title.casefold())
