@@ -31,6 +31,12 @@ jobs:
               if links:
                   print("ROWTV",i,links[:5])
           print("FIRSTROWHTML",str(s.select_one(".tv-line"))[:12000])
+          print("\nDETAIL PAGES")
+          for sid in ids:
+              rr=requests.get(f"https://elcinema.com/tvguide/{sid}/",headers={"User-Agent":"Mozilla/5.0"},timeout=20)
+              ss=BeautifulSoup(rr.text,"lxml")
+              dates=[" ".join(x.stripped_strings) for x in ss.select(".dates")]
+              print("DETAIL",sid,"HTTP",rr.status_code,"LEN",len(rr.text),"DATES",dates[:8],"ITEMS",len(ss.select(".padded-half")))
           for sid in ids:
               a=s.find("a",href=re.compile(rf"/tvguide/{sid}/?$"))
               print("\nSID",sid,"FOUND_LINK",bool(a))
