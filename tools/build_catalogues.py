@@ -74,8 +74,25 @@ def build_elcinema_fallback():
 build_elcinema_fallback()
 choose("osn",["osn.com"])
 
+BEIN_ZERO_EPG_EXCLUDE = {
+    "AlkassEight.qa@SD",
+    "beINSportsNBA.qa@SD",
+}
+
 def build_bein():
     rows=[]
+    mena_en_by_site={}
+    mena_en=ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml"
+    if mena_en.exists():
+        try:
+            rr=ET.parse(mena_en).getroot()
+            for ch in rr.findall("channel"):
+                sid=(ch.get("site_id") or "").strip()
+                cid=(ch.get("xmltv_id") or "").strip()
+                if sid and cid:
+                    mena_en_by_site[sid]=cid
+        except Exception:
+            pass
     for site in ["beinsports.com","bein.com"]:
         base=ROOT/site
         files=sorted(base.glob("*.channels.xml"))
@@ -91,11 +108,18 @@ def build_bein():
             for ch in rr.findall("channel"):
                 cid=(ch.get("xmltv_id") or "").strip()
                 sid=(ch.get("site_id") or "").strip()
+                if site=="beinsports.com" and sid and not cid:
+                    cid=mena_en_by_site.get(sid,"")
+                    if cid:
+                        ch=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
+                        ch.set("xmltv_id",cid)
                 if not cid or not sid:
                     continue
                 # AFC temporary/event channels are no longer valid for the
                 # production beIN MENA feed.
                 if "afc" in cid.lower() or "afc" in (ch.text or "").lower():
+                    continue
+                if cid in BEIN_ZERO_EPG_EXCLUDE:
                     continue
                 lang=(ch.get("lang") or "").lower()
                 name=p.name.lower()
