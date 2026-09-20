@@ -50,6 +50,7 @@ PROTECTED_DIRECT_FEED_STEMS={"bein","osn","elcinema","sport24","2m","morocco","s
 KNOWN_BAD_FALLBACK_IDS={"baby-tv-2.qa","cbeebies-1.qa","fatafeat-1.qa"}
 BEIN_IMPLICIT_RE=re.compile(r"^(?:movies[1-4]\b.*|boxoffice[12]\b.*|4k\s+digital\b.*)$",re.I)
 AFC_BEIN_RE=re.compile(r"^\s*afc(?:\s|[-_]|\d)",re.I)
+ALKASS_BAD_SAMPLE_RE=re.compile(r"^(?:beIN Sports MAX|News|Akhbar|أخبار)$",re.I)
 SOURCE_OVERRIDES={"2023 alkass 3.qa":("openepg","qatar2")}
 
 ALIASES={
@@ -560,6 +561,8 @@ def main():
         if BEIN_IMPLICIT_RE.search(rname) or BEIN_IMPLICIT_RE.search((r.get("id") or "")):
             continue
         if (r.get("country") or "").casefold()=="qatar" and (AFC_BEIN_RE.search(rname) or AFC_BEIN_RE.search((r.get("id") or ""))):
+            continue
+        if "alkass" in name_blob.casefold() and ALKASS_BAD_SAMPLE_RE.search((r.get("sample_title") or "").strip()):
             continue
         # Families already covered by dedicated healthy direct feeds must
         # never be promoted from fallback. This includes beIN, OSN, MBC,
