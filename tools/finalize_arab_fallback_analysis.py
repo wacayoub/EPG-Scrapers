@@ -214,17 +214,11 @@ def language_rank_marker(r):
         return 2
     return 1
 
-    """Prefer Arabic variant, then neutral/original, then explicit English."""
-    name=(r.get("name") or "").strip()
-    cid=(r.get("id") or "").strip()
-    txt=(name+" "+cid).casefold()
-    ar_marker=re.search(r"(?:^|[_.\s-])ar(?:$|[_.\s-])",txt,re.I)
-    en_marker=re.search(r"(?:^|[_.\s-])en(?:$|[_.\s-])",txt,re.I)
-    if AR.search(name) or AR.search(cid) or ar_marker or re.match(r"^\s*arabic\b",name,re.I):
+def language_rank(r):
+    """Arabic EPG first, then neutral/original, English last."""
+    if has_arabic_epg(r):
         return 0
-    if en_marker or re.match(r"^\s*english\b",name,re.I) or " english" in txt:
-        return 2
-    return 1
+    return language_rank_marker(r)
 
 def bilingual_key(r):
     """Collapse AR/EN variants even when language is in prefix or suffix."""
