@@ -12,6 +12,7 @@ on:
       - "tools/source_gap_retry.py"
       - "tools/validate_48h.py"
       - "tools/sport24_source.py"
+      - "tools/morocco_epg.py"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
@@ -118,6 +119,10 @@ jobs:
               echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"
             fi
           done
+          if [ -s output/morocco/morocco.xml.gz ]; then
+            cp output/morocco/morocco.xml.gz output/final/morocco.xml.gz
+            cp output/morocco/manifest.json output/final/morocco.json
+          fi
           exit 0
 
       - name: Retry ElCinema zero-EPG channels in English
@@ -165,6 +170,20 @@ jobs:
           if [ ! -s output/source-build/sport24.raw.xml ]; then
             echo '<?xml version="1.0"?><tv></tv>' > output/source-build/sport24.raw.xml
           fi
+          exit 0
+
+      - name: Scrape Morocco
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/morocco output/source-build
+          if [ -s feeds/morocco.xml.gz ]; then
+            python tools/morocco_epg.py               --output-dir output/morocco               --days 3               --previous feeds/morocco.xml.gz
+          else
+            python tools/morocco_epg.py               --output-dir output/morocco               --days 3
+          fi
+          echo "$?" > output/source-build/morocco.grab.rc
           exit 0
 
       - name: Pack candidate feeds
