@@ -70,6 +70,7 @@ BEIN_ANY_RE=re.compile(r"(?:be\s*in|bein|بي\s*إن|بي\s*ان)",re.I)
 KNOWN_BAD_FALLBACK_IDS={"baby-tv-2.qa","cbeebies-1.qa","fatafeat-1.qa"}
 BEIN_IMPLICIT_RE=re.compile(r"^(?:movies[1-4]\b.*|boxoffice[12]\b.*|4k\s+digital\b.*)$",re.I)
 SPORT24_RE=re.compile(r"(?:\bsport\s*24\b|\besport\s*24\b)",re.I)
+AFC_BEIN_RE=re.compile(r"^\s*afc(?:\s|[-_]|\d)",re.I)
 
 def norm(s:str)->str:
     s=unicodedata.normalize("NFKC",s or "").casefold()
@@ -151,6 +152,8 @@ def main():
                 continue
             if (r.get("provider",""),r.get("source","")) in dynamic_quarantine:
                 continue
+            if (r.get("provider",""),r.get("source","")) == ("openepg","qatar6"):
+                continue
             r["future_programmes"]=int(float(r["future_programmes"] or 0))
             r["future_hours"]=float(r["future_hours"] or 0)
             r["desc_pct"]=float(r["desc_pct"] or 0)
@@ -167,6 +170,8 @@ def main():
             if JUNK_NAME_RE.search(name_blob) or RADIO_DATA_RE.search(name_blob) or BEIN_ANY_RE.search(name_blob):
                 continue
             if BEIN_IMPLICIT_RE.search(rname) or BEIN_IMPLICIT_RE.search((r.get("id") or "")):
+                continue
+            if (r.get("country") or "").casefold()=="qatar" and (AFC_BEIN_RE.search(rname) or AFC_BEIN_RE.search((r.get("id") or ""))):
                 continue
             if SPORT24_RE.search(name_blob):
                 continue
