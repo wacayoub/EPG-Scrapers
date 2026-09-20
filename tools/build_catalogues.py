@@ -88,6 +88,10 @@ def build_bein():
                 sid=(ch.get("site_id") or "").strip()
                 if not cid or not sid:
                     continue
+                # AFC temporary/event channels are no longer valid for the
+                # production beIN MENA feed.
+                if "afc" in cid.lower() or "afc" in (ch.text or "").lower():
+                    continue
                 lang=(ch.get("lang") or "").lower()
                 name=p.name.lower()
                 # MENA sports API is preferred because its parser includes full
