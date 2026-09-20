@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T11:00:55.931302+00:00",
+  "generated_at": "2026-09-20T11:05:32.595817+00:00",
   "active_rows": 1535,
   "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
@@ -35,7 +35,10 @@
     "UNIQUE": 1071,
     "WINNER_OF_DUPLICATES": 210
   },
-  "new_ids_after_zero_and_latam_filter": 1146,
+  "merged_fallback_winners_before_direct_filter": 1146,
+  "already_covered_by_direct_sources": 151,
+  "missing_ids_final": 995,
+  "new_ids_after_zero_and_latam_filter": 995,
   "language_duplicates_removed": 125,
   "language_policy": "ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
   "sort_order": "CHANNEL_NAME_ASC",
@@ -44,7 +47,7 @@
   ],
   "integration_policy": {
     "healthy_direct_feed": "always_keep",
-    "fallback": "only_for_receiver_or_catalogue_channels_with_zero_epg",
+    "fallback": "only_missing_ids_not_covered_by_any_healthy_direct_source",
     "duplicate": "use winner; keep alternatives for failover",
     "zero_epg": "dynamic_blacklist_until_future_programmes_return",
     "source_zero_or_invalid": "source_blacklist"
