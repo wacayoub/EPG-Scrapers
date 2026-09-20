@@ -29,6 +29,7 @@ AR=re.compile(r"[\u0600-\u06ff]")
 LATAM_BAD=re.compile(r"\b(argentina|latinoam[eé]rica|latin america|pakapaka|tooncast)\b",re.I)
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
 QUARANTINED_SOURCE_KEYS={("epgshare","AE1")}
+AUTO_QUARANTINE_CLONE_PCT=35.0
 BEIN_FAMILY_RE=re.compile(r"(?:\bbe\s*in\b|\bbein\b|بي\s*إن|بي\s*ان)",re.I)
 BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin)",re.I)
 DIRECT_FAMILY_PATTERNS={
@@ -238,6 +239,19 @@ def bilingual_key(r):
             return s
     return norm(name) or norm(cid)
 
+def dynamic_quarantined_sources(health):
+    out=set(QUARANTINED_SOURCE_KEYS)
+    for h in health.get("health",[]):
+        if h.get("status")!="ok":
+            continue
+        active=int(h.get("active_channels",0) or 0)
+        clones=int(h.get("suspicious_clone_channels",0) or 0)
+        raw_active=active+clones
+        pct=(100.0*clones/raw_active) if raw_active else 0.0
+        if raw_active>=10 and pct>=AUTO_QUARANTINE_CLONE_PCT:
+            out.add((h.get("provider",""),h.get("source","")))
+    return out
+
 def load_direct_catalogue():
     """Return healthy published direct IDs and normalized channel names."""
     direct_ids=set()
@@ -310,6 +324,7 @@ def main():
             w.writerow({**{k:r.get(k,"") for k in zfields},"reason":"ZERO_FUTURE_EPG"})
 
     health=json.load(HEALTH.open(encoding="utf-8"))
+    dynamic_quarantine=dynamic_quarantined_sources(health)
     source_black=[]
     for h in health.get("health",[]):
         if h.get("status")=="excluded":
@@ -318,7 +333,7 @@ def main():
                 "reason":h.get("reason","EXCLUDED_SOURCE"),
                 "detail":h.get("error","")
             })
-        elif (h.get("provider"),h.get("source")) in QUARANTINED_SOURCE_KEYS:
+        elif (h.get("provider"),h.get("source")) in dynamic_quarantine:
             source_black.append({
                 "provider":h["provider"],"source":h["source"],
                 "reason":"SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
@@ -387,7 +402,7 @@ def main():
             continue
         if (r.get("provider",""),r.get("source","")) in EXCLUDED_SOURCE_KEYS:
             continue
-        if (r.get("provider",""),r.get("source","")) in QUARANTINED_SOURCE_KEYS:
+        if (r.get("provider",""),r.get("source","")) in dynamic_quarantine:
             continue
         if LATAM_BAD.search((r.get("name") or "")+" "+(r.get("id") or "")):
             continue
@@ -574,7 +589,7 @@ def main():
         "english_accepted_after_4_audits":english_accepted_after_4_audits,
         "sort_order":"CHANNEL_NAME_ASC",
         "excluded_sources":["epgshare:AR1"],
-        "quarantined_sources":["epgshare:AE1"],
+        "quarantined_sources":[f"{p}:{s}" for p,s in sorted(dynamic_quarantine)],
         "integration_policy":{
             "healthy_direct_feed":"always_keep",
             "fallback":"only_missing_ids_not_covered_by_any_healthy_direct_source",
