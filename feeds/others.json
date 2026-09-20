@@ -1,16 +1,16 @@
 {
-  "generated": "2026-09-20T13:12:17.550155+00:00",
-  "channels": 145,
-  "programmes": 56669,
+  "generated": "2026-09-20T13:15:03.329548+00:00",
+  "channels": 153,
+  "programmes": 57599,
   "components": {
     "rotana_art": {
-      "channels": 0,
-      "programmes": 0
+      "channels": 8,
+      "programmes": 930
     },
     "validated_fallback": {
       "channels": 145,
       "programmes": 56669
     }
   },
-  "policy": "ART validated schedules + validated missing winners from OpenEPG/EPGShare; Rotana quarantined pending remap"
+  "policy": "Rotana official + ART validated schedules + validated missing winners from OpenEPG/EPGShare"
 }
