@@ -381,6 +381,14 @@ def load_compare_only_channels():
     """Discovery-only channel rows shown in new-arab-epg-ids.csv for comparison."""
     rows=[]
     seen=set()
+    rotana_art_programmes={}
+    rap=OUT/"rotana-art-programmes.json"
+    if rap.exists():
+        try:
+            rr=json.loads(rap.read_text(encoding="utf-8"))
+            rotana_art_programmes={x.get("id",""):x for x in rr.get("channels",[]) if x.get("id")}
+        except Exception:
+            rotana_art_programmes={}
 
     # Shahid/MBC public live-channel discovery.
     path=OUT/"commercial-arab-platforms.json"
@@ -519,11 +527,19 @@ def load_compare_only_channels():
         if key in seen:
             continue
         seen.add(key)
+        prog=rotana_art_programmes.get(x["id"],{})
+        sample_desc=(prog.get("sample_desc") or "")
         rows.append({
             **x,
-            "future_programmes":0,"future_hours":0,"desc_pct":0,
-            "sample_title":"","sample_desc":"","title_source":"","desc_source":"",
-            "title_desc_policy":"DISCOVERY_ONLY","language_audit":"NOT_VALIDATED_YET",
+            "future_programmes":int(prog.get("programmes") or 0),
+            "future_hours":float(prog.get("future_hours") or 0),
+            "desc_pct":100.0 if sample_desc else 0.0,
+            "sample_title":prog.get("sample_title") or "",
+            "sample_desc":sample_desc,
+            "title_source":f'{x["provider"]}:{x["source"]}:{x["id"]}' if prog.get("sample_title") else "",
+            "desc_source":f'{x["provider"]}:{x["source"]}:{x["id"]}' if sample_desc else "",
+            "title_desc_policy":"DISCOVERY_PROGRAMME_SAMPLE" if prog.get("sample_title") else "DISCOVERY_ONLY",
+            "language_audit":"PROGRAMME_SAMPLE_FOUND" if prog.get("sample_title") else "NOT_VALIDATED_YET",
             "alternatives":0,"alternative_sources":"","merged_alternatives":"",
             "integration_status":"COMPARE_ONLY",
         })
