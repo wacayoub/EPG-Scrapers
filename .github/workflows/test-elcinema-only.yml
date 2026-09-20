@@ -1,0 +1,116 @@
+name: Test ElCinema only
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-elcinema-only.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-feed-publish
+  cancel-in-progress: false
+
+jobs:
+  test-elcinema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install upstream grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build ElCinema catalogues
+        run: python tools/build_catalogues.py
+
+      - name: Fast ElCinema Arabic scrape
+        shell: bash
+        run: |
+          set -e
+          mkdir -p output/source-build output/final
+          cd vendor/iptv-org-epg
+          npm run grab --- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/source-build/elcinema.raw.xml" \
+            --days=2 \
+            --maxConnections=6 \
+            --timeout=15000 \
+            --delay=200
+
+      - name: Retry only zero-EPG IDs in English
+        shell: bash
+        run: |
+          set -e
+          python tools/source_gap_retry.py build \
+            --catalogue output/source-build/elcinema.channels.xml \
+            --fallback-catalogue output/source-build/elcinema_fallback.channels.xml \
+            --raw output/source-build/elcinema.raw.xml \
+            --output output/source-build/elcinema.retry.channels.xml
+
+          if grep -q '<channel ' output/source-build/elcinema.retry.channels.xml; then
+            cd vendor/iptv-org-epg
+            npm run grab --- \
+              --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.channels.xml" \
+              --output="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.raw.xml" \
+              --days=2 \
+              --maxConnections=4 \
+              --timeout=15000 \
+              --delay=300
+            cd "$GITHUB_WORKSPACE"
+            python tools/source_gap_retry.py merge \
+              --primary output/source-build/elcinema.raw.xml \
+              --retry output/source-build/elcinema.retry.raw.xml \
+              --output output/source-build/elcinema.merged.xml
+            mv output/source-build/elcinema.merged.xml output/source-build/elcinema.raw.xml
+          else
+            echo "ElCinema: no gaps after Arabic pass."
+          fi
+
+      - name: Pack and validate ElCinema
+        run: |
+          python tools/source_feed_pack.py \
+            --input output/source-build/elcinema.raw.xml \
+            --output-gz output/final/elcinema.xml.gz \
+            --output-txt output/final/elcinema.txt \
+            --stats output/final/elcinema.json \
+            --label elcinema \
+            --window-hours 48
+          cat output/final/elcinema.json
+
+      - name: Publish ElCinema only
+        shell: bash
+        run: |
+          mkdir -p feeds
+          cp output/final/elcinema.xml.gz feeds/elcinema.xml.gz
+          cp output/final/elcinema.json feeds/elcinema.json
+          cp output/final/elcinema.txt feeds/elcinema.txt
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds/elcinema.xml.gz feeds/elcinema.json feeds/elcinema.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh ElCinema only"
+            git pull --rebase origin main
+            git push
+          fi
