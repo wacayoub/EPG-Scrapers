@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+from __future__ import annotations
+import json,re
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from urllib.parse import urljoin
+import requests
+from bs4 import BeautifulSoup
+
+UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPG-Scrapers-ScheduleProbe/1.0"
+
+ROTANA={
+  "official.rotana.cinema.ksa":("Rotana Cinema KSA",431),
+  "official.rotana.lbc":("LBC",434),
+  "official.rotana.khalijia":("Rotana Khalijia",435),
+  "official.rotana.drama":("Rotana Drama",436),
+  "official.rotana.comedy":("Rotana Comedy",437),
+  "official.rotana.classic":("Rotana Classic",438),
+  "official.rotana.cinema.egypt":("Rotana Cinema Egypt",439),
+  "official.rotana.clip":("Rotana Clip",443),
+  "official.rotana.resalah":("Al Resalah",446),
+}
+ART_GUIDES={
+  "official.art.aflam1":("ART Aflam 1",1),
+  "official.art.aflam2":("ART Aflam 2",2),
+  "official.art.cinema":("ART Cinema",3),
+  "official.art.hekayat":("ART Hekayat",4),
+  "official.art.hekayat2":("ART Hekayat 2",5),
+}
+TIME_TITLE_RE=re.compile(r"(?m)^\s*(\d{1,2}:\d{2})\s+(.+?)\s*$")
+DATE_RE=re.compile(r"(?m)^\s*(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+(20\d{2}-\d{2}-\d{2})\s*$",re.I)
+AR=re.compile(r"[\u0600-\u06ff]")
+
+def get(sess,url):
+  r=sess.get(url,timeout=25,allow_redirects=True)
+  r.raise_for_status()
+  return r
+
+def clean(s):
+  return re.sub(r"\s+"," ",s or "").strip()
+
+def rotana_channel(sess,cid,name,chid):
+  url=f"https://www.rotana.net/en/streams?channel={chid}"
+  r=get(sess,url)
+  soup=BeautifulSoup(r.text,"html.parser")
+  text=soup.get_text("\n",strip=True)
+  lines=[clean(x) for x in text.splitlines() if clean(x)]
+  current_date=None; events=[]
+  for line in lines:
+    md=DATE_RE.match(line)
+    if md:
+      current_date=md.group(1); continue
+    mt=TIME_TITLE_RE.match(line)
+    if mt and current_date:
+      hhmm,title=mt.group(1),clean(mt.group(2))
+      try:
+        dt=datetime.strptime(current_date+" "+hhmm,"%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
+      except Exception:
+        continue
+      events.append({"start":dt.isoformat(),"title":title})
+  events=sorted(events,key=lambda x:x["start"])
+  for i,e in enumerate(events):
+    if i+1<len(events):
+      e["stop"]=events[i+1]["start"]
+    else:
+      e["stop"]=(datetime.fromisoformat(e["start"])+timedelta(hours=2)).isoformat()
+  now=datetime.now(timezone.utc)
+  future=[e for e in events if datetime.fromisoformat(e["stop"])>now]
+  sample=future[0] if future else (events[0] if events else {})
+  return {
+    "id":cid,"name":name,"provider":"official","source":"rotana",
+    "url":url,"programmes":len(future),
+    "future_hours":round(max([(datetime.fromisoformat(e["stop"])-now).total_seconds()/3600 for e in future] or [0]),1),
+    "sample_title":sample.get("title",""),"sample_desc":"",
+    "events":future[:120],
+    "status":"VALID_SCHEDULE" if len(future)>=4 else "INSUFFICIENT_SCHEDULE"
+  }
+
+def art_programme_pages(sess):
+  found=[]
+  for base in ("https://www.artonline.tv/","https://www.artonline.tv/guide"):
+    try:
+      r=get(sess,base)
+    except Exception:
+      continue
+    soup=BeautifulSoup(r.text,"html.parser")
+    for a in soup.find_all("a",href=True):
+      href=urljoin(r.url,a["href"])
+      if re.search(r"/(?:Series|Movie)\?id=\d+",href,re.I) and href not in found:
+        found.append(href)
+  # Also known programme pages surfaced by public discovery/search.
+  for pid in (221,265,4401,4405,5531,5796,5800,5806,5809):
+    u=f"https://www.artonline.tv/Series?id={pid}"
+    if u not in found: found.append(u)
+  return found[:120]
+
+def parse_art_page(sess,url):
+  try:
+    r=get(sess,url)
+  except Exception:
+    return None
+  soup=BeautifulSoup(r.text,"html.parser")
+  title=clean((soup.find("h1") or soup.title).get_text(" ",strip=True) if (soup.find("h1") or soup.title) else "")
+  text=clean(soup.get_text(" ",strip=True))
+  desc=""
+  # best long paragraph
+  ps=[clean(p.get_text(" ",strip=True)) for p in soup.find_all("p")]
+  ps=[p for p in ps if len(p)>60]
+  if ps: desc=max(ps,key=len)
+  channel=""
+  mch=re.search(r"تشاهدونه\s+على\s+قناة\s+([^\n\r]+?)(?=\s+(?:يومياً|يوميا|من\s+\d|GMT|الإعادة|الاعادة|$))",text,re.I)
+  if mch: channel=clean(mch.group(1))
+  # fallback channel folder clues / text
+  if not channel:
+    for ar,name in (("أفلام1","ART Aflam 1"),("أفلام 1","ART Aflam 1"),("أفلام2","ART Aflam 2"),("أفلام 2","ART Aflam 2"),("حكايات 2","ART Hekayat 2"),("حكايات","ART Hekayat"),("سينما","ART Cinema")):
+      if ar in text:
+        channel=name; break
+  else:
+    amap={"أفلام1":"ART Aflam 1","أفلام 1":"ART Aflam 1","أفلام2":"ART Aflam 2","أفلام 2":"ART Aflam 2","حكايات":"ART Hekayat","حكايات 2":"ART Hekayat 2","سينما":"ART Cinema"}
+    for k,v in amap.items():
+      if k in channel: channel=v; break
+  times=re.findall(r"\b(?:[01]?\d|2[0-3]):[0-5]\d\b",text)
+  return {"url":url,"title":title.split(" : شبكة",1)[0],"desc":desc,"channel":channel,"times":times[:12]}
+
+def art_channels(sess):
+  by_name={name:[] for name,_ in ART_GUIDES.values()}
+  for u in art_programme_pages(sess):
+    x=parse_art_page(sess,u)
+    if not x or not x["channel"] or not x["title"]: continue
+    if x["channel"] in by_name:
+      by_name[x["channel"]].append(x)
+  out=[]
+  for cid,(name,gid) in ART_GUIDES.items():
+    items=by_name.get(name,[])
+    sample=items[0] if items else {}
+    out.append({
+      "id":cid,"name":name,"provider":"official","source":"artonline",
+      "url":f"https://www.artonline.tv/guide/{gid}",
+      "programmes":len(items),"future_hours":0.0,
+      "sample_title":sample.get("title",""),"sample_desc":sample.get("desc",""),
+      "events":[{"title":x["title"],"times":x["times"],"url":x["url"]} for x in items[:30]],
+      "status":"PROGRAMME_SAMPLES_FOUND" if items else "NO_PROGRAMME_SAMPLE"
+    })
+  return out
+
+def main():
+  s=requests.Session()
+  s.headers.update({"User-Agent":UA,"Accept-Language":"ar,en;q=0.8"})
+  rows=[]
+  for cid,(name,chid) in ROTANA.items():
+    try: rows.append(rotana_channel(s,cid,name,chid))
+    except Exception as e:
+      rows.append({"id":cid,"name":name,"provider":"official","source":"rotana","url":f"https://www.rotana.net/en/streams?channel={chid}","programmes":0,"future_hours":0.0,"sample_title":"","sample_desc":"","events":[],"status":"ERROR","error":str(e)[:200]})
+  rows.extend(art_channels(s))
+  report={"generated_at":datetime.now(timezone.utc).isoformat(),"channels":rows}
+  Path("reports").mkdir(exist_ok=True)
+  Path("reports/rotana-art-programmes.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+  import csv
+  fields=["id","name","provider","source","status","programmes","future_hours","sample_title","sample_desc","url"]
+  with Path("reports/rotana-art-programmes.csv").open("w",newline="",encoding="utf-8") as f:
+    w=csv.DictWriter(f,fieldnames=fields);w.writeheader()
+    for r in rows:w.writerow({k:r.get(k,"") for k in fields})
+  print(json.dumps({"channels":[{k:r.get(k) for k in ("id","name","source","status","programmes","future_hours","sample_title")} for r in rows]},ensure_ascii=False))
+  return 0
+if __name__=="__main__":
+  raise SystemExit(main())
