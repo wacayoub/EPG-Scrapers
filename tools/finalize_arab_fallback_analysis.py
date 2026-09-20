@@ -42,10 +42,13 @@ DIRECT_FAMILY_PATTERNS={
     "dubai_dmi": re.compile(r"(?:\bdubai\b|\bsama\s*dubai\b|دبي|سما\s*دبي)",re.I),
     "adm": re.compile(r"(?:abu\s*dhabi|ad\s*sports|al\s*emarat|أبو\s*ظبي|ابو\s*ظبي|الإمارات|الامارات)",re.I),
     "morocco": re.compile(r"(?:\b2m\b|al\s*aoula|alaoula|arryadia|arrabiaa|almaghribiya|assadisa|tamazight|snrt|الأولى|الاولى|الرياضية|الثقافية|المغربية|السادسة|تمازيغت)",re.I),
+    "sport24": re.compile(r"(?:\bsport\s*24\b|\besport\s*24\b)",re.I),
 }
 PREFIX_RE=re.compile(r"^(?:en|ar)\s*:\s*",re.I)
-MULTINATIONAL_TITLE_EN_RE=re.compile(r"(?:national\s*geographic|nat\.?\s*geo|osn|cnn|bbc(?:\s*earth)?|discovery|disney|cartoon\s*network|nick(?:elodeon|toons|\s*jr)|history|animal\s*planet|tlc|hgtv|food\s*network|bloomberg|cnbc|euronews|euro\s*news|france\s*24|\brt\b|\bdw\b|al\s*jazeera\s*english)",re.I)
+MULTINATIONAL_TITLE_EN_RE=re.compile(r"(?:national\s*geographic|nat\.?\s*geo|osn|cnn|bbc(?:\s*earth)?|discovery|disney|cartoon\s*network|cartoonito|cbeebies|baby[\s-]*tv|blippi|nick(?:elodeon|toons|\s*jr)|history|animal\s*planet|tlc|hgtv|food\s*network|bloomberg|cnbc|euronews|euro\s*news|france\s*24|\brt\b|\bdw\b|al\s*jazeera\s*english|star\s*(?:action|movies|world)|starzplay)",re.I)
 PROTECTED_DIRECT_FEED_STEMS={"bein","osn","elcinema","sport24","2m","morocco","snrt"}
+KNOWN_BAD_FALLBACK_IDS={"baby-tv-2.qa","cbeebies-1.qa","fatafeat-1.qa"}
+BEIN_IMPLICIT_RE=re.compile(r"^(?:movies[1-4]\b.*|boxoffice[12]\b.*|4k\s+digital\b.*)$",re.I)
 
 ALIASES={
     "mbc 3":"mbc3","mbc3":"mbc3",
@@ -486,9 +489,15 @@ def main():
             continue
         sample_blob=((r.get("sample_title") or "")+" "+(r.get("sample_desc") or "")).strip()
         name_blob=((r.get("name") or "")+" "+(r.get("id") or "")).strip()
+        rid=(r.get("id") or "").strip().casefold()
+        rname=(r.get("name") or "").strip()
         if BAD_SAMPLE_RE.search(sample_blob):
             continue
+        if rid in KNOWN_BAD_FALLBACK_IDS:
+            continue
         if JUNK_NAME_RE.search(name_blob) or RADIO_DATA_RE.search(name_blob):
+            continue
+        if BEIN_IMPLICIT_RE.search(rname) or BEIN_IMPLICIT_RE.search((r.get("id") or "")):
             continue
         # Families already covered by dedicated healthy direct feeds must
         # never be promoted from fallback. This includes beIN, OSN, MBC,
@@ -681,7 +690,7 @@ def main():
         "merged_fallback_winners_before_direct_filter":len(merged),
         "already_covered_by_direct_sources":len(already_covered),
         "bein_family_fallback_policy":"ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
-        "protected_direct_families":["bein","osn","mbc","rotana","dubai_dmi","adm","morocco"],
+        "protected_direct_families":["bein","osn","mbc","rotana","dubai_dmi","adm","morocco","sport24"],
         "protected_direct_feeds":["bein","osn","elcinema","sport24","2m","morocco","snrt"],
         "missing_ids_final":len(new),
         "new_ids_after_zero_and_latam_filter":len(new),
