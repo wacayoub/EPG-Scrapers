@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T11:05:44.421203+00:00",
+  "generated_at": "2026-09-20T11:07:51.994113+00:00",
   "active_rows": 1535,
   "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
@@ -35,11 +35,11 @@
     "UNIQUE": 1071,
     "WINNER_OF_DUPLICATES": 210
   },
-  "merged_fallback_winners_before_direct_filter": 1146,
-  "already_covered_by_direct_sources": 151,
-  "missing_ids_final": 995,
-  "new_ids_after_zero_and_latam_filter": 995,
-  "language_duplicates_removed": 125,
+  "merged_fallback_winners_before_direct_filter": 1042,
+  "already_covered_by_direct_sources": 145,
+  "missing_ids_final": 897,
+  "new_ids_after_zero_and_latam_filter": 897,
+  "language_duplicates_removed": 229,
   "language_policy": "ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
   "sort_order": "CHANNEL_NAME_ASC",
   "excluded_sources": [
