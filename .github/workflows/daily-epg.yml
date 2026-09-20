@@ -9,6 +9,10 @@ on:
       - "tools/monitor_feeds.py"
       - "tools/build_catalogues.py"
       - "tools/source_feed_pack.py"
+      - "tools/source_gap_retry.py"
+      - "tools/validate_48h.py"
+      - "tools/sport24_source.py"
+      - "tools/morocco_epg.py"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
