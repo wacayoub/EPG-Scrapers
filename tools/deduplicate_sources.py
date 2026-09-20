@@ -76,22 +76,47 @@ def canonical_id(cid,name):
         return aliases.get(n,base)
     return base
 
+def language_profile(canon,name):
+    """User-approved language policy.
+
+    arabic_native: Arabic title + Arabic description
+    foreign_subtitled: English/original title + Arabic description
+    international: English title + English description
+    """
+    c=(canon or "").casefold()
+    n=(name or "").casefold()
+
+    foreign_subtitled_tokens=(
+        "beinmovies","beinseries","beindrama",
+        "mbc2","mbcmax","mbcaction","mbcbollywood",
+        "dubai1","dubaione","osnmovies","osnshowcase","osncomedy",
+        "osnkids","cartoonnetworkarabic"
+    )
+    if any(x in c for x in foreign_subtitled_tokens):
+        return "foreign_subtitled"
+
+    international_tokens=(
+        "cnn","bloomberg","animalplanet","discoverychannel","history",
+        "tlc","ginx","motorvision","mfmtv","rfmtv","rt.ru",
+        "foodnetwork","hgtv","mtv80s","mtv90s","clubmtv"
+    )
+    if any(x in c for x in international_tokens):
+        return "international"
+
+    return "arabic_native"
+
+
 def specialty_bonus(source,canon):
+    # Source directness is only a small tie-breaker. Language/coverage quality wins.
     c=canon.casefold()
     if source=="morocco" and any(x in c for x in ("alaoula","arryadia","2m","medi1","tamazight","assadisa","almaghribiya","arrabiaa","aflam","chada")):
-        return 70
+        return 6
     if source=="bein" and c.startswith("beinsports"):
-        return 70
+        return 6
     if source=="osn" and c.startswith("osn"):
-        return 70
+        return 6
     if source=="sport24" and any(x in c for x in ("abudhabisports","dubaisports","thmanyah")):
-        return 70
-    # Arabic entertainment/general channels are usually richer in ElCinema.
-    if source=="elcinema":
-        return 18
-    # beIN entertainment is not automatically preferred over a richer Arabic grid.
-    if source=="bein" and c.startswith(("beinmovies","beinseries","beindrama")):
-        return 8
+        return 6
     return 0
 
 def metrics(root,cid):
@@ -121,15 +146,35 @@ def metrics(root,cid):
         "arabic_desc_pct":pct(descs,lambda x: bool(AR.search(x))),
     }
 
-def score(source,canon,m):
-    # Quality-first, with strong specialist-source preference where appropriate.
+def language_fit(profile,m):
+    title_ar=m["arabic_title_pct"]
+    desc_ar=m["arabic_desc_pct"]
+    if profile=="foreign_subtitled":
+        # Original/English title + Arabic description.
+        title_fit=100-title_ar
+        desc_fit=desc_ar
+    elif profile=="international":
+        # English title + English description.
+        title_fit=100-title_ar
+        desc_fit=100-desc_ar
+    else:
+        # Pure Arabic channel.
+        title_fit=title_ar
+        desc_fit=desc_ar
+    return round((title_fit+desc_fit)/2,1)
+
+
+def score(source,canon,name,m):
+    profile=language_profile(canon,name)
+    fit=language_fit(profile,m)
+    # User rule: language correctness first, then description completeness and
+    # future coverage. Source directness is only a tie-breaker.
     return round(
-        specialty_bonus(source,canon)
+        fit/100*44
+        + m["desc_pct"]/100*20
         + min(m["future_hours"],48)/48*18
         + min(m["future_programmes"],40)/40*12
-        + m["desc_pct"]/100*18
-        + m["arabic_title_pct"]/100*18
-        + m["arabic_desc_pct"]/100*16,
+        + specialty_bonus(source,canon),
         2
     )
 
@@ -157,9 +202,12 @@ def main():
             channel_nodes[source][cid]=ch
             canon=canonical_id(cid,name)
             m=metrics(root,cid)
+            profile=language_profile(canon,name)
             entries[canon].append({
                 "source":source,"id":cid,"name":name,
-                "metrics":m,"score":score(source,canon,m),
+                "profile":profile,
+                "language_fit_pct":language_fit(profile,m),
+                "metrics":m,"score":score(source,canon,name,m),
                 "specialty_bonus":specialty_bonus(source,canon),
             })
 
