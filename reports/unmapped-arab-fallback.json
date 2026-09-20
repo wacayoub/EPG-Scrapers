@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-09-20T11:30:44.504774+00:00",
+  "generated_at": "2026-09-20T11:32:06.709641+00:00",
   "production_ids": 175,
-  "fallback_active_rows": 781,
+  "fallback_active_rows": 673,
   "exact_id_already_present_rows": 0,
   "name_collision_review_rows": 0,
-  "unmapped_rows_before_name_dedup": 781,
-  "unique_unmapped_candidates": 539,
-  "duplicate_alternative_rows_collapsed": 242,
+  "unmapped_rows_before_name_dedup": 673,
+  "unique_unmapped_candidates": 457,
+  "duplicate_alternative_rows_collapsed": 216,
   "by_country": {
     "Saudi Arabia": 194,
     "Qatar/MENA": 2,
     "UAE": 24,
-    "Qatar": 118,
-    "Egypt": 201
+    "Qatar": 49,
+    "Egypt": 188
   },
   "by_provider": {
-    "openepg": 537,
+    "openepg": 455,
     "epgshare": 2
   },
   "top_candidates": [
@@ -329,20 +329,6 @@
     },
     {
       "country": "Qatar",
-      "name": "0004 CNN International logo.svg.qa",
-      "id": "0004 CNN International logo.svg.qa",
-      "provider": "openepg",
-      "source": "qatar5",
-      "future_programmes": 210,
-      "future_hours": 40.6,
-      "desc_pct": 0.0,
-      "sample_title": "BUILDER BROTHER DREAM FACTORY S1 S1 | E12",
-      "sample_desc": "",
-      "quality_score": 290.9,
-      "alternatives": 1
-    },
-    {
-      "country": "Qatar",
       "name": "HGTV.qa",
       "id": "HGTV.qa",
       "provider": "openepg",
@@ -399,20 +385,6 @@
     },
     {
       "country": "Qatar",
-      "name": "UPDATEz-NGW Full Logo 20182.qa",
-      "id": "UPDATEz-NGW Full Logo 20182.qa",
-      "provider": "openepg",
-      "source": "qatar5",
-      "future_programmes": 192,
-      "future_hours": 40.6,
-      "desc_pct": 0.0,
-      "sample_title": "12 Minutes With - 1",
-      "sample_desc": "",
-      "quality_score": 272.9,
-      "alternatives": 1
-    },
-    {
-      "country": "Qatar",
       "name": "Euro-News.qa",
       "id": "Euro-News.qa",
       "provider": "openepg",
@@ -437,20 +409,6 @@
       "sample_title": "همس الزهور",
       "sample_desc": "يخاطب البرنامج شريحة الفتيات بما يناسبهن من مواضيع وأفكار، ويعرض رسائل تعليمية وتثقيفية موجهة لفتيات الأمة الإسلامية.",
       "quality_score": 270.1,
-      "alternatives": 1
-    },
-    {
-      "country": "Qatar",
-      "name": "0001 AWG CN Brand Logo 1color Black 4C.qa",
-      "id": "0001 AWG CN Brand Logo 1color Black 4C.qa",
-      "provider": "openepg",
-      "source": "qatar4",
-      "future_programmes": 189,
-      "future_hours": 40.3,
-      "desc_pct": 0.0,
-      "sample_title": "E10 | S1 روّاد العلوم – رحلة عبر الزمن",
-      "sample_desc": "",
-      "quality_score": 269.45,
       "alternatives": 1
     },
     {
@@ -493,20 +451,6 @@
       "sample_title": "أخبار الحدث",
       "sample_desc": "كن في الطليعة مع آخر الأخبار العاجلة وأهم الأحداث الجارية، بالإضافة إلى معرفة كل ما يدور حولك من أحداث سواء كانت في المنطقة العربية أو حول العالم.",
       "quality_score": 268.25,
-      "alternatives": 0
-    },
-    {
-      "country": "Qatar",
-      "name": "Discovery-logo-1.qa",
-      "id": "Discovery-logo-1.qa",
-      "provider": "openepg",
-      "source": "qatar5",
-      "future_programmes": 185,
-      "future_hours": 41.5,
-      "desc_pct": 0.0,
-      "sample_title": "Leo's World S1 | E9",
-      "sample_desc": "",
-      "quality_score": 267.25,
       "alternatives": 0
     },
     {
@@ -1418,6 +1362,62 @@
       "sample_desc": "Wa Baynaa Miead",
       "quality_score": 215.1,
       "alternatives": 0
+    },
+    {
+      "country": "Saudi Arabia",
+      "name": "Discovery HD.sa",
+      "id": "Discovery HD.sa",
+      "provider": "openepg",
+      "source": "saudiarabia1",
+      "future_programmes": 53,
+      "future_hours": 41.1,
+      "desc_pct": 100.0,
+      "sample_title": "سالفيدج هانترز:تريدينغ نيو غراوند",
+      "sample_desc": "يسافر (درو بريتشارد) صائد الكنوز في العصر الحديث عبر البلاد بطولها وعرضها ليبحث عن أشياء غريبة ورائعة، ذات قيمة عالية.",
+      "quality_score": 214.65,
+      "alternatives": 2
+    },
+    {
+      "country": "Saudi Arabia",
+      "name": "Discovery Family HD.sa",
+      "id": "Discovery Family HD.sa",
+      "provider": "openepg",
+      "source": "saudiarabia1",
+      "future_programmes": 53,
+      "future_hours": 40.9,
+      "desc_pct": 100.0,
+      "sample_title": "إنسايد ويست كوست كاستومز:رولين إن ماي 5.0",
+      "sample_desc": "ريان فرايدلينغوس وطاقم الجمارك ذات شهرة عالمية التابع له. يأخذون المشاهد إلى الطريق السليم للتعامل مع سياراتهم المزودة تقنياً، الأسرار التي تساعدهم على تحويل أفكارهم إلى واقع.",
+      "quality_score": 214.35,
+      "alternatives": 1
+    },
+    {
+      "country": "Saudi Arabia",
+      "name": "Sama Dubai.sa",
+      "id": "Sama Dubai.sa",
+      "provider": "openepg",
+      "source": "saudiarabia1",
+      "future_programmes": 52,
+      "future_hours": 41.5,
+      "desc_pct": 100.0,
+      "sample_title": "الأخبار",
+      "sample_desc": "تغطية مباشرة للأخبار المحلية والعالمية مع التركيز على التطورات في العالم، وصولاً إلى عرض دقيق وتحليلات معمقة تهم المشاهدين.",
+      "quality_score": 214.25,
+      "alternatives": 1
+    },
+    {
+      "country": "Saudi Arabia",
+      "name": "Fatafeat.sa",
+      "id": "Fatafeat.sa",
+      "provider": "openepg",
+      "source": "saudiarabia5",
+      "future_programmes": 52,
+      "future_hours": 41.3,
+      "desc_pct": 100.0,
+      "sample_title": "Matbakh Manal Al Alem (Manal Alalem's Kitchen)",
+      "sample_desc": "Matbakh Manal Al Alem (Manal Alalem's Kitchen)",
+      "quality_score": 213.95,
+      "alternatives": 2
     }
   ]
 }

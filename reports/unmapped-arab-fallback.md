@@ -1,20 +1,20 @@
 # Unmapped Arab fallback analysis
 
 Production channel IDs: **175**  
-Active fallback rows analyzed: **781**  
+Active fallback rows analyzed: **673**  
 Exact IDs already present: **0**  
 Name collisions requiring review: **0**  
-Unmapped rows before dedup: **781**  
-Unique unmapped candidates: **539**  
-Alternative duplicate rows collapsed: **242**
+Unmapped rows before dedup: **673**  
+Unique unmapped candidates: **457**  
+Alternative duplicate rows collapsed: **216**
 
 ## By country / region
 
 | Country / region | Unique unmapped |
 |---|---:|
-| Egypt | 201 |
 | Saudi Arabia | 194 |
-| Qatar | 118 |
+| Egypt | 188 |
+| Qatar | 49 |
 | UAE | 24 |
 | Qatar/MENA | 2 |
 
@@ -44,19 +44,15 @@ Alternative duplicate rows collapsed: **242**
 | Saudi Arabia | Rotana Kids.sa | Rotana Kids.sa | openepg:saudiarabia1 | 140 | 40.8 | 100.0 | 301.2 | 1 |
 | Saudi Arabia | MBC 3.sa | MBC 3.sa | openepg:saudiarabia1 | 139 | 40.8 | 100.0 | 300.2 | 4 |
 | Qatar | Baby-TV-2.qa | Baby-TV-2.qa | openepg:qatar5 | 213 | 40.7 | 0.0 | 294.1 | 1 |
-| Qatar | 0004 CNN International logo.svg.qa | 0004 CNN International logo.svg.qa | openepg:qatar5 | 210 | 40.6 | 0.0 | 290.9 | 1 |
 | Qatar | HGTV.qa | HGTV.qa | openepg:qatar4 | 207 | 40.3 | 0.0 | 287.4 | 1 |
 | Saudi Arabia | NickToons HD.sa | NickToons HD.sa | openepg:saudiarabia5 | 123 | 40.9 | 100.0 | 284.4 | 0 |
 | Qatar/MENA | AlJazeera Arabic | AlJazeera.Arabic.net | epgshare:ALJAZEERA1 | 68 | 84.5 | 94.1 | 280.0 | 0 |
 | Saudi Arabia | Nickelodeon HD.sa | Nickelodeon HD.sa | openepg:saudiarabia5 | 114 | 40.9 | 100.0 | 275.4 | 0 |
-| Qatar | UPDATEz-NGW Full Logo 20182.qa | UPDATEz-NGW Full Logo 20182.qa | openepg:qatar5 | 192 | 40.6 | 0.0 | 272.9 | 1 |
 | Qatar | Euro-News.qa | Euro-News.qa | openepg:qatar5 | 191 | 40.7 | 0.0 | 272.1 | 1 |
 | Saudi Arabia | Al Resalah.sa | Al Resalah.sa | openepg:saudiarabia1 | 108 | 41.4 | 100.0 | 270.1 | 1 |
-| Qatar | 0001 AWG CN Brand Logo 1color Black 4C.qa | 0001 AWG CN Brand Logo 1color Black 4C.qa | openepg:qatar4 | 189 | 40.3 | 0.0 | 269.4 | 1 |
 | Qatar | cartoonito.qa | cartoonito.qa | openepg:qatar4 | 189 | 40.2 | 0.0 | 269.3 | 0 |
 | Saudi Arabia | Disney Channel.sa | Disney Channel.sa | openepg:saudiarabia1 | 107 | 41.0 | 100.0 | 268.5 | 1 |
 | UAE | الحدث.ae | الحدث.ae | openepg:uae6 | 97 | 47.5 | 100.0 | 268.2 | 0 |
-| Qatar | Discovery-logo-1.qa | Discovery-logo-1.qa | openepg:qatar5 | 185 | 41.5 | 0.0 | 267.2 | 0 |
 | Egypt | OSN TV Comedy.eg | OSN TV Comedy.eg | openepg:egypt2 | 98 | 43.2 | 100.0 | 262.8 | 0 |
 | Saudi Arabia | KTV Channel 1 HD.sa | KTV Channel 1 HD.sa | openepg:saudiarabia5 | 99 | 40.8 | 100.0 | 260.2 | 0 |
 | Saudi Arabia | BBC World.sa | BBC World.sa | openepg:saudiarabia5 | 97 | 41.0 | 100.0 | 258.5 | 0 |
@@ -122,3 +118,7 @@ Alternative duplicate rows collapsed: **242**
 | Saudi Arabia | Oman Mubasher.sa | Oman Mubasher.sa | openepg:saudiarabia1 | 53 | 41.5 | 100.0 | 215.2 | 1 |
 | Saudi Arabia | Nat. Geo. AD.sa | Nat. Geo. AD.sa | openepg:saudiarabia1 | 54 | 40.8 | 100.0 | 215.2 | 1 |
 | Saudi Arabia | OSNtv Yahala.sa | OSNtv Yahala.sa | openepg:saudiarabia5 | 53 | 41.4 | 100.0 | 215.1 | 0 |
+| Saudi Arabia | Discovery HD.sa | Discovery HD.sa | openepg:saudiarabia1 | 53 | 41.1 | 100.0 | 214.7 | 2 |
+| Saudi Arabia | Discovery Family HD.sa | Discovery Family HD.sa | openepg:saudiarabia1 | 53 | 40.9 | 100.0 | 214.3 | 1 |
+| Saudi Arabia | Sama Dubai.sa | Sama Dubai.sa | openepg:saudiarabia1 | 52 | 41.5 | 100.0 | 214.2 | 1 |
+| Saudi Arabia | Fatafeat.sa | Fatafeat.sa | openepg:saudiarabia5 | 52 | 41.3 | 100.0 | 213.9 | 2 |
