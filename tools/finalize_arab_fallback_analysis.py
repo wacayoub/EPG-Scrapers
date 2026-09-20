@@ -28,6 +28,7 @@ OUT=Path("reports")
 AR=re.compile(r"[\u0600-\u06ff]")
 LATAM_BAD=re.compile(r"\b(argentina|latinoam[eé]rica|latin america|pakapaka|tooncast)\b",re.I)
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
+QUARANTINED_SOURCE_KEYS={("epgshare","AE1")}
 BEIN_FAMILY_RE=re.compile(r"(?:\bbe\s*in\b|\bbein\b|بي\s*إن|بي\s*ان)",re.I)
 BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin)",re.I)
 DIRECT_FAMILY_PATTERNS={
@@ -311,7 +312,19 @@ def main():
     health=json.load(HEALTH.open(encoding="utf-8"))
     source_black=[]
     for h in health.get("health",[]):
-        if h.get("status")!="ok":
+        if h.get("status")=="excluded":
+            source_black.append({
+                "provider":h["provider"],"source":h["source"],
+                "reason":h.get("reason","EXCLUDED_SOURCE"),
+                "detail":h.get("error","")
+            })
+        elif (h.get("provider"),h.get("source")) in QUARANTINED_SOURCE_KEYS:
+            source_black.append({
+                "provider":h["provider"],"source":h["source"],
+                "reason":"SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+                "detail":f'{h.get("suspicious_clone_channels",0)} cloned channels / {h.get("channels",0)} total'
+            })
+        elif h.get("status")!="ok":
             source_black.append({
                 "provider":h["provider"],"source":h["source"],"reason":"INVALID_SOURCE_XML",
                 "detail":h.get("error","")
@@ -373,6 +386,8 @@ def main():
         if (r["provider"],r["source"],r["id"]) in zero_keys:
             continue
         if (r.get("provider",""),r.get("source","")) in EXCLUDED_SOURCE_KEYS:
+            continue
+        if (r.get("provider",""),r.get("source","")) in QUARANTINED_SOURCE_KEYS:
             continue
         if LATAM_BAD.search((r.get("name") or "")+" "+(r.get("id") or "")):
             continue
@@ -559,6 +574,7 @@ def main():
         "english_accepted_after_4_audits":english_accepted_after_4_audits,
         "sort_order":"CHANNEL_NAME_ASC",
         "excluded_sources":["epgshare:AR1"],
+        "quarantined_sources":["epgshare:AE1"],
         "integration_policy":{
             "healthy_direct_feed":"always_keep",
             "fallback":"only_missing_ids_not_covered_by_any_healthy_direct_source",
