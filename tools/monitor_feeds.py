@@ -155,7 +155,7 @@ def build_all_rows(feed_paths,reports):
 def make_html(rows,summaries,generated):
     counts=Counter(r["status"] for r in rows)
     buttons=["ALL","OK","BLACKLIST_ZERO","DUPLICATE","DUPLICATE_WINNER","NO_EPG","INVALID_SOURCE","QUARANTINE","DIRECT_COVERED","COMPARE_ONLY"]
-    cards="".join('<button class="chip" onclick="setStatus(\\''+b+'\\')">'+html.escape(b.replace("_"," "))+' <b>'+str(len(rows) if b=="ALL" else counts.get(b,0))+'</b></button>' for b in buttons)
+    cards="".join("<button class=\"chip\" onclick=\"setStatus('"+b+"')\">"+html.escape(b.replace("_"," "))+" <b>"+str(len(rows) if b=="ALL" else counts.get(b,0))+"</b></button>" for b in buttons)
     feedcards="".join('<div class="mini"><b>'+html.escape(s["feed"])+'</b><span>'+str(s["channels"])+' IDs · '+str(s["programmes"])+' programmes · '+str(s["zero_epg"])+' zero</span></div>' for s in summaries)
     trs=[]
     for r in rows:
