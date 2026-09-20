@@ -7,3 +7,5 @@
 | mbcnow | BLOCKED | 0 | 0 | 0 |
 | starzplay | BLOCKED | 0 | 0 | 0 |
 | stctv | BLOCKED | 0 | 0 | 0 |
+| rotana | VISIBLE_GUIDE_PROMISING | 12 | 303 | 0 |
+| artonline | VISIBLE_GUIDE_PROMISING | 7 | 26 | 0 |
