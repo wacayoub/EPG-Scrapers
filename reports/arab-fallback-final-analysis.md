@@ -5,15 +5,18 @@ Zero-EPG IDs blacklisted: **930**
 Canonical groups: **1281**  
 Duplicate groups: **210**  
 Extra duplicate rows collapsed: **254**  
-New IDs after zero/LatAm filtering: **505**
+New IDs after zero/LatAm filtering: **190**
 
 ## Source blacklist
 
 | Provider | Source | Reason | Detail |
 |---|---|---|---|
+| epgshare | AE1 | SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING | 411 cloned channels / 813 total |
 | epgshare | EG1 | ZERO_ACTIVE_CHANNELS | 238 channels, 0 active |
 | epgshare | SA1 | ZERO_ACTIVE_CHANNELS | 97 channels, 0 active |
-| epgshare | AR1 | INVALID_SOURCE_XML |  |
+| epgshare | SA2 | SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING | 23 cloned channels / 41 total |
+| epgshare | AR1 | ARGENTINA_LATAM_NOT_ARAB |  |
+| epgshare | BEIN1 | SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING | 28 cloned channels / 80 total |
 | openepg | arabiapremiumar | INVALID_SOURCE_XML | no element found: line 1, column 0 |
 
 ## Integration rule

@@ -1,8 +1,14 @@
 {
-  "generated_at": "2026-09-20T11:21:06.868611+00:00",
+  "generated_at": "2026-09-20T11:34:11.705297+00:00",
   "active_rows": 1535,
   "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
+    {
+      "provider": "epgshare",
+      "source": "AE1",
+      "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+      "detail": "411 cloned channels / 813 total"
+    },
     {
       "provider": "epgshare",
       "source": "EG1",
@@ -17,9 +23,21 @@
     },
     {
       "provider": "epgshare",
+      "source": "SA2",
+      "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+      "detail": "23 cloned channels / 41 total"
+    },
+    {
+      "provider": "epgshare",
       "source": "AR1",
-      "reason": "INVALID_SOURCE_XML",
+      "reason": "ARGENTINA_LATAM_NOT_ARAB",
       "detail": ""
+    },
+    {
+      "provider": "epgshare",
+      "source": "BEIN1",
+      "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+      "detail": "28 cloned channels / 80 total"
     },
     {
       "provider": "openepg",
@@ -35,7 +53,7 @@
     "UNIQUE": 1071,
     "WINNER_OF_DUPLICATES": 210
   },
-  "merged_fallback_winners_before_direct_filter": 602,
+  "merged_fallback_winners_before_direct_filter": 287,
   "already_covered_by_direct_sources": 97,
   "bein_family_fallback_policy": "ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
   "protected_direct_families": [
@@ -47,13 +65,20 @@
     "adm",
     "morocco"
   ],
-  "missing_ids_final": 505,
-  "new_ids_after_zero_and_latam_filter": 505,
-  "language_duplicates_removed": 112,
-  "language_policy": "ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
+  "missing_ids_final": 190,
+  "new_ids_after_zero_and_latam_filter": 190,
+  "language_duplicates_removed": 54,
+  "language_policy": "ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
+  "english_rejected_for_arabic": 0,
+  "english_accepted_after_4_audits": 82,
   "sort_order": "CHANNEL_NAME_ASC",
   "excluded_sources": [
     "epgshare:AR1"
+  ],
+  "quarantined_sources": [
+    "epgshare:AE1",
+    "epgshare:BEIN1",
+    "epgshare:SA2"
   ],
   "integration_policy": {
     "healthy_direct_feed": "always_keep",
