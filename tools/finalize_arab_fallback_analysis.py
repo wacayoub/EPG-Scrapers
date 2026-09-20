@@ -453,6 +453,66 @@ def load_compare_only_channels():
             "id":"official.palestine.musawa","provider":"official","source":"pbc",
             "url":"https://www.pbc.ps/musawa/"
         },
+        {
+            "country":"MENA","name":"Rotana Cinema KSA","id":"official.rotana.cinema.ksa","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Rotana Cinema Egypt","id":"official.rotana.cinema.egypt","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Rotana Comedy","id":"official.rotana.comedy","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Rotana Classic","id":"official.rotana.classic","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Rotana Drama","id":"official.rotana.drama","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Rotana Khalijia","id":"official.rotana.khalijia","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"LBC","id":"official.rotana.lbc","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Rotana Clip","id":"official.rotana.clip","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Rotana Music","id":"official.rotana.music","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"Al Resalah","id":"official.rotana.resalah","provider":"official","source":"rotana",
+            "url":"https://www.rotana.net/tv/channels"
+        },
+        {
+            "country":"MENA","name":"ART Aflam 1","id":"official.art.aflam1","provider":"official","source":"artonline",
+            "url":"https://www.artonline.tv/guide"
+        },
+        {
+            "country":"MENA","name":"ART Aflam 2","id":"official.art.aflam2","provider":"official","source":"artonline",
+            "url":"https://www.artonline.tv/guide"
+        },
+        {
+            "country":"MENA","name":"ART Hekayat","id":"official.art.hekayat","provider":"official","source":"artonline",
+            "url":"https://www.artonline.tv/guide"
+        },
+        {
+            "country":"MENA","name":"ART Cinema","id":"official.art.cinema","provider":"official","source":"artonline",
+            "url":"https://www.artonline.tv/guide"
+        },
+        {
+            "country":"MENA","name":"ART Hekayat 2","id":"official.art.hekayat2","provider":"official","source":"artonline",
+            "url":"https://www.artonline.tv/guide"
+        },
     ]
     for x in official_rows:
         key=(x["provider"],x["id"])
