@@ -67,6 +67,9 @@ BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\
 JUNK_NAME_RE=re.compile(r"(?:logo|\.svg\b|updatez|brand\s*logo|\bawg\b|\btci\b|\bcopy\b)",re.I)
 RADIO_DATA_RE=re.compile(r"(?:\bradio\b|\bfm\b|إذاعة|اذاعه|راديو|\bdata\b)",re.I)
 BEIN_ANY_RE=re.compile(r"(?:be\s*in|bein|بي\s*إن|بي\s*ان)",re.I)
+KNOWN_BAD_FALLBACK_IDS={"baby-tv-2.qa","cbeebies-1.qa","fatafeat-1.qa"}
+BEIN_IMPLICIT_RE=re.compile(r"^(?:movies[1-4]\b.*|boxoffice[12]\b.*|4k\s+digital\b.*)$",re.I)
+SPORT24_RE=re.compile(r"(?:\bsport\s*24\b|\besport\s*24\b)",re.I)
 
 def norm(s:str)->str:
     s=unicodedata.normalize("NFKC",s or "").casefold()
@@ -155,9 +158,17 @@ def main():
             r["clone_group_size"]=int(float(r.get("clone_group_size") or 1))
             sample_blob=((r.get("sample_title") or "")+" "+(r.get("sample_desc") or "")).strip()
             name_blob=((r.get("name") or "")+" "+(r.get("id") or "")).strip()
+            rid=(r.get("id") or "").strip().casefold()
+            rname=(r.get("name") or "").strip()
             if r["future_programmes"]<=0 or r["suspicious_clone"] or BAD_SAMPLE_RE.search(sample_blob):
                 continue
+            if rid in KNOWN_BAD_FALLBACK_IDS:
+                continue
             if JUNK_NAME_RE.search(name_blob) or RADIO_DATA_RE.search(name_blob) or BEIN_ANY_RE.search(name_blob):
+                continue
+            if BEIN_IMPLICIT_RE.search(rname) or BEIN_IMPLICIT_RE.search((r.get("id") or "")):
+                continue
+            if SPORT24_RE.search(name_blob):
                 continue
             r["country"]=SOURCE_COUNTRY.get(r["source"],"Unknown/Regional")
             r["norm_name"]=norm(r["name"])
