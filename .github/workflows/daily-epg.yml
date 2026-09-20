@@ -1,0 +1,198 @@
+name: Daily EPG scrape
+
+on:
+  schedule:
+    - cron: "0 5,6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-epg-scrape
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Casablanca 06:00 gate
+        id: gate
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            hour="$(TZ=Africa/Casablanca date +%H)"
+            if [ "$hour" = "06" ]; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          fetch-depth: 0
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir requests beautifulsoup4 lxml cloudscraper
+          cd vendor/iptv-org-epg
+          npm ci --no-audit --no-fund
+
+      - name: Build source catalogues
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          mkdir -p output/source-build
+          python - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          root=Path("vendor/iptv-org-epg/sites")
+          specs=[("elcinema","elcinema.com"),("osn","osn.com"),("bein","bein.com")]
+          for key,site in specs:
+              out=ET.Element("channels"); seen=set()
+              files=sorted((root/site).glob("*.channels.xml"))
+              if key=="elcinema":
+                  preferred=root/site/f"{site}_ar.channels.xml"
+                  files=[preferred] if preferred.exists() else files
+              rows=[]
+              for p in files:
+                  try: rr=ET.parse(p).getroot()
+                  except Exception: continue
+                  for c in rr.findall("channel"):
+                      cid=(c.get("xmltv_id") or "").strip()
+                      sid=(c.get("site_id") or "").strip()
+                      if not cid or not sid: continue
+                      lang=(c.get("lang") or "").lower()
+                      rank=0 if lang.startswith("ar") else (1 if lang.startswith("en") else 2)
+                      rows.append((cid,rank,p.name,c))
+              best={}
+              for cid,rank,name,c in rows:
+                  k=(rank,name)
+                  if cid not in best or k<best[cid][0]: best[cid]=(k,c)
+              for cid in sorted(best,key=str.casefold):
+                  out.append(ET.fromstring(ET.tostring(best[cid][1],encoding="utf-8")))
+              ET.indent(out,space="  ")
+              Path(f"output/source-build/{key}.channels.xml").write_bytes(ET.tostring(out,encoding="utf-8",xml_declaration=True))
+          PY
+
+      - name: Grab ElCinema OSN beIN
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          for key in elcinema osn bein; do
+            cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+            extra=""
+            [ "$key" = "elcinema" ] && extra="--delay=1000"
+            timeout --signal=TERM --kill-after=30s 900s npm run grab ---               --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml"               --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"               --days=2 --maxConnections=1 --timeout=20000 $extra
+            echo "$?" > "$GITHUB_WORKSPACE/output/source-build/$key.grab.rc"
+            test -s "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml" || printf '%s
+' '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"
+          done
+          exit 0
+
+      - name: Scrape Sport24
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          python tools/sport24_source.py --output output/source-build/sport24.raw.xml --report output/source-build/sport24-scrape.json --window-hours 48
+          echo "$?" > output/source-build/sport24.grab.rc
+          test -s output/source-build/sport24.raw.xml || printf '%s
+' '<?xml version="1.0"?><tv></tv>' > output/source-build/sport24.raw.xml
+          exit 0
+
+      - name: Scrape Morocco
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          mkdir -p output/morocco
+          set +e
+          prev=""
+          test -s feeds/morocco.xml.gz && prev="--previous feeds/morocco.xml.gz"
+          python tools/morocco_epg.py --output-dir output/morocco --days 7 $prev
+          echo "$?" > output/source-build/morocco.grab.rc
+          exit 0
+
+      - name: Pack candidate feeds
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          mkdir -p output/final
+          set +e
+          for key in elcinema osn bein sport24; do
+            python tools/source_feed_pack.py               --input "output/source-build/$key.raw.xml"               --output-gz "output/final/$key.xml.gz"               --output-txt "output/final/$key.txt"               --stats "output/final/$key.json"               --label "$key" --window-hours 48
+            echo "$?" > "output/final/$key.pack.rc"
+          done
+          if test -s output/morocco/morocco.xml.gz; then
+            cp output/morocco/morocco.xml.gz output/final/morocco.xml.gz
+            cp output/morocco/manifest.json output/final/morocco.json
+          fi
+          exit 0
+
+      - name: LKG publish healthy sources
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          mkdir -p feeds reports
+          python - <<'PY'
+          from pathlib import Path
+          import gzip, shutil, xml.etree.ElementTree as ET
+          keys=("morocco","elcinema","osn","bein","sport24")
+          for k in keys:
+              src=Path(f"output/final/{k}.xml.gz")
+              if not src.exists() or not src.stat().st_size: continue
+              try:
+                  root=ET.fromstring(gzip.decompress(src.read_bytes()))
+                  ch=len(root.findall("channel")); pr=len(root.findall("programme"))
+                  if ch<1 or pr<1: raise ValueError("empty feed")
+              except Exception as e:
+                  print("KEEP LKG",k,e); continue
+              shutil.copy2(src,Path("feeds")/src.name)
+              for ext in ("json","txt"):
+                  p=Path(f"output/final/{k}.{ext}")
+                  if p.exists(): shutil.copy2(p,Path("feeds")/p.name)
+              print("PUBLISHED",k,ch,pr)
+          PY
+
+      - name: Monitoring
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python tools/monitor_feeds.py feeds/*.xml.gz --json reports/latest.json --md reports/latest.md
+
+      - name: Commit feeds and reports
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds reports
+          if git diff --cached --quiet; then
+            echo "No feed changes."
+          else
+            git commit -m "Daily EPG refresh $(TZ=Africa/Casablanca date +%F)"
+            git push
+          fi
