@@ -173,9 +173,7 @@ def scrape_medi1(days):
 
 def _telerama_title(raw):
  s=clean(raw)
- # Télérama cards are "Category Title HHhMM". Keep the stable old 2M
- # model: extract only start + title and let infer() derive stop from next event.
- m=re.search(r"(?<!\\d)([0-2]?\\d)h([0-5]\\d)(?!\\d)",s)
+ m=re.search(r"(?<!\d)([0-2]?\d)h([0-5]\d)(?!\d)",s)
  if not m:return None
  prefix=clean(s[:m.start()])
  cats=("Magazine sportif","Documentaire de société","Magazine d'information",
@@ -196,6 +194,7 @@ def parse_2m_telerama(h,text,day):
   if not parsed:continue
   hr,mi,title=parsed
   if len(title)<2 or len(title)>120:continue
+  if re.fullmatch(r"[0-2]?\d[h:]?[0-5]\d",title):continue
   k=(hr,mi,title.casefold())
   if k in seen:continue
   seen.add(k)
@@ -205,89 +204,25 @@ def parse_2m_telerama(h,text,day):
  out.sort(key=lambda e:e.start)
  return out
 
-def parse_2m_soirmag(text,day):
- # One page contains the complete current-day grid and descriptions.
- soup=BeautifulSoup(text,"lxml");out=[]
- for a in soup.find_all("a"):
-  raw=clean(" ".join(a.stripped_strings))
-  m=re.match(r"^([0-2]?\\d):([0-5]\\d)\\s+(.+)$",raw)
-  if not m:continue
-  hr,mi=int(m.group(1)),int(m.group(2));rest=clean(m.group(3))
-  # Description is followed by a programme category / audience marker.
-  markers=(" Documentaire "," Magazine "," Débat "," Série "," Journal "," Météo ",
-           " Feuilleton "," Divertissement "," Film "," Théâtre ")
-  cut=len(rest)
-  for mark in markers:
-   p=rest.find(mark)
-   if p>0:cut=min(cut,p)
-  head=clean(rest[:cut])
-  # Find title using conservative known split: first sentence belongs to desc,
-  # so title is the leading segment before description prose begins.
-  title=head
-  desc=""
-  # Prefer nested text chunks if the page exposes them separately.
-  parts=[clean(x) for x in a.stripped_strings if clean(x)]
-  if len(parts)>=2:
-   first=parts[0]
-   mm=re.match(r"^([0-2]?\\d):([0-5]\\d)\\s*(.*)$",first)
-   if mm and clean(mm.group(3)):
-    title=clean(mm.group(3))
-    desc=clean(" ".join(parts[1:]))
-   elif len(parts)>=3:
-    title=parts[1];desc=clean(" ".join(parts[2:]))
-  start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
-  out.append((start,norm(title),title,desc))
- return out
-
-def enrich_2m_soirmag(rows,backup):
- if not rows or not backup:return rows
- bytime=defaultdict(list)
- for s,n,t,d in backup:bytime[(s.hour,s.minute)].append((n,t,d))
- for e in rows:
-  cand=bytime.get((e.start.hour,e.start.minute),[])
-  best=None
-  en=norm(e.title)
-  for n,t,d in cand:
-   if n==en or (n and en and (n in en or en in n)):
-    best=(t,d);break
-  if best and clean(best[1]):
-   e.desc=clean(best[1]);e.dl=lang(e.desc,"fr")
- return rows
-
 def scrape_2m(days):
  h=Http();today=datetime.now(TZ).date();out=[]
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
  for i in range(days):
   d=today+timedelta(days=i)
   url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
-  rows=[]
   try:
    r=h.get(url,headers={"Referer":"https://television.telerama.fr/"})
    rows=parse_2m_telerama(h,r.text,d)
    log("2M %s telerama: %d events"%(d.isoformat(),len(rows)))
+   out+=rows
   except Exception as e:
    log("2M %s telerama failed: %s"%(d.isoformat(),e))
-  # Soirmag is enrichment + fallback for today only: one request, no per-event hits.
-  if i==0:
-   try:
-    sr=h.get("https://soirmag.lesoir.be/programme-tv/c/340/2m-monde",headers={"Referer":"https://soirmag.lesoir.be/"})
-    sb=parse_2m_soirmag(sr.text,d)
-    if rows:
-     rows=enrich_2m_soirmag(rows,sb)
-    elif sb:
-     for s,n,t,desc in sb:
-      at=tr2m_title(h,t);rows.append(Event("2M",s,at,tr2m_desc(h,desc or t),None,lang(at),"ar","soirmag"))
-    log("2M %s soirmag: %d candidates"%(d.isoformat(),len(sb)))
-   except Exception as e:
-    log("2M %s soirmag failed: %s"%(d.isoformat(),e))
-  out+=rows
  seen=set();cleanrows=[]
  for e in sorted(out,key=lambda e:(e.start,e.title.casefold())):
   k=(e.start,e.title.casefold())
   if k not in seen:
    seen.add(k);cleanrows.append(e)
  infer(cleanrows)
- # Hard sanity checks inherited from the old 2M design.
  cleanrows=[e for e in cleanrows if e.stop and e.stop>e.start and e.stop-e.start<=timedelta(hours=4)]
  log("2M total: %d events"%len(cleanrows))
  return cleanrows
