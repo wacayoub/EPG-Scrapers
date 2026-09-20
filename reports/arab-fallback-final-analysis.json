@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T11:41:30.184790+00:00",
+  "generated_at": "2026-09-20T11:43:02.807736+00:00",
   "active_rows": 1535,
   "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
@@ -78,8 +78,8 @@
   "new_ids_after_zero_and_latam_filter": 176,
   "language_duplicates_removed": 54,
   "language_policy": "ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
-  "event_text_policy": "ENGLISH_TITLE_PLUS_ARABIC_DESCRIPTION_WHEN_PAIRED",
-  "english_rejected_for_arabic": 25,
+  "event_text_policy": "EN_TITLE_AR_DESC_ONLY_FOR_MULTINATIONAL_CHANNELS",
+  "english_rejected_for_arabic": 3,
   "english_accepted_after_4_audits": 82,
   "sort_order": "CHANNEL_NAME_ASC",
   "excluded_sources": [
