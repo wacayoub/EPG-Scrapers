@@ -14,7 +14,8 @@ Rules:
 - Source files with zero active channels or invalid XML are source-blacklisted.
 """
 from __future__ import annotations
-import csv, json, re, unicodedata
+import csv, gzip, json, re, unicodedata
+import xml.etree.ElementTree as ET
 from collections import defaultdict, Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -114,6 +115,47 @@ def bilingual_key(r):
             return s
     return norm(name) or norm(cid)
 
+def load_direct_catalogue():
+    """Return healthy published direct IDs and normalized channel names."""
+    direct_ids=set()
+    direct_names=defaultdict(list)
+    now_dt=datetime.now(timezone.utc)
+    for path in sorted(Path("feeds").glob("*.xml.gz")):
+        try:
+            data=path.read_bytes()
+            if data[:2]==b"\x1f\x8b":
+                data=gzip.decompress(data)
+            root=ET.fromstring(data)
+        except Exception:
+            continue
+
+        future_counts=Counter()
+        for p in root.findall("programme"):
+            raw=(p.get("stop") or "").strip()
+            try:
+                stop=datetime.strptime(raw[:14],"%Y%m%d%H%M%S").replace(tzinfo=timezone.utc)
+            except Exception:
+                continue
+            if stop>now_dt:
+                future_counts[(p.get("channel") or "").strip()] += 1
+
+        for ch in root.findall("channel"):
+            cid=(ch.get("id") or "").strip()
+            if not cid or future_counts[cid] <= 0:
+                continue
+            names=[(x.text or "").strip() for x in ch.findall("display-name") if (x.text or "").strip()]
+            if not names:
+                names=[cid]
+            direct_ids.add(cid)
+            for name in names:
+                key=norm(name)
+                if key:
+                    direct_names[key].append({"id":cid,"feed":path.name,"name":name})
+            id_key=norm(cid)
+            if id_key:
+                direct_names[id_key].append({"id":cid,"feed":path.name,"name":names[0]})
+    return direct_ids,direct_names
+
 def rank(r):
     fp=min(int(float(r["future_programmes"])),300)
     fh=min(float(r["future_hours"]),168.0)
@@ -198,6 +240,8 @@ def main():
     with (OUT/"arab-fallback-duplicate-decisions.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=dfields); w.writeheader(); w.writerows(decisions)
 
+    direct_ids,direct_names=load_direct_catalogue()
+
     # New IDs list = current unmapped candidates after analysis, excluding obvious
     # LATAM pollution and excluding zero-EPG IDs.
     unmapped=list(csv.DictReader(UNMAPPED.open(encoding="utf-8")))
@@ -212,14 +256,15 @@ def main():
             continue
         raw_new.append(r)
 
-    # Deduplicate bilingual variants: Arabic > neutral/original > English.
+    # Merge all fallback variants by real channel identity. Arabic wins over
+    # neutral/original, and English is used only if no Arabic variant exists.
     lang_groups=defaultdict(list)
     for r in raw_new:
         lang_groups[bilingual_key(r)].append(r)
 
-    new=[]
+    merged=[]
     language_duplicates_removed=0
-    for _,arr in lang_groups.items():
+    for canonical,arr in lang_groups.items():
         arr=sorted(
             arr,
             key=lambda r:(
@@ -227,17 +272,53 @@ def main():
                 -int(float(r.get("future_programmes") or 0)),
                 -float(r.get("desc_pct") or 0),
                 -float(r.get("future_hours") or 0),
+                -provider_score(r),
                 (r.get("name") or "").casefold(),
                 r.get("id") or ""
             )
         )
-        new.append(arr[0])
+        winner=dict(arr[0])
+        winner["merge_key"]=canonical
+        winner["merged_alternatives"]=";".join(
+            f'{x.get("provider","")}:{x.get("source","")}:{x.get("id","")}'
+            for x in arr[1:]
+        )
+        merged.append(winner)
         language_duplicates_removed += max(0,len(arr)-1)
 
-    # Final receiver-review list: alphabetical by channel name.
-    new.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
+    # Remove anything already covered by a healthy priority/direct source.
+    # Match exact XMLTV ID plus normalized/bilingual channel identity.
+    new=[]
+    already_covered=[]
+    for r in merged:
+        direct_matches=[]
+        if (r.get("id") or "") in direct_ids:
+            direct_matches.append({"id":r["id"],"feed":"exact-id","name":r.get("name","")})
+        keys={norm(r.get("name") or ""),bilingual_key(r),norm(r.get("id") or "")}
+        for key in keys:
+            if key and key in direct_names:
+                direct_matches.extend(direct_names[key])
 
-    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","alternatives","alternative_sources","url"]
+        if direct_matches:
+            seen=set()
+            uniq=[]
+            for m in direct_matches:
+                k=(m["id"],m["feed"])
+                if k in seen:
+                    continue
+                seen.add(k)
+                uniq.append(m)
+            rr=dict(r)
+            rr["covered_by"]=";".join(f'{m["feed"]}:{m["id"]}' for m in uniq)
+            already_covered.append(rr)
+        else:
+            new.append(r)
+
+    # Final missing-ID list only: alphabetical by channel name.
+    new.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
+    already_covered.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
+
+    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","alternatives","alternative_sources","merged_alternatives","url"]
     with (OUT/"new-arab-epg-ids.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=nfields); w.writeheader()
         for r in new: w.writerow({k:r.get(k,"") for k in nfields})
@@ -245,6 +326,12 @@ def main():
         "\n".join(f'{r["id"]}\t{r["name"]}\t{r["provider"]}:{r["source"]}' for r in new)+"\n",
         encoding="utf-8"
     )
+
+    covered_fields=nfields+["covered_by"]
+    with (OUT/"arab-fallback-already-covered.csv").open("w",newline="",encoding="utf-8") as f:
+        w=csv.DictWriter(f,fieldnames=covered_fields); w.writeheader()
+        for r in already_covered:
+            w.writerow({k:r.get(k,"") for k in covered_fields})
 
     counts=Counter(x["decision"] for x in decisions)
     summary={
@@ -256,6 +343,9 @@ def main():
         "duplicate_groups":sum(1 for a in groups.values() if len(a)>1),
         "duplicate_extra_rows":sum(max(0,len(a)-1) for a in groups.values()),
         "decision_counts":dict(counts),
+        "merged_fallback_winners_before_direct_filter":len(merged),
+        "already_covered_by_direct_sources":len(already_covered),
+        "missing_ids_final":len(new),
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
         "language_policy":"ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
@@ -263,7 +353,7 @@ def main():
         "excluded_sources":["epgshare:AR1"],
         "integration_policy":{
             "healthy_direct_feed":"always_keep",
-            "fallback":"only_for_receiver_or_catalogue_channels_with_zero_epg",
+            "fallback":"only_missing_ids_not_covered_by_any_healthy_direct_source",
             "duplicate":"use winner; keep alternatives for failover",
             "zero_epg":"dynamic_blacklist_until_future_programmes_return",
             "source_zero_or_invalid":"source_blacklist"
