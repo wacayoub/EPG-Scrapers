@@ -1,16 +1,13 @@
 {
-  "generated": "2026-09-20T12:42:47.654817+00:00",
+  "label": "others",
   "channels": 158,
-  "programmes": 58506,
-  "components": {
-    "rotana_art": {
-      "channels": 8,
-      "programmes": 930
-    },
-    "validated_fallback": {
-      "channels": 150,
-      "programmes": 57576
-    }
-  },
-  "policy": "Rotana/ART validated direct schedules + validated missing winners from OpenEPG/EPGShare only"
+  "input_channels": 158,
+  "coverage_pct": 100.0,
+  "programmes": 13172,
+  "rejected_invalid_time": 0,
+  "inferred_stop": 0,
+  "window_hours": 48,
+  "size_bytes": 345702,
+  "sha256": "b773e66ecf48c15e31bfa6b4b0d81189d85c6fb2b55a3a2dc4d223e78dffad81",
+  "generated_utc": "2026-09-20T12:46:12.382280+00:00"
 }
