@@ -27,9 +27,10 @@ jobs:
           s=BeautifulSoup(r.text,"lxml")
           print("TV_LINES",len(s.select(".tv-line")))
           for i,row in enumerate(s.select(".tv-line")):
-              a=row.select_one(".channel a") or row.find("a")
-              if a:
-                  print("ROWLINK",i,a.get("href"),"NAME"," ".join(a.stripped_strings)[:120])
+              links=[(a.get("href")," ".join(a.stripped_strings)[:100]) for a in row.find_all("a",href=True) if "/tvguide/" in a.get("href","")]
+              if links:
+                  print("ROWTV",i,links[:5])
+          print("FIRSTROWHTML",str(s.select_one(".tv-line"))[:12000])
           for sid in ids:
               a=s.find("a",href=re.compile(rf"/tvguide/{sid}/?$"))
               print("\nSID",sid,"FOUND_LINK",bool(a))
