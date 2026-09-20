@@ -16,6 +16,7 @@ import requests
 CFG=Path("config/arab-fallback-sources.json")
 OUT=Path("analysis/arab-fallback")
 REPORT=Path("reports")
+AE1_AUDIT_REPORT=REPORT/"ae1-source-audit.json"
 UA="Mozilla/5.0 EPGManager-ArabFallback/1.0"
 
 # Explicit non-MENA sources that must never enter Arab fallback analysis.
@@ -130,6 +131,37 @@ def merge_roots(items):
     ET.indent(tv,space="  ")
     return ET.tostring(tv,encoding="utf-8",xml_declaration=True)
 
+def build_ae1_audit(rows):
+    ae=[r for r in rows if r.get("provider")=="epgshare" and r.get("source")=="AE1"]
+    active=[r for r in ae if int(r.get("future_programmes") or 0)>0]
+    cloned=[r for r in active if r.get("suspicious_clone")]
+    bad_title_re=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin|no\s*scheduled\s*events)",re.I)
+    placeholder=[r for r in active if bad_title_re.search((r.get("sample_title") or "")+" "+(r.get("sample_desc") or ""))]
+    title_counts=Counter((r.get("sample_title") or "").strip() for r in active if (r.get("sample_title") or "").strip())
+    repeated_titles={k:v for k,v in title_counts.items() if v>=5}
+    trustworthy=[
+        r for r in active
+        if not r.get("suspicious_clone")
+        and not bad_title_re.search((r.get("sample_title") or "")+" "+(r.get("sample_desc") or ""))
+    ]
+    return {
+        "source":"epgshare:AE1",
+        "policy":"QUARANTINE_AUTOMATIC_MAPPING",
+        "reason":"high_channel_programme_mismatch_risk",
+        "channels_total":len(ae),
+        "active_channels_raw":len(active),
+        "suspicious_clone_channels":len(cloned),
+        "placeholder_or_known_bad_sample_channels":len(placeholder),
+        "remaining_nonclone_nonplaceholder_channels":len(trustworthy),
+        "clone_pct_of_active":round(100*len(cloned)/len(active),1) if active else 0.0,
+        "bad_sample_pct_of_active":round(100*len(placeholder)/len(active),1) if active else 0.0,
+        "top_repeated_sample_titles":sorted(
+            [{"title":k,"channels":v} for k,v in repeated_titles.items()],
+            key=lambda x:(-x["channels"],x["title"])
+        )[:30],
+        "integration":"manual_whitelist_only_until_source_mapping_is_reliable"
+    }
+
 def main():
     cfg=json.loads(CFG.read_text(encoding="utf-8"))
     OUT.mkdir(parents=True,exist_ok=True)
@@ -205,6 +237,9 @@ def main():
     with (REPORT/"arab-fallback-all-channels.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=fields); w.writeheader()
         for r in all_rows: w.writerow({k:r[k] for k in fields})
+
+    ae1_audit=build_ae1_audit(all_rows)
+    AE1_AUDIT_REPORT.write_text(json.dumps(ae1_audit,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
     summary={
         "generated_at":datetime.now(timezone.utc).isoformat(),
