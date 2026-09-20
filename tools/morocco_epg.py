@@ -367,11 +367,15 @@ def scrape_snrt(days):
    if not dc or not tt:continue
    try:start=datetime.strptime(dc[0]+" "+tt.get_text().strip().replace("H",":"),"%Y%m%d %H:%M").replace(tzinfo=TZ)
    except Exception:continue
-   title=clean(row.find("h2",class_="program-title-sm").get_text()) if row.find("h2",class_="program-title-sm") else "Programme";desc=clean(row.get_text(" ",strip=True));ctx=title+" "+desc
+   title=clean(row.find("h2",class_="program-title-sm").get_text()) if row.find("h2",class_="program-title-sm") else "برنامج";desc=clean(row.get_text(" ",strip=True));ctx=title+" "+desc
    if "الأخبار" in ctx:
     for k,v in NEWS.items():
      if k in ctx:title=v;break
-   rows.append(Event(cid,start,title,desc,None,lang(title),lang(desc),"snrt"))
+   # Keep the complete current SNRT grid, but publish SNRT metadata in Arabic.
+   # This avoids returning to the older Arabic node pages that were incomplete.
+   if not ar(title): title=google_ar(h,title)
+   if desc and not ar(desc): desc=google_ar(h,desc)
+   rows.append(Event(cid,start,title,desc or title,None,"ar","ar","snrt"))
   return rows
  out=[]
  with ThreadPoolExecutor(max_workers=5) as ex:
@@ -397,8 +401,11 @@ def scrape_arryadia(days):
  parsed.sort();out=[]
  for i,(s,title,desc) in enumerate(parsed):
   stop=parsed[i+1][0] if i+1<len(parsed) else s+timedelta(hours=2);full=(title+" "+desc).lower();ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
-  live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I));title=("Live: "+title if live and not title.lower().startswith("live:") else title)
-  for cid in ids:out.append(Event(cid,s,title,desc,stop,lang(title,"fr"),lang(desc,"ar"),"arryadia"))
+  live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
+  if not ar(title): title=google_ar(h,title)
+  if desc and not ar(desc): desc=google_ar(h,desc)
+  if live and not title.startswith("مباشر"): title="مباشر: "+title
+  for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia"))
  # Publish only real SNRT/Arryadia schedule events. Never synthesize filler EPG.
  infer(out)
  return [e for e in out if e.stop and e.stop>e.start]
