@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "config/full-refresh-trigger.txt"
       - ".github/workflows/deep-probe-official-arab-media.yml"
       - "tools/official_arab_media_deep_probe.py"
   workflow_dispatch:
