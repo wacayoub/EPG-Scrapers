@@ -60,6 +60,8 @@ SOURCE_PRIORITY={
     "epgshare":1,
 }
 
+EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
+
 def norm(s:str)->str:
     s=unicodedata.normalize("NFKC",s or "").casefold()
     s=s.replace("&"," and ")
@@ -115,6 +117,8 @@ def main():
     rows=[]
     with IN.open(encoding="utf-8") as f:
         for r in csv.DictReader(f):
+            if (r.get("provider",""),r.get("source","")) in EXCLUDED_SOURCE_KEYS:
+                continue
             r["future_programmes"]=int(float(r["future_programmes"] or 0))
             r["future_hours"]=float(r["future_hours"] or 0)
             r["desc_pct"]=float(r["desc_pct"] or 0)
