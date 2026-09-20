@@ -46,3 +46,7 @@ A candidate channel must pass all of these checks:
 ## Discovery is not publication
 Files such as `reports/arab-epg-gaps.json` are discovery inventories only.
 A discovered ID is NOT considered valid EPG until it passes the mandatory live validation above.
+
+
+## Explicitly blocked sources
+- sat.tv — do not use for scraping or production. Previously tested and blocks scraping; keep only as discovery evidence if it appears in external catalogues.
