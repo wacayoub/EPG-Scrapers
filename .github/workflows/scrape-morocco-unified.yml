@@ -37,7 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p output/morocco
-          args=(--output-dir output/morocco --days 7)
+          args=(--output-dir output/morocco --days 3)
           if [ -s feeds/morocco.xml.gz ]; then
             args+=(--previous feeds/morocco.xml.gz)
           fi
