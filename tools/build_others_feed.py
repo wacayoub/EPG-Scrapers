@@ -22,7 +22,7 @@ OTHERS_EXCLUDE_IDS = {
 
 # All current Rotana mappings are quarantined until channel IDs are revalidated
 # against the live/current programme shown on rotana.net.
-ROTANA_QUARANTINE = True
+ROTANA_QUARANTINE = False
 
 def read_xml_gz(path):
     return ET.fromstring(gzip.decompress(Path(path).read_bytes()))
@@ -154,7 +154,7 @@ def main():
             "rotana_art":{"channels":rc,"programmes":rp},
             "validated_fallback":{"channels":fc,"programmes":fp},
         },
-        "policy":"ART validated schedules + validated missing winners from OpenEPG/EPGShare; Rotana quarantined pending remap",
+        "policy":"Rotana official + ART validated schedules + validated missing winners from OpenEPG/EPGShare",
     }
     (FEEDS/"others.json").write_text(json.dumps(stats,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     origins={**fo,**ro}
