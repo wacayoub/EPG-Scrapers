@@ -122,7 +122,9 @@ def main():
             r["future_programmes"]=int(float(r["future_programmes"] or 0))
             r["future_hours"]=float(r["future_hours"] or 0)
             r["desc_pct"]=float(r["desc_pct"] or 0)
-            if r["future_programmes"]<=0:
+            r["suspicious_clone"]=str(r.get("suspicious_clone","")).strip().casefold() in ("1","true","yes")
+            r["clone_group_size"]=int(float(r.get("clone_group_size") or 1))
+            if r["future_programmes"]<=0 or r["suspicious_clone"]:
                 continue
             r["country"]=SOURCE_COUNTRY.get(r["source"],"Unknown/Regional")
             r["norm_name"]=norm(r["name"])
