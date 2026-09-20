@@ -1,0 +1,2080 @@
+{
+  "platforms": {
+    "shahid": {
+      "verdict": "PUBLIC_EPG_API_FOUND",
+      "visible_score": 896,
+      "pages": [
+        {
+          "url": "https://shahid.mbc.net/ar/todaysepisode",
+          "status": 200,
+          "final_url": "https://shahid.mbc.net/ar/todaysepisode",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 504129,
+          "title": "لا يفوتك جديد اليوم",
+          "keyword_hits": 9,
+          "time_tokens": 0,
+          "date_tokens": 0,
+          "json_field_hits": 72,
+          "guide_links": [
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            },
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            }
+          ],
+          "js_assets": [
+            "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+            "https://shahid.mbc.net/_next/static/chunks/5588.21714917deca674a.js",
+            "https://shahid.mbc.net/_next/static/chunks/8449-392d8a68f31e3917.js",
+            "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+            "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+            "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+            "https://shahid.mbc.net/_next/static/chunks/8747.8bb721381e480025.js",
+            "https://shahid.mbc.net/_next/static/chunks/1547.8a41febe5201c1b6.js",
+            "https://shahid.mbc.net/_next/static/chunks/3177.277dc87769477a68.js",
+            "https://shahid.mbc.net/_next/static/chunks/5339.36a5f33d377655cb.js",
+            "https://shahid.mbc.net/_next/static/chunks/8582.e80d69c8eb7b1ceb.js",
+            "https://shahid.mbc.net/_next/static/chunks/5675.dbf500f20f49206d.js",
+            "https://shahid.mbc.net/_next/static/chunks/6820.434cda05da1f611d.js",
+            "https://shahid.mbc.net/_next/static/chunks/3144.44f96fabbbc21572.js",
+            "https://shahid.mbc.net/_next/static/chunks/190.75165dd8621dba3c.js",
+            "https://shahid.mbc.net/_next/static/chunks/3371.f3aaf4e89b0f6a36.js",
+            "https://shahid.mbc.net/_next/static/chunks/webpack-c6918be9752d13cc.js",
+            "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+            "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+            "https://shahid.mbc.net/_next/static/chunks/3608-801b66ef975286ff.js",
+            "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+            "https://shahid.mbc.net/_next/static/chunks/3786-be220465b06a7813.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/%5B%5B...landingId%5D%5D-769edda07b3f5165.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_ssgManifest.js"
+          ],
+          "api_candidates": [
+            "https://shahid.mbc.net/staticFiles/production/mbc-shahid-black.jpg",
+            "https://cdn.cookielaw.org",
+            "https://shahid.mbc.net/ar/todaysepisode",
+            "https://shahid.mbc.net/en/todaysepisode",
+            "https://shahid.mbc.net/fr/todaysepisode",
+            "https://shahid.mbc.net/staticFiles/production/favicon-16.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-32.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-48.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-coast.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-192.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-76.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72.png",
+            "https://securepubads.g.doubleclick.net",
+            "https://api2.shahid.net",
+            "https://sessions.bugsnag.com",
+            "https://www.googletagmanager.com",
+            "https://d2r1yp2w7bby2u.cloudfront.net",
+            "https://wzrkt.com",
+            "https://www.googleoptimize.com",
+            "https://static.ads-twitter.com",
+            "https://analytics.twitter.com",
+            "https://jssdks.mparticle.com",
+            "https://identity.mparticle.com",
+            "https://cdxaws-ak.akamaized.net",
+            "https://mbc-aws-ksa.mncdn.com",
+            "https://mbcvod-enc.edgenextcdn.net",
+            "https://api.one.accedo.tv",
+            "https://schema.org",
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/#organization",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "https://shahid.mbc.net/search?term={search_term_string}",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg?type=webp",
+            "https://shahid.mbc.net/ar/allchannels",
+            "https://shahid.mbc.net/ar/livestream",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu.svg",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu-hover.svg",
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/{{lang}}/privacy-policy",
+            "https://www.google.com/chrome/",
+            "https://www.mozilla.org/en-US/firefox/new/",
+            "https://api3.shahid.net/proxy/v2.1/",
+            "https://api3.shahid.net/proxy/v3.1/",
+            "https://shahid.mbc.net/shahid-sports-stats/",
+            "https://shahid.mbc.net/sport-stats/",
+            "https://shahid.mbc.net/shahid-sports-stats/api/websocket",
+            "https://api3.shahid.net/v3/",
+            "https://help.shahid.mbc.net/s/?language=ar"
+          ],
+          "sample": "لا يفوتك جديد اليوم الرئيسية مسلسلات أفلام تصفّح مباشر الرئيسية مسلسلات أفلام تصفّح مباشر ar (Ar) العربيّة (En) English (Fr) Français تسجيل الدخول اشترك مسلسلات مجانية، قنوات مباشرة، افلام | لا يفوتك جديد اليوم | MBC شاهد مسلسلات مجانية، قنوات مباشرة، افلام | لا يفوتك جديد اليوم | MBC شاهد"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/todaysepisode",
+          "status": 200,
+          "final_url": "https://shahid.mbc.net/en/todaysepisode",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 455061,
+          "title": "Today's Episodes",
+          "keyword_hits": 7,
+          "time_tokens": 0,
+          "date_tokens": 0,
+          "json_field_hits": 72,
+          "guide_links": [
+            {
+              "label": "Explore",
+              "url": "https://shahid.mbc.net/en/allchannels"
+            },
+            {
+              "label": "Live TV",
+              "url": "https://shahid.mbc.net/en/livestream"
+            },
+            {
+              "label": "Explore",
+              "url": "https://shahid.mbc.net/en/allchannels"
+            },
+            {
+              "label": "Live TV",
+              "url": "https://shahid.mbc.net/en/livestream"
+            }
+          ],
+          "js_assets": [
+            "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+            "https://shahid.mbc.net/_next/static/chunks/5588.21714917deca674a.js",
+            "https://shahid.mbc.net/_next/static/chunks/8449-392d8a68f31e3917.js",
+            "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+            "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+            "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+            "https://shahid.mbc.net/_next/static/chunks/8747.8bb721381e480025.js",
+            "https://shahid.mbc.net/_next/static/chunks/1547.8a41febe5201c1b6.js",
+            "https://shahid.mbc.net/_next/static/chunks/3177.277dc87769477a68.js",
+            "https://shahid.mbc.net/_next/static/chunks/5339.36a5f33d377655cb.js",
+            "https://shahid.mbc.net/_next/static/chunks/8582.e80d69c8eb7b1ceb.js",
+            "https://shahid.mbc.net/_next/static/chunks/5675.dbf500f20f49206d.js",
+            "https://shahid.mbc.net/_next/static/chunks/6820.434cda05da1f611d.js",
+            "https://shahid.mbc.net/_next/static/chunks/3144.44f96fabbbc21572.js",
+            "https://shahid.mbc.net/_next/static/chunks/190.75165dd8621dba3c.js",
+            "https://shahid.mbc.net/_next/static/chunks/3371.f3aaf4e89b0f6a36.js",
+            "https://shahid.mbc.net/_next/static/chunks/webpack-c6918be9752d13cc.js",
+            "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+            "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+            "https://shahid.mbc.net/_next/static/chunks/3608-801b66ef975286ff.js",
+            "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+            "https://shahid.mbc.net/_next/static/chunks/3786-be220465b06a7813.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/%5B%5B...landingId%5D%5D-769edda07b3f5165.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_ssgManifest.js"
+          ],
+          "api_candidates": [
+            "https://shahid.mbc.net/staticFiles/production/mbc-shahid-black.jpg",
+            "https://cdn.cookielaw.org",
+            "https://shahid.mbc.net/en/todaysepisode",
+            "https://shahid.mbc.net/ar/todaysepisode",
+            "https://shahid.mbc.net/fr/todaysepisode",
+            "https://shahid.mbc.net/staticFiles/production/favicon-16.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-32.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-48.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-coast.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-192.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-76.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72.png",
+            "https://securepubads.g.doubleclick.net",
+            "https://api2.shahid.net",
+            "https://sessions.bugsnag.com",
+            "https://www.googletagmanager.com",
+            "https://d2r1yp2w7bby2u.cloudfront.net",
+            "https://wzrkt.com",
+            "https://www.googleoptimize.com",
+            "https://static.ads-twitter.com",
+            "https://analytics.twitter.com",
+            "https://jssdks.mparticle.com",
+            "https://identity.mparticle.com",
+            "https://cdxaws-ak.akamaized.net",
+            "https://mbc-aws-ksa.mncdn.com",
+            "https://mbcvod-enc.edgenextcdn.net",
+            "https://api.one.accedo.tv",
+            "https://schema.org",
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/#organization",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "https://shahid.mbc.net/search?term={search_term_string}",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg?type=webp",
+            "https://shahid.mbc.net/en/allchannels",
+            "https://shahid.mbc.net/en/livestream",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu.svg",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu-hover.svg",
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/{{lang}}/privacy-policy",
+            "https://www.google.com/chrome/",
+            "https://www.mozilla.org/en-US/firefox/new/",
+            "https://api3.shahid.net/proxy/v2.1/",
+            "https://api3.shahid.net/proxy/v3.1/",
+            "https://shahid.mbc.net/shahid-sports-stats/",
+            "https://shahid.mbc.net/sport-stats/",
+            "https://shahid.mbc.net/shahid-sports-stats/api/websocket",
+            "https://api3.shahid.net/v3/",
+            "https://help.shahid.mbc.net/s/?language=en_US"
+          ],
+          "sample": "Today's Episodes Home TV Shows Movies Explore Live TV Home TV Shows Movies Explore Live TV en (Ar) العربيّة (En) English (Fr) Français Sign in Subscribe Free Series, Live TV, Movies | Today's Episodes | MBC Shahid Free Series, Live TV, Movies | Today's Episodes | MBC Shahid"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar",
+          "status": 200,
+          "final_url": "https://shahid.mbc.net/ar",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 535810,
+          "title": "MBC شاهد | الرئيسية",
+          "keyword_hits": 6,
+          "time_tokens": 2,
+          "date_tokens": 0,
+          "json_field_hits": 126,
+          "guide_links": [
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            },
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            }
+          ],
+          "js_assets": [
+            "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+            "https://shahid.mbc.net/_next/static/chunks/5588.21714917deca674a.js",
+            "https://shahid.mbc.net/_next/static/chunks/8449-392d8a68f31e3917.js",
+            "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+            "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+            "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+            "https://shahid.mbc.net/_next/static/chunks/8747.8bb721381e480025.js",
+            "https://shahid.mbc.net/_next/static/chunks/1547.8a41febe5201c1b6.js",
+            "https://shahid.mbc.net/_next/static/chunks/3177.277dc87769477a68.js",
+            "https://shahid.mbc.net/_next/static/chunks/5339.36a5f33d377655cb.js",
+            "https://shahid.mbc.net/_next/static/chunks/8582.e80d69c8eb7b1ceb.js",
+            "https://shahid.mbc.net/_next/static/chunks/5675.dbf500f20f49206d.js",
+            "https://shahid.mbc.net/_next/static/chunks/6820.434cda05da1f611d.js",
+            "https://shahid.mbc.net/_next/static/chunks/3144.44f96fabbbc21572.js",
+            "https://shahid.mbc.net/_next/static/chunks/webpack-c6918be9752d13cc.js",
+            "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+            "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+            "https://shahid.mbc.net/_next/static/chunks/3608-801b66ef975286ff.js",
+            "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+            "https://shahid.mbc.net/_next/static/chunks/3786-be220465b06a7813.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/%5B%5B...landingId%5D%5D-769edda07b3f5165.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_ssgManifest.js"
+          ],
+          "api_candidates": [
+            "https://shahid.mbc.net/staticFiles/production/mbc-shahid-black.jpg",
+            "https://cdn.cookielaw.org",
+            "https://shahid.mbc.net/ar",
+            "https://shahid.mbc.net/en",
+            "https://shahid.mbc.net/fr",
+            "https://shahid.mbc.net/mediaObject/f94b774c-b1c4-42a6-8496-cdb9127f9c03?height=2160&amp;width=3840&amp;croppingPoint=tc&amp;version=1&amp;type=avif",
+            "https://shahid.mbc.net/mediaObject/f796ca21-95ea-43a6-8c39-379596a6d9ed?height=&amp;width=450&amp;croppingPoint=mc&amp;version=1&amp;type=avif",
+            "https://shahid.mbc.net/staticFiles/production/favicon-16.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-32.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-48.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-coast.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-192.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-76.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72.png",
+            "https://securepubads.g.doubleclick.net",
+            "https://api2.shahid.net",
+            "https://sessions.bugsnag.com",
+            "https://www.googletagmanager.com",
+            "https://d2r1yp2w7bby2u.cloudfront.net",
+            "https://wzrkt.com",
+            "https://www.googleoptimize.com",
+            "https://static.ads-twitter.com",
+            "https://analytics.twitter.com",
+            "https://jssdks.mparticle.com",
+            "https://identity.mparticle.com",
+            "https://cdxaws-ak.akamaized.net",
+            "https://mbc-aws-ksa.mncdn.com",
+            "https://mbcvod-enc.edgenextcdn.net",
+            "https://api.one.accedo.tv",
+            "https://schema.org",
+            "https://shahid.mbc.net/#organization",
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "https://shahid.mbc.net/search?term={search_term_string}",
+            "https://shahid.mbc.net/staticFiles/production/static/images/plusIcon.svg",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg?type=webp",
+            "https://shahid.mbc.net/ar/allchannels",
+            "https://shahid.mbc.net/ar/livestream",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu.svg",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu-hover.svg",
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/{{lang}}/privacy-policy",
+            "https://www.google.com/chrome/",
+            "https://www.mozilla.org/en-US/firefox/new/",
+            "https://api3.shahid.net/proxy/v2.1/",
+            "https://api3.shahid.net/proxy/v3.1/",
+            "https://shahid.mbc.net/shahid-sports-stats/",
+            "https://shahid.mbc.net/sport-stats/",
+            "https://shahid.mbc.net/shahid-sports-stats/api/websocket",
+            "https://api3.shahid.net/v3/",
+            "https://shahid.mbc.net/ar/player/movies/القصص/id-49924037233785",
+            "https://shdl.ink/UDKRAn",
+            "https://shahid.mbc.net/fr/player/movies/el-qesas/id-49924037233785",
+            "https://shdl.ink/HZhnnQ",
+            "https://shahid.mbc.net/en/player/movies/el-qesas/id-49924037233785",
+            "https://shdl.ink/fFvCUy",
+            "https://help.shahid.mbc.net/s/?language=ar"
+          ],
+          "sample": "MBC شاهد | الرئيسية الرئيسية مسلسلات أفلام تصفّح مباشر الرئيسية مسلسلات أفلام تصفّح مباشر ar (Ar) العربيّة (En) English (Fr) Français تسجيل الدخول اشترك مسلسلات مجانية، قنوات مباشرة، افلام | MBC شاهد | الرئيسية | MBC شاهد مسلسلات مجانية، قنوات مباشرة، افلام | MBC شاهد | الرئيسية | MBC شاهد 01:54:36 2025 مصري | دراما 01:54:36 2025 مصري | دراما مع اقتراب شبح الحرب من مصر في العام 1967، يكتب عازف البيانو الطامح أحمد لحنا غير متوقع مع مراسلته النمساوية ليز. عبر الحدود والعقود، تحول رسائلهما المسافة إلى تناغم والحلم المستحيل إلى سيمفونية تشدو بإرادة الحب. دراما تتخطى الحدود شاهد الآن أضف لقائمتي"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/allchannels",
+          "status": 200,
+          "final_url": "https://shahid.mbc.net/ar/allchannels",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 504219,
+          "title": "MBC شاهد | تصفح",
+          "keyword_hits": 6,
+          "time_tokens": 0,
+          "date_tokens": 0,
+          "json_field_hits": 72,
+          "guide_links": [
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            },
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            }
+          ],
+          "js_assets": [
+            "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+            "https://shahid.mbc.net/_next/static/chunks/5588.21714917deca674a.js",
+            "https://shahid.mbc.net/_next/static/chunks/8449-392d8a68f31e3917.js",
+            "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+            "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+            "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+            "https://shahid.mbc.net/_next/static/chunks/8747.8bb721381e480025.js",
+            "https://shahid.mbc.net/_next/static/chunks/1547.8a41febe5201c1b6.js",
+            "https://shahid.mbc.net/_next/static/chunks/3177.277dc87769477a68.js",
+            "https://shahid.mbc.net/_next/static/chunks/5339.36a5f33d377655cb.js",
+            "https://shahid.mbc.net/_next/static/chunks/8582.e80d69c8eb7b1ceb.js",
+            "https://shahid.mbc.net/_next/static/chunks/5675.dbf500f20f49206d.js",
+            "https://shahid.mbc.net/_next/static/chunks/6820.434cda05da1f611d.js",
+            "https://shahid.mbc.net/_next/static/chunks/3144.44f96fabbbc21572.js",
+            "https://shahid.mbc.net/_next/static/chunks/190.75165dd8621dba3c.js",
+            "https://shahid.mbc.net/_next/static/chunks/3371.f3aaf4e89b0f6a36.js",
+            "https://shahid.mbc.net/_next/static/chunks/webpack-c6918be9752d13cc.js",
+            "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+            "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+            "https://shahid.mbc.net/_next/static/chunks/3608-801b66ef975286ff.js",
+            "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+            "https://shahid.mbc.net/_next/static/chunks/3786-be220465b06a7813.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/%5B%5B...landingId%5D%5D-769edda07b3f5165.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_ssgManifest.js"
+          ],
+          "api_candidates": [
+            "https://shahid.mbc.net/staticFiles/production/mbc-shahid-black.jpg",
+            "https://cdn.cookielaw.org",
+            "https://shahid.mbc.net/ar/allchannels",
+            "https://shahid.mbc.net/en/allchannels",
+            "https://shahid.mbc.net/fr/allchannels",
+            "https://shahid.mbc.net/staticFiles/production/favicon-16.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-32.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-48.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-coast.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-192.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-76.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72.png",
+            "https://securepubads.g.doubleclick.net",
+            "https://api2.shahid.net",
+            "https://sessions.bugsnag.com",
+            "https://www.googletagmanager.com",
+            "https://d2r1yp2w7bby2u.cloudfront.net",
+            "https://wzrkt.com",
+            "https://www.googleoptimize.com",
+            "https://static.ads-twitter.com",
+            "https://analytics.twitter.com",
+            "https://jssdks.mparticle.com",
+            "https://identity.mparticle.com",
+            "https://cdxaws-ak.akamaized.net",
+            "https://mbc-aws-ksa.mncdn.com",
+            "https://mbcvod-enc.edgenextcdn.net",
+            "https://api.one.accedo.tv",
+            "https://schema.org",
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/#organization",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "https://shahid.mbc.net/search?term={search_term_string}",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg?type=webp",
+            "https://shahid.mbc.net/ar/livestream",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu.svg",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu-hover.svg",
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/{{lang}}/privacy-policy",
+            "https://www.google.com/chrome/",
+            "https://www.mozilla.org/en-US/firefox/new/",
+            "https://api3.shahid.net/proxy/v2.1/",
+            "https://api3.shahid.net/proxy/v3.1/",
+            "https://shahid.mbc.net/shahid-sports-stats/",
+            "https://shahid.mbc.net/sport-stats/",
+            "https://shahid.mbc.net/shahid-sports-stats/api/websocket",
+            "https://api3.shahid.net/v3/",
+            "https://help.shahid.mbc.net/s/?language=ar"
+          ],
+          "sample": "MBC شاهد | تصفح الرئيسية مسلسلات أفلام تصفّح مباشر الرئيسية مسلسلات أفلام تصفّح مباشر ar (Ar) العربيّة (En) English (Fr) Français تسجيل الدخول اشترك مسلسلات مجانية، قنوات مباشرة، افلام | MBC شاهد | تصفح | MBC شاهد مسلسلات مجانية، قنوات مباشرة، افلام | MBC شاهد | تصفح | MBC شاهد"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream",
+          "status": 200,
+          "final_url": "https://shahid.mbc.net/ar/livestream",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 701863,
+          "title": "شاهد MBC1 مباشرة وبتقنية Shahid.net | HD",
+          "keyword_hits": 3,
+          "time_tokens": 0,
+          "date_tokens": 0,
+          "json_field_hits": 888,
+          "guide_links": [
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            },
+            {
+              "label": "تصفّح",
+              "url": "https://shahid.mbc.net/ar/allchannels"
+            },
+            {
+              "label": "مباشر",
+              "url": "https://shahid.mbc.net/ar/livestream"
+            }
+          ],
+          "js_assets": [
+            "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+            "https://shahid.mbc.net/_next/static/chunks/5588.21714917deca674a.js",
+            "https://shahid.mbc.net/_next/static/chunks/8449-392d8a68f31e3917.js",
+            "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+            "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+            "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+            "https://shahid.mbc.net/_next/static/chunks/9919.55ad9edffb861fae.js",
+            "https://shahid.mbc.net/_next/static/chunks/4775.a09703887d44fb1b.js",
+            "https://shahid.mbc.net/_next/static/chunks/859.a36b6b86cfee7481.js",
+            "https://shahid.mbc.net/_next/static/chunks/webpack-c6918be9752d13cc.js",
+            "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+            "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+            "https://shahid.mbc.net/_next/static/chunks/3608-801b66ef975286ff.js",
+            "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+            "https://shahid.mbc.net/_next/static/chunks/3786-be220465b06a7813.js",
+            "https://shahid.mbc.net/_next/static/chunks/9650-107f0d51728a8848.js",
+            "https://shahid.mbc.net/_next/static/chunks/3468-8779b0dd80e5972b.js",
+            "https://shahid.mbc.net/_next/static/chunks/1262-e62a4f31b83d32c3.js",
+            "https://shahid.mbc.net/_next/static/chunks/3344-23e254000ed41c39.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/livestream-c9974b5afd6e769e.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_ssgManifest.js"
+          ],
+          "api_candidates": [
+            "https://cdn.cookielaw.org",
+            "https://shahid.mbc.net/ar/livestream",
+            "https://shahid.mbc.net/en/livestream",
+            "https://shahid.mbc.net/fr/livestream",
+            "https://shahid.mbc.net/ar/livestream/mbc1/livechannel-816764",
+            "https://shahid.mbc.net/mediaObject/7ca9f828-c958-4251-a828-3977e3b42bae?height=253&amp;width=450&amp;croppingPoint=&amp;version=1&amp;type=avif",
+            "https://shahid.mbc.net/mediaObject/7ca9f828-c958-4251-a828-3977e3b42bae?height=1080&amp;width=1920&amp;croppingPoint=mc&amp;version=1&amp;type=avif",
+            "https://shahid.mbc.net/staticFiles/production/favicon-16.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-32.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-48.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-coast.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-192.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-76.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72.png",
+            "https://securepubads.g.doubleclick.net",
+            "https://api2.shahid.net",
+            "https://sessions.bugsnag.com",
+            "https://www.googletagmanager.com",
+            "https://d2r1yp2w7bby2u.cloudfront.net",
+            "https://wzrkt.com",
+            "https://www.googleoptimize.com",
+            "https://static.ads-twitter.com",
+            "https://analytics.twitter.com",
+            "https://jssdks.mparticle.com",
+            "https://identity.mparticle.com",
+            "https://cdxaws-ak.akamaized.net",
+            "https://mbc-aws-ksa.mncdn.com",
+            "https://mbcvod-enc.edgenextcdn.net",
+            "https://api.one.accedo.tv",
+            "https://schema.org",
+            "https://shahid.mbc.net/ar/livestream/MBC1/livechannel-816764",
+            "https://shahid.mbc.net/#organization",
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform",
+            "http://schema.org/AndroidPlatform",
+            "http://schema.org/IOSPlatform",
+            "https://shahid.mbc.net/mediaObject/0cbd0a8c-4233-4119-9db0-d20d0849290b",
+            "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-1-usa/fdac3a4fc0473f1f56e07ec1d63a4b7b/index.m3u8?aws.manifestfilter=video_height:144-720;video_codec:H264&video_height=144-720&video_codec=H264",
+            "https://shahid.mbc.net/_next/static/chunks/pages/livestream-c9974b5afd6e769e.js",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg?type=webp",
+            "https://shahid.mbc.net/ar/allchannels",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu.svg",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu-hover.svg",
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/{{lang}}/privacy-policy",
+            "https://www.google.com/chrome/",
+            "https://www.mozilla.org/en-US/firefox/new/",
+            "https://api3.shahid.net/proxy/v2.1/",
+            "https://api3.shahid.net/proxy/v3.1/",
+            "https://shahid.mbc.net/shahid-sports-stats/",
+            "https://shahid.mbc.net/sport-stats/",
+            "https://shahid.mbc.net/shahid-sports-stats/api/websocket",
+            "https://api3.shahid.net/v3/",
+            "https://shdl.ink/MvEfRu",
+            "https://shahid.mbc.net/en/livestream/mbc1/livechannel-816764",
+            "https://shdl.ink/85LQHL",
+            "https://shahid.mbc.net/fr/livestream/mbc1/livechannel-816764",
+            "https://shdl.ink/8Arzyy",
+            "https://shahid.mbc.net/ar/livestream/mbc-drama/livechannel-816781",
+            "https://shdl.ink/LHkCfg",
+            "https://shahid.mbc.net/en/livestream/mbc-drama/livechannel-816781",
+            "https://shdl.ink/UZh3ru",
+            "https://shahid.mbc.net/fr/livestream/mbc-drama/livechannel-816781",
+            "https://shdl.ink/cd8vhP",
+            "https://shahid.mbc.net/ar/livestream/mbc-masr/livechannel-816776",
+            "https://shdl.ink/D98QkW",
+            "https://shahid.mbc.net/en/livestream/mbc-masr/livechannel-816776",
+            "https://shdl.ink/9Lnmzt",
+            "https://shahid.mbc.net/fr/livestream/mbc-masr/livechannel-816776",
+            "https://shdl.ink/vhXagH",
+            "https://shahid.mbc.net/ar/livestream/قناة-بقعة-ضوء/livechannel-49924010545146",
+            "https://shdl.ink/bEUs7b",
+            "https://shahid.mbc.net/fr/livestream/boq’at-daw’-channel/livechannel-49924010545146",
+            "https://shdl.ink/ey2PCm",
+            "https://shahid.mbc.net/en/livestream/boq’at-daw’-channel/livechannel-49924010545146",
+            "https://shdl.ink/HcNFm6",
+            "https://shahid.mbc.net/ar/livestream/العربية/livechannel-387286",
+            "https://shdl.ink/BCTR9t",
+            "https://shahid.mbc.net/en/livestream/al-arabiya/livechannel-387286",
+            "https://shdl.ink/Fr34PV",
+            "https://shahid.mbc.net/fr/livestream/al-arabiya/livechannel-387286",
+            "https://shdl.ink/kfuvSf",
+            "https://shahid.mbc.net/ar/livestream/الحدث/livechannel-387288",
+            "https://shdl.ink/bESZVz"
+          ],
+          "sample": "شاهد MBC1 مباشرة وبتقنية Shahid.net | HD الرئيسية مسلسلات أفلام تصفّح مباشر الرئيسية مسلسلات أفلام تصفّح مباشر ar (Ar) العربيّة (En) English (Fr) Français تسجيل الدخول اشترك شاهد MBC1 - MBC شاهد شاهد MBC1 - MBC شاهد"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/allchannels",
+          "status": 200,
+          "final_url": "https://shahid.mbc.net/en/allchannels",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 455233,
+          "title": "MBC Shahid | Explore",
+          "keyword_hits": 4,
+          "time_tokens": 0,
+          "date_tokens": 0,
+          "json_field_hits": 72,
+          "guide_links": [
+            {
+              "label": "Explore",
+              "url": "https://shahid.mbc.net/en/allchannels"
+            },
+            {
+              "label": "Live TV",
+              "url": "https://shahid.mbc.net/en/livestream"
+            },
+            {
+              "label": "Explore",
+              "url": "https://shahid.mbc.net/en/allchannels"
+            },
+            {
+              "label": "Live TV",
+              "url": "https://shahid.mbc.net/en/livestream"
+            }
+          ],
+          "js_assets": [
+            "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+            "https://shahid.mbc.net/_next/static/chunks/5588.21714917deca674a.js",
+            "https://shahid.mbc.net/_next/static/chunks/8449-392d8a68f31e3917.js",
+            "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+            "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+            "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+            "https://shahid.mbc.net/_next/static/chunks/8747.8bb721381e480025.js",
+            "https://shahid.mbc.net/_next/static/chunks/1547.8a41febe5201c1b6.js",
+            "https://shahid.mbc.net/_next/static/chunks/3177.277dc87769477a68.js",
+            "https://shahid.mbc.net/_next/static/chunks/5339.36a5f33d377655cb.js",
+            "https://shahid.mbc.net/_next/static/chunks/8582.e80d69c8eb7b1ceb.js",
+            "https://shahid.mbc.net/_next/static/chunks/5675.dbf500f20f49206d.js",
+            "https://shahid.mbc.net/_next/static/chunks/6820.434cda05da1f611d.js",
+            "https://shahid.mbc.net/_next/static/chunks/3144.44f96fabbbc21572.js",
+            "https://shahid.mbc.net/_next/static/chunks/190.75165dd8621dba3c.js",
+            "https://shahid.mbc.net/_next/static/chunks/3371.f3aaf4e89b0f6a36.js",
+            "https://shahid.mbc.net/_next/static/chunks/webpack-c6918be9752d13cc.js",
+            "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+            "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+            "https://shahid.mbc.net/_next/static/chunks/3608-801b66ef975286ff.js",
+            "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+            "https://shahid.mbc.net/_next/static/chunks/3786-be220465b06a7813.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/%5B%5B...landingId%5D%5D-769edda07b3f5165.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_ssgManifest.js"
+          ],
+          "api_candidates": [
+            "https://shahid.mbc.net/staticFiles/production/mbc-shahid-black.jpg",
+            "https://cdn.cookielaw.org",
+            "https://shahid.mbc.net/en/allchannels",
+            "https://shahid.mbc.net/ar/allchannels",
+            "https://shahid.mbc.net/fr/allchannels",
+            "https://shahid.mbc.net/staticFiles/production/favicon-16.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-32.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-48.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-coast.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-192.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-76.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72.png",
+            "https://securepubads.g.doubleclick.net",
+            "https://api2.shahid.net",
+            "https://sessions.bugsnag.com",
+            "https://www.googletagmanager.com",
+            "https://d2r1yp2w7bby2u.cloudfront.net",
+            "https://wzrkt.com",
+            "https://www.googleoptimize.com",
+            "https://static.ads-twitter.com",
+            "https://analytics.twitter.com",
+            "https://jssdks.mparticle.com",
+            "https://identity.mparticle.com",
+            "https://cdxaws-ak.akamaized.net",
+            "https://mbc-aws-ksa.mncdn.com",
+            "https://mbcvod-enc.edgenextcdn.net",
+            "https://api.one.accedo.tv",
+            "https://schema.org",
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/#organization",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "https://shahid.mbc.net/search?term={search_term_string}",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg?type=webp",
+            "https://shahid.mbc.net/en/livestream",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu.svg",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu-hover.svg",
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/{{lang}}/privacy-policy",
+            "https://www.google.com/chrome/",
+            "https://www.mozilla.org/en-US/firefox/new/",
+            "https://api3.shahid.net/proxy/v2.1/",
+            "https://api3.shahid.net/proxy/v3.1/",
+            "https://shahid.mbc.net/shahid-sports-stats/",
+            "https://shahid.mbc.net/sport-stats/",
+            "https://shahid.mbc.net/shahid-sports-stats/api/websocket",
+            "https://api3.shahid.net/v3/",
+            "https://help.shahid.mbc.net/s/?language=en_US"
+          ],
+          "sample": "MBC Shahid | Explore Home TV Shows Movies Explore Live TV Home TV Shows Movies Explore Live TV en (Ar) العربيّة (En) English (Fr) Français Sign in Subscribe Free Series, Live TV, Movies | MBC Shahid | Explore | MBC Shahid Free Series, Live TV, Movies | MBC Shahid | Explore | MBC Shahid"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream",
+          "status": 200,
+          "final_url": "https://shahid.mbc.net/en/livestream",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 645083,
+          "title": "Watch MBC1 Live & in HD | Shahid.net",
+          "keyword_hits": 2,
+          "time_tokens": 0,
+          "date_tokens": 0,
+          "json_field_hits": 894,
+          "guide_links": [
+            {
+              "label": "Explore",
+              "url": "https://shahid.mbc.net/en/allchannels"
+            },
+            {
+              "label": "Live TV",
+              "url": "https://shahid.mbc.net/en/livestream"
+            },
+            {
+              "label": "Explore",
+              "url": "https://shahid.mbc.net/en/allchannels"
+            },
+            {
+              "label": "Live TV",
+              "url": "https://shahid.mbc.net/en/livestream"
+            }
+          ],
+          "js_assets": [
+            "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+            "https://shahid.mbc.net/_next/static/chunks/5588.21714917deca674a.js",
+            "https://shahid.mbc.net/_next/static/chunks/8449-392d8a68f31e3917.js",
+            "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+            "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+            "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+            "https://shahid.mbc.net/_next/static/chunks/9919.55ad9edffb861fae.js",
+            "https://shahid.mbc.net/_next/static/chunks/4775.a09703887d44fb1b.js",
+            "https://shahid.mbc.net/_next/static/chunks/859.a36b6b86cfee7481.js",
+            "https://shahid.mbc.net/_next/static/chunks/webpack-c6918be9752d13cc.js",
+            "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+            "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+            "https://shahid.mbc.net/_next/static/chunks/3608-801b66ef975286ff.js",
+            "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+            "https://shahid.mbc.net/_next/static/chunks/3786-be220465b06a7813.js",
+            "https://shahid.mbc.net/_next/static/chunks/9650-107f0d51728a8848.js",
+            "https://shahid.mbc.net/_next/static/chunks/3468-8779b0dd80e5972b.js",
+            "https://shahid.mbc.net/_next/static/chunks/1262-e62a4f31b83d32c3.js",
+            "https://shahid.mbc.net/_next/static/chunks/3344-23e254000ed41c39.js",
+            "https://shahid.mbc.net/_next/static/chunks/pages/livestream-c9974b5afd6e769e.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+            "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_ssgManifest.js"
+          ],
+          "api_candidates": [
+            "https://cdn.cookielaw.org",
+            "https://shahid.mbc.net/en/livestream",
+            "https://shahid.mbc.net/ar/livestream",
+            "https://shahid.mbc.net/fr/livestream",
+            "https://shahid.mbc.net/en/livestream/mbc1/livechannel-816764",
+            "https://shahid.mbc.net/mediaObject/7ca9f828-c958-4251-a828-3977e3b42bae?height=253&amp;width=450&amp;croppingPoint=&amp;version=1&amp;type=avif",
+            "https://shahid.mbc.net/mediaObject/7ca9f828-c958-4251-a828-3977e3b42bae?height=1080&amp;width=1920&amp;croppingPoint=mc&amp;version=1&amp;type=avif",
+            "https://shahid.mbc.net/staticFiles/production/favicon-16.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-32.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-48.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-coast.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-192.png",
+            "https://shahid.mbc.net/staticFiles/production/favicon-76.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72-precomposed.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-192x192.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-152x152.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-120x120.png",
+            "https://shahid.mbc.net/staticFiles/production/apple-touch-icon-72x72.png",
+            "https://securepubads.g.doubleclick.net",
+            "https://api2.shahid.net",
+            "https://sessions.bugsnag.com",
+            "https://www.googletagmanager.com",
+            "https://d2r1yp2w7bby2u.cloudfront.net",
+            "https://wzrkt.com",
+            "https://www.googleoptimize.com",
+            "https://static.ads-twitter.com",
+            "https://analytics.twitter.com",
+            "https://jssdks.mparticle.com",
+            "https://identity.mparticle.com",
+            "https://cdxaws-ak.akamaized.net",
+            "https://mbc-aws-ksa.mncdn.com",
+            "https://mbcvod-enc.edgenextcdn.net",
+            "https://api.one.accedo.tv",
+            "https://schema.org",
+            "https://shahid.mbc.net/en/livestream/MBC1/livechannel-816764",
+            "https://shahid.mbc.net/#organization",
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform",
+            "http://schema.org/AndroidPlatform",
+            "http://schema.org/IOSPlatform",
+            "https://shahid.mbc.net/mediaObject/0cbd0a8c-4233-4119-9db0-d20d0849290b",
+            "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-1-usa/fdac3a4fc0473f1f56e07ec1d63a4b7b/index.m3u8?aws.manifestfilter=video_height:144-720;video_codec:H264&video_height=144-720&video_codec=H264",
+            "https://shahid.mbc.net/_next/static/chunks/pages/livestream-c9974b5afd6e769e.js",
+            "https://shahid.mbc.net/staticFiles/production/mbc_shahid.svg?type=webp",
+            "https://shahid.mbc.net/en/allchannels",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu.svg",
+            "https://shahid.mbc.net/staticFiles/production/static/images/icons/kids-menu-hover.svg",
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/{{lang}}/privacy-policy",
+            "https://www.google.com/chrome/",
+            "https://www.mozilla.org/en-US/firefox/new/",
+            "https://api3.shahid.net/proxy/v2.1/",
+            "https://api3.shahid.net/proxy/v3.1/",
+            "https://shahid.mbc.net/shahid-sports-stats/",
+            "https://shahid.mbc.net/sport-stats/",
+            "https://shahid.mbc.net/shahid-sports-stats/api/websocket",
+            "https://api3.shahid.net/v3/",
+            "https://shdl.ink/85LQHL",
+            "https://shahid.mbc.net/fr/livestream/mbc1/livechannel-816764",
+            "https://shdl.ink/8Arzyy",
+            "https://shahid.mbc.net/ar/livestream/mbc1/livechannel-816764",
+            "https://shdl.ink/MvEfRu",
+            "https://shahid.mbc.net/en/livestream/mbc-drama/livechannel-816781",
+            "https://shdl.ink/UZh3ru",
+            "https://shahid.mbc.net/ar/livestream/mbc-drama/livechannel-816781",
+            "https://shdl.ink/LHkCfg",
+            "https://shahid.mbc.net/fr/livestream/mbc-drama/livechannel-816781",
+            "https://shdl.ink/cd8vhP",
+            "https://shahid.mbc.net/en/livestream/mbc-masr/livechannel-816776",
+            "https://shdl.ink/9Lnmzt",
+            "https://shahid.mbc.net/ar/livestream/mbc-masr/livechannel-816776",
+            "https://shdl.ink/D98QkW",
+            "https://shahid.mbc.net/fr/livestream/mbc-masr/livechannel-816776",
+            "https://shdl.ink/vhXagH",
+            "https://shahid.mbc.net/en/livestream/boq’at-daw’-channel/livechannel-49924010545146",
+            "https://shdl.ink/HcNFm6",
+            "https://shahid.mbc.net/ar/livestream/قناة-بقعة-ضوء/livechannel-49924010545146",
+            "https://shdl.ink/bEUs7b",
+            "https://shahid.mbc.net/fr/livestream/boq’at-daw’-channel/livechannel-49924010545146",
+            "https://shdl.ink/ey2PCm",
+            "https://shahid.mbc.net/en/livestream/al-arabiya/livechannel-387286",
+            "https://shdl.ink/Fr34PV",
+            "https://shahid.mbc.net/fr/livestream/al-arabiya/livechannel-387286",
+            "https://shdl.ink/kfuvSf",
+            "https://shahid.mbc.net/ar/livestream/العربية/livechannel-387286",
+            "https://shdl.ink/BCTR9t",
+            "https://shahid.mbc.net/en/livestream/al-hadath/livechannel-387288",
+            "https://shdl.ink/Fep9gV"
+          ],
+          "sample": "Watch MBC1 Live & in HD | Shahid.net Home TV Shows Movies Explore Live TV Home TV Shows Movies Explore Live TV en (Ar) العربيّة (En) English (Fr) Français Sign in Subscribe Watch MBC1 - MBC Shahid Watch MBC1 - MBC Shahid"
+        }
+      ],
+      "js_hits": [
+        {
+          "url": "https://shahid.mbc.net/_next/static/3SjYMJExcXXVzdsHByZyq/_buildManifest.js",
+          "api_candidates": [
+            "https://shahid.mbc.net/:nextInternalLocale(default|ar|en|fr)/livestream/:channelName/livechannel-:path",
+            "https://shahid.mbc.net/:nextInternalLocale/livestream/:channelName/livechannel/:path",
+            "https://shahid.mbc.net/:nextInternalLocale(default|ar|en|fr)/livestream/:channelName/liveevent-:path",
+            "https://shahid.mbc.net/:nextInternalLocale/livestream/:channelName/liveevent/:path",
+            "https://shahid.mbc.net/:nextInternalLocale(default|ar|en|fr)/shows/:assetInfo/show-:programId",
+            "https://shahid.mbc.net/:nextInternalLocale/shows/:assetInfo/:programId",
+            "https://shahid.mbc.net/:nextInternalLocale(default|ar|en|fr)/shows/:assetInfo/season-:programId-:seasonId",
+            "https://shahid.mbc.net/:nextInternalLocale/shows/:assetInfo/:programId/season/:seasonId",
+            "https://shahid.mbc.net/:nextInternalLocale/api/sitemap-landing",
+            "https://shahid.mbc.net/livestream",
+            "https://shahid.mbc.net/livestream/[channelName]/livechannel/[liveChannelId]",
+            "https://shahid.mbc.net/livestream/[channelName]/liveevent/[liveEventId]",
+            "https://shahid.mbc.net/shows/[assetInfo]/[programId]",
+            "https://shahid.mbc.net/shows/[assetInfo]/[programId]/season/[seasonId]"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/pages/_app-dbe183c7296926af.js",
+          "api_candidates": [
+            "https://shahid.mbc.net/api/sessionKey",
+            "https://shahid.mbc.net/livestream",
+            "https://shahid.mbc.net/liveevent",
+            "https://websdk.appsflyer.com",
+            "https://cdn.cookielaw.org",
+            "https://www.facebook.com/MBCShahid",
+            "https://x.com/MBCShahid",
+            "https://www.instagram.com/mbcshahid",
+            "https://t.me/shahid_Vod",
+            "https://www.tiktok.com/@mbcshahid",
+            "https://www.youtube.com/@MBCShahid",
+            "https://www.dailymotion.com/Shahid_VOD",
+            "https://shahid.mbc.net/livechannel-",
+            "https://shahid.mbc.net/liveevent-",
+            "https://cdn.cookielaw.org/consent/",
+            "https://itunes.apple.com/",
+            "http://play.google.com/store/apps/details?id=",
+            "http://www.windowsphone.com/s?appid=",
+            "https://notify.bugsnag.com",
+            "https://sessions.bugsnag.com",
+            "https://github.com/bugsnag/bugsnag-js",
+            "https://api.one.accedo.tv",
+            "https://shahid.mbc.net/mediaObject/79fa00de-c902-4d16-974b-eed041b08f63?height={height}&width={width}&croppingPoint={croppingPoint}",
+            "https://shahid.mbc.net/mediaObject/eb7d41f8-d293-4070-b417-9a428d1434ca?height={height}&width={width}&croppingPoint={croppingPoint}",
+            "https://shahid.mbc.net/program",
+            "https://shahid.mbc.net/channel",
+            "https://shahid.mbc.net/allchannels",
+            "http://localhost",
+            "https://shahid.mbc.net/live/related",
+            "https://d2r1yp2w7bby2u.cloudfront.net/js/clevertap.min.js",
+            "https://apis.google.com/js/api.js",
+            "http://www.w3.org/2000/svg",
+            "https://firebase.google.com/docs/studio/preview-apps#preview-backend",
+            "https://iabtest.page.link/rSCZ",
+            "https://lnk.shahid.net/HKMg",
+            "https://itunes.apple.com/us/app/shahid-for-iphone/id879915134?mt=8",
+            "https://play.google.com/store/apps/details?id=net.mbc.shahid",
+            "https://www.dish.com/",
+            "https://www.sling.com",
+            "https://shahid.mbc.net",
+            "http://localhost:4440/",
+            "https://shahid.mbc.net/staticFiles/production",
+            "https://shahid-identity-prod-a7k4m.firebaseio.com",
+            "https://schema.org",
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform",
+            "http://schema.org/AndroidPlatform",
+            "http://schema.org/IOSPlatform",
+            "https://schema.org/EventScheduled",
+            "https://schema.org/OnlineEventAttendanceMode",
+            "https://schema.org/DirectDebit",
+            "https://schema.org/Voucher",
+            "https://schema.org/InStock"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/6820.434cda05da1f611d.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/5675.dbf500f20f49206d.js",
+          "api_candidates": [
+            "https://shahid.mbc.net/static/images/icons/tag-live.svg",
+            "https://shahid.mbc.net/liveTvPage/liveTvPage",
+            "http://www.w3.org/2000/svg"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/1817.b69b87bd9e29a562.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/main-24f8ff22f05cf2c0.js",
+          "api_candidates": [
+            "http://n",
+            "https://shahid.mbc.net/api",
+            "https://shahid.mbc.net/api/",
+            "http://f"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/5339.36a5f33d377655cb.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/2925.e391a60bbad2aac3.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/1547.8a41febe5201c1b6.js",
+          "api_candidates": [
+            "https://raw.githubusercontent.com/wmcmurray/just-detect-adblock/master/baits/pagead2.googlesyndication.com"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/pages/%5B%5B...landingId%5D%5D-769edda07b3f5165.js",
+          "api_candidates": [
+            "https://shahid.mbc.net",
+            "https://shahid.mbc.net/api/routingTable",
+            "https://shahid.mbc.net/live/related"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/8408-6f4a5e1276ab5ca4.js",
+          "api_candidates": [
+            "https://github.com/zloirock/core-js"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/3468-8779b0dd80e5972b.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/livestream"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/3144.44f96fabbbc21572.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg",
+            "https://imasdk.googleapis.com/js/sdkloader/ima3.js"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/6206.7268e8f9a9a092de.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/livestream",
+            "https://shahid.mbc.net/liveTvPage/liveTvPage"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/9650-107f0d51728a8848.js",
+          "api_candidates": [
+            "https://shahid.mbc.net/live/related"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/859.a36b6b86cfee7481.js",
+          "api_candidates": [
+            "https://imasdk.googleapis.com/js/sdkloader/ima3.js"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/3344-23e254000ed41c39.js",
+          "api_candidates": [
+            "https://shahid.mbc.net/livechannel-",
+            "https://shahid.mbc.net/liveevent-"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/framework-df8a8ea40bda9588.js",
+          "api_candidates": [
+            "https://react.dev/errors/",
+            "http://www.w3.org/2000/svg",
+            "http://www.w3.org/1998/Math/MathML",
+            "http://www.w3.org/1999/xlink",
+            "http://www.w3.org/XML/1998/namespace"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/polyfills-42372ed130431b0a.js",
+          "api_candidates": [
+            "https://github.com/zloirock/core-js",
+            "https://a",
+            "https://a/c%20d?a=1&c=3",
+            "https://a@b",
+            "https://тест",
+            "https://a#б",
+            "https://x"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/8582.e80d69c8eb7b1ceb.js",
+          "api_candidates": [
+            "http://www.w3.org/2000/svg",
+            "https://shahid.mbc.net/liveTvPage/liveTvPage"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/8747.8bb721381e480025.js",
+          "api_candidates": [
+            "https://bsky.app/intent/compose",
+            "https://www.facebook.com/dialog/send",
+            "https://www.facebook.com/sharer/sharer.php",
+            "https://bookmark.hatenaapis.com/count/entry",
+            "http://www.instapaper.com/hello2",
+            "https://social-plugins.line.me/lineit/share",
+            "https://linkedin.com/shareArticle",
+            "https://www.livejournal.com/update.bml",
+            "https://connect.mail.ru/share",
+            "https://connect.ok.ru/offer",
+            "https://connect.ok.ru/dk",
+            "https://pinterest.com/pin/create/button/",
+            "https://api.pinterest.com/v1/urls/count.json",
+            "https://getpocket.com/save",
+            "https://www.reddit.com/web/submit",
+            "https://gab.com/compose",
+            "https://telegram.me/share/url",
+            "https://threads.net/intent/post",
+            "https://www.tumblr.com/widgets/share/tool",
+            "https://api.tumblr.com/v2/share/stats",
+            "https://twitter.com/intent/tweet",
+            "https://vk.com/share.php",
+            "http://service.weibo.com/share/share.php",
+            "https://work.facebook.com/sharer.php"
+          ]
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/pages/livestream-c9974b5afd6e769e.js",
+          "api_candidates": [
+            "https://shahid.mbc.net/livestream"
+          ]
+        }
+      ],
+      "api_probes": [
+        {
+          "url": "http://schema.org/AndroidPlatform",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 11684,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>AndroidPlatform - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: AndroidPlatform - Represents the broad notion of Android-based operating systems.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/prettify.css\" /> <script src=\"/docs/prettify.js\"></script>"
+        },
+        {
+          "url": "http://schema.org/DesktopWebPlatform",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 11749,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>DesktopWebPlatform - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: DesktopWebPlatform - Represents the broad notion of &#39;desktop&#39; browsers as a Web Platform.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/prettify.css\" /> <script src=\"/docs/pre"
+        },
+        {
+          "url": "http://schema.org/IOSPlatform",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 11616,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>IOSPlatform - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: IOSPlatform - Represents the broad notion of iOS-based operating systems.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/prettify.css\" /> <script src=\"/docs/prettify.js\"></script> <script src"
+        },
+        {
+          "url": "http://schema.org/MobileWebPlatform",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 11732,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>MobileWebPlatform - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: MobileWebPlatform - Represents the broad notion of &#39;mobile&#39; browsers as a Web Platform.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/prettify.css\" /> <script src=\"/docs/pretti"
+        },
+        {
+          "url": "http://service.weibo.com/share/share.php",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 5636,
+          "sample": "<!DOCTYPE HTML> <html> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> <title>分享到微博-微博-随时随地分享身边的新鲜事儿</title> <link href=\"//img.t.sinajs.cn/t4/appstyle/widget/css/share/share.css?ver=201710111224\" rel=\"stylesheet\" type=\"text/css\"> <script type=\"text/javascript\"> var conf = {js:\"1.1.0.4\"}; var $CONFIG = { $lang : \"zh\", $pageLoadTime : \"1789905135\", $timeDiff : new Date() - 1789905135 * 1000, $oid : \"\", $uid : \"\", $passport : \"\", $token : \"b85b158144832b8f50aaa02074b1e391\", $severtime : \"1789905135\", $PRODUCT_NAME : \"miniblogplatform\", $pageid : \"share\", $appsrc : \"cUcI1A\", $refer : \"\", $isOverseas : \"0\", $isBindFacebook : \"0\", $setDomain : false, $devMode : 1 }; </script>"
+        },
+        {
+          "url": "http://www.instapaper.com/hello2",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "bytes": 8044,
+          "sample": "<!DOCTYPE HTML> <html> <head> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" /> <title>Instapaper</title> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/> <meta name=\"description\" content=\"A simple tool for saving web pages to read later on iOS, Android, computer, Kindle or Kobo eReaders.\"/> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0\"> <meta name=\"apple-itunes-app\" content=\"app-id=288545208, affiliate-data=partnerId=30&amp;siteID=k1CkFsOh4nQ\"/> <meta name=\"google-site-verification\" content=\"YPyUA0fI5clMs9oCXKjOnUR2-n2mcEBOhViglEqLDJw\" /> <link rel=\"me\" href=\"https://mastodon.social/@Instapaper\"/> <link rel=\"icon\" href=\"/s"
+        },
+        {
+          "url": "https://analytics.twitter.com",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 298271,
+          "sample": "<!DOCTYPE html><html dir=\"rtl\" lang=\"ar\"><head><meta charset=\"utf-8\" /><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover\" /><link rel=\"preconnect\" href=\"//abs.twimg.com\" /><link rel=\"preconnect\" href=\"//api.x.com\" /><link rel=\"preconnect\" href=\"//pbs.twimg.com\" /><link rel=\"preload\" as=\"font\" type=\"font/woff2\" crossorigin fetchpriority=\"high\" href=\"https://abs.twimg.com/responsive-web/client-web/Chirp-Regular.80fda27a.woff2\" /><link rel=\"preload\" as=\"font\" type=\"font/woff2\" crossorigin fetchpriority=\"high\" href=\"https://abs.twimg.com/responsive-web/client-web/Chirp-Bold.ebb56aba.woff2\" /><link rel=\"preload\" as=\"font\" type=\"fo"
+        },
+        {
+          "url": "https://api.pinterest.com/v1/urls/count.json",
+          "status": 200,
+          "content_type": "application/javascript",
+          "bytes": 48,
+          "sample": "receiveCount({\"error\":\"Invalid URL\",\"url\":null})"
+        },
+        {
+          "url": "https://apis.google.com/js/api.js",
+          "status": 200,
+          "content_type": "text/javascript",
+          "bytes": 14576,
+          "sample": "(function(){var aa=typeof Object.defineProperties==\"function\"?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a},ba=function(a){a=[\"object\"==typeof globalThis&&globalThis,a,\"object\"==typeof window&&window,\"object\"==typeof self&&self,\"object\"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error(\"Cannot find global object\");},ca=ba(this),g=function(a,b){if(b)a:{var c=ca;a=a.split(\".\");for(var d=0;d<a.length- 1;d++){var e=a[d];if(!(e in c))break a;c=c[e]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&b!=null&&aa(c,a,{configurable:!0,writable:!0,value:b})}},h=function(a,b,c){if(a==null)throw new "
+        },
+        {
+          "url": "https://bsky.app/intent/compose",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "bytes": 5936,
+          "sample": "<!DOCTYPE html> <html> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover\"> <meta name=\"referrer\" content=\"origin-when-cross-origin\"> <!-- Preconnect to essential domains --> <link rel=\"preconnect\" href=\"https://bsky.social\"> <link rel=\"preconnect\" href=\"https://go.bsky.app\"> <title>Bluesky</title> <!-- Hello Humans! API docs at https://atproto.com --> <link rel=\"preload\" as=\"font\" type=\"font/woff2\" href=\"https://web-cdn.bsky.app/static/media/InterVariable.c504db5c06caaf7cdfba.woff2\" crossorigin> <style> /** * Minimum styles required to render splash. * * ALL OTHER STYLES BELONG IN `src/style.css` * * THIS NEE"
+        },
+        {
+          "url": "https://connect.mail.ru/share",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "bytes": 4582,
+          "sample": "<!DOCTYPE html><html><head><title>My World@Mail.Ru &mdash; Access request</title><link rel=\"stylesheet\" href=\"https://my2.imgsmail.ru/mail/ru/css/new/connect/dialogs_18.css\"/><link rel=\"shortcut icon\" href=\"https://my2.imgsmail.ru/mail/ru/images/my/compass/static/favicon/favicon.ico\" /><!--[if IE 7]><style type=\"text/css\">.login-form .text {height: 16px;}.login-form__name .text {width: 156px;}.login-form__password .text {width: 238px;}.login-form__select {margin-top: 1px;margin-right: 6px;}.login-form__select select {border: 0;display: block;}.login-form__footer .ui-button-main {width: 140px;}.login-form__right {width: 90px;}.share-form .text {height: 18px;width: 300px;}.post textarea {width"
+        },
+        {
+          "url": "https://d2r1yp2w7bby2u.cloudfront.net/js/clevertap.min.js",
+          "status": 200,
+          "content_type": "text/javascript",
+          "bytes": 343108,
+          "sample": "!function(e,t){\"object\"==typeof exports&&\"undefined\"!=typeof module?module.exports=t():\"function\"==typeof define&&define.amd?define(t):(e=\"undefined\"!=typeof globalThis?globalThis:e||self).clevertap=t()}(this,(function(){\"use strict\";var e=0;function t(t){return\"__private_\"+e+++\"_\"+t}function i(e,t){if(!Object.prototype.hasOwnProperty.call(e,t))throw new TypeError(\"attempted to use private field on non-instance\");return e}const n=\"clevertap-prod.com\";var o=t(\"accountId\"),s=t(\"region\"),r=t(\"targetDomain\"),a=t(\"dcSdkversion\"),l=t(\"token\");class c{constructor(){let{id:e}=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:\"\",i=argum"
+        },
+        {
+          "url": "https://firebase.google.com/docs/studio/preview-apps#preview-backend",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 270235,
+          "sample": "<!doctype html> <html lang=\"ar-x-mtfrom-en\" dir=\"rtl\"> <head> <meta name=\"google-signin-client-id\" content=\"721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com\"><meta name=\"google-signin-scope\" content=\"profile email https://www.googleapis.com/auth/developerprofiles https://www.googleapis.com/auth/developerprofiles.award https://www.googleapis.com/auth/devprofiles.full_control.firstparty\"><meta property=\"og:site_name\" content=\"Firebase\"> <meta property=\"og:type\" content=\"website\"><meta name=\"theme-color\" content=\"#a8c7fa\"><meta charset=\"utf-8\"> <meta content=\"IE=Edge\" http-equiv=\"X-UA-Compatible\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <link"
+        },
+        {
+          "url": "https://github.com/bugsnag/bugsnag-js",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 365717,
+          "sample": "<!DOCTYPE html> <html lang=\"en\" data-color-mode=\"auto\" data-light-theme=\"light\" data-dark-theme=\"dark\" data-a11y-animated-images=\"system\" data-a11y-link-underlines=\"true\" > <head> <meta charset=\"utf-8\"> <link rel=\"dns-prefetch\" href=\"https://github.githubassets.com\"> <link rel=\"dns-prefetch\" href=\"https://avatars.githubusercontent.com\"> <link rel=\"dns-prefetch\" href=\"https://github-cloud.s3.amazonaws.com\"> <link rel=\"dns-prefetch\" href=\"https://user-images.githubusercontent.com/\"> <link rel=\"preconnect\" href=\"https://github.githubassets.com\" crossorigin> <link rel=\"preconnect\" href=\"https://avatars.githubusercontent.com\"> <script type=\"importmap\">{\"imports\":{\"react\":\"https://github.githubass"
+        },
+        {
+          "url": "https://github.com/zloirock/core-js",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 294166,
+          "sample": "<!DOCTYPE html> <html lang=\"en\" data-color-mode=\"auto\" data-light-theme=\"light\" data-dark-theme=\"dark\" data-a11y-animated-images=\"system\" data-a11y-link-underlines=\"true\" > <head> <meta charset=\"utf-8\"> <link rel=\"dns-prefetch\" href=\"https://github.githubassets.com\"> <link rel=\"dns-prefetch\" href=\"https://avatars.githubusercontent.com\"> <link rel=\"dns-prefetch\" href=\"https://github-cloud.s3.amazonaws.com\"> <link rel=\"dns-prefetch\" href=\"https://user-images.githubusercontent.com/\"> <link rel=\"preconnect\" href=\"https://github.githubassets.com\" crossorigin> <link rel=\"preconnect\" href=\"https://avatars.githubusercontent.com\"> <script type=\"importmap\">{\"imports\":{\"react\":\"https://github.githubass"
+        },
+        {
+          "url": "https://imasdk.googleapis.com/js/sdkloader/ima3.js",
+          "status": 200,
+          "content_type": "text/javascript; charset=UTF-8",
+          "bytes": 499684,
+          "sample": "// Copyright 2011 Google Inc. All Rights Reserved. (function(){var m,aa=typeof Object.create==\"function\"?Object.create:function(a){var b=function(){};b.prototype=a;return new b},ba=typeof Object.defineProperties==\"function\"?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a},ca=function(a){a=[\"object\"==typeof globalThis&&globalThis,a,\"object\"==typeof window&&window,\"object\"==typeof self&&self,\"object\"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error(\"Cannot find global object\"); },fa=ca(this),ha=function(a,b){if(b)a:{var c=fa;a=a.split(\".\");for(var d=0;d<a.length-1;d++){var e=a["
+        },
+        {
+          "url": "https://itunes.apple.com/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 136293,
+          "sample": "<!DOCTYPE html> <html class=\"no-js\" xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en-US\" lang=\"en-US\" dir=\"ltr\" prefix=\"og: http://ogp.me/ns#\"> <head> <meta charset=\"utf-8\" /> <link rel=\"canonical\" href=\"https://www.apple.com/itunes/\" /> <link rel=\"alternate\" href=\"https://www.apple.com/ae-ar/itunes/\" hreflang=\"ar-AE\" /><link rel=\"alternate\" href=\"https://www.apple.com/ae/itunes/\" hreflang=\"en-AE\" /><link rel=\"alternate\" href=\"https://www.apple.com/at/itunes/\" hreflang=\"de-AT\" /><link rel=\"alternate\" href=\"https://www.apple.com/au/itunes/\" hreflang=\"en-AU\" /><link rel=\"alternate\" href=\"https://www.apple.com/befr/itunes/\" hreflang=\"fr-BE\" /><link rel=\"alternate\" href=\"https://www.apple.com/b"
+        },
+        {
+          "url": "https://itunes.apple.com/us/app/shahid-for-iphone/id879915134?mt=8",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 771684,
+          "sample": "<!DOCTYPE html> <html dir=\"ltr\" lang=\"en-US\"> <head> <meta charset=\"utf-8\" /> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" /> <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" /> <meta name=\"applicable-device\" content=\"pc,mobile\" /> <meta name=\"referrer\" content=\"strict-origin\" /> <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/assets/favicon/favicon-180.png\" /> <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/assets/favicon/favicon-32.png\" /> <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/assets/favicon/favicon-16.png\" /> <link rel=\"manifest\" href=\"/manifest.json\" /> <title>âMBC Shahid App - App Store</title><!-- HEAD_svelte-h7hqm6_START --><meta"
+        },
+        {
+          "url": "https://linkedin.com/shareArticle",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 513097,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\" translate=\"no\"><head><meta charSet=\"utf-8\"/><meta charSet=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/><meta http-equiv=\"Content-Security-Policy\" content=\"script-src-elem &#x27;nonce-77d831c28eebbf3bd2f09f40cb56151a&#x27; &#x27;strict-dynamic&#x27;; script-src-attr;\"/><link rel=\"icon\" type=\"image/svg+xml\" href=\"https://static.licdn.com/aero-v1/sc/h/akt4ae504epesldzj74dzred8\" id=\"favicon-svg\"/><meta name=\"como-t\" content=\"{&quot;ep&quot;:&quot;/MOgUiMuA0_Xqi5y7ehf&quot;,&quot;appId&quot;:&quot;com.linkedin.flagship3.d_web&quot;,&quot;service&quot;:&quot;flagship-web&quot;,&quot;serviceVersion&quot;:&quot;0.2.7404&quot"
+        },
+        {
+          "url": "https://pinterest.com/pin/create/button/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 1297089,
+          "sample": "<!DOCTYPE html><html class=\"ar\" dir=\"rtl\" lang=\"ar\"><head><meta charSet=\"utf-8\"/><meta content=\"width=device-width, initial-scale=1\" id=\"viewport\" name=\"viewport\"/><script async=\"\" crossorigin=\"anonymous\" fetchPriority=\"high\" nonce=\"dc99c80619cefe08dd17b7d28b5ac464\" src=\"https://s.pinimg.com/webapp/polyfills-2052700f5ec752ab.mjs\"></script><script async=\"\" crossorigin=\"anonymous\" fetchPriority=\"high\" nonce=\"dc99c80619cefe08dd17b7d28b5ac464\" src=\"https://s.pinimg.com/webapp/runtime.ar_SA-27d45c379f803773.mjs\"></script><script async=\"\" crossorigin=\"anonymous\" fetchPriority=\"high\" nonce=\"dc99c80619cefe08dd17b7d28b5ac464\" src=\"https://s.pinimg.com/webapp/locale-ar_SA-LocaleDataLoader-9dce7d642882"
+        },
+        {
+          "url": "https://play.google.com/store/apps/details?id=net.mbc.shahid",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 1314618,
+          "sample": "<!doctype html><html lang=\"ar\" dir=\"rtl\"><head><base href=\"https://play.google.com/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name=\"referrer\" content=\"origin\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><meta name=\"mobile-web-app-capable\" content=\"yes\"><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"><meta name=\"google-site-verification\" content=\"sBw2N8uateIzRr93vmFze5MF_35vMk5F1wG04L5JcJE\"><meta name=\"google-site-verification\" content=\"PJKdyVFC5jlu_l8Wo_hirJkhs1cmitmn44fgpOc3zFc\"><link rel=\"search\" href=\"/opensearch.xml\" type=\"application/opensearchdescription+xml\" title=\"Google Play\"><link rel=\"shortcut icon\" href=\"//www.gstatic.com/android/marke"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/wmcmurray/just-detect-adblock/master/baits/pagead2.googlesyndication.com",
+          "status": 200,
+          "content_type": "text/plain; charset=utf-8",
+          "bytes": 22,
+          "sample": "thistextshouldbethere"
+        },
+        {
+          "url": "https://react.dev/errors/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 87388,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" data-next-head=\"\"/><script async=\"\" src=\"https://www.googletagmanager.com/gtag/js?id=G-B1E83PJ3RT\"></script><title data-next-head=\"\">Minified Error Decoder – React</title><link rel=\"canonical\" href=\"https://react.dev/errors\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://react.dev/errors\" hrefLang=\"x-default\" data-next-head=\"\"/><link rel=\"alternate\" hrefLang=\"en\" href=\"https://react.dev/errors\" data-next-head=\"\"/><link rel=\"alternate\" hrefLang=\"zh-hans\" href=\"https://zh-hans.react.dev/errors\" data-next-head=\"\"/><link rel=\"alternat"
+        },
+        {
+          "url": "https://schema.org",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 8232,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from Home.j2 --> <head> <title>Schema.org - Schema.org </title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org is a set of extensible schemas that enables webmasters to embed structured data on their web pages for use by search engines and other applications.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/prettify.css\" /> <link rel=\"stylesheet\" "
+        },
+        {
+          "url": "https://schema.org/DirectDebit",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 11162,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>DirectDebit - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: DirectDebit - Payment in advance by direct debit from the bank, equivalent to &lt;code&gt;http://purl.org/goodrelations/v1#DirectDebit&lt;/code&gt;.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/"
+        },
+        {
+          "url": "https://schema.org/EventScheduled",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 11504,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>EventScheduled - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: EventScheduled - The event is taking place or has taken place on the startDate as scheduled. Use of this value is optional, as it is assumed by default.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" "
+        },
+        {
+          "url": "https://schema.org/InStock",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 24324,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>InStock - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: InStock - Indicates that the item is in stock.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/prettify.css\" /> <script src=\"/docs/prettify.js\"></script> <script src=\"https://ajax.googleapis.com/a"
+        },
+        {
+          "url": "https://schema.org/OnlineEventAttendanceMode",
+          "status": 200,
+          "content_type": "text/html",
+          "bytes": 11622,
+          "sample": "<!DOCTYPE html> <html lang=\"en\"> <!-- Generated from TermPageEx.j2 --> <head> <title>OnlineEventAttendanceMode - Schema.org Enumeration Member</title> <meta charset=\"utf-8\" > <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <meta name=\"description\" content=\"Schema.org Enumeration Member: OnlineEventAttendanceMode - OnlineEventAttendanceMode - an event that is primarily conducted online.\" /> <link rel=\"shortcut icon\" type=\"image/png\" href=\"/docs/favicon.ico\"/> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/schemaorg.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/devnote.css\" /> <link rel=\"stylesheet\" type=\"text/css\" href=\"/docs/prettify.css\" /> <script src="
+        },
+        {
+          "url": "https://shahid.mbc.net",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 535833,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/#organization",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 535833,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/_next/static/chunks/pages/livestream-c9974b5afd6e769e.js",
+          "status": 200,
+          "content_type": "application/javascript; charset=UTF-8",
+          "bytes": 262,
+          "sample": "(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[206],{92362:(_,e,n)=>{(window.__NEXT_P=window.__NEXT_P||[]).push([\"/livestream\",function(){return n(33344)}])}},_=>{_.O(0,[3608,8408,3786,9650,3468,1262,3344,636,6593,8792],()=>_(_.s=92362)),_N_E=_.O()}]);"
+        },
+        {
+          "url": "https://shahid.mbc.net/allchannels",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 504219,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/api/routingTable",
+          "status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "bytes": 4126,
+          "sample": "{\"size\":273,\"routingTable\":[\"about-us\",\"contact-us\",\"faqs\",\"privacy-policy\",\"terms-and-conditions\",\"maintenance\",\"samsung-tv-app\",\"unsubscribe\",\"unsubscribe-message\",\"home\",\"free\",\"allchannels\",\"movies\",\"series\",\"kids\",\"sports\",\"hub/before-you-go\",\"animereleases\",\"turkishseries\",\"newreleases\",\"trending\",\"western\",\"personalized\",\"everyonewatching\",\"mostwatched\",\"pilot\",\"pan\",\"egypt\",\"restww\",\"multiplesubtitles\",\"khaleejistars\",\"arabichorror\",\"westernhorror\",\"egyptiandrama\",\"egyptiancomedy\",\"7daycatchup\",\"mbcchannels\",\"livestream\",\"mostsearched\",\"agt\",\"anime\",\"testing\",\"weladrizk\",\"exploresaudi\",\"explorekhaliji\",\"exploreegyptian\",\"explorearabic\",\"explorekorean\",\"exploreturkish\",\"explorewestern"
+        },
+        {
+          "url": "https://shahid.mbc.net/api/sessionKey",
+          "status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "bytes": 143,
+          "sample": "{\"sessionKey\":\"0SSK500161B1BA160017CF418919DA515852\",\"expiration\":\"2026-09-20T14:27:56.000Z\",\"deviceId\":\"2ac2734e-6d38-4f50-89ad-eed9e922341f\"}"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 535833,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/allchannels",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 504219,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 701863,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream/MBC1/livechannel-816764",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 702167,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream/mbc-drama/livechannel-816781",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 702725,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream/mbc-masr/livechannel-816776",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 702248,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream/mbc1/livechannel-816764",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 702168,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream/الحدث/livechannel-387288",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 706777,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream/العربية/livechannel-387286",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 709121,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/livestream/قناة-بقعة-ضوء/livechannel-49924010545146",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 702923,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/player/movies/القصص/id-49924037233785",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 477976,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/ar/todaysepisode",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 504134,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta name=\"description\" content=\"MBC Shahid, the first free video-on-demand and leading TV catch-up service in the Middle East &amp;amp; North Africa (MENA) region.\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/"
+        },
+        {
+          "url": "https://shahid.mbc.net/en",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 485638,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/allchannels",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 455233,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 645083,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream/MBC1/livechannel-816764",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 645153,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream/al-arabiya/livechannel-387286",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 652046,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream/al-hadath/livechannel-387288",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 649546,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream/boq’at-daw’-channel/livechannel-49924010545146",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 645923,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream/mbc-drama/livechannel-816781",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 645795,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream/mbc-masr/livechannel-816776",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 645250,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/livestream/mbc1/livechannel-816764",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 645156,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/player/movies/el-qesas/id-49924037233785",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 445812,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-US\" data-next-head=\"\"/><link rel=\"preconnect\" href=\"https://cdn.cookielaw.or"
+        },
+        {
+          "url": "https://shahid.mbc.net/en/todaysepisode",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 455061,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta name=\"description\" content=\"MBC Shahid, the first free video-on-demand and leading TV catch-up service in the Middle East &amp;amp; North Africa (MENA) region.\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/"
+        },
+        {
+          "url": "https://shahid.mbc.net/fr",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 503665,
+          "sample": "<!DOCTYPE html><html lang=\"fr\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        },
+        {
+          "url": "https://shahid.mbc.net/fr/allchannels",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 473059,
+          "sample": "<!DOCTYPE html><html lang=\"fr\" dir=\"ltr\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\" data-next-head=\"\"/><meta name=\"version\" content=\"13.7.0\" data-next-head=\"\"/><meta name=\"hreflang\" content=\"ar\" data-next-head=\"\"/><meta property=\"fb:app_id\" content=\"383938108399432\" data-next-head=\"\"/><meta property=\"twitter:card\" content=\"summary\" data-next-head=\"\"/><meta property=\"twitter:site\" content=\"@ShahidVOD\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"MBC Shahid\" data-next-head=\"\"/><meta property=\"og:type\" content=\"website\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://shahid.mbc"
+        }
+      ],
+      "api_ok": [
+        {
+          "url": "https://shahid.mbc.net/api/routingTable",
+          "status": 200,
+          "content_type": "application/json; charset=utf-8",
+          "bytes": 4126,
+          "sample": "{\"size\":273,\"routingTable\":[\"about-us\",\"contact-us\",\"faqs\",\"privacy-policy\",\"terms-and-conditions\",\"maintenance\",\"samsung-tv-app\",\"unsubscribe\",\"unsubscribe-message\",\"home\",\"free\",\"allchannels\",\"movies\",\"series\",\"kids\",\"sports\",\"hub/before-you-go\",\"animereleases\",\"turkishseries\",\"newreleases\",\"trending\",\"western\",\"personalized\",\"everyonewatching\",\"mostwatched\",\"pilot\",\"pan\",\"egypt\",\"restww\",\"multiplesubtitles\",\"khaleejistars\",\"arabichorror\",\"westernhorror\",\"egyptiandrama\",\"egyptiancomedy\",\"7daycatchup\",\"mbcchannels\",\"livestream\",\"mostsearched\",\"agt\",\"anime\",\"testing\",\"weladrizk\",\"exploresaudi\",\"explorekhaliji\",\"exploreegyptian\",\"explorearabic\",\"explorekorean\",\"exploreturkish\",\"explorewestern"
+        }
+      ]
+    },
+    "gobx": {
+      "verdict": "VISIBLE_GUIDE_PROMISING",
+      "visible_score": 59,
+      "pages": [
+        {
+          "url": "https://www.gobx.com/",
+          "status": 403,
+          "final_url": "https://www.gobx.com/",
+          "content_type": "text/html; charset=UTF-8",
+          "bytes": 5659
+        },
+        {
+          "url": "https://www.mbc.net/channels?title=GOBX",
+          "status": 200,
+          "final_url": "https://www.mbc.net/channels?title=GOBX",
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 48763,
+          "title": "Brands",
+          "keyword_hits": 16,
+          "time_tokens": 0,
+          "date_tokens": 0,
+          "json_field_hits": 43,
+          "guide_links": [
+            {
+              "label": "Brands",
+              "url": "https://www.mbc.net/channels"
+            },
+            {
+              "label": "",
+              "url": "https://www.youtube.com/channel/UCy2CIDKYZqqbeJ0NHNcJ9sQ"
+            },
+            {
+              "label": "عربي",
+              "url": "https://www.mbc.net/ar/channels"
+            },
+            {
+              "label": "",
+              "url": "https://www.youtube.com/channel/UCy2CIDKYZqqbeJ0NHNcJ9sQ"
+            }
+          ],
+          "js_assets": [],
+          "api_candidates": [
+            "https://www.googletagmanager.com/gtm.js?id=",
+            "https://www.mbc.net/_next/static/chunks/pages/channels-34221a62819e59e8.js",
+            "https://www.googletagmanager.com/ns.html?id=GTM-KWV3WMJ",
+            "http://www.w3.org/2000/svg",
+            "https://www.mbc.net/channels",
+            "https://www.linkedin.com/company/mbcgroup/",
+            "https://twitter.com/MBCGroup",
+            "https://www.instagram.com/mbcgroup/",
+            "https://www.youtube.com/channel/UCy2CIDKYZqqbeJ0NHNcJ9sQ",
+            "https://www.mbc.net/ar/channels",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/mbc_go_dark_1_d6f99f0d16.svg",
+            "http://gobx.com/ar/",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_1_0bf58055e9.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_2_5ae3f15729.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_3_dae34fae7b.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_4_8d4307615e.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_5_cf153622ec.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_action_33b48024b3.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_max_33d6507438.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_drama_a536283ae5.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_egypt_9f7d59dcbe.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_egypt2_32f59804e4.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_iraq_716ec2b8be.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_bollywood_d2bef5e158.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_persia_c1eed1ad79.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_mood_57a73bef83.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_variety_aaa60f39e8.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_drama_1_8592a27973.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_fm_a8ecfac455.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_panorama_d091f6cb68.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_loud_c4f0aeb379.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/Shahid_1_3_21294d8765.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MBC_Shahid_Brandmark_Artwork_Reversed_RGB_a035e532e9.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MBC_STUDIOS_2_db2a164a2d.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MBC_STUDIOS_1ee7179aa7.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/gobc_548597c341.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MBC_ACADEMY_8c32afa3e9.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MBC_TALENT_2e124f4c0d.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MBC_TALENT_9ee255d5fc.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/mbc_platinum_dark_1_073ed4e308.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/WIZZO_5_2_f7d0768e49.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_WIZZO_d5b1376064.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MMS_1_a31ce6f265.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MMS_bfb52f8b7a.svg",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/DREAM_LOGO_31912b74ae.png",
+            "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/Flashwin_Logo_New_da1011bcc9.svg"
+          ],
+          "sample": "Brands Open main menu Home Overview Brands Investor Relations News Contact CAREERS | | | عربي Brands MBC TV CHANNELS MBC RADIO MBC SHAHID MBC STUDIOS MBC ACADEMY MBC TALENT PLATINUM RECORDS WIZZO MMS (MBC MEDIA SOLUTIONS) GOBX DREAM FLASHWIN A premium satellite TV receiver by MBC GROUP, GOBX provides an extensive selection of free-to-air channels, as well as seamless subscriptions to premium sports packages offered by Shahid. Plus, GOBX is the only satellite TV receiver on the market that has exclusive broadcasting privileges to renowned sporting events. Available for purchase at selected retail outlets across the region, GOBX offers an unparalleled viewing experience, allowing viewers to enjoy their favourite channels in high definition (HD) quality. User profiles can be customised to feature select preferred channels as well as their related listings schedule thanks to GOBX’s comprehensive weekly channel guide. What’s more, GOBX’s Parental Control feature allows users to set their pr"
+        }
+      ],
+      "js_hits": [],
+      "api_probes": [
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/DREAM_LOGO_31912b74ae.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 1427,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\u0000�\u0000\u0000\u0000B\b\u0003\u0000\u0000\u0000�RO \u0000\u0000\u0000]PLTELiq��-��3�d]�`c�~9�nP�^f�_d�mR�pM�hX�b`�^f�jU�hX�oN�qK�kU�hX�ab�^f��(�qK�fZ�kS�|<�b`��0�vD��5#}�X\u0000\u0000\u0000\u0015tRNS\u0000��Q�����\u0019F ��d���{,���U�\u0000\u0000\u0000 pHYs\u0000\u0000.#\u0000\u0000.#\u0001x�?v\u0000\u0000\u0004�IDATx���r�:\u0010E\u00013�f2\b ����4�\u00060&�k?x��J�\"�ڭ\u0016�\u0012�C��] m(�� vM�� ��kIٵj � pk� ܗ ��ԇm�~_s?\u0013����{��p�0,T7\u0001�h�z\u0012=�\u000f��&\u0003cV/�0 \u0017��B#B\b5\u0006���t��sq�=�R \u0019�f\u0013� �0�=1��t�s��m}��l�������s#��\u0013 n�9\u0012R5���6^@�\u0003lj`9 ûg�s\u0003�[t� ��-:�q�� �i \u0016�\u000eU�s�VBp�O\u0019ٍ�>����X�Z �D\u0016�-fN��Y���Ќ\u0013��!%e_:���v��\u000f?ߏ���\"�id�a��s��k\u0002�\\m�E\u0000CN�\u001b�\u001a;6�2���48�\u0010o�ن��\u0001���I\u0007�\u001bN�)t�����p�I��R8����9�\\��xaX/�C#p\u000eI�\u0001\u000e�o\b��aEҺO�͜\u000f�}GXg��� �>\u000e7��B�/qn�97��~ n��\u0015��/��ms����p�%!X\\?\u000e7��J�� ����-\u0000 �����֞4�� *x!�� w�� \u0019\u0018qN.Ŭf\u0017zU��v�4\\/�ӻ ��&ބ�d�c4�\u000f��8 �o7�<�h�:����m"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/Flashwin_Logo_New_da1011bcc9.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 22577,
+          "sample": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 159 148.91\"><defs><style>.cls-1{fill:url(#linear-gradient);}.cls-2,.cls-3{fill:url(#linear-gradient-2);}.cls-3{fill-opacity:0.67;}.cls-4{fill:#fff;}.cls-5{fill:url(#linear-gradient-4);}.cls-6{fill:url(#linear-gradient-5);}.cls-7{fill:url(#linear-gradient-6);}.cls-8{fill:url(#linear-gradient-7);}.cls-9{fill:url(#linear-gradient-8);}.cls-10{fill:url(#linear-gradient-9);}.cls-11{fill:url(#linear-gradient-10);}.cls-12{fill:url(#linear-gradient-11);}.cls-13{fill:url(#linear-gradient-12);}.cls-14{fill:url(#linear-gradient-13);}.cls-15,.cls-16,.cls-17,.cls-18,.cls-19{fill-opacity:0.75;}.cls-15{fill:url(#"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MBC_STUDIOS_2_db2a164a2d.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 2097237,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\b\u0019\u0000\u0000 �\b\u0003\u0000\u0000\u0000��ڴ\u0000\u0000\u0001>PLTE\u0001\u0002\u0002\u0001 \u0011\u0000\b \u0002\u0016%\u0001\u000e\u0018\u0002\u0013!\u0001 \u0014\u0004\u0006\u0004\u0000\u0003\u0005\u0001\u0010 \u0002\u0005\u0007\u0006 \".\u0001\u0006 ' \u001a$ , $2\u0002\u0019*\u0004 / \u0010\u0011 \u001a \u0006 4 +=\u0007\u0015 (6 +B\u0007&; $7\u000f\u0017\u0017 /G\u000e#)\b\u0013\u0018\u0012.C\u000f(/\u000e \"\u00126G\u0012(;\u0012&5 4O\b\u001b*\u0013;N\u0016.> 5F\u0011.7\u00113? ;N\u0016BV :X\u0014/M\u0018 %?T\u0012B`\u0011\u0011\u000e\u00187W ')!GZ Jc+Ma4Wh\"Tk/GU#27)>G\u0012Jl=cq,]s9O^DkxHr�,f\u001bYzCZhT~�]��Rcw-o�������������v��k����pt�������\\s}?|�DWx���O��_i���Ɯ��r��Z��=����ӷ��n~�i�а�ݡ�ݒ��!�����\u0000\u0000\u0000 pHYs\u0000\u0000 \u0013\u0000\u0000 \u0013\u0001\u0000��\u0018\u0000\u0000 \u0000IDATx��mo�H�%(�T�M�R� c� ��\u0000�l�Ʀr�j\u0018n�\"%,����_���q#HJ�,g��`��l�/A�i���sVι����w}�:��m[�� �qn?9�h\u0017�\u0004_�}�O��w]��\u0019��[����� ND��w�� �\u0017ut��S�7�� ��}��Q���]��<p.m������}�9\u0016��ǖeY�7�N�S;|8h�u�=\u000f��3�v�n�'G�)0|{�����ģv[��q.�:>j:���溁�z��o��|\b{��'O\u0017= {sQ:$�d\u0019�]\u0014E�P�\u0005��� 3ʲ��� ��wE �\u0015�\u0006O*�\u0007:\bg�\u0019��\u0001&�&v�\u00040��x��IO||ĭ��ţ����e�\u0012�Ƞ�8 xC���T\u0015 "
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MBC_Shahid_Brandmark_Artwork_Reversed_RGB_a035e532e9.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 13676,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\b�\u0000\u0000\u0002R\b\u0003\u0000\u0000\u0000�2�/\u0000\u0000\u0000$PLTELiq������������N��\u0000�z\u0000�����\u0000̙\u0000�X\u0000���f��\u0000\u0000\u0000\btRNS\u0000>�u�)����_\u0001\u0000\u0000\u0000 pHYs\u0000\u0000 \u0013\u0000\u0000 \u0013\u0001\u0000��\u0018\u0000\u0000 \u0000IDATx����Z#�\u0012�Q�Pv\u0019��}��f�@ \u0001K������\u0018eI�ʌ\u0001��B�*\u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012 \u0000\u0000��\u0004\u0003\u0000\u0000�!�\u0000\u0000�zH0\u0000\u0000� \u0012"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MBC_TALENT_2e124f4c0d.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 1511521,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\b\u0019\u0000\u0000 �\b\u0003\u0000\u0000\u0000��ڴ\u0000\u0000\u0000KPLTE\u0005\u0005\u0005behKMO[]_PQSTUW^`c557/01::<WY[>?AGHJCDF((*gim\u0011\u0010\u0010 \u001b\u001bnptm]HYL;��τqY��{����r\u001a�\u0000\u0000\u0000 pHYs\u0000\u0000 \u0013\u0000\u0000 \u0013\u0001\u0000��\u0018\u0000\u0000 \u0000IDATx����r�δ��� �c|�7��D �I�*۳��Zk�%�\u0004��� �?�����?�||<>> ���_�?:��շ\b����B����K������ �3���Q�~�潤�\u0007? ���|���}گ�\u0017\u0013}_�S�q=\u0011���|nZ�d|}�?x\u0018���q\u000e*> ��. ����\"�C\u0012��\u0015�qn����o� :��m�����}���j\"b�o�L\u001bq\u0015�Eᯬyh�\u000e��uZi\u001aA�\u0003-\u0015���T �\u0015UI�Ó*ׅw��2\u0000� Rϖ�Wn��u��VB�\u0014��k�Ӻ��'���������-�-�b ��e�w��\u00185�x�-2�\u0005�t�˂1v� Z��Cw+��^���d��}\\+�H��C\u0014w���D6��CG@?����VώG٠W�^\u0011�,��[�-d�z0����\u0013E����b\u0011 �|4�x< O \u0019\u0018�\b4_����\u0011>�j��\u001ata\u000f�u3�M(���z�鮃 x�߷z\u000f�\u0001I�\u0010��\u00175���h��\u0006���o��@�}Ӿ��{�t ����mXi�<�ԍ: 66\u0015�f�\u0019��R��w�՘?0�Pp���\u001aLNyvZ\u000e�\u0005e\u001aҷ�}�,�\u0002�W�=\u0002\u0007r$� Ad@Ԁ��\u000eLXu�\u001a)D��V\u0001CO#��+ ��W�\u0002#4����\u0001ܩ̣B R\u001b,\u0004 :�z"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/MMS_1_a31ce6f265.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 1834416,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\b\u0019\u0000\u0000 �\b\u0003\u0000\u0000\u0000��ڴ\u0000\u0000\u0003\u0000PLTE���\u0015\u0007W! �/\u000f� \b�\u0018\u0005�\u001a\bv���\u0017\u0005q\u001b\u0006�\u001b\b|\u0011\u00071\u0016\u0005v\u0011\b)\u0014\b;\u0019 [ � �\u0019\u0005�\u0014 5 \b�2\u0011�\u0017 B\u0019 b\" �\u0013\u0007Q\u0019 Q\u0017\u0005| f \u0010` \u000eq\u0015\u0005i'\u0012v4\u0012�\u001b\u0007�\b\u0005 \u001a m \u0010V4\u0013�- �/\u000e�\u0015 -\u0014\u0006_,\u000e�;\u001b�%\u0011p.\u0017`\u0015\bI \b�:\u001a� �4\u0013�$ �&\u0012^ \u000ew> �&\u0011g$ �/\u0018u \u0011k:\u0017� �\u000f\u0007#> � }-\u0014�(\u000e�\" �5\u0015�.\u0017k\u001b J#\u000e�8\u0018�(\u0011�LJ�.\u0015�'\u000f�:\u001a�'\u001a�6\u001a�*\u0011����9\u001ab#\u0018xC!�2\u0014�HF���� \u0018[/\u0017�JH�!\u0018eA �0\u0016�NK�\"\u0011����K+�$\u0012���2\u0018�A#����&\u001b�FD�I)�)\u001b����#\u001ao��� 4�ǳjkq1\u0018�E$�( ����C\"�: m���ghn8 z \u0011]]cP.�: �I&����aagP-�ddj���0$�ZZ_H qvy�%\u001b�S0�:#�[7����:\u001a�6\u0018�rtzUUZmou,\u000e=���z}����G%������U2�PN����DB�H\u001b^PNS'\u0010L���3+�I(����/#�> �F%����H\"�\u001a ���;\u0014L������IEI��í�����M(�������[!g����������ֹ��ш�� \u0017 a8�e=ρ�����=5:B?�[ O�ڭTJ����s*c<9�.&)H\u0013;�������`&}�O�y3�r�;9��џi1��a��@}�9g�|�fP�Q���ҌB���^�Y��ǎ�m�z>������"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/Shahid_1_3_21294d8765.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 1397753,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\b\u0019\u0000\u0000 �\b\u0003\u0000\u0000\u0000��ڴ\u0000\u0000\u0003\u0000PLTE\u0018\u001b#\u0018\u001a! \u0011 \u0006\u0005\u000e\u000f\u0014\u0011\u0012\u0018\u0011 \u0000\u0000\u0000\u000f \u0007\u0015 \u0015\u0018 \u0013\u0015 \u000e\u001a\u0010\u000f \u0017 \u0007\b ���\u0014 \b&$\u0011 \u0012\u0010 \u0016\u001b'('+(\u0013���\u0019\u0019\u0019%\u0016\u001b'\u0015\u0011 \u001a ���\u0019 +\u0015\u00189:)@A.9#\u0017023\u0005\u0005\u00061 \u0014)(*$!%4\u0016\u001aA(\u001bX W;'`?*K. 9\u0013\u001433$./-jD/%( A\u0013\u0014qI4O5%/\u0012\u0011357n\u000e\u000eYNCMA %J\u0012\u0013a5!f\u000e W- !\"\u0019v\u000f\u000fcF0^ HH3k=&,\u001b!VI%~uH-).89;70\u0017^H?�[8K!\u0019=\u001a �~Q��Z*-1lT2�b=�\u000e\u0010tlA�X2uW+A6\u001bR w`63,2=<@jO&���]U0��c\"%+��t�^3fcg:05UA;���iNB���T\u0013\u0015��j���BAD_]bYX[HFI�J,�l6���NLPzy{�O+�Aljmsqt��RtUB��wf_9RRW��Ѫj8�����ɢ�r�����p���������O43�\u0011\u00196\"(|_H�jF�����ඳ�����\u0011\u0018���� \u0012������d\u0018 }jS��npYU������6*�`Nύq�tZ⤁䴗��l<?N꺬�e]�nZ����qg���w[�\u001b��ΰfd�ZRݖv�\"&鬌������H#0\\OR�\u001b&�NC��Ġ��ѫ��NH�Ġ��_����A>���smط�Ϟ�o)$�?;����43��Ĕ~ẑ_����\u0019oe88�-4�u�uT��ͪ�� )���D���\u0016\\DHX�3��HI�\u0005\u0019ݼ��(.�_Oa CR���[�u{�`h�%��㚙����\u0011I}\u00129'"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/WIZZO_5_2_f7d0768e49.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 1337015,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\b\u0019\u0000\u0000 �\b\u0003\u0000\u0000\u0000��ڴ\u0000\u0000\u0001�PLTE \u0016\u0015 \u0003\u0003k]X!\"$ \u0018\u0017\u000f\u001b\u001b\u0004\u0003\u0003\b\u0012\u0010 \u0014\u0012sgc\u0012 79=fWPna]xkk|��+-0:<@vih()+%%'fXThZVte`\u0012\u0006\u0004\u0016\"\"\u001a\u001b \u001a%&.14n_Xqc_57:z��\u0010\u000f\u000f <?C248odbv|�ry�vhccUN\u0018\u000e )*-#\u001b\u0015\u0016\u0017( \u0016���!\u0015\u000fAEJTpwyop���FIOl[Qmv~[ry?@G5<A\u0017\u0015\u000fcSI1)!KOTcv}^OJOls \u001a\u0016ytv$-0kqwu��rbZOUZ9CGdls4341.*BOTTY_EU[Hgo+4:@ci87->JNX^dWHB=[a 196TZ \u0006\u0006_OC 205!\\cjchkYko=;6\u0018*/Qei0MQJ^c}z)DHi��#<? \u0015'IC< \u0010 aa]\"+\u0010qb.Dq�L|V��{u8PA\"cP'kqjgoKyxZYUS/\u000e\u000eE, W\u0016\u0011S]2s+(F\u0012 .T|7R$f \u0019b,: <\\:z6�l��\u0000\u0000\u0000 pHYs\u0000\u0000!8\u0000\u0000!8\u0001E�1`\u0000\u0000 \u0000IDATx��Mo�Ȳ4,�� A�@ ���\u001aw�w\u0017\u0002�:+ m<\u0006���\u000f fp���\u0005�*3#2���n6��b�Ǚ3cwS�bU02\"��~\u001b{���������:��x|||zzzz~�1�?���������_�*�{ �t�~{-㫌��/6>�|��� `�'|����~��k��v=߿�˫\u0017�W���(?Џ����{|,?l���)xxxx�c��,��,3 ����~�~i�V +^��\u0013�\u000f�?^��� �~�%*��\u001b\u0018m�a���v]y"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/gobc_548597c341.png",
+          "status": 200,
+          "content_type": "image/png",
+          "bytes": 1221881,
+          "sample": "�PNG \u001a \u0000\u0000\u0000 IHDR\u0000\u0000\b\u0019\u0000\u0000 �\b\u0003\u0000\u0000\u0000��ڴ\u0000\u0000\u0003\u0000PLTE\u0001\u0000 \u0003\u0000\u001b\u000e\u0005 \u00014\u0003\u0000 \u0002\u0000\u0017\u0001\u0000\u000f\u0001\u0000 \u0001\u0000\u0005 \u0002\u0018\u0012\b(\b\u0001\u0012 \u0010\u0004\u0000\u0010 \u0000.\u0003\u0000%\u0004\u0000/\b \u0015\u0002Z\u0001\u0000\u0013\u0012\u0014\u0018 \u0001' \u00019\u0004\u0000)\u0010\u0011\u0012\u0016 / \u0004\u001b\u0019 \u0010\u0001E\u0010\b\" \u0001=\u0017\u000e5\u0018\u0018\u0019\b\u0001! \"*/7\u0012\u0002S(+1\u001b\u0004k\u0019\u0003b #'\u0010\u0003K\u0012\u0016-\u0017 @ \u0003C\u001a#K\u0016\u0013H\u0017\u0010=34:'.C 'U\u0019 '#'-\u0013\u0018#\u000e / \u0018*&%PU_KP^S[e\u000e <HJX\u000e\u0012\"\u0012\u00176\u0016\u0016S2:C!,^*2KJRg )@.6R?>A '6W_p���EGM\u0004\u0002 ! \u001a\u001a .>HV \bt\u0017 7fq�(5f_k�\u0016\u001a^kx����'7q&T�o~�8CJ``k`guil|4?e\u0017 s4=WNVo\u001a#�H��K��(:�EQWAJa\u001b(�ldp[We3@q}��'b�\u001a gy��=Ip\\v�b~�,=xdp5., !� ,�UOQCX�!-m\u00114�sqrCt�8G�tq\"3�n��m�� I�ER}W��V_~a��~{}S��(q�^ZX[m�������G_�'<�jb`5L�Da�#1}y�����c��g�� i���5I�nii*>�?O�lu�JZ�QF@Nl�St�@=P,��Xx����8T�s��2MЇ��������E87Vl�%H�qt1��>d�r��u�����Q`�Uh����S��#=�Gd����d��F��^wǒ�����������j��=��V�����q�����zw�r}�������e}�o��\\;,}�܃�姼� \u0015�E3&���j�� \u0010����>M�H��������]�"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/mbc_go_dark_1_d6f99f0d16.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 6085,
+          "sample": "<svg width=\"149\" height=\"59\" viewBox=\"0 0 149 59\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M25.1386 8.47998C25.1386 10.56 23.4486 12.25 21.3686 12.25C19.2886 12.25 17.5986 10.56 17.5986 8.47998C17.5986 6.39998 19.2886 4.70996 21.3686 4.70996C23.4486 4.70996 25.1386 6.39998 25.1386 8.47998Z\" fill=\"white\"/> <path d=\"M42.7587 37.0005C42.7587 34.9205 41.0687 33.2305 38.9887 33.2305H31.4487C29.3987 33.2305 27.6787 34.9405 27.6787 37.0005C27.6787 39.0605 29.3887 40.7705 31.4487 40.7705H34.6987C34.1287 42.8005 33.0987 44.6405 31.7387 46.1805C34.6787 46.3405 36.9587 48.9705 36.7087 51.8905C40.4487 48.0405 42.7587 42.7905 42.7587 37.0005Z\" fill=\"white\"/> <path d=\"M113.119 53.94C112.76"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/mbc_platinum_dark_1_073ed4e308.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 7689,
+          "sample": "<svg width=\"140\" height=\"42\" viewBox=\"0 0 140 42\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M21 0C9.41379 0 0 9.41379 0 21C0 32.5862 9.41379 42 21 42C32.5862 42 42 32.5862 42 21C42 9.41379 32.6288 0 21 0ZM21 40.9351C10.0101 40.9351 1.06491 31.9899 1.06491 21C1.06491 10.0101 10.0101 1.06491 21 1.06491C31.9899 1.06491 40.9351 10.0101 40.9351 21C40.9351 31.9899 31.9899 40.9351 21 40.9351Z\" fill=\"white\"/> <path d=\"M23.9391 21.5535C31.5213 21.9795 31.9047 15.4623 31.9047 15.4623C31.9472 15.2919 31.9472 15.1215 31.9472 14.9937C32.075 13.5028 31.6065 11.7564 31.6065 11.7564C31.4787 11.16 31.1805 10.6063 30.7971 10.0525C30.4564 9.54136 30.0304 9.03021 29.4767 8.51905L29.3915 8.47646L2"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MBC_ACADEMY_8c32afa3e9.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 10307,
+          "sample": "<svg width=\"156\" height=\"71\" viewBox=\"0 0 156 71\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M19.8902 11.5C19.6002 11.35 19.3402 11.06 19.6402 10.66C19.8402 10.38 20.1501 10.44 20.1501 10.44H28.0002C28.0002 10.44 29.5301 10.52 30.4101 11.1C31.2901 11.68 31.7601 12.34 32.0201 13.11C32.2701 13.88 32.2001 15.08 32.2001 15.08L31.3301 25.56L30.0501 39.65C30.0501 39.65 29.9101 41.07 30.4501 42.02C30.9201 42.86 31.8001 43.33 32.4201 43.55C33.0401 43.77 34.6801 44.1 34.6801 44.1C34.6801 44.1 35.1202 44.25 35.1202 44.54C35.1202 44.83 35.0502 44.98 34.7602 45.16C34.4702 45.34 34.1801 45.34 34.1801 45.34H25.9601C25.9601 45.34 24.6302 45.39 23.3702 44.17C22.2702 43.11 22.2701 41.47 22.2701"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MBC_STUDIOS_1ee7179aa7.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 6326,
+          "sample": "<svg width=\"155\" height=\"70\" viewBox=\"0 0 155 70\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M49.04 60.66H56.0601V62.17H53.3701V69.04H51.7401V62.17H49.05V60.66H49.04ZM60.6101 60.66V65.62C60.6101 67.98 62.1501 69.22 64.1801 69.22C66.2101 69.22 67.8101 67.89 67.8101 65.62V60.66H66.1801V65.62C66.1801 66.92 65.3001 67.59 64.2101 67.59C63.1201 67.59 62.2401 66.92 62.2401 65.59V60.66H60.6101ZM80.8501 64.87C80.8501 67.38 78.9401 69.04 76.2201 69.04H73.38V60.66H76.16C78.91 60.66 80.8501 62.2 80.8501 64.86V64.87ZM79.1001 64.84C79.1001 63.06 77.95 62.21 76.17 62.21H75.02V67.5H76.17C77.95 67.5 79.1001 66.47 79.1001 64.84ZM85.91 69.04H87.54V60.66H85.91V69.04ZM101.31 64.87C101.31 67.35 99.3"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MBC_TALENT_9ee255d5fc.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 7398,
+          "sample": "<svg width=\"156\" height=\"71\" viewBox=\"0 0 156 71\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M19.9 11.5C19.61 11.35 19.35 11.06 19.65 10.66C19.85 10.38 20.16 10.44 20.16 10.44H28.0101C28.0101 10.44 29.54 10.52 30.42 11.1C31.3 11.68 31.77 12.34 32.03 13.11C32.28 13.88 32.21 15.08 32.21 15.08L31.34 25.56L30.06 39.65C30.06 39.65 29.92 41.07 30.46 42.02C30.93 42.86 31.81 43.33 32.43 43.55C33.05 43.77 34.69 44.1 34.69 44.1C34.69 44.1 35.1301 44.25 35.1301 44.54C35.1301 44.83 35.06 44.98 34.77 45.16C34.48 45.34 34.19 45.34 34.19 45.34H25.97C25.97 45.34 24.6401 45.39 23.3801 44.17C22.2801 43.11 22.28 41.47 22.28 41.47L22.32 39.86L24.55 16.17C24.55 16.17 24.56 14.77 24.22 14.05C23.82 1"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_MMS_bfb52f8b7a.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 12100,
+          "sample": "<svg width=\"167\" height=\"55\" viewBox=\"0 0 167 55\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M36.8698 3.20044C36.7798 2.97044 36.6598 2.76055 36.5298 2.56055L31.0498 8.04053L40.3497 30.9205C40.4597 31.1905 40.5998 31.4405 40.7598 31.6705C42.5798 29.8505 44.3997 28.0304 46.2197 26.2104L36.8698 3.21045V3.20044Z\" fill=\"white\"/> <path d=\"M22.9695 33.1403C20.5895 32.8803 19.1196 30.4103 20.0296 28.2003L30.1895 3.21026C30.7995 1.72026 32.3196 0.810281 33.9296 0.980281C36.3096 1.24028 37.7796 3.71034 36.8696 5.92034L26.7095 30.9103C26.0995 32.4003 24.5795 33.3103 22.9695 33.1403Z\" fill=\"#676EFF\"/> <path d=\"M67.3295 28.2004L57.1696 3.21045C57.1396 3.13045 57.0995 3.06047 57.0695 2.9804"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_WIZZO_d5b1376064.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 1876,
+          "sample": "<svg width=\"116\" height=\"70\" viewBox=\"0 0 116 70\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M20.2305 0H27.3206V17.09L20.2305 7.92999V0Z\" fill=\"#7BCCCD\"/> <path d=\"M7.08997 0H0V17.09L7.08997 7.95996V0Z\" fill=\"#7BCCCD\"/> <path d=\"M11.39 7.67969L0.130005 22.1996L0 22.3597V27.3196H5.31006L13.66 16.3697L22 27.3196H27.3201V22.3597L15.95 7.67969H11.39Z\" fill=\"#7BCCCD\"/> <path d=\"M38.6505 0H31.5605V27.3199H38.6505V0Z\" fill=\"white\"/> <path d=\"M42.0303 7.08997H53.6603L42.1403 22.46L42.0303 22.62V27.3199H64.2903V20.23H52.6603L64.1703 4.85999L64.2903 4.70996V0H42.0303V7.08997Z\" fill=\"white\"/> <path d=\"M66.6797 7.08997H78.3097L66.7997 22.46L66.6797 22.62V27.3199H88.9397V20.23H77.3097L88.81"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_1_0bf58055e9.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 3861,
+          "sample": "<svg width=\"137\" height=\"51\" viewBox=\"0 0 137 51\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M57.3438 1.31998C56.0138 0.989977 56.4238 0.03 57.2338 0H67.5138C68.4938 0 70.0838 0.149982 71.3338 1.69998C72.5138 3.15998 72.2938 5.44 72.2938 5.44L71.3538 14.67C71.3538 14.67 73.2738 13.51 75.1038 13.01C77.1038 12.46 78.8138 12.21 82.0838 12.46C85.3738 12.72 89.7738 14.23 92.7538 17.62C95.6738 20.93 96.9338 26.42 96.6438 30.5C96.2338 36.46 94.6438 39.62 93.0538 42.14C91.2138 45.08 85.4638 50.71 76.5038 50.71C68.9838 50.71 65.2438 47.99 63.2438 46.2C60.8738 44.08 60.0438 41.5 60.0438 41.5C59.6738 40.05 60.1638 39.9 60.8538 40.25C61.3238 40.74 64.3338 44.18 70.5838 45.3C74.4438 45.99 8"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_2_5ae3f15729.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 12609,
+          "sample": "<svg width=\"73\" height=\"100\" viewBox=\"0 0 73 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M5.24707 36.2678C5.24707 19.112 19.154 5.20508 36.3195 5.20508C53.485 5.20508 67.3823 19.1217 67.3823 36.2678C67.3823 53.4138 53.4753 67.3402 36.3195 67.3402C19.1637 67.3402 5.24707 53.4332 5.24707 36.2678Z\" fill=\"#0069A5\"/> <path d=\"M36.2899 0C16.2441 0 0 16.2538 0 36.2899C0 56.326 16.2441 72.5895 36.2899 72.5895C56.3356 72.5895 72.5798 56.3454 72.5798 36.2899C72.5798 16.2344 56.3356 0 36.2899 0ZM36.2899 64.1911C20.8797 64.1911 8.38868 51.7 8.38868 36.2899C8.38868 20.8798 20.8797 8.38877 36.2899 8.38877C51.7 8.38877 64.1813 20.8798 64.1813 36.2899C64.1813 51.7 51.6903 64.1911 36.2899 6"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_3_dae34fae7b.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 11521,
+          "sample": "<svg width=\"83\" height=\"83\" viewBox=\"0 0 83 83\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M0 13.6008C0 11.9008 0.480046 10.4608 1.86005 9.9208L37.01 0.440785C37.01 0.440785 38.39 0.0107825 39.3 0.000782536C40.2001 -0.0192175 41.59 0.350789 41.59 0.350789L79.85 9.88079C80.46 10.0608 82.89 10.5208 82.89 13.6008V67.5908C82.89 70.3908 81.76 70.6508 81.1 70.8508L41.59 81.6608C41.59 81.6608 40.21 82.0608 39.3 82.0508C38.39 82.0508 37.01 81.6208 37.01 81.6208L1.57001 68.9708C0.960007 68.7608 0 68.0808 0 66.6008V13.6008Z\" fill=\"#8FC856\"/> <mask id=\"mask0_77_2339\" style=\"mask-type:luminance\" maskUnits=\"userSpaceOnUse\" x=\"0\" y=\"0\" width=\"83\" height=\"83\"> <path d=\"M0 13.6008C0 11.9008 0."
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_4_8d4307615e.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 7017,
+          "sample": "<svg width=\"72\" height=\"85\" viewBox=\"0 0 72 85\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M11.62 70.5596C11.5 70.4996 11.4 70.3796 11.52 70.2096C11.6 70.0996 11.73 70.1196 11.73 70.1196H14.95C14.95 70.1196 15.58 70.1496 15.94 70.3896C16.3 70.6296 16.49 70.8996 16.6 71.2096C16.71 71.5196 16.68 72.0196 16.68 72.0196L16.32 76.3196L15.8 82.0996C15.8 82.0996 15.74 82.6796 15.97 83.0696C16.16 83.4196 16.52 83.6096 16.78 83.6996C17.04 83.7896 17.71 83.9196 17.71 83.9196C17.71 83.9196 17.89 83.9796 17.89 84.0996C17.89 84.2196 17.86 84.2796 17.74 84.3596C17.62 84.4296 17.5 84.4296 17.5 84.4296H14.13C14.13 84.4296 13.59 84.4496 13.07 83.9496C12.62 83.5096 12.62 82.8396 12.62 82.8396L12."
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_5_cf153622ec.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 6640,
+          "sample": "<svg width=\"51\" height=\"82\" viewBox=\"0 0 51 82\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M0 41.85L6.47003 6.87003L44.45 0L38.86 12.39L13.61 15.21L7.66998 31.54C7.66998 31.54 11.31 30.06 19.13 29.94C26.95 29.81 34.22 32.25 38.81 35.58C43.39 38.91 47.17 43.65 48.92 50.56C50.67 57.48 50.4 59.49 50.4 59.49H36.79C36.79 59.49 36.71 56.53 35.45 52.29C33.96 47.25 29.32 42.43 20.98 40.92C12.98 39.47 3.10004 41.76 3.10004 41.76L0 41.86V41.85Z\" fill=\"#21BBE9\"/> <path d=\"M1.45979 67.8101C1.34979 67.7501 1.23975 67.6401 1.35975 67.4801C1.43975 67.3701 1.55977 67.3901 1.55977 67.3901H4.64979C4.64979 67.3901 5.2498 67.4201 5.5998 67.6501C5.9398 67.8801 6.12981 68.1401 6.22981 68.4401C6.3298"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_action_33b48024b3.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 2823,
+          "sample": "<svg width=\"157\" height=\"45\" viewBox=\"0 0 157 45\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M131.977 17.8826C130.723 21.0089 129.5 24.1427 128.284 27.269L124.592 36.6554H103.825L111.203 17.875H131.969L131.977 17.8826ZM122.311 21.0919H118.316C118.097 21.613 113.529 33.3706 113.529 33.3706H117.493L122.311 21.0919Z\" fill=\"white\"/> <path d=\"M131.977 17.8826C130.723 21.0089 129.5 24.1427 128.284 27.269L124.592 36.6554H103.825L111.203 17.875H131.969L131.977 17.8826ZM122.311 21.0919H118.316C118.097 21.613 113.529 33.3706 113.529 33.3706H117.493L122.311 21.0919Z\" fill=\"white\"/> <path d=\"M79.7581 17.8818L77.1302 21.0912C74.9704 21.0912 68.6121 21.1063 68.6121 21.1063L63.9453 33.3699H72"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_bollywood_d2bef5e158.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 84655,
+          "sample": "<svg width=\"157\" height=\"58\" viewBox=\"0 0 157 58\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M17.3648 32.2195C20.9506 26.6492 29.0505 29.4855 28.7609 35.3965C28.582 38.9397 26.0354 41.6992 21.3083 41.6992C17.1178 41.6992 13.3532 38.3179 14.0261 31.964C14.4604 27.8246 17.2285 22.578 18.3443 18.5749C20.4736 10.8924 19.1279 5.23691 15.6784 2.43473C11.3942 -1.0403 5.01483 -0.571863 1.05431 2.42621C3.58393 2.16217 8.57503 3.72082 6.42016 12.1018C4.29085 20.355 0.321834 26.2745 0.0237301 33.6164C-0.529891 47.0821 8.67723 55.0458 19.9115 55.0458C31.6993 55.0458 39.5182 47.508 40.6765 38.0198C41.3749 32.2621 38.7687 26.0104 33.5476 23.549C28.7268 21.2749 18.1654 21.3856 17.3648 32.2195"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_drama_1_8592a27973.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 4349,
+          "sample": "<svg width=\"130\" height=\"76\" viewBox=\"0 0 130 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M109.1 44.5098H0.00976562V75.1898H109.1V44.5098Z\" fill=\"#65318E\"/> <path d=\"M0.0100098 41.0502V13.7803H5.14001L17.98 30.2703L30.56 13.7803H35.63V41.0502H29.76V24.1902C29.76 23.5202 29.83 22.5503 29.97 21.2803C29.3 22.6503 28.77 23.6102 28.38 24.1302L18.13 37.7703H16.86L6.60999 24.0803C5.86999 23.0903 5.31997 22.1603 4.96997 21.2803C5.07997 22.3703 5.13 23.3402 5.13 24.1902V41.0502H0H0.0100098Z\" fill=\"white\"/> <path d=\"M42.8701 41.0502V13.7803H66.2301C70.3201 13.7803 72.3601 15.5403 72.3601 19.0703V22.4003C72.3601 25.0803 70.7901 26.6102 67.6601 27.0002C70.9401 27.4202 72.5701 29.1702 72"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_drama_a536283ae5.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 7068,
+          "sample": "<svg width=\"118\" height=\"53\" viewBox=\"0 0 118 53\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M117.8 3.62C117.68 1.61 116.02 0.02 113.99 0H94.46V0.0200195C106.88 0.41002 116.02 7.78003 117.57 24.34C117.71 25.76 117.79 27.27 117.8 28.85V3.62Z\" fill=\"#65318E\"/> <path d=\"M67.4001 0H59.5801V36.44H67.4001V0Z\" fill=\"white\"/> <path d=\"M30.49 0H23.31V28.89H7.82001C7.82001 28.89 7.82001 28.85 7.82001 28.82V0H2.85001C1.28001 0 0 1.28004 0 2.85004L0.0499878 32.45C0.0499878 32.45 0.0700073 32.54 0.0700073 32.58C0.0700073 34.72 1.79999 36.44 3.92999 36.44H53.82V28.89C53.62 9.10001 43.99 0.42 30.48 0H30.49ZM31.15 28.89V7.59003C39.49 8.47003 46.1 18.39 46.1 28.89H31.15Z\" fill=\"white\"/> <path d"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_egypt2_32f59804e4.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 9167,
+          "sample": "<svg width=\"74\" height=\"104\" viewBox=\"0 0 74 104\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M73.74 0H0V70.88H73.74V0Z\" fill=\"#7D1318\"/> <path d=\"M71.3402 51.7196C70.6202 51.8796 70.1402 52.2496 68.5502 52.4196C66.9602 52.5996 65.4702 52.0796 65.1602 52.2496C64.7402 52.4796 63.6002 55.2096 63.8702 55.2896C64.1402 55.3696 65.0902 55.3496 64.8602 55.6096C64.2702 56.3096 63.8402 57.1196 58.0102 61.2296C52.1802 65.3396 48.2202 62.7296 47.3602 60.5596C46.5002 58.3896 46.8302 56.4096 47.1802 54.4897C48.2802 54.4296 49.4002 54.4296 51.7202 53.5696C54.0302 52.6996 55.7402 50.9996 56.7102 49.7397C57.6702 48.4797 58.7102 45.9596 58.9802 44.9696C59.2502 43.9796 58.9302 42.7496 58.1302 42."
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_egypt_9f7d59dcbe.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 8329,
+          "sample": "<svg width=\"96\" height=\"98\" viewBox=\"0 0 96 98\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M13.3898 76.0904C13.2098 76.0004 13.0598 75.8203 13.2298 75.5803C13.3498 75.4103 13.5398 75.4504 13.5398 75.4504H18.3098C18.3098 75.4504 19.2398 75.4904 19.7698 75.8504C20.2998 76.2104 20.5898 76.6104 20.7498 77.0704C20.9098 77.5404 20.8598 78.2703 20.8598 78.2703L20.3298 84.6404L19.5498 93.2103C19.5498 93.2103 19.4698 94.0704 19.7898 94.6504C20.0798 95.1604 20.6098 95.4503 20.9898 95.5803C21.3698 95.7103 22.3698 95.9104 22.3698 95.9104C22.3698 95.9104 22.6398 96.0004 22.6398 96.1704C22.6398 96.3404 22.5998 96.4404 22.4198 96.5504C22.2398 96.6604 22"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_fm_a8ecfac455.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 7935,
+          "sample": "<svg width=\"120\" height=\"68\" viewBox=\"0 0 120 68\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M91.2004 6.45007C90.4204 6.11007 89.5704 6.73008 89.6504 7.58008L90.5704 16.86C90.6504 17.67 89.5604 18.0201 89.1604 17.3101C83.3604 6.98006 72.3104 0 59.6204 0C46.9304 0 35.8804 6.98006 30.0804 17.3101C29.6804 18.0201 28.5904 17.67 28.6704 16.86L29.5904 7.57007C29.6704 6.73007 28.8204 6.10006 28.0404 6.44006C17.9904 10.8601 10.9004 21.4601 10.9004 33.8501C10.9004 46.2401 17.9804 56.84 28.0404 61.26C28.8204 61.6 29.6704 60.98 29.5904 60.13L28.6704 50.8501C28.5904 50.0401 29.6804 49.69 30.0804 50.4C35.8804 60.73 46.9304 67.7101 59.6204 67.7101C72.3104 67.7101 83.3604 60.73 89.1604 50.4C8"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_iraq_716ec2b8be.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 8560,
+          "sample": "<svg width=\"129\" height=\"72\" viewBox=\"0 0 129 72\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M118.42 0.910156H121.52L128.5 9.57016V52.2301H125.53L118.42 42.6601V0.910156Z\" fill=\"#C0262D\"/> <path d=\"M121.51 0.910156V9.62015L128.5 9.57016L121.51 0.910156Z\" fill=\"#EC1C24\"/> <path d=\"M125.53 52.2302L125.55 42.6602H118.42L125.53 52.2302Z\" fill=\"#EC1C24\"/> <path d=\"M63.6602 42.6601H103.22V0.910156H106.46L113.37 9.63016V42.6601L106.58 52.3001H74.5901V62.4001L66.4402 71.5602H63.9202L63.6602 42.6601Z\" fill=\"#C0262D\"/> <path d=\"M106.46 0.910156V9.62015L113.37 9.63016L106.46 0.910156Z\" fill=\"#EC1C24\"/> <path d=\"M113.37 42.6602L106.58 52.3002H74.5901L63.6602 42.6602H113.37Z\" fill=\"#EC1C24\""
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_loud_c4f0aeb379.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 3125,
+          "sample": "<svg width=\"97\" height=\"80\" viewBox=\"0 0 97 80\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M96.9901 71.6104H42.1001V75.8503H96.9901V71.6104Z\" fill=\"#01B3B4\"/> <path d=\"M0 42.3301H6.72V53.3401H18.28L18.21 58.5901H0V42.3301Z\" fill=\"#01B3B4\"/> <path d=\"M34.7201 52.4602C34.2201 53.0302 33.2601 53.5403 32.0301 53.5403C30.8001 53.5403 29.8401 53.0302 29.3401 52.4602C28.8001 51.8402 28.4401 51.1802 28.3601 48.1202V42.9303H28.3501C28.4101 39.4303 28.7801 38.6903 29.3401 38.0403C29.8401 37.4703 30.8001 37.0002 32.0301 37.0002C33.2601 37.0002 34.2201 37.4703 34.7201 38.0403C35.2801 38.6903 35.6501 39.4203 35.7101 42.9303H35.7001V48.1202C35.6201 51.1702 35.2601 51.8402 34.7201 52.4602ZM21"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_max_33d6507438.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 4571,
+          "sample": "<svg width=\"126\" height=\"66\" viewBox=\"0 0 126 66\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M125.71 0H99.25L91.31 7.93997L83.37 0H46.32L35.73 10.59L25.14 0H0V42.34H23.82V30.43L35.73 42.34L67.48 10.59L99.23 42.34H125.69L104.52 21.17L125.69 0H125.71Z\" fill=\"white\"/> <path d=\"M52.9404 42.3401H82.0504L67.4904 27.79L52.9404 42.3401Z\" fill=\"#E07A33\"/> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M62.2404 52.6996C61.8804 52.6096 61.9904 52.3496 62.2104 52.3496C62.3104 52.3496 64.9604 52.3496 64.9604 52.3496C65.2204 52.3496 65.6503 52.3896 65.9803 52.7996C66.3003 53.1896 66.2303 53.7996 66.2303 53.7996L65.9803 56.2796C65.9803 56.2796 66.4903 55.9696 66.9803 55.8396C67.5203 55.6896"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_mood_57a73bef83.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 6573,
+          "sample": "<svg width=\"147\" height=\"78\" viewBox=\"0 0 147 78\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M84.0797 47.23H62.4297C55.3797 47.23 49.6396 41.4901 49.6396 34.4401V12.79C49.6396 5.74004 55.3797 0 62.4297 0H84.0797C91.1297 0 96.8697 5.74004 96.8697 12.79V34.4401C96.8697 41.4901 91.1297 47.23 84.0797 47.23ZM62.4297 2.77002C56.8997 2.77002 52.4097 7.27004 52.4097 12.79V34.4401C52.4097 39.9701 56.9097 44.4601 62.4297 44.4601H84.0797C89.6096 44.4601 94.0997 39.9601 94.0997 34.4401V12.79C94.0997 7.26004 89.5997 2.77002 84.0797 2.77002H62.4297Z\" fill=\"#ED174F\"/> <path d=\"M85.9797 29.4604C85.1397 29.4604 84.4597 30.1403 84.4597 30.9803C84.4597 32.6803 83.0798 34.0604 81.3798 34.0604C79.6"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_persia_c1eed1ad79.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 9148,
+          "sample": "<svg width=\"138\" height=\"51\" viewBox=\"0 0 138 51\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M0.00976562 50.1202V16.5703C0.00976562 16.5703 0.0497827 16.4902 0.0897827 16.4902H38.0998C40.5098 16.4902 42.4598 18.4402 42.4598 20.8502C42.4598 23.2602 40.5098 25.2102 38.0998 25.2102H8.55975C8.55975 25.2102 8.4798 25.2502 8.4798 25.2902V50.1302C8.4798 50.1302 8.43978 50.2102 8.39978 50.2102H0.0897827C0.0897827 50.2102 0.00976562 50.1702 0.00976562 50.1302V50.1202Z\" fill=\"#D71F26\"/> <path d=\"M78.9704 23.22H75.7304V13.4501L72.4004 23.22H69.7204L66.3904 13.5001V23.22H63.1504V8.08008H67.3604L71.0804 18.6401L74.7604 8.08008H78.9704V23.22Z\" fill=\"#D71F26\"/> <path d=\"M90.8101 16.9401C90.63"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_variety_aaa60f39e8.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 3302,
+          "sample": "<svg width=\"131\" height=\"77\" viewBox=\"0 0 131 77\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M109.56 45.4102H0.469727V76.0901H109.56V45.4102Z\" fill=\"#BA2F7E\"/> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.469961 41.9409V14.6709H5.59996L18.44 31.1609L31.02 14.6709H36.09V41.9409H30.22V25.0809C30.22 24.4109 30.29 23.4409 30.43 22.1709C29.76 23.5409 29.23 24.5009 28.84 25.0209L18.59 38.6609H17.32L7.06996 24.9709C6.32996 23.9809 5.77996 23.0509 5.42996 22.1709C5.53996 23.2609 5.58996 24.2309 5.58996 25.0809V41.9409H0.459961H0.469961Z\" fill=\"#FFFAFB\"/> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M43.3301 41.9409V14.6709H66.6901C70.7801 14.6709 72.8201 16.4309 72.8201 19.9"
+        },
+        {
+          "url": "https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_panorama_d091f6cb68.svg",
+          "status": 200,
+          "content_type": "image/svg+xml",
+          "bytes": 7744,
+          "sample": "<svg width=\"142\" height=\"88\" viewBox=\"0 0 142 88\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M4.83 80.7899C6.52 80.7899 7.57 79.8499 7.57 78.5199V78.4799C7.57 76.9899 6.5 76.2098 4.83 76.2098H2.23V80.7899H4.83ZM0 75.2999C0 74.6699 0.490001 74.1699 1.13 74.1699H5.02C8 74.1699 9.85 75.8599 9.85 78.4199V78.4598C9.85 81.3098 7.56 82.7999 4.76 82.7999H2.24V85.8699C2.24 86.4899 1.75 86.9799 1.13 86.9799C0.510001 86.9799 0 86.4899 0 85.8699V75.2999Z\" fill=\"#522EE8\"/> <path d=\"M18.7105 81.84L16.4805 76.7L14.2505 81.84H18.7205H18.7105ZM10.3905 85.4399L15.1105 74.91C15.3605 74.35 15.8205 74 16.4505 74H16.5605C17.2005 74 17.6305 74.35 17.8905 74.91L22.6105 85.4399C22.7005 85.5999 22.7405 "
+        },
+        {
+          "url": "https://www.googletagmanager.com/ns.html?id=GTM-KWV3WMJ",
+          "status": 200,
+          "content_type": "text/html; charset=UTF-8",
+          "bytes": 268,
+          "sample": "<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>ns</title> </head> <body> </body></html>"
+        },
+        {
+          "url": "https://www.instagram.com/mbcgroup/",
+          "status": 200,
+          "content_type": "text/html; charset=\"utf-8\"",
+          "bytes": 712513,
+          "sample": "<!DOCTYPE html><html class=\"_9dls _ar44\" lang=\"ar\" dir=\"rtl\"><head><link data-default-icon=\"https://static.cdninstagram.com/rsrc.php/yr/r/rzWiSjZRxk5.webp\" rel=\"icon\" sizes=\"192x192\" href=\"https://static.cdninstagram.com/rsrc.php/yr/r/rzWiSjZRxk5.webp\" /><meta name=\"bingbot\" content=\"noarchive\" /><meta charset=\"utf-8\" /><meta name=\"apple-mobile-web-app-status-bar-style\" content=\"default\" /><meta name=\"mobile-web-app-capable\" content=\"yes\" /><meta id=\"viewport\" name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, viewport-fit=cover\" /><meta name=\"theme-color\" content=\"#ffffff\" /><meta name=\"theme-color\" content=\"#000000\" media=\"(prefers-color-scheme:"
+        },
+        {
+          "url": "https://www.linkedin.com/company/mbcgroup/",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 356349,
+          "sample": "<!DOCTYPE html> <html lang=\"ar\"> <head> <meta name=\"pageKey\" content=\"d_org_guest_company_overview\"> <meta name=\"robots\" content=\"max-image-preview:large, noarchive\"> <meta name=\"bingbot\" content=\"max-image-preview:large, archive\"> <!----> <meta name=\"linkedin:pageTag\" content=\"noncanonical_subdomain=enabled\"> <meta name=\"locale\" content=\"ar_AE\"> <!----> <meta id=\"config\" data-app-version=\"2.0.2993\" data-call-tree-id=\"AAZb6MbP57FahEad5urGoQ==\" data-multiproduct-name=\"organization-guest-frontend\" data-service-name=\"organization-guest-frontend\" data-browser-id=\"99db97f9-6441-4d93-8c7b-9e17ce5bd631\" data-is-bot=\"false\" data-enable-page-view-heartbeat-tracking data-page-instance=\"urn:li:page:d_o"
+        },
+        {
+          "url": "https://www.mbc.net/_next/static/chunks/pages/channels-34221a62819e59e8.js",
+          "status": 200,
+          "content_type": "application/javascript; charset=UTF-8",
+          "bytes": 10220,
+          "sample": "(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[852],{2921:function(e,l,t){(window.__NEXT_P=window.__NEXT_P||[]).push([\"/channels\",function(){return t(271)}])},1648:function(e,l,t){\"use strict\";t.d(l,{Z:function(){return Ellipse}});var n=t(5893);function Ellipse(e){let{color:l,dir:t,positionX:i,xValue:a,positionY:o,yValue:r,zIndex:s=\"-1\",opacity:c=\"75%\",width:d=\"110vh\",height:u=\"110vh\",type:m=\"after\",position:h=\"absolute\",customClass:v=\"\"}=e,x={ltr:{right:\"right:\".concat(a),left:\"left:\".concat(a)},rtl:{right:\"left:\".concat(a),left:\"right:\".concat(a)},top:\"top:\".concat(r),bottom:\"bottom:\".concat(r)};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(\"style\",{children:\"\\n .ellipse-\".con"
+        },
+        {
+          "url": "https://www.mbc.net/ar/channels",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 76728,
+          "sample": "<!DOCTYPE html><html lang=\"ar\" dir=\"rtl\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>العلامات التجارية</title><meta name=\"description\" content=\"الاخبار\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_1_0bf58055e9.svg\" as=\"image\" fetchpriority=\"high\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_2_5ae3f15729.svg\" as=\"image\" fetchpriority=\"high\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_3_dae34fae7b.svg\" as=\"image\" fetchpriority=\"high\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.u"
+        },
+        {
+          "url": "https://www.mbc.net/channels",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 57412,
+          "sample": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Brands</title><meta name=\"description\" content=\"news\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_1_0bf58055e9.svg\" as=\"image\" fetchpriority=\"high\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_2_5ae3f15729.svg\" as=\"image\" fetchpriority=\"high\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazonaws.com/svg_mbc_3_dae34fae7b.svg\" as=\"image\" fetchpriority=\"high\"/><link rel=\"preload\" href=\"https://mbc-lite-strapi-s3-backup.s3.us-east-1.amazo"
+        },
+        {
+          "url": "https://www.youtube.com/channel/UCy2CIDKYZqqbeJ0NHNcJ9sQ",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 2055842,
+          "sample": "<!DOCTYPE html><html style=\"font-size: 62.5%;font-family: Roboto, Arial, sans-serif;\" lang=\"ar\" darker-dark-theme darker-dark-theme-deprecate system-icons color-version=\"v2_0\" typography typography-spacing><head><script data-id=\"_gd\" nonce=\"kBPlG3iTZcGbhnB2DR9Jeg\">window.WIZ_global_data = {\"AfY8Hf\":true,\"FL1an\":false,\"HiPsbb\":0,\"MUE6Ne\":\"youtube_web\",\"MuJWjd\":false,\"TSDtV\":\"%.@.]\",\"UUFaWc\":\"%.@.null,1000,2]\",\"cfb2h\":\"youtube.web-front-end-critical_20260916.06_p0\",\"hsFLT\":\"%.@.null,10,3]\",\"iCzhFc\":false,\"nQyAE\":{},\"oxN3nb\":{\"1\":false,\"0\":false,\"610401301\":false,\"899588437\":false,\"772657768\":true,\"513659523\":false,\"568333945\":true,\"1331761403\":true,\"651175828\":false,\"722764542\":false,\"74840214"
+        }
+      ],
+      "api_ok": []
+    },
+    "mbcnow": {
+      "verdict": "BLOCKED",
+      "visible_score": 0,
+      "pages": [
+        {
+          "url": "https://www.gobx.com/",
+          "status": 403,
+          "final_url": "https://www.gobx.com/",
+          "content_type": "text/html; charset=UTF-8",
+          "bytes": 5659
+        }
+      ],
+      "js_hits": [],
+      "api_probes": [],
+      "api_ok": []
+    },
+    "starzplay": {
+      "verdict": "BLOCKED",
+      "visible_score": 0,
+      "pages": [
+        {
+          "url": "https://www.starzplay.com/en/arabic",
+          "status": 403,
+          "final_url": "https://www.starzplay.com/en/arabic",
+          "content_type": "text/html",
+          "bytes": 919
+        },
+        {
+          "url": "https://playarabia-prod.starzplay.com/en/arabic",
+          "status": "ERROR",
+          "error": "HTTPSConnectionPool(host='playarabia-prod.starzplay.com', port=443): Max retries exceeded with url: /en/arabic (Caused by NameResolutionError(\"HTTPSConnection(host='playarabia-prod.starzplay.com', port=443): Failed to resolve 'playarabia-pr"
+        }
+      ],
+      "js_hits": [],
+      "api_probes": [],
+      "api_ok": []
+    },
+    "stctv": {
+      "verdict": "BLOCKED",
+      "visible_score": 0,
+      "pages": [
+        {
+          "url": "https://app.stctv.com/",
+          "status": 403,
+          "final_url": "https://stctv.com/",
+          "content_type": "text/html",
+          "bytes": 0
+        },
+        {
+          "url": "https://www.stctv.com/",
+          "status": 403,
+          "final_url": "https://www.stctv.com/",
+          "content_type": "text/html",
+          "bytes": 0
+        },
+        {
+          "url": "https://stctv.com/",
+          "status": 403,
+          "final_url": "https://stctv.com/",
+          "content_type": "text/html",
+          "bytes": 0
+        }
+      ],
+      "js_hits": [],
+      "api_probes": [],
+      "api_ok": []
+    }
+  }
+}
