@@ -36,7 +36,10 @@ jobs:
               rr=requests.get(f"https://elcinema.com/tvguide/{sid}/",headers={"User-Agent":"Mozilla/5.0"},timeout=20)
               ss=BeautifulSoup(rr.text,"lxml")
               dates=[" ".join(x.stripped_strings) for x in ss.select(".dates")]
-              print("DETAIL",sid,"HTTP",rr.status_code,"LEN",len(rr.text),"DATES",dates[:8],"ITEMS",len(ss.select(".padded-half")))
+              print("DETAIL",sid,"HTTP",rr.status_code,"LEN",len(rr.text),"DATES",dates[:8],"ITEMS",len(ss.select(".padded-half")),"TITLE",ss.title.get_text(" ",strip=True) if ss.title else "")
+              if sid=="1136":
+                  print("DETAIL1136TEXT"," | ".join(ss.stripped_strings)[:5000])
+                  print("DETAIL1136PAD", [str(x)[:2500] for x in ss.select(".padded-half")])
           for sid in ids:
               a=s.find("a",href=re.compile(rf"/tvguide/{sid}/?$"))
               print("\nSID",sid,"FOUND_LINK",bool(a))
