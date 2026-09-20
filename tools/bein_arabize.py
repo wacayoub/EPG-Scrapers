@@ -26,6 +26,9 @@ from pathlib import Path
 import requests
 
 ARABIC_RE = re.compile(r"[\u0600-\u06FF]")
+DATE_TOKEN_RE = re.compile(r"(?:\s*[-–—]\s*)?(?:\d{1,2}[/-]\d{1,2}[/-]\d{2,4})\b")
+TIME_TOKEN_RE = re.compile(r"(?:\s*[-–—]\s*)?@?\b\d{1,2}:\d{2}\b")
+
 YEAR_SEASON_RE = re.compile(r"\b(?:Season\s*)?(20\d{2})\s*[/\-]\s*(20\d{2})\b", re.I)
 META_PATTERNS = [
     (re.compile(r"\bWeek\s*(\d+)\b", re.I), lambda m: f"الأسبوع {m.group(1)}"),
@@ -71,6 +74,8 @@ SPORT_GLOSSARY = {
 }
 
 NEWS_TITLES = {
+    "ATP Tour": "ATP Tennis",
+    "ATP": "ATP Tennis",
     "Three O'Clock bulletin": "نشرة الثالثة",
     "Three O’Clock bulletin": "نشرة الثالثة",
     "Al Jawla": "الجولة",
@@ -202,7 +207,7 @@ def translate_title(title: str, channel: str, tr: Translator):
     if not original:
         return original, []
 
-    cleaned, meta = extract_metadata(original)
+    cleaned, meta = extract_metadata(strip_title_datetime(original))
 
     # Exact/recurring beIN News programmes first.
     for en, ar in sorted(NEWS_TITLES.items(), key=lambda x: -len(x[0])):
@@ -213,7 +218,7 @@ def translate_title(title: str, channel: str, tr: Translator):
             suffix = apply_glossary(suffix)
             if mostly_english(suffix):
                 suffix = tr.translate(suffix)
-            return normalize_spaces(f"{ar} - {suffix}" if suffix else ar), meta
+            return strip_title_datetime(normalize_spaces(f"{ar} - {suffix}" if suffix else ar)), meta
 
     match_part, tail = protect_match_participants(cleaned)
     if match_part is not None:
@@ -221,12 +226,12 @@ def translate_title(title: str, channel: str, tr: Translator):
         translated_tail = apply_glossary(tail)
         if mostly_english(translated_tail):
             translated_tail = tr.translate(translated_tail)
-        return normalize_spaces(f"{match_part} - {translated_tail}" if translated_tail else match_part), meta
+        return strip_title_datetime(normalize_spaces(f"{match_part} - {translated_tail}" if translated_tail else match_part)), meta
 
     glossed = apply_glossary(cleaned)
     if mostly_english(glossed):
         glossed = tr.translate(glossed)
-    return normalize_spaces(glossed), meta
+    return strip_title_datetime(normalize_spaces(glossed)), meta
 
 
 def append_metadata(desc: str, meta):
