@@ -40,17 +40,31 @@ def get(sess,url):
 def clean(s):
   return re.sub(r"\s+"," ",s or "").strip()
 
+def arabic_score(s):
+  letters=[ch for ch in (s or "") if ch.isalpha()]
+  if not letters:
+    return 0.0
+  ar=sum(1 for ch in letters if "\u0600" <= ch <= "\u06ff")
+  return 100.0*ar/len(letters)
+
+def prefer_arabic_text(candidates):
+  vals=[clean(x) for x in candidates if clean(x)]
+  if not vals:
+    return ""
+  vals.sort(key=lambda x:(arabic_score(x),len(x)),reverse=True)
+  return vals[0]
+
 def rotana_channel(sess,cid,name,chid):
-  url=f"https://www.rotana.net/en/streams?channel={chid}"
+  url=f"https://www.rotana.net/ar/streams?channel={chid}"
   r=get(sess,url)
   soup=BeautifulSoup(r.text,"html.parser")
   text=soup.get_text("\n",strip=True)
   # Parse day blocks robustly even when HTML headings/list items add spacing.
-  day_re=re.compile(r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+(20\d{2}-\d{2}-\d{2})",re.I)
+  day_re=re.compile(r"(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|الاثنين|الثلاثاء|الأربعاء|الاربعاء|الخميس|الجمعة|السبت|الأحد|الاحد)\s+(20\d{2}-\d{2}-\d{2})",re.I)
   marks=list(day_re.finditer(text))
   events=[]
   for i,m in enumerate(marks):
-    date=m.group(2)
+    date=re.search(r"(20\d{2}-\d{2}-\d{2})",m.group(0)).group(1)
     block=text[m.end():(marks[i+1].start() if i+1<len(marks) else len(text))]
     # Each schedule row is HH:MM followed by the title, possibly separated by newlines.
     for mt in re.finditer(r"(?m)(?:^|\n)\s*(\d{1,2}:\d{2})\s+([^\n]+)",block):
@@ -110,13 +124,13 @@ def parse_art_page(sess,url):
   text=clean(raw)
 
   # Description: first substantial paragraph/content block before scheduling metadata.
-  desc=""
+  desc_candidates=[]
   for p in soup.find_all(["p","div"]):
     t=clean(p.get_text(" ",strip=True))
     if len(t)>=80 and "تشاهدونه على قناة" not in t and "جميع الحقوق محفوظة" not in t:
       if not any(x in t for x in ("تواصل معنا","أعلن معنا","اشترك معنا","قنواتنا الرئيسية")):
-        desc=t
-        break
+        desc_candidates.append(t)
+  desc=prefer_arabic_text(desc_candidates)
 
   # ART programme pages explicitly state: "تشاهدونه على قناة <channel>".
   mch=re.search(r"تشاهدونه\s+على\s+قناة\s+([^\n\r]+)",raw,re.I)
@@ -160,7 +174,7 @@ def art_channels(sess):
       "id":cid,"name":name,"provider":"official","source":"artonline",
       "url":f"https://www.artonline.tv/guide/{gid}",
       "programmes":len(items),"future_hours":0.0,
-      "sample_title":sample.get("title",""),"sample_desc":sample.get("desc",""),
+      "sample_title":sample.get("title",""),"sample_desc":sample.get("desc",""),"text_language":"ar",
       "events":[{"title":x["title"],"times":x["times"],"url":x["url"]} for x in items[:30]],
       "status":"PROGRAMME_SAMPLES_FOUND" if items else "NO_PROGRAMME_SAMPLE"
     })
