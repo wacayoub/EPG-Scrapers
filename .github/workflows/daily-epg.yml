@@ -106,6 +106,39 @@ jobs:
           done
           exit 0
 
+      - name: Retry ElCinema zero-EPG channels in English
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          python tools/source_gap_retry.py build \
+            --catalogue output/source-build/elcinema.channels.xml \
+            --fallback-catalogue output/source-build/elcinema_fallback.channels.xml \
+            --raw output/source-build/elcinema.raw.xml \
+            --output output/source-build/elcinema.retry.channels.xml
+
+          if grep -q '<channel ' output/source-build/elcinema.retry.channels.xml; then
+            cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+            timeout --signal=TERM --kill-after=30s 600s npm run grab --- \
+              --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.channels.xml" \
+              --output="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.raw.xml" \
+              --days=2 \
+              --maxConnections=1 \
+              --timeout=20000 \
+              --delay=1000
+            cd "$GITHUB_WORKSPACE"
+            if [ -s output/source-build/elcinema.retry.raw.xml ]; then
+              python tools/source_gap_retry.py merge \
+                --primary output/source-build/elcinema.raw.xml \
+                --retry output/source-build/elcinema.retry.raw.xml \
+                --output output/source-build/elcinema.merged.xml
+              mv output/source-build/elcinema.merged.xml output/source-build/elcinema.raw.xml
+            fi
+          else
+            echo "ElCinema: no zero-EPG channels to retry."
+          fi
+          exit 0
+
       - name: Scrape Sport24
         if: steps.gate.outputs.run == 'true'
         shell: bash
