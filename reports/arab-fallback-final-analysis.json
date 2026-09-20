@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T11:43:02.807736+00:00",
+  "generated_at": "2026-09-20T11:48:59.577870+00:00",
   "active_rows": 1535,
   "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
@@ -53,7 +53,7 @@
     "UNIQUE": 1071,
     "WINNER_OF_DUPLICATES": 210
   },
-  "merged_fallback_winners_before_direct_filter": 287,
+  "merged_fallback_winners_before_direct_filter": 275,
   "already_covered_by_direct_sources": 111,
   "bein_family_fallback_policy": "ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
   "protected_direct_families": [
@@ -63,7 +63,8 @@
     "rotana",
     "dubai_dmi",
     "adm",
-    "morocco"
+    "morocco",
+    "sport24"
   ],
   "protected_direct_feeds": [
     "bein",
@@ -74,13 +75,13 @@
     "morocco",
     "snrt"
   ],
-  "missing_ids_final": 176,
-  "new_ids_after_zero_and_latam_filter": 176,
+  "missing_ids_final": 164,
+  "new_ids_after_zero_and_latam_filter": 164,
   "language_duplicates_removed": 54,
   "language_policy": "ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
   "event_text_policy": "EN_TITLE_AR_DESC_ONLY_FOR_MULTINATIONAL_CHANNELS",
-  "english_rejected_for_arabic": 3,
-  "english_accepted_after_4_audits": 82,
+  "english_rejected_for_arabic": 6,
+  "english_accepted_after_4_audits": 79,
   "sort_order": "CHANNEL_NAME_ASC",
   "excluded_sources": [
     "epgshare:AR1"
