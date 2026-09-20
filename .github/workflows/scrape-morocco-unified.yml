@@ -81,6 +81,13 @@ jobs:
               print(cid, counts[cid])
           PY
 
+      - name: Strict Morocco 48-hour coverage audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports
+          python tools/validate_48h.py             output/morocco/morocco.xml.gz             --hours 48             --max-gap-minutes 90             --report reports/morocco-48h-audit.json
+
       - name: Stage unified feed
         run: |
           mkdir -p /tmp/morocco-unified
