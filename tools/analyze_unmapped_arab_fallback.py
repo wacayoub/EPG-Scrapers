@@ -43,7 +43,6 @@ SOURCE_COUNTRY={
     "EG1":"Egypt",
     "SA1":"Saudi Arabia",
     "SA2":"Saudi Arabia",
-    "AR1":"Arab region",
     "BEIN1":"MENA",
     "ALJAZEERA1":"Qatar/MENA",
     "egypt1":"Egypt",
@@ -160,7 +159,7 @@ def main():
     REPORT.mkdir(exist_ok=True)
 
     fields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct",
-            "quality_score","alternatives","alternative_sources","url"]
+            "sample_title","sample_desc","quality_score","alternatives","alternative_sources","url"]
     with (REPORT/"unmapped-arab-fallback.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=fields)
         w.writeheader()
@@ -190,7 +189,7 @@ def main():
         "by_country":dict(by_country),
         "by_provider":dict(by_provider),
         "top_candidates":[
-            {k:r.get(k) for k in ("country","name","id","provider","source","future_programmes","future_hours","desc_pct","quality_score","alternatives")}
+            {k:r.get(k) for k in ("country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","quality_score","alternatives")}
             for r in winners[:100]
         ]
     }
