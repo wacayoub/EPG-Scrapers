@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-09-20T11:32:06.709641+00:00",
+  "generated_at": "2026-09-20T11:49:09.009009+00:00",
   "production_ids": 175,
-  "fallback_active_rows": 673,
+  "fallback_active_rows": 651,
   "exact_id_already_present_rows": 0,
   "name_collision_review_rows": 0,
-  "unmapped_rows_before_name_dedup": 673,
-  "unique_unmapped_candidates": 457,
-  "duplicate_alternative_rows_collapsed": 216,
+  "unmapped_rows_before_name_dedup": 651,
+  "unique_unmapped_candidates": 445,
+  "duplicate_alternative_rows_collapsed": 206,
   "by_country": {
-    "Saudi Arabia": 194,
+    "Saudi Arabia": 192,
     "Qatar/MENA": 2,
     "UAE": 24,
-    "Qatar": 49,
+    "Qatar": 39,
     "Egypt": 188
   },
   "by_provider": {
-    "openepg": 455,
+    "openepg": 443,
     "epgshare": 2
   },
   "top_candidates": [
@@ -312,20 +312,6 @@
       "sample_desc": "يعيش التنين كوكونات في جزيرة خاصة تشكل موطناً للعديد من التنانين. حيث يعيشون مغامرات رائعة ويشكلون صداقات متينة.",
       "quality_score": 300.2,
       "alternatives": 4
-    },
-    {
-      "country": "Qatar",
-      "name": "Baby-TV-2.qa",
-      "id": "Baby-TV-2.qa",
-      "provider": "openepg",
-      "source": "qatar5",
-      "future_programmes": 213,
-      "future_hours": 40.7,
-      "desc_pct": 0.0,
-      "sample_title": "Grizzy and the Lemmings - Quick Meal",
-      "sample_desc": "",
-      "quality_score": 294.05,
-      "alternatives": 1
     },
     {
       "country": "Qatar",
@@ -634,20 +620,6 @@
       "sample_desc": "تابع من هنا آخر وأحدث الأخبار المحلية والعالمية.",
       "quality_score": 244.5,
       "alternatives": 1
-    },
-    {
-      "country": "Qatar",
-      "name": "CBeebies-1.qa",
-      "id": "CBeebies-1.qa",
-      "provider": "openepg",
-      "source": "qatar4",
-      "future_programmes": 164,
-      "future_hours": 40.3,
-      "desc_pct": 0.0,
-      "sample_title": "ثقافة",
-      "sample_desc": "",
-      "quality_score": 244.45,
-      "alternatives": 0
     },
     {
       "country": "Saudi Arabia",
@@ -1418,6 +1390,34 @@
       "sample_desc": "Matbakh Manal Al Alem (Manal Alalem's Kitchen)",
       "quality_score": 213.95,
       "alternatives": 2
+    },
+    {
+      "country": "Egypt",
+      "name": "MBC 4.eg",
+      "id": "MBC 4.eg",
+      "provider": "openepg",
+      "source": "egypt2",
+      "future_programmes": 57,
+      "future_hours": 43.5,
+      "desc_pct": 89.5,
+      "sample_title": "Wust El Balad",
+      "sample_desc": "The events depict daily life and stories of love, separation, joy, and suffering through Fadl's family, including his mother who lives with him, and his brother Kamel's attempts to seize their house, thinking that his father disinherited him.",
+      "quality_score": 213.85,
+      "alternatives": 0
+    },
+    {
+      "country": "Saudi Arabia",
+      "name": "MBC Action HD.sa",
+      "id": "MBC Action HD.sa",
+      "provider": "openepg",
+      "source": "saudiarabia1",
+      "future_programmes": 52,
+      "future_hours": 40.9,
+      "desc_pct": 100.0,
+      "sample_title": "كينغدوم:الحلقة 22",
+      "sample_desc": "مسلسل أنيمي تاريخي رائع تدور أحداثه في حقبة الممالك المتحاربة في الصين القديمة. عدد من الشخصيات سيكون لها الأثر الكبير على مجرى التاريخ، من أهمها شاب يافع يدعى شين الذي يكبر ليصبح رئيساً عسكرياً عظيماً.",
+      "quality_score": 213.35,
+      "alternatives": 3
     }
   ]
 }

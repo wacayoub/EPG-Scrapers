@@ -1,20 +1,20 @@
 # Unmapped Arab fallback analysis
 
 Production channel IDs: **175**  
-Active fallback rows analyzed: **673**  
+Active fallback rows analyzed: **651**  
 Exact IDs already present: **0**  
 Name collisions requiring review: **0**  
-Unmapped rows before dedup: **673**  
-Unique unmapped candidates: **457**  
-Alternative duplicate rows collapsed: **216**
+Unmapped rows before dedup: **651**  
+Unique unmapped candidates: **445**  
+Alternative duplicate rows collapsed: **206**
 
 ## By country / region
 
 | Country / region | Unique unmapped |
 |---|---:|
-| Saudi Arabia | 194 |
+| Saudi Arabia | 192 |
 | Egypt | 188 |
-| Qatar | 49 |
+| Qatar | 39 |
 | UAE | 24 |
 | Qatar/MENA | 2 |
 
@@ -43,7 +43,6 @@ Alternative duplicate rows collapsed: **216**
 | Saudi Arabia | Nick Jr HD.sa | Nick Jr HD.sa | openepg:saudiarabia5 | 144 | 40.9 | 100.0 | 305.4 | 0 |
 | Saudi Arabia | Rotana Kids.sa | Rotana Kids.sa | openepg:saudiarabia1 | 140 | 40.8 | 100.0 | 301.2 | 1 |
 | Saudi Arabia | MBC 3.sa | MBC 3.sa | openepg:saudiarabia1 | 139 | 40.8 | 100.0 | 300.2 | 4 |
-| Qatar | Baby-TV-2.qa | Baby-TV-2.qa | openepg:qatar5 | 213 | 40.7 | 0.0 | 294.1 | 1 |
 | Qatar | HGTV.qa | HGTV.qa | openepg:qatar4 | 207 | 40.3 | 0.0 | 287.4 | 1 |
 | Saudi Arabia | NickToons HD.sa | NickToons HD.sa | openepg:saudiarabia5 | 123 | 40.9 | 100.0 | 284.4 | 0 |
 | Qatar/MENA | AlJazeera Arabic | AlJazeera.Arabic.net | epgshare:ALJAZEERA1 | 68 | 84.5 | 94.1 | 280.0 | 0 |
@@ -66,7 +65,6 @@ Alternative duplicate rows collapsed: **216**
 | Egypt | أو إس إن كوميدي.eg | أو إس إن كوميدي.eg | openepg:egypt1 | 89 | 39.4 | 100.0 | 248.1 | 0 |
 | Saudi Arabia | Space Toon.sa | Space Toon.sa | openepg:saudiarabia1 | 85 | 40.8 | 100.0 | 246.2 | 1 |
 | Saudi Arabia | RT News.sa | RT News.sa | openepg:saudiarabia1 | 83 | 41.0 | 100.0 | 244.5 | 1 |
-| Qatar | CBeebies-1.qa | CBeebies-1.qa | openepg:qatar4 | 164 | 40.3 | 0.0 | 244.4 | 0 |
 | Saudi Arabia | Oman TV.sa | Oman TV.sa | openepg:saudiarabia5 | 81 | 41.1 | 100.0 | 242.7 | 2 |
 | Saudi Arabia | CN Arabia.sa | CN Arabia.sa | openepg:saudiarabia5 | 81 | 41.0 | 100.0 | 242.5 | 0 |
 | Saudi Arabia | Moonbug Kids.sa | Moonbug Kids.sa | openepg:saudiarabia5 | 81 | 40.8 | 100.0 | 242.2 | 0 |
@@ -122,3 +120,5 @@ Alternative duplicate rows collapsed: **216**
 | Saudi Arabia | Discovery Family HD.sa | Discovery Family HD.sa | openepg:saudiarabia1 | 53 | 40.9 | 100.0 | 214.3 | 1 |
 | Saudi Arabia | Sama Dubai.sa | Sama Dubai.sa | openepg:saudiarabia1 | 52 | 41.5 | 100.0 | 214.2 | 1 |
 | Saudi Arabia | Fatafeat.sa | Fatafeat.sa | openepg:saudiarabia5 | 52 | 41.3 | 100.0 | 213.9 | 2 |
+| Egypt | MBC 4.eg | MBC 4.eg | openepg:egypt2 | 57 | 43.5 | 89.5 | 213.8 | 0 |
+| Saudi Arabia | MBC Action HD.sa | MBC Action HD.sa | openepg:saudiarabia1 | 52 | 40.9 | 100.0 | 213.3 | 3 |
