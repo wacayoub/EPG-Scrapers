@@ -177,32 +177,57 @@ def _duration_minutes(text):
  if m.group(3):return int(m.group(3))
  return int(m.group(1) or 0)*60+int(m.group(2) or 0)
 
-def _parse_2m_cards(h,text,day,source):
- soup=BeautifulSoup(text,"lxml"); rows=[]; seen=set(); rolled=False; prevh=None
- candidates=soup.find_all(["li","article","div"])
- for node in candidates:
-  title_node=node.find(["h2","h3","h4"])
-  if not title_node:continue
-  title=clean(title_node.get_text(" ",strip=True))
-  if not title or len(title)>140:continue
-  body=clean(node.get_text(" ",strip=True))
-  times=re.findall(r"(?<!\d)([0-2]?\d):([0-5]\d)(?!\d)",body)
-  if len(times)!=1:continue
-  hr,mi=map(int,times[0]); key=(hr,mi,title.casefold())
+def _parse_2m_links(h,text,day,source):
+ soup=BeautifulSoup(text,"lxml"); rows=[]; seen=set()
+ category_words={"film","série","serie","journal","météo","meteo","magazine","débat","debat","documentaire","feuilleton","divertissement","théâtre","theatre","dessin animé","dessin anime","clips"}
+ for a in soup.find_all("a"):
+  parts=[clean(x) for x in a.stripped_strings if clean(x)]
+  if not parts:continue
+  joined=clean(" ".join(parts))
+  mt=re.search(r"(?<!\d)([0-2]?\d)[h:]([0-5]\d)(?!\d)",joined)
+  if not mt:continue
+  hr,mi=int(mt.group(1)),int(mt.group(2))
+  title=""
+  desc=""
+  # Best case: separate DOM chunks (Soirmag/Télérama).
+  for idx,p in enumerate(parts):
+   if re.search(r"(?<!\d)[0-2]?\d[h:][0-5]\d(?!\d)",p):
+    if idx+1<len(parts):
+     title=parts[idx+1]
+     desc=clean(" ".join(parts[idx+2:]))
+    break
+  # Fallback for Télérama compact link text: "Category Title 20h35 ..."
+  if not title:
+   prefix=clean(joined[:mt.start()])
+   low=prefix.casefold()
+   for cat in sorted(category_words,key=len,reverse=True):
+    if low.startswith(cat+" "):
+     prefix=clean(prefix[len(cat):])
+     break
+   title=prefix
+  if not title or len(title)>160:continue
+  # Strip obvious category accidentally captured as title.
+  if title.casefold() in category_words:continue
+  key=(hr,mi,title.casefold())
   if key in seen:continue
   seen.add(key)
-  if prevh is not None and prevh>=18 and hr<6:rolled=True
-  prevh=hr
-  d=day+(timedelta(days=1) if rolled else timedelta())
-  start=datetime.combine(d,dtime(hr,mi),PARIS).astimezone(TZ)
-  mins=_duration_minutes(body)
+  start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
+  mins=_duration_minutes(joined)
   stop=start+timedelta(minutes=mins) if mins and mins>0 else None
-  desc=body
-  desc=re.sub(r"(?<!\d)[0-2]?\d:[0-5]\d(?!\d)"," ",desc,count=1)
-  desc=clean(desc.replace(title,"",1))
-  desc=re.sub(r"\bVoir plus\b.*$","",desc,flags=re.I).strip(" -|:")
   at=tr2m_title(h,title)
   rows.append(Event("2M",start,at,tr2m_desc(h,desc or title),stop,lang(at),"ar",source))
+ rows.sort(key=lambda e:e.start)
+ # Handle post-midnight entries printed after evening listings.
+ rolled=False; prev=None
+ for e in rows:
+  local=e.start.astimezone(PARIS)
+  if prev is not None and prev.hour>=18 and local.hour<6:
+   rolled=True
+  if rolled:
+   e.start=(local+timedelta(days=1)).astimezone(TZ)
+   if e.stop:
+    e.stop=e.stop+timedelta(days=1)
+  prev=local
  return rows
 
 def scrape_2m(days):
@@ -210,22 +235,32 @@ def scrape_2m(days):
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
  for i in range(days):
   d=today+timedelta(days=i)
-  slug="aujourdhui" if i==0 else ("demain" if i==1 else weekdays[d.weekday()])
-  urls=[
-   ("sudinfo",f"https://programmestv.sudinfo.be/programme-tv/chaine/2m-maroc/606/{slug}"),
-   ("telerama",f"https://television.telerama.fr/programme-tv-{slug}/2m-maroc" if slug not in ("aujourdhui","demain") else f"https://television.telerama.fr/chaine/2m-maroc")
-  ]
+  # Télérama is primary. It is reachable outside Sudinfo's 403 path and exposes
+  # today plus weekday-specific future pages.
+  if i==0:
+   turl="https://television.telerama.fr/chaine/2m-maroc"
+  else:
+   turl=f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
   dayrows=[]
-  for source,url in urls:
+  try:
+   r=h.get(turl,headers={"Referer":"https://television.telerama.fr/"})
+   dayrows=_parse_2m_links(h,r.text,d,"telerama")
+   if len(dayrows)>=6:
+    log("2M %s telerama: %d events"%(d.isoformat(),len(dayrows)))
+  except Exception as e:
+   log("2M %s telerama failed: %s"%(d.isoformat(),e))
+   dayrows=[]
+  # Soirmag is backup. Its generic channel page is mainly used for the current
+  # day if Télérama is unavailable or returns an implausibly small schedule.
+  if len(dayrows)<6 and i==0:
    try:
-    r=h.get(url,headers={"Referer":"https://programmestv.sudinfo.be/" if source=="sudinfo" else "https://television.telerama.fr/"})
-    dayrows=_parse_2m_cards(h,r.text,d,source)
-    if len(dayrows)>=6:
-     log("2M %s %s: %d events"%(d.isoformat(),source,len(dayrows)))
-     break
+    r=h.get("https://soirmag.lesoir.be/programme-tv/c/340/2m-monde",headers={"Referer":"https://soirmag.lesoir.be/"})
+    backup=_parse_2m_links(h,r.text,d,"soirmag")
+    if len(backup)>len(dayrows):
+     dayrows=backup
+    log("2M %s soirmag fallback: %d events"%(d.isoformat(),len(backup)))
    except Exception as e:
-    log("2M %s %s failed: %s"%(d.isoformat(),source,e))
-    dayrows=[]
+    log("2M %s soirmag failed: %s"%(d.isoformat(),e))
   out+=dayrows
  seen=set(); cleanrows=[]
  for e in sorted(out,key=lambda e:(e.start,e.title.casefold())):
