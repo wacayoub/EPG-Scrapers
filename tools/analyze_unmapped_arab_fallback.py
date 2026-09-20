@@ -63,7 +63,10 @@ SOURCE_PRIORITY={
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
 QUARANTINED_SOURCE_KEYS={("epgshare","AE1")}
 AUTO_QUARANTINE_CLONE_PCT=35.0
-BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin)",re.I)
+BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin|no\s*scheduled\s*events)",re.I)
+JUNK_NAME_RE=re.compile(r"(?:logo|\.svg\b|updatez|brand\s*logo|\bawg\b|\btci\b|\bcopy\b)",re.I)
+RADIO_DATA_RE=re.compile(r"(?:\bradio\b|\bfm\b|إذاعة|اذاعه|راديو|\bdata\b)",re.I)
+BEIN_ANY_RE=re.compile(r"(?:be\s*in|bein|بي\s*إن|بي\s*ان)",re.I)
 
 def norm(s:str)->str:
     s=unicodedata.normalize("NFKC",s or "").casefold()
@@ -151,7 +154,10 @@ def main():
             r["suspicious_clone"]=str(r.get("suspicious_clone","")).strip().casefold() in ("1","true","yes")
             r["clone_group_size"]=int(float(r.get("clone_group_size") or 1))
             sample_blob=((r.get("sample_title") or "")+" "+(r.get("sample_desc") or "")).strip()
+            name_blob=((r.get("name") or "")+" "+(r.get("id") or "")).strip()
             if r["future_programmes"]<=0 or r["suspicious_clone"] or BAD_SAMPLE_RE.search(sample_blob):
+                continue
+            if JUNK_NAME_RE.search(name_blob) or RADIO_DATA_RE.search(name_blob) or BEIN_ANY_RE.search(name_blob):
                 continue
             r["country"]=SOURCE_COUNTRY.get(r["source"],"Unknown/Regional")
             r["norm_name"]=norm(r["name"])
