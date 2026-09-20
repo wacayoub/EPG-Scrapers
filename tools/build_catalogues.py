@@ -4,6 +4,15 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path("vendor/iptv-org-epg/sites")
 OUT = Path("output/source-build")
+
+# Explicit production exclusions confirmed by manual EPG comparison.
+ELCINEMA_PRODUCTION_EXCLUDE = {
+    "AlAoula.ma@MiddleEast",
+}
+# Rotana mappings from ElCinema are quarantined until the official Rotana
+# channel mapping is revalidated against the live/current programme.
+def elcinema_excluded(cid: str) -> bool:
+    return cid in ELCINEMA_PRODUCTION_EXCLUDE or cid.casefold().startswith("rotana")
 OUT.mkdir(parents=True, exist_ok=True)
 
 def choose(key, sites, arabic_only=False):
@@ -24,6 +33,8 @@ def choose(key, sites, arabic_only=False):
                 cid=(c.get("xmltv_id") or "").strip()
                 sid=(c.get("site_id") or "").strip()
                 if not cid or not sid:
+                    continue
+                if key=="elcinema" and elcinema_excluded(cid):
                     continue
                 lang=(c.get("lang") or "").lower()
                 lang_rank=0 if lang.startswith("ar") else (1 if lang.startswith("en") else 2)
@@ -59,6 +70,8 @@ def build_elcinema_fallback():
         cid=(ar.get("xmltv_id") or "").strip()
         sid=(ar.get("site_id") or "").strip()
         if not cid or not sid:
+            continue
+        if elcinema_excluded(cid):
             continue
         node=en_by_id.get(cid)
         if node is not None:
