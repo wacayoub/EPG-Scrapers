@@ -44,6 +44,7 @@ DIRECT_FAMILY_PATTERNS={
     "morocco": re.compile(r"(?:\b2m\b|al\s*aoula|alaoula|arryadia|arrabiaa|almaghribiya|assadisa|tamazight|snrt|الأولى|الاولى|الرياضية|الثقافية|المغربية|السادسة|تمازيغت)",re.I),
 }
 PREFIX_RE=re.compile(r"^(?:en|ar)\s*:\s*",re.I)
+MULTINATIONAL_TITLE_EN_RE=re.compile(r"(?:national\s*geographic|nat\.?\s*geo|osn|cnn|bbc(?:\s*earth)?|discovery|disney|cartoon\s*network|nick(?:elodeon|toons|\s*jr)|history|animal\s*planet|tlc|hgtv|food\s*network|bloomberg|cnbc|euronews|euro\s*news|france\s*24|\brt\b|\bdw\b|al\s*jazeera\s*english)",re.I)
 PROTECTED_DIRECT_FEED_STEMS={"bein","osn","elcinema","sport24","2m","morocco","snrt"}
 
 ALIASES={
@@ -225,8 +226,16 @@ def latin_title_score(s):
     latin=sum(1 for ch in letters if ("LATIN" in unicodedata.name(ch,"")))
     return 100.0*latin/len(letters)
 
+def use_english_title_policy(r):
+    blob=" ".join(str(r.get(k,"") or "") for k in ("name","id"))
+    return bool(MULTINATIONAL_TITLE_EN_RE.search(blob))
+
 def choose_bilingual_event_fields(arr,winner):
-    """Prefer English/Latin title + Arabic description from equivalent variants."""
+    """For multinational channels only: prefer English title + Arabic description."""
+    if not use_english_title_policy(winner):
+        winner["title_desc_policy"]="NATIVE_TITLE_POLICY"
+        return winner
+
     title_candidates=[]
     desc_candidates=[]
     for x in arr:
@@ -678,7 +687,7 @@ def main():
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
         "language_policy":"ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
-        "event_text_policy":"ENGLISH_TITLE_PLUS_ARABIC_DESCRIPTION_WHEN_PAIRED",
+        "event_text_policy":"EN_TITLE_AR_DESC_ONLY_FOR_MULTINATIONAL_CHANNELS",
         "english_rejected_for_arabic":english_rejected_for_arabic,
         "english_accepted_after_4_audits":english_accepted_after_4_audits,
         "sort_order":"CHANNEL_NAME_ASC",
