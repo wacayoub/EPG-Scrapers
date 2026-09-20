@@ -7,7 +7,7 @@ Morocco is intentionally excluded by config.
 """
 from __future__ import annotations
 import csv, gzip, io, json, re, hashlib
-from collections import defaultdict
+from collections import defaultdict, Counter
 from datetime import datetime, timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -64,11 +64,19 @@ def source_metrics(root):
         latest=max((e for _,_,e in arr),default=now)
         sample_title=""
         sample_desc=""
+        schedule_signature=""
         if arr:
             # Earliest future event is the most useful human-review sample.
             sample_p=min(arr,key=lambda item:item[1])[0]
             sample_title=" | ".join((t.text or "").strip() for t in sample_p.findall("title") if (t.text or "").strip())
             sample_desc=" | ".join((d.text or "").strip() for d in sample_p.findall("desc") if (d.text or "").strip())
+            # Fingerprint the first future events so cloned schedules assigned to
+            # many unrelated channel IDs can be detected reliably.
+            parts=[]
+            for p,s,e in sorted(arr,key=lambda item:item[1])[:8]:
+                title=" | ".join((t.text or "").strip() for t in p.findall("title") if (t.text or "").strip())
+                parts.append(f"{s.isoformat()}|{e.isoformat()}|{title}")
+            schedule_signature=hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest() if parts else ""
         rows.append({
             "id":cid,
             "name":names[0] if names else cid,
@@ -77,6 +85,9 @@ def source_metrics(root):
             "desc_pct":round(100*descs/len(arr),1) if arr else 0.0,
             "sample_title":sample_title,
             "sample_desc":sample_desc,
+            "schedule_signature":schedule_signature,
+            "suspicious_clone":False,
+            "clone_group_size":1,
         })
     return rows, invalid
 
@@ -141,12 +152,32 @@ def main():
                 data,r=fetch(sess,spec["url"])
                 root=read_xml_bytes(data)
                 metrics,invalid=source_metrics(root)
-                active=sum(1 for x in metrics if x["future_programmes"]>0)
+
+                # Quarantine exact schedule clones reused across many channel IDs.
+                # A threshold of 8 avoids penalizing normal simulcasts while
+                # catching source-wide mapping/filler corruption such as AE1.
+                sig_groups=defaultdict(list)
+                for x in metrics:
+                    if x["future_programmes"]>0 and x.get("schedule_signature"):
+                        sig_groups[x["schedule_signature"]].append(x)
+                cloned_channels=0
+                clone_groups=0
+                for arr in sig_groups.values():
+                    if len(arr)>=8:
+                        clone_groups+=1
+                        cloned_channels+=len(arr)
+                        for x in arr:
+                            x["suspicious_clone"]=True
+                            x["clone_group_size"]=len(arr)
+
+                active=sum(1 for x in metrics if x["future_programmes"]>0 and not x.get("suspicious_clone"))
                 programmes=sum(x["future_programmes"] for x in metrics)
                 row.update({
                     "status":"ok","http":r.status_code,"bytes":len(data),
                     "channels":len(metrics),"active_channels":active,
                     "future_programmes":programmes,"invalid_times":invalid,
+                    "suspicious_clone_groups":clone_groups,
+                    "suspicious_clone_channels":cloned_channels,
                     "sha256":hashlib.sha256(data).hexdigest(),
                 })
                 for x in metrics:
@@ -163,11 +194,11 @@ def main():
             merged[provider]={"file":str(out),"bytes":len(gz),"sources_ok":len(roots)}
 
     covered=existing_covered()
-    rescue=[r for r in all_rows if r["future_programmes"]>0 and r["id"] not in covered]
+    rescue=[r for r in all_rows if r["future_programmes"]>0 and not r.get("suspicious_clone") and r["id"] not in covered]
     rescue.sort(key=lambda r:(-r["future_programmes"],-r["future_hours"],-r["desc_pct"],r["name"].casefold()))
 
     # Deduplicate rescue candidates by provider/source/id; keep all alternatives for analysis.
-    fields=["provider","source","id","name","future_programmes","future_hours","desc_pct","sample_title","sample_desc","url"]
+    fields=["provider","source","id","name","future_programmes","future_hours","desc_pct","sample_title","sample_desc","suspicious_clone","clone_group_size","url"]
     with (REPORT/"arab-fallback-candidates.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=fields); w.writeheader()
         for r in rescue: w.writerow({k:r[k] for k in fields})
