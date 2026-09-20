@@ -48,7 +48,7 @@ T2M={
  "asrar al mondial":"أسرار المونديال","bulletin meteo":"النشرة الجوية","journal amazigh":"الأخبار بالأمازيغية",
  "3ailti":"عائلتي","sir al morjane":"سر المرجان","bahr addalam":"بحر الظلام","qalb aswad":"قلب أسود",
  "mondial stories":"حكايات المونديال","info soir":"أخبار المساء","eco news":"أخبار الاقتصاد",
- "al massaiya":"المسائية","planete foot":"عالم كرة القدم","hikayat chama":"حكايات شامة",
+ "al massaiya":"المسائية","hikayat chama":"حكايات شامة",
  "jabha f rassou":"جبهة فراسو",
 
  "charqi ou gharbi":"شرقي أو غربي","charqi ou lgharbi":"شرقي أو غربي","soiree chaabi":"سهرة شعبية",
@@ -57,6 +57,16 @@ T2M={
  "ayn lkebrite":"عين الكبريت","wlad 3li":"ولاد علي","oulad 3li":"ولاد علي","jt arabe":"الأخبار بالعربية",
  "journal amazigh":"الأخبار بالأمازيغية","al massaiya":"المسائية","al dahira":"الظهيرة","rachid show":"رشيد شو",
  "moudawala":"مداولة","lmktoub":"المكتوب","dar nsa":"دار النسا","najm chaabi":"النجم الشعبي"}
+
+# 2M title language policy: keep native French programme brands in French.
+T2M_KEEP_FR={
+ "info soir","bulletin meteo","meteo","eco news","econews","auto moto","planete foot","planète foot"
+}
+T2M_FORCE_AR={
+ "les interventions des partis politiques":"مداخلات الأحزاب السياسية",
+ "interventions des partis politiques":"مداخلات الأحزاب السياسية"
+}
+
 CHADA={
  "dandana":("دندنة","برنامج موسيقي على شدى تي في يستضيف فنانين ويتابع جديد أعمالهم، مع حوار وفقرات موسيقية."),
  "dandanah":("دندنة","برنامج موسيقي على شدى تي في يستضيف فنانين ويتابع جديد أعمالهم، مع حوار وفقرات موسيقية."),
@@ -135,11 +145,17 @@ def google_ar(http,text):
 
 def tr2m_title(http,title):
  raw=clean(title); n=norm(raw)
+ if n in T2M_KEEP_FR:return raw
+ if n in T2M_FORCE_AR:return T2M_FORCE_AR[n]
  if n in T2M:return T2M[n]
  for pre,apre in (("serie marocaine","مسلسل مغربي"),("serie turque","مسلسل تركي"),("serie","مسلسل"),("film marocain","فيلم مغربي"),("film","فيلم"),("documentaire","وثائقي"),("rediffusion","إعادة")):
   if n.startswith(pre+" "):
-   rest=raw[len(pre):].strip(" :-"); return apre+(" : "+(T2M.get(norm(rest)) or google_ar(http,rest)) if rest else "")
+   rest=raw[len(pre):].strip(" :-")
+   rn=norm(rest)
+   if rn in T2M_KEEP_FR:return apre+" : "+rest if rest else apre
+   return apre+(" : "+(T2M_FORCE_AR.get(rn) or T2M.get(rn) or google_ar(http,rest)) if rest else "")
  return google_ar(http,raw)
+
 def tr2m_desc(http,desc):
  y=google_ar(http,desc)
  if ar(y): return y
