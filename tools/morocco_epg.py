@@ -29,9 +29,9 @@ CHANNELS={
 GROUPS={"snrt":{"AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","AFLAM.ma"},
  "arryadia":{"Arryadia_HD","Arryadia_TNT","Arryadia_HD1","Arryadia_HD2","Arryadia_HD3"},
  "2m":{"2M"},"chada":{"Chada TV"},"medi1":{"MEDI1TV_AR.ma","MEDI1TV_MAGHREB.ma"}}
-SNRT={"AlAoula":"https://www.snrt.ma/fr/programmes/alaoula","Arrabiaa":"https://www.snrt.ma/fr/node/4071",
- "AlMaghribiya":"https://www.snrt.ma/fr/node/4072","Assadisa":"https://www.snrt.ma/fr/node/4073",
- "Tamazight":"https://www.snrt.ma/fr/node/4075"}
+SNRT={"AlAoula":"https://www.snrt.ma/ar/al-aoula","Arrabiaa":"https://www.snrt.ma/ar/athaqafia",
+ "AlMaghribiya":"https://www.snrt.ma/ar/almaghribia","Assadisa":"https://www.snrt.ma/ar/assadissa",
+ "Tamazight":"https://www.snrt.ma/ar/tamazight"}
 MEDI1=(
  ("MEDI1TV_AR.ma",("https://www.medi1tv.com/ar/grille/arabic","https://www.medi1tv.ma/ar/grille/arabic")),
  ("MEDI1TV_MAGHREB.ma",("https://www.medi1tv.ma/ar/grille/maghreb","https://www.medi1tv.com/ar/grille/maghreb")))
@@ -371,11 +371,8 @@ def scrape_snrt(days):
    if "الأخبار" in ctx:
     for k,v in NEWS.items():
      if k in ctx:title=v;break
-   # Keep the complete current SNRT grid, but publish SNRT metadata in Arabic.
-   # This avoids returning to the older Arabic node pages that were incomplete.
-   if not ar(title): title=google_ar(h,title)
-   if desc and not ar(desc): desc=google_ar(h,desc)
-   rows.append(Event(cid,start,title,desc or title,None,"ar","ar","snrt"))
+   # SNRT Arabic pages are authoritative: preserve their native metadata as-is.
+   rows.append(Event(cid,start,title,desc or title,None,"ar","ar","snrt-ar"))
   return rows
  out=[]
  with ThreadPoolExecutor(max_workers=5) as ex:
@@ -390,7 +387,7 @@ def scrape_snrt(days):
 def scrape_arryadia(days):
  h=Http();start=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0);end=start+timedelta(days=min(days,3));parsed=[]
  try:
-  soup=BeautifulSoup(h.get("https://www.snrt.ma/fr/node/4070").text,"lxml")
+  soup=BeautifulSoup(h.get("https://www.snrt.ma/ar/arryadia").text,"lxml")
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
    dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8];tt=row.find("div",class_="grille-time")
    if not dc or not tt:continue
@@ -402,10 +399,9 @@ def scrape_arryadia(days):
  for i,(s,title,desc) in enumerate(parsed):
   stop=parsed[i+1][0] if i+1<len(parsed) else s+timedelta(hours=2);full=(title+" "+desc).lower();ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
   live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
-  if not ar(title): title=google_ar(h,title)
-  if desc and not ar(desc): desc=google_ar(h,desc)
   if live and not title.startswith("مباشر"): title="مباشر: "+title
-  for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia"))
+  # Arryadia Arabic page is authoritative; do not machine-translate.
+  for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia-ar"))
  # Publish only real SNRT/Arryadia schedule events. Never synthesize filler EPG.
  infer(out)
  return [e for e in out if e.stop and e.stop>e.start]
