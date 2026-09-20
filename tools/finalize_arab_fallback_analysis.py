@@ -49,6 +49,8 @@ MULTINATIONAL_TITLE_EN_RE=re.compile(r"(?:national\s*geographic|nat\.?\s*geo|osn
 PROTECTED_DIRECT_FEED_STEMS={"bein","osn","elcinema","sport24","2m","morocco","snrt"}
 KNOWN_BAD_FALLBACK_IDS={"baby-tv-2.qa","cbeebies-1.qa","fatafeat-1.qa"}
 BEIN_IMPLICIT_RE=re.compile(r"^(?:movies[1-4]\b.*|boxoffice[12]\b.*|4k\s+digital\b.*)$",re.I)
+AFC_BEIN_RE=re.compile(r"^\s*afc(?:\s|[-_]|\d)",re.I)
+SOURCE_OVERRIDES={"2023 alkass 3.qa":("openepg","qatar2")}
 
 ALIASES={
     "mbc 3":"mbc3","mbc3":"mbc3",
@@ -374,6 +376,62 @@ def load_direct_catalogue():
                         protected_names[key].extend(entries)
     return direct_ids,direct_names,protected_names
 
+def load_compare_only_channels():
+    """Discovery-only channel rows shown in new-arab-epg-ids.csv for comparison."""
+    path=OUT/"commercial-arab-platforms.json"
+    if not path.exists():
+        return []
+    try:
+        data=json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    shahid=(data.get("platforms") or {}).get("shahid") or {}
+    blob=json.dumps(shahid,ensure_ascii=False)
+    urls=sorted(set(re.findall(r'https://shahid\.mbc\.net/en/livestream/[^"\\]+/livechannel-\d+',blob,re.I)))
+    rows=[]
+    seen=set()
+    for u in urls:
+        m=re.search(r'/livestream/([^/]+)/livechannel-(\d+)',u,re.I)
+        if not m:
+            continue
+        slug=m.group(1)
+        chid=m.group(2)
+        key=chid
+        if key in seen:
+            continue
+        seen.add(key)
+        name=slug.replace("-"," ").replace("’","'").strip()
+        name=" ".join(w.capitalize() if not w.upper().startswith("MBC") else w.upper() for w in name.split())
+        aliases={
+            "Mbc1":"MBC1","Mbc Drama":"MBC Drama","Mbc Masr":"MBC Masr",
+            "Al Arabiya":"Al Arabiya","Al Hadath":"Al Hadath",
+            "Boq’at Daw’ Channel":"Boq’at Daw’ Channel",
+            "Boq'at Daw' Channel":"Boq’at Daw’ Channel",
+        }
+        name=aliases.get(name,name)
+        rows.append({
+            "country":"MENA",
+            "name":name,
+            "id":f"shahid.livechannel.{chid}",
+            "provider":"shahid",
+            "source":"public-livestream-discovery",
+            "future_programmes":0,
+            "future_hours":0,
+            "desc_pct":0,
+            "sample_title":"",
+            "sample_desc":"",
+            "title_source":"",
+            "desc_source":"",
+            "title_desc_policy":"DISCOVERY_ONLY",
+            "language_audit":"NOT_VALIDATED_YET",
+            "alternatives":0,
+            "alternative_sources":"",
+            "merged_alternatives":"",
+            "url":u,
+            "integration_status":"COMPARE_ONLY",
+        })
+    return rows
+
 def rank(r):
     fp=min(int(float(r["future_programmes"])),300)
     fh=min(float(r["future_hours"]),168.0)
@@ -485,6 +543,8 @@ def main():
             continue
         if (r.get("provider",""),r.get("source","")) in dynamic_quarantine:
             continue
+        if (r.get("provider",""),r.get("source","")) == ("openepg","qatar6"):
+            continue
         if LATAM_BAD.search((r.get("name") or "")+" "+(r.get("id") or "")):
             continue
         sample_blob=((r.get("sample_title") or "")+" "+(r.get("sample_desc") or "")).strip()
@@ -498,6 +558,8 @@ def main():
         if JUNK_NAME_RE.search(name_blob) or RADIO_DATA_RE.search(name_blob):
             continue
         if BEIN_IMPLICIT_RE.search(rname) or BEIN_IMPLICIT_RE.search((r.get("id") or "")):
+            continue
+        if (r.get("country") or "").casefold()=="qatar" and (AFC_BEIN_RE.search(rname) or AFC_BEIN_RE.search((r.get("id") or ""))):
             continue
         # Families already covered by dedicated healthy direct feeds must
         # never be promoted from fallback. This includes beIN, OSN, MBC,
@@ -546,6 +608,16 @@ def main():
                 if has_arabic_epg(x) and int(float(x.get("future_programmes") or 0))>0
             )
 
+        # Explicit per-channel source overrides requested after manual verification.
+        override=None
+        for x in arr+cross_candidates:
+            xid=(x.get("id") or "").strip().casefold()
+            xname=(x.get("name") or "").strip().casefold()
+            target=SOURCE_OVERRIDES.get(xid) or SOURCE_OVERRIDES.get(xname)
+            if target and (x.get("provider"),x.get("source"))==target and int(float(x.get("future_programmes") or 0))>0:
+                override=x
+                break
+
         # Prefer the strongest Arabic pool found by the first three audits.
         arabic_pool=[]
         seen_ar=set()
@@ -554,7 +626,7 @@ def main():
             if k not in seen_ar:
                 seen_ar.add(k); arabic_pool.append(x)
 
-        pool=arabic_pool if arabic_pool else arr
+        pool=[override] if override is not None else (arabic_pool if arabic_pool else arr)
         pool=sorted(
             pool,
             key=lambda r:(
@@ -662,10 +734,16 @@ def main():
     new.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
     already_covered.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
 
-    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","title_source","desc_source","title_desc_policy","language_audit","alternatives","alternative_sources","merged_alternatives","url"]
+    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","title_source","desc_source","title_desc_policy","language_audit","alternatives","alternative_sources","merged_alternatives","url","integration_status"]
+    compare_only=load_compare_only_channels()
     with (OUT/"new-arab-epg-ids.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=nfields); w.writeheader()
-        for r in new: w.writerow({k:r.get(k,"") for k in nfields})
+        for r in new:
+            rr=dict(r)
+            rr["integration_status"]="VALIDATED_MISSING"
+            w.writerow({k:rr.get(k,"") for k in nfields})
+        for r in compare_only:
+            w.writerow({k:r.get(k,"") for k in nfields})
     (OUT/"new-arab-epg-ids.txt").write_text(
         "\n".join(f'{r["id"]}\t{r["name"]}\t{r["provider"]}:{r["source"]}' for r in new)+"\n",
         encoding="utf-8"
@@ -693,6 +771,7 @@ def main():
         "protected_direct_families":["bein","osn","mbc","rotana","dubai_dmi","adm","morocco","sport24"],
         "protected_direct_feeds":["bein","osn","elcinema","sport24","2m","morocco","snrt"],
         "missing_ids_final":len(new),
+        "compare_only_channels":len(compare_only),
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
         "language_policy":"ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
