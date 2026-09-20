@@ -79,15 +79,53 @@ jobs:
               print("AR_BEIN_EXAMPLE",cid,json.dumps(rows,ensure_ascii=False))
           PY
       - name: Publish translated feed
+        shell: bash
         run: |
-          cp output/final/bein.xml.gz feeds/bein.xml.gz
-          cp output/final/bein.json feeds/bein.json
-          cp output/final/bein.txt feeds/bein.txt
+          set -e
+
+          # Preserve generated artifacts before syncing to the latest main.
+          rm -rf /tmp/bein-publish
+          mkdir -p /tmp/bein-publish/feeds /tmp/bein-publish/reports /tmp/bein-publish/data
+          cp output/final/bein.xml.gz /tmp/bein-publish/feeds/bein.xml.gz
+          cp output/final/bein.json /tmp/bein-publish/feeds/bein.json
+          cp output/final/bein.txt /tmp/bein-publish/feeds/bein.txt
+          for f in reports/bein-translation.json reports/bein-ai-refine.json; do
+            [ -f "$f" ] && cp "$f" /tmp/bein-publish/reports/
+          done
+          for f in data/bein_translation_cache.json data/bein_ai_cache.json; do
+            [ -f "$f" ] && cp "$f" /tmp/bein-publish/data/
+          done
+
           git config user.name "EPG Scraper Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add feeds/bein.xml.gz feeds/bein.json feeds/bein.txt reports/bein-translation.json reports/bein-ai-refine.json data/bein_translation_cache.json data/bein_ai_cache.json
-          if ! git diff --cached --quiet; then
+
+          # Rebuild the publication commit on top of the freshest main.
+          # This avoids rebase conflicts in generated feed/json files.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+
+            mkdir -p feeds reports data
+            cp /tmp/bein-publish/feeds/bein.xml.gz feeds/bein.xml.gz
+            cp /tmp/bein-publish/feeds/bein.json feeds/bein.json
+            cp /tmp/bein-publish/feeds/bein.txt feeds/bein.txt
+            cp /tmp/bein-publish/reports/* reports/ 2>/dev/null || true
+            cp /tmp/bein-publish/data/* data/ 2>/dev/null || true
+
+            git add feeds/bein.xml.gz feeds/bein.json feeds/bein.txt reports/bein-translation.json reports/bein-ai-refine.json data/bein_translation_cache.json data/bein_ai_cache.json 2>/dev/null || true
+
+            if git diff --cached --quiet; then
+              echo "No beIN publication changes."
+              exit 0
+            fi
+
             git commit -m "Arabize current beIN MENA feed"
-            git pull --rebase origin main
-            git push
-          fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Push raced with another main update; retrying on latest main (attempt $attempt/3)."
+          done
+
+          echo "Unable to publish beIN feed after 3 safe retries."
+          exit 1
