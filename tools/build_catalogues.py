@@ -78,7 +78,12 @@ def build_bein():
     rows=[]
     for site in ["beinsports.com","bein.com"]:
         base=ROOT/site
-        for p in sorted(base.glob("*.channels.xml")):
+        files=sorted(base.glob("*.channels.xml"))
+        if site=="beinsports.com":
+            files=[p for p in files if "_mena-" in p.name.lower()]
+        elif site=="bein.com":
+            files=[p for p in files if p.name.lower().endswith(("_ar.channels.xml","_en.channels.xml"))]
+        for p in files:
             try:
                 rr=ET.parse(p).getroot()
             except Exception:
@@ -105,10 +110,8 @@ def build_bein():
                     rank=2
                 elif site=="bein.com" and lang.startswith("en"):
                     rank=3
-                elif site=="beinsports.com":
-                    rank=4
                 else:
-                    rank=5
+                    rank=4
                 rows.append((cid,rank,name,ch))
     best={}
     for cid,rank,name,ch in rows:
