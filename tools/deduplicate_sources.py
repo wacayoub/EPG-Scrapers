@@ -40,7 +40,7 @@ def text_of(node,tag):
     return ""
 
 def norm_name(s):
-    s=(s or "").casefold()
+    s=(s or "").casefold().replace("+"," plus ")
     s=re.sub(r"\b(hd|sd|uhd|4k|tv|channel)\b"," ",s)
     s=re.sub(r"[^a-z0-9\u0600-\u06ff]+","",s)
     return s
@@ -217,6 +217,10 @@ def main():
     winners={}
     for canon,opts in sorted(entries.items()):
         if len(opts)<2: continue
+        # Same-source lookalikes (for example MBC Drama vs MBC Drama Plus)
+        # are not cross-source duplicates and must remain separate.
+        if len({x["source"] for x in opts})<2:
+            continue
         priority={"morocco":100,"bein":100,"osn":100,"sport24":100,"elcinema":80,"others":50}
         ranked=sorted(opts,key=lambda x:(priority.get(x["source"],0),x["score"],x["metrics"]["future_programmes"],x["metrics"]["programmes"]),reverse=True)
         winner=ranked[0]
