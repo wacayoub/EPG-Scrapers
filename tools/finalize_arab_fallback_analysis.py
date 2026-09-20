@@ -29,6 +29,15 @@ AR=re.compile(r"[\u0600-\u06ff]")
 LATAM_BAD=re.compile(r"\b(argentina|latinoam[eé]rica|latin america|pakapaka|tooncast)\b",re.I)
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
 BEIN_FAMILY_RE=re.compile(r"(?:\bbe\s*in\b|\bbein\b|بي\s*إن|بي\s*ان)",re.I)
+DIRECT_FAMILY_PATTERNS={
+    "bein": BEIN_FAMILY_RE,
+    "osn": re.compile(r"(?:\bosn\b|أو\s*إس\s*إن|او\s*اس\s*ان)",re.I),
+    "mbc": re.compile(r"(?:\bmbc\b|إم\s*بي\s*سي|ام\s*بي\s*سي)",re.I),
+    "rotana": re.compile(r"(?:\brotana\b|روتانا)",re.I),
+    "dubai_dmi": re.compile(r"(?:\bdubai\b|\bsama\s*dubai\b|دبي|سما\s*دبي)",re.I),
+    "adm": re.compile(r"(?:abu\s*dhabi|ad\s*sports|al\s*emarat|أبو\s*ظبي|ابو\s*ظبي|الإمارات|الامارات)",re.I),
+    "morocco": re.compile(r"(?:\b2m\b|al\s*aoula|alaoula|arryadia|arrabiaa|almaghribiya|assadisa|tamazight|snrt|الأولى|الاولى|الرياضية|الثقافية|المغربية|السادسة|تمازيغت)",re.I),
+}
 PREFIX_RE=re.compile(r"^(?:en|ar)\s*:\s*",re.I)
 
 ALIASES={
@@ -136,6 +145,13 @@ def norm(s):
     s=re.sub(r"[^\w\u0600-\u06ff]+"," ",s)
     s=" ".join(s.split())
     return ALIASES.get(s,s)
+
+def direct_family_match(r):
+    txt=" ".join(str(r.get(k,"") or "") for k in ("name","id","source","provider"))
+    for family,pat in DIRECT_FAMILY_PATTERNS.items():
+        if pat.search(txt):
+            return family
+    return ""
 
 def is_bein_family(r):
     txt=" ".join(str(r.get(k,"") or "") for k in ("name","id","source","provider"))
@@ -340,9 +356,11 @@ def main():
             continue
         if LATAM_BAD.search((r.get("name") or "")+" "+(r.get("id") or "")):
             continue
-        # beIN is already covered by the dedicated healthy direct feed.
-        # Never promote any beIN-family fallback candidate.
-        if is_bein_family(r):
+        # Families already covered by dedicated healthy direct feeds must
+        # never be promoted from fallback. This includes beIN, OSN, MBC,
+        # Rotana, Dubai/DMI, ADM/Abu Dhabi and Morocco/SNRT/2M.
+        family=direct_family_match(r)
+        if family:
             continue
         raw_new.append(r)
 
@@ -436,6 +454,7 @@ def main():
         "merged_fallback_winners_before_direct_filter":len(merged),
         "already_covered_by_direct_sources":len(already_covered),
         "bein_family_fallback_policy":"ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
+        "protected_direct_families":["bein","osn","mbc","rotana","dubai_dmi","adm","morocco"],
         "missing_ids_final":len(new),
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
