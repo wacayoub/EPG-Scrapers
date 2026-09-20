@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T11:34:11.705297+00:00",
+  "generated_at": "2026-09-20T11:37:05.882032+00:00",
   "active_rows": 1535,
   "zero_epg_blacklisted_ids": 930,
   "source_blacklist": [
@@ -54,7 +54,7 @@
     "WINNER_OF_DUPLICATES": 210
   },
   "merged_fallback_winners_before_direct_filter": 287,
-  "already_covered_by_direct_sources": 97,
+  "already_covered_by_direct_sources": 111,
   "bein_family_fallback_policy": "ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
   "protected_direct_families": [
     "bein",
@@ -65,8 +65,17 @@
     "adm",
     "morocco"
   ],
-  "missing_ids_final": 190,
-  "new_ids_after_zero_and_latam_filter": 190,
+  "protected_direct_feeds": [
+    "bein",
+    "osn",
+    "elcinema",
+    "sport24",
+    "2m",
+    "morocco",
+    "snrt"
+  ],
+  "missing_ids_final": 176,
+  "new_ids_after_zero_and_latam_filter": 176,
   "language_duplicates_removed": 54,
   "language_policy": "ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
   "english_rejected_for_arabic": 0,
