@@ -90,6 +90,7 @@ jobs:
           python -m py_compile tools/morocco_epg.py
           python -m py_compile tools/monitor_feeds.py
           python -m py_compile tools/publish_lkg.py
+          python -m py_compile tools/validate_48h.py
 
       - name: Build source catalogues
         if: steps.gate.outputs.run == 'true'
@@ -107,7 +108,7 @@ jobs:
             if [ "$key" = "elcinema" ]; then
               extra="--delay=1000"
             fi
-            timeout --signal=TERM --kill-after=30s 900s npm run grab ---               --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml"               --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"               --days=2               --maxConnections=1               --timeout=20000               $extra
+            timeout --signal=TERM --kill-after=30s 900s npm run grab ---               --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml"               --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"               --days=3               --maxConnections=1               --timeout=20000               $extra
             rc=$?
             echo "$rc" > "$GITHUB_WORKSPACE/output/source-build/$key.grab.rc"
             if [ ! -s "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml" ]; then
@@ -132,7 +133,7 @@ jobs:
             timeout --signal=TERM --kill-after=30s 600s npm run grab --- \
               --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.channels.xml" \
               --output="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.raw.xml" \
-              --days=2 \
+              --days=3 \
               --maxConnections=1 \
               --timeout=20000 \
               --delay=1000
@@ -221,6 +222,13 @@ jobs:
           if [ -s output/final/bein.ai.xml.gz ]; then
             mv output/final/bein.ai.xml.gz output/final/bein.xml.gz
           fi
+
+      - name: Strict 48-hour coverage audit
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/validate_48h.py             output/final/morocco.xml.gz             output/final/bein.xml.gz             output/final/elcinema.xml.gz             output/final/osn.xml.gz             output/final/sport24.xml.gz             --hours 48             --max-gap-minutes 90             --report reports/direct-48h-audit.json
 
       - name: Publish healthy feeds with LKG protection
         if: steps.gate.outputs.run == 'true'
