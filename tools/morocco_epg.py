@@ -28,7 +28,7 @@ CHANNELS={
  "MEDI1TV_AR.ma":"Medi1 TV Arabic","MEDI1TV_MAGHREB.ma":"Medi1 TV Maghreb"}
 GROUPS={"snrt":{"AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","AFLAM.ma"},
  "arryadia":{"Arryadia_HD","Arryadia_TNT","Arryadia_HD1","Arryadia_HD2","Arryadia_HD3"},
- "2m_chada":{"2M","Chada TV"},"medi1":{"MEDI1TV_AR.ma","MEDI1TV_MAGHREB.ma"}}
+ "2m":{"2M"},"chada":{"Chada TV"},"medi1":{"MEDI1TV_AR.ma","MEDI1TV_MAGHREB.ma"}}
 SNRT={"AlAoula":"https://www.snrt.ma/ar/node/1208","Arrabiaa":"https://www.snrt.ma/ar/node/4071",
  "AlMaghribiya":"https://www.snrt.ma/ar/node/4072","Assadisa":"https://www.snrt.ma/ar/node/4073",
  "Tamazight":"https://www.snrt.ma/ar/node/4075"}
@@ -111,7 +111,8 @@ def valid(group,rows):
  for e in rr:c[e.channel]+=1
  if group=="snrt": ok=sum(c[x] for x in GROUPS[group] if x!="AFLAM.ma")>=10 and sum(bool(c[x]) for x in GROUPS[group] if x!="AFLAM.ma")>=3
  elif group=="arryadia": ok=sum(c.values())>=10
- elif group=="2m_chada": ok=c["2M"]>=6 and c["Chada TV"]>=3
+ elif group=="2m": ok=c["2M"]>=6
+ elif group=="chada": ok=True
  else: ok=sum(c.values())>=6 and max(c.values() or [0])>=3
  return ok,"events=%d"%sum(c.values())
 
@@ -170,27 +171,73 @@ def scrape_medi1(days):
    if k not in seen:seen.add(k);out.append(e)
  infer(out);return out
 
-def parse_2m(h,text,day,period):
- tree=LH.fromstring(text); out=[];seen=set();rolled=False;prevh=None
- for b in tree.xpath("//div[contains(@class,'item-programme')] | //div[contains(@class,'news')]"):
-  tx=clean(" ".join(b.xpath(".//*[contains(@class,'schedule-hour')]//text()"))); m=re.search(r"\b(\d{1,2}:\d{2})\b",tx or clean(" ".join(b.itertext()))[:120]); tt=b.xpath(".//*[contains(@class,'item-content')]//h3//strong | .//*[contains(@class,'item-content')]//h3 | .//h3//strong | .//h3")
-  if not m or not tt:continue
-  title=clean(" ".join(tt[0].itertext()));desc=clean(" ".join(b.xpath(".//*[contains(@class,'item-content')]//p//text() | .//p//text()"))) or title;k=(m.group(1),title.casefold())
-  if not title or k in seen:continue
-  seen.add(k);hr,mi=map(int,m.group(1).split(":"))
-  if prevh is not None and prevh>=18 and hr<6:rolled=True
-  prevh=hr; d=day+(timedelta(days=1) if rolled or (period in ("afternoon","evening") and hr<6) else timedelta()); start=datetime.combine(d,dtime(hr,mi),PARIS).astimezone(TZ)
-  at=tr2m_title(h,title);out.append(Event("2M",start,at,tr2m_desc(h,desc),None,lang(at),"ar","2m"))
- return out
+def _duration_minutes(text):
+ m=re.search(r"\b(?:(\d+)\s*h(?:\s*(\d{1,2}))?|(?:(\d+)\s*min))\b",clean(text),re.I)
+ if not m:return None
+ if m.group(3):return int(m.group(3))
+ return int(m.group(1) or 0)*60+int(m.group(2) or 0)
 
-def scrape_2m_chada(days):
- h=Http();today=datetime.now(TZ).date();out=[];base="https://tv-programme.telecablesat.fr/chaine/340/2m-monde.html"
+def _parse_2m_cards(h,text,day,source):
+ soup=BeautifulSoup(text,"lxml"); rows=[]; seen=set(); rolled=False; prevh=None
+ candidates=soup.find_all(["li","article","div"])
+ for node in candidates:
+  title_node=node.find(["h2","h3","h4"])
+  if not title_node:continue
+  title=clean(title_node.get_text(" ",strip=True))
+  if not title or len(title)>140:continue
+  body=clean(node.get_text(" ",strip=True))
+  times=re.findall(r"(?<!\d)([0-2]?\d):([0-5]\d)(?!\d)",body)
+  if len(times)!=1:continue
+  hr,mi=map(int,times[0]); key=(hr,mi,title.casefold())
+  if key in seen:continue
+  seen.add(key)
+  if prevh is not None and prevh>=18 and hr<6:rolled=True
+  prevh=hr
+  d=day+(timedelta(days=1) if rolled else timedelta())
+  start=datetime.combine(d,dtime(hr,mi),PARIS).astimezone(TZ)
+  mins=_duration_minutes(body)
+  stop=start+timedelta(minutes=mins) if mins and mins>0 else None
+  desc=body
+  desc=re.sub(r"(?<!\d)[0-2]?\d:[0-5]\d(?!\d)"," ",desc,count=1)
+  desc=clean(desc.replace(title,"",1))
+  desc=re.sub(r"\bVoir plus\b.*$","",desc,flags=re.I).strip(" -|:")
+  at=tr2m_title(h,title)
+  rows.append(Event("2M",start,at,tr2m_desc(h,desc or title),stop,lang(at),"ar",source))
+ return rows
+
+def scrape_2m(days):
+ h=Http(); today=datetime.now(TZ).date(); out=[]
+ weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
  for i in range(days):
   d=today+timedelta(days=i)
-  for period in ("morning","noon","afternoon"):
-   try:out+=parse_2m(h,h.get(base,params={"date":d.isoformat(),"period":period},headers={"Referer":"https://tv-programme.telecablesat.fr/"}).text,d,period)
-   except Exception:pass
- seen=set();out=[e for e in sorted(out,key=lambda e:e.start) if not ((e.start,e.title.casefold()) in seen or seen.add((e.start,e.title.casefold())))]
+  slug="aujourdhui" if i==0 else ("demain" if i==1 else weekdays[d.weekday()])
+  urls=[
+   ("sudinfo",f"https://programmestv.sudinfo.be/programme-tv/chaine/2m-maroc/606/{slug}"),
+   ("telerama",f"https://television.telerama.fr/programme-tv-{slug}/2m-maroc" if slug not in ("aujourdhui","demain") else f"https://television.telerama.fr/chaine/2m-maroc")
+  ]
+  dayrows=[]
+  for source,url in urls:
+   try:
+    r=h.get(url,headers={"Referer":"https://programmestv.sudinfo.be/" if source=="sudinfo" else "https://television.telerama.fr/"})
+    dayrows=_parse_2m_cards(h,r.text,d,source)
+    if len(dayrows)>=6:
+     log("2M %s %s: %d events"%(d.isoformat(),source,len(dayrows)))
+     break
+   except Exception as e:
+    log("2M %s %s failed: %s"%(d.isoformat(),source,e))
+    dayrows=[]
+  out+=dayrows
+ seen=set(); cleanrows=[]
+ for e in sorted(out,key=lambda e:(e.start,e.title.casefold())):
+  k=(e.start,e.title.casefold())
+  if k not in seen:
+   seen.add(k);cleanrows.append(e)
+ infer(cleanrows)
+ log("2M total: %d events"%len(cleanrows))
+ return cleanrows
+
+def scrape_chada(days):
+ h=Http();today=datetime.now(TZ).date();out=[]
  try:r=h.get("https://chada.ma/fr/chada-tv/grille-tv/")
  except Exception:r=None
  if r:
@@ -279,18 +326,21 @@ def to_xml(rows,path):
 def main():
  ap=argparse.ArgumentParser();ap.add_argument("--output-dir",default="output");ap.add_argument("--previous",default="");ap.add_argument("--days",type=int,default=7);ap.add_argument("--scheduled",action="store_true");a=ap.parse_args();now=datetime.now(TZ)
  if a.scheduled and now.hour not in (6,18):log("Schedule gate skip: local hour %02d"%now.hour);return 0
- outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(min(a.days,3)),"2m_chada":lambda:scrape_2m_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
+ outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(min(a.days,3)),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
  with ThreadPoolExecutor(max_workers=4) as ex:
   fs={ex.submit(fn):name for name,fn in jobs.items()}
   for f in as_completed(fs):
    try:results[fs[f]]=f.result()
    except Exception as e:log("%s crashed: %s"%(fs[f],e));results[fs[f]]=[]
  final=[];status={}
- for g in ("snrt","arryadia","2m_chada","medi1"):
+ for g in ("snrt","arryadia","2m","chada","medi1"):
   rr=results.get(g,[]);ok,detail=valid(g,rr);mode="fresh"
   if not ok:
    rr=[e for e in old if e.channel in GROUPS[g]];ok,od=valid(g,rr);mode="last-known-good";detail+="; fallback="+od
-  if not ok:log("FATAL %s invalid and no Last Known Good (%s)"%(g,detail));return 2
+  if not ok:
+   log("FATAL %s invalid and no Last Known Good (%s)"%(g,detail));return 2
+  if g=="chada" and not rr:
+   status[g]={"mode":"optional-missing","events":0,"detail":detail};log("chada: optional missing");continue
   final+=rr;status[g]={"mode":mode,"events":len(rr),"detail":detail};log("%s: %s (%s)"%(g,mode,detail))
  seen=set();merged=[]
  for e in sorted(final,key=lambda e:(e.channel,e.start,e.title.casefold())):
