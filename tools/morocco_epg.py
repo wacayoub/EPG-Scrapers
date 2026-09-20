@@ -132,7 +132,7 @@ def valid(group,rows):
  c=defaultdict(int)
  for e in rr:c[e.channel]+=1
  if group=="snrt": ok=sum(c[x] for x in GROUPS[group] if x!="AFLAM.ma")>=10 and sum(bool(c[x]) for x in GROUPS[group] if x!="AFLAM.ma")>=3
- elif group=="arryadia": ok=sum(c.values())>=10
+ elif group=="arryadia": ok=sum(c.values())>=6 and (c["Arryadia_HD"]>0 or c["Arryadia_TNT"]>0)
  elif group=="2m": ok=c["2M"]>=6
  elif group=="chada": ok=True
  else: ok=sum(c.values())>=6 and max(c.values() or [0])>=3
@@ -399,16 +399,9 @@ def scrape_arryadia(days):
   stop=parsed[i+1][0] if i+1<len(parsed) else s+timedelta(hours=2);full=(title+" "+desc).lower();ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
   live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I));title=("Live: "+title if live and not title.lower().startswith("live:") else title)
   for cid in ids:out.append(Event(cid,s,title,desc,stop,lang(title,"fr"),lang(desc,"ar"),"arryadia"))
- by=defaultdict(list)
- for e in out:by[e.channel].append(e)
- result=[]
- for cid in ARR_IDS:
-  cur=start;name=CHANNELS[cid]
-  for e in sorted(by[cid],key=lambda e:e.start):
-   while cur<e.start-timedelta(minutes=1):ge=min(e.start,cur+timedelta(hours=3));result.append(Event(cid,cur,"Programmes "+name,"Suivez le meilleur du sport marocain et international sur %s."%name,ge,"fr","fr","arryadia"));cur=ge
-   result.append(e);cur=e.stop
-  while cur<end:ge=min(end,cur+timedelta(hours=3));result.append(Event(cid,cur,"Programmes "+name,"Suivez le meilleur du sport marocain et international sur %s."%name,ge,"fr","fr","arryadia"));cur=ge
- return result
+ # Publish only real SNRT/Arryadia schedule events. Never synthesize filler EPG.
+ infer(out)
+ return [e for e in out if e.stop and e.stop>e.start]
 
 def to_xml(rows,path):
  root=ET.Element("tv",{"generator-info-name":"EPGManager Morocco Cloud rc23"});counts=defaultdict(int)
@@ -442,7 +435,7 @@ def main():
   if k not in seen:seen.add(k);merged.append(e)
  infer(merged);xml=outdir/"morocco.xml";counts=to_xml(merged,xml);raw=xml.read_bytes();gz=outdir/"morocco.xml.gz"
  with gzip.GzipFile(filename="morocco.xml",mode="wb",fileobj=gz.open("wb"),compresslevel=9,mtime=0) as f:f.write(raw)
- (outdir/"morocco.txt").write_text("\n".join("%s | %s"%(c,CHANNELS[c]) for c in sorted(counts))+"\n",encoding="utf-8")
+ (outdir/"morocco.txt").write_text("\n".join("%s | %s | %d programmes"%(cid,CHANNELS.get(cid,cid),counts.get(cid,0)) for cid in sorted(CHANNELS))+"\n",encoding="utf-8")
  manifest={"version":now.strftime("%Y%m%d-%H%M%S"),"generated":now.isoformat(),"timezone":"Africa/Casablanca","url":"morocco.xml.gz","sha256":hashlib.sha256(gz.read_bytes()).hexdigest(),"size":gz.stat().st_size,"channels":len(counts),"programmes":sum(counts.values()),"channel_counts":counts,"sources":status}
  (outdir/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2,sort_keys=True)+"\n",encoding="utf-8");log("PASS: %d channels / %d programmes / %.1f KiB"%(manifest["channels"],manifest["programmes"],manifest["size"]/1024));return 0
 if __name__=="__main__":raise SystemExit(main())
