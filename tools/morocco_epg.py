@@ -4,7 +4,7 @@
 Runs on GitHub Actions. The Vu+ only downloads morocco.xml.gz.
 """
 from __future__ import annotations
-import argparse,gzip,hashlib,html,json,re,time,unicodedata
+import argparse,gzip,hashlib,html,json,re,time,unicodedata,difflib
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from dataclasses import dataclass
@@ -186,7 +186,69 @@ def _telerama_title(raw):
    break
  return (int(m.group(1)),int(m.group(2)),prefix) if prefix else None
 
-def parse_2m_telerama(h,text,day):
+def _official_replay_items(text,lang_code):
+ soup=BeautifulSoup(text,"lxml");items={}
+ for a in soup.find_all("a",href=True):
+  href=a.get("href") or ""
+  if "/replay/" not in href:continue
+  key=re.sub(r"^https?://[^/]+","",href)
+  key=re.sub(r"^/(?:ar|fr)(?=/)","",key).split("?",1)[0].rstrip("/")
+  if not key or key.count("/")<2:continue
+  parts=[clean(x) for x in a.stripped_strings if clean(x)]
+  title=clean(a.get("title") or a.get("aria-label") or "")
+  if not title and parts:title=parts[0]
+  img=a.find("img")
+  if (not title or len(title)<2) and img:
+   title=clean(img.get("alt") or img.get("title") or "")
+  if not title or len(title)>160:continue
+  desc=clean(" ".join(parts[1:])) if len(parts)>1 else ""
+  cur=items.get(key);score=(1 if title else 0)+(1 if desc else 0)
+  if not cur or score>cur["score"]:
+   items[key]={"title":title,"desc":desc,"lang":lang_code,"score":score}
+ return items
+
+def official_2m_catalog(h):
+ pairs=[]
+ for kind in ("series","programs"):
+  got={}
+  for lc in ("fr","ar"):
+   url=f"https://2m.ma/{lc}/replay/{kind}"
+   try:
+    r=h.get(url,headers={"Referer":"https://2m.ma/"})
+    got[lc]=_official_replay_items(r.text,lc)
+    log("2M official %s/%s: %d items"%(lc,kind,len(got[lc])))
+   except Exception as e:
+    log("2M official %s/%s failed: %s"%(lc,kind,e));got[lc]={}
+  for key in sorted(set(got["fr"]) & set(got["ar"])):
+   fr=got["fr"][key];arx=got["ar"][key]
+   if ar(arx["title"]) and fr["title"]:
+    pairs.append({"fr":fr["title"],"ar":arx["title"],"desc_ar":arx["desc"],"desc_fr":fr["desc"],"key":key})
+ log("2M official paired catalogue: %d titles"%len(pairs))
+ return pairs
+
+def _official_match(title,catalog):
+ n=norm(title)
+ if not n:return None
+ best=None;bestscore=0.0
+ for item in catalog:
+  fn=norm(item["fr"])
+  if not fn:continue
+  if n==fn:return item
+  if n in fn or fn in n:score=.93
+  else:score=difflib.SequenceMatcher(None,n,fn).ratio()
+  if score>bestscore:bestscore=score;best=item
+ return best if bestscore>=0.78 else None
+
+def _2m_official_title_desc(raw_title,catalog):
+ hit=_official_match(raw_title,catalog)
+ if hit:
+  desc=clean(hit.get("desc_ar") or hit.get("desc_fr") or "")
+  return clean(hit["ar"]),desc,"official"
+ n=norm(raw_title)
+ if n in T2M:return T2M[n],"","dictionary"
+ return clean(raw_title),"","original"
+
+def parse_2m_telerama(h,text,day,catalog):
  soup=BeautifulSoup(text,"lxml");out=[];seen=set()
  for a in soup.find_all("a"):
   raw=clean(" ".join(a.stripped_strings))
@@ -199,20 +261,23 @@ def parse_2m_telerama(h,text,day):
   if k in seen:continue
   seen.add(k)
   start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
-  at=tr2m_title(h,title)
-  out.append(Event("2M",start,at,tr2m_desc(h,title),None,lang(at),"ar","telerama"))
+  at,official_desc,mode=_2m_official_title_desc(title,catalog)
+  n=norm(title)
+  desc=official_desc or ("برنامج إخباري من قناة 2M." if ("info" in n or "journal" in n or "akhbar" in n) else "برنامج يُعرض على قناة 2M.")
+  out.append(Event("2M",start,at,desc,None,lang(at,"fr"),lang(desc,"ar"),"telerama+"+mode))
  out.sort(key=lambda e:e.start)
  return out
 
 def scrape_2m(days):
  h=Http();today=datetime.now(TZ).date();out=[]
+ catalog=official_2m_catalog(h)
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
  for i in range(days):
   d=today+timedelta(days=i)
   url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
   try:
    r=h.get(url,headers={"Referer":"https://television.telerama.fr/"})
-   rows=parse_2m_telerama(h,r.text,d)
+   rows=parse_2m_telerama(h,r.text,d,catalog)
    log("2M %s telerama: %d events"%(d.isoformat(),len(rows)))
    out+=rows
   except Exception as e:
@@ -224,6 +289,9 @@ def scrape_2m(days):
    seen.add(k);cleanrows.append(e)
  infer(cleanrows)
  cleanrows=[e for e in cleanrows if e.stop and e.stop>e.start and e.stop-e.start<=timedelta(hours=4)]
+ modes=defaultdict(int)
+ for e in cleanrows:modes[e.source]+=1
+ log("2M title modes: %s"%dict(modes))
  log("2M total: %d events"%len(cleanrows))
  return cleanrows
 
