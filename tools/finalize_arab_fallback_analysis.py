@@ -28,6 +28,7 @@ OUT=Path("reports")
 AR=re.compile(r"[\u0600-\u06ff]")
 LATAM_BAD=re.compile(r"\b(argentina|latinoam[eé]rica|latin america|pakapaka|tooncast)\b",re.I)
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
+BEIN_FAMILY_RE=re.compile(r"(?:\bbe\s*in\b|\bbein\b|بي\s*إن|بي\s*ان)",re.I)
 PREFIX_RE=re.compile(r"^(?:en|ar)\s*:\s*",re.I)
 
 ALIASES={
@@ -135,6 +136,10 @@ def norm(s):
     s=re.sub(r"[^\w\u0600-\u06ff]+"," ",s)
     s=" ".join(s.split())
     return ALIASES.get(s,s)
+
+def is_bein_family(r):
+    txt=" ".join(str(r.get(k,"") or "") for k in ("name","id","source","provider"))
+    return bool(BEIN_FAMILY_RE.search(txt))
 
 def arabic_pct(s):
     if not s: return 0.0
@@ -335,6 +340,10 @@ def main():
             continue
         if LATAM_BAD.search((r.get("name") or "")+" "+(r.get("id") or "")):
             continue
+        # beIN is already covered by the dedicated healthy direct feed.
+        # Never promote any beIN-family fallback candidate.
+        if is_bein_family(r):
+            continue
         raw_new.append(r)
 
     # Merge all fallback variants by real channel identity. Arabic wins over
@@ -426,6 +435,7 @@ def main():
         "decision_counts":dict(counts),
         "merged_fallback_winners_before_direct_filter":len(merged),
         "already_covered_by_direct_sources":len(already_covered),
+        "bein_family_fallback_policy":"ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
         "missing_ids_final":len(new),
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
