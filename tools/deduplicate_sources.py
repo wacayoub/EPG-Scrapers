@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-SOURCES=("morocco","bein","osn","sport24","elcinema")
+SOURCES=("morocco","bein","osn","sport24","elcinema","others")
 AR=re.compile(r"[\u0600-\u06FF]")
 
 def read_root(path:Path):
@@ -46,35 +46,33 @@ def norm_name(s):
     return s
 
 def canonical_id(cid,name):
-    # Exact XMLTV family first: strip region/quality suffix only.
+    # Cross-source duplicate key: prefer normalized channel name so different
+    # XMLTV IDs for the same real channel collapse into one group.
+    n=norm_name(name)
+    aliases={
+        "adsport":"abudhabisport",
+        "abudhabisports":"abudhabisport",
+        "bbcarabicnews":"bbcarabic",
+        "bbcnewsarabic":"bbcarabic",
+        "blomberg1":"bloomberg",
+        "bloomberg1":"bloomberg",
+        "cnnhd":"cnn",
+        "cnninternational":"cnn",
+        "cartoonnetworkarabic1":"cartoonnetworkarabic",
+        "movies1premier":"beinmovies1",
+        "beinmovies1premier":"beinmovies1",
+        "movies2action":"beinmovies2",
+        "beinmovies2action":"beinmovies2",
+        "beinsports1english":"beinsportsen1",
+        "beinsportsen1":"beinsportsen1",
+    }
+    n=aliases.get(n,n)
+    if len(n)>=4 and n not in {"news","sport","sports","movie","movies","cinema","arabic","english"}:
+        return "name:"+n
     base=(cid or "").split("@",1)[0].casefold()
-    if cid.startswith("sport24."):
-        n=norm_name(name)
-        aliases={
-            "abudhabisports1":"abudhabisports1.ae",
-            "abudhabisports2":"abudhabisports2.ae",
-            "abudhabisports3":"abudhabisports3.ae",
-            "abudhabisports4":"abudhabisports4.ae",
-            "dubaisports1":"dubaisports1.ae",
-            "dubaisports2":"dubaisports2.ae",
-            "thmanyah1":"thmanyah1.sa",
-            "thmanyah2":"thmanyah2.sa",
-            "thmanyah3":"thmanyah3.sa",
-            "beinsports":"beinsports.qa",
-            "beinsportsfree":"beinsports.qa",
-            "beinsports1":"beinsports1.qa",
-            "beinsports2":"beinsports2.qa",
-            "beinsports3":"beinsports3.qa",
-            "beinsports4":"beinsports4.qa",
-            "beinsports5":"beinsports5.qa",
-            "beinsports6":"beinsports6.qa",
-            "beinsports7":"beinsports7.qa",
-            "beinsports8":"beinsports8.qa",
-            "beinsports9":"beinsports9.qa",
-            "beinsportsnews":"beinsportsnews.qa",
-        }
-        return aliases.get(n,base)
-    return base
+    base=re.sub(r"\.(?:sa|ae|eg|qa|ma|net|mena)$","",base)
+    base=norm_name(base)
+    return "id:"+aliases.get(base,base)
 
 def language_profile(canon,name):
     """User-approved language policy.
@@ -107,8 +105,11 @@ def language_profile(canon,name):
 
 
 def specialty_bonus(source,canon):
-    # Source directness is only a small tie-breaker. Language/coverage quality wins.
+    # Direct/official providers must beat generic fallback when both represent
+    # the same real channel.
     c=canon.casefold()
+    if source=="others":
+        return 1
     if source=="morocco" and any(x in c for x in ("alaoula","arryadia","2m","medi1","tamazight","assadisa","almaghribiya","arrabiaa","aflam","chada")):
         return 6
     if source=="bein" and c.startswith("beinsports"):
@@ -216,7 +217,8 @@ def main():
     winners={}
     for canon,opts in sorted(entries.items()):
         if len(opts)<2: continue
-        ranked=sorted(opts,key=lambda x:(x["score"],x["metrics"]["future_programmes"],x["metrics"]["programmes"]),reverse=True)
+        priority={"morocco":100,"bein":100,"osn":100,"sport24":100,"elcinema":80,"others":50}
+        ranked=sorted(opts,key=lambda x:(priority.get(x["source"],0),x["score"],x["metrics"]["future_programmes"],x["metrics"]["programmes"]),reverse=True)
         winner=ranked[0]
         winners[canon]=winner
         for x in ranked[1:]: losers[x["source"]].add(x["id"])
