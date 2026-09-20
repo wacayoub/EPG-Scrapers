@@ -91,6 +91,29 @@ def provider_score(r):
     # OpenEPG slightly preferred when all else is equal; EPGShare remains fallback.
     return 8 if r["provider"]=="openepg" else 4
 
+def language_rank(r):
+    """Prefer Arabic variant, then neutral/original, then explicit English."""
+    name=(r.get("name") or "").strip()
+    cid=(r.get("id") or "").strip()
+    txt=(name+" "+cid).casefold()
+    if AR.search(name) or AR.search(cid) or re.match(r"^\s*ar\s*:",name,re.I) or re.match(r"^\s*ar\s*[:.]",cid,re.I):
+        return 0
+    if re.match(r"^\s*en\s*:",name,re.I) or re.match(r"^\s*en\s*[:.]",cid,re.I) or " english" in txt:
+        return 2
+    return 1
+
+def bilingual_key(r):
+    """Collapse obvious AR/EN variants of the same XMLTV channel."""
+    name=(r.get("name") or "").strip()
+    cid=(r.get("id") or "").strip()
+    for raw in (name,cid):
+        s=re.sub(r"^\s*(?:ar|en)\s*[:.]\s*","",raw,flags=re.I)
+        s=re.sub(r"\.(?:ae|sa|eg|qa|bein)$","",s,flags=re.I)
+        s=norm(s)
+        if s:
+            return s
+    return norm(name) or norm(cid)
+
 def rank(r):
     fp=min(int(float(r["future_programmes"])),300)
     fh=min(float(r["future_hours"]),168.0)
@@ -178,15 +201,41 @@ def main():
     # New IDs list = current unmapped candidates after analysis, excluding obvious
     # LATAM pollution and excluding zero-EPG IDs.
     unmapped=list(csv.DictReader(UNMAPPED.open(encoding="utf-8")))
-    new=[]
+    raw_new=[]
     zero_keys={(r["provider"],r["source"],r["id"]) for r in zero}
     for r in unmapped:
         if (r["provider"],r["source"],r["id"]) in zero_keys:
             continue
-        if LATAM_BAD.search(r["name"]+" "+r["id"]):
+        if (r.get("provider",""),r.get("source","")) in EXCLUDED_SOURCE_KEYS:
             continue
-        new.append(r)
-    new.sort(key=lambda r:(r["country"],r["name"].casefold(),r["id"]))
+        if LATAM_BAD.search((r.get("name") or "")+" "+(r.get("id") or "")):
+            continue
+        raw_new.append(r)
+
+    # Deduplicate bilingual variants: Arabic > neutral/original > English.
+    lang_groups=defaultdict(list)
+    for r in raw_new:
+        lang_groups[bilingual_key(r)].append(r)
+
+    new=[]
+    language_duplicates_removed=0
+    for _,arr in lang_groups.items():
+        arr=sorted(
+            arr,
+            key=lambda r:(
+                language_rank(r),
+                -int(float(r.get("future_programmes") or 0)),
+                -float(r.get("desc_pct") or 0),
+                -float(r.get("future_hours") or 0),
+                (r.get("name") or "").casefold(),
+                r.get("id") or ""
+            )
+        )
+        new.append(arr[0])
+        language_duplicates_removed += max(0,len(arr)-1)
+
+    # Final receiver-review list: alphabetical by channel name.
+    new.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
 
     nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","alternatives","alternative_sources","url"]
     with (OUT/"new-arab-epg-ids.csv").open("w",newline="",encoding="utf-8") as f:
@@ -208,6 +257,9 @@ def main():
         "duplicate_extra_rows":sum(max(0,len(a)-1) for a in groups.values()),
         "decision_counts":dict(counts),
         "new_ids_after_zero_and_latam_filter":len(new),
+        "language_duplicates_removed":language_duplicates_removed,
+        "language_policy":"ARABIC_FIRST_THEN_ENGLISH_IF_NO_ARABIC",
+        "sort_order":"CHANNEL_NAME_ASC",
         "excluded_sources":["epgshare:AR1"],
         "integration_policy":{
             "healthy_direct_feed":"always_keep",
