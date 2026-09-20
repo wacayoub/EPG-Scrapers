@@ -76,6 +76,7 @@ jobs:
           python -m py_compile tools/build_catalogues.py
           python -m py_compile tools/source_feed_pack.py
           python -m py_compile tools/source_gap_retry.py
+          python -m py_compile tools/bein_arabize.py
           python -m py_compile tools/sport24_source.py
           python -m py_compile tools/morocco_epg.py
           python -m py_compile tools/monitor_feeds.py
@@ -183,6 +184,19 @@ jobs:
           fi
           exit 0
 
+      - name: Arabize beIN MENA titles and descriptions
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -e
+          mkdir -p data reports
+          python tools/bein_arabize.py \
+            --input output/final/bein.xml.gz \
+            --output output/final/bein.ar.xml.gz \
+            --cache data/bein_translation_cache.json \
+            --report reports/bein-translation.json
+          mv output/final/bein.ar.xml.gz output/final/bein.xml.gz
+
       - name: Publish healthy feeds with LKG protection
         if: steps.gate.outputs.run == 'true'
         run: python tools/publish_lkg.py
@@ -207,7 +221,7 @@ jobs:
         run: |
           git config user.name "EPG Scraper Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add feeds reports
+          git add feeds reports data/bein_translation_cache.json
           if git diff --cached --quiet; then
             echo "No feed changes."
           else
