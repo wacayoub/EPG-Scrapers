@@ -49,6 +49,7 @@ jobs:
           cp -f reports/arab-fallback-source-blacklist.json /tmp/final-arab/reports/
           cp -f reports/new-arab-epg-ids.* /tmp/final-arab/reports/
           cp -f reports/arab-fallback-already-covered.csv /tmp/final-arab/reports/
+          cp -f reports/arab-fallback-language-audit.csv /tmp/final-arab/reports/
       - name: Publish final analysis
         shell: bash
         run: |
@@ -60,7 +61,7 @@ jobs:
             git reset --hard origin/main
             mkdir -p reports
             cp -f /tmp/final-arab/reports/* reports/
-            git add reports/arab-fallback-final-analysis.* reports/arab-fallback-duplicate-decisions.csv reports/arab-fallback-zero-epg-blacklist.csv reports/arab-fallback-source-blacklist.json reports/new-arab-epg-ids.* reports/arab-fallback-already-covered.csv
+            git add reports/arab-fallback-final-analysis.* reports/arab-fallback-duplicate-decisions.csv reports/arab-fallback-zero-epg-blacklist.csv reports/arab-fallback-source-blacklist.json reports/new-arab-epg-ids.* reports/arab-fallback-already-covered.csv reports/arab-fallback-language-audit.csv
             if git diff --cached --quiet; then
               echo "No final analysis changes"
               exit 0
