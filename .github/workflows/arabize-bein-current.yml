@@ -5,10 +5,13 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/arabize-bein-current.yml"
+      - "tools/bein_arabize.py"
+      - "tools/bein_ai_refine.py"
   workflow_dispatch:
 
 permissions:
   contents: write
+  models: read
 
 concurrency:
   group: epg-feed-publish
@@ -35,6 +38,20 @@ jobs:
             --output output/final/bein.ar.xml.gz \
             --cache data/bein_translation_cache.json \
             --report reports/bein-translation.json
+      - name: AI quality pass
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python tools/bein_ai_refine.py \
+            --input output/final/bein.ar.xml.gz \
+            --output output/final/bein.ai.xml.gz \
+            --cache data/bein_ai_cache.json \
+            --report reports/bein-ai-refine.json
+          if [ -s output/final/bein.ai.xml.gz ]; then
+            mv output/final/bein.ai.xml.gz output/final/bein.ar.xml.gz
+          fi
+
       - name: Repack translated feed
         run: |
           python tools/source_feed_pack.py \
@@ -68,7 +85,7 @@ jobs:
           cp output/final/bein.txt feeds/bein.txt
           git config user.name "EPG Scraper Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add feeds/bein.xml.gz feeds/bein.json feeds/bein.txt reports/bein-translation.json data/bein_translation_cache.json
+          git add feeds/bein.xml.gz feeds/bein.json feeds/bein.txt reports/bein-translation.json reports/bein-ai-refine.json data/bein_translation_cache.json data/bein_ai_cache.json
           if ! git diff --cached --quiet; then
             git commit -m "Arabize current beIN MENA feed"
             git pull --rebase origin main
