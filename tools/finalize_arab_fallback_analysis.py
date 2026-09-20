@@ -237,13 +237,16 @@ def choose_bilingual_event_fields(arr,winner):
         if d:
             desc_candidates.append((arabic_pct(d), len(d), d, x))
 
+    en_found=False
+    ar_desc_found=False
+
     if title_candidates:
         title_candidates.sort(key=lambda z:(z[0],z[1],len(z[2])),reverse=True)
         best_t=title_candidates[0]
-        # Only replace with a clearly Latin/English title; otherwise keep native title.
         if best_t[0] >= 60.0:
             winner["sample_title"]=best_t[2]
             winner["title_source"]=f'{best_t[3].get("provider","")}:{best_t[3].get("source","")}:{best_t[3].get("id","")}'
+            en_found=True
 
     if desc_candidates:
         desc_candidates.sort(key=lambda z:(z[0],z[1]),reverse=True)
@@ -251,8 +254,14 @@ def choose_bilingual_event_fields(arr,winner):
         if best_d[0] >= 20.0:
             winner["sample_desc"]=best_d[2]
             winner["desc_source"]=f'{best_d[3].get("provider","")}:{best_d[3].get("source","")}:{best_d[3].get("id","")}'
+            ar_desc_found=True
 
-    winner["title_desc_policy"]="EN_TITLE_AR_DESC_WHEN_PAIRED"
+    if en_found and ar_desc_found:
+        winner["title_desc_policy"]="EN_TITLE_AR_DESC_PAIRED"
+    elif en_found:
+        winner["title_desc_policy"]="EN_TITLE_NO_AR_DESC"
+    else:
+        winner["title_desc_policy"]="NO_EN_TITLE_MATCH"
     return winner
 
 def epg_arabic_score(r):
@@ -542,7 +551,18 @@ def main():
             )
         )
         winner=dict(pool[0])
-        winner=choose_bilingual_event_fields(arr,winner)
+
+        # Build a text-pairing pool from the same channel across all source
+        # variants, not just the already-collapsed unmapped winner list.
+        text_pool=[]
+        seen_text=set()
+        for x in arr+cross_candidates+arabic_alias:
+            k=(x.get("provider",""),x.get("source",""),x.get("id",""))
+            if k in seen_text:
+                continue
+            seen_text.add(k)
+            text_pool.append(x)
+        winner=choose_bilingual_event_fields(text_pool,winner)
 
         # Audit 4: if winner is English/non-Arabic, accept only when all prior
         # Arabic searches failed AND content itself contains no meaningful Arabic alternative.
