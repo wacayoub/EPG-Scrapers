@@ -82,8 +82,34 @@ NEWS_TITLES = {
     "Al Jawla - Live Studio": "الجولة - الاستوديو المباشر",
     "All - Sports": "جميع الرياضات",
     "Arab Participation In Asian Games": "المشاركة العربية في دورة الألعاب الآسيوية",
-    "Ligue 1 Show": "مجلة الدوري الفرنسي",
+    "Ligue 1 Show": "ملخص الدوري الفرنسي",
 }
+
+TITLE_CANONICAL_RULES = [
+    # User-approved beIN title normalization.
+    (re.compile(r"^مجلة الدوري الفرنسي$", re.I), "ملخص الدوري الفرنسي"),
+    (re.compile(r"^الدوري الفرنسي\s+Weekly Review$", re.I), "الملخص الأسبوعي للدوري الفرنسي"),
+    (re.compile(r"^قصص الدوري الإنجليزي(?:\s+EP\.\d+)?\s*-\s*طريق إبسويتش$", re.I), "قصص الدوري الإنجليزي - Ipswich Town"),
+    (re.compile(r"^الدوري الإنجليزي\s+نتبوسترز(?:\s*-\s*الحلقة\s*\d+)?$", re.I), "ملخص الدوري الإنجليزي الممتاز"),
+]
+
+def canonicalize_title(text: str) -> str:
+    text = strip_title_datetime(text)
+    # Remove hybrid language labels left by machine translation.
+    text = re.sub(r"\bSpanish\s+(?=الدوري الإسباني)", "", text, flags=re.I)
+    text = re.sub(r"\bFrench\s+(?=الدوري الفرنسي)", "", text, flags=re.I)
+    text = re.sub(r"\s*\(\s*Elderbi De Madrid\s*\)\s*", " ", text, flags=re.I)
+    text = re.sub(r"\s*-\s*MD\d+\b", "", text, flags=re.I)
+    # User preference: simplify AFC Elite title.
+    text = re.sub(r"دوري أبطال آسيا للنخبة", "دوري أبطال آسيا", text)
+    text = re.sub(r"دوري ابطال آسيا للنخبة", "دوري أبطال آسيا", text)
+    for pat, repl in TITLE_CANONICAL_RULES:
+        if pat.search(text):
+            text = pat.sub(repl, text)
+            break
+    # Keep ATP naming in Latin script.
+    text = re.sub(r"جولة\s+ATP(?:\s*-\s*مجلة)?", "ATP Tennis", text, flags=re.I)
+    return normalize_spaces(text)
 
 TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
 
@@ -113,6 +139,11 @@ def mostly_english(text: str) -> bool:
 
 def normalize_spaces(text: str) -> str:
     return re.sub(r"\s+", " ", text or "").strip(" -–—|")
+
+def strip_title_datetime(text: str) -> str:
+    text = DATE_TOKEN_RE.sub("", text or "")
+    text = TIME_TOKEN_RE.sub("", text)
+    return normalize_spaces(text)
 
 
 def apply_glossary(text: str) -> str:
@@ -212,13 +243,13 @@ def translate_title(title: str, channel: str, tr: Translator):
     # Exact/recurring beIN News programmes first.
     for en, ar in sorted(NEWS_TITLES.items(), key=lambda x: -len(x[0])):
         if cleaned.lower() == en.lower():
-            return ar, meta
+            return canonicalize_title(ar), meta
         if cleaned.lower().startswith(en.lower() + " " ) or cleaned.lower().startswith(en.lower() + " -"):
             suffix = cleaned[len(en):].strip(" -")
             suffix = apply_glossary(suffix)
             if mostly_english(suffix):
                 suffix = tr.translate(suffix)
-            return strip_title_datetime(normalize_spaces(f"{ar} - {suffix}" if suffix else ar)), meta
+            return canonicalize_title(normalize_spaces(f"{ar} - {suffix}" if suffix else ar)), meta
 
     match_part, tail = protect_match_participants(cleaned)
     if match_part is not None:
@@ -226,12 +257,12 @@ def translate_title(title: str, channel: str, tr: Translator):
         translated_tail = apply_glossary(tail)
         if mostly_english(translated_tail):
             translated_tail = tr.translate(translated_tail)
-        return strip_title_datetime(normalize_spaces(f"{match_part} - {translated_tail}" if translated_tail else match_part)), meta
+        return canonicalize_title(normalize_spaces(f"{match_part} - {translated_tail}" if translated_tail else match_part)), meta
 
     glossed = apply_glossary(cleaned)
     if mostly_english(glossed):
         glossed = tr.translate(glossed)
-    return strip_title_datetime(normalize_spaces(glossed)), meta
+    return canonicalize_title(normalize_spaces(glossed)), meta
 
 
 def append_metadata(desc: str, meta):
