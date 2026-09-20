@@ -1,6 +1,12 @@
 name: Daily EPG scrape
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/daily-epg.yml"
+      - "config/full-refresh-trigger.txt"
+      - "tools/monitor_feeds.py"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
@@ -230,7 +236,12 @@ jobs:
             echo "No published feeds yet."
             exit 1
           fi
-          python tools/monitor_feeds.py "${feeds[@]}"             --json reports/latest.json             --md reports/latest.md
+          python tools/monitor_feeds.py "${feeds[@]}" \
+            --json reports/latest.json \
+            --md reports/latest.md \
+            --html reports/epg-source-id-monitoring.html \
+            --csv reports/epg-source-id-monitoring.csv \
+            --reports-dir reports
 
       - name: Commit feeds and reports
         if: steps.gate.outputs.run == 'true'
