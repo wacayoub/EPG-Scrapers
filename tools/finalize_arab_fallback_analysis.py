@@ -29,6 +29,7 @@ AR=re.compile(r"[\u0600-\u06ff]")
 LATAM_BAD=re.compile(r"\b(argentina|latinoam[eé]rica|latin america|pakapaka|tooncast)\b",re.I)
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
 BEIN_FAMILY_RE=re.compile(r"(?:\bbe\s*in\b|\bbein\b|بي\s*إن|بي\s*ان)",re.I)
+BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin)",re.I)
 DIRECT_FAMILY_PATTERNS={
     "bein": BEIN_FAMILY_RE,
     "osn": re.compile(r"(?:\bosn\b|أو\s*إس\s*إن|او\s*اس\s*ان)",re.I),
@@ -355,6 +356,9 @@ def main():
         if (r.get("provider",""),r.get("source","")) in EXCLUDED_SOURCE_KEYS:
             continue
         if LATAM_BAD.search((r.get("name") or "")+" "+(r.get("id") or "")):
+            continue
+        sample_blob=((r.get("sample_title") or "")+" "+(r.get("sample_desc") or "")).strip()
+        if BAD_SAMPLE_RE.search(sample_blob):
             continue
         # Families already covered by dedicated healthy direct feeds must
         # never be promoted from fallback. This includes beIN, OSN, MBC,
