@@ -7,6 +7,8 @@ on:
       - ".github/workflows/daily-epg.yml"
       - "config/full-refresh-trigger.txt"
       - "tools/monitor_feeds.py"
+      - "tools/build_catalogues.py"
+      - "tools/source_feed_pack.py"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
