@@ -62,6 +62,7 @@ SOURCE_PRIORITY={
 
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
 QUARANTINED_SOURCE_KEYS={("epgshare","AE1")}
+AUTO_QUARANTINE_CLONE_PCT=35.0
 BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin)",re.I)
 
 def norm(s:str)->str:
@@ -78,6 +79,26 @@ def load_xml(path):
     if data[:2]==b"\x1f\x8b":
         data=gzip.decompress(data)
     return ET.fromstring(data)
+
+def health_quarantined_sources():
+    path=REPORT/"arab-fallback-health.json"
+    out=set(QUARANTINED_SOURCE_KEYS)
+    if not path.exists():
+        return out
+    try:
+        data=json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return out
+    for h in data.get("health",[]):
+        if h.get("status")!="ok":
+            continue
+        active=int(h.get("active_channels",0) or 0)
+        clones=int(h.get("suspicious_clone_channels",0) or 0)
+        raw_active=active+clones
+        pct=(100.0*clones/raw_active) if raw_active else 0.0
+        if raw_active>=10 and pct>=AUTO_QUARANTINE_CLONE_PCT:
+            out.add((h.get("provider",""),h.get("source","")))
+    return out
 
 def production_catalog():
     ids=set()
@@ -115,13 +136,14 @@ def main():
         raise SystemExit(f"missing {IN}; run Build Arab fallback analysis first")
 
     prod_ids,prod_names,prod_by_id=production_catalog()
+    dynamic_quarantine=health_quarantined_sources()
 
     rows=[]
     with IN.open(encoding="utf-8") as f:
         for r in csv.DictReader(f):
             if (r.get("provider",""),r.get("source","")) in EXCLUDED_SOURCE_KEYS:
                 continue
-            if (r.get("provider",""),r.get("source","")) in QUARANTINED_SOURCE_KEYS:
+            if (r.get("provider",""),r.get("source","")) in dynamic_quarantine:
                 continue
             r["future_programmes"]=int(float(r["future_programmes"] or 0))
             r["future_hours"]=float(r["future_hours"] or 0)
