@@ -61,6 +61,7 @@ SOURCE_PRIORITY={
 }
 
 EXCLUDED_SOURCE_KEYS={("epgshare","AR1")}
+QUARANTINED_SOURCE_KEYS={("epgshare","AE1")}
 BAD_SAMPLE_RE=re.compile(r"(?:tv\s*guide\s*is\s*not\s*available|edge\s*of\s*the\s*unknown\s*with\s*jimmy\s*chin)",re.I)
 
 def norm(s:str)->str:
@@ -119,6 +120,8 @@ def main():
     with IN.open(encoding="utf-8") as f:
         for r in csv.DictReader(f):
             if (r.get("provider",""),r.get("source","")) in EXCLUDED_SOURCE_KEYS:
+                continue
+            if (r.get("provider",""),r.get("source","")) in QUARANTINED_SOURCE_KEYS:
                 continue
             r["future_programmes"]=int(float(r["future_programmes"] or 0))
             r["future_hours"]=float(r["future_hours"] or 0)
