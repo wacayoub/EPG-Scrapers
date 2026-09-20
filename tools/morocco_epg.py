@@ -182,61 +182,50 @@ def scrape_medi1(days):
    if k not in seen:seen.add(k);out.append(e)
  infer(out);return out
 
-def _telerama_card(raw):
- s=clean(raw)
- m=re.search(r"(?<!\d)([0-2]?\d)h([0-5]\d)(?!\d)",s)
- if not m:return None
- prefix=clean(s[:m.start()])
+def parse_2m(h,text,day):
+ soup=BeautifulSoup(text,"lxml");out=[];seen=set()
  cats=("Magazine sportif","Documentaire de société","Magazine d'information",
        "Magazine de services","Magazine de société","Magazine culturel",
        "Série dramatique","Série sentimentale","Divertissement","Documentaire",
        "Feuilleton","Magazine","Journal","Météo","Débat","Théâtre","Film","Série")
- category=""
- title=prefix
- for cat in sorted(cats,key=len,reverse=True):
-  if prefix.casefold().startswith(cat.casefold()+" "):
-   category=cat
-   title=clean(prefix[len(cat):])
-   break
- return (int(m.group(1)),int(m.group(2)),title,category) if title else None
-
-def _2m_title(raw):
- n=norm(raw)
- if n in T2M:return T2M[n],"dictionary"
- return clean(raw),"original"
-
-def _2m_desc(title,category):
- cat=norm(category)
- if "meteo" in cat:return "نشرة جوية على قناة 2M تقدم توقعات الطقس ودرجات الحرارة."
- if "journal" in cat or "information" in cat:return "موعد إخباري على قناة 2M لمتابعة أبرز الأخبار والمستجدات."
- if "sport" in cat:return "برنامج رياضي على قناة 2M يتابع الأخبار والمنافسات الرياضية."
- if "serie" in cat or "feuilleton" in cat:return "مسلسل يُعرض على قناة 2M."
- if "film" in cat:return "فيلم يُعرض على قناة 2M."
- if "documentaire" in cat:return "برنامج وثائقي يُعرض على قناة 2M."
- if "debat" in cat:return "برنامج حواري على قناة 2M."
- if "theatre" in cat:return "عرض مسرحي يُعرض على قناة 2M."
- if "divertissement" in cat:return "برنامج ترفيهي يُعرض على قناة 2M."
- if "magazine" in cat:return "مجلة تلفزيونية تُعرض على قناة 2M."
- n=norm(title)
- if "akhbar" in n or "info" in n or "journal" in n:return "موعد إخباري على قناة 2M."
- return "برنامج يُعرض على قناة 2M."
-
-def parse_2m_telerama(text,day):
- soup=BeautifulSoup(text,"lxml");out=[];seen=set()
  for a in soup.find_all("a"):
-  raw=clean(" ".join(a.stripped_strings))
-  parsed=_telerama_card(raw)
-  if not parsed:continue
-  hr,mi,title,category=parsed
-  if len(title)<2 or len(title)>120:continue
-  if re.fullmatch(r"[0-2]?\d[h:]?[0-5]\d",title):continue
-  k=(hr,mi,title.casefold())
+  parts=[clean(x) for x in a.stripped_strings if clean(x)]
+  raw=clean(" ".join(parts))
+  m=re.search(r"(?<!\d)([0-2]?\d)h([0-5]\d)(?!\d)",raw)
+  if not m:continue
+  prefix=clean(raw[:m.start()])
+  category=""
+  title=prefix
+  for cat in sorted(cats,key=len,reverse=True):
+   if prefix.casefold().startswith(cat.casefold()+" "):
+    category=cat
+    title=clean(prefix[len(cat):])
+    break
+  if not title or len(title)>120 or re.fullmatch(r"[0-2]?\d[h:]?[0-5]\d",title):continue
+  k=("%02d:%02d"%(int(m.group(1)),int(m.group(2))),title.casefold())
   if k in seen:continue
   seen.add(k)
+  hr,mi=int(m.group(1)),int(m.group(2))
   start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
-  at,mode=_2m_title(title)
-  desc=_2m_desc(title,category)
-  out.append(Event("2M",start,at,desc,None,lang(at,"fr"),"ar","telerama+"+mode))
+
+  # Same Morocco Cloud 2M logic: normalized Arabic title + translated/normalized description.
+  desc=""
+  if len(parts)>1:
+   tail=[]
+   passed_time=False
+   for p in parts:
+    if re.search(r"(?<!\d)[0-2]?\d[h:][0-5]\d(?!\d)",p):
+     passed_time=True
+     continue
+    if passed_time and p!=title and p!=category:
+     tail.append(p)
+   desc=clean(" ".join(tail))
+  if not desc:
+   desc=category or title
+
+  at=tr2m_title(h,title)
+  ad=tr2m_desc(h,desc)
+  out.append(Event("2M",start,at,ad,None,lang(at),"ar","2m-telerama"))
  out.sort(key=lambda e:e.start)
  return out
 
@@ -247,24 +236,18 @@ def scrape_2m(days):
   d=today+timedelta(days=i)
   url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
   try:
-   r=h.get(url,headers={"Referer":"https://television.telerama.fr/"})
-   rows=parse_2m_telerama(r.text,d)
+   rows=parse_2m(h,h.get(url,headers={"Referer":"https://television.telerama.fr/"}).text,d)
    log("2M %s telerama: %d events"%(d.isoformat(),len(rows)))
    out+=rows
   except Exception as ex:
    log("2M %s telerama failed: %s"%(d.isoformat(),ex))
- seen=set();cleanrows=[]
- for e in sorted(out,key=lambda e:(e.start,e.title.casefold())):
-  k=(e.start,e.title.casefold())
-  if k not in seen:
-   seen.add(k);cleanrows.append(e)
- infer(cleanrows)
- cleanrows=[e for e in cleanrows if e.stop and e.stop>e.start and e.stop-e.start<=timedelta(hours=4)]
- modes=defaultdict(int)
- for ev in cleanrows:modes[ev.source]+=1
- log("2M title modes: %s"%dict(modes))
- log("2M total: %d events"%len(cleanrows))
- return cleanrows
+ seen=set()
+ out=[ev for ev in sorted(out,key=lambda ev:ev.start)
+      if not ((ev.start,ev.title.casefold()) in seen or seen.add((ev.start,ev.title.casefold())))]
+ infer(out)
+ out=[ev for ev in out if ev.stop and ev.stop>ev.start and ev.stop-ev.start<=timedelta(hours=4)]
+ log("2M total: %d events"%len(out))
+ return out
 
 def scrape_chada(days):
  h=Http();today=datetime.now(TZ).date();out=[]
