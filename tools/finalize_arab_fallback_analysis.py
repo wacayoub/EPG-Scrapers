@@ -47,6 +47,82 @@ ALIASES={
     "cn arabic":"cartoon network arabic",
     "cartoon network arabic 1":"cartoon network arabic",
     "space toon":"spacetoon",
+    # Arabic <-> Latin canonical aliases for common MENA channels.
+    "العربية":"al arabiya",
+    "العربية business":"al arabiya business",
+    "الحدث":"al hadath",
+    "دبي":"dubai",
+    "دبي وان":"dubai one",
+    "دبي زمان":"dubai zaman",
+    "سما دبي":"sama dubai",
+    "الشارقة":"sharjah",
+    "السعودية":"saudiya",
+    "السعودية tv":"saudiya",
+    "إس بي سي":"sbc",
+    "ام بي سي":"mbc1",
+    "إم بي سي":"mbc1",
+    "ام بي سي 1":"mbc1",
+    "إم بي سي 1":"mbc1",
+    "ام بي سي 2":"mbc2",
+    "إم بي سي 2":"mbc2",
+    "ام بي سي 3":"mbc3",
+    "إم بي سي 3":"mbc3",
+    "ام بي سي 4":"mbc4",
+    "إم بي سي 4":"mbc4",
+    "ام بي سي 5":"mbc5",
+    "إم بي سي 5":"mbc5",
+    "إم بي سي أكشن":"mbc action",
+    "إم بي سي ماكس":"mbc max",
+    "إم بي سي بوليوود":"mbc bollywood",
+    "إم بي سي العراق":"mbc iraq",
+    "إم بي سي مصر":"mbc masr",
+    "إم بي سي مصر 2":"mbc masr 2",
+    "إم بي سي مصر دراما":"mbc masr drama",
+    "روتانا سينما":"rotana cinema",
+    "روتانا سينما مصر":"rotana cinema masr",
+    "روتانا كلاسيك":"rotana classic",
+    "روتانا كوميدي":"rotana comedy",
+    "روتانا دراما":"rotana drama",
+    "روتانا خليجية":"rotana khalijia",
+    "الجديد":"al jadeed",
+    "السومرية":"alsumaria",
+    "الرشيد":"alrasheed",
+    "الأردن":"jordan",
+    "رؤيا":"roya",
+    "الفجيرة":"fujairah",
+    "الظفرة":"al dafrah",
+    "الحياة":"alhayat",
+    "القاهرة والناس":"al kahera wal nas",
+    "القاهرة والناس 2":"al kahera wal nas 2",
+    "النهار":"al nahar",
+    "النهار دراما":"al nahar drama",
+    "المحور":"mehwar",
+    "أون إي":"on e",
+    "أون دراما":"on drama",
+    "دي إم سي":"dmc",
+    "دي إم سي دراما":"dmc drama",
+    "سي بي سي":"cbc",
+    "سي بي سي دراما":"cbc drama",
+    "صدى البلد":"sada el balad",
+    "صدى البلد 2":"sada el balad 2",
+    "صدى البلد دراما":"sada el balad drama",
+    "نايل دراما":"nile drama",
+    "نايل لايف":"nile life",
+    "ميكس وان":"mix one",
+    "زي ألوان":"zee alwan",
+    "أو إس إن وان":"osn tv one",
+    "أو إٍس إن ناو":"osn tv now",
+    "أو إس إن كوميدي":"osn tv comedy",
+    "أو إس إن كرايم":"osn tv crime",
+    "أو إس إن شو كايس":"osn tv showcase",
+    "أو إس إن ياهلا":"osn ya hala",
+    "أو إس إن ياهلا بالعربي":"osn tv yahala bil arabi",
+    "أو إس إن ياهلا أفلام":"osn ya hala aflam",
+    "بي إن دراما":"bein drama",
+    "بي إن موفيز أكشن":"bein movies action",
+    "بي إن موفيز دراما":"bein movies drama",
+    "بي إن موفيز فاميلي":"bein movies family",
+    "بي إن موفيز بريمير":"bein movies premiere",
 }
 
 def norm(s):
@@ -97,19 +173,24 @@ def language_rank(r):
     name=(r.get("name") or "").strip()
     cid=(r.get("id") or "").strip()
     txt=(name+" "+cid).casefold()
-    if AR.search(name) or AR.search(cid) or re.match(r"^\s*ar\s*:",name,re.I) or re.match(r"^\s*ar\s*[:.]",cid,re.I):
+    ar_marker=re.search(r"(?:^|[_.\s-])ar(?:$|[_.\s-])",txt,re.I)
+    en_marker=re.search(r"(?:^|[_.\s-])en(?:$|[_.\s-])",txt,re.I)
+    if AR.search(name) or AR.search(cid) or ar_marker or re.match(r"^\s*arabic\b",name,re.I):
         return 0
-    if re.match(r"^\s*en\s*:",name,re.I) or re.match(r"^\s*en\s*[:.]",cid,re.I) or " english" in txt:
+    if en_marker or re.match(r"^\s*english\b",name,re.I) or " english" in txt:
         return 2
     return 1
 
 def bilingual_key(r):
-    """Collapse obvious AR/EN variants of the same XMLTV channel."""
+    """Collapse AR/EN variants even when language is in prefix or suffix."""
     name=(r.get("name") or "").strip()
     cid=(r.get("id") or "").strip()
     for raw in (name,cid):
-        s=re.sub(r"^\s*(?:ar|en)\s*[:.]\s*","",raw,flags=re.I)
-        s=re.sub(r"\.(?:ae|sa|eg|qa|bein)$","",s,flags=re.I)
+        s=raw
+        s=re.sub(r"\.(?:ae|sa|eg|qa|bein|net)$","",s,flags=re.I)
+        s=re.sub(r"^\s*(?:ar|en|arabic|english)\s*[:._ -]*","",s,flags=re.I)
+        s=re.sub(r"[:._ -]+(?:ar|en|arabic|english)\s*$","",s,flags=re.I)
+        s=re.sub(r"(?i)(?:_DIGITAL_Mono)?_(?:AR|EN)$","",s)
         s=norm(s)
         if s:
             return s
