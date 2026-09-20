@@ -45,17 +45,20 @@ def rotana_channel(sess,cid,name,chid):
   r=get(sess,url)
   soup=BeautifulSoup(r.text,"html.parser")
   text=soup.get_text("\n",strip=True)
-  lines=[clean(x) for x in text.splitlines() if clean(x)]
-  current_date=None; events=[]
-  for line in lines:
-    md=DATE_RE.match(line)
-    if md:
-      current_date=md.group(1); continue
-    mt=TIME_TITLE_RE.match(line)
-    if mt and current_date:
+  # Parse day blocks robustly even when HTML headings/list items add spacing.
+  day_re=re.compile(r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+(20\d{2}-\d{2}-\d{2})",re.I)
+  marks=list(day_re.finditer(text))
+  events=[]
+  for i,m in enumerate(marks):
+    date=m.group(2)
+    block=text[m.end():(marks[i+1].start() if i+1<len(marks) else len(text))]
+    # Each schedule row is HH:MM followed by the title, possibly separated by newlines.
+    for mt in re.finditer(r"(?m)(?:^|\n)\s*(\d{1,2}:\d{2})\s+([^\n]+)",block):
       hhmm,title=mt.group(1),clean(mt.group(2))
+      if not title or title.lower() in {"search","live"}:
+        continue
       try:
-        dt=datetime.strptime(current_date+" "+hhmm,"%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
+        dt=datetime.strptime(date+" "+hhmm,"%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
       except Exception:
         continue
       events.append({"start":dt.isoformat(),"title":title})
@@ -90,7 +93,7 @@ def art_programme_pages(sess):
       if re.search(r"/(?:Series|Movie)\?id=\d+",href,re.I) and href not in found:
         found.append(href)
   # Also known programme pages surfaced by public discovery/search.
-  for pid in (221,265,4401,4405,5531,5796,5800,5806,5809):
+  for pid in (221,265,4401,4405,5531,5796,5800,5806,5809,5797,5798,5799,5801,5802,5803,5804,5805,5807,5808):
     u=f"https://www.artonline.tv/Series?id={pid}"
     if u not in found: found.append(u)
   return found[:120]
@@ -101,26 +104,45 @@ def parse_art_page(sess,url):
   except Exception:
     return None
   soup=BeautifulSoup(r.text,"html.parser")
-  title=clean((soup.find("h1") or soup.title).get_text(" ",strip=True) if (soup.find("h1") or soup.title) else "")
-  text=clean(soup.get_text(" ",strip=True))
+  h1=soup.find("h1")
+  title=clean(h1.get_text(" ",strip=True) if h1 else (soup.title.get_text(" ",strip=True) if soup.title else ""))
+  raw=soup.get_text("\n",strip=True)
+  text=clean(raw)
+
+  # Description: first substantial paragraph/content block before scheduling metadata.
   desc=""
-  # best long paragraph
-  ps=[clean(p.get_text(" ",strip=True)) for p in soup.find_all("p")]
-  ps=[p for p in ps if len(p)>60]
-  if ps: desc=max(ps,key=len)
-  channel=""
-  mch=re.search(r"تشاهدونه\s+على\s+قناة\s+([^\n\r]+?)(?=\s+(?:يومياً|يوميا|من\s+\d|GMT|الإعادة|الاعادة|$))",text,re.I)
-  if mch: channel=clean(mch.group(1))
-  # fallback channel folder clues / text
-  if not channel:
-    for ar,name in (("أفلام1","ART Aflam 1"),("أفلام 1","ART Aflam 1"),("أفلام2","ART Aflam 2"),("أفلام 2","ART Aflam 2"),("حكايات 2","ART Hekayat 2"),("حكايات","ART Hekayat"),("سينما","ART Cinema")):
-      if ar in text:
-        channel=name; break
-  else:
-    amap={"أفلام1":"ART Aflam 1","أفلام 1":"ART Aflam 1","أفلام2":"ART Aflam 2","أفلام 2":"ART Aflam 2","حكايات":"ART Hekayat","حكايات 2":"ART Hekayat 2","سينما":"ART Cinema"}
-    for k,v in amap.items():
-      if k in channel: channel=v; break
-  times=re.findall(r"\b(?:[01]?\d|2[0-3]):[0-5]\d\b",text)
+  for p in soup.find_all(["p","div"]):
+    t=clean(p.get_text(" ",strip=True))
+    if len(t)>=80 and "تشاهدونه على قناة" not in t and "جميع الحقوق محفوظة" not in t:
+      if not any(x in t for x in ("تواصل معنا","أعلن معنا","اشترك معنا","قنواتنا الرئيسية")):
+        desc=t
+        break
+
+  # ART programme pages explicitly state: "تشاهدونه على قناة <channel>".
+  mch=re.search(r"تشاهدونه\s+على\s+قناة\s+([^\n\r]+)",raw,re.I)
+  channel=clean(mch.group(1)) if mch else ""
+  amap=[
+    ("حكايات 2","ART Hekayat 2"),
+    ("حكايات2","ART Hekayat 2"),
+    ("حكايات","ART Hekayat"),
+    ("أفلام 1","ART Aflam 1"),
+    ("أفلام1","ART Aflam 1"),
+    ("افلام 1","ART Aflam 1"),
+    ("افلام1","ART Aflam 1"),
+    ("أفلام 2","ART Aflam 2"),
+    ("أفلام2","ART Aflam 2"),
+    ("افلام 2","ART Aflam 2"),
+    ("افلام2","ART Aflam 2"),
+    ("سينما","ART Cinema"),
+  ]
+  mapped=""
+  for k,v in amap:
+    if k in channel:
+      mapped=v
+      break
+  channel=mapped or channel
+
+  times=re.findall(r"\b(?:[01]?\d|2[0-3]):[0-5]\d\b",raw)
   return {"url":url,"title":title.split(" : شبكة",1)[0],"desc":desc,"channel":channel,"times":times[:12]}
 
 def art_channels(sess):
