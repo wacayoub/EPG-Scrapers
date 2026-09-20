@@ -217,6 +217,44 @@ def provider_score(r):
     # OpenEPG slightly preferred when all else is equal; EPGShare remains fallback.
     return 8 if r["provider"]=="openepg" else 4
 
+def latin_title_score(s):
+    s=(s or "").strip()
+    letters=[ch for ch in s if ch.isalpha()]
+    if not letters:
+        return 0.0
+    latin=sum(1 for ch in letters if ("LATIN" in unicodedata.name(ch,"")))
+    return 100.0*latin/len(letters)
+
+def choose_bilingual_event_fields(arr,winner):
+    """Prefer English/Latin title + Arabic description from equivalent variants."""
+    title_candidates=[]
+    desc_candidates=[]
+    for x in arr:
+        t=(x.get("sample_title") or "").strip()
+        d=(x.get("sample_desc") or "").strip()
+        if t:
+            title_candidates.append((latin_title_score(t), -arabic_pct(t), t, x))
+        if d:
+            desc_candidates.append((arabic_pct(d), len(d), d, x))
+
+    if title_candidates:
+        title_candidates.sort(key=lambda z:(z[0],z[1],len(z[2])),reverse=True)
+        best_t=title_candidates[0]
+        # Only replace with a clearly Latin/English title; otherwise keep native title.
+        if best_t[0] >= 60.0:
+            winner["sample_title"]=best_t[2]
+            winner["title_source"]=f'{best_t[3].get("provider","")}:{best_t[3].get("source","")}:{best_t[3].get("id","")}'
+
+    if desc_candidates:
+        desc_candidates.sort(key=lambda z:(z[0],z[1]),reverse=True)
+        best_d=desc_candidates[0]
+        if best_d[0] >= 20.0:
+            winner["sample_desc"]=best_d[2]
+            winner["desc_source"]=f'{best_d[3].get("provider","")}:{best_d[3].get("source","")}:{best_d[3].get("id","")}'
+
+    winner["title_desc_policy"]="EN_TITLE_AR_DESC_WHEN_PAIRED"
+    return winner
+
 def epg_arabic_score(r):
     """Arabic share across channel name + sample event title/description."""
     blob=" ".join(str(r.get(k,"") or "") for k in ("name","sample_title","sample_desc"))
@@ -504,6 +542,7 @@ def main():
             )
         )
         winner=dict(pool[0])
+        winner=choose_bilingual_event_fields(arr,winner)
 
         # Audit 4: if winner is English/non-Arabic, accept only when all prior
         # Arabic searches failed AND content itself contains no meaningful Arabic alternative.
@@ -585,7 +624,7 @@ def main():
     new.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
     already_covered.sort(key=lambda r:((r.get("name") or "").casefold(),(r.get("id") or "").casefold()))
 
-    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","language_audit","alternatives","alternative_sources","merged_alternatives","url"]
+    nfields=["country","name","id","provider","source","future_programmes","future_hours","desc_pct","sample_title","sample_desc","title_source","desc_source","title_desc_policy","language_audit","alternatives","alternative_sources","merged_alternatives","url"]
     with (OUT/"new-arab-epg-ids.csv").open("w",newline="",encoding="utf-8") as f:
         w=csv.DictWriter(f,fieldnames=nfields); w.writeheader()
         for r in new: w.writerow({k:r.get(k,"") for k in nfields})
@@ -619,6 +658,7 @@ def main():
         "new_ids_after_zero_and_latam_filter":len(new),
         "language_duplicates_removed":language_duplicates_removed,
         "language_policy":"ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
+        "event_text_policy":"ENGLISH_TITLE_PLUS_ARABIC_DESCRIPTION_WHEN_PAIRED",
         "english_rejected_for_arabic":english_rejected_for_arabic,
         "english_accepted_after_4_audits":english_accepted_after_4_audits,
         "sort_order":"CHANNEL_NAME_ASC",
