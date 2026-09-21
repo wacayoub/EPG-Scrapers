@@ -119,10 +119,6 @@ jobs:
               echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"
             fi
           done
-          if [ -s output/morocco/morocco.xml.gz ]; then
-            cp output/morocco/morocco.xml.gz output/final/morocco.xml.gz
-            cp output/morocco/manifest.json output/final/morocco.json
-          fi
           exit 0
 
       - name: Retry ElCinema zero-EPG channels in English
@@ -196,6 +192,13 @@ jobs:
             python tools/source_feed_pack.py               --input "output/source-build/$key.raw.xml"               --output-gz "output/final/$key.xml.gz"               --output-txt "output/final/$key.txt"               --stats "output/final/$key.json"               --label "$key"               --window-hours 48
             echo "$?" > "output/final/$key.pack.rc"
           done
+          if [ -s output/morocco/morocco.xml.gz ]; then
+            cp output/morocco/morocco.xml.gz output/final/morocco.xml.gz
+            cp output/morocco/manifest.json output/final/morocco.json
+          else
+            echo "Morocco candidate missing"
+            exit 2
+          fi
           exit 0
 
       - name: Arabize beIN MENA titles and descriptions
