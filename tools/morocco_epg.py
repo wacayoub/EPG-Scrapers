@@ -124,9 +124,16 @@ def previous(path):
   for p in root.findall("programme"):
    def dt(v):
     raw=clean(v)
-    mm=re.match(r"^(\\d{14})\\s+([+-]\\d{4})",raw)
-    if not mm: raise ValueError("invalid XMLTV datetime: %r"%raw)
-    return datetime.strptime(mm.group(1)+" "+mm.group(2),"%Y%m%d%H%M%S %z").astimezone(TZ)
+    parts=raw.split()
+    if not parts or len(parts[0]) < 14:
+     raise ValueError("invalid XMLTV datetime: %r"%raw)
+    stamp=parts[0][:14]
+    off=parts[1] if len(parts)>1 else "+0000"
+    if len(off)==4 and off[0] in "+-":
+     off=off+"0"
+    if len(off)!=5 or off[0] not in "+-":
+     raise ValueError("invalid XMLTV timezone: %r"%raw)
+    return datetime.strptime(stamp+" "+off,"%Y%m%d%H%M%S %z").astimezone(TZ)
    t=p.find("title"); d=p.find("desc"); out.append(Event(p.get("channel"),dt(p.get("start")),t.text or "",d.text if d is not None else "",dt(p.get("stop")) if p.get("stop") else None,t.get("lang") or "ar",d.get("lang") if d is not None else "ar","old"))
   return out
  except Exception as e: log("Previous feed unreadable: %s"%e); return []
