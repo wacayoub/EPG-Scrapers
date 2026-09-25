@@ -290,13 +290,19 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
+          set -e
           git config user.name "EPG Scraper Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add feeds reports data/bein_translation_cache.json data/bein_ai_cache.json
+          git add feeds reports
+          for optional in data/bein_translation_cache.json data/bein_ai_cache.json; do
+            if [ -f "$optional" ]; then
+              git add "$optional"
+            fi
+          done
           if git diff --cached --quiet; then
             echo "No feed changes."
           else
             git commit -m "Daily EPG refresh $(TZ=Africa/Casablanca date +%F)"
             git pull --rebase origin main
-            git push
+            git push origin HEAD:main
           fi
