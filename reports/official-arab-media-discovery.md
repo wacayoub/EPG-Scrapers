@@ -2,18 +2,18 @@
 
 | Country | Best HTTP | Score | Guide hits | Times | JSON | API candidates | Verdict |
 |---|---:|---:|---:|---:|---:|---:|---|
-| Algeria | 200 | 15.4 | 0 | 0 | 1 | 36 | PROMISING |
+| Algeria | 200 | 14.9 | 0 | 2 | 1 | 36 | PROMISING |
 | Bahrain | 200 | 11.6 | 0 | 2 | 0 | 50 | REACHABLE_NEEDS_API |
 | Comoros | 200 | 15.0 | 0 | 0 | 2 | 50 | PROMISING |
 | Djibouti | 200 | 13.0 | 0 | 0 | 1 | 50 | PROMISING |
-| Egypt | 200 | 29.5 | 0 | 83 | 2 | 50 | PROMISING |
+| Egypt | 200 | 29.0 | 0 | 83 | 2 | 50 | PROMISING |
 | Iraq | 403 | 0.0 | 0 | 0 | 0 | 0 | BLOCKED |
 | Jordan | 200 | 5.4 | 0 | 0 | 0 | 2 | REACHABLE_NEEDS_API |
 | Kuwait | 200 | 11.8 | 0 | 0 | 0 | 50 | REACHABLE_NEEDS_API |
 | Lebanon | 200 | 10.3 | 0 | 0 | 0 | 9 | REACHABLE_NEEDS_API |
 | Libya | 200 | 14.3 | 0 | 1 | 1 | 50 | PROMISING |
 | Mauritania | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
-| Morocco | 200 | 17.5 | 0 | 19 | 0 | 50 | PROMISING |
+| Morocco | 200 | 15.7 | 0 | 13 | 0 | 50 | PROMISING |
 | Oman | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
 | Palestine | 200 | 16.2 | 0 | 0 | 1 | 50 | PROMISING |
 | Qatar | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
@@ -25,4 +25,4 @@
 | UAE - Dubai | 200 | 6.8 | 0 | 0 | 0 | 4 | REACHABLE_NEEDS_API |
 | UAE - Sharjah | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
 | UAE - Abu Dhabi | 403 | 0.7 | 0 | 0 | 0 | 1 | BLOCKED |
-| Yemen | 200 | 18.8 | 0 | 3 | 1 | 50 | PROMISING |
+| Yemen | 200 | 19.0 | 0 | 2 | 1 | 50 | PROMISING |
