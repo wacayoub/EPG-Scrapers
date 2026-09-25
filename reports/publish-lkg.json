@@ -1,39 +1,37 @@
 {
-  "generated_utc": "2026-09-25T14:27:47.828500+00:00",
+  "generated_utc": "2026-09-25T16:00:05.642039+00:00",
   "sources": {
     "morocco": {
       "candidate": "output/final/morocco.xml.gz",
-      "published": false,
+      "published": true,
       "candidate_stats": {
-        "channels": 12,
-        "programmes": 2052,
+        "channels": 11,
+        "programmes": 2060,
         "future_channels": 11,
-        "future_ratio": 0.9166666666666666,
-        "future_horizon_hours": 226.45337760944443,
-        "invalid_rows": 13
+        "future_ratio": 1.0,
+        "future_horizon_hours": 224.91509723555555,
+        "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 12,
         "programmes": 1962,
         "future_channels": 6,
         "future_ratio": 0.5,
-        "future_horizon_hours": 58.45336662222222,
+        "future_horizon_hours": 56.915090436944446,
         "invalid_rows": 14
       },
-      "decision": "KEEP_LKG",
-      "reasons": [
-        "invalid_rows=13"
-      ]
+      "decision": "PUBLISH",
+      "reasons": []
     },
     "elcinema": {
       "candidate": "output/final/elcinema.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 71,
-        "programmes": 2955,
+        "programmes": 2948,
         "future_channels": 71,
         "future_ratio": 1.0,
-        "future_horizon_hours": 50.53668650083333,
+        "future_horizon_hours": 50.998415764444445,
         "invalid_rows": 0
       },
       "previous_stats": {
@@ -41,7 +39,7 @@
         "programmes": 2955,
         "future_channels": 71,
         "future_ratio": 1.0,
-        "future_horizon_hours": 50.53666911305556,
+        "future_horizon_hours": 48.99840484416667,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -52,18 +50,18 @@
       "published": true,
       "candidate_stats": {
         "channels": 59,
-        "programmes": 4551,
+        "programmes": 4563,
         "future_channels": 59,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.619973833611105,
+        "future_horizon_hours": 50.24838636472222,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 59,
-        "programmes": 4544,
+        "programmes": 4551,
         "future_channels": 59,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.619938246388884,
+        "future_horizon_hours": 48.081697586666664,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -73,19 +71,19 @@
       "candidate": "output/final/bein.xml.gz",
       "published": true,
       "candidate_stats": {
-        "channels": 40,
-        "programmes": 1126,
-        "future_channels": 40,
+        "channels": 29,
+        "programmes": 798,
+        "future_channels": 29,
         "future_ratio": 1.0,
-        "future_horizon_hours": 51.53658363555556,
+        "future_horizon_hours": 52.99835188416667,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 40,
-        "programmes": 1129,
+        "programmes": 1126,
         "future_channels": 40,
         "future_ratio": 1.0,
-        "future_horizon_hours": 51.53657778583334,
+        "future_horizon_hours": 49.99834928194444,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -95,19 +93,19 @@
       "candidate": "output/final/sport24.xml.gz",
       "published": true,
       "candidate_stats": {
-        "channels": 6,
-        "programmes": 59,
-        "future_channels": 6,
+        "channels": 8,
+        "programmes": 70,
+        "future_channels": 8,
         "future_ratio": 1.0,
-        "future_horizon_hours": 10.036573052777777,
+        "future_horizon_hours": 8.498346554722222,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 6,
-        "programmes": 60,
+        "programmes": 59,
         "future_channels": 6,
         "future_ratio": 1.0,
-        "future_horizon_hours": 10.036572700833332,
+        "future_horizon_hours": 8.498346328333334,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
