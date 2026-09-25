@@ -1,8 +1,8 @@
 {
   "channel_counts": {
-    "2M": 72,
+    "2M": 70,
     "AFLAM.ma": 24,
-    "AlAoula": 298,
+    "AlAoula": 401,
     "AlMaghribiya": 423,
     "Arrabiaa": 184,
     "Arryadia_HD": 96,
@@ -13,18 +13,18 @@
     "Tamazight": 263
   },
   "channels": 11,
-  "generated": "2026-09-25T15:59:46.832889+00:00",
-  "programmes": 2060,
-  "sha256": "71bdbfd9bc42fa39e8ddd6f57e0be2e1cdd98b2eb9a83e9472f360d181686616",
-  "size": 41066,
+  "generated": "2026-09-25T17:16:24.083241+00:00",
+  "programmes": 2161,
+  "sha256": "96cc8c4dc8f15c9ff045e4d80c18b716311c973a53667d01f615d23b954847fb",
+  "size": 39785,
   "sources": {
     "2m": {
-      "detail": "events=72",
-      "events": 72,
+      "detail": "events=70",
+      "events": 70,
       "mode": "fresh"
     },
     "arryadia": {
-      "detail": "events=42",
+      "detail": "events=40",
       "events": 192,
       "mode": "fresh"
     },
@@ -39,12 +39,12 @@
       "mode": "fresh"
     },
     "snrt": {
-      "detail": "events=927",
-      "events": 1700,
+      "detail": "events=1150",
+      "events": 1803,
       "mode": "fresh"
     }
   },
   "timezone": "Africa/Casablanca",
   "url": "morocco.xml.gz",
-  "version": "20260925-155946"
+  "version": "20260925-171624"
 }
