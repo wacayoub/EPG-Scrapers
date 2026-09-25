@@ -8,6 +8,27 @@ OUT = Path("output/source-build")
 # Explicit production exclusions confirmed by manual EPG comparison.
 ELCINEMA_PRODUCTION_EXCLUDE = {
     "AlAoula.ma@MiddleEast",
+
+    # Higher-priority direct sources already own these IDs. Keeping them in
+    # ElCinema creates duplicate candidates and can produce wrong mappings.
+    "beINMovies1Premiere.qa@SD",
+    "beINMovies2Action.qa@SD",
+    "beINMovies3Drama.qa@SD",
+    "beINSeries1.qa@SD",
+    "AbuDhabiTV.ae@SD",
+    "AlArabyTV2.qa@SD",
+    "CartoonNetworkArabic.ae@SD",
+    "DMC.eg@SD",
+    "DiscoveryChannelMiddleEastAfrica.us@SD",
+    "OmanTV.om@SD",
+    "RoyaTV.jo@SD",
+
+    # ElCinema currently exposes only a very short same-day window for these
+    # channels. Do not publish stale EPG that expires before the evening.
+    "NationalGeographicMiddleEast.uk@SD",
+    "StarMoviesMiddleEast.ae@SD",
+    "FoxActionMoviesMENA.hk@SD",
+    "StarWorldMiddleEast.ae@SD",
 }
 # Rotana mappings from ElCinema are quarantined until the official Rotana
 # channel mapping is revalidated against the live/current programme.
@@ -90,6 +111,11 @@ choose("osn",["osn.com"])
 BEIN_ZERO_EPG_EXCLUDE = {
     "AlkassEight.qa@SD",
     "beINSportsNBA.qa@SD",
+
+    # Upstream mappings currently point to unrelated schedules. Quarantine
+    # them until their beIN site IDs are revalidated.
+    "Baraem.qa@SD",
+    "BeJunior.qa@SD",
 }
 
 def build_bein():
