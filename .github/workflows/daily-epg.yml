@@ -27,7 +27,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 120
 
     steps:
       - name: Casablanca 06:00 gate
@@ -112,7 +112,7 @@ jobs:
             if [ "$key" = "elcinema" ]; then
               extra="--delay=1000"
             fi
-            timeout --signal=TERM --kill-after=30s 900s npm run grab ---               --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml"               --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"               --days=3               --maxConnections=1               --timeout=20000               $extra
+            timeout --signal=TERM --kill-after=30s 900s npm run grab --               --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml"               --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"               --days=3               --maxConnections=1               --timeout=20000               $extra
             rc=$?
             echo "$rc" > "$GITHUB_WORKSPACE/output/source-build/$key.grab.rc"
             if [ ! -s "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml" ]; then
@@ -134,7 +134,7 @@ jobs:
 
           if grep -q '<channel ' output/source-build/elcinema.retry.channels.xml; then
             cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
-            timeout --signal=TERM --kill-after=30s 600s npm run grab --- \
+            timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
               --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.channels.xml" \
               --output="$GITHUB_WORKSPACE/output/source-build/elcinema.retry.raw.xml" \
               --days=3 \
@@ -196,8 +196,7 @@ jobs:
             cp output/morocco/morocco.xml.gz output/final/morocco.xml.gz
             cp output/morocco/manifest.json output/final/morocco.json
           else
-            echo "Morocco candidate missing"
-            exit 2
+            echo "Morocco candidate missing; previous LKG will be preserved."
           fi
           exit 0
 
@@ -205,14 +204,25 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
-          set -e
+          set +e
           mkdir -p data reports
-          python tools/bein_arabize.py \
-            --input output/final/bein.xml.gz \
-            --output output/final/bein.ar.xml.gz \
-            --cache data/bein_translation_cache.json \
-            --report reports/bein-translation.json
-          mv output/final/bein.ar.xml.gz output/final/bein.xml.gz
+          if [ -s output/final/bein.xml.gz ]; then
+            python tools/bein_arabize.py \
+              --input output/final/bein.xml.gz \
+              --output output/final/bein.ar.xml.gz \
+              --cache data/bein_translation_cache.json \
+              --report reports/bein-translation.json
+            rc=$?
+            if [ "$rc" -eq 0 ] && [ -s output/final/bein.ar.xml.gz ]; then
+              mv output/final/bein.ar.xml.gz output/final/bein.xml.gz
+            else
+              echo "beIN Arabize failed rc=$rc; keeping original candidate."
+              rm -f output/final/bein.ar.xml.gz
+            fi
+          else
+            echo "beIN candidate missing; LKG will be preserved."
+          fi
+          exit 0
 
       - name: AI quality pass for beIN Arabic
         if: steps.gate.outputs.run == 'true'
@@ -234,8 +244,23 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
-          set -euo pipefail
-          python tools/validate_48h.py             output/final/morocco.xml.gz             output/final/bein.xml.gz             output/final/elcinema.xml.gz             output/final/osn.xml.gz             output/final/sport24.xml.gz             --hours 48             --max-gap-minutes 90             --report reports/direct-48h-audit.json
+          set +e
+          mkdir -p reports
+          candidates=()
+          for key in morocco bein elcinema osn sport24; do
+            [ -s "output/final/$key.xml.gz" ] && candidates+=("output/final/$key.xml.gz")
+          done
+          if [ "${#candidates[@]}" -gt 0 ]; then
+            python tools/validate_48h.py "${candidates[@]}" \
+              --hours 48 \
+              --max-gap-minutes 90 \
+              --report reports/direct-48h-audit.json
+            echo "Strict audit rc=$? (diagnostic only; per-source LKG decides publication)."
+          else
+            echo '{"generated_utc":null,"feeds":[],"status":"NO_CANDIDATES"}' > reports/direct-48h-audit.json
+            echo "No candidates available for strict audit."
+          fi
+          exit 0
 
       - name: Publish healthy feeds with LKG protection
         if: steps.gate.outputs.run == 'true'
