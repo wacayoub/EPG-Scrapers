@@ -2,7 +2,7 @@
 
 | Country | Best HTTP | Score | Guide hits | Times | JSON | API candidates | Verdict |
 |---|---:|---:|---:|---:|---:|---:|---|
-| Algeria | 200 | 14.9 | 0 | 2 | 1 | 36 | PROMISING |
+| Algeria | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
 | Bahrain | 200 | 11.6 | 0 | 2 | 0 | 50 | REACHABLE_NEEDS_API |
 | Comoros | 200 | 15.0 | 0 | 0 | 2 | 50 | PROMISING |
 | Djibouti | 200 | 13.0 | 0 | 0 | 1 | 50 | PROMISING |
