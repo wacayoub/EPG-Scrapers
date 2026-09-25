@@ -43,6 +43,7 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import os
           from datetime import datetime, timezone
           from pathlib import Path
           from zoneinfo import ZoneInfo
@@ -83,7 +84,7 @@ jobs:
               }, ensure_ascii=False, indent=2) + "\n",
               encoding="utf-8",
           )
-          with open("$GITHUB_OUTPUT", "a", encoding="utf-8") as fh:
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
               fh.write(f"status={status}\n")
               fh.write("stale=" + ";".join(stale) + "\n")
           print("WATCHDOG", status, stale)
