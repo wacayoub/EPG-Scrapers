@@ -1,0 +1,119 @@
+name: EPG Daily Watchdog
+
+on:
+  schedule:
+    - cron: "15 7,8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-watchdog
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Casablanca 08:15 gate
+        id: gate
+        shell: bash
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          hour="$(TZ=Africa/Casablanca date +%H)"
+          if [ "$hour" = "08" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          fetch-depth: 0
+
+      - name: Verify today's production feeds
+        if: steps.gate.outputs.run == 'true'
+        id: health
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          tz = ZoneInfo("Africa/Casablanca")
+          today = datetime.now(tz).date()
+          required = ["morocco", "bein", "osn", "elcinema", "sport24"]
+          stale = []
+
+          for name in required:
+              p = Path("feeds") / f"{name}.json"
+              if not p.exists():
+                  stale.append(f"{name}:manifest-missing")
+                  continue
+              try:
+                  data = json.loads(p.read_text(encoding="utf-8"))
+                  raw = data.get("generated_utc") or data.get("generated")
+                  if not raw:
+                      stale.append(f"{name}:timestamp-missing")
+                      continue
+                  dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+                  if dt.tzinfo is None:
+                      dt = dt.replace(tzinfo=timezone.utc)
+                  local_day = dt.astimezone(tz).date()
+                  if local_day != today:
+                      stale.append(f"{name}:stale:{local_day}")
+              except Exception as exc:
+                  stale.append(f"{name}:invalid-manifest:{exc}")
+
+          status = "healthy" if not stale else "stale"
+          Path("reports").mkdir(exist_ok=True)
+          Path("reports/watchdog-latest.json").write_text(
+              json.dumps({
+                  "checked_local": datetime.now(tz).isoformat(),
+                  "status": status,
+                  "stale": stale,
+                  "required": required,
+              }, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          with open("$GITHUB_OUTPUT", "a", encoding="utf-8") as fh:
+              fh.write(f"status={status}\n")
+              fh.write("stale=" + ";".join(stale) + "\n")
+          print("WATCHDOG", status, stale)
+          PY
+
+      - name: Trigger automatic retry when stale
+        if: steps.gate.outputs.run == 'true' && steps.health.outputs.status == 'stale'
+        shell: bash
+        run: |
+          set -e
+          stamp="$(TZ=Africa/Casablanca date '+%F %T %Z')"
+          printf 'watchdog-retry %s\n' "$stamp" > config/full-refresh-trigger.txt
+          git config user.name "EPG Watchdog"
+          git config user.email "actions@users.noreply.github.com"
+          git add config/full-refresh-trigger.txt reports/watchdog-latest.json
+          git commit -m "Watchdog retry EPG refresh $(TZ=Africa/Casablanca date +%F)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Save healthy watchdog report
+        if: steps.gate.outputs.run == 'true' && steps.health.outputs.status == 'healthy'
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Watchdog"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/watchdog-latest.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Watchdog healthy $(TZ=Africa/Casablanca date +%F)"
+          git pull --rebase origin main
+          git push origin HEAD:main
