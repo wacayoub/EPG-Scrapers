@@ -428,9 +428,19 @@ def scrape_arryadia(days):
  return [e for e in out if e.stop and e.stop>e.start]
 
 def to_xml(rows,path):
+ # Final XMLTV safety gate: malformed timestamps must never poison the whole
+ # Morocco feed. infer() repairs most cases; any remaining invalid row is
+ # discarded here and reported in logs.
+ valid_rows=[];dropped=0
+ for e in rows:
+  if not e.start or not e.stop or e.stop<=e.start:
+   dropped+=1
+   continue
+  valid_rows.append(e)
+ if dropped: log("Morocco XML safety gate dropped %d invalid rows"%dropped)
  root=ET.Element("tv",{"generator-info-name":"EPGManager Morocco Cloud rc23"});counts=defaultdict(int)
- for cid in sorted({e.channel for e in rows}):ch=ET.SubElement(root,"channel",{"id":cid});ET.SubElement(ch,"display-name").text=CHANNELS.get(cid,cid)
- for e in sorted(rows,key=lambda e:(e.start,e.channel,e.title)):
+ for cid in sorted({e.channel for e in valid_rows}):ch=ET.SubElement(root,"channel",{"id":cid});ET.SubElement(ch,"display-name").text=CHANNELS.get(cid,cid)
+ for e in sorted(valid_rows,key=lambda e:(e.start,e.channel,e.title)):
   p=ET.SubElement(root,"programme",{"start":xdt(e.start),"stop":xdt(e.stop),"channel":e.channel});ET.SubElement(p,"title",{"lang":e.tl or lang(e.title)}).text=e.title;ET.SubElement(p,"desc",{"lang":e.dl or lang(e.desc)}).text=e.desc or e.title;counts[e.channel]+=1
  ET.indent(root,space="  ");ET.ElementTree(root).write(path,encoding="utf-8",xml_declaration=True);return dict(counts)
 
