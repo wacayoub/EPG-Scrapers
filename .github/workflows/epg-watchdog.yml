@@ -1,6 +1,11 @@
 name: EPG Daily Watchdog
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/epg-watchdog.yml"
+      - "config/watchdog-trigger.txt"
   schedule:
     - cron: "15 7,8 * * *"
   workflow_dispatch:
