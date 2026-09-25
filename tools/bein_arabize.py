@@ -185,7 +185,7 @@ def protect_match_participants(title: str):
 
 
 class Translator:
-    def __init__(self, cache_path: Path, delay: float = 0.12):
+    def __init__(self, cache_path: Path, delay: float = 0.75):
         self.path = cache_path
         self.delay = delay
         self.session = requests.Session()
@@ -219,14 +219,24 @@ class Translator:
             return text
 
         params = {"client": "gtx", "sl": "en", "tl": "ar", "dt": "t", "q": text}
+        saw_429 = False
         for attempt in range(4):
             try:
                 r = self.session.get(TRANSLATE_URL, params=params, timeout=20)
                 if r.status_code == 429:
+                    saw_429 = True
+                    retry_after = r.headers.get("Retry-After", "").strip()
+                    try:
+                        wait = max(1.0, min(60.0, float(retry_after)))
+                    except Exception:
+                        wait = (5.0, 12.0, 25.0, 45.0)[attempt]
+                    if attempt < 3:
+                        time.sleep(wait)
+                        continue
                     self.rate_limited = True
                     self.failures.append({
                         "text": text[:180],
-                        "error": "HTTP 429 Too Many Requests; translation disabled for remainder of run",
+                        "error": "HTTP 429 after backoff; translation paused for remainder of run",
                     })
                     return text
                 r.raise_for_status()
@@ -242,10 +252,12 @@ class Translator:
                 if attempt == 3:
                     self.failures.append({"text": text[:180], "error": str(e)})
                     return text
-                time.sleep(1.5 * (2 ** attempt))
+                time.sleep(2.0 * (2 ** attempt))
             except Exception as e:
                 self.failures.append({"text": text[:180], "error": str(e)})
                 return text
+        if saw_429:
+            self.rate_limited = True
         return text
 
     def save(self):
