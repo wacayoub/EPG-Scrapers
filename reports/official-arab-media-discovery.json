@@ -4,13 +4,13 @@
       {
         "url": "https://www.entv.dz/ar/tv1",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: /ar/tv1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7fe5e2555d90>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: /ar/tv1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f239c0a4690>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
         "discovery_score": 0
       },
       {
         "url": "https://www.entv.dz/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7fe5e2556b10>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f239b7381d0>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -21,13 +21,14 @@
         "final_url": "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dDZyEvUUZRSS9ZTlEh/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الصفحة الرئيسية",
-        "bytes": 123334,
+        "bytes": 129263,
         "guide_hits": 0,
         "time_tokens": 2,
         "arabic_time_hits": 0,
         "json_scripts": [],
         "js_assets": [
           "https://www.bahrain.bh/wps/mypoc/ruxitagentjs_ICA7NQVfhqrux_10345260810170330.js",
+          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!DXQD2WDg1eZ9AFilCnRlTw/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1681210125266&entry=wp_client_main__0.0%3Ahead_js&entry=wp_client_ext__0.0%3Ahead_js&entry=wp_client_logging__0.0%3Ahead_js&entry=wp_client_tracing__0.0%3Ahead_js&entry=wp_modules__0.0%3Ahead_js&entry=wp_photon_dom__0.0%3Ahead_js&entry=wp_toolbar_common__0.0%3Ahead_js&entry=wp_dialog_util__0.0%3Ahead_js&entry=wp_dialog_draggable__0.0%3Ahead_js&entry=wp_dialog_main__0.0%3Ahead_js&entry=wp_a11y__0.0%3Ahead_js&entry=wp_state_page__0.0%3Ahead_js&entry=wp_theme_portal_85__0.0%3Ahead_js&entry=wp_theme_utils__0.0%3Ahead_js&entry=wp_toolbar_viewframe_validator__0.0%3Ahead_js&entry=wp_analytics_aggregator__0.0%3Ahead_js",
           "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js",
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyDR09JMkFLq7CfkUASF_syEo3VP5gnHb6M&libraries=places",
           "https://cdn.jsdelivr.net/npm/flatpickr",
@@ -36,15 +37,16 @@
           "https://cdn.jsdelivr.net/npm/hls.js@1",
           "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dDZyEvUUZRSS9ZTlEh/p0/IZ7_K0HAG3S01PBC506PES9KVU3007=CZ6_1I50H8C009UUF068GF4468R757=NEjavax.faces.resource!QCPjsf.js=ln!javax.faces=com.ibm.faces.portlet.PATH!QCPjavax.faces.resourceQCPjsf.js==/",
           "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0",
-          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle.js?v=1790346005313",
-          "about:blank?v=1790346005313",
+          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle.js?v=1790351508543",
+          "about:blank?v=1790351508543",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle_extension.js",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/jquery-eu-cookie-law-popup_ar.js",
           "https://www.googletagmanager.com/gtag/js?id=G-6SFQ2RLYBZ",
-          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1789973351482&entry=wp_portal__0.0%3Aconfig_config_static&entry=wcm_config__0.0%3Aconfig_config_static&entry=wcm_inplaceEdit__0.0%3Aconfig_config_static",
+          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1789541508726&entry=wp_portal__0.0%3Aconfig_config_static&entry=wcm_config__0.0%3Aconfig_config_static&entry=wcm_inplaceEdit__0.0%3Aconfig_config_static",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!a9u35S-GsJR__LxzULIWAA/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1681210129343&entry=wp_dialog_main__0.0%3Aconfig_js&entry=wp_high_contrast__0.0%3Aconfig_js&entry=wp_toolbar_utils__0.0%3Aconfig_js&entry=wp_state_page_modes__0.0%3Aconfig_js&entry=wp_simple_contextmenu_ext__0.0%3Aconfig_js&entry=wp_simple_contextmenu_js__0.0%3Aconfig_js&entry=wp_toolbar_actionbar__0.0%3Aconfig_js&entry=wp_toolbar_menuactions__0.0%3Aconfig_js&entry=wp_toolbar_sitepreview_menuactions__0.0%3Aconfig_js&entry=wp_ic4_wai_resources__0.0%3Aconfig_js&entry=wp_theme_skin_region__0.0%3Aconfig_js&entry=wp_status_bar__0.0%3Aconfig_js&entry=wp_toolbar_projectmenu__0.0%3Aconfig_js&entry=wp_toolbar_contextmenu__0.0%3Aconfig_js&entry=wp_toolbar_sitepreview__0.0%3Aconfig_js"
         ],
         "api_candidates": [
+          "http://www.ibm.com/xmlns/prod/websphere/portal/publicparams",
           "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/",
           "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dJVUEvUU93RFFFQSEvNE5sSFVBISEvWjZfMUk1MEg4QzAwOVVVRjA2OEdGNDQ2OFI3NTc!/",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/images/Logo_ar.svg",
@@ -93,8 +95,7 @@
           "https://www.linkedin.com/company/igabahrain/",
           "http://www.youtube.com/c/iGABahrain",
           "https://bh.bh/A/igawhatsapp",
-          "http://services.bahrain.bh/wps/portal/tawasul/Home_ar",
-          "https://www.iga.gov.bh/"
+          "http://services.bahrain.bh/wps/portal/tawasul/Home_ar"
         ],
         "guide_links": [],
         "sample": "الصفحة الرئيسية تسجيل الدخول لاستخدام امكانيات التأليف فتح قائمة الموقع المواقع المقر الأساسي لشركة HCL Technologies HCL Digital Experience شعار Digital Experience بدء الاتصال English  weather النمط الداكن تسجيل الدخول دليل المعلومات الصفحة الرئيسية هنا في البحرين عن البحرين اكتشف البحرين دليل الخدمات الحكومية المشاركة الإلكترونية \"شاركنا\" الخدمات الإلكترونية الصفحة الرئيسية الخدمات الإلكترونية حسب التصنيف الخدمات الإلكترونية حسب المقدم متجر تطبيقات الحكومة الإلكترونية weather تسجيل الدخول إعدادات النص والعرض حجم الخط حجم الخط الحالي + تكبير - تصغير إعادة ضبط حجم الخط ألوان النص والخلفية الأسود والأبيض (افتراضي) أسود و بيج (عسر القراءة) الأسود والأصفر الفاتح (عسر القراءة 1) الأسود والأصفر (عالي التباين) البوابة الوطنية الصفحة الرئيسية {} البوابة الوطنية لمملكة البحرين بوابتك للوصول إلى الخدمات والمعلومات الحكومية البحث Search هنا في البحرين كل ما تحتاج معرفته عن الحياة في البحرين. التعليم والتدريب الطلبة والمدارس والجامعات والمعاهد التدريبية العمالة والتقاعد من مرحلة البداية إلى التقاعد: طريق البحرين إلى النجاح المهني الرعاية الصحية الرعاية الصحية في مملكة البحرين: تعزيز الجودة وسهولة الوصول والابتكار الهوية الوطنية والتأشيرات معلومات حول الهوية الرسمية، بطاقة الهوية، جوازات السفر",
@@ -153,7 +154,7 @@
           "https://ortc.km/wp-content/themes/astra/assets/css/minified/menu-animation.min.css?ver=4.14.0",
           "https://ortc.km/wp-content/plugins/wp-stats-manager/css/style.css?ver=1.2",
           "https://ortc.km/wp-content/plugins/audioigniter/player/build/style.css?ver=2.0.4",
-          "https://ortc.km/wp-content/plugins/omnisend/styles/site-styles.css?1790346007&#038;ver=1.9.1",
+          "https://ortc.km/wp-content/plugins/omnisend/styles/site-styles.css?1790351510&#038;ver=1.9.1",
           "https://ortc.km/wp-content/plugins/wpfront-notification-bar/css/wpfront-notification-bar.min.css?ver=3.5.1.05102",
           "https://ortc.km/wp-content/plugins/wps-visitor-counter/styles/css/default.css?ver=1.4.9",
           "https://ortc.km/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
@@ -302,7 +303,7 @@
         "final_url": "https://www.maspero.eg/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الهيئة الوطنية للإعلام",
-        "bytes": 230981,
+        "bytes": 227968,
         "guide_hits": 0,
         "time_tokens": 83,
         "arabic_time_hits": 0,
@@ -813,7 +814,7 @@
         "final_url": "https://www.snrt.ma/",
         "content_type": "text/html; charset=UTF-8",
         "title": "Accueil | SNRT - SOCIETE NATIONALE DE RADIODIFFUSION ET DE TELEVISION",
-        "bytes": 173566,
+        "bytes": 173313,
         "guide_hits": 0,
         "time_tokens": 13,
         "arabic_time_hits": 0,
@@ -1050,7 +1051,7 @@
         "final_url": "https://www.pbc.ps/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الرئيسية - تلفزيون فلسطين",
-        "bytes": 188248,
+        "bytes": 188247,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
@@ -1148,7 +1149,7 @@
       {
         "url": "https://www.qatartv.com/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.qatartv.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.qatartv.com', port=443) at 0x7fe5e1c2c910>, 'Connection to www.qatartv.com timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.qatartv.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.qatartv.com', port=443) at 0x7f239ae22e50>, 'Connection to www.qatartv.com timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -1384,7 +1385,7 @@
       {
         "url": "https://www.sharjahtv.ae/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.sharjahtv.ae', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.sharjahtv.ae', port=443) at 0x7fe5e0e77550>, 'Connection to www.sharjahtv.ae timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.sharjahtv.ae', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.sharjahtv.ae', port=443) at 0x7f239a7ea150>, 'Connection to www.sharjahtv.ae timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -1405,7 +1406,7 @@
           "http://www.w3.org/TR/html4/loose.dtd"
         ],
         "guide_links": [],
-        "sample": "ERROR: The request could not be satisfied 403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner. If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation. Generated by cloudfront (CloudFront) Request ID: 7HLN6suR7JQ3PxMXJ5DxD_104Ry5jz0z9KI0cUUY7w3HaXDTeiPj0A==",
+        "sample": "ERROR: The request could not be satisfied 403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner. If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation. Generated by cloudfront (CloudFront) Request ID: jZG60V6s4P4l9U5z6ph-9he7yAPOBEJOrxXfkrY2ZATLcjbRbx-zZQ==",
         "discovery_score": 0.7
       }
     ],
@@ -1416,7 +1417,7 @@
         "final_url": "https://yementv.tv/",
         "content_type": "text/html; charset=UTF-8",
         "title": "قناة اليمن الفضائية | الموقع الرسمي التابع للحكومة الشرعية",
-        "bytes": 229432,
+        "bytes": 233209,
         "guide_hits": 0,
         "time_tokens": 2,
         "arabic_time_hits": 6,
