@@ -5,7 +5,7 @@ Zero-EPG IDs blacklisted: **929**
 Canonical groups: **1273**  
 Duplicate groups: **210**  
 Extra duplicate rows collapsed: **254**  
-New IDs after zero/LatAm filtering: **256**
+New IDs after zero/LatAm filtering: **150**
 
 ## Source blacklist
 
