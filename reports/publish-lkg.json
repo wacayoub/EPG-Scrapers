@@ -1,23 +1,23 @@
 {
-  "generated_utc": "2026-09-25T17:16:43.257174+00:00",
+  "generated_utc": "2026-09-25T18:38:28.320817+00:00",
   "sources": {
     "morocco": {
       "candidate": "output/final/morocco.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 11,
-        "programmes": 2161,
+        "programmes": 2162,
         "future_channels": 11,
         "future_ratio": 1.0,
-        "future_horizon_hours": 223.63798105194442,
+        "future_horizon_hours": 222.27546389444444,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 11,
-        "programmes": 2060,
+        "programmes": 2161,
         "future_channels": 11,
         "future_ratio": 1.0,
-        "future_horizon_hours": 223.63797183833333,
+        "future_horizon_hours": 222.2754551897222,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -27,19 +27,19 @@
       "candidate": "output/final/elcinema.xml.gz",
       "published": true,
       "candidate_stats": {
-        "channels": 71,
-        "programmes": 2929,
-        "future_channels": 69,
-        "future_ratio": 0.971830985915493,
-        "future_horizon_hours": 50.221293715,
+        "channels": 56,
+        "programmes": 2502,
+        "future_channels": 56,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 49.858778423333334,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 71,
-        "programmes": 2948,
-        "future_channels": 69,
-        "future_ratio": 0.971830985915493,
-        "future_horizon_hours": 49.72127951555556,
+        "programmes": 2929,
+        "future_channels": 67,
+        "future_ratio": 0.9436619718309859,
+        "future_horizon_hours": 48.85876632,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -50,18 +50,18 @@
       "published": true,
       "candidate_stats": {
         "channels": 59,
-        "programmes": 4555,
+        "programmes": 4563,
         "future_channels": 59,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.7712561575,
+        "future_horizon_hours": 49.94207780777777,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 59,
-        "programmes": 4563,
+        "programmes": 4555,
         "future_channels": 59,
         "future_ratio": 1.0,
-        "future_horizon_hours": 48.97122717,
+        "future_horizon_hours": 48.4087174925,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -71,19 +71,19 @@
       "candidate": "output/final/bein.xml.gz",
       "published": true,
       "candidate_stats": {
-        "channels": 29,
-        "programmes": 799,
-        "future_channels": 29,
+        "channels": 27,
+        "programmes": 766,
+        "future_channels": 27,
         "future_ratio": 1.0,
-        "future_horizon_hours": 51.72120997194444,
+        "future_horizon_hours": 50.358702476666664,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 29,
-        "programmes": 798,
+        "programmes": 799,
         "future_channels": 29,
         "future_ratio": 1.0,
-        "future_horizon_hours": 51.72120663,
+        "future_horizon_hours": 50.35869909388889,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -91,13 +91,13 @@
     },
     "sport24": {
       "candidate": "output/final/sport24.xml.gz",
-      "published": false,
+      "published": true,
       "candidate_stats": {
         "channels": 9,
-        "programmes": 74,
+        "programmes": 65,
         "future_channels": 9,
         "future_ratio": 1.0,
-        "future_horizon_hours": 7.221203896666667,
+        "future_horizon_hours": 8.858696378055555,
         "invalid_rows": 0
       },
       "previous_stats": {
@@ -105,13 +105,11 @@
         "programmes": 70,
         "future_channels": 8,
         "future_ratio": 1.0,
-        "future_horizon_hours": 7.221203579166667,
+        "future_horizon_hours": 5.858696086388889,
         "invalid_rows": 0
       },
-      "decision": "KEEP_LKG",
-      "reasons": [
-        "future_horizon<8h"
-      ]
+      "decision": "PUBLISH",
+      "reasons": []
     }
   }
 }
