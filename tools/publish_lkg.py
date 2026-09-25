@@ -23,11 +23,13 @@ FEEDS.mkdir(parents=True, exist_ok=True)
 REPORTS.mkdir(parents=True, exist_ok=True)
 
 POLICY = {
-    "morocco":   {"min_channels": 5,  "min_programmes": 50,  "min_future_ratio": 0.70},
-    "elcinema":  {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.70},
-    "osn":       {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.80},
-    "bein":      {"min_channels": 8,  "min_programmes": 50,  "min_future_ratio": 0.65},
-    "sport24":   {"min_channels": 2,  "min_programmes": 10,  "min_future_ratio": 0.60},
+    "morocco":   {"min_channels": 5,  "min_programmes": 50,  "min_future_ratio": 0.70, "min_horizon_hours": 8},
+    "elcinema":  {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.70, "min_horizon_hours": 8},
+    "osn":       {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.80, "min_horizon_hours": 8},
+    "bein":      {"min_channels": 8,  "min_programmes": 50,  "min_future_ratio": 0.65, "min_horizon_hours": 8},
+    # Sport24 is event-driven; valid event schedules can naturally expose less
+    # than eight continuous hours while still being fresher than the current LKG.
+    "sport24":   {"min_channels": 2,  "min_programmes": 10,  "min_future_ratio": 0.60, "min_horizon_hours": 4},
 }
 DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
@@ -100,8 +102,9 @@ def evaluate(key: str, candidate: Path, previous: Path):
         reasons.append(f"programmes<{p['min_programmes']}")
     if cur["future_ratio"] < p["min_future_ratio"]:
         reasons.append(f"future_ratio<{p['min_future_ratio']:.2f}")
-    if cur["future_horizon_hours"] < 8:
-        reasons.append("future_horizon<8h")
+    min_horizon = float(p.get("min_horizon_hours", 8))
+    if cur["future_horizon_hours"] < min_horizon:
+        reasons.append(f"future_horizon<{min_horizon:g}h")
     if cur["invalid_rows"] > 0:
         reasons.append(f"invalid_rows={cur['invalid_rows']}")
 
