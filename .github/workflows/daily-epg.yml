@@ -11,6 +11,7 @@ on:
       - "tools/source_feed_pack.py"
       - "tools/source_gap_retry.py"
       - "tools/validate_48h.py"
+      - "tools/publish_lkg.py"
       - "tools/sport24_source.py"
       - "tools/morocco_epg.py"
   schedule:
