@@ -128,6 +128,17 @@ def build_bein():
                         ch.set("xmltv_id",cid)
                 if not cid or not sid:
                     continue
+                # Production beIN feed must stay source-pure. The upstream
+                # catalogue also exposes unrelated MENA channels; keep only
+                # beIN Media family services here.
+                cid_cf=cid.casefold()
+                name_cf=(ch.text or "").casefold()
+                if not (
+                    cid_cf.startswith("bein")
+                    or cid_cf.startswith("bejunior")
+                    or cid_cf.startswith("baraem")
+                ):
+                    continue
                 # AFC temporary/event channels are no longer valid for the
                 # production beIN MENA feed.
                 if "afc" in cid.lower() or "afc" in (ch.text or "").lower():
