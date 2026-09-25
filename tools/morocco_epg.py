@@ -115,7 +115,11 @@ def infer(rows):
  for rr in by.values():
   rr.sort(key=lambda e:e.start)
   for i,e in enumerate(rr):
-   if not e.stop: e.stop=rr[i+1].start if i+1<len(rr) else e.start+timedelta(hours=1)
+   # Repair missing or invalid stop times. Old LKG rows can contain stop<=start;
+   # never let one malformed event poison the whole Morocco publication.
+   if not e.stop or e.stop<=e.start:
+    nxt=rr[i+1].start if i+1<len(rr) and rr[i+1].start>e.start else None
+    e.stop=nxt if nxt else e.start+timedelta(hours=1)
 
 def previous(path):
  if not path.exists(): return []
@@ -145,7 +149,9 @@ def valid(group,rows):
  if group=="snrt": ok=sum(c[x] for x in GROUPS[group] if x!="AFLAM.ma")>=10 and sum(bool(c[x]) for x in GROUPS[group] if x!="AFLAM.ma")>=3
  elif group=="arryadia": ok=sum(c.values())>=6 and (c["Arryadia_HD"]>0 or c["Arryadia_TNT"]>0)
  elif group=="2m": ok=c["2M"]>=6
- elif group=="chada": ok=True
+ elif group=="chada":
+  future=sum(1 for e in rr if (e.stop or e.start+timedelta(hours=1))>now and e.start<now+timedelta(days=3))
+  ok=future>=3
  else: ok=sum(c.values())>=6 and max(c.values() or [0])>=3
  return ok,"events=%d"%sum(c.values())
 
@@ -442,10 +448,14 @@ def main():
   rr=results.get(g,[]);ok,detail=valid(g,rr);mode="fresh"
   if not ok:
    rr=[e for e in old if e.channel in GROUPS[g]];ok,od=valid(g,rr);mode="last-known-good";detail+="; fallback="+od
+  if g=="chada" and not ok:
+   # Chada is optional. A stale/empty grid must not block Morocco or inject
+   # obsolete programmes into the published feed.
+   status[g]={"mode":"optional-missing","events":0,"detail":detail}
+   log("chada: no valid future schedule; omitted")
+   continue
   if not ok:
    log("FATAL %s invalid and no Last Known Good (%s)"%(g,detail));return 2
-  if g=="chada" and not rr:
-   status[g]={"mode":"optional-missing","events":0,"detail":detail};log("chada: optional missing");continue
   final+=rr;status[g]={"mode":mode,"events":len(rr),"detail":detail};log("%s: %s (%s)"%(g,mode,detail))
  seen=set();merged=[]
  for e in sorted(final,key=lambda e:(e.channel,e.start,e.title.casefold())):
