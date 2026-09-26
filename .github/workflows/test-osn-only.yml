@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/test-osn-only.yml"
+      - "tools/osn_hybrid.py"
+      - "tools/build_catalogues.py"
+      - "config/osn-language-policy.json"
   workflow_dispatch:
 
 permissions:
