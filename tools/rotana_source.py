@@ -110,6 +110,21 @@ def parse_events(html, cid):
         start=datetime.combine(day,tm,tzinfo=TZ).astimezone(timezone.utc)
         rows.append((start,title))
 
+    if not rows:
+        # Small structural diagnostic for official markup changes. It contains
+        # no cookies/tokens and lets CI explain a parser miss instead of silently
+        # publishing an empty feed.
+        print("ROTANA_MARKUP hour_divs=%d accordions=%d blocks=%d bg=%d" % (
+            len(soup.select(".hour > div")),
+            len(soup.select(".iq-accordion")),
+            len(soup.select(".iq-accordion-block")),
+            len(soup.select(".bg")),
+        ))
+        samples=soup.select(".hour, .iq-accordion, .tv-schedule, .schedule, [class*=accordion]")
+        for sample in samples[:2]:
+            snippet=clean(str(sample))[:900]
+            print("ROTANA_MARKUP_SAMPLE",snippet)
+
     # De-duplicate exact schedule entries and infer stops from the next event.
     unique=[]
     seen=set()
