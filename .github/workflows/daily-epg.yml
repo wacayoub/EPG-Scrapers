@@ -16,6 +16,7 @@ on:
       - "tools/publish_lkg.py"
       - "tools/sport24_source.py"
       - "tools/morocco_epg.py"
+      - "tools/rotana_source.py"
       - "tools/build_derived_feeds.py"
   schedule:
     - cron: "0 5,6 * * *"
@@ -96,6 +97,7 @@ jobs:
           python -m py_compile tools/bein_ai_refine.py
           python -m py_compile tools/sport24_source.py
           python -m py_compile tools/morocco_epg.py
+          python -m py_compile tools/rotana_source.py
           python -m py_compile tools/build_derived_feeds.py
           python -m py_compile tools/monitor_feeds.py
           python -m py_compile tools/publish_lkg.py
@@ -105,30 +107,13 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: python tools/build_catalogues.py
 
-      - name: Patch upstream Rotana end-time bug
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path("vendor/iptv-org-epg/sites/rotana.net/rotana.net.config.js")
-          s=p.read_text(encoding="utf-8")
-          old="if (i < items.length - 2)"
-          new="if (i < items.length - 1)"
-          if old in s:
-              p.write_text(s.replace(old,new),encoding="utf-8")
-              print("Rotana parser patched: final event stop now uses next event correctly")
-          else:
-              print("Rotana parser already fixed upstream or pattern changed")
-          PY
-
-      - name: Grab ElCinema OSN beIN Shahid and Rotana
+      - name: Grab ElCinema OSN beIN and Shahid
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set +e
           mkdir -p output/source-build
-          for key in elcinema osn bein shahid rotana; do
+          for key in elcinema osn bein shahid; do
             cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
             extra=""
             if [ "$key" = "elcinema" ]; then
@@ -173,6 +158,23 @@ jobs:
             fi
           else
             echo "ElCinema: no zero-EPG channels to retry."
+          fi
+          exit 0
+
+      - name: Scrape Rotana official
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/source-build reports
+          python tools/rotana_source.py \
+            --output output/source-build/rotana.raw.xml \
+            --report reports/rotana-scrape.json \
+            --window-hours 72
+          rc=$?
+          echo "$rc" > output/source-build/rotana.grab.rc
+          if [ ! -s output/source-build/rotana.raw.xml ]; then
+            echo '<?xml version="1.0"?><tv></tv>' > output/source-build/rotana.raw.xml
           fi
           exit 0
 
