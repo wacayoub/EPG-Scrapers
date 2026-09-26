@@ -1,23 +1,23 @@
 {
-  "generated_utc": "2026-09-26T09:32:06.325471+00:00",
+  "generated_utc": "2026-09-26T23:05:10.877718+00:00",
   "sources": {
     "morocco": {
       "candidate": "output/final/morocco.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 12,
-        "programmes": 2175,
-        "future_channels": 10,
-        "future_ratio": 0.8333333333333334,
-        "future_horizon_hours": 207.3815726822222,
+        "programmes": 1979,
+        "future_channels": 12,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 193.83030851527778,
         "invalid_rows": 0
       },
       "previous_stats": {
-        "channels": 11,
-        "programmes": 1667,
-        "future_channels": 9,
-        "future_ratio": 0.8181818181818182,
-        "future_horizon_hours": 207.3815610236111,
+        "channels": 12,
+        "programmes": 1998,
+        "future_channels": 12,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 193.8302975263889,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -27,19 +27,19 @@
       "candidate": "output/final/elcinema.xml.gz",
       "published": true,
       "candidate_stats": {
-        "channels": 72,
-        "programmes": 2873,
-        "future_channels": 72,
+        "channels": 82,
+        "programmes": 3220,
+        "future_channels": 82,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.798214593611114,
+        "future_horizon_hours": 51.91361400444445,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 72,
-        "programmes": 2874,
+        "programmes": 2873,
         "future_channels": 72,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.4648634925,
+        "future_horizon_hours": 36.24692920527778,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -49,19 +49,19 @@
       "candidate": "output/final/osn.xml.gz",
       "published": true,
       "candidate_stats": {
-        "channels": 59,
-        "programmes": 4598,
-        "future_channels": 59,
+        "channels": 69,
+        "programmes": 5143,
+        "future_channels": 69,
         "future_ratio": 1.0,
-        "future_horizon_hours": 53.43150123861111,
+        "future_horizon_hours": 56.91356581944444,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 59,
-        "programmes": 4587,
+        "programmes": 4598,
         "future_channels": 59,
         "future_ratio": 1.0,
-        "future_horizon_hours": 53.43146463166667,
+        "future_horizon_hours": 39.88019488611111,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -72,18 +72,18 @@
       "published": true,
       "candidate_stats": {
         "channels": 27,
-        "programmes": 774,
+        "programmes": 736,
         "future_channels": 27,
         "future_ratio": 1.0,
-        "future_horizon_hours": 59.46477687777777,
+        "future_horizon_hours": 49.74684110555555,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 27,
-        "programmes": 772,
+        "programmes": 774,
         "future_channels": 27,
         "future_ratio": 1.0,
-        "future_horizon_hours": 59.464772735555556,
+        "future_horizon_hours": 45.913503801388885,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -94,18 +94,18 @@
       "published": true,
       "candidate_stats": {
         "channels": 22,
-        "programmes": 1327,
+        "programmes": 1420,
         "future_channels": 22,
         "future_ratio": 1.0,
-        "future_horizon_hours": 62.4480984575,
+        "future_horizon_hours": 50.04682979444444,
         "invalid_rows": 0
       },
       "previous_stats": {
-        "channels": 15,
-        "programmes": 853,
-        "future_channels": 15,
+        "channels": 22,
+        "programmes": 1327,
+        "future_channels": 22,
         "future_ratio": 1.0,
-        "future_horizon_hours": 53.43142359694444,
+        "future_horizon_hours": 48.896820643888894,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -116,10 +116,18 @@
       "published": true,
       "candidate_stats": {
         "channels": 7,
+        "programmes": 257,
+        "future_channels": 7,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 49.413481545277776,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 7,
         "programmes": 253,
         "future_channels": 7,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.46475287138889,
+        "future_horizon_hours": 35.91348030611111,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
@@ -127,25 +135,28 @@
     },
     "sport24": {
       "candidate": "output/final/sport24.xml.gz",
-      "published": true,
+      "published": false,
       "candidate_stats": {
+        "channels": 9,
+        "programmes": 28,
+        "future_channels": 9,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 3.9134790272222224,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
         "channels": 8,
         "programmes": 122,
         "future_channels": 8,
         "future_ratio": 1.0,
-        "future_horizon_hours": 17.464751532777775,
+        "future_horizon_hours": 3.9134786883333335,
         "invalid_rows": 0
       },
-      "previous_stats": {
-        "channels": 5,
-        "programmes": 73,
-        "future_channels": 5,
-        "future_ratio": 1.0,
-        "future_horizon_hours": 15.381417567222222,
-        "invalid_rows": 0
-      },
-      "decision": "PUBLISH",
-      "reasons": []
+      "decision": "KEEP_LKG",
+      "reasons": [
+        "future_horizon<4h",
+        "programme_regression>65%"
+      ]
     }
   }
 }
