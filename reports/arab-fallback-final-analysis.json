@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-26T09:14:21.487367+00:00",
-  "active_rows": 1517,
-  "zero_epg_blacklisted_ids": 938,
+  "generated_at": "2026-09-20T12:12:25.005339+00:00",
+  "active_rows": 1527,
+  "zero_epg_blacklisted_ids": 929,
   "source_blacklist": [
     {
       "provider": "epgshare",
       "source": "AE1",
       "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
-      "detail": "409 cloned channels / 812 total"
+      "detail": "411 cloned channels / 813 total"
     },
     {
       "provider": "epgshare",
@@ -34,21 +34,27 @@
       "detail": ""
     },
     {
+      "provider": "epgshare",
+      "source": "BEIN1",
+      "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+      "detail": "28 cloned channels / 80 total"
+    },
+    {
       "provider": "openepg",
       "source": "arabiapremiumar",
       "reason": "INVALID_SOURCE_XML",
       "detail": "no element found: line 1, column 0"
     }
   ],
-  "canonical_groups": 1255,
-  "duplicate_groups": 213,
-  "duplicate_extra_rows": 262,
+  "canonical_groups": 1273,
+  "duplicate_groups": 210,
+  "duplicate_extra_rows": 254,
   "decision_counts": {
-    "WINNER_OF_DUPLICATES": 213,
-    "UNIQUE": 1042
+    "UNIQUE": 1063,
+    "WINNER_OF_DUPLICATES": 210
   },
-  "merged_fallback_winners_before_direct_filter": 130,
-  "already_covered_by_direct_sources": 105,
+  "merged_fallback_winners_before_direct_filter": 257,
+  "already_covered_by_direct_sources": 107,
   "bein_family_fallback_policy": "ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
   "protected_direct_families": [
     "bein",
@@ -69,20 +75,21 @@
     "morocco",
     "snrt"
   ],
-  "missing_ids_final": 25,
-  "compare_only_channels": 26,
-  "new_ids_after_zero_and_latam_filter": 25,
-  "language_duplicates_removed": 47,
+  "missing_ids_final": 150,
+  "compare_only_channels": 27,
+  "new_ids_after_zero_and_latam_filter": 150,
+  "language_duplicates_removed": 54,
   "language_policy": "ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
   "event_text_policy": "EN_TITLE_AR_DESC_ONLY_FOR_MULTINATIONAL_CHANNELS",
-  "english_rejected_for_arabic": 2,
-  "english_accepted_after_4_audits": 37,
+  "english_rejected_for_arabic": 6,
+  "english_accepted_after_4_audits": 67,
   "sort_order": "CHANNEL_NAME_ASC",
   "excluded_sources": [
     "epgshare:AR1"
   ],
   "quarantined_sources": [
     "epgshare:AE1",
+    "epgshare:BEIN1",
     "epgshare:SA2"
   ],
   "integration_policy": {
