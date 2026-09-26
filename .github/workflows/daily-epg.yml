@@ -8,6 +8,8 @@ on:
       - "config/full-refresh-trigger.txt"
       - "tools/monitor_feeds.py"
       - "tools/build_catalogues.py"
+      - "tools/osn_hybrid.py"
+      - "config/osn-language-policy.json"
       - "tools/source_feed_pack.py"
       - "tools/source_gap_retry.py"
       - "tools/bein_arabize.py"
@@ -91,6 +93,7 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: |
           python -m py_compile tools/build_catalogues.py
+          python -m py_compile tools/osn_hybrid.py
           python -m py_compile tools/source_feed_pack.py
           python -m py_compile tools/source_gap_retry.py
           python -m py_compile tools/bein_arabize.py
@@ -126,6 +129,53 @@ jobs:
               echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"
             fi
           done
+          exit 0
+
+      - name: Grab OSN English guide
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/source-build
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          timeout --signal=TERM --kill-after=30s 900s npm run grab -- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/osn_en.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/source-build/osn.en.raw.xml" \
+            --days=3 \
+            --maxConnections=1 \
+            --timeout=20000
+          rc=$?
+          echo "$rc" > "$GITHUB_WORKSPACE/output/source-build/osn.en.grab.rc"
+          if [ ! -s "$GITHUB_WORKSPACE/output/source-build/osn.en.raw.xml" ]; then
+            echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/osn.en.raw.xml"
+          fi
+          exit 0
+
+      - name: Build OSN hybrid EN-title AR-description
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p reports
+          if [ -s output/source-build/osn.raw.xml ] && [ -s output/source-build/osn.en.raw.xml ]; then
+            python tools/osn_hybrid.py \
+              --arabic output/source-build/osn.raw.xml \
+              --english output/source-build/osn.en.raw.xml \
+              --policy config/osn-language-policy.json \
+              --mode hybrid \
+              --output output/source-build/osn.hybrid.raw.xml \
+              --report reports/osn-hybrid.json
+            rc=$?
+            if [ "$rc" -eq 0 ] && [ -s output/source-build/osn.hybrid.raw.xml ]; then
+              mv output/source-build/osn.hybrid.raw.xml output/source-build/osn.raw.xml
+              echo "OSN hybrid guide enabled."
+            else
+              echo "OSN hybrid build failed rc=$rc; keeping Arabic-only OSN candidate."
+              rm -f output/source-build/osn.hybrid.raw.xml
+            fi
+          else
+            echo "OSN English/Arabic raw guide missing; keeping Arabic-only OSN candidate."
+          fi
           exit 0
 
       - name: Retry ElCinema zero-EPG channels in English
