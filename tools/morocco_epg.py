@@ -611,8 +611,17 @@ def scrape_arryadia(days):
                    "Accept-Language":"ar-MA,ar;q=.9,fr;q=.8,en;q=.6",
                    "Cache-Control":"no-cache","Pragma":"no-cache"})
   soup=BeautifulSoup(r.text,"lxml")
-  parsed=_parse_arryadia_snrt(soup)
-  if not parsed:parsed=_parse_arryadia_flat(soup)
+  structured=_parse_arryadia_snrt(soup)
+  flat=_parse_arryadia_flat(soup)
+  # Merge both official SNRT representations. The site keeps historical rows
+  # in the old markup while the currently visible day can be rendered in the
+  # flat/card layout.
+  merged={}
+  for row in structured+flat:
+   key=(row[0],row[1].casefold())
+   prev=merged.get(key)
+   if prev is None or len(row[2] or "")>len(prev[2] or ""):merged[key]=row
+  parsed=sorted(merged.values(),key=lambda x:x[0])
  except Exception as e:log("Arryadia SNRT parse: %s"%e)
  if parsed:
   log("Arryadia SNRT parsed=%d range=%s..%s"%(len(parsed),parsed[0][0].isoformat(),parsed[-1][0].isoformat()))
