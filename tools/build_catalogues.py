@@ -88,7 +88,8 @@ def build_elcinema_fallback():
     print(f"elcinema fallback: {len(root)} channels ({recovered} English alternates)")
 
 build_elcinema_fallback()
-choose("osn",["osn.com"])\nchoose("rotana",["rotana.net"],arabic_only=True)
+choose("osn",["osn.com"])
+choose("rotana",["rotana.net"],arabic_only=True)
 
 BEIN_ZERO_EPG_EXCLUDE = {
     "AlkassEight.qa@SD",
