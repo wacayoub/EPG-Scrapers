@@ -147,7 +147,12 @@ def valid(group,rows):
  c=defaultdict(int)
  for e in rr:c[e.channel]+=1
  if group=="snrt": ok=sum(c[x] for x in GROUPS[group] if x!="AFLAM.ma")>=10 and sum(bool(c[x]) for x in GROUPS[group] if x!="AFLAM.ma")>=3
- elif group=="arryadia": ok=sum(c.values())>=6 and (c["Arryadia_HD"]>0 or c["Arryadia_TNT"]>0)
+ elif group=="arryadia":
+  # Do not accept a stale current-day page: require real future coverage.
+  future=[e for e in rr if (e.stop or e.start+timedelta(hours=1))>now]
+  fc=defaultdict(int)
+  for e in future:fc[e.channel]+=1
+  ok=len(future)>=6 and (fc["Arryadia_HD"]>=3 or fc["Arryadia_TNT"]>=3)
  elif group=="2m": ok=c["2M"]>=6
  elif group=="chada":
   future=sum(1 for e in rr if (e.stop or e.start+timedelta(hours=1))>now and e.start<now+timedelta(days=3))
@@ -405,8 +410,52 @@ def scrape_snrt(days):
  for i in range(days*8):out.append(Event("AFLAM.ma",start+timedelta(hours=3*i),"برامج قناة السابعة AFLAM","أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية",start+timedelta(hours=3*(i+1)),"ar","ar","snrt"))
  infer(out);return out
 
+def _scrape_arryadia_communes(days):
+ # Morocco-local dated fallback. Used only when SNRT has no real future rows.
+ h=Http();today=datetime.now(TZ).date();out=[]
+ for i in range(min(days,3)):
+  day=today+timedelta(days=i)
+  url="https://rabat.communesmaroc.com/services-tv-channels?channel=arryadia&dt="+day.isoformat()
+  try:r=h.get(url,headers={"Referer":"https://rabat.communesmaroc.com/"})
+  except Exception as e:
+   log("Arryadia backup %s failed: %s"%(day.isoformat(),e));continue
+  soup=BeautifulSoup(r.text,"lxml");found=[]
+  containers=soup.find_all("tr")
+  if not containers:
+   containers=soup.find_all(["li","article","div"],class_=lambda x:x and any(k in " ".join(x if isinstance(x,list) else [x]).lower() for k in ("program","programme","schedule","row","item")))
+  for node in containers:
+   parts=[clean(x) for x in node.stripped_strings if clean(x)]
+   if not parts:continue
+   ti=None;hm=None
+   for j,piece in enumerate(parts):
+    m=re.search(r"(?<!\d)([0-2]?\d):([0-5]\d)(?!\d)",piece)
+    if m:ti=j;hm=m;break
+   if hm is None:continue
+   hr,mi=int(hm.group(1)),int(hm.group(2))
+   if hr>23:continue
+   title=clean(" ".join(parts[(ti or 0)+1:]))
+   if not title:
+    txt=clean(node.get_text(" ",strip=True));title=clean(txt[hm.end():])
+   title=re.sub(r"^(?:Arryadia\s*)+","",title,flags=re.I).strip(" -–—|:")
+   if not title or len(title)>220:continue
+   found.append((datetime.combine(day,dtime(hr,mi),TZ),title))
+  seen=set()
+  for s,title in sorted(found,key=lambda x:x[0]):
+   k=(s,title.casefold())
+   if k in seen:continue
+   seen.add(k)
+   full=title.lower()
+   ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
+   live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
+   t=("مباشر: "+title) if live and not title.startswith("مباشر") else title
+   for cid in ids:out.append(Event(cid,s,t,title,None,lang(t),lang(title),"arryadia-communes"))
+  log("Arryadia backup %s: %d events"%(day.isoformat(),len(found)))
+ infer(out)
+ now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
+ return [e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
+
 def scrape_arryadia(days):
- h=Http();start=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0);end=start+timedelta(days=min(days,3));parsed=[]
+ h=Http();parsed=[]
  try:
   soup=BeautifulSoup(h.get("https://www.snrt.ma/ar/node/4070").text,"lxml")
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
@@ -421,11 +470,18 @@ def scrape_arryadia(days):
   stop=parsed[i+1][0] if i+1<len(parsed) else s+timedelta(hours=2);full=(title+" "+desc).lower();ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
   live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
   if live and not title.startswith("مباشر"): title="مباشر: "+title
-  # Arryadia Arabic page is authoritative; do not machine-translate.
   for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia-ar"))
- # Publish only real SNRT/Arryadia schedule events. Never synthesize filler EPG.
  infer(out)
- return [e for e in out if e.stop and e.stop>e.start]
+ now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
+ current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
+ future=[e for e in current if e.stop>now]
+ if len(future)>=6:
+  log("Arryadia SNRT future: %d events"%len(future))
+  return current
+ log("Arryadia SNRT has only %d future events; trying dated Morocco backup"%len(future))
+ backup=_scrape_arryadia_communes(days)
+ if sum(1 for e in backup if e.stop and e.stop>now)>=6:return backup
+ return current
 
 def to_xml(rows,path):
  # Final XMLTV safety gate: malformed timestamps must never poison the whole
