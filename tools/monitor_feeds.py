@@ -2,18 +2,27 @@
 from __future__ import annotations
 import argparse,csv,gzip,html,json,re
 from collections import Counter
-from datetime import datetime,timezone
+from datetime import datetime,timedelta,timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-DT_RE=re.compile(r"^(\d{12}|\d{14})")
+DT_RE=re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
 def parse_dt(v):
+    """Parse XMLTV timestamps to UTC without discarding provider offsets."""
     m=DT_RE.match((v or "").strip())
     if not m:return None
     s=m.group(1);fmt="%Y%m%d%H%M%S" if len(s)==14 else "%Y%m%d%H%M"
-    try:return datetime.strptime(s,fmt).replace(tzinfo=timezone.utc)
-    except:return None
+    try:
+        dt=datetime.strptime(s,fmt)
+        off=m.group(2)
+        if not off or off=="Z":
+            return dt.replace(tzinfo=timezone.utc)
+        sign=1 if off[0]=="+" else -1
+        mins=sign*(int(off[1:3])*60+int(off[3:5]))
+        return dt.replace(tzinfo=timezone(timedelta(minutes=mins))).astimezone(timezone.utc)
+    except Exception:
+        return None
 
 def read_root(path):
     raw=Path(path).read_bytes()
