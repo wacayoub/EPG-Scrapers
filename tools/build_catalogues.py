@@ -265,3 +265,44 @@ def build_bein():
         raise SystemExit("bein: empty catalogue")
 
 build_bein()
+
+
+def build_bein_hybrid_english():
+    """English catalogue for beIN entertainment channels used by Hybrid mode."""
+    wanted={
+        "beINGourmet.qa@SD",
+        "beINMovies1Premiere.qa@SD",
+        "beINMovies2Action.qa@SD",
+        "beINMovies3Drama.qa@SD",
+        "beINMovies4Family.qa@SD",
+        "beINSeries1.qa@SD",
+    }
+    site_id_overrides={
+        "entertainment#9": "beINSeries1.qa@SD",
+        "entertainment#12": "beINGourmet.qa@SD",
+    }
+    src=ROOT/"bein.com"/"bein.com_en.channels.xml"
+    rr=ET.parse(src).getroot()
+    rows=[]
+    for ch in rr.findall("channel"):
+        sid=(ch.get("site_id") or "").strip()
+        cid=(ch.get("xmltv_id") or "").strip()
+        if not cid and sid in site_id_overrides:
+            ch=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
+            cid=site_id_overrides[sid]
+            ch.set("xmltv_id",cid)
+        if cid in wanted and sid:
+            rows.append((cid,ch))
+    root=ET.Element("channels")
+    for cid,ch in sorted(rows,key=lambda x:x[0].casefold()):
+        root.append(ET.fromstring(ET.tostring(ch,encoding="utf-8")))
+    ET.indent(root,space="  ")
+    path=OUT/"bein_hybrid_en.channels.xml"
+    path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
+    found={cid for cid,_ in rows}
+    missing=sorted(wanted-found)
+    print(f"bein hybrid English: {len(root)} channels; missing={missing}")
+    if missing:
+        raise SystemExit(f"bein hybrid English missing IDs: {missing}")
+
+build_bein_hybrid_english()
