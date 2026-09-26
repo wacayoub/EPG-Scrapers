@@ -603,7 +603,7 @@ def _parse_arryadia_flat(soup):
  return out
 
 def scrape_arryadia(days):
- h=Http();parsed=[]
+ h=Http();parsed=[];flat=[]
  try:
   r=h.get("https://www.snrt.ma/ar/node/4070",
           params={"_":int(time.time())},
@@ -613,15 +613,9 @@ def scrape_arryadia(days):
   soup=BeautifulSoup(r.text,"lxml")
   structured=_parse_arryadia_snrt(soup)
   flat=_parse_arryadia_flat(soup)
-  # Merge both official SNRT representations. The site keeps historical rows
-  # in the old markup while the currently visible day can be rendered in the
-  # flat/card layout.
-  merged={}
-  for row in structured+flat:
-   key=(row[0],row[1].casefold())
-   prev=merged.get(key)
-   if prev is None or len(row[2] or "")>len(prev[2] or ""):merged[key]=row
-  parsed=sorted(merged.values(),key=lambda x:x[0])
+  # Keep legacy tuples and visible-layout Event objects separate; they are
+  # normalized to Event below before de-duplication.
+  parsed=structured
  except Exception as e:log("Arryadia SNRT parse: %s"%e)
  if parsed:
   log("Arryadia SNRT parsed=%d range=%s..%s"%(len(parsed),parsed[0][0].isoformat(),parsed[-1][0].isoformat()))
@@ -656,6 +650,14 @@ def scrape_arryadia(days):
   live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
   if live and not title.startswith("مباشر"):title="مباشر: "+title
   for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia-snrt"))
+ out+=flat
+ # De-duplicate rows exposed by both official SNRT layouts.
+ dedup={}
+ for e in out:
+  k=(e.channel,e.start,e.title.casefold())
+  prev=dedup.get(k)
+  if prev is None or len(e.desc or "")>len(prev.desc or ""):dedup[k]=e
+ out=sorted(dedup.values(),key=lambda e:(e.channel,e.start,e.title.casefold()))
  infer(out)
  now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
  current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
