@@ -103,6 +103,23 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: python tools/build_catalogues.py
 
+      - name: Patch upstream Rotana end-time bug
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("vendor/iptv-org-epg/sites/rotana.net/rotana.net.config.js")
+          s=p.read_text(encoding="utf-8")
+          old="if (i < items.length - 2)"
+          new="if (i < items.length - 1)"
+          if old in s:
+              p.write_text(s.replace(old,new),encoding="utf-8")
+              print("Rotana parser patched: final event stop now uses next event correctly")
+          else:
+              print("Rotana parser already fixed upstream or pattern changed")
+          PY
+
       - name: Grab ElCinema OSN beIN and Rotana
         if: steps.gate.outputs.run == 'true'
         shell: bash
