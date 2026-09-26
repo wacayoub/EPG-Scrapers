@@ -77,6 +77,22 @@ def is_arabic(text: str) -> bool:
     return bool(AR.search(text or ""))
 
 
+def enforce_arabic_description(node: ET.Element) -> int:
+    """Remove non-Arabic description placeholders/leakage.
+
+    The hybrid policy must never emit an English description.  If the official
+    Arabic guide has no real Arabic description (for example "." or ".."),
+    omit the description rather than substituting English text.
+    """
+    removed = 0
+    for child in list(node.findall("desc")):
+        txt = (child.text or "").strip()
+        if txt and not is_arabic(txt):
+            node.remove(child)
+            removed += 1
+    return removed
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--arabic", required=True)
@@ -140,6 +156,7 @@ def main() -> int:
         "english_title_missing": 0,
         "arabic_description_present": 0,
         "arabic_description_missing": 0,
+        "non_arabic_description_removed": 0,
         "profiles": {},
         "samples": {},
     }
@@ -186,6 +203,7 @@ def main() -> int:
             ensure_lang(node, "sub-title", "ar")
             ensure_lang(node, "desc", "ar")
 
+        stats["non_arabic_description_removed"] += enforce_arabic_description(node)
         desc = text_of(node, "desc")
         if desc and is_arabic(desc):
             stats["arabic_description_present"] += 1
