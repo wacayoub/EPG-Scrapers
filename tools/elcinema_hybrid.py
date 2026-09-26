@@ -18,9 +18,56 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import re
+import time
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
 AR = re.compile(r"[\u0600-\u06FF]")
+LATIN = re.compile(r"[A-Za-z]")
+TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
+
+
+class Translator:
+    def __init__(self, cache_path: str):
+        self.path = Path(cache_path)
+        try:
+            self.cache = json.loads(self.path.read_text(encoding="utf-8")) if self.path.exists() else {}
+        except Exception:
+            self.cache = {}
+        self.new = 0
+        self.failures = []
+
+    def translate(self, text: str, target: str) -> str:
+        text = re.sub(r"\s+", " ", text or "").strip()
+        if not text:
+            return text
+        key = target + "|" + text
+        cached = self.cache.get(key)
+        if cached:
+            return cached
+        params = urlencode({"client":"gtx","sl":"auto","tl":target,"dt":"t","q":text})
+        req = Request(TRANSLATE_URL + "?" + params, headers={"User-Agent":"Mozilla/5.0 EPGManager/ElCinema"})
+        for attempt in range(3):
+            try:
+                with urlopen(req, timeout=20) as r:
+                    data = json.loads(r.read().decode("utf-8"))
+                out = "".join(x[0] for x in data[0] if x and x[0]).strip()
+                if out:
+                    self.cache[key] = out
+                    self.new += 1
+                    time.sleep(0.12)
+                    return out
+            except Exception as e:
+                if attempt == 2:
+                    self.failures.append({"target":target,"text":text[:160],"error":str(e)})
+                else:
+                    time.sleep(1.5 * (attempt + 1))
+        return text
+
+    def save(self):
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.path.write_text(json.dumps(self.cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def read_root(path: str) -> ET.Element:
@@ -64,14 +111,60 @@ def ensure_lang(node: ET.Element, tag: str, lang: str) -> None:
             child.set("lang", lang)
 
 
-def enforce_arabic_description(node: ET.Element) -> int:
-    removed = 0
-    for child in list(node.findall("desc")):
+def ensure_arabic_description(node: ET.Element, tr: Translator) -> tuple[int, int]:
+    translated = 0
+    remaining = 0
+    for child in node.findall("desc"):
         txt = (child.text or "").strip()
-        if txt and not is_arabic(txt):
-            node.remove(child)
-            removed += 1
-    return removed
+        if not txt:
+            continue
+        if not is_arabic(txt):
+            new = tr.translate(txt, "ar")
+            if new != txt and is_arabic(new):
+                child.text = new
+                child.set("lang", "ar")
+                translated += 1
+            else:
+                remaining += 1
+        else:
+            child.set("lang", "ar")
+    return translated, remaining
+
+
+def normalize_title_language(node: ET.Element, profile: str, tr: Translator) -> tuple[int, int]:
+    changed = 0
+    remaining = 0
+    for child in node.findall("title"):
+        txt = (child.text or "").strip()
+        if not txt:
+            continue
+        if profile == "hybrid":
+            # English-title policy: translate residual Arabic-only/mixed Arabic titles
+            # from the English ElCinema guide to English.
+            if is_arabic(txt):
+                new = tr.translate(txt, "en")
+                if new != txt and not is_arabic(new):
+                    child.text = new
+                    child.set("lang", "en")
+                    changed += 1
+                else:
+                    remaining += 1
+            else:
+                child.set("lang", "en")
+        else:
+            # Arabic-native policy: translate Latin-only titles from the Arabic
+            # ElCinema page into Arabic instead of leaking English into the feed.
+            if not is_arabic(txt) and LATIN.search(txt):
+                new = tr.translate(txt, "ar")
+                if new != txt and is_arabic(new):
+                    child.text = new
+                    child.set("lang", "ar")
+                    changed += 1
+                else:
+                    remaining += 1
+            else:
+                child.set("lang", "ar")
+    return changed, remaining
 
 
 def event_key(p: ET.Element):
@@ -109,11 +202,12 @@ def build_catalogue(fallback_catalogue: str, policy_path: str, output: str) -> i
     return 0 if len(out) and not missing else 3
 
 
-def merge(arabic: str, english: str, policy_path: str, output: str, report: str) -> int:
+def merge(arabic: str, english: str, policy_path: str, output: str, report: str, cache: str) -> int:
     policy = json.loads(Path(policy_path).read_text(encoding="utf-8"))
     hybrid = set(policy.get("hybrid_ids", []))
     ar_root = read_root(arabic)
     en_root = read_root(english)
+    tr = Translator(cache)
 
     en_exact = {}
     en_start = defaultdict(list)
@@ -140,7 +234,11 @@ def merge(arabic: str, english: str, policy_path: str, output: str, report: str)
         "english_title_missing": 0,
         "arabic_description_present": 0,
         "arabic_description_missing": 0,
-        "non_arabic_description_removed": 0,
+        "titles_translated_to_ar": 0,
+        "titles_translated_to_en": 0,
+        "title_language_remaining_mismatch": 0,
+        "descriptions_translated_to_ar": 0,
+        "description_language_remaining_mismatch": 0,
         "samples": {},
     }
 
@@ -168,7 +266,15 @@ def merge(arabic: str, english: str, policy_path: str, output: str, report: str)
             ensure_lang(node, "sub-title", "ar")
             ensure_lang(node, "desc", "ar")
 
-        stats["non_arabic_description_removed"] += enforce_arabic_description(node)
+        title_changed, title_remaining = normalize_title_language(node, "hybrid" if cid in hybrid else "arabic_native", tr)
+        if cid in hybrid:
+            stats["titles_translated_to_en"] += title_changed
+        else:
+            stats["titles_translated_to_ar"] += title_changed
+        stats["title_language_remaining_mismatch"] += title_remaining
+        desc_changed, desc_remaining = ensure_arabic_description(node, tr)
+        stats["descriptions_translated_to_ar"] += desc_changed
+        stats["description_language_remaining_mismatch"] += desc_remaining
         title = text_of(node, "title")
         desc = text_of(node, "desc")
         if desc and is_arabic(desc):
@@ -190,6 +296,9 @@ def merge(arabic: str, english: str, policy_path: str, output: str, report: str)
     ET.indent(out, space="  ")
     Path(output).parent.mkdir(parents=True, exist_ok=True)
     Path(output).write_bytes(ET.tostring(out, encoding="utf-8", xml_declaration=True))
+    tr.save()
+    stats["translation_cache_new"] = tr.new
+    stats["translation_failures"] = tr.failures[:20]
     Path(report).parent.mkdir(parents=True, exist_ok=True)
     Path(report).write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -214,11 +323,12 @@ def main() -> int:
     m.add_argument("--policy", required=True)
     m.add_argument("--output", required=True)
     m.add_argument("--report", required=True)
+    m.add_argument("--cache", default="data/elcinema_translation_cache.json")
 
     args = ap.parse_args()
     if args.cmd == "catalogue":
         return build_catalogue(args.fallback_catalogue, args.policy, args.output)
-    return merge(args.arabic, args.english, args.policy, args.output, args.report)
+    return merge(args.arabic, args.english, args.policy, args.output, args.report, args.cache)
 
 
 if __name__ == "__main__":
