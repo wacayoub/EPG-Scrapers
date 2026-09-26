@@ -46,7 +46,7 @@ def parse_date(raw):
     if not raw:
         return None
     # Rotana uses separator ids such as <prefix>-DD-MM-YYYY.
-    m=re.search(r"(\\d{1,2})-(\\d{1,2})-(\\d{4})$",raw)
+    m=re.search(r"(\d{1,2})-(\d{1,2})-(\d{4})$",raw)
     if m:
         d,mn,y=map(int,m.groups())
         try:
@@ -54,7 +54,7 @@ def parse_date(raw):
         except ValueError:
             return None
     # Keep ISO support in case the official markup changes.
-    m=re.search(r"(\\d{4})-(\\d{1,2})-(\\d{1,2})$",raw)
+    m=re.search(r"(\d{4})-(\d{1,2})-(\d{1,2})$",raw)
     if m:
         y,mn,d=map(int,m.groups())
         try:
@@ -62,7 +62,6 @@ def parse_date(raw):
         except ValueError:
             return None
     return None
-
 def parse_time(raw):
     raw=clean(raw)
     for fmt in ("%H:%M", "%I:%M %p", "%I:%M%p"):
