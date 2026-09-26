@@ -410,77 +410,131 @@ def scrape_snrt(days):
  for i in range(days*8):out.append(Event("AFLAM.ma",start+timedelta(hours=3*i),"برامج قناة السابعة AFLAM","أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية",start+timedelta(hours=3*(i+1)),"ar","ar","snrt"))
  infer(out);return out
 
-def _scrape_arryadia_communes(days):
- # Morocco-local dated fallback. Used only when SNRT has no real future rows.
- h=Http();today=datetime.now(TZ).date();out=[]
- for i in range(min(days,3)):
-  day=today+timedelta(days=i)
-  url="https://rabat.communesmaroc.com/services-tv-channels?channel=arryadia&dt="+day.isoformat()
-  try:r=h.get(url,headers={"Referer":"https://rabat.communesmaroc.com/"})
-  except Exception as e:
-   log("Arryadia backup %s failed: %s"%(day.isoformat(),e));continue
-  soup=BeautifulSoup(r.text,"lxml");found=[]
-  containers=soup.find_all("tr")
-  if not containers:
-   containers=soup.find_all(["li","article","div"],class_=lambda x:x and any(k in " ".join(x if isinstance(x,list) else [x]).lower() for k in ("program","programme","schedule","row","item")))
-  for node in containers:
-   parts=[clean(x) for x in node.stripped_strings if clean(x)]
-   if not parts:continue
-   ti=None;hm=None
-   for j,piece in enumerate(parts):
-    m=re.search(r"(?<!\d)([0-2]?\d):([0-5]\d)(?!\d)",piece)
-    if m:ti=j;hm=m;break
-   if hm is None:continue
-   hr,mi=int(hm.group(1)),int(hm.group(2))
-   if hr>23:continue
-   title=clean(" ".join(parts[(ti or 0)+1:]))
-   if not title:
-    txt=clean(node.get_text(" ",strip=True));title=clean(txt[hm.end():])
-   title=re.sub(r"^(?:Arryadia\s*)+","",title,flags=re.I).strip(" -–—|:")
-   if not title or len(title)>220:continue
-   found.append((datetime.combine(day,dtime(hr,mi),TZ),title))
-  seen=set()
-  for s,title in sorted(found,key=lambda x:x[0]):
-   k=(s,title.casefold())
-   if k in seen:continue
-   seen.add(k)
-   full=title.lower()
-   ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
-   live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
-   t=("مباشر: "+title) if live and not title.startswith("مباشر") else title
-   for cid in ids:out.append(Event(cid,s,t,title,None,lang(t),lang(title),"arryadia-communes"))
-  log("Arryadia backup %s: %d events"%(day.isoformat(),len(found)))
- infer(out)
- now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
- return [e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
+def _arryadia_date_token(raw,now):
+ raw=clean(raw)
+ candidates=[]
+ for fmt in ("%Y%m%d","%d%m%Y"):
+  try:candidates.append(datetime.strptime(raw,fmt).date())
+  except Exception:pass
+ if not candidates:return None
+ # Accept only dates close to the current guide window. This prevents stale
+ # hidden/archive markup from being published as current EPG.
+ candidates.sort(key=lambda d:abs((d-now.date()).days))
+ return candidates[0] if abs((candidates[0]-now.date()).days)<=10 else None
+
+def _arryadia_date_from_node(node,now):
+ cur=node
+ for _ in range(8):
+  if cur is None:break
+  vals=[]
+  try:
+   vals.extend(cur.get("class",[]) or [])
+   for key in ("id","data-date","data-day","data-dt"):
+    v=cur.get(key)
+    if v:vals.append(v)
+  except Exception:pass
+  for value in vals:
+   for tok in re.findall(r"(?<!\\d)\\d{8}(?!\\d)",str(value)):
+    d=_arryadia_date_token(tok,now)
+    if d:return d
+  cur=getattr(cur,"parent",None)
+ return None
+
+def _arryadia_event_container(node):
+ # Find the smallest useful parent containing time + title/description.
+ cur=node
+ best=getattr(node,"parent",None)
+ for _ in range(6):
+  cur=getattr(cur,"parent",None)
+  if cur is None:break
+  txt=clean(cur.get_text(" ",strip=True))
+  if 8<=len(txt)<=700:best=cur
+  if cur.name in ("li","article","tr"):break
+  classes=" ".join(cur.get("class",[]) or []).lower()
+  if any(k in classes for k in ("grille-line","program","programme","schedule","item")):break
+ return best or getattr(node,"parent",node)
+
+def _parse_arryadia_snrt(soup):
+ now=datetime.now(TZ);raw=[];seen=set()
+ # Scan every visible time token rather than only the old div.grille-line
+ # markup. SNRT now mixes old rows and a newer card-style layout.
+ time_rx=re.compile(r"^\\s*([0-2]?\\d)\\s*[Hh:]\\s*([0-5]\\d)\\s*$")
+ for txtnode in soup.find_all(string=True):
+  t=clean(txtnode)
+  m=time_rx.match(t)
+  if not m:continue
+  day=_arryadia_date_from_node(txtnode,now)
+  if not day:continue
+  hr,mi=int(m.group(1)),int(m.group(2))
+  if hr>23:continue
+  box=_arryadia_event_container(txtnode)
+  # Prefer an explicit heading/link for the programme title.
+  title=""
+  if box is not None:
+   cand=box.find(["h1","h2","h3","h4","a"],string=lambda x:x and clean(x) and not time_rx.match(clean(x)))
+   if cand:title=clean(cand.get_text(" ",strip=True))
+  parts=[clean(x) for x in box.stripped_strings if clean(x)] if box is not None else []
+  parts=[x for x in parts if not time_rx.match(x) and x not in ("الآن","SAT","TNT")]
+  if not title and parts:title=parts[0]
+  if not title or len(title)>220:continue
+  desc=clean(" ".join(x for x in parts if x!=title))
+  s=datetime.combine(day,dtime(hr,mi),TZ)
+  key=(s,title.casefold())
+  if key in seen:continue
+  seen.add(key);raw.append((s,title,desc or title))
+ # Keep the legacy row parser as a compatibility supplement.
+ for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
+  vals=[]
+  vals.extend(row.get("class",[]) or [])
+  for key in ("id","data-date","data-day","data-dt"):
+   v=row.get(key)
+   if v:vals.append(v)
+  day=None
+  for value in vals:
+   for tok in re.findall(r"(?<!\\d)\\d{8}(?!\\d)",str(value)):
+    day=_arryadia_date_token(tok,now)
+    if day:break
+   if day:break
+  tt=row.find(class_=lambda x:x and "grille-time" in " ".join(x if isinstance(x,list) else [x]))
+  if not day or not tt:continue
+  m=re.search(r"([0-2]?\\d)\\s*[Hh:]\\s*([0-5]\\d)",clean(tt.get_text()))
+  if not m:continue
+  s=datetime.combine(day,dtime(int(m.group(1)),int(m.group(2))),TZ)
+  h2=row.find(["h2","h3"],class_=lambda x:x and "program" in " ".join(x if isinstance(x,list) else [x]).lower())
+  title=clean(h2.get_text(" ",strip=True)) if h2 else ""
+  if not title:continue
+  desc=clean(row.get_text(" ",strip=True)) or title
+  key=(s,title.casefold())
+  if key not in seen:seen.add(key);raw.append((s,title,desc))
+ raw.sort(key=lambda x:x[0])
+ return raw
 
 def scrape_arryadia(days):
  h=Http();parsed=[]
  try:
   soup=BeautifulSoup(h.get("https://www.snrt.ma/ar/node/4070").text,"lxml")
-  for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
-   dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8];tt=row.find("div",class_="grille-time")
-   if not dc or not tt:continue
-   try:s=datetime.strptime(dc[0]+" "+tt.get_text().strip().replace("H",":"),"%Y%m%d %H:%M").replace(tzinfo=TZ)
-   except Exception:continue
-   title=clean(row.find("h2",class_="program-title-sm").get_text()) if row.find("h2",class_="program-title-sm") else "Programme";desc=clean(row.get_text(" ",strip=True));parsed.append((s,title,desc))
- except Exception as e:log("Arryadia: %s"%e)
- parsed.sort();out=[]
+  parsed=_parse_arryadia_snrt(soup)
+ except Exception as e:log("Arryadia SNRT parse: %s"%e)
+ if parsed:
+  log("Arryadia SNRT parsed=%d range=%s..%s"%(len(parsed),parsed[0][0].isoformat(),parsed[-1][0].isoformat()))
+ else:
+  log("Arryadia SNRT parsed=0")
+ out=[]
  for i,(s,title,desc) in enumerate(parsed):
-  stop=parsed[i+1][0] if i+1<len(parsed) else s+timedelta(hours=2);full=(title+" "+desc).lower();ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
-  live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
-  if live and not title.startswith("مباشر"): title="مباشر: "+title
-  for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia-ar"))
+  next_start=parsed[i+1][0] if i+1<len(parsed) else None
+  stop=next_start if next_start and next_start>s and next_start-s<=timedelta(hours=6) else s+timedelta(hours=2)
+  full=(title+" "+desc).lower()
+  ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
+  live=bool(re.search(r"\\b(?:live|direct)\\b|مباشر",full,re.I))
+  if live and not title.startswith("مباشر"):title="مباشر: "+title
+  for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia-snrt"))
  infer(out)
  now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
  current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
  future=[e for e in current if e.stop>now]
- if len(future)>=6:
-  log("Arryadia SNRT future: %d events"%len(future))
-  return current
- log("Arryadia SNRT has only %d future events; trying dated Morocco backup"%len(future))
- backup=_scrape_arryadia_communes(days)
- if sum(1 for e in backup if e.stop and e.stop>now)>=6:return backup
+ log("Arryadia SNRT future=%d current_window=%d"%(len(future),len(current)))
+ # Never fabricate filler or reuse a stale page. The main validity gate will
+ # fall back to a genuinely future LKG only when one exists.
  return current
 
 def to_xml(rows,path):
