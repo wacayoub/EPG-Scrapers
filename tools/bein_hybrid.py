@@ -130,10 +130,12 @@ class Translator:
 
 
 def ensure_sports_title(node: ET.Element, tr: Translator) -> tuple[int, int]:
-    """Fallback for sports titles left fully English after the primary Arabic pass.
+    """Normalize sports programme titles to Arabic while preserving participants.
 
-    Match participants around "vs" stay Latin. ATP Tennis stays canonical.
-    Only the programme/competition part is translated when possible.
+    Team/club/player spans before a separator containing "vs" or " v " remain
+    Latin. Other Latin-only segments (sport, event, magazine, competition) are
+    translated segment-by-segment, so mixed titles cannot bypass the language
+    policy merely because one Arabic segment is already present.
     """
     changed = 0
     remaining = 0
@@ -141,60 +143,73 @@ def ensure_sports_title(node: ET.Element, tr: Translator) -> tuple[int, int]:
         title = re.sub(r"\s+", " ", (child.text or "")).strip()
         if not title:
             continue
-        if is_arabic(title):
-            child.set("lang", "ar")
-            continue
         if title.casefold() == "atp tennis":
             child.set("lang", "en")
             continue
 
-        # Team/club names are intentionally preserved in Latin script.
-        if " vs " in title.casefold():
-            parts = re.split(r"\s+-\s+", title, maxsplit=1)
-            match_part = parts[0].strip()
-            tail = parts[1].strip() if len(parts) > 1 else ""
-            if tail:
-                translated = tr.translate_ar(tail)
-                if translated != tail and is_arabic(translated):
-                    child.text = match_part + " - " + translated
-                    child.set("lang", "ar")
+        segments = [s.strip() for s in re.split(r"\s+-\s+", title)]
+        out = []
+        for i, seg in enumerate(segments):
+            if not seg:
+                continue
+            # Preserve participant/matchup names in Latin script.
+            if i == 0 and re.search(r"\s+(?:vs\.?|v)\s+", seg, re.I):
+                out.append(seg)
+                continue
+            # Already Arabic: keep as-is.
+            if is_arabic(seg) and not re.search(r"[A-Za-z]{3,}", seg):
+                out.append(seg)
+                continue
+            # Mixed or Latin event/programme segment: translate it.
+            if re.search(r"[A-Za-z]{3,}", seg):
+                translated = tr.translate_ar(seg)
+                if translated != seg and is_arabic(translated):
+                    out.append(translated)
                     changed += 1
                 else:
+                    out.append(seg)
                     remaining += 1
             else:
-                # Pure matchup title: Latin teams are the approved format.
-                child.set("lang", "en")
-            continue
-
-        translated = tr.translate_ar(title)
-        if translated != title and is_arabic(translated):
-            child.text = translated
+                out.append(seg)
+        child.text = " - ".join(out)
+        if is_arabic(child.text or ""):
             child.set("lang", "ar")
-            changed += 1
-        else:
-            remaining += 1
     return changed, remaining
 
-
 def ensure_arabic_desc(node: ET.Element, tr: Translator) -> tuple[int, int]:
+    """Translate every non-Arabic description segment, including mixed rows.
+
+    This fixes cases where an English paragraph followed by an Arabic metadata
+    line (for example الموسم 2026/2027) was incorrectly treated as Arabic.
+    """
     translated = 0
     remaining = 0
     for child in node.findall("desc"):
-        txt = (child.text or "").strip()
-        if not txt:
+        raw = (child.text or "").strip()
+        if not raw:
             continue
-        if is_arabic(txt):
+        parts = [p.strip() for p in raw.splitlines() if p.strip()]
+        out = []
+        for part in parts:
+            # Pure Arabic segment: keep.
+            if is_arabic(part) and not re.search(r"[A-Za-z]{4,}", part):
+                out.append(part)
+                continue
+            # Anything carrying a real Latin sentence/phrase must become Arabic.
+            if re.search(r"[A-Za-z]{4,}", part):
+                new = tr.translate_ar(part)
+                if new != part and is_arabic(new):
+                    out.append(new)
+                    translated += 1
+                else:
+                    out.append(part)
+                    remaining += 1
+            else:
+                out.append(part)
+        child.text = "\n".join(out)
+        if is_arabic(child.text or ""):
             child.set("lang", "ar")
-            continue
-        new = tr.translate_ar(txt)
-        if new != txt and is_arabic(new):
-            child.text = new
-            child.set("lang", "ar")
-            translated += 1
-        else:
-            remaining += 1
     return translated, remaining
-
 
 def main() -> int:
     ap = argparse.ArgumentParser()
