@@ -16,6 +16,28 @@ ELCINEMA_PRODUCTION_EXCLUDE = {
 def elcinema_excluded(cid: str) -> bool:
     return cid in ELCINEMA_PRODUCTION_EXCLUDE
 
+SHAHID_MBC_EXTRA = {
+    "Alarabiya.ae@SD",
+    "AlArabiyaBusiness.ae@SD",
+    "AlArabiyaEnglish.sa@SD",
+    "AlArabiyaPrograms.ae",
+    "AlHadath.sa@SD",
+    "Wanasah.ae@SD",
+}
+
+def shahid_mbc_allowed(cid: str) -> bool:
+    # Keep the direct Shahid source focused on MBC Group television services.
+    # Do not let third-party carriage or radio feeds override richer providers.
+    if cid in SHAHID_MBC_EXTRA:
+        return True
+    if not cid.casefold().startswith("mbc"):
+        return False
+    if "usa." in cid.casefold():
+        return False
+    if cid in {"MBCFM.ae@SD"}:
+        return False
+    return True
+
 OUT.mkdir(parents=True, exist_ok=True)
 
 def choose(key, sites, arabic_only=False):
@@ -38,6 +60,8 @@ def choose(key, sites, arabic_only=False):
                 if not cid or not sid:
                     continue
                 if key=="elcinema" and elcinema_excluded(cid):
+                    continue
+                if key=="shahid" and not shahid_mbc_allowed(cid):
                     continue
                 lang=(c.get("lang") or "").lower()
                 lang_rank=0 if lang.startswith("ar") else (1 if lang.startswith("en") else 2)
