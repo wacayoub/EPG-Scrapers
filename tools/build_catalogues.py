@@ -7,33 +7,15 @@ OUT = Path("output/source-build")
 
 # Explicit production exclusions confirmed by manual EPG comparison.
 ELCINEMA_PRODUCTION_EXCLUDE = {
+    # Explicit user blacklist. Other ElCinema channels are retained so the
+    # raw source remains complete; source priority is handled by the merged
+    # MENA feed instead of deleting valid channel IDs here.
     "AlAoula.ma@MiddleEast",
-
-    # Higher-priority direct sources already own these IDs. Keeping them in
-    # ElCinema creates duplicate candidates and can produce wrong mappings.
-    "beINMovies1Premiere.qa@SD",
-    "beINMovies2Action.qa@SD",
-    "beINMovies3Drama.qa@SD",
-    "beINSeries1.qa@SD",
-    "AbuDhabiTV.ae@SD",
-    "AlArabyTV2.qa@SD",
-    "CartoonNetworkArabic.ae@SD",
-    "DMC.eg@SD",
-    "DiscoveryChannelMiddleEastAfrica.us@SD",
-    "OmanTV.om@SD",
-    "RoyaTV.jo@SD",
-
-    # ElCinema currently exposes only a very short same-day window for these
-    # channels. Do not publish stale EPG that expires before the evening.
-    "NationalGeographicMiddleEast.uk@SD",
-    "StarMoviesMiddleEast.ae@SD",
-    "FoxActionMoviesMENA.hk@SD",
-    "StarWorldMiddleEast.ae@SD",
 }
-# Rotana mappings from ElCinema are quarantined until the official Rotana
-# channel mapping is revalidated against the live/current programme.
+
 def elcinema_excluded(cid: str) -> bool:
-    return cid in ELCINEMA_PRODUCTION_EXCLUDE or cid.casefold().startswith("rotana")
+    return cid in ELCINEMA_PRODUCTION_EXCLUDE
+
 OUT.mkdir(parents=True, exist_ok=True)
 
 def choose(key, sites, arabic_only=False):
@@ -106,7 +88,7 @@ def build_elcinema_fallback():
     print(f"elcinema fallback: {len(root)} channels ({recovered} English alternates)")
 
 build_elcinema_fallback()
-choose("osn",["osn.com"])
+choose("osn",["osn.com"])\nchoose("rotana",["rotana.net"],arabic_only=True)
 
 BEIN_ZERO_EPG_EXCLUDE = {
     "AlkassEight.qa@SD",
