@@ -5,7 +5,8 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/test-shahid-rotana.yml"
-      - "tools/build_catalogues.py"\n      - "tools/rotana_source.py"
+      - "tools/build_catalogues.py"
+      - "tools/rotana_source.py"
   workflow_dispatch:
 
 jobs:
