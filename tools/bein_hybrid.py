@@ -129,6 +129,53 @@ class Translator:
         self.path.write_text(json.dumps(self.cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def ensure_sports_title(node: ET.Element, tr: Translator) -> tuple[int, int]:
+    """Fallback for sports titles left fully English after the primary Arabic pass.
+
+    Match participants around "vs" stay Latin. ATP Tennis stays canonical.
+    Only the programme/competition part is translated when possible.
+    """
+    changed = 0
+    remaining = 0
+    for child in node.findall("title"):
+        title = re.sub(r"\s+", " ", (child.text or "")).strip()
+        if not title:
+            continue
+        if is_arabic(title):
+            child.set("lang", "ar")
+            continue
+        if title.casefold() == "atp tennis":
+            child.set("lang", "en")
+            continue
+
+        # Team/club names are intentionally preserved in Latin script.
+        if " vs " in title.casefold():
+            parts = re.split(r"\s+-\s+", title, maxsplit=1)
+            match_part = parts[0].strip()
+            tail = parts[1].strip() if len(parts) > 1 else ""
+            if tail:
+                translated = tr.translate_ar(tail)
+                if translated != tail and is_arabic(translated):
+                    child.text = match_part + " - " + translated
+                    child.set("lang", "ar")
+                    changed += 1
+                else:
+                    remaining += 1
+            else:
+                # Pure matchup title: Latin teams are the approved format.
+                child.set("lang", "en")
+            continue
+
+        translated = tr.translate_ar(title)
+        if translated != title and is_arabic(translated):
+            child.text = translated
+            child.set("lang", "ar")
+            changed += 1
+        else:
+            remaining += 1
+    return changed, remaining
+
+
 def ensure_arabic_desc(node: ET.Element, tr: Translator) -> tuple[int, int]:
     translated = 0
     remaining = 0
@@ -181,6 +228,8 @@ def main() -> int:
         "sports_programmes": 0,
         "english_title_applied": 0,
         "english_title_missing": 0,
+        "sports_titles_translated_fallback": 0,
+        "sports_title_remaining_mismatch": 0,
         "arabic_description_present": 0,
         "arabic_description_missing": 0,
         "descriptions_translated_to_ar": 0,
@@ -206,6 +255,9 @@ def main() -> int:
                 stats["english_title_missing"] += 1
         else:
             stats["sports_programmes"] += 1
+            sport_changed, sport_remaining = ensure_sports_title(p, tr)
+            stats["sports_titles_translated_fallback"] += sport_changed
+            stats["sports_title_remaining_mismatch"] += sport_remaining
 
         changed, remaining = ensure_arabic_desc(p, tr)
         stats["descriptions_translated_to_ar"] += changed
