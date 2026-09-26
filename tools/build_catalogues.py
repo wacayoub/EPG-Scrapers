@@ -25,6 +25,24 @@ SHAHID_MBC_EXTRA = {
     "Wanasah.ae@SD",
 }
 
+# OSN's official API currently exposes several active OSN-branded services
+# without an iptv-org xmltv_id.  They were therefore silently discarded by
+# choose(), even though the schedule API has real listings for them.  Keep
+# stable EPGManager-local XMLTV IDs keyed by OSN's official site_id.
+OSN_OFFICIAL_ID_OVERRIDES = {
+    "204": "OSNOne.ae@SD",
+    "208": "OSNShowcaseClassics.ae@SD",
+    "221": "OSNIQIYI.ae@SD",
+    "225": "OSNMoviesHorror.ae@SD",
+    "226": "OSNPopUp2.ae@SD",
+    "307": "OSNCrime.ae@SD",
+    "314": "OSNDocumentary.ae@SD",
+    "4502": "OSNNow.ae@SD",
+    "5666": "OSNMoviesFamily.ae@SD",
+    "5669": "OSNMoviesComedy.ae@SD",
+    "5672": "OSNPopUp.ae@SD",
+}
+
 def shahid_mbc_allowed(cid: str) -> bool:
     # Keep the direct Shahid source focused on MBC Group television services.
     # Do not let third-party carriage or radio feeds override richer providers.
@@ -57,6 +75,10 @@ def choose(key, sites, arabic_only=False):
             for c in rr.findall("channel"):
                 cid=(c.get("xmltv_id") or "").strip()
                 sid=(c.get("site_id") or "").strip()
+                if key=="osn" and not cid and sid in OSN_OFFICIAL_ID_OVERRIDES:
+                    c=ET.fromstring(ET.tostring(c,encoding="utf-8"))
+                    cid=OSN_OFFICIAL_ID_OVERRIDES[sid]
+                    c.set("xmltv_id",cid)
                 if not cid or not sid:
                     continue
                 if key=="elcinema" and elcinema_excluded(cid):
