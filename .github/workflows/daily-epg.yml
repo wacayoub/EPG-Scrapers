@@ -122,13 +122,13 @@ jobs:
               print("Rotana parser already fixed upstream or pattern changed")
           PY
 
-      - name: Grab ElCinema OSN beIN and Rotana
+      - name: Grab ElCinema OSN beIN Shahid and Rotana
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set +e
           mkdir -p output/source-build
-          for key in elcinema osn bein rotana; do
+          for key in elcinema osn bein shahid rotana; do
             cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
             extra=""
             if [ "$key" = "elcinema" ]; then
@@ -210,7 +210,7 @@ jobs:
         run: |
           set +e
           mkdir -p output/final
-          for key in elcinema osn bein rotana sport24; do
+          for key in elcinema osn bein shahid rotana sport24; do
             python tools/source_feed_pack.py               --input "output/source-build/$key.raw.xml"               --output-gz "output/final/$key.xml.gz"               --output-txt "output/final/$key.txt"               --stats "output/final/$key.json"               --label "$key"               --window-hours 48
             echo "$?" > "output/final/$key.pack.rc"
           done
@@ -269,7 +269,7 @@ jobs:
           set +e
           mkdir -p reports
           candidates=()
-          for key in morocco bein elcinema osn rotana sport24; do
+          for key in morocco bein shahid elcinema osn rotana sport24; do
             [ -s "output/final/$key.xml.gz" ] && candidates+=("output/final/$key.xml.gz")
           done
           if [ "${#candidates[@]}" -gt 0 ]; then
@@ -288,7 +288,7 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: python tools/publish_lkg.py
 
-      - name: Build Shahid MBC and canonical MENA feeds
+      - name: Build canonical MENA feed
         if: steps.gate.outputs.run == 'true'
         run: python tools/build_derived_feeds.py
 
