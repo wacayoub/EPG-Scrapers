@@ -17,6 +17,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+import re
 import xml.etree.ElementTree as ET
 
 import requests
@@ -44,12 +45,22 @@ def parse_date(raw):
     raw=clean(raw)
     if not raw:
         return None
-    # The official page uses ISO-like ids on each date separator.
-    for candidate in (raw, raw[:10]):
+    # Rotana uses separator ids such as <prefix>-DD-MM-YYYY.
+    m=re.search(r"(\\d{1,2})-(\\d{1,2})-(\\d{4})$",raw)
+    if m:
+        d,mn,y=map(int,m.groups())
         try:
-            return datetime.fromisoformat(candidate).date()
-        except Exception:
-            pass
+            return datetime(y,mn,d).date()
+        except ValueError:
+            return None
+    # Keep ISO support in case the official markup changes.
+    m=re.search(r"(\\d{4})-(\\d{1,2})-(\\d{1,2})$",raw)
+    if m:
+        y,mn,d=map(int,m.groups())
+        try:
+            return datetime(y,mn,d).date()
+        except ValueError:
+            return None
     return None
 
 def parse_time(raw):
@@ -77,11 +88,12 @@ def parse_events(html, cid):
     rows=[]
     day=None
     for div in soup.select(".hour > div"):
-        bg=div.select_one("div.bg")
-        if bg and bg.get("id"):
-            parsed=parse_date(bg.get("id"))
+        classes=set(div.get("class") or [])
+        if "bg" in classes and div.get("id"):
+            parsed=parse_date(div.get("id"))
             if parsed:
                 day=parsed
+            continue
         block=div.select_one(".iq-accordion-block")
         if block is None or day is None:
             continue
