@@ -509,11 +509,110 @@ def _parse_arryadia_snrt(soup):
  raw.sort(key=lambda x:x[0])
  return raw
 
+def _parse_arryadia_flat(soup):
+ # Current SNRT page keeps the day tabs together, then emits programme blocks
+ # in DOM order. Parse that official text layout when date attributes are not
+ # attached to each programme row.
+ now=datetime.now(TZ)
+ strings=[clean(x) for x in soup.stripped_strings if clean(x)]
+ time_rx=re.compile(r"^([0-2]?\\d)\\s*[Hh:]\\s*([0-5]\\d)$")
+ day_rx=re.compile(r"(\\d{1,2})\\s*/\\s*(\\d{1,2})")
+ day_labels=[]
+ first_time=None
+ for pos,s in enumerate(strings):
+  if first_time is None and time_rx.match(s):first_time=pos
+  if first_time is not None and pos>=first_time:break
+  m=day_rx.search(s)
+  if not m:continue
+  try:
+   d=datetime(now.year,int(m.group(2)),int(m.group(1))).date()
+   if d<now.date()-timedelta(days=180):d=datetime(now.year+1,d.month,d.day).date()
+   if d>now.date()+timedelta(days=180):d=datetime(now.year-1,d.month,d.day).date()
+  except Exception:continue
+  if d not in day_labels:day_labels.append(d)
+ if first_time is None or not day_labels:return []
+
+ # Build programme blocks: one time token followed by title/description text.
+ raw=[]
+ i=first_time
+ while i<len(strings):
+  m=time_rx.match(strings[i])
+  if not m:
+   i+=1;continue
+  hr,mi=int(m.group(1)),int(m.group(2))
+  if hr>23:i+=1;continue
+  j=i+1;parts=[]
+  while j<len(strings) and not time_rx.match(strings[j]):
+   s=strings[j]
+   if s in ("الرئيسية","الشركة","القنوات","الوسيط","طلبات العروض","Régie publicitaire","Mentions légales"):
+    break
+   if not day_rx.search(s):parts.append(s)
+   j+=1
+  # Keep channel markers for feed selection but not as the visible title.
+  visible=[x for x in parts if x not in ("الآن","SAT","TNT") and not re.fullmatch(r"Image",x,re.I)]
+  if visible:
+   title=visible[0]
+   desc=clean(" ".join(visible[1:])) or title
+   markers=" ".join(parts)
+   raw.append({"minutes":hr*60+mi,"hr":hr,"mi":mi,"title":title,"desc":desc,"markers":markers})
+  i=max(j,i+1)
+ if not raw:return []
+
+ # Split the flat list into daily blocks. A morning restart after a daytime
+ # schedule, or after post-midnight carry-over, starts the next visible day.
+ groups=[[]]
+ prev=None
+ for item in raw:
+  cur=item["minutes"]
+  new_day=False
+  if prev is not None:
+   if prev<5*60 and cur>=5*60:
+    new_day=True
+   elif cur+4*60<prev and cur>=5*60:
+    new_day=True
+  if new_day:groups.append([])
+  groups[-1].append(item);prev=cur
+ groups=[g for g in groups if g]
+ if not groups:return []
+
+ # SNRT can omit an expired first day from the programme DOM while leaving its
+ # tab visible. Align the visible programme groups to the most recent day tabs.
+ dates=sorted(day_labels)[-len(groups):]
+ if len(dates)!=len(groups):return []
+ out=[]
+ for day,group in zip(dates,groups):
+  carry=False;prev=None
+  for item in group:
+   cur=item["minutes"]
+   if prev is not None and cur+4*60<prev and cur<5*60:carry=True
+   if prev is not None and prev<5*60 and cur>=5*60:carry=False
+   evday=day+(timedelta(days=1) if carry and item["hr"]<5 else timedelta(0))
+   s=datetime.combine(evday,dtime(item["hr"],item["mi"]),TZ)
+   full=(item["title"]+" "+item["desc"]+" "+item["markers"]).lower()
+   ids=[]
+   if re.search(r"\\btnt\\b",full):ids.append("Arryadia_TNT")
+   if re.search(r"\\bsat\\b",full):ids.append("Arryadia_HD")
+   if not ids:ids=["Arryadia_HD","Arryadia_TNT"]
+   title=item["title"]
+   if re.search(r"\\b(?:direct|live)\\b|مباشر",full,re.I) and not title.startswith("مباشر"):
+    title="مباشر: "+title
+   for cid in ids:out.append(Event(cid,s,title,item["desc"],None,"ar","ar","arryadia-snrt-flat"))
+   prev=cur
+ infer(out)
+ log("Arryadia flat parser groups=%d dates=%s events=%d"%(len(groups),",".join(d.isoformat() for d in dates),len(out)))
+ return out
+
 def scrape_arryadia(days):
  h=Http();parsed=[]
  try:
-  soup=BeautifulSoup(h.get("https://www.snrt.ma/ar/node/4070").text,"lxml")
+  r=h.get("https://www.snrt.ma/ar/node/4070",
+          params={"_":int(time.time())},
+          headers={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36",
+                   "Accept-Language":"ar-MA,ar;q=.9,fr;q=.8,en;q=.6",
+                   "Cache-Control":"no-cache","Pragma":"no-cache"})
+  soup=BeautifulSoup(r.text,"lxml")
   parsed=_parse_arryadia_snrt(soup)
+  if not parsed:parsed=_parse_arryadia_flat(soup)
  except Exception as e:log("Arryadia SNRT parse: %s"%e)
  if parsed:
   log("Arryadia SNRT parsed=%d range=%s..%s"%(len(parsed),parsed[0][0].isoformat(),parsed[-1][0].isoformat()))
