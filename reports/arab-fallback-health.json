@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-26T09:14:41.685941+00:00",
+  "generated_at": "2026-09-26T23:05:06.821670+00:00",
   "purpose": "analysis_only_zero_epg_rescue",
   "morocco_excluded": true,
-  "production_ids_with_future_epg": 166,
+  "production_ids_with_future_epg": 181,
   "fallback_rows_total": 2455,
-  "rescue_rows_not_currently_covered": 1065,
+  "rescue_rows_not_currently_covered": 1091,
   "health": [
     {
       "provider": "epgshare",
@@ -12,14 +12,14 @@
       "url": "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz",
       "status": "ok",
       "http": 200,
-      "bytes": 2114267,
+      "bytes": 1987103,
       "channels": 812,
       "active_channels": 228,
-      "future_programmes": 42109,
-      "invalid_times": 16,
+      "future_programmes": 51898,
+      "invalid_times": 12,
       "suspicious_clone_groups": 12,
       "suspicious_clone_channels": 409,
-      "sha256": "4ba0825283aef7e3d0481233fbee9452b5af440657e9d5ea31a975337c8cf33f"
+      "sha256": "1bfd16b950c408fe67920d9f9869bc3c5ca80be5b2631aa7980cd074465a16e0"
     },
     {
       "provider": "epgshare",
@@ -57,14 +57,14 @@
       "url": "https://epgshare01.online/epgshare01/epg_ripper_SA2.xml.gz",
       "status": "ok",
       "http": 200,
-      "bytes": 108453,
+      "bytes": 107496,
       "channels": 41,
       "active_channels": 18,
-      "future_programmes": 4262,
-      "invalid_times": 15,
+      "future_programmes": 3515,
+      "invalid_times": 16,
       "suspicious_clone_groups": 1,
       "suspicious_clone_channels": 23,
-      "sha256": "73508f51870ca84d91ca26d79cee62826a070352e02b3f4192949870cd03c6dc"
+      "sha256": "5b8f08922c121813297d735e486a19c23ce76cad487486d0a950a87f2dc46650"
     },
     {
       "provider": "epgshare",
@@ -79,14 +79,14 @@
       "url": "https://epgshare01.online/epgshare01/epg_ripper_BEIN1.xml.gz",
       "status": "ok",
       "http": 200,
-      "bytes": 28336,
+      "bytes": 32854,
       "channels": 80,
-      "active_channels": 38,
-      "future_programmes": 1311,
-      "invalid_times": 6,
-      "suspicious_clone_groups": 2,
-      "suspicious_clone_channels": 20,
-      "sha256": "49f5f2b1c3846d14c6228c8c232e5b79f9756829cf8dae9adb3fc76296392fea"
+      "active_channels": 66,
+      "future_programmes": 1589,
+      "invalid_times": 4,
+      "suspicious_clone_groups": 1,
+      "suspicious_clone_channels": 12,
+      "sha256": "3aae79ccdb88e0d645172cf615eec376203c9e109ad90cfb8a223b320b86e85e"
     },
     {
       "provider": "epgshare",
@@ -94,14 +94,14 @@
       "url": "https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz",
       "status": "ok",
       "http": 200,
-      "bytes": 3610,
+      "bytes": 3689,
       "channels": 2,
       "active_channels": 1,
-      "future_programmes": 97,
+      "future_programmes": 113,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "b8cdc31174f50e688a4e7d3bc03a06693ead6db582d8112b88116e65470cfe2a"
+      "sha256": "11366cb8bcb61a4a5cfda921071ece28de93c984779ace99f7177436bf95965d"
     },
     {
       "provider": "openepg",
@@ -112,7 +112,7 @@
       "bytes": 2388297,
       "channels": 128,
       "active_channels": 92,
-      "future_programmes": 3600,
+      "future_programmes": 2356,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -127,7 +127,7 @@
       "bytes": 1217093,
       "channels": 128,
       "active_channels": 92,
-      "future_programmes": 3825,
+      "future_programmes": 2581,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -141,8 +141,8 @@
       "http": 200,
       "bytes": 354961,
       "channels": 39,
-      "active_channels": 31,
-      "future_programmes": 831,
+      "active_channels": 29,
+      "future_programmes": 525,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -157,7 +157,7 @@
       "bytes": 235465,
       "channels": 35,
       "active_channels": 35,
-      "future_programmes": 1052,
+      "future_programmes": 688,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -172,7 +172,7 @@
       "bytes": 237604,
       "channels": 40,
       "active_channels": 39,
-      "future_programmes": 1174,
+      "future_programmes": 761,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -187,7 +187,7 @@
       "bytes": 474442,
       "channels": 33,
       "active_channels": 33,
-      "future_programmes": 2442,
+      "future_programmes": 1603,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -202,7 +202,7 @@
       "bytes": 540072,
       "channels": 33,
       "active_channels": 31,
-      "future_programmes": 2750,
+      "future_programmes": 1855,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -217,7 +217,7 @@
       "bytes": 19337414,
       "channels": 139,
       "active_channels": 132,
-      "future_programmes": 7108,
+      "future_programmes": 4913,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -229,14 +229,14 @@
       "url": "https://www.open-epg.com/files/saudiarabia2.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 14135580,
+      "bytes": 14153239,
       "channels": 139,
       "active_channels": 132,
-      "future_programmes": 5017,
+      "future_programmes": 6757,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "a42500595bcfd428f1e383059d913304e5a565e3e4415d1942419a90ca58776f"
+      "sha256": "64060fdd71f50dd1076f749b152ec638b3c19620d13269569e030002deb84d51"
     },
     {
       "provider": "openepg",
@@ -247,7 +247,7 @@
       "bytes": 572772,
       "channels": 81,
       "active_channels": 22,
-      "future_programmes": 1171,
+      "future_programmes": 817,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -259,14 +259,14 @@
       "url": "https://www.open-epg.com/files/saudiarabia4.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 591286,
+      "bytes": 608788,
       "channels": 81,
       "active_channels": 22,
-      "future_programmes": 820,
+      "future_programmes": 1147,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "41339441051178e71791eafc3f6a5fa422ce457a2a410d1f6cdf9898c29476a1"
+      "sha256": "c86cc7d07da36af77a641e4727910c1ad7682175c4c2b49918af7695a67f6c9b"
     },
     {
       "provider": "openepg",
@@ -277,7 +277,7 @@
       "bytes": 1123587,
       "channels": 249,
       "active_channels": 95,
-      "future_programmes": 5140,
+      "future_programmes": 3088,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -289,14 +289,14 @@
       "url": "https://www.open-epg.com/files/uae6.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 1014386,
+      "bytes": 987615,
       "channels": 60,
       "active_channels": 24,
-      "future_programmes": 1430,
+      "future_programmes": 1950,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "1813a9a20a57795bb642c6475041452449fb9549ca4a394b176ac95d06a0999b"
+      "sha256": "eaddd42563bbee88bf76bd8e01a888a7e96344a601b35366a294a3af7a916832"
     },
     {
       "provider": "openepg",
@@ -309,12 +309,12 @@
   "merged": {
     "epgshare": {
       "file": "analysis/arab-fallback/epgshare.xml.gz",
-      "bytes": 2387949,
+      "bytes": 2268643,
       "sources_ok": 6
     },
     "openepg": {
       "file": "analysis/arab-fallback/openepg.xml.gz",
-      "bytes": 2919602,
+      "bytes": 2916291,
       "sources_ok": 13
     }
   }
