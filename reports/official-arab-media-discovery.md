@@ -2,14 +2,14 @@
 
 | Country | Best HTTP | Score | Guide hits | Times | JSON | API candidates | Verdict |
 |---|---:|---:|---:|---:|---:|---:|---|
-| Algeria | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
+| Algeria | 200 | 14.4 | 0 | 2 | 1 | 36 | PROMISING |
 | Bahrain | 200 | 11.6 | 0 | 2 | 0 | 50 | REACHABLE_NEEDS_API |
 | Comoros | 200 | 15.0 | 0 | 0 | 2 | 50 | PROMISING |
 | Djibouti | 200 | 13.0 | 0 | 0 | 1 | 50 | PROMISING |
-| Egypt | 200 | 29.0 | 0 | 83 | 2 | 50 | PROMISING |
+| Egypt | 200 | 29.5 | 0 | 83 | 2 | 50 | PROMISING |
 | Iraq | 403 | 0.0 | 0 | 0 | 0 | 0 | BLOCKED |
 | Jordan | 200 | 5.4 | 0 | 0 | 0 | 2 | REACHABLE_NEEDS_API |
-| Kuwait | 200 | 11.8 | 0 | 0 | 0 | 50 | REACHABLE_NEEDS_API |
+| Kuwait | 403 | 0.0 | 0 | 0 | 0 | 0 | BLOCKED |
 | Lebanon | 200 | 10.3 | 0 | 0 | 0 | 9 | REACHABLE_NEEDS_API |
 | Libya | 200 | 14.3 | 0 | 1 | 1 | 50 | PROMISING |
 | Mauritania | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
