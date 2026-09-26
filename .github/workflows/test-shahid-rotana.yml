@@ -1,0 +1,80 @@
+name: Test Shahid Rotana direct
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-shahid-rotana.yml"
+      - "tools/build_catalogues.py"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install upstream
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build direct catalogues
+        run: |
+          python -m py_compile tools/build_catalogues.py tools/source_feed_pack.py
+          python tools/build_catalogues.py
+
+      - name: Patch Rotana stop calculation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("vendor/iptv-org-epg/sites/rotana.net/rotana.net.config.js")
+          s=p.read_text(encoding="utf-8")
+          p.write_text(s.replace("if (i < items.length - 2)","if (i < items.length - 1)"),encoding="utf-8")
+          PY
+
+      - name: Grab Shahid and Rotana
+        shell: bash
+        run: |
+          set -e
+          mkdir -p output/source-build output/test-direct
+          for key in shahid rotana; do
+            (
+              cd vendor/iptv-org-epg
+              timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
+                --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml" \
+                --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml" \
+                --days=3 --maxConnections=1 --timeout=20000
+            )
+            python tools/source_feed_pack.py \
+              --input "output/source-build/$key.raw.xml" \
+              --output-gz "output/test-direct/$key.xml.gz" \
+              --output-txt "output/test-direct/$key.txt" \
+              --stats "output/test-direct/$key.json" \
+              --label "$key" --window-hours 48
+          done
+
+      - name: Report direct results
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for key in ("shahid","rotana"):
+              d=json.loads((Path("output/test-direct")/f"{key}.json").read_text(encoding="utf-8"))
+              print(f"DIRECT_OK {key}: channels={d['channels']} programmes={d['programmes']} invalid={d['rejected_invalid_time']} inferred_stop={d['inferred_stop']}")
+          PY
