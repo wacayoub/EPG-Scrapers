@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-25T15:51:20.302917+00:00",
+  "generated_at": "2026-09-26T08:51:28.796217+00:00",
   "purpose": "analysis_only_zero_epg_rescue",
   "morocco_excluded": true,
-  "production_ids_with_future_epg": 172,
+  "production_ids_with_future_epg": 155,
   "fallback_rows_total": 2455,
-  "rescue_rows_not_currently_covered": 1055,
+  "rescue_rows_not_currently_covered": 1065,
   "health": [
     {
       "provider": "epgshare",
@@ -15,11 +15,11 @@
       "bytes": 2114267,
       "channels": 812,
       "active_channels": 228,
-      "future_programmes": 54629,
+      "future_programmes": 42604,
       "invalid_times": 16,
       "suspicious_clone_groups": 12,
       "suspicious_clone_channels": 409,
-      "sha256": "77adacc2f7a281bf60bfe8f44f68d3095a491e1a29cc1c1f67e480f1661784fb"
+      "sha256": "4ba0825283aef7e3d0481233fbee9452b5af440657e9d5ea31a975337c8cf33f"
     },
     {
       "provider": "epgshare",
@@ -57,14 +57,14 @@
       "url": "https://epgshare01.online/epgshare01/epg_ripper_SA2.xml.gz",
       "status": "ok",
       "http": 200,
-      "bytes": 114726,
+      "bytes": 108453,
       "channels": 41,
       "active_channels": 18,
-      "future_programmes": 4104,
-      "invalid_times": 13,
+      "future_programmes": 4288,
+      "invalid_times": 15,
       "suspicious_clone_groups": 1,
       "suspicious_clone_channels": 23,
-      "sha256": "f34c27691861e37645a539bbd3fd7dd85a8767aa031e740933cb735bb35045f7"
+      "sha256": "73508f51870ca84d91ca26d79cee62826a070352e02b3f4192949870cd03c6dc"
     },
     {
       "provider": "epgshare",
@@ -79,14 +79,14 @@
       "url": "https://epgshare01.online/epgshare01/epg_ripper_BEIN1.xml.gz",
       "status": "ok",
       "http": 200,
-      "bytes": 36752,
+      "bytes": 28336,
       "channels": 80,
-      "active_channels": 48,
-      "future_programmes": 1282,
-      "invalid_times": 2,
+      "active_channels": 38,
+      "future_programmes": 1336,
+      "invalid_times": 6,
       "suspicious_clone_groups": 2,
-      "suspicious_clone_channels": 26,
-      "sha256": "999a7185df320b6dcf37951e07e47f4b56696f919d248bac05ece6c593b6d4b9"
+      "suspicious_clone_channels": 20,
+      "sha256": "49f5f2b1c3846d14c6228c8c232e5b79f9756829cf8dae9adb3fc76296392fea"
     },
     {
       "provider": "epgshare",
@@ -97,11 +97,11 @@
       "bytes": 3610,
       "channels": 2,
       "active_channels": 1,
-      "future_programmes": 125,
+      "future_programmes": 98,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "b0479132518996b965bc25d8cbb0ca197029d8035b6a9da4f956f526d34d4111"
+      "sha256": "b8cdc31174f50e688a4e7d3bc03a06693ead6db582d8112b88116e65470cfe2a"
     },
     {
       "provider": "openepg",
@@ -109,14 +109,14 @@
       "url": "https://www.open-epg.com/files/egypt1.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 2483584,
+      "bytes": 2388297,
       "channels": 128,
-      "active_channels": 97,
-      "future_programmes": 3237,
+      "active_channels": 92,
+      "future_programmes": 3665,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "e7426684ff88e1be83c024d826f6b7aff3040d7e5e7ec15df4737e55a77cb09a"
+      "sha256": "2f2f536b4b88fb41d2e0365c1cbfa1dbf780eec26a604f6c99f26104daf6a68d"
     },
     {
       "provider": "openepg",
@@ -124,14 +124,14 @@
       "url": "https://www.open-epg.com/files/egypt2.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 1304688,
+      "bytes": 1217093,
       "channels": 128,
-      "active_channels": 97,
-      "future_programmes": 3573,
+      "active_channels": 92,
+      "future_programmes": 3890,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "f2f545fd0cb52a50c71f0449c914ede0ac5e8ab18510d7af31af39bce1aa671a"
+      "sha256": "8e97f9f1ed25b40e343e80dba09d12e2a72f9f9b6b50ecf4a650f1c2b2ddaf07"
     },
     {
       "provider": "openepg",
@@ -139,14 +139,14 @@
       "url": "https://www.open-epg.com/files/qatar1.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 355555,
+      "bytes": 354961,
       "channels": 39,
       "active_channels": 31,
-      "future_programmes": 689,
+      "future_programmes": 847,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "6726169d7225278e1369a0c27afd7f0beec6d8ee4e5fe36d1bc2ce60da7bf57f"
+      "sha256": "cbc0449327e2060f63c3e7d6def79ca76b2ceafd9ff1f3d9f987fa3879ed32a0"
     },
     {
       "provider": "openepg",
@@ -154,14 +154,14 @@
       "url": "https://www.open-epg.com/files/qatar2.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 235774,
+      "bytes": 235465,
       "channels": 35,
       "active_channels": 35,
-      "future_programmes": 894,
+      "future_programmes": 1066,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "8ce3eb3e30100ed6622c329cf8198ad86fbc0a598e55fce4fc28114d54f79e94"
+      "sha256": "0241bedf4e1f20ec39e35375e6fedc0fcc58e6fdbb871fda9f4d39e524b7281b"
     },
     {
       "provider": "openepg",
@@ -169,14 +169,14 @@
       "url": "https://www.open-epg.com/files/qatar3.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 223603,
+      "bytes": 237604,
       "channels": 40,
-      "active_channels": 27,
-      "future_programmes": 330,
+      "active_channels": 39,
+      "future_programmes": 1188,
       "invalid_times": 0,
-      "suspicious_clone_groups": 1,
-      "suspicious_clone_channels": 8,
-      "sha256": "8ac06179255b0500b54245bbe60a8b522afd754cd1cad260de47e73ea2a0ed9e"
+      "suspicious_clone_groups": 0,
+      "suspicious_clone_channels": 0,
+      "sha256": "d34c300b55e94579f606c3c85745a5036e7488e47cf5c3d7a7b4b9dd4940db1e"
     },
     {
       "provider": "openepg",
@@ -184,14 +184,14 @@
       "url": "https://www.open-epg.com/files/qatar4.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 475150,
+      "bytes": 474442,
       "channels": 33,
       "active_channels": 33,
-      "future_programmes": 2045,
+      "future_programmes": 2470,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "ba5957b5392645f3a5e7488f1638c3e856e6e18b2313030eb007910fea7cf420"
+      "sha256": "a352c7f2e2fd87674b44bb36536282f39daeca9934dfa562e7976565ef1ab637"
     },
     {
       "provider": "openepg",
@@ -199,14 +199,14 @@
       "url": "https://www.open-epg.com/files/qatar5.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 539364,
+      "bytes": 540072,
       "channels": 33,
       "active_channels": 31,
-      "future_programmes": 2321,
+      "future_programmes": 2782,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "c961c8aea19fc60f172d35bd0c47f6dc0255176b43c0aa90a030285c6fb9f478"
+      "sha256": "ead9e22510bb68a7886971edeb7b49764dce7ae065175b53fc7c25389d1084b5"
     },
     {
       "provider": "openepg",
@@ -214,14 +214,14 @@
       "url": "https://www.open-epg.com/files/saudiarabia1.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 19325386,
+      "bytes": 19337414,
       "channels": 139,
       "active_channels": 132,
-      "future_programmes": 6049,
+      "future_programmes": 7221,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "bf268a3819fd4cf1f0127dd9bb07f387bf94ec8aa1845763be363dad9f1baf10"
+      "sha256": "677978f63ac6871e7cfe1cc7f71d229781206b1490362bb40ff3ca0dc42cc5c1"
     },
     {
       "provider": "openepg",
@@ -232,7 +232,7 @@
       "bytes": 14135580,
       "channels": 139,
       "active_channels": 132,
-      "future_programmes": 7879,
+      "future_programmes": 5132,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -244,14 +244,14 @@
       "url": "https://www.open-epg.com/files/saudiarabia3.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 556769,
+      "bytes": 572772,
       "channels": 81,
       "active_channels": 22,
-      "future_programmes": 320,
+      "future_programmes": 1193,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "18e96a05108c2489ad4193e4324e0fdf37cc2f90d42133819ea1111525e5cd8d"
+      "sha256": "72aacd6f27ae79ff32075adf02d27980ec1498415d5f4bc1ce6ec190afb8ba67"
     },
     {
       "provider": "openepg",
@@ -262,7 +262,7 @@
       "bytes": 591286,
       "channels": 81,
       "active_channels": 22,
-      "future_programmes": 1277,
+      "future_programmes": 841,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -274,14 +274,14 @@
       "url": "https://www.open-epg.com/files/saudiarabia5.xml",
       "status": "ok",
       "http": 200,
-      "bytes": 1051238,
+      "bytes": 1123587,
       "channels": 249,
-      "active_channels": 77,
-      "future_programmes": 3972,
+      "active_channels": 95,
+      "future_programmes": 5220,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
-      "sha256": "c40f614e9f7723e39251aa9fb8ad10252abfa35399c6fe891a31840a0ff2b6a3"
+      "sha256": "73f2374b5013583ef005faf0c5520938682161098e50b10d239fb4f710092038"
     },
     {
       "provider": "openepg",
@@ -292,7 +292,7 @@
       "bytes": 1014386,
       "channels": 60,
       "active_channels": 24,
-      "future_programmes": 2394,
+      "future_programmes": 1454,
       "invalid_times": 0,
       "suspicious_clone_groups": 0,
       "suspicious_clone_channels": 0,
@@ -309,12 +309,12 @@
   "merged": {
     "epgshare": {
       "file": "analysis/arab-fallback/epgshare.xml.gz",
-      "bytes": 2401593,
+      "bytes": 2387949,
       "sources_ok": 6
     },
     "openepg": {
       "file": "analysis/arab-fallback/openepg.xml.gz",
-      "bytes": 2950121,
+      "bytes": 2919602,
       "sources_ok": 13
     }
   }
