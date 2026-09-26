@@ -519,6 +519,26 @@ def scrape_arryadia(days):
   log("Arryadia SNRT parsed=%d range=%s..%s"%(len(parsed),parsed[0][0].isoformat(),parsed[-1][0].isoformat()))
  else:
   log("Arryadia SNRT parsed=0")
+  # Diagnostic for SNRT markup changes: log only structural attributes around
+  # a few time tokens, never the full response.
+  try:
+   shown=0
+   trx=re.compile(r"^\\s*[0-2]?\\d\\s*[Hh:]\\s*[0-5]\\d\\s*$")
+   for tn in soup.find_all(string=True):
+    if not trx.match(clean(tn)):continue
+    chain=[];cur=getattr(tn,"parent",None)
+    for _ in range(6):
+     if cur is None:break
+     attrs=[]
+     for k in ("class","id","data-date","data-day","data-dt"):
+      v=cur.get(k)
+      if v:attrs.append("%s=%s"%(k,v))
+     chain.append("%s[%s]"%(getattr(cur,"name","?"),",".join(attrs)))
+     cur=getattr(cur,"parent",None)
+    log("Arryadia DOM %s :: %s"%(clean(tn)," > ".join(chain)))
+    shown+=1
+    if shown>=12:break
+  except Exception as de:log("Arryadia DOM diagnostic failed: %s"%de)
  out=[]
  for i,(s,title,desc) in enumerate(parsed):
   next_start=parsed[i+1][0] if i+1<len(parsed) else None
