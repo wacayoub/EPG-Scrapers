@@ -16,6 +16,8 @@ on:
       - "tools/source_gap_retry.py"
       - "tools/bein_arabize.py"
       - "tools/bein_ai_refine.py"
+      - "tools/bein_hybrid.py"
+      - "config/bein-language-policy.json"
       - "tools/validate_48h.py"
       - "tools/publish_lkg.py"
       - "tools/sport24_source.py"
@@ -101,6 +103,7 @@ jobs:
           python -m py_compile tools/source_gap_retry.py
           python -m py_compile tools/bein_arabize.py
           python -m py_compile tools/bein_ai_refine.py
+          python -m py_compile tools/bein_hybrid.py
           python -m py_compile tools/sport24_source.py
           python -m py_compile tools/morocco_epg.py
           python -m py_compile tools/rotana_source.py
@@ -159,6 +162,27 @@ jobs:
           echo "$rc" > "$GITHUB_WORKSPACE/output/source-build/osn.en.grab.rc"
           if [ ! -s "$GITHUB_WORKSPACE/output/source-build/osn.en.raw.xml" ]; then
             echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/osn.en.raw.xml"
+          fi
+          exit 0
+
+      - name: Grab beIN English entertainment titles
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/source-build
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/bein_hybrid_en.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/source-build/bein.hybrid.en.raw.xml" \
+            --days=3 \
+            --maxConnections=1 \
+            --timeout=20000 \
+            --delay=500
+          rc=$?
+          echo "$rc" > "$GITHUB_WORKSPACE/output/source-build/bein.hybrid.en.grab.rc"
+          if [ ! -s "$GITHUB_WORKSPACE/output/source-build/bein.hybrid.en.raw.xml" ]; then
+            echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/bein.hybrid.en.raw.xml"
           fi
           exit 0
 
@@ -372,6 +396,33 @@ jobs:
             mv output/final/bein.ai.xml.gz output/final/bein.xml.gz
           fi
 
+      - name: Final beIN Hybrid language pass
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p data reports
+          if [ -s output/final/bein.xml.gz ] && [ -s output/source-build/bein.hybrid.en.raw.xml ]; then
+            python tools/bein_hybrid.py \
+              --input output/final/bein.xml.gz \
+              --english output/source-build/bein.hybrid.en.raw.xml \
+              --policy config/bein-language-policy.json \
+              --cache data/bein_hybrid_translation_cache.json \
+              --output output/final/bein.hybrid.xml.gz \
+              --report reports/bein-hybrid.json
+            rc=$?
+            if [ "$rc" -eq 0 ] && [ -s output/final/bein.hybrid.xml.gz ]; then
+              mv output/final/bein.hybrid.xml.gz output/final/bein.xml.gz
+              echo "beIN Hybrid guide enabled."
+            else
+              echo "beIN Hybrid failed rc=$rc; keeping Arabic-sports candidate."
+              rm -f output/final/bein.hybrid.xml.gz
+            fi
+          else
+            echo "beIN Hybrid inputs missing; keeping Arabic-sports candidate."
+          fi
+          exit 0
+
       - name: Strict 48-hour coverage audit
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -429,7 +480,7 @@ jobs:
           git config user.name "EPG Scraper Bot"
           git config user.email "actions@users.noreply.github.com"
           git add feeds reports
-          for optional in data/bein_translation_cache.json data/bein_ai_cache.json data/elcinema_translation_cache.json; do
+          for optional in data/bein_translation_cache.json data/bein_ai_cache.json data/bein_hybrid_translation_cache.json data/elcinema_translation_cache.json; do
             if [ -f "$optional" ]; then
               git add "$optional"
             fi
