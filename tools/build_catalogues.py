@@ -41,6 +41,15 @@ OSN_OFFICIAL_ID_OVERRIDES = {
     "5666": "OSNMoviesFamily.ae@SD",
     "5669": "OSNMoviesComedy.ae@SD",
     "5672": "OSNPopUp.ae@SD",
+    "206": "OSNBlippiAndFriends",
+    "1101": "OSNKTVChannel1HD",
+    "6607": "OSNeClutchAccess",
+    "6609": "OSNEsport24",
+    "6610": "OSNeClutchLIVE",
+    "6611": "OSNPadelTV",
+    "6612": "OSNeClutchLIVE2",
+    "6613": "OSNeClutchArabic",
+    "9957": "OSNSTV1HD",
 }
 
 def shahid_mbc_allowed(cid: str) -> bool:
