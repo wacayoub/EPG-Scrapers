@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install Python dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+
       - name: Install upstream
         working-directory: vendor/iptv-org-epg
         run: npm ci --no-audit --no-fund
