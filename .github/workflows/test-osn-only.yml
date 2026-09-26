@@ -1,0 +1,103 @@
+name: Test OSN only
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-osn-only.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-osn:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout scraper repository
+        uses: actions/checkout@v4
+
+      - name: Checkout iptv-org EPG adapters
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install upstream grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build OSN catalogue
+        run: |
+          python tools/build_catalogues.py
+          echo "Catalogue rows:"
+          grep -c '<channel ' output/source-build/osn.channels.xml
+          echo "OSN-branded rows:"
+          grep -i -c '>OSN' output/source-build/osn.channels.xml || true
+
+      - name: Grab OSN only
+        shell: bash
+        run: |
+          set +e
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          timeout --signal=TERM --kill-after=30s 1200s npm run grab -- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/osn.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/osn-test.raw.xml" \
+            --days=2 \
+            --maxConnections=1 \
+            --timeout=20000
+          rc=$?
+          echo "grab_rc=$rc" | tee "$GITHUB_WORKSPACE/output/osn-test.rc"
+          test -s "$GITHUB_WORKSPACE/output/osn-test.raw.xml"
+
+      - name: Audit all 80 OSN catalogue rows
+        run: |
+          python - <<'PY'
+          import json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          cat=ET.parse("output/source-build/osn.channels.xml").getroot()
+          raw=ET.parse("output/osn-test.raw.xml").getroot()
+          counts={}
+          for p in raw.findall("programme"):
+              cid=(p.get("channel") or "").strip()
+              counts[cid]=counts.get(cid,0)+1
+          rows=[]
+          for c in cat.findall("channel"):
+              cid=(c.get("xmltv_id") or c.get("id") or "").strip()
+              name=(c.text or "").strip()
+              rows.append({"id":cid,"name":name,"programmes":counts.get(cid,0),"status":"OK" if counts.get(cid,0)>0 else "ZERO_EPG"})
+          summary={
+              "catalogue_ids":len(rows),
+              "ids_with_epg":sum(r["programmes"]>0 for r in rows),
+              "zero_epg":sum(r["programmes"]==0 for r in rows),
+              "programmes_total":sum(counts.values()),
+              "rows":rows,
+          }
+          Path("output/osn-test-report.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps({k:v for k,v in summary.items() if k!="rows"},ensure_ascii=False))
+          for r in rows:
+              print(("[OK] " if r["programmes"] else "[ZERO] ")+f'{r["id"]} | {r["name"]} | {r["programmes"]}')
+          PY
+
+      - name: Upload OSN test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: osn-80-id-test
+          path: |
+            output/osn-test-report.json
+            output/osn-test.raw.xml
+            output/source-build/osn.channels.xml
+            output/osn-test.rc
