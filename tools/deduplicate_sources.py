@@ -79,7 +79,7 @@ def language_profile(canon,name):
 
     arabic_native: Arabic title + Arabic description
     foreign_subtitled: English/original title + Arabic description
-    international: English title + English description
+    international: English title + Arabic description
     """
     c=(canon or "").casefold()
     n=(name or "").casefold()
@@ -155,9 +155,9 @@ def language_fit(profile,m):
         title_fit=100-title_ar
         desc_fit=desc_ar
     elif profile=="international":
-        # English title + English description.
+        # Multinational/international channel: English title + Arabic description.
         title_fit=100-title_ar
-        desc_fit=100-desc_ar
+        desc_fit=desc_ar
     else:
         # Pure Arabic channel.
         title_fit=title_ar
