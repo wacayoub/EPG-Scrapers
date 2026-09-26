@@ -55,7 +55,7 @@ jobs:
 
           tz = ZoneInfo("Africa/Casablanca")
           today = datetime.now(tz).date()
-          required = ["morocco", "bein", "osn", "elcinema", "sport24"]
+          required = ["morocco", "bein", "osn", "elcinema", "sport24", "rotana", "shahid", "mena"]
           stale = []
 
           for name in required:
