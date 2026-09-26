@@ -434,7 +434,7 @@ def _arryadia_date_from_node(node,now):
     if v:vals.append(v)
   except Exception:pass
   for value in vals:
-   for tok in re.findall(r"(?<!\\d)\\d{8}(?!\\d)",str(value)):
+   for tok in re.findall(r"(?<!\d)\d{8}(?!\d)",str(value)):
     d=_arryadia_date_token(tok,now)
     if d:return d
   cur=getattr(cur,"parent",None)
@@ -458,7 +458,7 @@ def _parse_arryadia_snrt(soup):
  now=datetime.now(TZ);raw=[];seen=set()
  # Scan every visible time token rather than only the old div.grille-line
  # markup. SNRT now mixes old rows and a newer card-style layout.
- time_rx=re.compile(r"^\\s*([0-2]?\\d)\\s*[Hh:]\\s*([0-5]\\d)\\s*$")
+ time_rx=re.compile(r"^\s*([0-2]?\d)\s*[Hh:]\s*([0-5]\d)\s*$")
  for txtnode in soup.find_all(string=True):
   t=clean(txtnode)
   m=time_rx.match(t)
@@ -491,13 +491,13 @@ def _parse_arryadia_snrt(soup):
    if v:vals.append(v)
   day=None
   for value in vals:
-   for tok in re.findall(r"(?<!\\d)\\d{8}(?!\\d)",str(value)):
+   for tok in re.findall(r"(?<!\d)\d{8}(?!\d)",str(value)):
     day=_arryadia_date_token(tok,now)
     if day:break
    if day:break
   tt=row.find(class_=lambda x:x and "grille-time" in " ".join(x if isinstance(x,list) else [x]))
   if not day or not tt:continue
-  m=re.search(r"([0-2]?\\d)\\s*[Hh:]\\s*([0-5]\\d)",clean(tt.get_text()))
+  m=re.search(r"([0-2]?\d)\s*[Hh:]\s*([0-5]\d)",clean(tt.get_text()))
   if not m:continue
   s=datetime.combine(day,dtime(int(m.group(1)),int(m.group(2))),TZ)
   h2=row.find(["h2","h3"],class_=lambda x:x and "program" in " ".join(x if isinstance(x,list) else [x]).lower())
@@ -515,8 +515,8 @@ def _parse_arryadia_flat(soup):
  # attached to each programme row.
  now=datetime.now(TZ)
  strings=[clean(x) for x in soup.stripped_strings if clean(x)]
- time_rx=re.compile(r"^([0-2]?\\d)\\s*[Hh:]\\s*([0-5]\\d)$")
- day_rx=re.compile(r"(\\d{1,2})\\s*/\\s*(\\d{1,2})")
+ time_rx=re.compile(r"^([0-2]?\d)\s*[Hh:]\s*([0-5]\d)$")
+ day_rx=re.compile(r"(\d{1,2})\s*/\s*(\d{1,2})")
  day_labels=[]
  first_time=None
  for pos,s in enumerate(strings):
@@ -590,11 +590,11 @@ def _parse_arryadia_flat(soup):
    s=datetime.combine(evday,dtime(item["hr"],item["mi"]),TZ)
    full=(item["title"]+" "+item["desc"]+" "+item["markers"]).lower()
    ids=[]
-   if re.search(r"\\btnt\\b",full):ids.append("Arryadia_TNT")
-   if re.search(r"\\bsat\\b",full):ids.append("Arryadia_HD")
+   if re.search(r"\btnt\b",full):ids.append("Arryadia_TNT")
+   if re.search(r"\bsat\b",full):ids.append("Arryadia_HD")
    if not ids:ids=["Arryadia_HD","Arryadia_TNT"]
    title=item["title"]
-   if re.search(r"\\b(?:direct|live)\\b|مباشر",full,re.I) and not title.startswith("مباشر"):
+   if re.search(r"\b(?:direct|live)\b|مباشر",full,re.I) and not title.startswith("مباشر"):
     title="مباشر: "+title
    for cid in ids:out.append(Event(cid,s,title,item["desc"],None,"ar","ar","arryadia-snrt-flat"))
    prev=cur
@@ -622,7 +622,7 @@ def scrape_arryadia(days):
   # a few time tokens, never the full response.
   try:
    shown=0
-   trx=re.compile(r"^\\s*[0-2]?\\d\\s*[Hh:]\\s*[0-5]\\d\\s*$")
+   trx=re.compile(r"^\s*[0-2]?\d\s*[Hh:]\s*[0-5]\d\s*$")
    for tn in soup.find_all(string=True):
     if not trx.match(clean(tn)):continue
     chain=[];cur=getattr(tn,"parent",None)
@@ -644,7 +644,7 @@ def scrape_arryadia(days):
   stop=next_start if next_start and next_start>s and next_start-s<=timedelta(hours=6) else s+timedelta(hours=2)
   full=(title+" "+desc).lower()
   ids=[cid for pat,cid in ARR_TAGS.items() if re.search(pat,full)] or ["Arryadia_HD","Arryadia_TNT"]
-  live=bool(re.search(r"\\b(?:live|direct)\\b|مباشر",full,re.I))
+  live=bool(re.search(r"\b(?:live|direct)\b|مباشر",full,re.I))
   if live and not title.startswith("مباشر"):title="مباشر: "+title
   for cid in ids:out.append(Event(cid,s,title,desc or title,stop,"ar","ar","arryadia-snrt"))
  infer(out)
