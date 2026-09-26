@@ -8,12 +8,6 @@ import xml.etree.ElementTree as ET
 
 FEEDS=Path("feeds")
 PRIORITY=["morocco","bein","shahid","rotana","sport24","osn","elcinema"]
-EXTRA_MBC_GROUP_IDS={
-    "AlarabiyaPortrait.ae@SD",
-    "Alarabiya.ae@SD",
-    "AlHadath.sa@SD",
-}
-
 def read_root(path: Path):
     raw=path.read_bytes()
     if path.suffix==".gz" or raw[:2]==b"\x1f\x8b":
@@ -77,31 +71,6 @@ def source_data(name):
         if cid in channels:
             programmes[cid].append(p)
     return channels,programmes
-
-def is_mbc(cid):
-    return cid.casefold().startswith("mbc") or cid in EXTRA_MBC_GROUP_IDS
-
-# Shahid/MBC catalogue. Shahid is the channel identity authority. Until Shahid
-# exposes a stable public multi-day guide endpoint, published OSN/ElCinema data
-# supplies EPG for the same canonical MBC IDs. No programme is invented.
-sh_channels={}
-sh_programmes=defaultdict(list)
-origin={}
-for src in ["osn","elcinema"]:
-    channels,programmes=source_data(src)
-    for cid,node in channels.items():
-        if not is_mbc(cid) or cid in sh_channels:
-            continue
-        sh_channels[cid]=node
-        sh_programmes[cid]=programmes.get(cid,[])
-        origin[cid]=src
-if sh_channels:
-    write_feed("shahid",sh_channels,sh_programmes,{
-        "generator":"Shahid MBC catalogue / validated OSN-ElCinema EPG",
-        "catalogue_url":"https://shahid.mbc.net/ar/livestream",
-        "epg_origin":"published OSN/ElCinema fallback; no invented programmes",
-        "channel_origin":origin,
-    })
 
 # Canonical union used when the receiver wants maximum coverage with one owner
 # per XMLTV ID. Raw source feeds remain available separately.
