@@ -89,6 +89,7 @@ def build_elcinema_fallback():
 
 build_elcinema_fallback()
 choose("osn",["osn.com"])
+choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
 
 BEIN_ZERO_EPG_EXCLUDE = {
