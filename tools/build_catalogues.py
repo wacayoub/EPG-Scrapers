@@ -144,6 +144,33 @@ def build_elcinema_fallback():
 
 build_elcinema_fallback()
 choose("osn",["osn.com"])
+
+def build_osn_english():
+    base=ROOT/"osn.com"
+    path=base/"osn.com_en.channels.xml"
+    rr=ET.parse(path).getroot()
+    rows=[]
+    for c in rr.findall("channel"):
+        cid=(c.get("xmltv_id") or "").strip()
+        sid=(c.get("site_id") or "").strip()
+        if not cid and sid in OSN_OFFICIAL_ID_OVERRIDES:
+            c=ET.fromstring(ET.tostring(c,encoding="utf-8"))
+            cid=OSN_OFFICIAL_ID_OVERRIDES[sid]
+            c.set("xmltv_id",cid)
+        if not cid or not sid:
+            continue
+        rows.append((cid,c))
+    root=ET.Element("channels")
+    for cid,c in sorted(rows,key=lambda x:x[0].casefold()):
+        root.append(ET.fromstring(ET.tostring(c,encoding="utf-8")))
+    ET.indent(root,space="  ")
+    out=OUT/"osn_en.channels.xml"
+    out.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
+    print(f"osn English: {len(root)} channels")
+    if len(root)==0:
+        raise SystemExit("osn English: empty catalogue")
+
+build_osn_english()
 choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
 
