@@ -15,7 +15,7 @@ on:
       - "tools/validate_48h.py"
       - "tools/publish_lkg.py"
       - "tools/sport24_source.py"
-      - "tools/morocco_epg.py"
+      - "tools/morocco_epg.py"\n      - "tools/build_derived_feeds.py"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
@@ -94,7 +94,7 @@ jobs:
           python -m py_compile tools/bein_arabize.py
           python -m py_compile tools/bein_ai_refine.py
           python -m py_compile tools/sport24_source.py
-          python -m py_compile tools/morocco_epg.py
+          python -m py_compile tools/morocco_epg.py\n          python -m py_compile tools/build_derived_feeds.py
           python -m py_compile tools/monitor_feeds.py
           python -m py_compile tools/publish_lkg.py
           python -m py_compile tools/validate_48h.py
@@ -103,13 +103,13 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: python tools/build_catalogues.py
 
-      - name: Grab ElCinema OSN and beIN
+      - name: Grab ElCinema OSN beIN and Rotana
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set +e
           mkdir -p output/source-build
-          for key in elcinema osn bein; do
+          for key in elcinema osn bein rotana; do
             cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
             extra=""
             if [ "$key" = "elcinema" ]; then
@@ -191,7 +191,7 @@ jobs:
         run: |
           set +e
           mkdir -p output/final
-          for key in elcinema osn bein sport24; do
+          for key in elcinema osn bein rotana sport24; do
             python tools/source_feed_pack.py               --input "output/source-build/$key.raw.xml"               --output-gz "output/final/$key.xml.gz"               --output-txt "output/final/$key.txt"               --stats "output/final/$key.json"               --label "$key"               --window-hours 48
             echo "$?" > "output/final/$key.pack.rc"
           done
@@ -250,7 +250,7 @@ jobs:
           set +e
           mkdir -p reports
           candidates=()
-          for key in morocco bein elcinema osn sport24; do
+          for key in morocco bein elcinema osn rotana sport24; do
             [ -s "output/final/$key.xml.gz" ] && candidates+=("output/final/$key.xml.gz")
           done
           if [ "${#candidates[@]}" -gt 0 ]; then
@@ -268,6 +268,10 @@ jobs:
       - name: Publish healthy feeds with LKG protection
         if: steps.gate.outputs.run == 'true'
         run: python tools/publish_lkg.py
+
+      - name: Build Shahid MBC and canonical MENA feeds
+        if: steps.gate.outputs.run == 'true'
+        run: python tools/build_derived_feeds.py
 
       - name: Build monitoring report
         if: steps.gate.outputs.run == 'true'
