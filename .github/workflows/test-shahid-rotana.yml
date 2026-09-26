@@ -36,38 +36,42 @@ jobs:
 
       - name: Build direct catalogues
         run: |
-          python -m py_compile tools/build_catalogues.py tools/source_feed_pack.py
+          python -m py_compile tools/build_catalogues.py tools/source_feed_pack.py tools/rotana_source.py
           python tools/build_catalogues.py
 
-      - name: Patch Rotana stop calculation
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path("vendor/iptv-org-epg/sites/rotana.net/rotana.net.config.js")
-          s=p.read_text(encoding="utf-8")
-          p.write_text(s.replace("if (i < items.length - 2)","if (i < items.length - 1)"),encoding="utf-8")
-          PY
-
-      - name: Grab Shahid and Rotana
+      - name: Grab Shahid direct
         shell: bash
         run: |
           set -e
           mkdir -p output/source-build output/test-direct
-          for key in shahid rotana; do
-            (
-              cd vendor/iptv-org-epg
-              timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
-                --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml" \
-                --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml" \
-                --days=3 --maxConnections=1 --timeout=20000
-            )
-            python tools/source_feed_pack.py \
-              --input "output/source-build/$key.raw.xml" \
-              --output-gz "output/test-direct/$key.xml.gz" \
-              --output-txt "output/test-direct/$key.txt" \
-              --stats "output/test-direct/$key.json" \
-              --label "$key" --window-hours 48
-          done
+          (
+            cd vendor/iptv-org-epg
+            timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
+              --channels="$GITHUB_WORKSPACE/output/source-build/shahid.channels.xml" \
+              --output="$GITHUB_WORKSPACE/output/source-build/shahid.raw.xml" \
+              --days=3 --maxConnections=1 --timeout=20000
+          )
+          python tools/source_feed_pack.py \
+            --input output/source-build/shahid.raw.xml \
+            --output-gz output/test-direct/shahid.xml.gz \
+            --output-txt output/test-direct/shahid.txt \
+            --stats output/test-direct/shahid.json \
+            --label shahid --window-hours 48
+
+      - name: Grab Rotana resilient official
+        shell: bash
+        run: |
+          set -e
+          python tools/rotana_source.py \
+            --output output/source-build/rotana.raw.xml \
+            --report output/test-direct/rotana-scrape.json \
+            --window-hours 72
+          python tools/source_feed_pack.py \
+            --input output/source-build/rotana.raw.xml \
+            --output-gz output/test-direct/rotana.xml.gz \
+            --output-txt output/test-direct/rotana.txt \
+            --stats output/test-direct/rotana.json \
+            --label rotana --window-hours 48
 
       - name: Report direct results
         run: |
