@@ -9,6 +9,8 @@ on:
       - "tools/monitor_feeds.py"
       - "tools/build_catalogues.py"
       - "tools/osn_hybrid.py"
+      - "tools/elcinema_hybrid.py"
+      - "config/elcinema-language-policy.json"
       - "config/osn-language-policy.json"
       - "tools/source_feed_pack.py"
       - "tools/source_gap_retry.py"
@@ -94,6 +96,7 @@ jobs:
         run: |
           python -m py_compile tools/build_catalogues.py
           python -m py_compile tools/osn_hybrid.py
+          python -m py_compile tools/elcinema_hybrid.py
           python -m py_compile tools/source_feed_pack.py
           python -m py_compile tools/source_gap_retry.py
           python -m py_compile tools/bein_arabize.py
@@ -130,6 +133,14 @@ jobs:
             fi
           done
           exit 0
+
+      - name: Build ElCinema hybrid English catalogue
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python tools/elcinema_hybrid.py catalogue \
+            --fallback-catalogue output/source-build/elcinema_fallback.channels.xml \
+            --policy config/elcinema-language-policy.json \
+            --output output/source-build/elcinema_hybrid_en.channels.xml
 
       - name: Grab OSN English guide
         if: steps.gate.outputs.run == 'true'
@@ -208,6 +219,53 @@ jobs:
             fi
           else
             echo "ElCinema: no zero-EPG channels to retry."
+          fi
+          exit 0
+
+      - name: Grab ElCinema English titles for hybrid IDs
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/elcinema_hybrid_en.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/source-build/elcinema.hybrid.en.raw.xml" \
+            --days=3 \
+            --maxConnections=1 \
+            --timeout=20000 \
+            --delay=1000
+          rc=$?
+          echo "$rc" > "$GITHUB_WORKSPACE/output/source-build/elcinema.hybrid.en.grab.rc"
+          if [ ! -s "$GITHUB_WORKSPACE/output/source-build/elcinema.hybrid.en.raw.xml" ]; then
+            echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/elcinema.hybrid.en.raw.xml"
+          fi
+          exit 0
+
+      - name: Build ElCinema hybrid EN-title AR-description
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p data reports
+          if [ -s output/source-build/elcinema.raw.xml ] && [ -s output/source-build/elcinema.hybrid.en.raw.xml ]; then
+            python tools/elcinema_hybrid.py merge \
+              --arabic output/source-build/elcinema.raw.xml \
+              --english output/source-build/elcinema.hybrid.en.raw.xml \
+              --policy config/elcinema-language-policy.json \
+              --cache data/elcinema_translation_cache.json \
+              --output output/source-build/elcinema.hybrid.raw.xml \
+              --report reports/elcinema-hybrid.json
+            rc=$?
+            if [ "$rc" -eq 0 ] && [ -s output/source-build/elcinema.hybrid.raw.xml ]; then
+              mv output/source-build/elcinema.hybrid.raw.xml output/source-build/elcinema.raw.xml
+              echo "ElCinema hybrid guide enabled."
+            else
+              echo "ElCinema hybrid build failed rc=$rc; keeping pre-hybrid candidate."
+              rm -f output/source-build/elcinema.hybrid.raw.xml
+            fi
+          else
+            echo "ElCinema hybrid inputs missing; keeping pre-hybrid candidate."
           fi
           exit 0
 
@@ -371,7 +429,7 @@ jobs:
           git config user.name "EPG Scraper Bot"
           git config user.email "actions@users.noreply.github.com"
           git add feeds reports
-          for optional in data/bein_translation_cache.json data/bein_ai_cache.json; do
+          for optional in data/bein_translation_cache.json data/bein_ai_cache.json data/elcinema_translation_cache.json; do
             if [ -f "$optional" ]; then
               git add "$optional"
             fi
