@@ -19,6 +19,7 @@ PROFILES={
     "bein.xml.gz":{"target_hours":48.0,"min_hours":4.0,"gap_warn":90},
     "elcinema.xml.gz":{"target_hours":48.0,"min_hours":36.0,"gap_warn":90},
     "osn.xml.gz":{"target_hours":48.0,"min_hours":36.0,"gap_warn":90},
+    "shahid.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "rotana.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     # Sport24 is event-driven. A short horizon can be perfectly valid.
     "sport24.xml.gz":{"target_hours":8.0,"min_hours":4.0,"gap_warn":360},
