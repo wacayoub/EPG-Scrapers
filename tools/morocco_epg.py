@@ -8,7 +8,7 @@ import argparse,gzip,hashlib,html,json,re,time,unicodedata
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from dataclasses import dataclass
-from datetime import datetime,timedelta,time as dtime
+from datetime import datetime,timedelta,time as dtime,timezone
 from pathlib import Path
 from xml.etree import ElementTree as ET
 import requests
@@ -19,6 +19,18 @@ try: import cloudscraper
 except Exception: cloudscraper=None
 
 TZ=ZoneInfo("Africa/Casablanca"); PARIS=ZoneInfo("Europe/Paris")
+# Morocco returned permanently to legal GMT on 2026-09-20 at 02:00 local.
+# Keep this explicit cutoff because GitHub runners and Enigma2 images may carry
+# older tzdata that still reports the former permanent UTC+1 regime.
+MOROCCO_GMT_EFFECTIVE_LOCAL=datetime(2026,9,20,2,0,0)
+
+def morocco_localize(naive):
+    if naive >= MOROCCO_GMT_EFFECTIVE_LOCAL:
+        return naive.replace(tzinfo=timezone.utc)
+    return naive.replace(tzinfo=TZ)
+
+def morocco_wall_clock(day, tm):
+    return morocco_localize(datetime.combine(day,tm))
 UA="Mozilla/5.0 EPGManagerCloud/8.2.2-rc23"
 CHANNELS={
  "AlAoula":"Al Aoula","Arrabiaa":"Attaqafia / Arrabiaa","AlMaghribiya":"Al Maghribia",
@@ -214,7 +226,7 @@ def scrape_medi1(days):
     mins=h1*60+m1
     if prev is not None and mins+300<prev:pday+=timedelta(days=1)
     prev=mins; title=payload[0]; desc=clean(" ".join(x for x in payload[1:] if x!=title)) or title
-    rows.append(Event(cid,datetime.combine(pday,dtime(h1,m1),TZ),title,desc,None,lang(title),lang(desc),"medi1"))
+    rows.append(Event(cid,morocco_wall_clock(pday,dtime(h1,m1)),title,desc,None,lang(title),lang(desc),"medi1"))
   seen=set()
   for e in sorted(rows,key=lambda e:e.start):
    k=(e.start,e.title.casefold())
@@ -245,7 +257,7 @@ def parse_2m(h,text,day):
   if k in seen:continue
   seen.add(k)
   hr,mi=int(m.group(1)),int(m.group(2))
-  start=datetime.combine(day,dtime(hr,mi),PARIS).astimezone(TZ)
+  start=morocco_wall_clock(day,dtime(hr,mi))
 
   # Same Morocco Cloud 2M logic: normalized Arabic title + translated/normalized description.
   desc=""
@@ -326,7 +338,7 @@ def _parse_chada_piisas(text,day):
    if len(title)<2 or len(title)>140:continue
    hr,mi=map(int,hm.split(":"))
    if hr>23:continue
-   raw.append((datetime.combine(day,dtime(hr,mi),TZ),title))
+   raw.append((morocco_wall_clock(day,dtime(hr,mi)),title))
  out=[];seen=set()
  for start,title in sorted(raw,key=lambda x:x[0]):
   k=(start,title.casefold())
@@ -360,7 +372,7 @@ def _scrape_chada_official(days):
    if t<prev:cur+=timedelta(days=1)
    prev=t
    title,desc=_chada_title_desc(orig)
-   out.append(Event("Chada TV",datetime.combine(cur,t,TZ),title,desc,None,lang(title,"fr"),lang(desc,"fr"),"chada-official"))
+   out.append(Event("Chada TV",morocco_wall_clock(cur,t),title,desc,None,lang(title,"fr"),lang(desc,"fr"),"chada-official"))
  infer(out);return out
 
 def scrape_chada(days):
@@ -391,7 +403,7 @@ def scrape_snrt(days):
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
    dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8];tt=row.find("div",class_="grille-time")
    if not dc or not tt:continue
-   try:start=datetime.strptime(dc[0]+" "+tt.get_text().strip().replace("H",":"),"%Y%m%d %H:%M").replace(tzinfo=TZ)
+   try:start=morocco_localize(datetime.strptime(dc[0]+" "+tt.get_text().strip().replace("H",":"),"%Y%m%d %H:%M"))
    except Exception:continue
    title=clean(row.find("h2",class_="program-title-sm").get_text()) if row.find("h2",class_="program-title-sm") else "برنامج";desc=clean(row.get_text(" ",strip=True));ctx=title+" "+desc
    if "الأخبار" in ctx:
@@ -478,7 +490,7 @@ def _parse_arryadia_snrt(soup):
   if not title and parts:title=parts[0]
   if not title or len(title)>220:continue
   desc=clean(" ".join(x for x in parts if x!=title))
-  s=datetime.combine(day,dtime(hr,mi),TZ)
+  s=morocco_wall_clock(day,dtime(hr,mi))
   key=(s,title.casefold())
   if key in seen:continue
   seen.add(key);raw.append((s,title,desc or title))
@@ -499,7 +511,7 @@ def _parse_arryadia_snrt(soup):
   if not day or not tt:continue
   m=re.search(r"([0-2]?\d)\s*[Hh:]\s*([0-5]\d)",clean(tt.get_text()))
   if not m:continue
-  s=datetime.combine(day,dtime(int(m.group(1)),int(m.group(2))),TZ)
+  s=morocco_wall_clock(day,dtime(int(m.group(1)),int(m.group(2))))
   h2=row.find(["h2","h3"],class_=lambda x:x and "program" in " ".join(x if isinstance(x,list) else [x]).lower())
   title=clean(h2.get_text(" ",strip=True)) if h2 else ""
   if not title:continue
@@ -587,7 +599,7 @@ def _parse_arryadia_flat(soup):
    if prev is not None and cur+4*60<prev and cur<5*60:carry=True
    if prev is not None and prev<5*60 and cur>=5*60:carry=False
    evday=day+(timedelta(days=1) if carry and item["hr"]<5 else timedelta(0))
-   s=datetime.combine(evday,dtime(item["hr"],item["mi"]),TZ)
+   s=morocco_wall_clock(evday,dtime(item["hr"],item["mi"]))
    full=(item["title"]+" "+item["desc"]+" "+item["markers"]).lower()
    ids=[]
    if re.search(r"\btnt\b",full):ids.append("Arryadia_TNT")
