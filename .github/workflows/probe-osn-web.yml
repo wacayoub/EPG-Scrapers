@@ -1,0 +1,86 @@
+name: Probe OSN web guide
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config/osn-web-probe-trigger.txt"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inspect current OSN web guide frontend
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import re, requests, urllib.parse
+
+          base="https://www.osn.com"
+          pages=[
+              f"{base}/ar-sa/watch/tv-schedule",
+              f"{base}/ar-qa/explore/channels-sitemap",
+              f"{base}/en-jo/explore/channels-sitemap",
+              f"{base}/ar-ae/tv-packages/alfa",
+          ]
+          s=requests.Session()
+          s.headers.update({
+              "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36",
+              "Accept-Language":"ar,en;q=0.8"
+          })
+          scripts=set()
+          for url in pages:
+              r=s.get(url,timeout=25)
+              print("PAGE",url,"status",r.status_code,"bytes",len(r.content))
+              txt=r.text
+              for m in re.findall(r'''(?:src|href)=["']([^"']+\.js(?:\?[^"']*)?)["']''',txt,re.I):
+                  scripts.add(urllib.parse.urljoin(url,m))
+              for pat in ["Alfa Cinema 1","Alfa Series HD","apidata","tv-schedule","channelGuid"]:
+                  if pat.lower() in txt.lower():
+                      print("HTML_MATCH",pat,url)
+          print("SCRIPTS",len(scripts))
+
+          needles=[
+              "apidata","channelGuid","tv-schedule","schedule-timeline","channels?",
+              "Alfa Cinema","Alfa Series","channelNumber","tvguide","tv-guide",
+              "/api/","graphql","schedule"
+          ]
+          for i,url in enumerate(sorted(scripts)):
+              try:
+                  r=s.get(url,timeout=25)
+              except Exception as e:
+                  print("JS_ERR",url,type(e).__name__,str(e)[:120])
+                  continue
+              if r.status_code!=200:
+                  continue
+              txt=r.text
+              hits=[n for n in needles if n.lower() in txt.lower()]
+              if not hits:
+                  continue
+              print("JS",i,url,"bytes",len(txt),"hits",",".join(hits))
+              # Print compact windows around endpoint-like strings only.
+              seen=set()
+              for rx in [
+                  r'https?://[^"\' ]{1,240}',
+                  r'/(?:api|apidata)/[^"\' ]{1,220}',
+                  r'[^"\']{0,100}(?:schedule-timeline|channelGuid|tv-schedule|tvguide)[^"\']{0,180}',
+              ]:
+                  for m in re.finditer(rx,txt,re.I):
+                      frag=m.group(0).replace("\\","/")
+                      frag=re.sub(r'\s+',' ',frag)
+                      if frag not in seen:
+                          seen.add(frag)
+                          print("  CAND",frag[:420])
+                      if len(seen)>=35:
+                          break
+                  if len(seen)>=35:
+                      break
+          PY
