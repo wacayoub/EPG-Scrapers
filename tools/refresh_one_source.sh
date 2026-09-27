@@ -47,7 +47,12 @@ case "$SOURCE" in
     # Titles come from the full English beIN guide; descriptions remain/are translated to Arabic.
     if [ -s output/final/bein.xml.gz ] && has_programmes output/source-build/bein.en.raw.xml; then
       python tools/bein_hybrid.py --input output/final/bein.xml.gz --english output/source-build/bein.en.raw.xml --policy config/bein-language-policy.json --cache data/bein_hybrid_translation_cache.json --output output/final/bein.hybrid.xml.gz --report reports/bein-hybrid.json || true
-      [ -s output/final/bein.hybrid.xml.gz ] && mv output/final/bein.hybrid.xml.gz output/final/bein.xml.gz
+      if [ -s output/final/bein.hybrid.xml.gz ]; then
+        # Re-pack the final hybrid XML so bein.json / bein.txt always describe
+        # exactly the XML that will be published to the receiver.
+        pack_source bein output/final/bein.hybrid.xml.gz output/source-build/bein.channels.xml || true
+        rm -f output/final/bein.hybrid.xml.gz
+      fi
     fi
     ;;
 
