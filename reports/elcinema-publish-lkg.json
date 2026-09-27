@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-09-27T10:29:17.471228+00:00",
+  "generated_utc": "2026-09-27T13:23:47.283028+00:00",
   "sources": {
     "elcinema": {
       "candidate": "output/final/elcinema.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 103,
-        "active_channels": 91,
-        "zero_epg_channels": 12,
-        "programmes": 3060,
-        "future_channels": 91,
+        "active_channels": 94,
+        "zero_epg_channels": 9,
+        "programmes": 3483,
+        "future_channels": 94,
         "future_ratio": 1.0,
-        "future_horizon_hours": 50.51180781194444,
+        "future_horizon_hours": 50.603523860555555,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 103,
         "active_channels": 91,
         "zero_epg_channels": 12,
-        "programmes": 3073,
-        "future_channels": 91,
-        "future_ratio": 1.0,
-        "future_horizon_hours": 48.51179276027778,
+        "programmes": 3060,
+        "future_channels": 90,
+        "future_ratio": 0.989010989010989,
+        "future_horizon_hours": 47.60350238583334,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
