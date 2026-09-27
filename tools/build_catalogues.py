@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import re
 import xml.etree.ElementTree as ET
 
 ROOT = Path("vendor/iptv-org-epg/sites")
@@ -167,7 +168,16 @@ choose("rotana",["rotana.net"],arabic_only=True)
 BEIN_ZERO_EPG_EXCLUDE = set()
 
 def _bein_norm_name(value: str) -> str:
-    return "".join(ch.lower() for ch in (value or "") if ch.isalnum())
+    raw="".join(ch.lower() for ch in (value or "") if ch.isalnum())
+    # The two official MENA endpoints use both "SPORTS EN 1" and
+    # "SPORTS1EN" (same service). Canonicalize token order before dedupe.
+    m=re.fullmatch(r"beinsports(\\d+)(en|fr)",raw)
+    if m:
+        return f"beinsports{m.group(2)}{m.group(1)}"
+    m=re.fullmatch(r"beinsports(en|fr)(\\d+)",raw)
+    if m:
+        return f"beinsports{m.group(1)}{m.group(2)}"
+    return raw
 
 def _bein_generated_id(site: str, sid: str, name: str) -> str:
     # Prefer a semantic ID so the same MENA service discovered through the
