@@ -48,6 +48,9 @@ SNRT_AR_NAMES={
  "AlAoula":"قناة الأولى","Arrabiaa":"قناة الثقافية","AlMaghribiya":"قناة المغربية",
  "Assadisa":"قناة السادسة","Tamazight":"قناة الأمازيغية","AFLAM.ma":"قناة السابعة أفلام"
 }
+# SNRT programme tabs are broadcast days: 00:00-06:59 belongs to the next
+# calendar date; the next tab/daytime schedule starts at 07:00.
+SNRT_DAY_START_HOUR=7
 MEDI1=(
  ("MEDI1TV_AR.ma",("https://www.medi1tv.com/ar/grille/arabic","https://www.medi1tv.ma/ar/grille/arabic")),
  ("MEDI1TV_MAGHREB.ma",("https://www.medi1tv.com/ar/grille/maghreb","https://www.medi1tv.ma/ar/grille/maghreb")))
@@ -398,9 +401,9 @@ def _snrt_flat_events(cid,soup):
  for item in raw:
   cur=item["minutes"];new_day=False
   if prev is not None:
-   if prev<5*60 and cur>=5*60:
+   if prev<7*60 and cur>=7*60:
     new_day=True
-   elif cur+4*60<prev and cur>=5*60:
+   elif cur+4*60<prev and cur>=7*60:
     new_day=True
   if new_day:groups.append([])
   groups[-1].append(item);prev=cur
@@ -415,9 +418,9 @@ def _snrt_flat_events(cid,soup):
   carry=False;prev=None
   for item in group:
    cur=item["minutes"]
-   if prev is not None and cur+4*60<prev and cur<5*60:carry=True
-   if prev is not None and prev<5*60 and cur>=5*60:carry=False
-   evday=day+(timedelta(days=1) if carry and item["hr"]<5 else timedelta(0))
+   if prev is not None and cur+4*60<prev and cur<7*60:carry=True
+   if prev is not None and prev<7*60 and cur>=7*60:carry=False
+   evday=day+(timedelta(days=1) if carry and item["hr"]<7 else timedelta(0))
    start=morocco_wall_clock(evday,dtime(item["hr"],item["mi"]))
    original_title=item["title"]
    desc=item["desc"]
@@ -522,10 +525,12 @@ def _sofascore_botola_fixtures(http,hours=48):
     if eid in seen:continue
     seen.add(eid)
     rnd=(ev.get("roundInfo") or {}).get("round")
-    ha=_botola_team_ar(home);aa=_botola_team_ar(away)
-    title="مباشر: البطولة الاحترافية - %s × %s"%(ha,aa)
-    rd=("، الجولة %s"%rnd) if rnd else ""
-    desc="مباراة %s و%s ضمن البطولة الاحترافية إنوي%s."%(ha,aa,rd)
+    # Club names stay in French/Latin in the public EPG.
+    # Example: "Wydad Casablanca vs Raja Casablanca - Botola Pro".
+    ha=home;aa=away
+    title="%s vs %s - Botola Pro"%(ha,aa)
+    rd=(" - Journée %s"%rnd) if rnd else ""
+    desc="%s vs %s - Botola Pro%s."%(ha,aa,rd)
     out.append({"id":eid,"start":start,"stop":stop,
                 "home":home,"away":away,"title":title,"desc":desc})
    except Exception as e:
@@ -581,13 +586,14 @@ def _livescore_botola_fixtures(http,hours=48):
      eid="ls:"+str(ev.get("Eid") or "%s-%s-%s"%(int(start.timestamp()),home,away))
      if eid in seen:continue
      seen.add(eid)
-     ha=_botola_team_ar(home);aa=_botola_team_ar(away)
-     title="مباشر: البطولة الاحترافية - %s × %s"%(ha,aa)
+     # Keep football club names in French/Latin in the EPG.
+     ha=home;aa=away
+     title="%s vs %s - Botola Pro"%(ha,aa)
      phase=clean(ev.get("Eps"))
      # Keep the public EPG clean and stable: data-source/debug information and
      # live scores become stale quickly and must stay in logs, not in the TV synopsis.
-     phase_txt=("، "+phase) if phase and phase.casefold() not in ("not started","scheduled") else ""
-     desc="مباراة %s و%s ضمن البطولة الاحترافية إنوي%s."%(ha,aa,phase_txt)
+     phase_txt=(" - "+phase) if phase and phase.casefold() not in ("not started","scheduled") else ""
+     desc="%s vs %s - Botola Pro%s."%(ha,aa,phase_txt)
      out.append({"id":eid,"start":start,"stop":stop,"home":home,"away":away,
                  "title":title,"desc":desc})
     except Exception as e:
@@ -1362,7 +1368,13 @@ def scrape_snrt(days):
    tt=row.find("div",class_="grille-time")
    if not dc or not tt:continue
    time_text=clean(tt.get_text())
-   try:start=morocco_localize(datetime.strptime(dc[0]+" "+time_text.replace("H",":"),"%Y%m%d %H:%M"))
+   try:
+    naive=datetime.strptime(dc[0]+" "+time_text.replace("H",":"),"%Y%m%d %H:%M")
+    # SNRT uses a broadcast-day tab: its after-midnight rows still carry the
+    # previous tab date. The next broadcast day starts at 07:00.
+    if naive.hour<SNRT_DAY_START_HOUR:
+     naive+=timedelta(days=1)
+    start=morocco_localize(naive)
    except Exception:continue
    h2=row.find("h2",class_="program-title-sm")
    original_title=clean(h2.get_text(" ",strip=True)) if h2 else "برنامج"
@@ -1619,9 +1631,9 @@ def _parse_arryadia_flat(soup):
   cur=item["minutes"]
   new_day=False
   if prev is not None:
-   if prev<5*60 and cur>=5*60:
+   if prev<7*60 and cur>=7*60:
     new_day=True
-   elif cur+4*60<prev and cur>=5*60:
+   elif cur+4*60<prev and cur>=7*60:
     new_day=True
   if new_day:groups.append([])
   groups[-1].append(item);prev=cur
@@ -1637,9 +1649,9 @@ def _parse_arryadia_flat(soup):
   carry=False;prev=None
   for item in group:
    cur=item["minutes"]
-   if prev is not None and cur+4*60<prev and cur<5*60:carry=True
-   if prev is not None and prev<5*60 and cur>=5*60:carry=False
-   evday=day+(timedelta(days=1) if carry and item["hr"]<5 else timedelta(0))
+   if prev is not None and cur+4*60<prev and cur<7*60:carry=True
+   if prev is not None and prev<7*60 and cur>=7*60:carry=False
+   evday=day+(timedelta(days=1) if carry and item["hr"]<7 else timedelta(0))
    s=morocco_wall_clock(evday,dtime(item["hr"],item["mi"]))
    full=(item["title"]+" "+item["desc"]+" "+item["markers"]).lower()
    ids=[]
