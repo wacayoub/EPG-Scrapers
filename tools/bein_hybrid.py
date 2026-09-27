@@ -30,6 +30,23 @@ import xml.etree.ElementTree as ET
 AR = re.compile(r"[\u0600-\u06FF]")
 TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
 
+ARABIC_NATIVE_PACKAGE_IDS = {
+    "AlJazeeraDocumentary.qa@SD",
+    "AlkassOne.qa@SD",
+    "AlkassTwo.qa@SD",
+    "AlkassThree.qa@SD",
+    "AlkassFour.qa@SD",
+    "AlkassFive.qa@SD",
+    "AlkassSix.qa@SD",
+    "AlkassSeven.qa@SD",
+    "AlkassEight.qa@SD",
+    "Baraem.qa@SD",
+    "BeJunior.qa@SD",
+    "CNNArabic.ae@SD",
+    "Fatafeat.ae@SD",
+    "JeemTV.qa@SD",
+}
+
 
 def read_root(path: str) -> ET.Element:
     data = Path(path).read_bytes()
@@ -224,6 +241,10 @@ def ensure_arabic_desc_fallback(node: ET.Element, channel: str) -> bool:
         desc = "برنامج ترفيهي للأطفال يُعرض على قنوات beIN."
     elif "gourmet" in cid:
         desc = "برنامج طبخ وترفيه يُعرض على قناة beIN Gourmet."
+    elif channel in ARABIC_NATIVE_PACKAGE_IDS:
+        desc = "برنامج يُعرض ضمن باقة beIN باللغة العربية."
+    elif not cid.startswith("bein"):
+        desc = "برنامج يُعرض ضمن باقة beIN."
     else:
         desc = "برنامج رياضي يُعرض على قنوات beIN SPORTS."
     if title:
@@ -257,8 +278,9 @@ def main() -> int:
 
     stats = {
         "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "policy": "title_en_description_ar",
+        "policy": "source_aware_title_ar_or_en_description_ar",
         "programmes": 0,
+        "arabic_native_title_kept": 0,
         "english_title_applied": 0,
         "english_title_missing": 0,
         "english_description_used_for_missing_ar": 0,
@@ -277,7 +299,15 @@ def main() -> int:
             en = candidates[0] if candidates else None
 
         applied=False
-        if en is not None:
+        arabic_native = cid in ARABIC_NATIVE_PACKAGE_IDS
+        if arabic_native:
+            # Pure Arab package channels (notably Alkass) keep the authoritative
+            # Arabic title from the Arabic beIN guide.
+            for t in p.findall("title"):
+                if is_arabic((t.text or "").strip()):
+                    t.set("lang","ar")
+            stats["arabic_native_title_kept"] += 1
+        elif en is not None:
             applied=replace_tag(p,en,"title","en")
             replace_tag(p,en,"sub-title","en")
             current_desc=text_of(p,"desc")
@@ -285,10 +315,11 @@ def main() -> int:
                 if replace_tag(p,en,"desc","en"):
                     stats["english_description_used_for_missing_ar"] += 1
 
-        if applied:
-            stats["english_title_applied"] += 1
-        else:
-            stats["english_title_missing"] += 1
+        if not arabic_native:
+            if applied:
+                stats["english_title_applied"] += 1
+            else:
+                stats["english_title_missing"] += 1
 
         changed,remaining=ensure_arabic_desc(p,tr)
         stats["descriptions_translated_to_ar"] += changed
