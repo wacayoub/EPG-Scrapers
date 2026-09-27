@@ -59,9 +59,8 @@ CHANNELS = (
 )
 
 GRAPHQL_URL = "https://www.aljazeera.com/graphql"
-# The public schedule UI historically exposes a SchedulePageQuery. Keep the
-# rendered HTML parser as fallback; GraphQL is used only when the public
-# endpoint returns structured schedule objects.
+# The maintained public guide uses ArchipelagoSchedulePageQuery on
+# aljazeera.com. Keep the rendered aljazeera.net HTML parser as fallback.
 GRAPHQL_PROFILES = {
     "AlJazeera.qa@Arabic": ("aja", "schedule"),
     "AlJazeera2.qa@HD": ("aja", "schedule-aj2"),
@@ -373,6 +372,7 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
             candidates.extend(urljoin(BASE, s) for s in suffixes)
 
         all_rows: list[dict] = []
+        graph_rows: list[dict] = []
         profile = GRAPHQL_PROFILES.get(spec.xmltv_id)
         if profile:
             try:
@@ -388,8 +388,11 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
             except Exception as exc:
                 report["graphql"] = {"error": str(exc), "programmes_found": 0}
 
+        # Never mix the API clock (UTC) with the rendered Arabic page clock
+        # (Mecca/Doha). HTML is a fallback only when the structured API yields
+        # no rows for that channel.
         visited = set()
-        for schedule_url in candidates:
+        for schedule_url in ([] if graph_rows else candidates):
             if schedule_url in visited:
                 continue
             visited.add(schedule_url)
