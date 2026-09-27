@@ -22,6 +22,7 @@ PROFILES={
     "shahid.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "rotana.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "oman.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
+    "tabie.xml.gz":{"target_hours":48.0,"min_hours":24.0,"gap_warn":180},
     # Request/audit 48h for Sport24 too; short event-driven coverage is WARN, never fabricated.
     "sport24.xml.gz":{"target_hours":48.0,"min_hours":4.0,"gap_warn":360},
 }
