@@ -1,18 +1,18 @@
 {
-  "generated_utc": "2026-09-27T20:18:15.652205+00:00",
+  "generated_utc": "2026-09-27T20:55:17.599122+00:00",
   "policy": "source_aware_title_ar_or_en_description_ar",
-  "programmes": 1503,
-  "arabic_native_title_kept": 110,
-  "english_title_applied": 1120,
-  "english_title_missing": 207,
-  "sports_news_titles_arabized": 64,
+  "programmes": 1104,
+  "arabic_native_title_kept": 106,
+  "english_title_applied": 757,
+  "english_title_missing": 204,
+  "sports_news_titles_arabized": 35,
   "sports_news_titles_still_non_arabic": 2,
-  "title_datetime_tokens_removed": 22,
+  "title_datetime_tokens_removed": 21,
   "english_description_used_for_missing_ar": 0,
-  "arabic_description_present": 1503,
+  "arabic_description_present": 1104,
   "arabic_description_missing": 0,
   "descriptions_translated_to_ar": 0,
-  "description_language_remaining_mismatch": 557,
+  "description_language_remaining_mismatch": 6,
   "samples": {
     "AlJazeeraDocumentary.qa@SD": {
       "title": "نطاق",
@@ -27,7 +27,7 @@
       "description_has_arabic": true
     },
     "AlkassFour.qa@SD": {
-      "title": "الأخبار",
+      "title": "حصيلة كرة القدم",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -50,12 +50,6 @@
       "title_has_arabic": true,
       "description_has_arabic": true
     },
-    "AlkassThree.qa@SD": {
-      "title": "أخبار",
-      "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
     "AlkassTwo.qa@SD": {
       "title": "جلوبال تشامبيونز آرابيان تور",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
@@ -63,14 +57,14 @@
       "description_has_arabic": true
     },
     "Baraem.qa@SD": {
-      "title": "نيوزفيد",
+      "title": "ريزينج إكسبيكتشينز :ذا تروث أبوت إيه آي",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "beIN4K.qa@SD": {
-      "title": "Marseille vs PSG - French Ligue 1 2026/2027",
-      "description": "خسر مرسيليا 38 مباراة أمام باريس سان جيرمان في جميع المسابقات في القرن الحادي والعشرين، وهو ما يزيد بـ 15 مباراة عن أي منافس آخر. فاز مرسيليا بواحدة فقط من آخر 13 مباراة على أرضه في الدوري الفرنسي ضد باريس سان جيرمان، على الرغم من أن هذه كانت آخر مواجهة لهم، ق",
+      "title": "Brighton & Hove Albion v Arsenal - English Premier League 2026/2027",
+      "description": "لم يحقق برايتون أي فوز في آخر ست مباريات على أرضه في الدوري الإنجليزي الممتاز ضد أرسنال، بعد أن لم يخسر في أول ثلاث مباريات ضد أرسنال على ملعب أميكس. فاز أرسنال بأربعة من آخر ست مباريات في الدوري الإنجليزي الممتاز ضد برايتون، وهو نفس العدد الذي فاز به في أول 1",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -87,80 +81,80 @@
       "description_has_arabic": true
     },
     "beINMENA.beindrama": {
-      "title": "Darb Althahab S1 | E17",
+      "title": "Another Chance S1",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinseries2": {
-      "title": "Black Clover S4 | E3",
+      "title": "Black Clover S4 | E4",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsen1": {
-      "title": "Norway vs Portugal - UEFA Nations League 2026/27 - Match Day 2",
-      "description": "النرويج - البرتغال في 27 سبتمبر 2026، مكة 21:45 بتوقيت جرينتش 18:45 دوري الأمم الأوروبية لموسم 2026/2027، الجولة التأهيلية المجموعة A4 ملعب أوليفال ستاديون",
+      "title": "Norway vs Portugal - UEFA Nations League 2026/27",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsen2": {
-      "title": "Israel vs Republic of Ireland - UEFA Nations League 2026/27 - Match Day 2",
-      "description": "سيكون هذا أول لقاء بين إسرائيل وجمهورية أيرلندا منذ يونيو 2005 في تصفيات كأس العالم FIFA في دبلن - أعطى إيان هارت وروبي كين تقدم فريق الأولاد باللون الأخضر مبكرًا 2-0 قبل انتهاء المباراة 2-2. خسرت جمهورية أيرلندا 3-0 في أول لقاء لها مع إسرائيل في أبريل 1984، ل",
+      "title": "Israel vs Republic of Ireland - UEFA Nations League 2026/27",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsfr1": {
-      "title": "Baltimore Ravens vs Dallas Cowboys - NFL - J03 - Football Américain 2026-2027",
-      "description": "رياضة.",
+      "title": "Cincinnati Bengals vs Pittsburgh Steelers - NFL",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsfr2": {
-      "title": "Pof Indiana Fever Aces - WNBA - Basketball 2026",
-      "description": "رياضة.",
+      "title": "Pof New York Liberty Lynx - WNBA",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra3": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra4": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra5": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra6": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra7": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra8": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra9": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -195,32 +189,32 @@
       "description_has_arabic": true
     },
     "beINSports.qa@MENA": {
-      "title": "Shooting - Air Rifle MXD Final - Asian Games Aichi-Nagoya 2026 - W/M/X",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "All - Sports",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports1.qa@MENA": {
-      "title": "Norway vs Portugal - UEFA Nations League 2026/27 - Match Day 2",
-      "description": "النرويج - البرتغال في 27 سبتمبر 2026، مكة 21:45 بتوقيت جرينتش 18:45 دوري الأمم الأوروبية لموسم 2026/2027، الجولة التأهيلية المجموعة A4 ملعب أوليفال ستاديون",
+      "title": "Norway vs Portugal - UEFA Nations League 2026/27",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports2.qa@MENA": {
-      "title": "Germany vs Greece - UEFA Nations League 2026/27 - Match Day 2",
-      "description": "ألمانيا ضد اليونان في 27 سبتمبر 2026، مكة 21:45 بتوقيت جرينتش 18:45 دوري الأمم الأوروبية لموسم 2026/2027، جولة التصفيات المجموعة A2، ملعب WWK ARENA",
+      "title": "Belgium vs France - UEFA Nations League 2026/27",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports3.qa@MENA": {
-      "title": "San Marino vs Finland - UEFA Nations League 2026/27 - Match Day 1",
-      "description": "سان مارينو vs فنلندا دوري الأمم الأوروبية موسم 2026/2027 تصفيات الجولة المجموعة C1 ملعب أوليمبيكو دي سيرافالي",
+      "title": "Türkiye vs Italy - UEFA Nations League 2026/27",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports4.qa@MENA": {
-      "title": "Gymnastics - Trampoline - Asian Games Aichi-Nagoya 2026",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "Qatar vs Hong Kong - Volleyball Men's",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -232,91 +226,97 @@
     },
     "beINSports5.qa@MENA": {
       "title": "Mallorca vs Almeria - LaLiga Hypermotion 2026/2027",
-      "description": "الدوري الإسباني 2 هو قسم كرة القدم الاحترافي الثاني للرجال في نظام الدوري الإسباني لكرة القدم. يتنافس عليها 22 فريقًا، حيث يتم ترقية الفريقين الأولين بالإضافة إلى الفائز في مباراة فاصلة إلى الدوري الأسباني، ويتم استبدالهم بالفرق الثلاثة الأقل مركزًا في هذا الق",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports6.qa@MENA": {
-      "title": "New York Liberty @ Minnesota Lynx - Women's National Basketball Association - WNBA",
-      "description": "ويمثل موسم 2026 الموسم الثلاثين للدوري، ويمتد من 8 مايو إلى 24 سبتمبر، مع 15 فريقًا بعد إضافة بورتلاند فاير وتورونتو تيمبو. تتميز المنافسة بكرة السلة للسيدات على مدار الموسم العادي والتصفيات، حيث تطارد الفرق البطولة في دوري متنامٍ مع وصول موسع واهتمام عالمي مت",
+      "title": "New York Liberty @ Minnesota Lynx - Women's National Basketball Association",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports7.qa@MENA": {
-      "title": "Indiana Fever vs Las Vegas Aces - Women's National Basketball Association - WNBA",
-      "description": "ويمثل موسم 2026 الموسم الثلاثين للدوري، ويمتد من 8 مايو إلى 24 سبتمبر، مع 15 فريقًا بعد إضافة بورتلاند فاير وتورونتو تيمبو. تتميز المنافسة بكرة السلة للسيدات على مدار الموسم العادي والتصفيات، حيث تطارد الفرق البطولة في دوري متنامٍ مع وصول موسع واهتمام عالمي مت",
+      "title": "Weightlifting - 69kg Grp Finals",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports8.qa@MENA": {
-      "title": "Cincinatti Bengals @ Pittsburgh Steelers - NFL -National Footbal League - 2026/27",
+      "title": "Baltimore Ravens @ Dallas Cowboys - NFL",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports9.qa@MENA": {
-      "title": "Longines Global Champions Tour - Vienna Jumping - Grand Prix",
-      "description": "جولة لونجين العالمية للأبطال 2026 هي سلسلة دولية رائدة في قفز الحواجز تضم أفضل مجموعات الخيول والفارس في العالم. يمتد الموسم على 17 مرحلة عبر أربع قارات، حيث يتنافس الدراجون على نقاط البطولة الفردية في كل سباق الجائزة الكبرى. تتضمن الجولة أيضًا دوري أبطال العا",
+      "title": "Longines Global Champions Tour - Vienna Jumping",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsMax1.qa@MENA": {
       "title": "beIN Sports MAX",
-      "description": "قناة beIN SPORTS MAX لتغطية حصرية للبطولات الرياضية الكبرى.",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsMax2.qa@MENA": {
       "title": "beIN Sports MAX",
-      "description": "قناة beIN SPORTS MAX لتغطية حصرية للبطولات الرياضية الكبرى.",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsMax3.qa@MENA": {
       "title": "beIN Sports MAX",
-      "description": "قناة beIN SPORTS MAX لتغطية حصرية للبطولات الرياضية الكبرى.",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsMax4.qa@MENA": {
       "title": "beIN Sports MAX",
-      "description": "قناة beIN SPORTS MAX لتغطية حصرية للبطولات الرياضية الكبرى.",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsMax5.qa@MENA": {
       "title": "beIN Sports MAX",
-      "description": "قناة beIN SPORTS MAX لتغطية حصرية للبطولات الرياضية الكبرى.",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsMax6.qa@MENA": {
-      "title": "beIN Sports MAX",
-      "description": "قناة beIN SPORTS MAX لتغطية حصرية للبطولات الرياضية الكبرى.",
+      "title": "Al Majlis",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsNews.qa@SD": {
-      "title": "أخبار آسيا",
-      "description": "ابق على اطلاع بتغطيتنا اليومية لدورة الألعاب الآسيوية العشرين، المقررة في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026، في ناغويا، اليابان.",
+      "title": "نشرة الساعة التاسعة",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "beINSportsXtra1.qa@SD": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsXtra2.qa@SD": {
-      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "BeJunior.qa@SD": {
-      "title": "شاكلتون.. الرحلة المستحيلة",
+      "title": "الطهطشيون.. أبناء الغابة",
       "description": "برنامج ترفيهي للأطفال يُعرض على قنوات beIN.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "BloombergTV.us@MiddleEast": {
+      "title": "نشرة الأخبار",
+      "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -333,7 +333,7 @@
       "description_has_arabic": true
     },
     "FoodNetworkEMEA.us@SD": {
-      "title": "الدار داركم (موسم 1، حلقة7)",
+      "title": "الدار داركم (موسم 1، حلقة8)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -351,7 +351,7 @@
       "description_has_arabic": true
     },
     "HGTVArabia.us@SD": {
-      "title": "هوتيل كوكايين (موسم 1، حلقة5)",
+      "title": "سوليفانز كروسينج (موسم 3، حلقة2)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -363,13 +363,13 @@
       "description_has_arabic": true
     },
     "StarWorldMiddleEast.ae@SD": {
-      "title": "GOGO Bus",
+      "title": "PINS AND NETTIE EP 16 - Hedgie Thunder",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     }
   },
-  "arabic_description_fallbacks": 588,
-  "translation_cache_new": 14,
+  "arabic_description_fallbacks": 1078,
+  "translation_cache_new": 1,
   "translation_failures": []
 }
