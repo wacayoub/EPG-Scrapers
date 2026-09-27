@@ -113,7 +113,7 @@ jobs:
               return re.sub(r"[^0-9A-Za-z\u0600-\u06FF]+","",s or "").casefold()
 
           prod=load("feeds/elcinema.xml.gz")
-          test=load("feeds/tests/elcinema-ma-time-4h.xml.gz")
+          test=load("output/elcinema-time/raw.xml")
           pb={cid:[] for cid in IDS}; tb={cid:[] for cid in IDS}
           for p in prod.findall("programme"):
               cid=p.get("channel")
