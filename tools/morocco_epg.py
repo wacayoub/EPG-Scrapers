@@ -659,28 +659,37 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
    out.append(Event(cid,e.start,e.title,e.desc,e.stop,e.tl,e.dl,"arryadia-lkg"))
    occupied.append(e);retained+=1
 
-  # Learn only strong recurrence: same programme, same wall-clock, observed
-  # at least twice in current/LKG data. This is intentionally conservative.
+  # Learn only strong recurrence. SNRT commonly shifts stable programmes
+  # by 5-30 minutes, so group the same title into 30-minute wall-clock slots
+  # instead of requiring an identical minute on every day.
   samples=[
    e for e in (list(rows)+history)
    if e.channel==cid and e.stop and e.stop>e.start and _arryadia_repeat_safe(e)
   ]
   buckets=defaultdict(list)
   for e in samples:
-   key=(norm(e.title),e.start.hour,e.start.minute)
+   minute=e.start.hour*60+e.start.minute
+   slot=int(round(minute/30.0))*30
+   if slot>=24*60:slot=0
+   key=(norm(e.title),slot)
    if key[0]:buckets[key].append(e)
   templates=[]
   for key,evs in buckets.items():
-   # Require observations on at least two different dates.
-   if len({e.start.date() for e in evs})<2:continue
+   # Require the slot on at least two distinct dates. Multiple parser rows on
+   # one day never count as recurrence evidence.
+   dates={e.start.date() for e in evs}
+   if len(dates)<2:continue
    ev=max(evs,key=lambda x:x.start)
-   dur=ev.stop-ev.start
-   if dur<=timedelta(0) or dur>timedelta(hours=4):continue
-   templates.append((key,ev,dur))
+   valid_durations=[e.stop-e.start for e in evs if e.stop and timedelta(0)<e.stop-e.start<=timedelta(hours=4)]
+   if not valid_durations:continue
+   valid_durations.sort()
+   dur=valid_durations[len(valid_durations)//2]
+   slot=key[1];hh=(slot//60)%24;mm=slot%60
+   templates.append((key[0],hh,mm,ev,dur,len(dates)))
 
   day=start.date()
   while day<=end.date():
-   for (nt,hh,mm),ev,dur in templates:
+   for nt,hh,mm,ev,dur,observations in templates:
     ts=morocco_wall_clock(day,dtime(hh,mm));te=ts+dur
     if ts<start or ts>=end or te<=ts:continue
     if overlaps(occupied,ts,te):continue
