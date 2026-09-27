@@ -35,6 +35,8 @@ POLICY = {
     "rotana":    {"min_channels": 5,  "min_programmes": 40,  "min_future_ratio": 0.60, "min_horizon_hours": 8},
     # AYN/Oman official schedule: four public Oman TV services.
     "oman":      {"min_channels": 4,  "min_programmes": 20,  "min_future_ratio": 0.75, "min_horizon_hours": 8},
+    # Tabie/QMC public API: QTV/QBC/Tabie services; zero-EPG catalogue IDs may remain visible.
+    "tabie":     {"min_channels": 4,  "min_programmes": 80,  "min_future_ratio": 0.80, "min_horizon_hours": 24},
     # Sport24 is event-driven; valid event schedules can naturally expose less
     # than eight continuous hours while still being fresher than the current LKG.
     "sport24":   {"min_channels": 2,  "min_programmes": 10,  "min_future_ratio": 0.60, "min_horizon_hours": 4},
