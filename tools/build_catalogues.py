@@ -27,6 +27,24 @@ SHAHID_MBC_EXTRA = {
 # without an iptv-org xmltv_id.  They were therefore silently discarded by
 # choose(), even though the schedule API has real listings for them.  Keep
 # stable EPGManager-local XMLTV IDs keyed by OSN's official site_id.
+OSN_ALFA_NAME_ID_OVERRIDES = {
+    "alfaserieshd": "AlfaSeries.ae@SD",
+    "alfaserieschannel": "AlfaSeries.ae@SD",
+    "alfaseries2hd": "AlfaSeriesPlus2.ae@SD",
+    "alfaseriesplus2hd": "AlfaSeriesPlus2.ae@SD",
+    "alfaalyawmhd": "AlfaAlYawm.ae@SD",
+    "alfaalsafwa": "AlfaAlSafwa.ae@SD",
+    "alsafwa": "AlfaAlSafwa.ae@SD",
+    "alfafann": "AlfaFann.ae@SD",
+    "alfacinema1": "AlfaCinema1.ae@SD",
+    "alfacinema2": "AlfaCinema2.ae@SD",
+    "alfamusichd": "AlfaMusic.ae@SD",
+    "musicnow": "AlfaMusic.ae@SD",
+}
+
+def _osn_norm_name(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", (value or "").casefold())
+
 OSN_OFFICIAL_ID_OVERRIDES = {
     "204": "OSNOne.ae@SD",
     "208": "OSNShowcaseClassics.ae@SD",
@@ -206,7 +224,8 @@ def build_osn_catalogue(lang: str, output_name: str):
             node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
             cid=(node.get("xmltv_id") or "").strip()
             if not cid:
-                cid=canonical.get(sid) or _osn_local_id(sid)
+                name_key=_osn_norm_name(node.text or "")
+                cid=canonical.get(sid) or OSN_ALFA_NAME_ID_OVERRIDES.get(name_key) or _osn_local_id(sid)
             node.set("xmltv_id",cid)
             node.set("lang",lang)
             # Live catalogue comes last and therefore refreshes the display name
