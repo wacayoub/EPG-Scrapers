@@ -24,7 +24,10 @@ import xml.etree.ElementTree as ET
 import requests
 from bs4 import BeautifulSoup
 
-TZ = ZoneInfo("Asia/Riyadh")
+# Rotana's /ar/streams endpoint, when queried without a tz override, exposes
+# schedule clock values in UTC. Treating those values as Asia/Riyadh shifted
+# every event three hours early on the receiver.
+TZ = timezone.utc
 BASE = "https://www.rotana.net/ar/streams"
 
 CHANNELS = {
@@ -107,7 +110,8 @@ def parse_events(html, cid):
         title=clean(spans[1].get_text(" ",strip=True))
         if tm is None or not title:
             continue
-        start=datetime.combine(day,tm,tzinfo=TZ).astimezone(timezone.utc)
+        # The page clock is already UTC; keep it as-is.
+        start=datetime.combine(day,tm,tzinfo=TZ)
         rows.append((start,title))
 
     if not rows:
@@ -199,7 +203,7 @@ def main():
     report={
         "generated_utc":datetime.now(timezone.utc).isoformat(),
         "source":"https://www.rotana.net/ar/streams",
-        "timezone":"Asia/Riyadh",
+        "timezone":"UTC (Rotana streams page clock)",
         "channels_configured":len(CHANNELS),
         "channels_with_epg":len(active),
         "zero_epg_ids":sorted(set(cid for _,(cid,_) in CHANNELS.items())-active),
