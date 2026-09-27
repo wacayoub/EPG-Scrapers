@@ -3,15 +3,130 @@
     "Algeria": [
       {
         "url": "https://www.entv.dz/ar/tv1",
-        "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: /ar/tv1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f41b3e7ead0>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
-        "discovery_score": 0
+        "status": 200,
+        "final_url": "https://www.entv.dz/ar/tv1",
+        "content_type": "text/html; charset=UTF-8",
+        "title": "الأولى | التلفزيون الجزائري",
+        "bytes": 61343,
+        "guide_hits": 0,
+        "time_tokens": 0,
+        "arabic_time_hits": 0,
+        "json_scripts": [
+          {
+            "id": "",
+            "type": "application/json",
+            "bytes": 8128
+          }
+        ],
+        "js_assets": [
+          "https://www.googletagmanager.com/gtag/js?id=G-2M7CKK4W0C",
+          "https://www.entv.dz/sites/default/files/js/js_TyiHlZUO9tJhjK2gXiQtEqE5VFxpKiQeO4HsUM4HlZU.js?scope=footer&delta=0&language=ar&theme=entv_dark_theme&include=eJyFkFFywyAMRC9kmyMxAuRUjUCMhEnc05dJnX40U-cP7T5JiyClJlB2B8djWVVKmwLD1-4CyQKfcJ-SUoYLespVpWNyf4UJS-s-gV59-8CMLgqLzlkS2ot3YQnAs0Wl2oZ9b0zlOmZuFXg5yqmDBjD0UXKVMmaYCzYDo7aj9R8kgspmyG8oYYZqeE4llZrkVs6p8U14s07WNULpYOdYlTrOqefQMEd4q_s51iC8AQTs5ZYMu2zNh404oTowWVgi8C-QMRG4Z9Upofg6ulCnTngzT2WlQg39T073UOeneqT_BqYd-ds",
+          "https://static.addtoany.com/menu/page.js",
+          "https://www.entv.dz/sites/default/files/js/js_qnmtlVJcBELC2YcbjHiDqgfRtOUh_e1Owd0L45YJRI0.js?scope=footer&delta=2&language=ar&theme=entv_dark_theme&include=eJyFkFFywyAMRC9kmyMxAuRUjUCMhEnc05dJnX40U-cP7T5JiyClJlB2B8djWVVKmwLD1-4CyQKfcJ-SUoYLespVpWNyf4UJS-s-gV59-8CMLgqLzlkS2ot3YQnAs0Wl2oZ9b0zlOmZuFXg5yqmDBjD0UXKVMmaYCzYDo7aj9R8kgspmyG8oYYZqeE4llZrkVs6p8U14s07WNULpYOdYlTrOqefQMEd4q_s51iC8AQTs5ZYMu2zNh404oTowWVgi8C-QMRG4Z9Upofg6ulCnTngzT2WlQg39T073UOeneqT_BqYd-ds"
+        ],
+        "api_candidates": [
+          "http://www.entv.dz/ar/tv1",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/share-image.png",
+          "https://www.entv.dz/themes/custom/entv_dark_theme/share-image.png",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff2",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.eot",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.ttf",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.woff",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.woff2",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.eot",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.ttf",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.woff",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.woff2",
+          "https://www.youtube.com/channel/UCoAqxtPwSGstLWHo4ANgujQ",
+          "https://www.youtube.com/@ChaineEPTV",
+          "https://www.youtube.com/@EPTVTV1",
+          "https://www.youtube.com/@CanalAlgerieDZ",
+          "https://www.youtube.com/@EPTV.chaine3",
+          "https://www.youtube.com/@EPTV.Chaine4",
+          "https://www.youtube.com/@EPTV.chaine5",
+          "https://www.youtube.com/@EPTVchaine6",
+          "https://www.youtube.com/@ElMaarifaTV7",
+          "https://www.youtube.com/@EPTV.chaine8",
+          "https://www.youtube.com/@ElBarlamaniyaTV9",
+          "https://www.youtube.com/@entvdrama-7378",
+          "https://www.facebook.com/eptv.dz",
+          "https://www.tiktok.com/@eptv_dz",
+          "https://www.tiktok.com/@eptv_sport",
+          "https://www.tiktok.com/@eptv_tv6",
+          "https://www.tiktok.com/@eptv_tv5",
+          "https://x.com/entv_dz/",
+          "https://www.googletagmanager.com/gtag/js?id=G-2M7CKK4W0C",
+          "https://static.addtoany.com/menu/page.js"
+        ],
+        "guide_links": [],
+        "sample": "الأولى | التلفزيون الجزائري تجاوز إلى المحتوى الرئيسي Arabic Tamazight English French خدمات إتصل بنا إستشارات مناقصات فضاء تجاري تلفزة الواب الرئيسية آخر الأخبار أخبار الوطن إقتصاد دولي مجتمع رياضة ثقافة صحة تكنولوجيا أخبار التلفزيون Toggle theme الأولى صباح الخير يا جزائر مساء الجزائر ألحان وشباب رهانات أستوديو الصغار إرشادات طبية تقديم ' ان إبحار جذور إشراقة الصباح الصيفية المستهلك سهرتنا صيفية Load More Youtube المؤسسة العمومية للتلفزيون الجزائري الأولى Canal Algérie الاخبارية الأمازيغية القرأن الكريم الشبابية المعرفة الذاكرة البرلمانية دراما Facebook Tiktok التلفزيون الجزائري الرياضية الشبابية القرأن الكريم X-Twitter © حقوق النشر 2025، جميع الحقوق محفوظة ENTV | الهاتف: 023531010 | فاكس: 023531093 / 023531998",
+        "discovery_score": 13.0
       },
       {
         "url": "https://www.entv.dz/",
-        "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f41b3e7f750>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
-        "discovery_score": 0
+        "status": 200,
+        "final_url": "https://www.entv.dz/ar",
+        "content_type": "text/html; charset=UTF-8",
+        "title": "الواجهة | التلفزيون الجزائري",
+        "bytes": 228864,
+        "guide_hits": 0,
+        "time_tokens": 0,
+        "arabic_time_hits": 0,
+        "json_scripts": [
+          {
+            "id": "",
+            "type": "application/json",
+            "bytes": 8448
+          }
+        ],
+        "js_assets": [
+          "https://www.googletagmanager.com/gtag/js?id=G-2M7CKK4W0C",
+          "https://www.entv.dz/sites/default/files/js/js_TyiHlZUO9tJhjK2gXiQtEqE5VFxpKiQeO4HsUM4HlZU.js?scope=footer&delta=0&language=ar&theme=entv_dark_theme&include=eJyFkmFuwzAIhS-UxEeynmPaecXGAidtdvpZXbZJq5b8QcD7ABuBGJugbA67M11UShsC42NzIcmEdzyGqCnjSj7lqrJSdH8TA5W2-gi9-fZGmdwsLDpmiWQv2pUlgEebNdXW5UfjVG6951LB0x4OKzTAyM-Sq5Tew1ywEUza9tJ_kBkqixGfUMKManRMRZUa5V6Oqf5NnIyTy2VGWWHHWJXa16nHUBf7461ux1hDOAEE9rJLxiZL82FJHEkdTCaWGfwDZIoJ7jtaUyTxtVeRDmuiu7mn_bqbp-uDSLOmqO53_iecf_nX",
+          "https://static.addtoany.com/menu/page.js",
+          "https://www.entv.dz/sites/default/files/js/js_C0D8GqDL_1FYlosz86RSn43lixXOXH3d2QgLp2BCdT4.js?scope=footer&delta=2&language=ar&theme=entv_dark_theme&include=eJyFkmFuwzAIhS-UxEeynmPaecXGAidtdvpZXbZJq5b8QcD7ABuBGJugbA67M11UShsC42NzIcmEdzyGqCnjSj7lqrJSdH8TA5W2-gi9-fZGmdwsLDpmiWQv2pUlgEebNdXW5UfjVG6951LB0x4OKzTAyM-Sq5Tew1ywEUza9tJ_kBkqixGfUMKManRMRZUa5V6Oqf5NnIyTy2VGWWHHWJXa16nHUBf7461ux1hDOAEE9rJLxiZL82FJHEkdTCaWGfwDZIoJ7jtaUyTxtVeRDmuiu7mn_bqbp-uDSLOmqO53_iecf_nX"
+        ],
+        "api_candidates": [
+          "http://www.entv.dz/ar",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/share-image.png",
+          "https://www.entv.dz/themes/custom/entv_dark_theme/share-image.png",
+          "http://www.entv.dz/dz-tif",
+          "http://www.entv.dz/en",
+          "http://www.entv.dz/fr",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff2",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.eot",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.ttf",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.woff",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Bold.woff2",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.eot",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.ttf",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.woff",
+          "http://www.entv.dz/themes/custom/entv_dark_theme/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.woff2",
+          "https://www.youtube.com/channel/UCoAqxtPwSGstLWHo4ANgujQ",
+          "https://www.youtube.com/@ChaineEPTV",
+          "https://www.youtube.com/@EPTVTV1",
+          "https://www.youtube.com/@CanalAlgerieDZ",
+          "https://www.youtube.com/@EPTV.chaine3",
+          "https://www.youtube.com/@EPTV.Chaine4",
+          "https://www.youtube.com/@EPTV.chaine5",
+          "https://www.youtube.com/@EPTVchaine6",
+          "https://www.youtube.com/@ElMaarifaTV7",
+          "https://www.youtube.com/@EPTV.chaine8",
+          "https://www.youtube.com/@ElBarlamaniyaTV9",
+          "https://www.youtube.com/@entvdrama-7378",
+          "https://www.facebook.com/eptv.dz",
+          "https://www.tiktok.com/@eptv_dz",
+          "https://www.tiktok.com/@eptv_sport",
+          "https://www.tiktok.com/@eptv_tv6",
+          "https://www.tiktok.com/@eptv_tv5",
+          "https://x.com/entv_dz/",
+          "https://www.googletagmanager.com/gtag/js?id=G-2M7CKK4W0C",
+          "https://static.addtoany.com/menu/page.js"
+        ],
+        "guide_links": [],
+        "sample": "الواجهة | التلفزيون الجزائري تجاوز إلى المحتوى الرئيسي Arabic Tamazight English French خدمات إتصل بنا إستشارات مناقصات فضاء تجاري تلفزة الواب الرئيسية آخر الأخبار أخبار الوطن إقتصاد دولي مجتمع رياضة ثقافة صحة تكنولوجيا أخبار التلفزيون Toggle theme الواجهة أزمة الهجرة: مسؤولون أوروبيون ينتقدون \"التراخي المتعمد\" للمخزن سعيود يشرف على تنصيب لخضر سداس واليا لولاية النعامة المجلس الأعلى للجالية العلمية الوطنية بالخارج: إشادة قوية بدعم رئيس الجمهورية للكفاءات العلمية الجزائرية فنلندا: القضية الصحراوية حاضرة ضمن فعاليات حول العدالة والسلام بهلسنكي وزير الصحة يستقبل سفير المملكة العربية السعودية بالجزائر الانتخابات المحلية لـ 28 نوفمبر: الخميس 8 أكتوبر آخر أجل لإيداع ملفات التصريح الجماعي بالترشح تعزيز التعاون الطاقوي محور لقاء عجال بالأمين العام لمنظمة \"أوبك\" رئيس الجمهورية يستقبل أعضاء المجلس الأعلى للجالية العلمية الوطنية بالخارج مدير الدائرة العامة لسياسة الجيش الشعبي الفيتنامي يزور المتحف الوطني للمجاهد رئيس البرلمان اليوناني يؤكد تطابق الرؤى بين الجزائر وبلاده حول الملفات ذات الاهتمام المشترك أخبار الوطن 27 سبتمبر, 2026 رئيس الجمهورية يستقبل أعضاء المجلس الأعلى للجالية العلمية الوطنية بالخارج استقبل رئيس الجمهورية، السيد عبد المجيد تبون، اليوم الأحد، أعضاء المجلس الأعلى للجالية العلم",
+        "discovery_score": 13.0
       }
     ],
     "Bahrain": [
@@ -21,7 +136,7 @@
         "final_url": "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dDZyEvUUZRSS9ZTlEh/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الصفحة الرئيسية",
-        "bytes": 123327,
+        "bytes": 123332,
         "guide_hits": 0,
         "time_tokens": 2,
         "arabic_time_hits": 0,
@@ -36,8 +151,8 @@
           "https://cdn.jsdelivr.net/npm/hls.js@1",
           "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dDZyEvUUZRSS9ZTlEh/p0/IZ7_K0HAG3S01PBC506PES9KVU3007=CZ6_1I50H8C009UUF068GF4468R757=NEjavax.faces.resource!QCPjsf.js=ln!javax.faces=com.ibm.faces.portlet.PATH!QCPjavax.faces.resourceQCPjsf.js==/",
           "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0",
-          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle.js?v=1790476793256",
-          "about:blank?v=1790476793256",
+          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle.js?v=1790543517517",
+          "about:blank?v=1790543517517",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle_extension.js",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/jquery-eu-cookie-law-popup_ar.js",
           "https://www.googletagmanager.com/gtag/js?id=G-6SFQ2RLYBZ",
@@ -108,7 +223,7 @@
         "final_url": "https://ortc.km/",
         "content_type": "text/html; charset=UTF-8",
         "title": "Accueil - ortc.km",
-        "bytes": 236704,
+        "bytes": 236705,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
@@ -153,7 +268,7 @@
           "https://ortc.km/wp-content/themes/astra/assets/css/minified/menu-animation.min.css?ver=4.14.0",
           "https://ortc.km/wp-content/plugins/wp-stats-manager/css/style.css?ver=1.2",
           "https://ortc.km/wp-content/plugins/audioigniter/player/build/style.css?ver=2.0.4",
-          "https://ortc.km/wp-content/plugins/omnisend/styles/site-styles.css?1790476795&#038;ver=1.9.1",
+          "https://ortc.km/wp-content/plugins/omnisend/styles/site-styles.css?1790543519&#038;ver=1.9.1",
           "https://ortc.km/wp-content/plugins/wpfront-notification-bar/css/wpfront-notification-bar.min.css?ver=3.5.1.05102",
           "https://ortc.km/wp-content/plugins/wps-visitor-counter/styles/css/default.css?ver=1.4.9",
           "https://ortc.km/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
@@ -198,20 +313,101 @@
     "Djibouti": [
       {
         "url": "https://rtd.dj/",
-        "status": 403,
+        "status": 200,
         "final_url": "https://rtd.dj/",
-        "content_type": "application/json",
-        "title": "",
-        "bytes": 107,
+        "content_type": "text/html",
+        "title": "RTD – Radio TÃ©lÃ©vision Djibouti",
+        "bytes": 227188,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
-        "json_scripts": [],
-        "js_assets": [],
-        "api_candidates": [],
+        "json_scripts": [
+          {
+            "id": "wp-emoji-settings",
+            "type": "application/json",
+            "bytes": 240
+          }
+        ],
+        "js_assets": [
+          "https://rtd.dj/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "https://rtd.dj/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/jquery.cookie.js?ver=7.1.2",
+          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/ytprefs.min.js?ver=14.2.6.1",
+          "https://rtd.dj/wp-content/plugins/blockspare/dist/block_animation_script.js?ver=5.0.0",
+          "https://rtd.dj/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+          "https://rtd.dj/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+          "https://rtd.dj/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.7",
+          "https://rtd.dj/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.7",
+          "https://rtd.dj/wp-includes/js/jquery/ui/core.min.js?ver=1.14.2",
+          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/shuffle/modernizr.custom.min.js?ver=7.1.2",
+          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/shuffle/jquery.shuffle.min.js?ver=7.1.2",
+          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/shuffle/random-shuffle-min.js?ver=7.1.2",
+          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/custom.js?ver=3.0.2",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/toggle-script.js?ver=6.2.10",
+          "https://rtd.dj/wp-content/themes/chromenews/js/navigation.js?ver=20151215",
+          "https://rtd.dj/wp-content/themes/chromenews/js/skip-link-focus-fix.js?ver=6.2.10",
+          "https://rtd.dj/wp-content/themes/chromenews/admin-dashboard/dist/chromenews_scripts.build.js?ver=6.2.10",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/sidr/js/jquery.sidr.min.js?ver=6.2.10",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/marquee/jquery.marquee.js?ver=6.2.10",
+          "https://rtd.dj/wp-content/plugins/blockspare/assets/slick/js/slick.min.js?ver=5.0.0",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/bootstrap/js/bootstrap.min.js?ver=6.2.10",
+          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/fitvids.min.js?ver=14.2.6.1"
+        ],
+        "api_candidates": [
+          "http://gmpg.org/xfn/11",
+          "https://fonts.googleapis.com/css?family=Jost:400,700|Noto+Serif:400,700&#038;subset=latin&#038;display=swap",
+          "https://fonts.googleapis.com",
+          "https://fonts.gstatic.com",
+          "https://rtd.dj/feed/",
+          "https://rtd.dj/comments/feed/",
+          "https://rtd.dj/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frtd.dj%2F",
+          "https://rtd.dj/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frtd.dj%2F&#038;format=xml",
+          "https://rtd.dj/wp-content/plugins/blockspare/assets/fontawesome/css/all.css?ver=5.0.0",
+          "https://rtd.dj/wp-content/plugins/magic-content-box-lite/src/assets/fontawesome/css/all.css?ver=1765491231",
+          "https://rtd.dj/wp-content/plugins/magic-content-box-lite/dist/blocks.style.build.css?ver=7.1.2",
+          "https://rtd.dj/wp-content/plugins/blockspare/dist/lates_post_css.css?ver=5.0.0",
+          "https://rtd.dj/wp-content/plugins/blockspare/dist/common_all_blocks.css?ver=5.0.0",
+          "https://rtd.dj/wp-content/plugins/blockspare/dist/block_animation.css?ver=5.0.0",
+          "https://rtd.dj/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.7",
+          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/css/sfsi-style.css?ver=3.0.2",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/icons/style.css?ver=7.1.2",
+          "https://rtd.dj/wp-content/themes/chromenews/style.min.css?ver=6.2.10",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/sidr/css/jquery.sidr.dark.css?ver=6.2.10",
+          "https://rtd.dj/wp-content/plugins/blockspare/assets/slick/css/slick.min.css?ver=5.0.0",
+          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/styles/ytprefs.min.css?ver=14.2.6.1",
+          "https://rtd.dj/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "https://rtd.dj/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+          "https://rtd.dj/wp-content/themes/chromenews/assets/jquery.cookie.js?ver=7.1.2",
+          "https://rtd.dj/wp-admin/admin-ajax.php",
+          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/",
+          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/",
+          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/ytprefs.min.js?ver=14.2.6.1",
+          "https://api.w.org/",
+          "https://rtd.dj/wp-json/",
+          "https://rtd.dj/wp-json/wp/v2/pages/336",
+          "https://rtd.dj/xmlrpc.php?rsd",
+          "https://rtd.dj/",
+          "https://rtd.dj/wp-content/uploads/2024/11/cropped-TV5MONDE-Le-Journal-International-COVER-8884ef56-2.jpg",
+          "https://rtd.dj/wp-content/uploads/2024/11/cropped-logortd-2-150x150.png",
+          "https://rtd.dj/wp-content/uploads/2024/11/cropped-logortd-2.png",
+          "https://www.facebook.com/INFOS.DJ",
+          "https://www.youtube.com/@RTDTELEDJIBOUTI",
+          "https://rtd.dj/category/a-la-une/",
+          "https://rtd.dj/category/economie/",
+          "https://rtd.dj/category/education/",
+          "https://rtd.dj/category/faits-divers/",
+          "https://rtd.dj/category/parlement/",
+          "https://rtd.dj/category/politique/",
+          "https://rtd.dj/category/sante/",
+          "https://rtd.dj/category/social-culture/",
+          "https://rtd.dj/category/sports/",
+          "https://rtd.dj/actualites/",
+          "https://rtd.dj/nos-emissions/",
+          "https://rtd.dj/rtd-en-direct/"
+        ],
         "guide_links": [],
-        "sample": "{ \"message\": \"Access denied by Imunify360 bot-protection. IPs used for automation should be whitelisted\" }",
-        "discovery_score": 0.0
+        "sample": "RTD – Radio TÃ©lÃ©vision Djibouti Aller au contenu 26/09/2026 Facebook YouTube RTD Radio TÃ©lÃ©vision Djibouti Connect with Us Facebook YouTube CatÃ©gories Ã la Une Economie Education Faits divers Parlement Politique SantÃ© Social/Culture Sports Menu principal Accueil ActualitÃ©s SantÃ© Education Sports Economie Social/Culture Politique Parlement Journal TV RTD en Direct Contact RechercherÂ : Fil d'actualitÃ© Damerjog : Djibouti lance un projet Ã©nergÃ©tique stratÃ©gique de 160 millions de dollars pour renforcer le corridor vers lâÃthiopie Le mÃ©diateur de la RÃ©publique participe Ã une table ronde sur le processus Ã©lectoral en Russie MinistÃ¨re de l’Agriculture : lancement officiel du financement de 50 sous-projets LâUNFD reÃ§oit un don significatif de Qatar Charity MinistÃ¨re du Travail : signature de convention entre lâANEFIP et lâInstitut FranÃ§ais de Djibouti Ã la Une Damerjog : Djibouti lance un projet Ã©nergÃ©tique stratÃ©gique de 160 millions de dollars pour renforcer le corridor vers lâÃthiopie RTD 25/09/2026 0 Ã la Une Le Premier ministre prÃ©side la rÃ©union de prÃ©sentation de la feuille de route de lâaxe II Abdillahi Ahmed 23/09/2026 0 Ã la Une Le ch",
+        "discovery_score": 13.0
       }
     ],
     "Egypt": [
@@ -221,10 +417,10 @@
         "final_url": "https://www.maspero.eg/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الهيئة الوطنية للإعلام",
-        "bytes": 227595,
+        "bytes": 227463,
         "guide_hits": 0,
         "time_tokens": 83,
-        "arabic_time_hits": 0,
+        "arabic_time_hits": 1,
         "json_scripts": [
           {
             "id": "",
@@ -332,14 +528,6 @@
             "url": "https://www.maspero.eg/Top-Radio-Programs"
           },
           {
-            "label": "فن وثقافة",
-            "url": "https://www.maspero.eg/art-and-culture/2026/09/26/992595/الأعلى-للإعلام-يخاطب-القنوات-الفضائية-لتقديم-خرائطها-البرامجية-الجديدة"
-          },
-          {
-            "label": "\"الأعلى للإعلام\" يخاطب القنوات الفضائية لتقديم خرائطها البرامجية الجديدة",
-            "url": "https://www.maspero.eg/art-and-culture/2026/09/26/992595/الأعلى-للإعلام-يخاطب-القنوات-الفضائية-لتقديم-خرائطها-البرامجية-الجديدة"
-          },
-          {
             "label": "برامج",
             "url": "https://www.maspero.eg/tv_show_section"
           },
@@ -381,10 +569,281 @@
           }
         ],
         "sample": "الهيئة الوطنية للإعلام الرئيسية اخبار مصر ابواب الاخبار مصر عرب وعالم اقتصاد رياضة منوعات فن وثقافة مرأة وجمال حوادث علوم وتكنولوجيا اختيارات المحررين تقارير ملفات صحافة تحقيقات وحوارات حوارات مباشرة المزيد محافظات مقالات حدث فى مثل هذا اليوم برامج فيديوهات إذاعة نجوم الإذاعة تليفزيون نجوم التليفزيون مجلة الاذاعة والتليفزيون سياسة اقتصاد فن ثقافة رياضة اعلام تحقيقات حوارات أقلام المجلة زمان معرض الصور شعر دراسات نقدية نصوص تحقيقات ملفات شعرية الأرشيف أرشيف المجلة أرشيف مجلة الشعر أرشيف الاعداد التراثية كنوز المبدعون مقدمو البرامج الشعراء المؤلفون المخرجون المغنون الممثلون الموسيقيون الدراما التلفزيونية الأفلام التمثيليات التليفزيونية البرامج الدرامية الدراما الإذاعية مسرحيات البرنامج الثقافي البرامج الخاصة التمثيليات الإذاعية الدراما الغنائية فوازير رمضان فوازير الثلاثيي فوازير شريهان فوازير عمو فؤاد فوازير فطوطة فوازير نيللي مواسم فوازير منوعة أعمال الأطفال كارتون 2D كارتون 3D الصلصال العرائس البرامج التليفزيونية منوعات تليفزيونية البرامج الحوارية البرامج الدينية البرامج الإذاعية منوعات إذاعية روائع برامج الإذاعة ذاكرة ماسبيرو جريدة مصر السينمائية من خطب الرؤساء ضيوف ماسبيرو مروا من هنا المركز الصحفى عن الهيئة البث المباشر النيل للاخبار القناة اولى الفضائية المصرية القناة الثانية ",
-        "discovery_score": 29.0
+        "discovery_score": 29.5
       }
     ],
     "Iraq": [
+      {
+        "url": "https://www.alsumaria.tv/TV-grid",
+        "status": 200,
+        "final_url": "https://www.alsumaria.tv/TV-grid",
+        "content_type": "text/html; charset=utf-8",
+        "title": "شبكة برامج السومرية مباشرة على النت | جدول البرامج في الأحد 27 أيلول",
+        "bytes": 688547,
+        "guide_hits": 5,
+        "time_tokens": 80,
+        "arabic_time_hits": 5,
+        "json_scripts": [
+          {
+            "id": "",
+            "type": "application/ld+json",
+            "bytes": 390
+          },
+          {
+            "id": "",
+            "type": "application/ld+json",
+            "bytes": 512
+          }
+        ],
+        "js_assets": [
+          "https://www.googletagmanager.com/gtag/js?id=UA-3424714-1",
+          "https://www.alsumaria.tv/NotificationAPI/js/clientV2.min.js?v=3&CompToken=fhdyterstEtsyeE3s4w5rrtdR&h=12&Version=v2",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431101799617383",
+          "https://www.alsumaria.tv/WebResource.axd?d=auq8eiPDDTSjjw3A-JkVMqubMSGYFROi5WnRn_vc7vYHLUhE1oc8TMtAbf_b3dEpr1ePZ-LBCdWDm616SYk0gaI09Gp_NH3f98iSgxq3F-E1&t=638901536248157332",
+          "https://www.alsumaria.tv/ScriptResource.axd?d=El6nqdbzalufVx6JI4IIyre031cBVHy_vEQFhUlVfUSiWCmD0PB1fFNA84P1jNNENoao20et4mzgeLLJe-nAxEwV7TNdmo6e0pDUrBn7Kxxz8Du3ABkY6xapuii3VKd7X03_vpfllC9xr7pX2Hyd8MEtVeqimfYMCCEaqas3bRs1&t=5c0e0825",
+          "https://www.alsumaria.tv/ScriptResource.axd?d=Vs8ZAQJvy2-y_MEaMAE4mqLV3U-BttfjY3M2l76-rvz_O0GqJnRpHC60KTZVCY51LbxUYz_rPbSVvxJ6OYPS0cACr_5ICTMmSCNdlGHSwW-ZSbepxNCztIk7aO1eJHS0PIdboi9dnlu2JQqcML-LhQij_PGRiCsNT2v2w9TL1ccLc8ywK_u05-kMCluNLNEi0&t=5c0e0825",
+          "https://www.alsumaria.tv/webservices/Service.asmx/js",
+          "https://www.alsumaria.tv/TheWall/js/JqueryMain/v2.2.3/jquery-2.2.3.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/JqueryMain/v2.2.3/jquery-migrate-1.3.0.min.js?v=366",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://www.alsumaria.tv/TheWall/js/JqueryMain/v1.11.3/jquery-ui.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/SocialMedia/jquery.sharrre.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/ShareThis/v1.2.2/share-this.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/ShareThis/twitter.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/ShareThis/facebook.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/ShareThis/email.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/ShareThis/speakers.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/WebSpeaker/v1.0/webspeaker.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/BackgroundSize/v1.0/jquery.backgroundSize.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/CommonJS/v1.0/MainQuery.min.js?v=366",
+          "https://www.alsumaria.tv/js/LightSlider/lightslider.min.js?v=366",
+          "https://www.alsumaria.tv/helpers/flatpickr/flatpickr.js?v=366",
+          "https://www.alsumaria.tv/js/LightGallery/picturefill.min.js?v=366",
+          "https://www.alsumaria.tv/js/LightGallery/lightgallery-all.min.js?v=366",
+          "https://www.alsumaria.tv/js/PagesJS/Master.js?v=366",
+          "https://www.alsumaria.tv/js/PagesJS/ProjectMainQuery.min.js?v=366",
+          "https://www.alsumaria.tv/TheWall/js/Bootstrap/v4.1.1/bootstrap.min.js?v=366",
+          "https://www.alsumaria.tv/js/NiceScroll/jquery.nicescroll.min.js?v=366"
+        ],
+        "api_candidates": [
+          "http://www.w3.org/1999/xhtml",
+          "https://schema.org",
+          "https://www.alsumaria.tv",
+          "https://www.alsumaria.tv/TV-grid",
+          "https://www.alsumaria.tv/images/fb-default.jpg",
+          "https://www.googletagmanager.com/gtag/js?id=UA-3424714-1",
+          "https://connect.facebook.net/en_US/fbevents.js",
+          "https://www.facebook.com/tr?id=1085894382070092&ev=PageView&noscript=1",
+          "https://www.alsumaria.tv/TheWall/style/Jquery/v1.11.4/jquery-1.11.4.min.css?366",
+          "https://www.alsumaria.tv/TheWall/style/CommonStyle/v1.0/v1.0-IpadSize768/MainStyle.min.css?366",
+          "https://www.alsumaria.tv/TheWall/style/ShareThis/v1.2.2/share-this.min.css?366",
+          "https://www.alsumaria.tv/TheWall/style/ar/StaticStyle/v1.0/StaticStyle.min.css?366",
+          "https://www.alsumaria.tv/TheWall/style/Jquery/v1.11.4/jquery-ui.min.css?366",
+          "https://www.alsumaria.tv/TheWall/style/ionicons/v4.1.2/ionicons.min.css?366",
+          "https://www.alsumaria.tv/TheWall/style/Bootstrap/v4.1.1/v4.1.1-IpadSize768/bootstrap.min.css?366",
+          "https://www.alsumaria.tv/TheWall/style/mCustomScrollbar/v2.1/CustomScrollbarOld.min.css?v=366",
+          "https://www.alsumaria.tv/TheWall/style/Swiper/v4.3.3/swiper.min.css?v=366",
+          "https://www.alsumaria.tv/TheWall/style/flickity/v2.1.2/flickity.min.css?v=366",
+          "https://www.alsumaria.tv/TheWall/style/Ellipsis/v1.0/v1.0-IpadSize768/Ellipsis.min.css?v=366",
+          "https://www.alsumaria.tv/NotificationAPI/js/clientV2.min.js?v=3&CompToken=fhdyterstEtsyeE3s4w5rrtdR&h=12&Version=v2",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://www.clarity.ms/tag/",
+          "https://www.alsumaria.tv/#website",
+          "https://www.alsumaria.tv/",
+          "https://www.alsumaria.tv/#organization",
+          "https://www.alsumaria.tv/Search/{search_term_string}",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431101799617383",
+          "https://www.googletagmanager.com/gtm.js?id=",
+          "https://www.googletagmanager.com/ns.html?id=GTM-KV95HCPZ",
+          "https://www.alsumaria.tv/TheWall/js/JqueryMain/v2.2.3/jquery-2.2.3.min.js?v=366",
+          "https://cdn.jsdelivr.net/npm/jquery@2.2.3/dist/jquery.min.js",
+          "https://www.alsumaria.tv/TheWall/js/JqueryMain/v2.2.3/jquery-migrate-1.3.0.min.js?v=366",
+          "https://www.alsumaria.tv/uploadImages/ProgramsImages/Channels-L-1-636916940695846700.png",
+          "https://www.alsumaria.tv/programs",
+          "https://www.alsumaria.tv/uploadImages/ProgramsImages/Channels-LW-1-636916940695846700.png",
+          "https://www.alsumaria.tv/programs/39/ترفيه",
+          "https://www.alsumaria.tv/programs/11/سياسة",
+          "https://www.alsumaria.tv/programs/7/مسلسلات",
+          "https://www.alsumaria.tv/programs/30/لقطات",
+          "https://www.alsumaria.tv/program/579/ناس-وناس",
+          "https://www.youtube.com/channel/UCWhdSvXarykqCL4fqS3rm1Q?sub_confirmation=1",
+          "https://www.instagram.com/alsumariatv/",
+          "https://twitter.com/alsumariatv",
+          "https://www.facebook.com/alsumariatv",
+          "https://telegram.me/alsumariatviraq",
+          "https://play.google.com/store/apps/details?id=com.sumarya&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5zdW1hcnlhIl0",
+          "https://itunes.apple.com/lb/app/alsumaria-tv-qnat-alswmryt/id572506087?mt=8",
+          "https://appgallery.huawei.com/#/app/C101670517",
+          "https://www.alsumaria.tv/programs/6/منوعات",
+          "https://www.alsumaria.tv/programs/10/مجتمع"
+        ],
+        "guide_links": [
+          {
+            "label": "البرامج",
+            "url": "https://www.alsumaria.tv/programs"
+          },
+          {
+            "label": "البرامج",
+            "url": "https://www.alsumaria.tv/programs"
+          },
+          {
+            "label": "البرامج",
+            "url": "https://www.alsumaria.tv/programs"
+          },
+          {
+            "label": "ترفيه",
+            "url": "https://www.alsumaria.tv/programs/39/ترفيه"
+          },
+          {
+            "label": "سياسة",
+            "url": "https://www.alsumaria.tv/programs/11/سياسة"
+          },
+          {
+            "label": "مسلسلات",
+            "url": "https://www.alsumaria.tv/programs/7/مسلسلات"
+          },
+          {
+            "label": "برامج سومر أف أم",
+            "url": "https://www.alsumaria.tv/sumerfm-shows"
+          },
+          {
+            "label": "برامج سابقة",
+            "url": "https://www.alsumaria.tv/old-shows/38/برامج-سابقة"
+          },
+          {
+            "label": "لقطات",
+            "url": "https://www.alsumaria.tv/programs/30/لقطات"
+          },
+          {
+            "label": "جدول البرامج",
+            "url": "https://www.alsumaria.tv/TV-grid"
+          },
+          {
+            "label": "ناس وناس",
+            "url": "https://www.alsumaria.tv/program/579/ناس-وناس"
+          },
+          {
+            "label": "البرامج",
+            "url": "https://www.alsumaria.tv/programs"
+          },
+          {
+            "label": "ترفيه",
+            "url": "https://www.alsumaria.tv/programs/39/ترفيه"
+          },
+          {
+            "label": "منوعات",
+            "url": "https://www.alsumaria.tv/programs/6/منوعات"
+          },
+          {
+            "label": "مجتمع",
+            "url": "https://www.alsumaria.tv/programs/10/مجتمع"
+          },
+          {
+            "label": "رياضة",
+            "url": "https://www.alsumaria.tv/programs/9/رياضة"
+          },
+          {
+            "label": "السومرية Kids",
+            "url": "https://www.alsumaria.tv/programs/14/السومرية-kids"
+          },
+          {
+            "label": "سياسة",
+            "url": "https://www.alsumaria.tv/programs/11/سياسة"
+          },
+          {
+            "label": "مسلسلات",
+            "url": "https://www.alsumaria.tv/programs/7/مسلسلات"
+          },
+          {
+            "label": "برامج سومر أف أم",
+            "url": "https://www.alsumaria.tv/sumerfm-shows"
+          },
+          {
+            "label": "رمضان 2022",
+            "url": "https://www.alsumaria.tv/programs/36/رمضان-2022"
+          },
+          {
+            "label": "رمضان 2021",
+            "url": "https://www.alsumaria.tv/programs/35/رمضان-2021"
+          },
+          {
+            "label": "رمضان 2020",
+            "url": "https://www.alsumaria.tv/programs/34/رمضان-2020"
+          },
+          {
+            "label": "برامج سابقة",
+            "url": "https://www.alsumaria.tv/old-shows/38/برامج-سابقة"
+          },
+          {
+            "label": "لقطات",
+            "url": "https://www.alsumaria.tv/programs/30/لقطات"
+          },
+          {
+            "label": "جدول البرامج",
+            "url": "https://www.alsumaria.tv/TV-grid"
+          },
+          {
+            "label": "Live Talk",
+            "url": "https://www.alsumaria.tv/program/843/live-talk"
+          },
+          {
+            "label": "",
+            "url": "https://web.whatsapp.com/send?text=https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dWhatsapp-Broadcast%26utm_term%3dWhatsapp-Broadcast%26utm_campaign%3dWhatsapp-Broadcast%26src%3dwhatsapp-broadcast Live Talk"
+          },
+          {
+            "label": "",
+            "url": "whatsapp://send?text=Live+Talk https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dWhatsapp-Broadcast%26utm_term%3dWhatsapp-Broadcast%26utm_campaign%3dWhatsapp-Broadcast%26src%3dwhatsapp-broadcast"
+          },
+          {
+            "label": "",
+            "url": "https://telegram.me/share/url?url=https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dTelegram-Sharing-Frontend%26utm_term%3dTelegram-Sharing-Frontend%26utm_campaign%3dTelegram-Sharing-Frontend%26src%3dtelegram-share&text=Live+Talk"
+          },
+          {
+            "label": "",
+            "url": "fb-messenger://share?link=https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dFb-messenger-Sharing-Frontend%26utm_term%3dFb-messenger-Sharing-Frontend%26utm_campaign%3dFb-messenger-Sharing-Frontend%26src%3dfb-messenger-share&app_id=244448062290610"
+          },
+          {
+            "label": "",
+            "url": "https://www.alsumaria.tv/program/843/live-talk"
+          },
+          {
+            "label": "Live Talk",
+            "url": "https://www.alsumaria.tv/program/843/live-talk"
+          },
+          {
+            "label": "",
+            "url": "https://web.whatsapp.com/send?text=https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dWhatsapp-Broadcast%26utm_term%3dWhatsapp-Broadcast%26utm_campaign%3dWhatsapp-Broadcast%26src%3dwhatsapp-broadcast Live Talk"
+          },
+          {
+            "label": "",
+            "url": "whatsapp://send?text=Live+Talk https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dWhatsapp-Broadcast%26utm_term%3dWhatsapp-Broadcast%26utm_campaign%3dWhatsapp-Broadcast%26src%3dwhatsapp-broadcast"
+          },
+          {
+            "label": "",
+            "url": "https://telegram.me/share/url?url=https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dTelegram-Sharing-Frontend%26utm_term%3dTelegram-Sharing-Frontend%26utm_campaign%3dTelegram-Sharing-Frontend%26src%3dtelegram-share&text=Live+Talk"
+          },
+          {
+            "label": "",
+            "url": "fb-messenger://share?link=https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f843%2flive-talk%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dFb-messenger-Sharing-Frontend%26utm_term%3dFb-messenger-Sharing-Frontend%26utm_campaign%3dFb-messenger-Sharing-Frontend%26src%3dfb-messenger-share&app_id=244448062290610"
+          },
+          {
+            "label": "",
+            "url": "https://www.alsumaria.tv/program/579/ناس-وناس"
+          },
+          {
+            "label": "ناس وناس",
+            "url": "https://www.alsumaria.tv/program/579/ناس-وناس"
+          },
+          {
+            "label": "",
+            "url": "https://web.whatsapp.com/send?text=https%3a%2f%2fwww.alsumaria.tv%2fprogram%2f579%2f%d9%86%d8%a7%d8%b3-%d9%88%d9%86%d8%a7%d8%b3%3futm_source%3dAlsumaria-Frontend%26utm_medium%3dWhatsapp-Broadcast%26utm_term%3dWhatsapp-Broadcast%26utm_campaign%3dWhatsapp-Broadcast%26src%3dwhatsapp-broadcast ناس وناس"
+          }
+        ],
+        "sample": "شبكة برامج السومرية مباشرة على النت | جدول البرامج في الأحد 27 أيلول الصفحة الرئيسية البرامج السومرية نيوز الصفحة الرئيسية آخر الاخبار أبرز الاخبار فيديوهات سياسة محليات انتخابات مجلس النواب العراقي 2025 رياضة كأس العالم 2026 خاص السومرية أمن دوليات عالم السيارات اقتصاد تكنولوجيا نتائج الامتحانات فن وثقافة ترندات علم وعالم للنساء فقط منوعات إنفوغراف أخبار الطقس أخبار الأبراج الأبراج Sumer Fm 32 o بغداد الاشعارات البث المباشر بالصورة بالصوت 32 o بغداد الاشعارات البث المباشر بالصورة بالصوت الصفحة الرئيسية البرامج السومرية نيوز الصفحة الرئيسية آخر الاخبار أبرز الاخبار فيديوهات سياسة محليات انتخابات مجلس النواب العراقي 2025 رياضة كأس العالم 2026 خاص السومرية أمن دوليات عالم السيارات اقتصاد تكنولوجيا نتائج الامتحانات فن وثقافة ترندات علم وعالم للنساء فقط منوعات إنفوغراف أخبار الطقس أخبار الأبراج الأبراج Sumer Fm البث المباشر بالصورة بالصوت البث المباشر البرامج ترفيه سياسة مسلسلات برامج سومر أف أم رمضان السومرية برامج سابقة لقطات جدول البرامج التالي ناس وناس من 07:00 PM الى 08:00 PM LIVE السومرية نيوز آخر الاخبار أبرز الاخبار فيديوهات سياسة محليات خاص السومرية أمن دوليات عالم السيارات أخبار الأبراج أخبار الطقس إنفوغراف فن وثقافة نتائج الامتحانات تكنولوجيا رياضة اقتصاد \"طقس العراق\".. انخف",
+        "discovery_score": 46.5
+      },
       {
         "url": "https://www.imn.iq/ar",
         "status": 403,
@@ -422,6 +881,62 @@
     ],
     "Jordan": [
       {
+        "url": "https://roya.tv/",
+        "status": 200,
+        "final_url": "https://roya.tv/",
+        "content_type": "text/html; charset=utf-8",
+        "title": "رؤيا | الرئيسية - مسلسلات، برامج، بث مباشر وأخبار",
+        "bytes": 263182,
+        "guide_hits": 0,
+        "time_tokens": 0,
+        "arabic_time_hits": 0,
+        "json_scripts": [],
+        "js_assets": [
+          "https://roya.tv/_next/static/chunks/fd9d1056-931e3bd0fbac1be4.js",
+          "https://roya.tv/_next/static/chunks/2117-bcc946d22eb79374.js",
+          "https://roya.tv/_next/static/chunks/main-app-5294d1645fe5526e.js",
+          "https://roya.tv/_next/static/chunks/360-be1b32185fd98388.js",
+          "https://roya.tv/_next/static/chunks/6779-40cc1729806ba5e0.js",
+          "https://roya.tv/_next/static/chunks/8346-48855d50cab554e2.js",
+          "https://roya.tv/_next/static/chunks/8149-812e546548fdd124.js",
+          "https://roya.tv/_next/static/chunks/2855-ef591a01449afa23.js",
+          "https://roya.tv/_next/static/chunks/7274-3035df4385ca1f3d.js",
+          "https://roya.tv/_next/static/chunks/826-8f764637a0fdc5f6.js",
+          "https://roya.tv/_next/static/chunks/8954-6fd51f0b6414e5c3.js",
+          "https://roya.tv/_next/static/chunks/6446-5a506442789b14ce.js",
+          "https://roya.tv/_next/static/chunks/5878-b250c16bec1a537a.js",
+          "https://roya.tv/_next/static/chunks/8667-bf492554110b5403.js",
+          "https://roya.tv/_next/static/chunks/6615-7a5ca8ad136dbe7f.js",
+          "https://roya.tv/_next/static/chunks/9920-d09238659e7ebbc6.js",
+          "https://roya.tv/_next/static/chunks/1137-2fffc02359be2ded.js",
+          "https://roya.tv/_next/static/chunks/3033-6e3ee29914acb861.js",
+          "https://roya.tv/_next/static/chunks/4888-4fa51107ee0396f9.js",
+          "https://roya.tv/_next/static/chunks/2331-54647d0a020622d0.js",
+          "https://roya.tv/_next/static/chunks/282-aa577182812e6868.js",
+          "https://roya.tv/_next/static/chunks/5773-41c0af9e43078d53.js",
+          "https://roya.tv/_next/static/chunks/8689-9b9c67287e9007c4.js",
+          "https://roya.tv/_next/static/chunks/4549-e1e0789a94d53b5b.js",
+          "https://roya.tv/_next/static/chunks/5715-ad0a20d2a1d7eaba.js",
+          "https://roya.tv/_next/static/chunks/app/page-d1c3b29450a44c93.js",
+          "https://roya.tv/_next/static/chunks/4987-447790491ff9bffd.js",
+          "https://roya.tv/_next/static/chunks/7985-4866d34d3b7b39aa.js",
+          "https://roya.tv/_next/static/chunks/6026-4f34ac964427a3d8.js",
+          "https://roya.tv/_next/static/chunks/7543-14fd1ac35ea3a090.js"
+        ],
+        "api_candidates": [
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://imasdk.googleapis.com/js/sdkloader/ima3.js",
+          "https://www.googletagmanager.com/gtm.js?id=GTM-PM7VLC8",
+          "https://www.googletagmanager.com/gtag/js?id=G-PN2PMJQKST",
+          "https://roya.tv",
+          "https://roya.tv/images/roya-logo.png",
+          "http://www.w3.org/2000/svg"
+        ],
+        "guide_links": [],
+        "sample": "رؤيا | الرئيسية - مسلسلات، برامج، بث مباشر وأخبار",
+        "discovery_score": 8.9
+      },
+      {
         "url": "https://www.jrtv.gov.jo/",
         "status": 200,
         "final_url": "https://www.jrtv.gov.jo/",
@@ -451,7 +966,7 @@
         "final_url": "https://media.gov.kw/",
         "content_type": "text/html; charset=utf-8",
         "title": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت",
-        "bytes": 193054,
+        "bytes": 193072,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
@@ -532,7 +1047,7 @@
             "url": "https://news.gov.kw/"
           }
         ],
-        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 16 ربــيـــع الآخــِــر 1448 | 47 °م 27 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م × لاخر المستجدات يرجى متابعة قنوات البث المباشر لتلفزيون دولة الكويت وحسابات التواصل الاجتماعي التابعة لوزارة الإعلام الكويتية وموقع الاخبار إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة إعلان إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة الاخبار الترددات الهندسية مجلة ا",
+        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 17 ربــيـــع الآخــِــر 1448 | 46 °م 26 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م × لاخر المستجدات يرجى متابعة قنوات البث المباشر لتلفزيون دولة الكويت وحسابات التواصل الاجتماعي التابعة لوزارة الإعلام الكويتية وموقع الاخبار إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة إعلان إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة الاخبار الترددات الهندسية مجلة ا",
         "discovery_score": 11.8
       },
       {
@@ -592,11 +1107,467 @@
           "https://www.googletagmanager.com/gtag/js?id=G-59GQS9JJ91"
         ],
         "guide_links": [],
-        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 16 ربــيـــع الآخــِــر 1448 | 47 °م 27 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م الرئيسية / القنوات التلفزيونية / الترددات الهندسية TV KSC القنوات الفضائية الكويتية – البث الفضائي التلفزيوني و الإذاعي KUWAIT SPACE CHANNELS (KSC) – INTERNATIONAL SATELLITE TV & RADIO BROADCAST COVERAGE AREA Pol. FEC SR MS/S FREQ.[MHZ] RADIO Sat Pos. PROGRAM SATELLITE & BAND Middle East, Central Africa, Southern Europe H 2/3 27.5 ",
+        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 17 ربــيـــع الآخــِــر 1448 | 46 °م 26 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م الرئيسية / القنوات التلفزيونية / الترددات الهندسية TV KSC القنوات الفضائية الكويتية – البث الفضائي التلفزيوني و الإذاعي KUWAIT SPACE CHANNELS (KSC) – INTERNATIONAL SATELLITE TV & RADIO BROADCAST COVERAGE AREA Pol. FEC SR MS/S FREQ.[MHZ] RADIO Sat Pos. PROGRAM SATELLITE & BAND Middle East, Central Africa, Southern Europe H 2/3 27.5 ",
         "discovery_score": 11.0
       }
     ],
     "Lebanon": [
+      {
+        "url": "https://www.lbcgroup.tv/schedule/ar",
+        "status": 200,
+        "final_url": "https://www.lbcgroup.tv/schedule/ar",
+        "content_type": "text/html; charset=utf-8",
+        "title": "LBCI Lebanon, LBC Europe, LB2 International | جدول توقيت البرامج في...",
+        "bytes": 89840,
+        "guide_hits": 1,
+        "time_tokens": 3,
+        "arabic_time_hits": 2,
+        "json_scripts": [
+          {
+            "id": "",
+            "type": "application/ld+json",
+            "bytes": 147
+          }
+        ],
+        "js_assets": [
+          "https://www.googletagmanager.com/gtag/js?id=UA-25907912-1",
+          "https://www.googletagservices.com/tag/js/gpt.js",
+          "https://get.optad360.io/sf/d8ccc5d5-a57d-4a7a-865c-1cee4ddda857/plugin.min.js",
+          "https://servg1.net/o.js?uid=a6a9ff0d0f1e980b3cea04fa",
+          "https://www.lbcgroup.tv/WebResource.axd?d=Vx-qtyOKILUzJRsxmdtumx2NMwJ6wPsgKRopyQFhNHf9d_m-JcKeiuFW9Pd55L_kLLpaZ46-0bQLZlosxY6JJx8ikr-VoHYnMq7rUinOWwc1&t=638901536248157332",
+          "https://www.lbcgroup.tv/ScriptResource.axd?d=bEbvDCMOieTg1tfOSlhbDt2Zbi4ZjIlwas2bBo7vqRmpTKqdlR-HJ5nXJZo4GiwEF9tiQDF4Z6wSGzNwQ0IUmndxvKv9S5KWLGZZhov8f-ECUBfon-VE09Jgf1Gq19yLBrQZ7VeJut0mAMo-l-N8Edu9YdPAr5PfCPFfgEcNHAI1&t=5c0e0825",
+          "https://www.lbcgroup.tv/ScriptResource.axd?d=YJiGZE5KQJ6M-sd4dS0Q3BDXCamLuH6cqHL6sg4RJgoUk-JW6V-A3HqG-kU69S1731F93MKidHAevIr7UEaRB6r0hzG3hFfclR4V7v0PwmEXSZLjDRfz43L02eAw7njgteHbCAGT0A2jSognwoG80mC5ZYzEvk9eUzAW0CsanU82CxpQUUVTdn72Rc1MpsGj0&t=5c0e0825",
+          "https://www.lbcgroup.tv/webservices/Service.asmx/js",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-2.2.3.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-migrate-1.3.0.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/SocialMedia/jquery.sharrre.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/CommonJS/v1.0/MainQuery.min.js?v=326",
+          "https://www.lbcgroup.tv/js/PagesJS/Master.js?v=326",
+          "https://www.lbcgroup.tv/js/PagesJS/ProjectMainQuery.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/Bootstrap/v4.1.1/v4.1.1-OriginalSize/bootstrap.min.js?v=326",
+          "https://www.lbcgroup.tv/Helpers/SlimScroll/jquery.slimscroll.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Js/moment.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Js/moment.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Js/DateTimePicker.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/Swiper/v4.3.3/swiper.min.js?v=",
+          "https://www.lbcgroup.tv/TheWall/js/mCustomScrollbar/v2.1/jquery.mousewheelOld.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/mCustomScrollbar/v2.1/jquery.mCustomScrollbarOld.js?v=326",
+          "https://tpx.tesseradigital.com/dist/bundle.js",
+          "https://www.lbcgroup.tv/TheWall/JS/flickity/v2.1.2/flickity.pkgd.min.js?v=326",
+          "https://webpush.lbccdn.net/js/clientV2.min.js?CompToken=fhdyterstEtsyeLE3sB4wC5rrItdR&h=12&Version=v15"
+        ],
+        "api_candidates": [
+          "http://www.w3.org/1999/xhtml",
+          "https://www.lbcgroup.tv/uploadImages/DefaultAndScriptsImages/Default-Fb-0-639120342186083985.png",
+          "https://www.lbcgroup.tv/images/fb-default-logo2.jpg",
+          "https://www.googletagmanager.com/gtag/js?id=UA-25907912-1",
+          "https://www.lbcgroup.tv/TheWall/style/CommonStyle/v1.0/v1.0-IpadSize768/MainStyle.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/Bootstrap/v4.1.1/v4.1.1-OriginalSize/ar/bootstrap.min.css?326",
+          "https://www.lbcgroup.tv/style/Style.min.css?326",
+          "https://www.lbcgroup.tv/style/ar/Master.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/ar/StaticStyle/v1.0/StaticStyle.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/ionicons/v4.1.2/ionicons.min.css?326",
+          "https://www.lbcgroup.tv/style/ar/SharkTank.css?326",
+          "https://www.googletagservices.com/tag/js/gpt.js",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Style/DateTimePicker.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/Swiper/v4.3.3/swiper.min.css?v=",
+          "https://www.lbcgroup.tv/TheWall/style/mCustomScrollbar/v2.1/CustomScrollbarOld.min.css?v=326",
+          "https://www.lbcgroup.tv/uploadImages/GlobalScriptsAndCssFiles/ar/GSC-F-1-637985691910171787.css?326",
+          "https://www.googletagmanager.com/gtm.js?id=",
+          "https://schema.org",
+          "https://www.lbcgroup.tv/",
+          "https://www.lbcgroup.tv/TheWall/Style/flickity/v2.1.2/flickity.min.css?v=326",
+          "https://www.lbcgroup.tv/schedule/ar",
+          "https://www.lbcgroup.tv/uploadImages/",
+          "https://www.lbcgroup.tv",
+          "https://www.lbcgroup.tv/TheWall",
+          "https://www.googletagmanager.com/ns.html?id=GTM-T8HDVFB",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-2.2.3.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-migrate-1.3.0.min.js?v=326",
+          "https://www.lbcgroup.tv/images/LBCI-Logo02.png",
+          "https://www.lbcgroup.tv/images/Header/username_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/like_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/search_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/burgermenuicon.svg",
+          "https://www.lbcgroup.tv/images/Header/home_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/globe_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/liveicon.svg",
+          "https://www.lbcgroup.tv/uploadImages/ProgramsImages/Channels-L-1-639120346784532514.png",
+          "https://www.lbcgroup.tv/uploadImages/ProgramsImages/Channels-L-9-636096172520776182.png",
+          "https://www.lbcgroup.tv/images/User.svg",
+          "https://www.lbcgroup.tv/images/close-w.png",
+          "https://www.lbcgroup.tv/images/preloader.svg",
+          "https://www.lbcgroup.tv/images/date_calendar.png",
+          "https://www.lbcgroup.tv/schedule-channels/9/lb2-beirut-time/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/20/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/21/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/22/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/23/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/24/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/25/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/26/ar",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/27/ar"
+        ],
+        "guide_links": [
+          {
+            "label": "برامج حوارية",
+            "url": "https://www.lbcgroup.tv/shows/17/برامج-حوارية/ar"
+          },
+          {
+            "label": "برامج حوارية",
+            "url": "https://www.lbcgroup.tv/shows/17/برامج-حوارية/ar"
+          },
+          {
+            "label": "برامج حوارية",
+            "url": "https://www.lbcgroup.tv/shows/17/برامج-حوارية/ar"
+          },
+          {
+            "label": "LB2-Beirut Time",
+            "url": "https://www.lbcgroup.tv/schedule-channels/9/lb2-beirut-time/ar"
+          },
+          {
+            "label": "الأحد",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/20/ar"
+          },
+          {
+            "label": "الإثنين",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/21/ar"
+          },
+          {
+            "label": "الثلاثاء",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/22/ar"
+          },
+          {
+            "label": "الأربعاء",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/23/ar"
+          },
+          {
+            "label": "الخميس",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/24/ar"
+          },
+          {
+            "label": "الجمعة",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/25/ar"
+          },
+          {
+            "label": "السبت",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/26/ar"
+          },
+          {
+            "label": "الأحد",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/27/ar"
+          },
+          {
+            "label": "الإثنين",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/28/ar"
+          },
+          {
+            "label": "الثلاثاء",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/29/ar"
+          },
+          {
+            "label": "الأربعاء",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/30/ar"
+          },
+          {
+            "label": "الخميس",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/01/ar"
+          },
+          {
+            "label": "الجمعة",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/02/ar"
+          },
+          {
+            "label": "السبت",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/03/ar"
+          },
+          {
+            "label": "الأحد",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/04/ar"
+          },
+          {
+            "label": "موقع البرامج",
+            "url": "https://www.lbcgroup.tv/shows/ar"
+          },
+          {
+            "label": "جدول البرامج",
+            "url": "https://www.lbcgroup.tv/schedule/ar"
+          }
+        ],
+        "sample": "LBCI Lebanon, LBC Europe, LB2 International | جدول توقيت البرامج في... مسلسلات أفلام وثائقيات منوعات كوميديا برامج حوارية نشرات الأخبار مسلسلات أفلام وثائقيات منوعات كوميديا برامج حوارية نشرات الأخبار الرئيسية أخبار Live فيديو بالصوت التفضيلات بحث English مسلسلات أفلام وثائقيات منوعات كوميديا برامج حوارية نشرات الأخبار Live فيديو بالصوت أخبار البحث المتقدم الفئة مسلسلات أفلام وثائقيات منوعات كوميديا برامج حوارية نشرات الأخبار نوع المحتوى إجتماعي أخبار أفلام أكشن أنا وعائلتي المختارات برنامج حواري تاريخية تجسس ترفيهي تشويقية ثقافي جرائم حربية خرافية خيالية دراما رسوم متحركة رعب رومانسية رياضية سياسية سيرة ذاتية طبخ غربية غموض كوميدية للأطفال معلومات عامة مغامرة ملحمية موسيقية وثائقية من إلى بحث LBCI-Beirut Time LB2-Beirut Time الأحد 20 أيلول الإثنين 21 أيلول الثلاثاء 22 أيلول الأربعاء 23 أيلول الخميس 24 أيلول الجمعة 25 أيلول السبت 26 أيلول الأحد 27 أيلول الإثنين 28 أيلول الثلاثاء 29 أيلول الأربعاء 30 أيلول الخميس 01 تشرين الأول الجمعة 02 تشرين الأول السبت 03 تشرين الأول الأحد 04 تشرين الأول يعرض الان 17:00 المدة: 30 دقيقة نشرة أخبار ال 11:00 ملحق للأخبار السياسية والأمنية والأجتماعية يجمعها فريق الأخبار بنشرة مسائية في تمام الحادية عشرة التالي 17:30 المدة: 29 دقيقة سبوتلايت وثائقي ي",
+        "discovery_score": 25.9
+      },
+      {
+        "url": "https://www.lbcgroup.tv/schedule/en",
+        "status": 200,
+        "final_url": "https://www.lbcgroup.tv/schedule/en",
+        "content_type": "text/html; charset=utf-8",
+        "title": "LBCI Lebanon, LBC Europe, LB2 International | Schedule and program...",
+        "bytes": 86948,
+        "guide_hits": 2,
+        "time_tokens": 3,
+        "arabic_time_hits": 0,
+        "json_scripts": [
+          {
+            "id": "",
+            "type": "application/ld+json",
+            "bytes": 147
+          }
+        ],
+        "js_assets": [
+          "https://www.googletagmanager.com/gtag/js?id=UA-25907912-1",
+          "https://www.googletagservices.com/tag/js/gpt.js",
+          "https://get.optad360.io/sf/d8ccc5d5-a57d-4a7a-865c-1cee4ddda857/plugin.min.js",
+          "https://servg1.net/o.js?uid=a6a9ff0d0f1e980b3cea04fa",
+          "https://www.lbcgroup.tv/WebResource.axd?d=Vx-qtyOKILUzJRsxmdtumx2NMwJ6wPsgKRopyQFhNHf9d_m-JcKeiuFW9Pd55L_kLLpaZ46-0bQLZlosxY6JJx8ikr-VoHYnMq7rUinOWwc1&t=638901536248157332",
+          "https://www.lbcgroup.tv/ScriptResource.axd?d=bEbvDCMOieTg1tfOSlhbDt2Zbi4ZjIlwas2bBo7vqRmpTKqdlR-HJ5nXJZo4GiwEF9tiQDF4Z6wSGzNwQ0IUmndxvKv9S5KWLGZZhov8f-ECUBfon-VE09Jgf1Gq19yLBrQZ7VeJut0mAMo-l-N8Edu9YdPAr5PfCPFfgEcNHAI1&t=5c0e0825",
+          "https://www.lbcgroup.tv/ScriptResource.axd?d=YJiGZE5KQJ6M-sd4dS0Q3BDXCamLuH6cqHL6sg4RJgoUk-JW6V-A3HqG-kU69S1731F93MKidHAevIr7UEaRB6r0hzG3hFfclR4V7v0PwmEXSZLjDRfz43L02eAw7njgteHbCAGT0A2jSognwoG80mC5ZYzEvk9eUzAW0CsanU82CxpQUUVTdn72Rc1MpsGj0&t=5c0e0825",
+          "https://www.lbcgroup.tv/webservices/Service.asmx/js",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-2.2.3.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-migrate-1.3.0.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/SocialMedia/jquery.sharrre.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/CommonJS/v1.0/MainQuery.min.js?v=326",
+          "https://www.lbcgroup.tv/js/PagesJS/Master.js?v=326",
+          "https://www.lbcgroup.tv/js/PagesJS/ProjectMainQuery.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/Bootstrap/v4.1.1/v4.1.1-OriginalSize/bootstrap.min.js?v=326",
+          "https://www.lbcgroup.tv/Helpers/SlimScroll/jquery.slimscroll.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Js/moment.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Js/moment.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Js/DateTimePicker.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/Swiper/v4.3.3/swiper.min.js?v=",
+          "https://www.lbcgroup.tv/TheWall/js/mCustomScrollbar/v2.1/jquery.mousewheelOld.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/mCustomScrollbar/v2.1/jquery.mCustomScrollbarOld.js?v=326",
+          "https://tpx.tesseradigital.com/dist/bundle.js",
+          "https://www.lbcgroup.tv/TheWall/JS/flickity/v2.1.2/flickity.pkgd.min.js?v=326",
+          "https://webpush.lbccdn.net/js/clientV2.min.js?CompToken=fhdyterstEtsyeLE3sB4wC5rrItdR&h=12&Version=v15"
+        ],
+        "api_candidates": [
+          "http://www.w3.org/1999/xhtml",
+          "https://www.lbcgroup.tv/uploadImages/DefaultAndScriptsImages/Default-Fb-0-639120342186083985.png",
+          "https://www.lbcgroup.tv/images/fb-default-logo2.jpg",
+          "https://www.googletagmanager.com/gtag/js?id=UA-25907912-1",
+          "https://www.lbcgroup.tv/TheWall/style/CommonStyle/v1.0/v1.0-IpadSize768/MainStyle.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/Bootstrap/v4.1.1/v4.1.1-OriginalSize/en/bootstrap.min.css?326",
+          "https://www.lbcgroup.tv/style/Style.min.css?326",
+          "https://www.lbcgroup.tv/style/en/Master.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/en/StaticStyle/v1.0/StaticStyle.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/ionicons/v4.1.2/ionicons.min.css?326",
+          "https://www.lbcgroup.tv/style/en/SharkTank.css?326",
+          "https://www.googletagservices.com/tag/js/gpt.js",
+          "https://www.lbcgroup.tv/TheWall/Helpers/TempusDominus/v5.1.2/Style/DateTimePicker.min.css?326",
+          "https://www.lbcgroup.tv/TheWall/style/Swiper/v4.3.3/swiper.min.css?v=",
+          "https://www.lbcgroup.tv/TheWall/style/mCustomScrollbar/v2.1/CustomScrollbarOld.min.css?v=326",
+          "https://www.googletagmanager.com/gtm.js?id=",
+          "https://www.lbcgroup.tv/uploadImages/GlobalScriptsAndCssFiles/en/GSC-F-8-638769540002765454.css?326",
+          "https://schema.org",
+          "https://www.lbcgroup.tv/",
+          "https://www.lbcgroup.tv/TheWall/Style/flickity/v2.1.2/flickity.min.css?v=326",
+          "https://www.lbcgroup.tv/schedule/en",
+          "https://www.lbcgroup.tv/uploadImages/",
+          "https://www.lbcgroup.tv",
+          "https://www.lbcgroup.tv/TheWall",
+          "https://www.googletagmanager.com/ns.html?id=GTM-T8HDVFB",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-2.2.3.min.js?v=326",
+          "https://www.lbcgroup.tv/TheWall/js/JqueryMain/v2.2.3/jquery-migrate-1.3.0.min.js?v=326",
+          "https://www.lbcgroup.tv/images/LBCI-Logo02.png",
+          "https://www.lbcgroup.tv/images/Header/username_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/like_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/search_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/burgermenuicon.svg",
+          "https://www.lbcgroup.tv/images/Header/home_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/globe_icon.svg",
+          "https://www.lbcgroup.tv/images/Header/liveicon.svg",
+          "https://www.lbcgroup.tv/uploadImages/ProgramsImages/Channels-L-1-639120346784532514.png",
+          "https://www.lbcgroup.tv/uploadImages/ProgramsImages/Channels-L-9-636096172520776182.png",
+          "https://www.lbcgroup.tv/images/User.svg",
+          "https://www.lbcgroup.tv/images/close-w.png",
+          "https://www.lbcgroup.tv/images/preloader.svg",
+          "https://www.lbcgroup.tv/images/date_calendar.png",
+          "https://www.lbcgroup.tv/schedule-channels/9/lb2-beirut-time/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/20/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/21/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/22/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/23/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/24/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/25/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/26/en",
+          "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/27/en"
+        ],
+        "guide_links": [
+          {
+            "label": "LB2-Beirut Time",
+            "url": "https://www.lbcgroup.tv/schedule-channels/9/lb2-beirut-time/en"
+          },
+          {
+            "label": "Sunday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/20/en"
+          },
+          {
+            "label": "Monday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/21/en"
+          },
+          {
+            "label": "Tuesday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/22/en"
+          },
+          {
+            "label": "Wednesday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/23/en"
+          },
+          {
+            "label": "Thursday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/24/en"
+          },
+          {
+            "label": "Friday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/25/en"
+          },
+          {
+            "label": "Saturday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/26/en"
+          },
+          {
+            "label": "Sunday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/27/en"
+          },
+          {
+            "label": "Monday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/28/en"
+          },
+          {
+            "label": "Tuesday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/29/en"
+          },
+          {
+            "label": "Wednesday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/09/30/en"
+          },
+          {
+            "label": "Thursday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/01/en"
+          },
+          {
+            "label": "Friday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/02/en"
+          },
+          {
+            "label": "Saturday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/03/en"
+          },
+          {
+            "label": "Sunday",
+            "url": "https://www.lbcgroup.tv/schedule-channels-date/1/2026/10/04/en"
+          },
+          {
+            "label": "Schedule",
+            "url": "https://www.lbcgroup.tv/schedule/en"
+          }
+        ],
+        "sample": "LBCI Lebanon, LBC Europe, LB2 International | Schedule and program... Series Movies Documentaries Variety Comedy Talk Show News Bulletin Series Movies Documentaries Variety Comedy Talk Show News Bulletin Home News Live Video Audio Favorites Search العربية Series Movies Documentaries Variety Comedy Talk Show News Bulletin Live Video Audio News Advanced Search Category Series Movies Documentaries Variety Comedy Talk Show News Bulletin Content Type Action Adventure Animation Anthology Biography Comedy Cooking Crime Documentary Drama Educational Entertaining Epic Family Fantasy General Knowledge History Horror Kids Movie Musical Mystery News Political Romance Science Fiction Social Sports Spy Suspense Talk Show War Western from to Search LBCI-Beirut Time LB2-Beirut Time Sunday 20 September Monday 21 September Tuesday 22 September Wednesday 23 September Thursday 24 September Friday 25 September Saturday 26 September Sunday 27 September Monday 28 September Tuesday 29 September Wednesday 30 September Thursday 01 October Friday 02 October Saturday 03 October Sunday 04 October On now 17:00 Duration: 30 min Late Night News A full recap of the political, security and social news in Lebanon an",
+        "discovery_score": 27.9
+      },
+      {
+        "url": "https://www.mtv.com.lb/Schedule",
+        "status": 200,
+        "final_url": "https://www.mtv.com.lb/Schedule",
+        "content_type": "text/html; charset=utf-8",
+        "title": "Schedule - MTV Lebanon",
+        "bytes": 60839,
+        "guide_hits": 2,
+        "time_tokens": 0,
+        "arabic_time_hits": 0,
+        "json_scripts": [],
+        "js_assets": [
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://www.mtv.com.lb/lib/jquery/dist/jquery.min.js",
+          "https://imasdk.googleapis.com/js/sdkloader/ima3.js",
+          "https://www.mtv.com.lb/lib/videojs/license.js?v=iPktkaK99b0D-NpvbEi6VVTr6UqOuqjD1sSZkO9Wihw&v=iPktkaK99b0D-NpvbEi6VVTr6UqOuqjD1sSZkO9Wihw",
+          "https://www.mtv.com.lb/lib/videojs/video.min.js?v=V77mUH0Q3kdr52fVZKUlt0juCWdPtom-5IdVXG_eCFU&v=V77mUH0Q3kdr52fVZKUlt0juCWdPtom-5IdVXG_eCFU",
+          "https://www.mtv.com.lb/lib/videojs/plugins/videojs-contrib-ads.min.js?v=rG7uEyGTWyc5XmEtEXk-A0lubcRdP3f1o4aQgXBH-Pg&v=rG7uEyGTWyc5XmEtEXk-A0lubcRdP3f1o4aQgXBH-Pg",
+          "https://www.mtv.com.lb/lib/videojs/plugins/videojs.ima.js?v=dp5D3zepWYUOZPBiLtm0d2sB1pJUWakjg1cY6g1ZlMM&v=dp5D3zepWYUOZPBiLtm0d2sB1pJUWakjg1cY6g1ZlMM",
+          "https://www.mtv.com.lb/lib/videojs/nuevo.min.js?v=U3Sn5_yQdqsXjoG2CYhyfGeyEypyHroCfi0q56XqqQg&v=U3Sn5_yQdqsXjoG2CYhyfGeyEypyHroCfi0q56XqqQg",
+          "https://www.mtv.com.lb/lib/videojs/plugins/videojs.thumbnails.js?v=6XyQoE11x4AAXqWWEJ1MmqToITJG_8BdsgA_XCvQglc&v=6XyQoE11x4AAXqWWEJ1MmqToITJG_8BdsgA_XCvQglc",
+          "https://www.mtv.com.lb/lib/videojs/plugins/videojs.hotkeys.min.js?v=U4mVRu4pc7BZvqrP0soTEieDOshiep5Lv4pd_7EWYuU&v=U4mVRu4pc7BZvqrP0soTEieDOshiep5Lv4pd_7EWYuU",
+          "https://unpkg.com/vue@3/dist/vue.global.prod.js",
+          "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js",
+          "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js",
+          "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.15/build/js/intlTelInput.min.js",
+          "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js",
+          "https://www.mtv.com.lb/js/vue-script.js?v=FpvcksYLGx2wnzDTEJ_x0cTG8-xFVElTlC9P8SjJ9FA&v=FpvcksYLGx2wnzDTEJ_x0cTG8-xFVElTlC9P8SjJ9FA",
+          "https://www.mtv.com.lb/dist/assets/main-7eJF35Fq.js",
+          "https://www.mtv.com.lb/js/site.js?v=cKOMIyepujlOUHGGgZ4qIzL6TRrsrFwwhxMBHLmw8lQ&v=cKOMIyepujlOUHGGgZ4qIzL6TRrsrFwwhxMBHLmw8lQ",
+          "https://www.mtv.com.lb/js/swipers.js?v=aFXWMzFQwg18LuvsF-ZzuTb_H6z-n3aEc2VwQV16YrE&v=aFXWMzFQwg18LuvsF-ZzuTb_H6z-n3aEc2VwQV16YrE",
+          "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+        ],
+        "api_candidates": [
+          "https://imagescdn.mtv.com.lb",
+          "https://cdn.jsdelivr.net",
+          "https://unpkg.com",
+          "https://securepubads.g.doubleclick.net",
+          "https://www.googletagmanager.com",
+          "https://fonts.googleapis.com",
+          "https://connect.facebook.net",
+          "https://www.mtv.com.lb/Schedule",
+          "https://www.mtv.com.lb/images/header/og-fallback.jpg",
+          "https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i",
+          "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css",
+          "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.15/build/css/intlTelInput.css",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://www.mtv.com.lb/12654333/MTV_Schedule_MPU",
+          "https://www.googletagmanager.com/gtm.js?id=",
+          "https://unpkg.com/vue@3/dist/vue.global.prod.js",
+          "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js",
+          "https://imasdk.googleapis.com/js/sdkloader/ima3.js",
+          "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js",
+          "https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.15/build/js/intlTelInput.min.js",
+          "https://www.googletagmanager.com/ns.html?id=GTM-T5VGD2D",
+          "http://www.w3.org/2000/svg",
+          "https://www.mtv.com.lb/en/Schedule",
+          "https://www.youtube.com/channel/UC9_XmAwE5szLHF76FjMylaw",
+          "https://www.instagram.com/mtvlebanon.news",
+          "https://x.com/MTVLebanonNews",
+          "https://www.facebook.com/mtvlebanonnews",
+          "https://www.tiktok.com/@mtvlebanonnews",
+          "https://www.youtube.com/channel/UCnkTo_wMqGtLiA4xX7roORg",
+          "https://www.instagram.com/mtvlebanon",
+          "https://x.com/MTVLebanon",
+          "https://www.facebook.com/MTVLebanon",
+          "https://www.tiktok.com/@mtvlebanon",
+          "https://itunes.apple.com/us/app/mtv-al-lubnaniya/id419330979?mt=8",
+          "https://play.google.com/store/apps/details?id=com.eurisko.murrtvlebanon&hl=en",
+          "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js",
+          "https://connect.facebook.net/en_US/sdk.js",
+          "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+        ],
+        "guide_links": [
+          {
+            "label": "البرامج",
+            "url": "https://www.mtv.com.lb/vod/ar"
+          },
+          {
+            "label": "en",
+            "url": "https://www.mtv.com.lb/en/Schedule"
+          },
+          {
+            "label": "Programs",
+            "url": "https://www.mtv.com.lb/vod/ar"
+          },
+          {
+            "label": "en",
+            "url": "https://www.mtv.com.lb/en/Schedule"
+          },
+          {
+            "label": "جدول البرامج",
+            "url": "https://www.mtv.com.lb/Schedule"
+          },
+          {
+            "label": "شاهد البرامج",
+            "url": "https://www.mtv.com.lb/vod"
+          }
+        ],
+        "sample": "Schedule - MTV Lebanon سياسة ناس إقتصاد فن منوعات رياضة تقارير خاصة البرامج نشرة الأخبار LIVE en Programs Newscasts Live Welcome back invalid invalid {{ loginErrorMessage }} Continue with Facebook Forgot password? Don't have an account? register now You're Already Subscribed! It looks like your subscription is active. Please refresh the page to access your content. Refresh Page Subscribe to watch premium content Apply {{ promoCodeError }} Card I confirm that the subscription frees are non-refundable and will be automatically deducted from my account Yearly (-10%) Monthly {{ planPrice }} {{ discountedPrice }} $ Email Verified Successfully Please verify your email We sent a 6-digit verification code to your email. Enter it below to verify your account. {{ codeError }} {{ resendMessage }} {{ resendError }} Reset your password Enter your email {{ emailError }} Send code Check your inbox An email with a reset link was sent to your mailbox. Check your inbox An email with a reset code was sent to your mailbox, enter it and select your new password {{ codeError }} {{ passwordError }} {{ confirmPasswordError }} تغيير كلمة المرور Password reset successfully Login {{ day.Title }} {{ day.Date ",
+        "discovery_score": 21.8
+      },
       {
         "url": "https://www.teleliban.com.lb/",
         "status": 200,
@@ -721,7 +1692,7 @@
           "https://ltv.ly/%d8%aa%d9%83%d8%a7%d9%84%d8%a9-%d8%a3%d9%83%d8%af-%d8%a3%d9%86-%d8%ad%d9%84-%d8%a7%d9%84%d8%a3%d8%b2%d9%85%d8%a9-%d8%a7%d9%84%d9%84%d9%8a%d8%a8%d9%8a%d8%a9-%d9%8a%d9%86%d8%a8%d8%ba%d9%8a-%d8%a3%d9%86/"
         ],
         "guide_links": [],
-        "sample": "الرئيسية - قناة ليبيا الوطنية Skip to main content سياسة اقتصاد خدمي رياضة تكنولوجيا وعلوم ثقافة مقالات فيديو السبت، 26 سبتمبر 2026 21:16 سياسة اقتصاد خدمي رياضة تكنولوجيا وعلوم ثقافة مقالات فيديو عام صحة عامة سبتمبر 22, 2026 وزارة الصحة تنجز 3.736 تسوية وظيفية عبر منظومة شؤون الموظفين خلال شهر سبتمبر الجاري . خدمي سبتمبر 22, 2026 وزارة البيئة تحيي اليوم العالمي لحماية طبقة الأوزون 2026 . سياسة عام سبتمبر 22, 2026 أكد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية. خدمي سبتمبر 22, 2026 وزارة البيئة تحيي اليوم العالمي لحماية طبقة الأوزون 2026 . سياسة عام سبتمبر 22, 2026 أكد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية. سياسة عرض الكل سياسة عام سبتمبر 22, 2026 أكد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية. أكد رئيس المجلس الأعلى للدولة محمد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية والمصلحة العليا للشعب الليبي، ومرتكزًا إلى أسس قانونية ودستورية راسخة، بما يمكّن الليبيين من تجاوز المراحل الانتقالية والوصول إلى انتخابات شاملة ومستدامة . جاء ذلك في كلمته الافتتاحية امس الاثنين للملتقى الوطني للمجلس الأعلى للدولة […] سياسة سبتمبر ",
+        "sample": "الرئيسية - قناة ليبيا الوطنية Skip to main content سياسة اقتصاد خدمي رياضة تكنولوجيا وعلوم ثقافة مقالات فيديو الأحد، 27 سبتمبر 2026 19:16 سياسة اقتصاد خدمي رياضة تكنولوجيا وعلوم ثقافة مقالات فيديو عام صحة عامة سبتمبر 22, 2026 وزارة الصحة تنجز 3.736 تسوية وظيفية عبر منظومة شؤون الموظفين خلال شهر سبتمبر الجاري . خدمي سبتمبر 22, 2026 وزارة البيئة تحيي اليوم العالمي لحماية طبقة الأوزون 2026 . سياسة عام سبتمبر 22, 2026 أكد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية. خدمي سبتمبر 22, 2026 وزارة البيئة تحيي اليوم العالمي لحماية طبقة الأوزون 2026 . سياسة عام سبتمبر 22, 2026 أكد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية. سياسة عرض الكل سياسة عام سبتمبر 22, 2026 أكد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية. أكد رئيس المجلس الأعلى للدولة محمد تكالة أن حل الأزمة الليبية ينبغي أن يكون ليبيًّا خالصًا، قائمًا على الإرادة الوطنية والمصلحة العليا للشعب الليبي، ومرتكزًا إلى أسس قانونية ودستورية راسخة، بما يمكّن الليبيين من تجاوز المراحل الانتقالية والوصول إلى انتخابات شاملة ومستدامة . جاء ذلك في كلمته الافتتاحية امس الاثنين للملتقى الوطني للمجلس الأعلى للدولة […] سياسة سبتمبر ",
         "discovery_score": 14.3
       }
     ],
@@ -740,9 +1711,9 @@
         "final_url": "https://www.snrt.ma/",
         "content_type": "text/html; charset=UTF-8",
         "title": "Accueil | SNRT - SOCIETE NATIONALE DE RADIODIFFUSION ET DE TELEVISION",
-        "bytes": 173350,
+        "bytes": 173269,
         "guide_hits": 0,
-        "time_tokens": 13,
+        "time_tokens": 17,
         "arabic_time_hits": 0,
         "json_scripts": [],
         "js_assets": [
@@ -820,7 +1791,7 @@
           }
         ],
         "sample": "Accueil | SNRT - SOCIETE NATIONALE DE RADIODIFFUSION ET DE TELEVISION Accueil LIVE Replay JT CHAINES Grille des programmes العربية Français English ⵜⵉⴼⵉⵏⴰⵖ Français العربية ⵜⵉⴼⵉⵏⴰⵖ Anglais 45 Dakika 45 Dakika Images fortes, interventions d’experts et interviews. C’est ce que vous propose 45 dakika, émission phare de votre chaîne de télévision Al Aoula. Le magazine d’investigation vous permet d’approfondir ... Dimanche 21:30 NOUR WA BASSAIR NOUR WA BASSAIR Une émission de débat spirituel animée par Ikram Bennani Rtel qui explique en présence d’imminentes personnalités religieuses les fondements et valeurs cosmiques de l’Islam qui prônent la tolérance ; ... CHAQUE VENDREDI 15:20 Jmaatna zina Jmaatna zina Jmaatna Zina revient sur Al Aoula avec de nombreux artistes qui s’engagent à donner un coup de projecteur sur le riche panorama musical marocain. Toutes les régions du royaume seront représentées ... Samedi 21:30 Ecologica Ecologica Convaincue de l’importance de la question environnementale dans le champ culturel, Athaqafia consacre une place de choix à l’écologie, dans une perspective d’éducation des jeunes générations à la ... AL SOURA TATAHADAT AL SOURA TATAHADAT Une capsule h",
-        "discovery_score": 15.7
+        "discovery_score": 16.9
       },
       {
         "url": "https://www.2m.ma/",
@@ -842,10 +1813,332 @@
     ],
     "Oman": [
       {
-        "url": "https://www.omaninfo.om/omanrd/module.php?CatID=153&ID=516&m=pages-showpage",
-        "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.omaninfo.om', port=443): Max retries exceeded with url: /omanrd/module.php?CatID=153&ID=516&m=pages-showpage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1016)",
-        "discovery_score": 0
+        "url": "https://ayn.om/services",
+        "status": 200,
+        "final_url": "https://ayn.om/services",
+        "content_type": "text/html; charset=UTF-8",
+        "title": "AYN TV - دليل الخدمات",
+        "bytes": 101997,
+        "guide_hits": 6,
+        "time_tokens": 0,
+        "arabic_time_hits": 1,
+        "json_scripts": [],
+        "js_assets": [
+          "https://www.google.com/recaptcha/api.js",
+          "https://ayn.om/js/smart-app-banner.js?v=149.6",
+          "https://ayn.om/js/jquery.min.js?v=149.6",
+          "https://ayn.om/js/jquery-ui.js?v=149.6",
+          "https://ayn.om/js/jquery-migrate.js?v=149.6",
+          "https://ayn.om/js/owl.carousel.min.js?v=149.6",
+          "https://ayn.om/js/jquery.fancybox.min.js?v=149.6",
+          "https://ayn.om/js/new-players-event.min.js?v=149.6",
+          "https://ayn.om/js/lozad.min.js?v=149.6",
+          "https://ayn.om/js/intlTelInput-jquery.min.js?v=149.6",
+          "https://ayn.om/js/custom.js?v=149.6",
+          "https://ayn.om/js/speech_recognition/app_recognition.js?v=149.6",
+          "https://www.google.com/recaptcha/api.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-messaging.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js",
+          "https://ayn.om/js/init-firebase.js?v=149.6",
+          "https://accounts.google.com/gsi/client?hl=ar",
+          "https://cdn.mindrocketsapis.com/client/Latest/jquery.cookie.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/toolkit.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/signsplayer.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/tooltip_add.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/mr_advwinr1.js",
+          "https://cdn.mindrocketsapis.com/client/aynOm/integrator.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/mrmegapack.bundle.js",
+          "https://cdn.mindrocketsapis.com/client/MRUAP/aynOm/integrator-uap.js"
+        ],
+        "api_candidates": [
+          "https://js-agent.newrelic.com/",
+          "http://custom.transaction",
+          "https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap",
+          "https://ayn.om/images/fav.ico?v=149.6",
+          "https://ayn.om/css/alert.css?v=149.6",
+          "https://ayn.om/css/all.min.css?v=149.6",
+          "https://ayn.om/css/jquery-ui.css?v=149.6",
+          "https://ayn.om/css/owl.carousel.css?v=149.6",
+          "https://ayn.om/css/intlTelInput.css?v=149.6",
+          "https://ayn.om/css/jquery.fancybox.min.css?v=149.6",
+          "https://ayn.om/css/styles.css?v=149.6",
+          "https://ayn.om/css/responsive.css?v=149.6",
+          "https://ayn.om/css/smart-app-banner.css?v=149.6",
+          "https://www.google.com/recaptcha/api.js",
+          "https://ayn.om",
+          "https://ayn.om/services",
+          "https://ayn.om/images/placeholders/default_show_horizontal.png",
+          "https://ayn.om/js/smart-app-banner.js?v=149.6",
+          "https://ayn.om/images/favicon_io/android-chrome-192x192.png?v=149.6",
+          "https://ayn.om/images/logo.png",
+          "https://ayn.om/images/kids-site-logo.png",
+          "https://ayn.om/home",
+          "https://ayn.om/live",
+          "https://ayn.om/radio-shows",
+          "https://ayn.om/tv-shows",
+          "https://ayn.om/%D8%A3%D9%81%D9%84%D8%A7%D9%85/388",
+          "https://ayn.om/radio-categories",
+          "https://ayn.om/tv-categories",
+          "https://ayn.om/audiobooks",
+          "https://ayn.om/schedule",
+          "https://ayn.om/photos",
+          "https://ayn.om/kids_page",
+          "https://ayn.om/images/default_profile.png",
+          "https://ayn.om/images/profiler-btn-bg.png",
+          "https://ayn.om/auth/register",
+          "https://ayn.om/auth/login",
+          "https://ayn.om/images/search_rightWhite_icon.png",
+          "https://ayn.om/images/microphone_icon.svg",
+          "https://ayn.om/images/popup_close_icon.svg",
+          "https://ayn.om/images/close.png",
+          "https://ayn.om/pdf/services_guideline.pdf",
+          "https://ayn.om/about-us",
+          "https://ayn.om/terms-condition",
+          "https://www.omaninfo.om",
+          "https://ayn.om/images/footer-logo-new.png",
+          "https://ayn.om/privacy-policy",
+          "https://ejada.gov.om/public/ms?id=u4citv5503",
+          "https://tajawob.om/p/home",
+          "https://www.facebook.com/AynVOD/",
+          "https://ayn.om/images/icon-facebook.svg"
+        ],
+        "guide_links": [
+          {
+            "label": "البرامج",
+            "url": "javascript:void(0)"
+          },
+          {
+            "label": "جدول البرامج",
+            "url": "https://ayn.om/schedule"
+          }
+        ],
+        "sample": "AYN TV - دليل الخدمات الرئيسة البث المباشر البرامج سمعي مرئي أفلام الفئات سمعي مرئي الكتب الصوتية جدول البرامج عدسة أطفال إنشاء حساب تسجيل الدخول Search Search هل أنت متأكد أنك تريد الخروج من واجهة الطفل؟ نعم إلغاء جدول خدمات منصة عين البث المباشر وصف الخدمة تتيح هذه الخدمة مشاهدة البث المباشر لجميع القنوات الإذاعية والتلفزيونية مع إمكانية مشاركة البث للأصدقاء. خطوات الوصول إليها في التطبيق يمكن الوصول للخدمة عبر الأيقونة المخصصة للبث المباشر في الشريط السفلي الثابت داخل التطبيق. خطوات الوصول إليها في الموقع يمكن الوصول للخدمة عن طريق الصفحة الرئيسة تحت عبارة (البث المباشر) ثم اختيار القناة المطلوب متابعتها أو اختيار البث المباشر من القائمة العلوية في الموقع الإلكتروني، ثم اختيار القناة. لا يفوتك وصف الخدمة تتيح هذه الخدمة ميزة الاستماع ومشاهدة ما تم بثه في مختلف القنوات الإذاعية والتلفزيونية خلال 48 ساعة من تاريخ البث. خطوات الوصول إليها في التطبيق للوصول إلى الخدمة، افتح القائمة الجانبية على اليسار، ثم توجه إلى خانة \"لا يفوتك\". خطوات الوصول إليها في الموقع من القائمة العلوية، اختر \"جدول البرامج\"، ثم حدد القناة المطلوبة، ومرّر لأسفل حتى تجد خانة \"لا يفوتك\". 360 VR وصف الخدمة تتيح هذه الخدمة ميزة مشاهدة الفيديو بزاوية رؤية بانورامية بزاوية 360 درجة من جميع الاتجاهات، ويمكن للمستخدم",
+        "discovery_score": 28.1
+      },
+      {
+        "url": "https://ayn.om/tv-shows",
+        "status": 200,
+        "final_url": "https://ayn.om/tv-shows",
+        "content_type": "text/html; charset=UTF-8",
+        "title": "AYN TV - البرامج",
+        "bytes": 204911,
+        "guide_hits": 1,
+        "time_tokens": 0,
+        "arabic_time_hits": 0,
+        "json_scripts": [],
+        "js_assets": [
+          "https://www.google.com/recaptcha/api.js",
+          "https://ayn.om/js/smart-app-banner.js?v=149.6",
+          "https://ayn.om/js/jquery.min.js?v=149.6",
+          "https://ayn.om/js/jquery-ui.js?v=149.6",
+          "https://ayn.om/js/jquery-migrate.js?v=149.6",
+          "https://ayn.om/js/owl.carousel.min.js?v=149.6",
+          "https://ayn.om/js/jquery.fancybox.min.js?v=149.6",
+          "https://ayn.om/js/new-players-event.min.js?v=149.6",
+          "https://ayn.om/js/lozad.min.js?v=149.6",
+          "https://ayn.om/js/intlTelInput-jquery.min.js?v=149.6",
+          "https://ayn.om/js/custom.js?v=149.6",
+          "https://ayn.om/js/speech_recognition/app_recognition.js?v=149.6",
+          "https://www.google.com/recaptcha/api.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-messaging.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js",
+          "https://ayn.om/js/init-firebase.js?v=149.6",
+          "https://accounts.google.com/gsi/client?hl=ar",
+          "https://cdn.mindrocketsapis.com/client/Latest/jquery.cookie.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/toolkit.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/signsplayer.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/tooltip_add.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/mr_advwinr1.js",
+          "https://cdn.mindrocketsapis.com/client/aynOm/integrator.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/mrmegapack.bundle.js",
+          "https://cdn.mindrocketsapis.com/client/MRUAP/aynOm/integrator-uap.js"
+        ],
+        "api_candidates": [
+          "https://js-agent.newrelic.com/",
+          "http://custom.transaction",
+          "https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap",
+          "https://ayn.om/images/fav.ico?v=149.6",
+          "https://ayn.om/css/alert.css?v=149.6",
+          "https://ayn.om/css/all.min.css?v=149.6",
+          "https://ayn.om/css/jquery-ui.css?v=149.6",
+          "https://ayn.om/css/owl.carousel.css?v=149.6",
+          "https://ayn.om/css/intlTelInput.css?v=149.6",
+          "https://ayn.om/css/jquery.fancybox.min.css?v=149.6",
+          "https://ayn.om/css/styles.css?v=149.6",
+          "https://ayn.om/css/responsive.css?v=149.6",
+          "https://ayn.om/css/smart-app-banner.css?v=149.6",
+          "https://www.google.com/recaptcha/api.js",
+          "https://ayn.om",
+          "https://ayn.om/tv-shows",
+          "https://ayn.om/images/placeholders/default_show_horizontal.png",
+          "https://ayn.om/js/smart-app-banner.js?v=149.6",
+          "https://ayn.om/images/favicon_io/android-chrome-192x192.png?v=149.6",
+          "https://ayn.om/images/logo.png",
+          "https://ayn.om/images/kids-site-logo.png",
+          "https://ayn.om/home",
+          "https://ayn.om/live",
+          "https://ayn.om/radio-shows",
+          "https://ayn.om/%D8%A3%D9%81%D9%84%D8%A7%D9%85/388",
+          "https://ayn.om/radio-categories",
+          "https://ayn.om/tv-categories",
+          "https://ayn.om/audiobooks",
+          "https://ayn.om/schedule",
+          "https://ayn.om/photos",
+          "https://ayn.om/kids_page",
+          "https://ayn.om/images/default_profile.png",
+          "https://ayn.om/images/profiler-btn-bg.png",
+          "https://ayn.om/auth/register",
+          "https://ayn.om/auth/login",
+          "https://ayn.om/images/search_rightWhite_icon.png",
+          "https://ayn.om/images/microphone_icon.svg",
+          "https://ayn.om/images/popup_close_icon.svg",
+          "https://ayn.om/images/close.png",
+          "https://ayn.om/show/243335/أفلام-الرياضة",
+          "https://admango.cdn.mangomolo.com/analytics/uploads/168/6ab4c5cbaf.jpg",
+          "https://ayn.om/show_episode/243335",
+          "https://ayn.om/images/hover_play_btn.png",
+          "https://ayn.om/auth/login?back_rel=https://ayn.om/tv-shows",
+          "https://ayn.om/images/hover-plus.png",
+          "https://ayn.om/images/twitter_icon.svg",
+          "https://ayn.om/images/facebook_icons.svg",
+          "https://ayn.om/images/whatsapp_icons.svg",
+          "https://ayn.om/show/243333/أفلام-الثقافة-والفنون",
+          "https://admango.cdn.mangomolo.com/analytics/uploads/168/6ab4c8826f.jpg"
+        ],
+        "guide_links": [
+          {
+            "label": "البرامج",
+            "url": "javascript:void(0)"
+          },
+          {
+            "label": "جدول البرامج",
+            "url": "https://ayn.om/schedule"
+          }
+        ],
+        "sample": "AYN TV - البرامج الرئيسة البث المباشر البرامج سمعي مرئي أفلام الفئات سمعي مرئي الكتب الصوتية جدول البرامج عدسة أطفال إنشاء حساب تسجيل الدخول Search Search هل أنت متأكد أنك تريد الخروج من واجهة الطفل؟ نعم إلغاء البرامج ترتيب حسب كل القنوات كل القنوات قناة عمان العامة قناة عمان الرياضية قناة عمان الثقافية قناة عمان مباشر عين مرئي كل الفئات كل الفئات بودكاست مرئي تغطيات من المحافظات توعوي سياحي وعي أفلام وثائقية جلالة السلطان هيثم حفظه الله ورعاه السلطان قابوس طيب الله ثراه صناع المحتوى مسلسلات وثائقي إخباري حواري محتوى لغة الإشارة الأفلام السينمائية مهرجان عين للأفلام القصيرة طبخ تقني درس على الهواء تغطيات خاصة اقتصادي رياضي صحي أطفال ديني ترفيهي علمي اجتماعي ثقافي الإذاعة المرئية عمان تواجه كورونا اختر تحميل المزيد عين الشروط و الأحكام سياسة الخصوصية دليل الخدمات رضا المستفيد تواصل معنا © جميع الحقوق محفوظة 2026",
+        "discovery_score": 15.6
+      },
+      {
+        "url": "https://ayn.om/schedule/158/",
+        "status": 200,
+        "final_url": "https://ayn.om/schedule/158/",
+        "content_type": "text/html; charset=UTF-8",
+        "title": "AYN TV - قناة عمان العامة - جدول البرامج",
+        "bytes": 155258,
+        "guide_hits": 2,
+        "time_tokens": 156,
+        "arabic_time_hits": 0,
+        "json_scripts": [],
+        "js_assets": [
+          "https://www.google.com/recaptcha/api.js",
+          "https://ayn.om/js/smart-app-banner.js?v=149.6",
+          "https://ayn.om/js/jquery.min.js?v=149.6",
+          "https://ayn.om/js/jquery-ui.js?v=149.6",
+          "https://ayn.om/js/jquery-migrate.js?v=149.6",
+          "https://ayn.om/js/owl.carousel.min.js?v=149.6",
+          "https://ayn.om/js/jquery.fancybox.min.js?v=149.6",
+          "https://ayn.om/js/new-players-event.min.js?v=149.6",
+          "https://ayn.om/js/lozad.min.js?v=149.6",
+          "https://ayn.om/js/intlTelInput-jquery.min.js?v=149.6",
+          "https://ayn.om/js/custom.js?v=149.6",
+          "https://ayn.om/js/speech_recognition/app_recognition.js?v=149.6",
+          "https://www.google.com/recaptcha/api.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-messaging.js",
+          "https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js",
+          "https://ayn.om/js/init-firebase.js?v=149.6",
+          "https://accounts.google.com/gsi/client?hl=ar",
+          "https://cdn.mindrocketsapis.com/client/Latest/jquery.cookie.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/toolkit.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/signsplayer.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/tooltip_add.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/mr_advwinr1.js",
+          "https://cdn.mindrocketsapis.com/client/aynOm/integrator.js",
+          "https://cdn.mindrocketsapis.com/client/Latest/mrmegapack.bundle.js",
+          "https://cdn.mindrocketsapis.com/client/MRUAP/aynOm/integrator-uap.js"
+        ],
+        "api_candidates": [
+          "https://js-agent.newrelic.com/",
+          "http://custom.transaction",
+          "https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap",
+          "https://ayn.om/images/fav.ico?v=149.6",
+          "https://ayn.om/css/alert.css?v=149.6",
+          "https://ayn.om/css/all.min.css?v=149.6",
+          "https://ayn.om/css/jquery-ui.css?v=149.6",
+          "https://ayn.om/css/owl.carousel.css?v=149.6",
+          "https://ayn.om/css/intlTelInput.css?v=149.6",
+          "https://ayn.om/css/jquery.fancybox.min.css?v=149.6",
+          "https://ayn.om/css/styles.css?v=149.6",
+          "https://ayn.om/css/responsive.css?v=149.6",
+          "https://ayn.om/css/smart-app-banner.css?v=149.6",
+          "https://www.google.com/recaptcha/api.js",
+          "https://ayn.om",
+          "https://ayn.om/schedule/158",
+          "https://uploads/168/61dd68f5df.jpg?width=960",
+          "https://ayn.om/js/smart-app-banner.js?v=149.6",
+          "https://ayn.om/images/favicon_io/android-chrome-192x192.png?v=149.6",
+          "https://ayn.om/images/logo.png",
+          "https://ayn.om/images/kids-site-logo.png",
+          "https://ayn.om/home",
+          "https://ayn.om/live",
+          "https://ayn.om/radio-shows",
+          "https://ayn.om/tv-shows",
+          "https://ayn.om/%D8%A3%D9%81%D9%84%D8%A7%D9%85/388",
+          "https://ayn.om/radio-categories",
+          "https://ayn.om/tv-categories",
+          "https://ayn.om/audiobooks",
+          "https://ayn.om/schedule",
+          "https://ayn.om/photos",
+          "https://ayn.om/kids_page",
+          "https://ayn.om/images/default_profile.png",
+          "https://ayn.om/images/profiler-btn-bg.png",
+          "https://ayn.om/auth/register",
+          "https://ayn.om/auth/login",
+          "https://ayn.om/images/search_rightWhite_icon.png",
+          "https://ayn.om/images/microphone_icon.svg",
+          "https://ayn.om/images/popup_close_icon.svg",
+          "https://ayn.om/images/close.png",
+          "https://ayn.om/schedule/158/قناة-عمان-العامة",
+          "https://admango.cdn.mangomolo.com/analytics/uploads/168/60b4c6bb65.png",
+          "https://ayn.om/schedule/159/قناة-عمان-الرياضية",
+          "https://admango.cdn.mangomolo.com/analytics/uploads/168/60b4c6d72c.png",
+          "https://ayn.om/schedule/160/قناة-عمان-الثقافية",
+          "https://admango.cdn.mangomolo.com/analytics/uploads/168/60b4c6ed6c.png",
+          "https://ayn.om/schedule/161/قناة-عمان-مباشر",
+          "https://admango.cdn.mangomolo.com/analytics/uploads/168/60bf59dc2c.png",
+          "https://ayn.om/images/next_arrow.svg",
+          "https://ayn.om/images/prev_arrow.svg"
+        ],
+        "guide_links": [
+          {
+            "label": "البرامج",
+            "url": "javascript:void(0)"
+          },
+          {
+            "label": "جدول البرامج",
+            "url": "https://ayn.om/schedule"
+          },
+          {
+            "label": "",
+            "url": "https://ayn.om/schedule/158/قناة-عمان-العامة"
+          },
+          {
+            "label": "",
+            "url": "https://ayn.om/schedule/159/قناة-عمان-الرياضية"
+          },
+          {
+            "label": "",
+            "url": "https://ayn.om/schedule/160/قناة-عمان-الثقافية"
+          },
+          {
+            "label": "",
+            "url": "https://ayn.om/schedule/161/قناة-عمان-مباشر"
+          }
+        ],
+        "sample": "AYN TV - قناة عمان العامة - جدول البرامج الرئيسة البث المباشر البرامج سمعي مرئي أفلام الفئات سمعي مرئي الكتب الصوتية جدول البرامج عدسة أطفال إنشاء حساب تسجيل الدخول Search Search هل أنت متأكد أنك تريد الخروج من واجهة الطفل؟ نعم إلغاء قنوات الجدول 00:00 00:30 01:00 01:30 02:00 02:30 03:00 03:30 04:00 04:30 05:00 05:30 06:00 06:30 07:00 07:30 08:00 08:30 09:00 09:30 10:00 10:30 11:00 11:30 12:00 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:00 16:30 17:00 17:30 18:00 18:30 19:00 19:30 20:00 20:30 21:00 21:30 22:00 22:30 23:00 23:30 لا يفوتك اليوم أمس اليوم السابق لا يوجد محتوى سؤال أهل الذكر 21:07 - 21:55 من عمان 20:00 - 21:00 الأخبار باللغة الانجليزية 19:00 - 19:52 أخبار الخامسة 16:58 - 17:58 أخبار الحادية عشرة 10:58 - 11:55 HUDSON AND REX - المسلسل الاجنبي 00:20 - 00:50 البحث عن المعرفة 23:55 - 00:20 عطر الشام ج3 23:25 - 23:55 الافلام العربية 23:00 - 23:25 نشرة أخبار العاشرة 22:00 - 23:00 عمان في أسبوع 21:00 - 22:00 افنان 20:30 - 21:00 برنامج تبر الصحراء 20:05 - 20:30 اذان العشاء 20:00 - 20:05 على قد الحب 19:20 - 20:00 نشرة الأخبار باللغة الإنجليزية 19:00 - 19:20 برنامج عوافي 18:30 - 19:00 أذان المغرب 18:25 - 18:30 المسلسل العربي ليالي روكسي - الحلقة 31 17:45 - 18:25 أخبار الخامسة 1",
+        "discovery_score": 27.8
       },
       {
         "url": "https://www.omaninfo.om/",
@@ -861,7 +2154,7 @@
         "final_url": "https://www.pbc.ps/category/programs/",
         "content_type": "text/html; charset=UTF-8",
         "title": "البرامج - تلفزيون فلسطين",
-        "bytes": 233977,
+        "bytes": 233988,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
@@ -977,7 +2270,7 @@
         "final_url": "https://www.pbc.ps/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الرئيسية - تلفزيون فلسطين",
-        "bytes": 189139,
+        "bytes": 189751,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
@@ -1067,15 +2360,217 @@
           "https://www.pbc.ps/category/news/presidential-news/"
         ],
         "guide_links": [],
-        "sample": "الرئيسية - تلفزيون فلسطين Skip to content تخطي إلى المحتوى الأخبار الأخبار الرئاسية الأخبار المحلية أخبار الأسرى الأخبار السياسية الأخبار الاقتصادية أخبار التكنولوجيا الأخبار العالمية الأخبار العربية أخبار الصحة الأخبار الثقافية الأخبار الرياضية أخبار منوعة قصص مصورة مختارات – PAL TV شهداؤنا أكبادنا أبطال النفق البث الحي الأخبار الأخبار الرئاسية الأخبار المحلية أخبار الأسرى الأخبار السياسية الأخبار الاقتصادية أخبار التكنولوجيا الأخبار العالمية الأخبار العربية أخبار الصحة الأخبار الثقافية الأخبار الرياضية أخبار منوعة قصص مصورة مختارات – PAL TV شهداؤنا أكبادنا أبطال النفق البث الحي البث الحي الأخبار مركزية “فتح” تقرر البقاء بحالة انعقاد دائم وتبحث الأوضاع السياسية والحفاظ على المسار الديمقراطي والذهاب لحوار وطني شامل نيويورك: الجامعة العربية والتعاون الإسلامي تنظمان اجتماعا رفيع المستوى بشأن القدس ارتفاع حصيلة الشهداء في قطاع غزة إلى 74,016 والإصابات إلى 175,068 منذ بدء العدوان دورا تحتفل بزفاف 88 عريساً وعروساً تواصل أعمال اجتماعات الجمعية العامة للأمم المتحدة الرئيس عباس يستقبل رؤساء البلديات والمجالس المحلية لمحافظة القدس مصرع طفل جراء حادث سير ذاتي في كفر عين شمال رام الله استشهاد مواطن برصاص الاحتلال في جباليا مستوطنون يطلقون مواشيهم في أرض زراعية ببرقا ويلحقون أضرارا بأشجار الز",
+        "sample": "الرئيسية - تلفزيون فلسطين Skip to content تخطي إلى المحتوى الأخبار الأخبار الرئاسية الأخبار المحلية أخبار الأسرى الأخبار السياسية الأخبار الاقتصادية أخبار التكنولوجيا الأخبار العالمية الأخبار العربية أخبار الصحة الأخبار الثقافية الأخبار الرياضية أخبار منوعة قصص مصورة مختارات – PAL TV شهداؤنا أكبادنا أبطال النفق البث الحي الأخبار الأخبار الرئاسية الأخبار المحلية أخبار الأسرى الأخبار السياسية الأخبار الاقتصادية أخبار التكنولوجيا الأخبار العالمية الأخبار العربية أخبار الصحة الأخبار الثقافية الأخبار الرياضية أخبار منوعة قصص مصورة مختارات – PAL TV شهداؤنا أكبادنا أبطال النفق البث الحي البث الحي الأخبار “العليا الإسرائيلية”: الحكومة تنتهك حُكما يلزمها بالسماح للصليب الأحمر بزيارة الأسرى احتجاجا على تواصل جرائم ومجازر الاحتلال.. لاعبو أيرلندا يرتدون الشارات السوداء خلال مباراة إسرائيل بدوري الأمم الاحتلال يلغي الصفة الدبلوماسية عن الدبلوماسيين الهولنديين لدى فلسطين لجنة الانتخابات: تلقينا تعديلا قانونيا بشأن الانتخابات العامة وموعد الاقتراع يبقى ثابتا الهيئة العامة للشؤون المدنية: الاحتلال يقرر تسليم جثمان الأسير الشهيد مروان فتحي حرز الله الخميس المقبل الرئيس يصدر قرارا بقانون لزيادة فترة الترشح للانتخابات لتصبح 18 يوما الشيخ: الحركة الطلابية الفلسطينية مكون أساسي من مكونات الحركة الوطني",
         "discovery_score": 13.0
       }
     ],
     "Qatar": [
       {
+        "url": "https://www.alkass.net/tvguide",
+        "status": 200,
+        "final_url": "https://www.alkass.net/tvguide",
+        "content_type": "text/html; charset=UTF-8",
+        "title": "قنوات الكأس الرياضية - جدول البث",
+        "bytes": 125615,
+        "guide_hits": 2,
+        "time_tokens": 474,
+        "arabic_time_hits": 1,
+        "json_scripts": [],
+        "js_assets": [
+          "https://www.google.com/recaptcha/api.js",
+          "https://www.googletagmanager.com/gtag/js?id=UA-8775715-1",
+          "https://www.alkass.net/assets/vendor/jquery/jquery.min.js",
+          "https://www.alkass.net/assets/vendor/jquery/jquery.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js",
+          "https://www.alkass.net/assets/vendor/jquery/jquery-migrate.min.js",
+          "https://www.alkass.net/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+          "https://www.alkass.net/assets/vendor/swiper/js/swiper-bundle.min.js",
+          "https://www.alkass.net/assets/js/core.js?id=1",
+          "https://www.alkass.net/assets/js/init.js",
+          "https://www.alkass.net/assets/js/custom.js?a=24123"
+        ],
+        "api_candidates": [
+          "https://fonts.googleapis.com",
+          "https://fonts.gstatic.com",
+          "https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap",
+          "https://www.google.com/recaptcha/api.js",
+          "https://www.googletagmanager.com/gtag/js?id=UA-8775715-1",
+          "https://www.facebook.com/AlkassTVSports",
+          "https://www.twitter.com/AlkassTVSports",
+          "https://www.instagram.com/AlkassTVSports",
+          "https://www.youtube.com/@AlkassTVSports",
+          "https://www.alkassdigital.net",
+          "https://shoof.alkass.net/",
+          "https://shoof.alkass.net/live?ch=one",
+          "https://qa.dohabank.com/",
+          "https://www.vodafone.qa/",
+          "https://qp.com.qa/",
+          "https://www.aspirezone.qa/",
+          "https://www.qfa.qa/",
+          "https://www.qnb.com/",
+          "https://www.jetourqatar.com/",
+          "https://www.mazzraty.com/en",
+          "https://visitqatar.com/",
+          "https://udcqatar.com/",
+          "https://www.qataridiar.com/",
+          "https://www.leshabank.com/",
+          "https://itunes.apple.com/us/artist/al-dawri-al-kass-sport-channel/id390102233",
+          "https://play.google.com/store/apps/details?id=com.alkass.sports",
+          "https://www.alkass.net",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"
+        ],
+        "guide_links": [
+          {
+            "label": "برامجنا",
+            "url": "https://www.alkass.net/programs"
+          },
+          {
+            "label": "جدول البث",
+            "url": "https://www.alkass.net/tvguide"
+          }
+        ],
+        "sample": "قنوات الكأس الرياضية - جدول البث English القناة وجوه الكأس اتصل بنا الأخبار شووف دوري نجوم قطر برامجنا جدول البث ترددات البث المباشر جدول البث THE GAME PLANE 02:00 Aesr Jeddah 03:00 GULF CUP KUWAIT VS IRAQ 04:30 Saudi Arabia and the Gulf Cup 06:30 gulf cup 07:30 GULF CUP OMAN VS SAUDI ARABIA 08:00 al majless 10:00 News 12:00 Jarayd 12:30 Assas Jeddah 13:00 Gulf Cup 13:30 THE GAME PLANE 14:00 al hakam 15:00 Aesr Jeddah 16:00 Qable al-leab 17:30 al majless 18:10 GULF CUP QATAR VS YEMEN 19:00 GULF CUP/ BAHRAIN VS UAE 21:00 al majless 23:00 GULF CUP OMAN VS SAUDI ARABIA 02:00 Doha Bank Stars League Al Gharafa vs Al Shahaniya 04:00 News 06:00 WASL BASKET BALL KUWAIT KUWAITY VS ITIHAD SAUDI 06:30 WASL BASKET BALL RIYADI LUBNENE VS RILOS INDIAN 09:15 News 12:00 Jarayd 12:30 tawasol 13:00 Fiba 13:30 Golmania 14:00 THENTEN WNOSS. 14:30 qatar and gulf cup 15:30 News 16:00 11th Asian Youth Men's Handball Championship Qatar vs. Bahrain 16:15 News 18:00 FOOTBALL REVIEW 18:30 SPORT CONFIDENTIAL 19:00 Inside Line 19:45 Qabl Al-Laeib 20:15 GULF CUP/ BAHRAIN VS UAE 21:00 al majless 23:00 News 00:00 WASL BASKET BALL KUWAIT KUWAITY VS ITIHAD SAUDI 00:30 WASL BASKET BALL RIYADI LUBNENE VS RILOS INDIAN",
+        "discovery_score": 25.1
+      },
+      {
+        "url": "https://dirorigin.alkass.net/tvguide",
+        "status": 200,
+        "final_url": "https://dirorigin.alkass.net/tvguide",
+        "content_type": "text/html; charset=UTF-8",
+        "title": "قنوات الكأس الرياضية - جدول البث",
+        "bytes": 125615,
+        "guide_hits": 2,
+        "time_tokens": 474,
+        "arabic_time_hits": 1,
+        "json_scripts": [],
+        "js_assets": [
+          "https://www.google.com/recaptcha/api.js",
+          "https://www.googletagmanager.com/gtag/js?id=UA-8775715-1",
+          "https://dirorigin.alkass.net/assets/vendor/jquery/jquery.min.js",
+          "https://dirorigin.alkass.net/assets/vendor/jquery/jquery.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js",
+          "https://dirorigin.alkass.net/assets/vendor/jquery/jquery-migrate.min.js",
+          "https://dirorigin.alkass.net/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+          "https://dirorigin.alkass.net/assets/vendor/swiper/js/swiper-bundle.min.js",
+          "https://dirorigin.alkass.net/assets/js/core.js?id=1",
+          "https://dirorigin.alkass.net/assets/js/init.js",
+          "https://dirorigin.alkass.net/assets/js/custom.js?a=24123"
+        ],
+        "api_candidates": [
+          "https://fonts.googleapis.com",
+          "https://fonts.gstatic.com",
+          "https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap",
+          "https://www.google.com/recaptcha/api.js",
+          "https://www.googletagmanager.com/gtag/js?id=UA-8775715-1",
+          "https://www.facebook.com/AlkassTVSports",
+          "https://www.twitter.com/AlkassTVSports",
+          "https://www.instagram.com/AlkassTVSports",
+          "https://www.youtube.com/@AlkassTVSports",
+          "https://www.alkassdigital.net",
+          "https://shoof.alkass.net/",
+          "https://shoof.alkass.net/live?ch=one",
+          "https://qa.dohabank.com/",
+          "https://www.vodafone.qa/",
+          "https://qp.com.qa/",
+          "https://www.aspirezone.qa/",
+          "https://www.qfa.qa/",
+          "https://www.qnb.com/",
+          "https://www.jetourqatar.com/",
+          "https://www.mazzraty.com/en",
+          "https://visitqatar.com/",
+          "https://udcqatar.com/",
+          "https://www.qataridiar.com/",
+          "https://www.leshabank.com/",
+          "https://itunes.apple.com/us/artist/al-dawri-al-kass-sport-channel/id390102233",
+          "https://play.google.com/store/apps/details?id=com.alkass.sports",
+          "https://www.alkass.net",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"
+        ],
+        "guide_links": [
+          {
+            "label": "برامجنا",
+            "url": "https://dirorigin.alkass.net/programs"
+          },
+          {
+            "label": "جدول البث",
+            "url": "https://dirorigin.alkass.net/tvguide"
+          }
+        ],
+        "sample": "قنوات الكأس الرياضية - جدول البث English القناة وجوه الكأس اتصل بنا الأخبار شووف دوري نجوم قطر برامجنا جدول البث ترددات البث المباشر جدول البث THE GAME PLANE 02:00 Aesr Jeddah 03:00 GULF CUP KUWAIT VS IRAQ 04:30 Saudi Arabia and the Gulf Cup 06:30 gulf cup 07:30 GULF CUP OMAN VS SAUDI ARABIA 08:00 al majless 10:00 News 12:00 Jarayd 12:30 Assas Jeddah 13:00 Gulf Cup 13:30 THE GAME PLANE 14:00 al hakam 15:00 Aesr Jeddah 16:00 Qable al-leab 17:30 al majless 18:10 GULF CUP QATAR VS YEMEN 19:00 GULF CUP/ BAHRAIN VS UAE 21:00 al majless 23:00 GULF CUP OMAN VS SAUDI ARABIA 02:00 Doha Bank Stars League Al Gharafa vs Al Shahaniya 04:00 News 06:00 WASL BASKET BALL KUWAIT KUWAITY VS ITIHAD SAUDI 06:30 WASL BASKET BALL RIYADI LUBNENE VS RILOS INDIAN 09:15 News 12:00 Jarayd 12:30 tawasol 13:00 Fiba 13:30 Golmania 14:00 THENTEN WNOSS. 14:30 qatar and gulf cup 15:30 News 16:00 11th Asian Youth Men's Handball Championship Qatar vs. Bahrain 16:15 News 18:00 FOOTBALL REVIEW 18:30 SPORT CONFIDENTIAL 19:00 Inside Line 19:45 Qabl Al-Laeib 20:15 GULF CUP/ BAHRAIN VS UAE 21:00 al majless 23:00 News 00:00 WASL BASKET BALL KUWAIT KUWAITY VS ITIHAD SAUDI 00:30 WASL BASKET BALL RIYADI LUBNENE VS RILOS INDIAN",
+        "discovery_score": 25.1
+      },
+      {
+        "url": "https://www.tabie.net/live",
+        "status": 200,
+        "final_url": "https://www.tabie.net/live",
+        "content_type": "text/html; charset=utf-8",
+        "title": "البث المباشر للقنوات والإذاعات | تابع",
+        "bytes": 1188682,
+        "guide_hits": 21,
+        "time_tokens": 3088,
+        "arabic_time_hits": 3,
+        "json_scripts": [
+          {
+            "id": "",
+            "type": "application/ld+json",
+            "bytes": 928
+          }
+        ],
+        "js_assets": [
+          "https://www.googletagmanager.com/gtag/js?id=G-NRFV9J8WM0",
+          "https://www.tabie.net/assets/js/core/libs.min.js",
+          "https://www.tabie.net/assets/vendor/swiperSlider/swiper.min.js",
+          "https://www.tabie.net/assets/js/core/external.min.js",
+          "https://unpkg.com/aos@2.3.1/dist/aos.js",
+          "https://www.tabie.net/assets/js/plugins/countdown.js",
+          "https://www.tabie.net/assets/js/utility.js",
+          "https://www.tabie.net/assets/js/tabie.js",
+          "https://www.tabie.net/assets/js/swiper.js?v=dxzNfmHz2APPZNF58xIXHb0xB4rb6JIllcUfwMFZt0U",
+          "https://www.tabie.net/assets/js/2026.js?v=17.1.9",
+          "https://vjs.zencdn.net/8.6.1/video.min.js",
+          "https://www.datadoghq-browser-agent.com/eu1/v7/datadog-rum.js",
+          "https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js",
+          "https://www.tabie.net/assets/js/live.js?v=19.3.14"
+        ],
+        "api_candidates": [
+          "https://www.googletagmanager.com/gtag/js?id=G-NRFV9J8WM0",
+          "http://www.tabie.net/live",
+          "https://www.qmc.qa/img/LiveDigitalChannels/9b41d3a9-a9d5-4117-aed8-25ebaf4b5aeb.jpg",
+          "https://schema.org",
+          "https://unpkg.com/aos@2.3.1/dist/aos.css",
+          "https://fonts.googleapis.com/icon?family=Material+Icons+Round",
+          "https://vjs.zencdn.net/8.6.1/video-js.css",
+          "https://qmc.qa/",
+          "https://www.tabie.net/channels",
+          "https://www.instagram.com/tabieqa",
+          "https://x.com/tabieqa",
+          "https://play.google.com/store/apps/details?id=com.qmc.tabae&hl=en&gl=US",
+          "https://apps.apple.com/us/app/tabie-qmc/id6464593710",
+          "https://unpkg.com/aos@2.3.1/dist/aos.js",
+          "https://vjs.zencdn.net/8.6.1/video.min.js",
+          "https://www.datadoghq-browser-agent.com/eu1/v7/datadog-rum.js",
+          "https://tabie.net/",
+          "https://www.tabie.net/",
+          "https://tracker.metricool.com/resources/be.js",
+          "https://cdn.jsdelivr.net/npm/hls.js@1.6.16/dist/hls.min.js"
+        ],
+        "guide_links": [
+          {
+            "label": "مسلسلات وبرامج",
+            "url": "https://www.tabie.net/genre"
+          },
+          {
+            "label": "مسلسلات وبرامج",
+            "url": "https://www.tabie.net/genre"
+          }
+        ],
+        "sample": "البث المباشر للقنوات والإذاعات | تابع الرئيسية بحث مباشر مسلسلات وبرامج قائمتي إتصل بنا سياسة الخصوصية تسجيل الدخول play_arrow تابع الآن القنوات تابع الأن جاري التحميل... تابع حكايات جاري التحميل... تلفزيون قطر جاري التحميل... تلفزيون قطر 2 جاري التحميل... تلفزيون_قطر_القرآن_الكريم جاري التحميل... QBC جاري التحميل... الجزيرة العربية جاري التحميل... الجزيرة 2 جاري التحميل... ألجزيرة مباشر جاري التحميل... الجزيرة الوثائقية جاري التحميل... الجزيرة الإنجليزية جاري التحميل... بي أن سبورت الاخبارية جاري التحميل... قناة الكأس 1 جاري التحميل... التفزيون العربي جاري التحميل... التلفزيون العربي 2 جاري التحميل... تلفزيون سوريا جاري التحميل... تلفزيون سوريا 2 جاري التحميل... قناة الريان الفضائية جاري التحميل... قناة الريان القديم الفضائية القديم جاري التحميل... إذاعة قطر جاري التحميل... إذاعة القرآن الكريم جاري التحميل... إذاعة القرآن الكريم 2 جاري التحميل... إذاعة صوت الخليج - 88.0 جاري التحميل... إذاعة صوت الخليج - 100.8 جاري التحميل... إذاعة صوت الريان جاري التحميل... إذاعة صوت الإسلام جاري التحميل... الإذاعة الانجليزية - فطر جاري التحميل... إذاعة أوريكس الفرنسية جاري التحميل... إذاعة الأوردو جاري التحميل... الإذاعة الإسبانية - قطر جاري التحميل... تابع الأن LIVE لا يوجد برنامج EPG يعرض الآن",
+        "discovery_score": 37.1
+      },
+      {
         "url": "https://www.qatartv.com/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.qatartv.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.qatartv.com', port=443) at 0x7f41b3ca41d0>, 'Connection to www.qatartv.com timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.qatartv.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.qatartv.com', port=443) at 0x7fe972cd5a10>, 'Connection to www.qatartv.com timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -1241,6 +2736,228 @@
     ],
     "Tunisia": [
       {
+        "url": "https://www.tunisiatv.tn/ar",
+        "status": 200,
+        "final_url": "https://www.tunisiatv.tn/ar",
+        "content_type": "text/html; charset=utf-8",
+        "title": "التلفزة التونسية | الرئيسية",
+        "bytes": 223545,
+        "guide_hits": 3,
+        "time_tokens": 45,
+        "arabic_time_hits": 1,
+        "json_scripts": [],
+        "js_assets": [
+          "https://www.tunisiatv.tn/_next/static/chunks/0dk_14w2_fmo8.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/34wvn5zw0a69w.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/1a07nvhrhixbl.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/33x2-meake7jm.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/turbopack-0gn92ydb3f83j.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/3fntmmi971322.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/2xl1nu3ze4hol.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/1z6x88ihszho0.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/3zovwh0iydj0o.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/0s5a63q8_rhyd.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/2gjm0o5s8ux_o.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/16b6y3-zhx_yw.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/27kqnoi2104zp.js",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2287141032864366",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/0cz1d0mv5g_q7.js",
+          "https://www.tunisiatv.tn/_next/static/chunks/066_9qs-fr7km.js",
+          "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+        ],
+        "api_candidates": [
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2287141032864366",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://www.googletagmanager.com/gtag/js?id=G-K8DXMW3E0W",
+          "https://api.tunisiatv.tnundefined/",
+          "http://www.w3.org/2000/svg",
+          "https://www.tunisiatv.tn/ar/programme",
+          "https://www.facebook.com/TVN.Tunisie/",
+          "https://www.instagram.com/television.tunisienne/",
+          "https://x.com/Watania_Tunisia",
+          "https://www.youtube.com/channel/UCdvWVsmQBROkgcGzVep73oA",
+          "https://api.tunisiatv.tn/uploads/content/images/1790531728958-90b1f1599c7e.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790518992752-cfbb85288a22.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790518211362-1108063aa51e.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790506641162-fd4e0d1650b2.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790506337838-32e4bd678888.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790455436849-8cbced803f6a.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-DV0a1C9Z.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-5TtzTnJL.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-aShYMBzM.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-UT1Ubd4W.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-ju5lGnLk.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-krLdFKLT.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-zRmfSnwr.jpg",
+          "https://apps.apple.com/tn/app/watania-extra/id6760117921",
+          "https://play.google.com/store/apps/details?id=com.tanitweb.wataneya",
+          "https://api.tunisiatv.tn/uploads/content/images/1790531518104-a68c1f754315.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790455045397-2f53c0de12f2.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790446280067-7767d237768f.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790444034438-e63a2fba8442.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790430527099-317827e3afc5.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790419192763-c54b5ba54289.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790155728435-f0151070e0aa.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790154488198-33cec39d6ebd.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790082074108-4036cda9a2cb.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1789991529667-7dbd69d5a062.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1789654674359-e0243227aae3.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1789559825714-aaa71a3de3b6.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1786443276978-021d426a5954.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1784448227802-f4d0814a3aa0.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1784362124133-72729942fbfc.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1783097321894-6b0a72bb699e.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790444257832-c1823bada72b.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790443795979-b7c311f4c1d6.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790425116965-73f1328633e9.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790345945489-67ac3231a8c7.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790337715563-05bcbd80b683.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790337473859-4ed88bcc958d.jpg",
+          "https://www.tanitweb.com",
+          "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+        ],
+        "guide_links": [
+          {
+            "label": "دليل البرامج",
+            "url": "https://www.tunisiatv.tn/ar/programme"
+          },
+          {
+            "label": "برامجنا",
+            "url": "https://www.tunisiatv.tn/ar/emissions"
+          },
+          {
+            "label": "تشاهدون اليوم",
+            "url": "https://www.tunisiatv.tn/ar/programme"
+          },
+          {
+            "label": "دليل البرامج",
+            "url": "https://www.tunisiatv.tn/ar/programme"
+          },
+          {
+            "label": "برامجنا",
+            "url": "https://www.tunisiatv.tn/ar/emissions"
+          },
+          {
+            "label": "دليل البرامج",
+            "url": "https://www.tunisiatv.tn/ar/programme"
+          }
+        ],
+        "sample": "التلفزة التونسية | الرئيسية بحث دليل البرامج الأخبار جهوية وطنية عالمية سياسة اقتصاد رياضة كرة القدم كرة السلة كرة اليد ثقافة مسرح موسيقى سينما مهرجانات أدب و إصدارات تكنولوجيا ذكاء اصطناعي البرمجيات تطبيقات متفرقات طرائف مجتمع لايف ستايل التلفزة التونسية تاريخ التلفزة التونسية من نحن قيمنا النفاذ إلى المعلومة الخلية المركزية للحوكمة الإطار القانوني اخر النشرات برامجنا مسلسلاتنا البث المباشر وطنية أمطار متفرقة بالمناطق الشرقية للوسط والجنوب مساء الأحد 27 سبتمبر 2026 18:54 تكون السحب، مساء اليوم الأحد، أحيانا كثيفة مع أمطار متفرقة بالمناطق الشرقية للوسط والجنوب مع سحب عابرة ببقية الجهات. .. وطنية قوافل صحية ونفسية متنقلة بكافة ولايات الجمهورية للوقاية من ... وطنية تونس الوجهة المغاربية الأولى للفرنسيين بأكثر من 1.14 مليون ... اقتصاد المبادلات التجارية بين تونس والجزائر ترتفع 166% في خمس ... وطنية إنجاز طبي تونسي: اعتماد تقنية متطورة لحفظ الكلى المخصصة ... وطنية وزيرة الأسرة: مواصلة دعم الشراكة مع الكشافة التونسية في ... تشاهدون اليوم الوطنية 1 06:00 النشيد الرسمي 06:02 القرآن الكريم 06:30 ابتهالات 07:00 في خلقه شؤون 07:30 سلسلة علماء المسلمين 08:00 قصص من الأرض 08:45 أهلا تونس 11:25 ديما عامرة 12:00 المطبعة 13:00 نشرة الظهر للأخبار 13:20 مسلسل خمسة ونص 14:10 المجلة الصحية 15:45 صنعة",
+        "discovery_score": 31.3
+      },
+      {
+        "url": "https://tunisiatv.tn/ar",
+        "status": 200,
+        "final_url": "https://tunisiatv.tn/ar",
+        "content_type": "text/html; charset=utf-8",
+        "title": "التلفزة التونسية | الرئيسية",
+        "bytes": 223545,
+        "guide_hits": 3,
+        "time_tokens": 45,
+        "arabic_time_hits": 1,
+        "json_scripts": [],
+        "js_assets": [
+          "https://tunisiatv.tn/_next/static/chunks/0dk_14w2_fmo8.js",
+          "https://tunisiatv.tn/_next/static/chunks/34wvn5zw0a69w.js",
+          "https://tunisiatv.tn/_next/static/chunks/1a07nvhrhixbl.js",
+          "https://tunisiatv.tn/_next/static/chunks/33x2-meake7jm.js",
+          "https://tunisiatv.tn/_next/static/chunks/turbopack-0gn92ydb3f83j.js",
+          "https://tunisiatv.tn/_next/static/chunks/3fntmmi971322.js",
+          "https://tunisiatv.tn/_next/static/chunks/2xl1nu3ze4hol.js",
+          "https://tunisiatv.tn/_next/static/chunks/1z6x88ihszho0.js",
+          "https://tunisiatv.tn/_next/static/chunks/3zovwh0iydj0o.js",
+          "https://tunisiatv.tn/_next/static/chunks/0s5a63q8_rhyd.js",
+          "https://tunisiatv.tn/_next/static/chunks/2gjm0o5s8ux_o.js",
+          "https://tunisiatv.tn/_next/static/chunks/16b6y3-zhx_yw.js",
+          "https://tunisiatv.tn/_next/static/chunks/27kqnoi2104zp.js",
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2287141032864366",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://tunisiatv.tn/_next/static/chunks/0cz1d0mv5g_q7.js",
+          "https://tunisiatv.tn/_next/static/chunks/066_9qs-fr7km.js",
+          "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+        ],
+        "api_candidates": [
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2287141032864366",
+          "https://securepubads.g.doubleclick.net/tag/js/gpt.js",
+          "https://www.googletagmanager.com/gtag/js?id=G-K8DXMW3E0W",
+          "https://api.tunisiatv.tnundefined/",
+          "http://www.w3.org/2000/svg",
+          "https://tunisiatv.tn/ar/programme",
+          "https://www.facebook.com/TVN.Tunisie/",
+          "https://www.instagram.com/television.tunisienne/",
+          "https://x.com/Watania_Tunisia",
+          "https://www.youtube.com/channel/UCdvWVsmQBROkgcGzVep73oA",
+          "https://api.tunisiatv.tn/uploads/content/images/1790531728958-90b1f1599c7e.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790518992752-cfbb85288a22.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790518211362-1108063aa51e.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790506641162-fd4e0d1650b2.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790506337838-32e4bd678888.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790455436849-8cbced803f6a.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-DV0a1C9Z.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-5TtzTnJL.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-aShYMBzM.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-UT1Ubd4W.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-ju5lGnLk.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-krLdFKLT.jpg",
+          "https://api.wataniaplus.tunisiatv.tn/uploads/program/portrait-zRmfSnwr.jpg",
+          "https://apps.apple.com/tn/app/watania-extra/id6760117921",
+          "https://play.google.com/store/apps/details?id=com.tanitweb.wataneya",
+          "https://api.tunisiatv.tn/uploads/content/images/1790531518104-a68c1f754315.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790455045397-2f53c0de12f2.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790446280067-7767d237768f.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790444034438-e63a2fba8442.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790430527099-317827e3afc5.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790419192763-c54b5ba54289.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790155728435-f0151070e0aa.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790154488198-33cec39d6ebd.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790082074108-4036cda9a2cb.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1789991529667-7dbd69d5a062.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1789654674359-e0243227aae3.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1789559825714-aaa71a3de3b6.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1786443276978-021d426a5954.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1784448227802-f4d0814a3aa0.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1784362124133-72729942fbfc.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1783097321894-6b0a72bb699e.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790444257832-c1823bada72b.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790443795979-b7c311f4c1d6.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790425116965-73f1328633e9.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790345945489-67ac3231a8c7.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790337715563-05bcbd80b683.jpg",
+          "https://api.tunisiatv.tn/uploads/content/images/1790337473859-4ed88bcc958d.jpg",
+          "https://www.tanitweb.com",
+          "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+        ],
+        "guide_links": [
+          {
+            "label": "دليل البرامج",
+            "url": "https://tunisiatv.tn/ar/programme"
+          },
+          {
+            "label": "برامجنا",
+            "url": "https://tunisiatv.tn/ar/emissions"
+          },
+          {
+            "label": "تشاهدون اليوم",
+            "url": "https://tunisiatv.tn/ar/programme"
+          },
+          {
+            "label": "دليل البرامج",
+            "url": "https://tunisiatv.tn/ar/programme"
+          },
+          {
+            "label": "برامجنا",
+            "url": "https://tunisiatv.tn/ar/emissions"
+          },
+          {
+            "label": "دليل البرامج",
+            "url": "https://tunisiatv.tn/ar/programme"
+          }
+        ],
+        "sample": "التلفزة التونسية | الرئيسية بحث دليل البرامج الأخبار جهوية وطنية عالمية سياسة اقتصاد رياضة كرة القدم كرة السلة كرة اليد ثقافة مسرح موسيقى سينما مهرجانات أدب و إصدارات تكنولوجيا ذكاء اصطناعي البرمجيات تطبيقات متفرقات طرائف مجتمع لايف ستايل التلفزة التونسية تاريخ التلفزة التونسية من نحن قيمنا النفاذ إلى المعلومة الخلية المركزية للحوكمة الإطار القانوني اخر النشرات برامجنا مسلسلاتنا البث المباشر وطنية أمطار متفرقة بالمناطق الشرقية للوسط والجنوب مساء الأحد 27 سبتمبر 2026 18:54 تكون السحب، مساء اليوم الأحد، أحيانا كثيفة مع أمطار متفرقة بالمناطق الشرقية للوسط والجنوب مع سحب عابرة ببقية الجهات. .. وطنية قوافل صحية ونفسية متنقلة بكافة ولايات الجمهورية للوقاية من ... وطنية تونس الوجهة المغاربية الأولى للفرنسيين بأكثر من 1.14 مليون ... اقتصاد المبادلات التجارية بين تونس والجزائر ترتفع 166% في خمس ... وطنية إنجاز طبي تونسي: اعتماد تقنية متطورة لحفظ الكلى المخصصة ... وطنية وزيرة الأسرة: مواصلة دعم الشراكة مع الكشافة التونسية في ... تشاهدون اليوم الوطنية 1 06:00 النشيد الرسمي 06:02 القرآن الكريم 06:30 ابتهالات 07:00 في خلقه شؤون 07:30 سلسلة علماء المسلمين 08:00 قصص من الأرض 08:45 أهلا تونس 11:25 ديما عامرة 12:00 المطبعة 13:00 نشرة الظهر للأخبار 13:20 مسلسل خمسة ونص 14:10 المجلة الصحية 15:45 صنعة",
+        "discovery_score": 31.3
+      },
+      {
         "url": "https://www.television.tn/",
         "status": "ERROR",
         "error": "HTTPSConnectionPool(host='www.television.tn', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.television.tn'. (_ssl.c:1016)\")))",
@@ -1311,7 +3028,7 @@
       {
         "url": "https://www.sharjahtv.ae/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.sharjahtv.ae', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.sharjahtv.ae', port=443) at 0x7f41b2a7f090>, 'Connection to www.sharjahtv.ae timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.sharjahtv.ae', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.sharjahtv.ae', port=443) at 0x7fe971cae1d0>, 'Connection to www.sharjahtv.ae timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -1332,7 +3049,7 @@
           "http://www.w3.org/TR/html4/loose.dtd"
         ],
         "guide_links": [],
-        "sample": "ERROR: The request could not be satisfied 403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner. If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation. Generated by cloudfront (CloudFront) Request ID: ZZISSmWF5_d_NW2IGzlwYR1cn56yfHxi5FVvAcfce_FNQ_4-nRmamQ==",
+        "sample": "ERROR: The request could not be satisfied 403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner. If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation. Generated by cloudfront (CloudFront) Request ID: zmvxuNpfgSej3XBbTBreDM1Y58XoKNngJVNtkiMsqke7Kvaq-ef3GQ==",
         "discovery_score": 0.7
       }
     ],
@@ -1343,10 +3060,10 @@
         "final_url": "https://yementv.tv/",
         "content_type": "text/html; charset=UTF-8",
         "title": "قناة اليمن الفضائية | الموقع الرسمي التابع للحكومة الشرعية",
-        "bytes": 228631,
+        "bytes": 229678,
         "guide_hits": 0,
         "time_tokens": 3,
-        "arabic_time_hits": 6,
+        "arabic_time_hits": 5,
         "json_scripts": [
           {
             "id": "",
@@ -1366,7 +3083,7 @@
           "https://fr.yementv.tv/",
           "https://fa.yementv.tv/",
           "https://zh.yementv.tv/",
-          "https://yementv.tv/wp-content/litespeed/css/d973c902a99fc832f9654e89a06d850d.css?ver=43c35",
+          "https://yementv.tv/wp-content/litespeed/css/d973c902a99fc832f9654e89a06d850d.css?ver=43db2",
           "https://www.fontstatic.com/f=jazeera?ver=7.1.2",
           "https://www.fontstatic.com/f=droidkufi-regular?ver=7.1.2",
           "https://yementv.tv/wp-includes/js/jquery/jquery.min.js",
@@ -1394,18 +3111,18 @@
           "https://en.yementv.tv",
           "https://fr.yementv.tv",
           "https://fa.yementv.tv",
-          "https://yementv.tv/%d8%b3%d9%81%d8%a7%d8%b1%d8%a9-%d8%a7%d9%84%d9%88%d9%84%d8%a7%d9%8a%d8%a7%d8%aa-%d8%a7%d9%84%d9%85%d8%aa%d8%ad%d8%af%d8%a9-%d8%aa%d9%87%d9%86%d8%a6-%d8%a7%d9%84%d8%b4%d8%b9%d8%a8-%d8%a7%d9%84%d9%8a/",
-          "https://yementv.tv/prime-minister-visit-in-aboud-hospital/",
-          "https://yementv.tv/yemen-russia-relations-2/",
-          "https://yementv.tv/electronic-booking-yemen-airlines/",
-          "https://yementv.tv/humanitarian-impacts-houthi-escalation/",
-          "https://yementv.tv/british-embassy-yemen-september-26/",
-          "https://yementv.tv/yemen-foreign-minister-red-cross/",
-          "https://yementv.tv/weather-forecast-yemen-6/",
-          "https://yementv.tv/%d8%a7%d9%84%d9%8a%d9%85%d9%86-%d9%8a%d8%a4%d9%83%d8%af-%d8%a3%d9%86-%d8%aa%d8%ad%d9%82%d9%8a%d9%82-%d8%a7%d9%84%d8%a3%d9%85%d9%86-%d8%a7%d9%84%d8%b5%d8%ad%d9%8a-%d8%a7%d9%84%d8%b9%d8%a7%d9%84%d9%85/",
-          "https://yementv.tv/yemen-participates-g77-china-meeting/",
-          "https://yementv.tv/airstrikes-houthi-targets-%d8%aa%d8%b9%d8%b2/",
-          "https://yementv.tv/minister-of-interior-congratulates-president-64th-september-revolution/"
+          "https://yementv.tv/military-operations-sabihah/",
+          "https://yementv.tv/yemen-algeria-relations/",
+          "https://yementv.tv/mine-removal-yemen-2/",
+          "https://yementv.tv/conclusion-of-personal-protection-courses/",
+          "https://yementv.tv/un-general-assembly-session-81/",
+          "https://yementv.tv/saudi-arabia-support-yemen/",
+          "https://yementv.tv/%d8%a7%d9%84%d8%a3%d8%b1%d8%b5%d8%a7%d8%af-%d8%aa%d8%aa%d9%88%d9%82%d8%b9-%d8%b7%d9%82%d8%b3%d9%8b%d8%a7-%d8%ad%d8%a7%d8%b1%d9%8b%d8%a7-%d9%81%d9%8a-%d8%a7%d9%84%d8%b3%d9%88%d8%a7%d8%ad%d9%84-%d9%88/",
+          "https://yementv.tv/anti-houthi-threat/",
+          "https://yementv.tv/26-september-revolution-celebration/",
+          "https://yementv.tv/anti-houthi-escalation-impact/",
+          "https://yementv.tv/military-operations-against-houthis/",
+          "https://yementv.tv/%d8%b7%d9%8a%d8%b1%d8%a7%d9%86-%d8%a7%d9%84%d9%82%d9%88%d8%a7%d8%aa-%d8%a7%d9%84%d9%85%d8%b3%d9%84%d8%ad%d8%a9-%d9%8a%d8%b3%d8%aa%d9%87%d8%af%d9%81-%d9%85%d8%ae%d8%a7%d8%b2%d9%86-%d8%a3%d8%b3%d9%84/"
         ],
         "guide_links": [
           {
@@ -1421,8 +3138,8 @@
             "url": "https://yementv.tv/programs/"
           }
         ],
-        "sample": "قناة اليمن الفضائية | الموقع الرسمي التابع للحكومة الشرعية بحث عن الوضع المظلم تسجيل الدخول قناة اليمن القائمة الصفحة الرئيسية الرئيس الأخبار المحلية محلي الإعلام الأمني والعسكري إنتهاكات المليشيا اقتصاد التقارير عربي ودولي الأخبار العربية والدولية الرياضة منوعات علوم وتكنولوجيا الصحة والجمال كتابات برامجنا تواصل معنا تردد قناة الفضائية اعلن في القناة اللغات الأخرى | English Français فارسی 中文 . أبرز الأخبار سفارة الولايات المتحدة تهنئ الشعب اليمني بذكرى ثورة 26 سبتمبر رئيس الوزراء يتفقد أوضاع الجرحى في مستشفى عبود العسكري بعدن عضو مجلس القيادة الدكتور عبدالله العليمي يبحث مع وزير الخارجية الروسي العلاقات الثنائية وتطورات الأوضاع في اليمن الخطوط الجوية اليمنية تستعد لإطلاق خدمة الحجز الإلكتروني في أكتوبر عضو مجلس القيادة د.عبدالله العليمي يبحث مع وكيل الأمين العام للأمم المتحدة التداعيات الإنسانية للتصعيد الحوثي السفارة البريطانية تهنئ الشعب اليمني بذكرى ثورة 26 سبتمبر وزيرة الخارجية تبحث في نيويورك مع رئيسة الصليب الأحمر تداعيات التصعيد الحوثي والجهود الإنسانية المشتركة الأرصاد تتوقّع طقسًا شديد الحرارة وأمطارًا رعدية في مناطق واسعة اليمن يؤكد أن تحقيق الأمن الصحي العالمي يتطلب منظومة أكثر استعدادًا وإنصافًا وتضامنًا اليمن يشارك في الاجتماع الوزاري لمجموعة الـ77 والصين شريط الأخبار",
-        "discovery_score": 19.3
+        "sample": "قناة اليمن الفضائية | الموقع الرسمي التابع للحكومة الشرعية بحث عن الوضع المظلم تسجيل الدخول قناة اليمن القائمة الصفحة الرئيسية الرئيس الأخبار المحلية محلي الإعلام الأمني والعسكري إنتهاكات المليشيا اقتصاد التقارير عربي ودولي الأخبار العربية والدولية الرياضة منوعات علوم وتكنولوجيا الصحة والجمال كتابات برامجنا تواصل معنا تردد قناة الفضائية اعلن في القناة اللغات الأخرى | English Français فارسی 中文 . أبرز الأخبار عضو مجلس القيادة محمود الصبيحي يطلع على سير العمليات العسكرية في جبهات الصبيحة وزيرة الخارجية تبحث مع نظيرها الجزائري تعزيز العلاقات الثنائية “مسام” ينزع 5164 لغماً وذخيرة وعبوة ناسفة منذ بداية سبتمبر عضو مجلس القيادة سالم الخنبشي يشهد اختتام دورات حماية الشخصيات والصاعقة بكلية الشرطة بحضرموت عضو مجلس القيادة الرئاسي الدكتور عبدالله العليمي يختتم مشاركته في أعمال الدورة الـ81 للجمعية العامة للأمم المتحدة السعودية تؤكد دعمها لحل سياسي شامل في اليمن وحماية حرية الملاحة الدولية الأرصاد تتوقع طقسًا حارًا في السواحل والصحاري وأمطارًا رعدية على المرتفعات الجبلية الإرياني يحذر من تهديد حوثي خطير للملاحة الجوية الدولية باستخدام دفاعات جوية إيرانية سيئون تحتفي بالذكرى الـ64 لثورة 26 سبتمبر بفعالية جماهيرية واسعة وزيرة الخارجية تبحث مع الرئيسة التنفيذية لمجموعة الأزمات الدولية تداعيات الت",
+        "discovery_score": 18.8
       }
     ]
   }
