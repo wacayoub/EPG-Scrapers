@@ -77,6 +77,14 @@ def choose(key, sites, arabic_only=False):
                     c=ET.fromstring(ET.tostring(c,encoding="utf-8"))
                     cid=OSN_OFFICIAL_ID_OVERRIDES[sid]
                     c.set("xmltv_id",cid)
+                if not cid and sid and key in {"osn","shahid","elcinema"}:
+                    # Preserve every provider entry even when iptv-org has not
+                    # assigned a canonical XMLTV ID yet. The provider site_id is
+                    # stable and therefore safe for a local EPGManager ID.
+                    c=ET.fromstring(ET.tostring(c,encoding="utf-8"))
+                    safe_sid=re.sub(r"[^A-Za-z0-9._-]+","",sid) or "unknown"
+                    cid=f"{key}.{safe_sid}"
+                    c.set("xmltv_id",cid)
                 if not cid or not sid:
                     continue
                 if key=="elcinema" and elcinema_excluded(cid):
@@ -116,8 +124,12 @@ def build_elcinema_fallback():
     for ar in ar_root.findall("channel"):
         cid=(ar.get("xmltv_id") or "").strip()
         sid=(ar.get("site_id") or "").strip()
-        if not cid or not sid:
+        if not sid:
             continue
+        if not cid:
+            cid=f"elcinema.{re.sub(r'[^A-Za-z0-9._-]+','',sid) or 'unknown'}"
+            ar=ET.fromstring(ET.tostring(ar,encoding="utf-8"))
+            ar.set("xmltv_id",cid)
         if elcinema_excluded(cid):
             continue
         node=en_by_id.get(cid)
