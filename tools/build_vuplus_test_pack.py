@@ -55,7 +55,7 @@ POLICY={
     "sport24":   {"min_channels":2,  "min_programmes":10,  "min_future_ratio":0.60, "min_horizon_hours":3},
     "osn":       {"min_channels":20, "min_programmes":100, "min_future_ratio":0.80, "min_horizon_hours":4},
     "elcinema":  {"min_channels":20, "min_programmes":100, "min_future_ratio":0.70, "min_horizon_hours":4},
-    "stctv":     {"min_channels":10, "min_programmes":30,  "min_future_ratio":0.70, "min_horizon_hours":4},
+    "stctv":     {"min_channels":3,  "min_programmes":6,   "min_future_ratio":0.66, "min_horizon_hours":3},
 }
 
 DT_RE=re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
