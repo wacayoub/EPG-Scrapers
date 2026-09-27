@@ -354,22 +354,91 @@ def _snrt_flat_events(cid,soup):
  infer(out)
  return out
 
-def _arryadia_fill(rows,hours=48,slot_hours=2):
- # Keep every real official event, then fill only uncovered windows.
- # This guarantees a usable current/next EPG even when SNRT leaves Arryadia blank.
+def _arryadia_is_generic(e):
+ return norm(e.title) in {"arryadia programme","programme arryadia"} or e.source=="arryadia-auto"
+
+def _arryadia_repeat_safe(e):
+ # Reuse only stable magazine/studio programmes. Never project a match/live
+ # event into another day because sports rights and kick-off times change.
+ s=norm((e.title or "")+" "+(e.desc or ""))
+ blocked=(
+  "live","direct","match","matches","fifa","uefa","caf","champions","league",
+  "ligue","coupe","cup","world cup","mondial","botola"
+ )
+ if any(k in s for k in blocked):return False
+ if any(k in (e.title or "")+(e.desc or "") for k in ("مباشر","مباراة","كأس","دوري","البطولة")):return False
+ return not _arryadia_is_generic(e)
+
+def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
+ # Priority for gaps:
+ #   1) current official SNRT event
+ #   2) exact event already published in the previous LKG feed
+ #   3) proven recurring programme at the same clock (seen >=2 times)
+ #   4) generic Arryadia Programme filler
+ # This prevents a temporary blank SNRT page from erasing known programmes.
+ history=list(history or [])
  now=datetime.now(TZ)
  start=now.replace(minute=0,second=0,microsecond=0)
  end=now+timedelta(hours=max(1,hours))
  out=list(rows)
+
+ def overlaps(items,s,e):
+  return any(x.stop and x.stop>s and x.start<e for x in items)
+
+ retained=0;repeated=0;generic=0
  for cid in ARR_IDS:
-  real=sorted(
+  official=sorted(
    [e for e in rows if e.channel==cid and e.stop and e.stop>start and e.start<end],
    key=lambda e:e.start
   )
-  cursor=start
-  gaps=[]
-  for e in real:
-   es=max(start,e.start); ee=min(end,e.stop)
+  occupied=list(official)
+
+  # Keep exact future programmes from the previous published feed if the
+  # refreshed SNRT page temporarily stopped exposing them.
+  old_exact=sorted(
+   [e for e in history if e.channel==cid and e.stop and e.stop>start and e.start<end and not _arryadia_is_generic(e)],
+   key=lambda e:e.start
+  )
+  for e in old_exact:
+   if overlaps(occupied,e.start,e.stop):continue
+   out.append(Event(cid,e.start,e.title,e.desc,e.stop,e.tl,e.dl,"arryadia-lkg"))
+   occupied.append(e);retained+=1
+
+  # Learn only strong recurrence: same programme, same wall-clock, observed
+  # at least twice in current/LKG data. This is intentionally conservative.
+  samples=[
+   e for e in (list(rows)+history)
+   if e.channel==cid and e.stop and e.stop>e.start and _arryadia_repeat_safe(e)
+  ]
+  buckets=defaultdict(list)
+  for e in samples:
+   key=(norm(e.title),e.start.hour,e.start.minute)
+   if key[0]:buckets[key].append(e)
+  templates=[]
+  for key,evs in buckets.items():
+   # Require observations on at least two different dates.
+   if len({e.start.date() for e in evs})<2:continue
+   ev=max(evs,key=lambda x:x.start)
+   dur=ev.stop-ev.start
+   if dur<=timedelta(0) or dur>timedelta(hours=4):continue
+   templates.append((key,ev,dur))
+
+  day=start.date()
+  while day<=end.date():
+   for (nt,hh,mm),ev,dur in templates:
+    ts=morocco_wall_clock(day,dtime(hh,mm));te=ts+dur
+    if ts<start or ts>=end or te<=ts:continue
+    if overlaps(occupied,ts,te):continue
+    out.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-repeat"))
+    occupied.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-repeat"))
+    repeated+=1
+   day+=timedelta(days=1)
+
+  # Fill only what remains completely unknown.
+  occupied=sorted(occupied,key=lambda e:e.start)
+  cursor=start;gaps=[]
+  for e in occupied:
+   es=max(start,e.start);ee=min(end,e.stop)
    if es>cursor:gaps.append((cursor,es))
    if ee>cursor:cursor=ee
   if cursor<end:gaps.append((cursor,end))
@@ -383,7 +452,9 @@ def _arryadia_fill(rows,hours=48,slot_hours=2):
      "برامج قناة الرياضية. يتم تحديث هذا الموعد تلقائياً عند توفر الجدول الرسمي.",
      stop,"fr","ar","arryadia-auto"
     ))
-    cur=stop
+    generic+=1;cur=stop
+
+ log("Arryadia fill retained_lkg=%d recurring=%d generic=%d"%(retained,repeated,generic))
  return out
 
 def infer(rows):
@@ -1099,7 +1170,7 @@ def _parse_arryadia_flat(soup):
  log("Arryadia flat parser groups=%d dates=%s events=%d"%(len(groups),",".join(d.isoformat() for d in dates),len(out)))
  return out
 
-def scrape_arryadia(days):
+def scrape_arryadia(days,history=None):
  h=Http();parsed=[];flat=[]
  try:
   r=h.get("https://www.snrt.ma/ar/node/4070",
@@ -1160,7 +1231,7 @@ def scrape_arryadia(days):
  current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
  future=[e for e in current if e.stop>now]
  log("Arryadia SNRT future=%d current_window=%d"%(len(future),len(current)))
- filled=_arryadia_fill(current,hours=48,slot_hours=2)
+ filled=_arryadia_fill(current,hours=48,slot_hours=2,history=history)
  auto_count=sum(1 for e in filled if e.source=="arryadia-auto")
  log("Arryadia auto filler=%d total=%d"%(auto_count,len(filled)))
  return filled
@@ -1185,7 +1256,7 @@ def to_xml(rows,path):
 def main():
  ap=argparse.ArgumentParser();ap.add_argument("--output-dir",default="output");ap.add_argument("--previous",default="");ap.add_argument("--days",type=int,default=7);ap.add_argument("--scheduled",action="store_true");a=ap.parse_args();now=datetime.now(TZ)
  if a.scheduled and now.hour not in (6,18):log("Schedule gate skip: local hour %02d"%now.hour);return 0
- outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(min(a.days,3)),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
+ outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(min(a.days,3),old),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
  with ThreadPoolExecutor(max_workers=4) as ex:
   fs={ex.submit(fn):name for name,fn in jobs.items()}
   for f in as_completed(fs):
