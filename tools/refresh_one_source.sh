@@ -121,7 +121,7 @@ case "$SOURCE" in
 
   stctv)
     # STC is deliberately isolated: it can be slow without delaying any other source.
-    python tools/stctv_source.py --output output/source-build/stctv.raw.xml --report reports/stctv-scrape.json --id-index feeds/mena.txt --window-hours "$HOURS" --delay 1.0 --max-channels 0 --profile all || true
+    python tools/stctv_source.py --output output/source-build/stctv.raw.xml --report reports/stctv-scrape.json --id-index feeds/mena.txt --window-hours "$HOURS" --delay 0.2 --max-channels 0 --profile all || true
     [ -s output/source-build/stctv.raw.xml ] || empty_xml output/source-build/stctv.raw.xml
     pack_source stctv output/source-build/stctv.raw.xml "" || true
     ;;
