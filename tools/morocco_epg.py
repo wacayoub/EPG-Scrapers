@@ -480,6 +480,34 @@ def _botola_team_ar(name):
   if len(k)>=4 and (k in n or n in k):return v
  return raw
 
+BOTOLA_FR={
+ "as far":"FAR Rabat","far rabat":"FAR Rabat",
+ "codm meknes":"CODM Meknès","cod meknes":"CODM Meknès",
+ "difaa el jadida":"Difaâ El Jadida","difa el jadida":"Difaâ El Jadida",
+ "fus rabat":"FUS Rabat","fath union sport":"FUS Rabat",
+ "hassania agadir":"Hassania Agadir","husa":"Hassania Agadir",
+ "ittihad tanger":"Ittihad Tanger","ir tanger":"Ittihad Tanger",
+ "kawkab marrakech":"KACM","kacm":"KACM",
+ "mas fes":"MAS Fès","maghreb fes":"MAS Fès",
+ "moghreb tetouan":"MAT Tétouan","mat tetouan":"MAT Tétouan",
+ "raja casablanca":"Raja","raja ca":"Raja","raja club athletic":"Raja",
+ "renaissance zemamra":"Renaissance Zemamra","renaissance club zemamra":"Renaissance Zemamra",
+ "renaissance zemamra club":"Renaissance Zemamra","rc zemamra":"Renaissance Zemamra",
+ "rs berkane":"RS Berkane","renaissance berkane":"RS Berkane",
+ "amal tiznit":"Amal Tiznit",
+ "union touarga":"Union Touarga","ut salé":"Union Touarga","ut sale":"Union Touarga",
+ "wydad casablanca":"Wydad","wydad ac":"Wydad","wac":"Wydad",
+ "wydad temara":"Wydad Témara","ws temara":"Wydad Témara"
+}
+
+def _botola_team_fr(name):
+ raw=clean(name);n=norm(raw)
+ if n in BOTOLA_FR:return BOTOLA_FR[n]
+ for k,v in BOTOLA_FR.items():
+  if len(k)>=4 and (k in n or n in k):return v
+ return raw
+
+
 def _morocco_from_unix(ts):
  u=datetime.fromtimestamp(int(ts),timezone.utc)
  # Since 2026-09-20 Morocco legal/broadcast clock is UTC+0.
@@ -527,7 +555,7 @@ def _sofascore_botola_fixtures(http,hours=48):
     rnd=(ev.get("roundInfo") or {}).get("round")
     # Club names stay in French/Latin in the public EPG.
     # Example: "Wydad Casablanca vs Raja Casablanca - Botola Pro".
-    ha=home;aa=away
+    ha=_botola_team_fr(home);aa=_botola_team_fr(away)
     title="%s vs %s - Botola Pro"%(ha,aa)
     rd=(" - Journée %s"%rnd) if rnd else ""
     desc="%s vs %s - Botola Pro%s."%(ha,aa,rd)
@@ -587,7 +615,7 @@ def _livescore_botola_fixtures(http,hours=48):
      if eid in seen:continue
      seen.add(eid)
      # Keep football club names in French/Latin in the EPG.
-     ha=home;aa=away
+     ha=_botola_team_fr(home);aa=_botola_team_fr(away)
      title="%s vs %s - Botola Pro"%(ha,aa)
      phase=clean(ev.get("Eps"))
      # Keep the public EPG clean and stable: data-source/debug information and
