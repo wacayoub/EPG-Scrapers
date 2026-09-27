@@ -1,0 +1,139 @@
+name: Test beIN MENA next 1h
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-bein-mena-1h.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bein-mena-1h-test
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout scraper repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout upstream beIN adapters
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+          cd vendor/iptv-org-epg
+          npm ci --no-audit --no-fund
+
+      - name: Build complete beIN MENA catalogue
+        run: |
+          python tools/build_catalogues.py
+          mkdir -p reports
+          cp output/source-build/bein-catalogue.json reports/bein-mena-1h-catalogue.json
+          echo "Catalogue IDs: $(grep -c '<channel ' output/source-build/bein.channels.xml)"
+
+      - name: Scrape beIN MENA once
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/bein-1h
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          timeout --signal=TERM --kill-after=30s 1200s npm run grab -- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/bein.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/bein-1h/raw.xml" \
+            --days=1 \
+            --maxConnections=1 \
+            --timeout=20000 \
+            --delay=500
+          rc=$?
+          echo "$rc" > "$GITHUB_WORKSPACE/output/bein-1h/grab.rc"
+          if [ ! -s "$GITHUB_WORKSPACE/output/bein-1h/raw.xml" ]; then
+            echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/bein-1h/raw.xml"
+          fi
+          exit 0
+
+      - name: Keep only now through next 60 minutes
+        shell: bash
+        run: |
+          set +e
+          mkdir -p feeds/tests reports
+          python tools/source_feed_pack.py \
+            --input output/bein-1h/raw.xml \
+            --catalogue output/source-build/bein.channels.xml \
+            --output-gz feeds/tests/bein-mena-1h.xml.gz \
+            --output-txt feeds/tests/bein-mena-1h.txt \
+            --stats reports/bein-mena-1h.json \
+            --label bein-mena-1h \
+            --window-hours 1 \
+            --keep-past-hours 0
+          pack_rc=$?
+          echo "$pack_rc" > output/bein-1h/pack.rc
+
+          python - <<'PY'
+          import gzip,json,xml.etree.ElementTree as ET
+          from pathlib import Path
+          p=Path("feeds/tests/bein-mena-1h.xml.gz")
+          stats=json.loads(Path("reports/bein-mena-1h.json").read_text())
+          root=ET.fromstring(gzip.decompress(p.read_bytes())) if p.exists() else ET.Element("tv")
+          sample=[]
+          for x in root.findall("programme")[:25]:
+              t=x.find("title")
+              sample.append({
+                  "channel":x.get("channel"),
+                  "start":x.get("start"),
+                  "stop":x.get("stop"),
+                  "title":(t.text or "").strip() if t is not None else ""
+              })
+          cat=json.loads(Path("reports/bein-mena-1h-catalogue.json").read_text())
+          report={
+              "scope":"beIN MENA only",
+              "test_window":"now to +60 minutes",
+              "timezone":"UTC +0000",
+              "catalogue":cat,
+              "result":stats,
+              "sample_programmes":sample,
+          }
+          Path("reports/bein-mena-1h-test.json").write_text(
+              json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
+          PY
+          exit 0
+
+      - name: Commit isolated test result
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds/tests/bein-mena-1h.xml.gz feeds/tests/bein-mena-1h.txt \
+                  reports/bein-mena-1h.json reports/bein-mena-1h-catalogue.json \
+                  reports/bein-mena-1h-test.json
+          if git diff --cached --quiet; then
+            echo "No test changes."
+          else
+            git commit -m "Publish beIN MENA 1h test"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
