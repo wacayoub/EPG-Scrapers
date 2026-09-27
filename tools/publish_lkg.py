@@ -27,7 +27,7 @@ POLICY = {
     "morocco":   {"min_channels": 5,  "min_programmes": 50,  "min_future_ratio": 0.70, "min_horizon_hours": 8},
     "elcinema":  {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.70, "min_horizon_hours": 8},
     "osn":       {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.80, "min_horizon_hours": 8},
-    "bein":      {"min_channels": 8,  "min_programmes": 50,  "min_future_ratio": 0.65, "min_horizon_hours": 8},
+    "bein":      {"min_channels": 35, "min_programmes": 500, "min_future_ratio": 0.90, "min_horizon_hours": 8},
     "shahid":    {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.60, "min_horizon_hours": 8},
     "rotana":    {"min_channels": 5,  "min_programmes": 40,  "min_future_ratio": 0.60, "min_horizon_hours": 8},
     # Sport24 is event-driven; valid event schedules can naturally expose less
@@ -44,7 +44,6 @@ POLICY = {
     "aljazeera": {"min_channels": 2, "min_programmes": 40, "min_future_ratio": 0.95, "min_horizon_hours": 36},
     # STC full public catalogue is fetched in daily batch mode (144 channels currently).
     "stctv":     {"min_channels": 10, "min_programmes": 30, "min_future_ratio": 0.70, "min_horizon_hours": 4},
-    "gobx":      {"min_channels": 3,  "min_programmes": 10, "min_future_ratio": 0.60, "min_horizon_hours": 4},
 }
 DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
@@ -134,7 +133,21 @@ def evaluate(key: str, candidate: Path, previous: Path):
         try:
             old = stats(previous)
             # Reject catastrophic regressions while allowing legitimate lineup changes.
-            if old["channels"] and cur["channels"] < max(p["min_channels"], int(old["channels"] * 0.60)):
+            # One deliberate migration is allowed for beIN: the old feed contained
+            # package/third-party/AFC IDs; production is now scoped to ~43 owned
+            # beIN MENA services. Strong beIN minimums above still protect quality.
+            planned_bein_scope_rebase = (
+                key == "bein"
+                and old["channels"] >= 60
+                and 35 <= cur["channels"] <= 50
+                and cur["active_channels"] >= 35
+                and cur["future_ratio"] >= 0.90
+            )
+            if (
+                not planned_bein_scope_rebase
+                and old["channels"]
+                and cur["channels"] < max(p["min_channels"], int(old["channels"] * 0.60))
+            ):
                 reasons.append("channel_regression>40%")
             if old["programmes"] and cur["programmes"] < max(p["min_programmes"], int(old["programmes"] * 0.35)):
                 reasons.append("programme_regression>65%")

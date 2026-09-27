@@ -1,0 +1,41 @@
+name: Inspect current Morocco samples
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-morocco-current.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show SNRT 2M Arryadia samples
+        run: |
+          python - <<'PY'
+          import gzip,json,xml.etree.ElementTree as ET
+          from pathlib import Path
+          root=ET.fromstring(gzip.decompress(Path("feeds/morocco.xml.gz").read_bytes()))
+          wanted=["AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","2M","Arryadia_HD"]
+          out={}
+          for cid in wanted:
+              rows=[]
+              for p in root.findall("programme"):
+                  if p.get("channel")!=cid:continue
+                  t=p.find("title");d=p.find("desc")
+                  rows.append({
+                      "start":p.get("start"),
+                      "title":(t.text or "").strip() if t is not None else "",
+                      "title_lang":t.get("lang") if t is not None else "",
+                      "desc":(d.text or "").strip()[:300] if d is not None else "",
+                      "desc_lang":d.get("lang") if d is not None else "",
+                  })
+                  if len(rows)>=5:break
+              out[cid]=rows
+          print(json.dumps(out,ensure_ascii=False,indent=2))
+          PY

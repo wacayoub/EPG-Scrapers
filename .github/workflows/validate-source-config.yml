@@ -65,6 +65,7 @@ jobs:
           from pathlib import Path
 
           root=ET.parse("output/source-build/bein.channels.xml").getroot()
+          en_root=ET.parse("output/source-build/bein_en.channels.xml").getroot()
           rows=[]
           bad=[]
           seen=set()
@@ -89,10 +90,13 @@ jobs:
               raise SystemExit(f"out-of-scope beIN rows: {bad}")
           if len(rows) < 20:
               raise SystemExit(f"beIN catalogue unexpectedly small: {len(rows)}")
+          if len(en_root) != len(root):
+              raise SystemExit(f"beIN English catalogue mismatch: ar={len(root)} en={len(en_root)}")
 
           audit=json.loads(Path("output/source-build/bein-catalogue.json").read_text())
           print(json.dumps({
               "bein_ids":len(rows),
+              "bein_english_ids":len(en_root),
               "scope":audit.get("scope"),
               "generated_local_ids":audit.get("generated_local_ids"),
               "sample":rows[:20],
