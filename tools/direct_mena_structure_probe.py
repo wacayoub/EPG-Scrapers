@@ -63,6 +63,68 @@ for name,url in TARGETS.items():
    if re.search(r"schedule|guide|programme|program|epg|جدول|برامج",txt+" "+href,re.I):
     links.append({"text":txt[:200],"url":href})
   row["guide_links"]=links[:100]
+
+  details={}
+  if name=="alkass":
+   tables=[]
+   for i,t in enumerate(s.select("table.team-result")):
+    holder=t.parent
+    imgs=[]
+    q=holder
+    for _ in range(4):
+     if not q: break
+     for im in q.find_all("img",src=True,limit=8):
+      item={"src":urljoin(r.url,im.get("src")),"alt":im.get("alt"),"title":im.get("title")}
+      if item not in imgs: imgs.append(item)
+     if imgs: break
+     q=q.parent
+    tables.append({
+      "index":i,
+      "attrs":t.attrs,
+      "images":imgs[:8],
+      "previous_heading": (t.find_previous(["h1","h2","h3","h4","h5"]) or {}).get_text(" ",strip=True) if t.find_previous(["h1","h2","h3","h4","h5"]) else "",
+      "rows":[" | ".join(tr.stripped_strings) for tr in t.select("tr")[:6]],
+    })
+   details["tables"]=tables
+  elif name=="tunisiatv":
+   try:
+    rr=sess.get("https://tunisiatv.tn/ar/programme",timeout=30)
+    ss=BeautifulSoup(rr.text,"html.parser")
+    details["programme_status"]=rr.status_code
+    details["programme_bytes"]=len(rr.content)
+    details["programme_text_matches"]=[x[:500] for x in ss.stripped_strings if re.search(r"الوطنية|غدا|اليوم|دليل البرامج",x)][:80]
+    details["programme_links"]=[{"text":" ".join(a.stripped_strings)[:200],"href":urljoin(rr.url,a.get("href"))} for a in ss.find_all("a",href=True) if re.search(r"programme|program|الوطنية|غد|اليوم",(" ".join(a.stripped_strings)+" "+a.get("href")),re.I)][:100]
+    details["selects"]=[{"name":sel.get("name"),"id":sel.get("id"),"options":[{"value":o.get("value"),"text":" ".join(o.stripped_strings)} for o in sel.find_all("option")]} for sel in ss.find_all("select")][:20]
+   except Exception as exc:
+    details["programme_error"]=str(exc)
+  elif name=="lbci":
+   details["schedule_rows"]=[]
+   for box in s.select(".vod-scheduler-flex")[:80]:
+    details["schedule_rows"].append({"text":" ".join(box.stripped_strings)[:1200],"attrs":box.attrs})
+  elif name=="alsumaria":
+   details["schedule_items"]=[]
+   for box in s.select(".ShowsScheduleItem")[:80]:
+    details["schedule_items"].append({"text":" ".join(box.stripped_strings)[:1800],"attrs":box.attrs})
+  elif name=="ayn_oman":
+   classes={}
+   for tag in s.find_all(True):
+    cls=tag.get("class") or []
+    if any("epg" in str(x).lower() for x in cls):
+     key=" ".join(cls)
+     classes[key]=classes.get(key,0)+1
+   details["epg_classes"]=classes
+   candidates=[]
+   for tag in s.find_all(True):
+    cls=" ".join(tag.get("class") or [])
+    if "epg" not in cls.lower(): continue
+    txt=" ".join(tag.stripped_strings)
+    if not txt or len(txt)>1500: continue
+    attrs={k:v for k,v in tag.attrs.items() if str(k).startswith("data-") or k in {"id","class","href"}}
+    if attrs or len(txt)>5:
+     candidates.append({"tag":tag.name,"attrs":attrs,"text":txt[:1000]})
+    if len(candidates)>=150: break
+   details["epg_candidates"]=candidates
+  row["source_details"]=details
  except Exception as exc:
   row["status"]="ERROR"; row["error"]=str(exc)
  out[name]=row
