@@ -138,6 +138,7 @@ case "$SOURCE" in
         --output "output/source-build/starzplay.$lang.raw.xml" \
         --report "reports/starzplay-$lang-api-scrape.json" \
         --id-index feeds/mena.txt \
+        --countries AE,SA,KW,QA,BH,OM \
         --hours "$HOURS" || true
 
       # Secondary: public rendered web metadata, only if the API produced no
