@@ -21,8 +21,8 @@ AR=re.compile(r"[\u0600-\u06ff]")
 CHANNELS={
  "dubai":("DubaiTV.ae@SD","Dubai TV","arabic_native"),
  "sama dubai":("SamaDubai.ae@SD","Sama Dubai","arabic_native"),
- "dubai sports 1":("DubaiSports1.ae@SD","Dubai Sports 1","hybrid"),
- "dubai sports 2":("DubaiSports2.ae@SD","Dubai Sports 2","hybrid"),
+ "dubai sports 1":("DubaiSports1.ae@SD","Dubai Sports 1","arabic_native"),
+ "dubai sports 2":("DubaiSports2.ae@SD","Dubai Sports 2","arabic_native"),
  "dubai racing":("DubaiRacing1.ae@SD","Dubai Racing 1","hybrid"),
  "dubai racing 1":("DubaiRacing1.ae@SD","Dubai Racing 1","hybrid"),
  "dubai racing 2":("DubaiRacing2.ae@SD","Dubai Racing 2","hybrid"),
@@ -81,6 +81,10 @@ def listing_map(entry):
     for x in entry.get("listings") or []:
         key=(str(x.get("id") or ""),int(x.get("startTime") or 0))
         out[key]=x
+        # Localized API responses may use a different listing id for the same
+        # programme. Within one channel, start time is a safe secondary key.
+        if key[1]:
+            out.setdefault(("",key[1]),x)
     return out
 
 def text(x):
@@ -149,7 +153,7 @@ def build(en_data,ar_data,hours):
             sdt=datetime.fromtimestamp(st/1000,tz=timezone.utc)
             edt=datetime.fromtimestamp(et/1000,tz=timezone.utc)
             if sdt>=end or edt<=now-timedelta(hours=1): continue
-            ali=ar_map.get((str(li.get("id") or ""),st))
+            ali=ar_map.get((str(li.get("id") or ""),st)) or ar_map.get(("",st))
             desc=ar_desc(li,ali)
             if profile=="hybrid":
                 title=title_en(li)
