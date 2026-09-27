@@ -157,6 +157,40 @@ def _snrt_desc_from_row(cid,row,title,time_text,original_title=""):
    return desc
  return _snrt_fallback_desc(cid,title)
 
+def _snrt_visible_descs(soup):
+ # Build a date-agnostic lookup from the actual visible SNRT sequence.
+ # Structured rows already carry the correct date, so here we only need to
+ # recover the synopsis that follows a visible "time / title" pair.
+ strings=[clean(x) for x in soup.stripped_strings if clean(x)]
+ time_rx=re.compile(r"^([0-2]?\d)\s*[Hh:]\s*([0-5]\d)$")
+ day_rx=re.compile(r"(\d{1,2})\s*/\s*(\d{1,2})")
+ footer={"الرئيسية","الشركة","القنوات","الوسيط","طلبات العروض","Régie publicitaire","Mentions légales"}
+ noise={"الآن","SAT","TNT","Image"}
+ out=defaultdict(list);i=0
+ while i<len(strings):
+  m=time_rx.match(strings[i])
+  if not m:
+   i+=1;continue
+  hm="%02d:%02d"%(int(m.group(1)),int(m.group(2)))
+  j=i+1;parts=[]
+  while j<len(strings) and not time_rx.match(strings[j]):
+   txt=strings[j]
+   if txt in footer:
+    break
+   if day_rx.search(txt):
+    if parts:break
+    j+=1;continue
+   if txt not in noise:
+    parts.append(txt)
+   j+=1
+  if parts:
+   title=parts[0]
+   desc=clean(" ".join(parts[1:]))
+   if desc and norm(desc)!=norm(title):
+    out[(hm,norm(title))].append(desc)
+  i=max(j,i+1)
+ return out
+
 def _snrt_flat_events(cid,soup):
  # SNRT increasingly renders schedule metadata as a flat visible sequence:
  # date tabs, then repeated "time / title / synopsis" blocks. Parse that
@@ -586,6 +620,7 @@ def scrape_chada(days):
 def scrape_snrt(days):
  def one(cid,url):
   h=Http();r=h.get(url);soup=BeautifulSoup(r.text,"lxml");structured=[]
+  visible=_snrt_visible_descs(soup);visible_used=defaultdict(int);visible_matches=0
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
    dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8]
    tt=row.find("div",class_="grille-time")
@@ -595,14 +630,24 @@ def scrape_snrt(days):
    except Exception:continue
    h2=row.find("h2",class_="program-title-sm")
    original_title=clean(h2.get_text(" ",strip=True)) if h2 else "برنامج"
+   desc=_snrt_desc_from_row(cid,row,original_title,time_text,original_title)
+   tm=re.search(r"([0-2]?\d)\s*[Hh:]\s*([0-5]\d)",time_text)
+   if tm:
+    key=("%02d:%02d"%(int(tm.group(1)),int(tm.group(2))),norm(original_title))
+    choices=visible.get(key,[])
+    pos=visible_used[key]
+    if pos<len(choices):
+     vdesc=clean(choices[pos]);visible_used[key]+=1
+     generic=(not desc or norm(desc)==norm(original_title) or desc.startswith("برنامج «") or desc.startswith("نشرة إخبارية على ") or desc.startswith("نشرة الطقس على "))
+     if vdesc and (generic or len(vdesc)>len(desc)):
+      desc=vdesc;visible_matches+=1
    title=original_title
-   row_text=clean(row.get_text(" ",strip=True));ctx=original_title+" "+row_text
+   row_text=clean(row.get_text(" ",strip=True));ctx=original_title+" "+row_text+" "+desc
    if "الأخبار" in ctx or "الاخبار" in ctx:
     for k,v in NEWS.items():
      if k in ctx:
       title=v
       break
-   desc=_snrt_desc_from_row(cid,row,title,time_text,original_title)
    structured.append(Event(cid,start,title,desc,None,"ar","ar","snrt-ar"))
 
   flat=_snrt_flat_events(cid,soup)
@@ -620,7 +665,7 @@ def scrape_snrt(days):
   rows=sorted(merged.values(),key=lambda e:e.start)
   infer(rows)
   official=sum(1 for e in rows if score(e)[0])
-  log("SNRT %s structured=%d flat=%d merged=%d official_desc=%d"%(cid,len(structured),len(flat),len(rows),official))
+  log("SNRT %s structured=%d flat=%d merged=%d official_desc=%d visible_matches=%d visible_keys=%d"%(cid,len(structured),len(flat),len(rows),official,visible_matches,len(visible)))
   return rows
 
  out=[]
