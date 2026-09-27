@@ -2,6 +2,12 @@ name: EPG 48h - Morocco
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/morocco_epg.py"
+      - "tools/refresh_one_source.sh"
+      - ".github/workflows/refresh-morocco.yml"
 
 permissions:
   contents: write
