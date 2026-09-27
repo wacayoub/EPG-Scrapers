@@ -1,6 +1,10 @@
 name: EPG 48h - STARZPLAY
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-starzplay.yml"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
