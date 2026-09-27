@@ -1,20 +1,19 @@
 {
   "label": "bein",
-  "channels": 69,
+  "channels": 68,
   "active_channels": 67,
-  "zero_epg_channels": 2,
+  "zero_epg_channels": 1,
   "zero_epg_ids": [
-    "AlkassEight.qa@SD",
-    "beINSportsNBA.qa@SD"
+    "AlkassEight.qa@SD"
   ],
-  "input_channels": 69,
-  "coverage_pct": 97.1,
-  "programmes": 2867,
+  "input_channels": 68,
+  "coverage_pct": 98.5,
+  "programmes": 2782,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 39888,
-  "sha256": "435674db4dfcfec8444e613b7c0153cee56813ba2d38477f4772062e184529dd",
-  "generated_utc": "2026-09-27T21:40:30.343657+00:00"
+  "size_bytes": 39139,
+  "sha256": "e47681cf5d6fff8231a53a73d98c5b9c6f93ce7f76b2a54c9ff71c81aa96caef",
+  "generated_utc": "2026-09-27T22:47:35.885992+00:00"
 }
