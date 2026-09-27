@@ -283,7 +283,6 @@ build_osn_catalogue("ar","osn.channels.xml")
 build_osn_catalogue("en","osn_en.channels.xml")
 choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
-choose("oman",["ayn.om"],arabic_only=True)
 
 # Full-source mode: keep beIN-owned services plus real package channels
 # exposed by the official beIN MENA guide. Third-party rows are retained only
