@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
+  push:
+    paths:
+      - "config/full-refresh-trigger.txt"
 
 permissions:
   contents: write
@@ -83,6 +86,7 @@ jobs:
           python -m py_compile tools/elcinema_hybrid.py
           python -m py_compile tools/source_feed_pack.py
           python -m py_compile tools/source_gap_retry.py
+          python -m py_compile tools/catalogue_feed_audit.py
           python -m py_compile tools/bein_arabize.py
           python -m py_compile tools/bein_ai_refine.py
           python -m py_compile tools/bein_hybrid.py
@@ -536,6 +540,10 @@ jobs:
       - name: Build canonical MENA feed
         if: steps.gate.outputs.run == 'true'
         run: python tools/build_derived_feeds.py
+
+      - name: Audit provider catalogue versus published IDs
+        if: steps.gate.outputs.run == 'true'
+        run: python tools/catalogue_feed_audit.py
 
       - name: Build monitoring report
         if: steps.gate.outputs.run == 'true'
