@@ -1,0 +1,660 @@
+{
+  "generated_utc": "2026-09-27T08:54:16.811679+00:00",
+  "mode": "source-aware",
+  "feeds": [
+    {
+      "feed": "shahid.xml.gz",
+      "generated_utc": "2026-09-27T08:54:16.807872+00:00",
+      "target_hours": 48.0,
+      "minimum_acceptable_hours": 8.0,
+      "max_gap_minutes_warning": 180,
+      "channels": 71,
+      "invalid_times": 0,
+      "orphan_programmes": 0,
+      "failed_channels": 0,
+      "warning_channels": 0,
+      "status": "PASS",
+      "rows": [
+        {
+          "id": "AbdulmajeedAbdullah.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "Aflam.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 19
+        },
+        {
+          "id": "Alarabiya.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.01,
+          "latest_stop_utc": "2026-09-29T08:55:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 95
+        },
+        {
+          "id": "AlArabiyaBusiness.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 43
+        },
+        {
+          "id": "AlArabiyaEnglish.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlArabiyaPrograms.ae",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlEkhbariya.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlHadath.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 111
+        },
+        {
+          "id": "AlkhuzamaRadio.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlQuranAlKareemTV.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlSaudiya.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlSaudiyaAlaan.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlSouriyaTV.sy@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AlSunnahAlNabawiyahTV.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "AsharqDiscovery.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.01,
+          "latest_stop_utc": "2026-09-29T08:55:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 108
+        },
+        {
+          "id": "AsharqDocumentary.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 87
+        },
+        {
+          "id": "AsharqNews.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.93,
+          "latest_stop_utc": "2026-09-29T09:50:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 110
+        },
+        {
+          "id": "BabAlHara.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.06,
+          "latest_stop_utc": "2026-09-29T08:58:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 62
+        },
+        {
+          "id": "BigTimePlus.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "Fairuz.sa@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.06,
+          "latest_stop_utc": "2026-09-29T08:58:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 789
+        },
+        {
+          "id": "FIFAPlus.uk",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "GoalZone.sa",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "IqraaArabic.sa",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "MajidAlMohandis.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "Maraya.sa@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-09-29T09:27:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 61
+        },
+        {
+          "id": "MBC1.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.93,
+          "latest_stop_utc": "2026-09-29T09:50:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 66
+        },
+        {
+          "id": "MBC1Egypt.eg@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "MBC1USA.us@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 71
+        },
+        {
+          "id": "MBC2.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 44
+        },
+        {
+          "id": "MBC3.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 180
+        },
+        {
+          "id": "MBC3USA.us@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.11,
+          "latest_stop_utc": "2026-09-29T09:01:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 209
+        },
+        {
+          "id": "MBC4.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 89
+        },
+        {
+          "id": "MBC5.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.35,
+          "latest_stop_utc": "2026-09-29T09:15:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 67
+        },
+        {
+          "id": "MBCAction.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 79
+        },
+        {
+          "id": "MBCBollywood.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 61
+        },
+        {
+          "id": "MBCDrama.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 74
+        },
+        {
+          "id": "MBCDramaUSA.us@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 78
+        },
+        {
+          "id": "MBCFM.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "MBCIraq.iq@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 81
+        },
+        {
+          "id": "MBCMasr.eg@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-09-29T09:34:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 58
+        },
+        {
+          "id": "MBCMasr2.eg@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-09-29T09:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 66
+        },
+        {
+          "id": "MBCMasrDrama.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 31
+        },
+        {
+          "id": "MBCMasrUSA.us@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 49.36,
+          "latest_stop_utc": "2026-09-29T10:16:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 48
+        },
+        {
+          "id": "MBCMax.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 49.46,
+          "latest_stop_utc": "2026-09-29T10:22:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 42
+        },
+        {
+          "id": "MBCPersia.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.35,
+          "latest_stop_utc": "2026-09-29T09:15:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 96
+        },
+        {
+          "id": "MBCPlusDrama.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.48,
+          "latest_stop_utc": "2026-09-29T09:23:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 86
+        },
+        {
+          "id": "MohammedAbdo.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "MoviesAction.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 17
+        },
+        {
+          "id": "MoviesThriller.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 17
+        },
+        {
+          "id": "MTV.lb@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 50.35,
+          "latest_stop_utc": "2026-09-29T11:15:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 13
+        },
+        {
+          "id": "PanoramaFM.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "RabehSaqer.sa@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.05,
+          "latest_stop_utc": "2026-09-29T08:57:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 502
+        },
+        {
+          "id": "RashidAlMajed.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "SaudiThaqafiyaTV.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "SBC.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "shahid.49923693965985",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "shahid.49923697545394",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.41,
+          "latest_stop_utc": "2026-09-29T09:19:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 165
+        },
+        {
+          "id": "shahid.49923766669525",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "shahid.49923766677799",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.26,
+          "latest_stop_utc": "2026-09-29T09:10:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 116
+        },
+        {
+          "id": "shahid.49923781913188",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.9,
+          "latest_stop_utc": "2026-09-29T09:48:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 27
+        },
+        {
+          "id": "shahid.951783",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "shahid.963543",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.08,
+          "latest_stop_utc": "2026-09-29T08:59:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 93
+        },
+        {
+          "id": "shahid.969745",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.08,
+          "latest_stop_utc": "2026-09-29T08:59:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 79
+        },
+        {
+          "id": "shahid.976272",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.15,
+          "latest_stop_utc": "2026-09-29T09:03:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 98
+        },
+        {
+          "id": "shahid.977946",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.36,
+          "latest_stop_utc": "2026-09-29T09:16:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 67
+        },
+        {
+          "id": "shahid.983124",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-09-29T10:04:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 38
+        },
+        {
+          "id": "shahid.992538",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 51
+        },
+        {
+          "id": "SpacetoonArabic.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "Tarab.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "ThikrayatTV.sa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        },
+        {
+          "id": "Wanasah.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 63.08,
+          "latest_stop_utc": "2026-09-29T23:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 3
+        }
+      ]
+    }
+  ]
+}

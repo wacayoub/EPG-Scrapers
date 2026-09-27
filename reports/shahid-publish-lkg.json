@@ -1,0 +1,31 @@
+{
+  "generated_utc": "2026-09-27T08:54:16.841079+00:00",
+  "sources": {
+    "shahid": {
+      "candidate": "output/final/shahid.xml.gz",
+      "published": true,
+      "candidate_stats": {
+        "channels": 71,
+        "active_channels": 71,
+        "zero_epg_channels": 0,
+        "programmes": 4381,
+        "future_channels": 71,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 63.07864666277778,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 71,
+        "active_channels": 71,
+        "zero_epg_channels": 0,
+        "programmes": 4321,
+        "future_channels": 71,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 63.07862593972222,
+        "invalid_rows": 0
+      },
+      "decision": "PUBLISH",
+      "reasons": []
+    }
+  }
+}
