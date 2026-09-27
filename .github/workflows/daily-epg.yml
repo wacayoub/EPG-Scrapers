@@ -77,6 +77,7 @@ jobs:
           python -m py_compile tools/osn_hybrid.py
           python -m py_compile tools/starzplay_source.py
           python -m py_compile tools/dubaiplus_source.py
+          python -m py_compile tools/dubaiplus_api_source.py
           python -m py_compile tools/starzplay_hybrid.py
           python -m py_compile tools/elcinema_hybrid.py
           python -m py_compile tools/source_feed_pack.py
@@ -372,7 +373,7 @@ jobs:
         run: |
           set +e
           mkdir -p output/source-build reports
-          python tools/dubaiplus_source.py \
+          python tools/dubaiplus_api_source.py \
             --output output/source-build/dubaiplus.raw.xml \
             --report reports/dubaiplus-scrape.json \
             --hours 48
