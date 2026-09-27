@@ -148,6 +148,11 @@ def main():
         default="all",
         help="all keeps every STC channel; starzplay-sports is retained only for diagnostics",
     )
+    ap.add_argument(
+        "--catalogue-only",
+        action="store_true",
+        help="fetch the complete STC channel catalogue but do not request per-channel schedules",
+    )
     args = ap.parse_args()
 
     now = datetime.now(timezone.utc)
@@ -239,6 +244,10 @@ def main():
             if prof == "hybrid":
                 stats["hybrid_channels"].append(cid)
 
+        stats["catalogue_only"] = bool(args.catalogue_only)
+        if args.catalogue_only:
+            prepared = []
+
         for ci, (ch, name, sid, cid, prof) in enumerate(prepared):
             allrows = []
             for di, date in enumerate(days):
@@ -324,6 +333,8 @@ def main():
     Path(args.report).parent.mkdir(parents=True, exist_ok=True)
     Path(args.report).write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in stats.items() if k != "samples"}, ensure_ascii=False))
+    if args.catalogue_only:
+        return 0 if stats["channels"] else 11
     return 0 if stats["channels"] and stats["programmes"] else 11
 
 
