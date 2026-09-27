@@ -1,0 +1,131 @@
+name: Deep public EPG route discovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/deep-public-epg-routes.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deep-public-epg-routes
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download public app packages
+        shell: bash
+        run: |
+          set +e
+          mkdir -p /tmp/apps/gobx /tmp/apps/starz
+          curl -fL --retry 1 --connect-timeout 20 --max-time 180             'https://d.apkpure.net/b/XAPK/net.mbc.gobx?version=latest'             -o /tmp/apps/gobx/app.xapk || true
+          curl -fL --retry 1 --connect-timeout 20 --max-time 180             'https://d.apkpure.net/b/XAPK/com.parsifal.starz?version=latest'             -o /tmp/apps/starz/app.xapk || true
+          [ -s /tmp/apps/gobx/app.xapk ] && unzip -q /tmp/apps/gobx/app.xapk -d /tmp/apps/gobx/xapk || true
+          [ -s /tmp/apps/starz/app.xapk ] && unzip -q /tmp/apps/starz/app.xapk -d /tmp/apps/starz/xapk || true
+          find /tmp/apps -name '*.apk' -printf '%p %s bytes\n'
+
+      - name: Install JADX
+        shell: bash
+        run: |
+          curl -fL --retry 2             'https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip'             -o /tmp/jadx.zip
+          unzip -q /tmp/jadx.zip -d /tmp/jadx
+          /tmp/jadx/bin/jadx --version
+
+      - name: Decompile public packages
+        shell: bash
+        run: |
+          set +e
+          GOBX_APK="$(find /tmp/apps/gobx/xapk -name 'net.mbc.gobx.apk' -o -name '*.apk' | head -1)"
+          STARZ_APK="$(find /tmp/apps/starz/xapk -name '*.apk' | head -1)"
+          if [ -n "$GOBX_APK" ]; then
+            /tmp/jadx/bin/jadx --no-res --no-imports --threads-count 2               -d /tmp/decompiled/gobx "$GOBX_APK" >/tmp/gobx-jadx.log 2>&1 || true
+          fi
+          if [ -n "$STARZ_APK" ]; then
+            /tmp/jadx/bin/jadx --no-res --no-imports --threads-count 2               -d /tmp/decompiled/starz "$STARZ_APK" >/tmp/starz-jadx.log 2>&1 || true
+          fi
+          tail -20 /tmp/gobx-jadx.log 2>/dev/null || true
+          tail -20 /tmp/starz-jadx.log 2>/dev/null || true
+
+      - name: Extract sanitized public EPG routes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,re
+
+          roots={'gobx':Path('/tmp/decompiled/gobx'),'starzplay':Path('/tmp/decompiled/starz')}
+          hint=re.compile(r'(epg|tv.?guide|programme|program|schedule|channel.?guide|live.?channel|now.?show|gracenote|listing)',re.I)
+          route=re.compile(r'["\']([^"\']{1,300})["\']')
+          url=re.compile(r'https?://[^\s"\'<>\\]{5,500}',re.I)
+          annotation=re.compile(r'@(GET|POST|Query|Path|Headers?)\s*\(([^)]{0,500})\)',re.I)
+          sensitive=re.compile(r'(authorization|bearer|password|secret|access.?token|refresh.?token|license|widevine|drm|payment|credit.?card)',re.I)
+
+          result={}
+          for key,root in roots.items():
+              matches=[]; urls=[]; routes=[]
+              if root.exists():
+                  for p in root.rglob('*.java'):
+                      try: txt=p.read_text(encoding='utf-8',errors='ignore')
+                      except Exception: continue
+                      if not hint.search(txt): continue
+                      lines=txt.splitlines()
+                      for i,line in enumerate(lines):
+                          if not hint.search(line) or sensitive.search(line): continue
+                          lo=max(0,i-5); hi=min(len(lines),i+6)
+                          excerpt='\n'.join(lines[lo:hi])
+                          if sensitive.search(excerpt): continue
+                          matches.append({'file':str(p.relative_to(root)),'line':i+1,'excerpt':excerpt[:5000]})
+                          for u in url.findall(excerpt):
+                              if not sensitive.search(u): urls.append(u.rstrip(');,'))
+                          for s in route.findall(excerpt):
+                              if hint.search(s) and not sensitive.search(s): routes.append(s)
+                          for _,inside in annotation.findall(excerpt):
+                              if hint.search(inside) and not sensitive.search(inside): routes.append(inside)
+                          if len(matches)>=180: break
+                      if len(matches)>=180: break
+              def uniq(xs,limit):
+                  out=[]; seen=set()
+                  for x in xs:
+                      x=x.strip()
+                      if x and x not in seen:
+                          seen.add(x); out.append(x)
+                      if len(out)>=limit: break
+                  return out
+              result[key]={'matches':matches,'candidate_urls':uniq(urls,120),'candidate_routes':uniq(routes,250)}
+          Path('reports').mkdir(exist_ok=True)
+          Path('reports/deep-public-epg-routes.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          for key,row in result.items():
+              print(key,'matches',len(row['matches']),'urls',row['candidate_urls'],'routes',row['candidate_routes'][:80])
+          PY
+
+      - name: Publish discovery report
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/deep-public-epg-routes.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diagnostic: deep public EPG route discovery"
+          for n in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            git rebase origin/main
+            sleep $((n*2))
+          done
+          exit 1
