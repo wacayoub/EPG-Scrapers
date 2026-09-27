@@ -1,6 +1,11 @@
 name: EPG 48h - GOBX
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-gobx.yml"
+      - "tools/gobx_source.py"
   schedule:
     - cron: "0 5,6 * * *"
   workflow_dispatch:
