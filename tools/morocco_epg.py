@@ -178,10 +178,10 @@ def _snrt_desc_from_row(cid,row,title,time_text,original_title=""):
 
 def _snrt_visible_descs(soup):
  # Build a date-agnostic lookup from the actual visible SNRT sequence.
- # Structured rows already carry the correct date, so here we only need to
- # recover the synopsis that follows a visible "time / title" pair.
+ # Some channel pages emit "07H00 Title" in one text node, while others emit
+ # separate time/title nodes. Support both forms.
  strings=[clean(x) for x in soup.stripped_strings if clean(x)]
- time_rx=re.compile(r"^([0-2]?\d)\s*[Hh:]\s*([0-5]\d)$")
+ time_rx=re.compile(r"^([0-2]?\d)\s*[Hh:]\s*([0-5]\d)(?:\s+(.+))?$")
  day_rx=re.compile(r"(\d{1,2})\s*/\s*(\d{1,2})")
  footer={"الرئيسية","الشركة","القنوات","الوسيط","طلبات العروض","Régie publicitaire","Mentions légales"}
  noise={"الآن","SAT","TNT","Image"}
@@ -191,7 +191,11 @@ def _snrt_visible_descs(soup):
   if not m:
    i+=1;continue
   hm="%02d:%02d"%(int(m.group(1)),int(m.group(2)))
-  j=i+1;parts=[]
+  parts=[]
+  tail=clean(m.group(3) or "")
+  if tail and tail not in noise:
+   parts.append(tail)
+  j=i+1
   while j<len(strings) and not time_rx.match(strings[j]):
    txt=strings[j]
    if txt in footer:
