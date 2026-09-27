@@ -1,0 +1,31 @@
+{
+  "generated_utc": "2026-09-27T09:04:40.233580+00:00",
+  "sources": {
+    "sport24": {
+      "candidate": "output/final/sport24.xml.gz",
+      "published": true,
+      "candidate_stats": {
+        "channels": 9,
+        "active_channels": 6,
+        "zero_epg_channels": 3,
+        "programmes": 92,
+        "future_channels": 6,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 15.922157182222222,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 9,
+        "active_channels": 9,
+        "zero_epg_channels": 0,
+        "programmes": 188,
+        "future_channels": 9,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 15.922156368888889,
+        "invalid_rows": 0
+      },
+      "decision": "PUBLISH",
+      "reasons": []
+    }
+  }
+}
