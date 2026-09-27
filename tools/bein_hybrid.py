@@ -28,7 +28,27 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
 AR = re.compile(r"[\u0600-\u06FF]")
+DATE_TOKEN_RE = re.compile(r"(?<!\\d)(?:\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})(?!\\d)")
+TIME_TOKEN_RE = re.compile(r"(?<!\\d)@?\\d{1,2}:\\d{2}(?!\\d)")
 TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
+
+BEIN_SPORTS_NEWS_IDS = {
+    "beINSportsNews.qa@SD",
+}
+
+# Deterministic beIN SPORTS NEWS vocabulary. Unknown news titles fall back to
+# Arabic translation, but these recurring names stay stable across refreshes.
+SPORTS_NEWS_TITLES = {
+    "Special Report": "الشوط الثالث",
+    "Asian News": "أخبار آسيا",
+    "Arabic Football": "كرة القدم العربية",
+    "Al Hassad": "الحصاد",
+    "Al Hassila": "الحصيلة",
+    "News Bulletin": "النشرة الإخبارية",
+    "Three O'Clock bulletin": "نشرة الثالثة",
+    "Three O’Clock bulletin": "نشرة الثالثة",
+    "All - Sports": "جميع الرياضات",
+}
 
 ARABIC_NATIVE_PACKAGE_IDS = {
     "AlJazeeraDocumentary.qa@SD",
@@ -75,6 +95,52 @@ def text_of(node: ET.Element, tag: str) -> str:
 
 def is_arabic(text: str) -> bool:
     return bool(AR.search(text or ""))
+
+
+def normalize_title(text: str) -> str:
+    text = re.sub(r"\\s+", " ", text or "").strip()
+    text = re.sub(r"\\s*[-–—|]\\s*[-–—|]+\\s*", " - ", text)
+    return text.strip(" -–—|")
+
+
+def strip_title_datetime(text: str) -> str:
+    """Remove explicit calendar dates and clock times from an EPG title.
+
+    Event years such as "Asian Games 2026" are intentionally preserved.
+    """
+    cleaned = DATE_TOKEN_RE.sub(" ", text or "")
+    cleaned = TIME_TOKEN_RE.sub(" ", cleaned)
+    cleaned = normalize_title(cleaned)
+    return cleaned
+
+
+def set_single_title(node: ET.Element, text: str, lang: str) -> None:
+    titles = list(node.findall("title"))
+    insert_at = 0
+    for child in titles:
+        try:
+            insert_at = list(node).index(child)
+            break
+        except ValueError:
+            pass
+    for child in titles:
+        node.remove(child)
+    title = ET.Element("title", {"lang": lang})
+    title.text = text
+    node.insert(insert_at, title)
+
+
+def clean_title_nodes(node: ET.Element) -> int:
+    changed = 0
+    for child in node.findall("title"):
+        raw = (child.text or "").strip()
+        if not raw:
+            continue
+        cleaned = strip_title_datetime(raw)
+        if cleaned and cleaned != raw:
+            child.text = cleaned
+            changed += 1
+    return changed
 
 
 def event_key(p: ET.Element):
@@ -144,6 +210,30 @@ class Translator:
     def save(self):
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.path.write_text(json.dumps(self.cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def arabize_sports_news_title(text: str, tr: Translator) -> tuple[str, bool]:
+    cleaned = strip_title_datetime(text)
+    if not cleaned:
+        return cleaned, False
+
+    # Exact recurring names first.
+    for en, ar in sorted(SPORTS_NEWS_TITLES.items(), key=lambda x: -len(x[0])):
+        if cleaned.casefold() == en.casefold():
+            return ar, True
+        if cleaned.casefold().startswith(en.casefold() + " -"):
+            suffix = cleaned[len(en):].strip(" -–—|")
+            suffix_ar = tr.translate_ar(suffix) if suffix and not is_arabic(suffix) else suffix
+            return normalize_title(f"{ar} - {suffix_ar}" if suffix_ar else ar), True
+
+    # If the Arabic source already supplied a fully Arabic title, trust it.
+    if is_arabic(cleaned) and not re.search(r"[A-Za-z]{3,}", cleaned):
+        return cleaned, False
+
+    translated = tr.translate_ar(cleaned)
+    if translated and is_arabic(translated):
+        return strip_title_datetime(translated), translated != cleaned
+    return cleaned, False
 
 
 def ensure_sports_title(node: ET.Element, tr: Translator) -> tuple[int, int]:
@@ -283,6 +373,9 @@ def main() -> int:
         "arabic_native_title_kept": 0,
         "english_title_applied": 0,
         "english_title_missing": 0,
+        "sports_news_titles_arabized": 0,
+        "sports_news_titles_still_non_arabic": 0,
+        "title_datetime_tokens_removed": 0,
         "english_description_used_for_missing_ar": 0,
         "arabic_description_present": 0,
         "arabic_description_missing": 0,
@@ -300,6 +393,7 @@ def main() -> int:
 
         applied=False
         arabic_native = cid in ARABIC_NATIVE_PACKAGE_IDS
+        sports_news = cid in BEIN_SPORTS_NEWS_IDS
         if arabic_native:
             # Pure Arab package channels (notably Alkass) keep the authoritative
             # Arabic title from the Arabic beIN guide.
@@ -307,6 +401,21 @@ def main() -> int:
                 if is_arabic((t.text or "").strip()):
                     t.set("lang","ar")
             stats["arabic_native_title_kept"] += 1
+        elif sports_news:
+            # beIN SPORTS NEWS is the explicit exception to the general English
+            # beIN-title policy: all programme titles must be Arabic.
+            source_title = text_of(en, "title") if en is not None else text_of(p, "title")
+            news_title, was_changed = arabize_sports_news_title(source_title, tr)
+            if news_title:
+                set_single_title(p, news_title, "ar" if is_arabic(news_title) else "en")
+                if was_changed:
+                    stats["sports_news_titles_arabized"] += 1
+                if not is_arabic(news_title):
+                    stats["sports_news_titles_still_non_arabic"] += 1
+            current_desc=text_of(p,"desc")
+            if not current_desc and en is not None:
+                if replace_tag(p,en,"desc","en"):
+                    stats["english_description_used_for_missing_ar"] += 1
         elif en is not None:
             applied=replace_tag(p,en,"title","en")
             replace_tag(p,en,"sub-title","en")
@@ -315,11 +424,16 @@ def main() -> int:
                 if replace_tag(p,en,"desc","en"):
                     stats["english_description_used_for_missing_ar"] += 1
 
-        if not arabic_native:
+        if not arabic_native and not sports_news:
             if applied:
                 stats["english_title_applied"] += 1
             else:
                 stats["english_title_missing"] += 1
+
+        # Remove explicit dates (28/09/26, 2026-09-28...) and clock times
+        # (@16:00 or 16:00) from every beIN title after the final title source
+        # has been selected.
+        stats["title_datetime_tokens_removed"] += clean_title_nodes(p)
 
         changed,remaining=ensure_arabic_desc(p,tr)
         stats["descriptions_translated_to_ar"] += changed
