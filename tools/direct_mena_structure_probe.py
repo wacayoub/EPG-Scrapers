@@ -8,11 +8,7 @@ from bs4 import BeautifulSoup
 
 TARGETS={
  "alkass":"https://dirorigin.alkass.net/tvguide",
- "tunisiatv":"https://tunisiatv.tn/ar",
- "lbci":"https://www.lbcgroup.tv/schedule/ar",
- "alsumaria":"https://www.alsumaria.tv/TV-grid",
- "ayn_oman":"https://ayn.om/schedule/158/%D9%82%D9%86%D8%A7%D8%A9-%D8%B9%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
-}
+ "tunisiatv":"https://tunisiatv.tn/ar",}
 UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPGManager-DirectProbe/1.0"
 TIME=re.compile(r"(?:^|\s)(?:[01]?\d|2[0-3])[:.]\d{2}(?:\s*(?:AM|PM|ص|م))?(?:\s|$)",re.I)
 ENDPOINT=re.compile(r"""(?:https?:)?//[^"'\s<>]+|/[A-Za-z0-9_./?=&%-]*(?:api|schedule|guide|program|epg|ajax)[A-Za-z0-9_./?=&%-]*""",re.I)
@@ -97,33 +93,6 @@ for name,url in TARGETS.items():
     details["selects"]=[{"name":sel.get("name"),"id":sel.get("id"),"options":[{"value":o.get("value"),"text":" ".join(o.stripped_strings)} for o in sel.find_all("option")]} for sel in ss.find_all("select")][:20]
    except Exception as exc:
     details["programme_error"]=str(exc)
-  elif name=="lbci":
-   details["schedule_rows"]=[]
-   for box in s.select(".vod-scheduler-flex")[:80]:
-    details["schedule_rows"].append({"text":" ".join(box.stripped_strings)[:1200],"attrs":box.attrs})
-  elif name=="alsumaria":
-   details["schedule_items"]=[]
-   for box in s.select(".ShowsScheduleItem")[:80]:
-    details["schedule_items"].append({"text":" ".join(box.stripped_strings)[:1800],"attrs":box.attrs})
-  elif name=="ayn_oman":
-   classes={}
-   for tag in s.find_all(True):
-    cls=tag.get("class") or []
-    if any("epg" in str(x).lower() for x in cls):
-     key=" ".join(cls)
-     classes[key]=classes.get(key,0)+1
-   details["epg_classes"]=classes
-   candidates=[]
-   for tag in s.find_all(True):
-    cls=" ".join(tag.get("class") or [])
-    if "epg" not in cls.lower(): continue
-    txt=" ".join(tag.stripped_strings)
-    if not txt or len(txt)>1500: continue
-    attrs={k:v for k,v in tag.attrs.items() if str(k).startswith("data-") or k in {"id","class","href"}}
-    if attrs or len(txt)>5:
-     candidates.append({"tag":tag.name,"attrs":attrs,"text":txt[:1000]})
-    if len(candidates)>=150: break
-   details["epg_candidates"]=candidates
   row["source_details"]=details
  except Exception as exc:
   row["status"]="ERROR"; row["error"]=str(exc)
