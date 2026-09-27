@@ -153,7 +153,7 @@ def api_get(path: str, *, lang: str, country: str, timeout: int, params: dict[st
         "User-Agent": UA,
         "Client-Type": "Android",
         "Accept": "application/json",
-        "Accept-Language": ("ar-MA,ar;q=0.9,en;q=0.7" if lang == "ar" else "en,ar;q=0.7"),
+        "Accept-Language": ("ar,en;q=0.7" if lang == "ar" else "en,ar;q=0.7"),
         "x-geo-country": country,
     }
     url = f"{API_BASE}/{path.lstrip('/')}"
