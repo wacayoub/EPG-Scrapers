@@ -316,78 +316,51 @@ def main() -> int:
 
     root = read_root(Path(args.input))
     tr = Translator(Path(args.cache))
-    title_changed = 0
     desc_translated = 0
-    meta_moved = 0
     programmes = root.findall("programme")
 
+    # New production policy: NEVER machine-translate or rewrite beIN titles.
+    # Titles are replaced from the full English guide in bein_hybrid.py.
     for p in programmes:
-        channel = (p.get("channel") or "").strip()
-        for t in p.findall("title"):
-            old = normalize_spaces(t.text or "")
-            if not old:
-                continue
-            new, meta = translate_title(old, channel, tr)
-            if new != old:
-                t.text = new
-                title_changed += 1
-            if meta:
-                desc = p.find("desc")
-                if desc is None:
-                    desc = ET.SubElement(p, "desc")
-                    desc.set("lang", "ar")
-                    current = ""
-                else:
-                    current = normalize_spaces(desc.text or "")
-                if mostly_english(current):
-                    translated = tr.translate(current)
-                    if translated != current:
-                        desc_translated += 1
-                    current = translated
-                desc.text = append_metadata(current, meta)
-                desc.set("lang", "ar")
-                meta_moved += 1
-
-        desc = p.find("desc")
-        if desc is not None:
-            old = normalize_spaces(desc.text or "")
-            if mostly_english(old):
-                new = tr.translate(old)
-                if new != old:
-                    desc.text = new
-                    desc.set("lang", "ar")
-                    desc_translated += 1
+        desc=p.find("desc")
+        if desc is None:
+            continue
+        old=normalize_spaces(desc.text or "")
+        if mostly_english(old):
+            new=tr.translate(old)
+            if new!=old:
+                desc.text=new
+                desc.set("lang","ar")
+                desc_translated += 1
 
     tr.save()
-    write_root(Path(args.output), root)
+    write_root(Path(args.output),root)
 
-    remaining_english_desc = 0
-    desc_total = 0
+    remaining_english_desc=0
+    desc_total=0
     for p in programmes:
-        d = p.find("desc")
+        d=p.find("desc")
         if d is not None and normalize_spaces(d.text or ""):
             desc_total += 1
             if mostly_english(normalize_spaces(d.text or "")):
                 remaining_english_desc += 1
 
-    report = {
-        "programmes": len(programmes),
-        "titles_changed": title_changed,
-        "descriptions_translated": desc_translated,
-        "metadata_moved_from_title": meta_moved,
-        "description_total": desc_total,
-        "remaining_english_descriptions": remaining_english_desc,
-        "new_cache_entries": tr.new_count,
-        "translation_failures": tr.failures[:20],
-        "rate_limited": tr.rate_limited,
-        "skipped_after_rate_limit": tr.skipped_after_rate_limit,
-        "translation_policy": "best-effort; source text preserved on rate limit/error",
+    report={
+        "programmes":len(programmes),
+        "title_policy":"preserve source here; full English titles applied in hybrid pass",
+        "titles_changed":0,
+        "descriptions_translated":desc_translated,
+        "description_total":desc_total,
+        "remaining_english_descriptions":remaining_english_desc,
+        "new_cache_entries":tr.new_count,
+        "translation_failures":tr.failures[:20],
+        "rate_limited":tr.rate_limited,
+        "skipped_after_rate_limit":tr.skipped_after_rate_limit,
+        "translation_policy":"descriptions only; source text preserved on rate limit/error",
     }
-    Path(args.report).parent.mkdir(parents=True, exist_ok=True)
-    Path(args.report).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("BEIN_ARABIZE", json.dumps(report, ensure_ascii=False))
-    # Translation quality is reported, but must not block feed publication.
-    # XMLTV validity/coverage are enforced by the dedicated validators.
+    Path(args.report).parent.mkdir(parents=True,exist_ok=True)
+    Path(args.report).write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print("BEIN_DESC_AR",json.dumps(report,ensure_ascii=False))
     return 0
 
 

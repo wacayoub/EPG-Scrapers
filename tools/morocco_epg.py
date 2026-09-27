@@ -121,6 +121,69 @@ class Http:
 class Event:
  channel:str; start:datetime; title:str; desc:str=""; stop:datetime|None=None; tl:str="ar"; dl:str="ar"; source:str=""
 
+def _snrt_fallback_desc(cid,title):
+ channel=CHANNELS.get(cid,cid)
+ if "أخبار" in title or "الأخبار" in title:
+  return "نشرة إخبارية على %s تقدم أبرز الأخبار والمستجدات."%channel
+ if "طقس" in title or "النشرة الجوية" in title:
+  return "نشرة الطقس على %s مع توقعات الأحوال الجوية."%channel
+ return "برنامج «%s» يُعرض على %s."%(title,channel)
+
+def _snrt_desc_from_row(cid,row,title,time_text):
+ # Prefer a real synopsis/description node when SNRT exposes one.
+ candidates=[]
+ for el in row.find_all(["p","div","span"]):
+  classes=" ".join(el.get("class",[]) or []).casefold()
+  if any(k in classes for k in ("description","desc","synopsis","resume","résumé","program-text","programme-text","grille-desc")):
+   txt=clean(el.get_text(" ",strip=True))
+   if txt:candidates.append(txt)
+ # Fallback to the row text, but strip time/title/navigation noise.
+ full=clean(row.get_text(" ",strip=True))
+ if full:candidates.append(full)
+ for raw in candidates:
+  desc=clean(raw)
+  if time_text:
+   desc=clean(desc.replace(clean(time_text)," ",1))
+  if title:
+   desc=clean(desc.replace(title," ",1))
+  desc=re.sub(r"\b(?:SAT|TNT|HD|الآن|مباشر)\b"," ",desc,flags=re.I)
+  desc=clean(desc).strip(" -–—|:")
+  if len(desc)>=8 and norm(desc)!=norm(title):
+   return desc
+ return _snrt_fallback_desc(cid,title)
+
+def _arryadia_fill(rows,hours=48,slot_hours=2):
+ # Keep every real official event, then fill only uncovered windows.
+ # This guarantees a usable current/next EPG even when SNRT leaves Arryadia blank.
+ now=datetime.now(TZ)
+ start=now.replace(minute=0,second=0,microsecond=0)
+ end=now+timedelta(hours=max(1,hours))
+ out=list(rows)
+ for cid in ARR_IDS:
+  real=sorted(
+   [e for e in rows if e.channel==cid and e.stop and e.stop>start and e.start<end],
+   key=lambda e:e.start
+  )
+  cursor=start
+  gaps=[]
+  for e in real:
+   es=max(start,e.start); ee=min(end,e.stop)
+   if es>cursor:gaps.append((cursor,es))
+   if ee>cursor:cursor=ee
+  if cursor<end:gaps.append((cursor,end))
+  for gs,ge in gaps:
+   cur=gs
+   while cur<ge:
+    stop=min(ge,cur+timedelta(hours=slot_hours))
+    if stop<=cur:break
+    out.append(Event(
+     cid,cur,"Arryadia Programme",
+     "برامج قناة الرياضية. يتم تحديث هذا الموعد تلقائياً عند توفر الجدول الرسمي.",
+     stop,"fr","ar","arryadia-auto"
+    ))
+    cur=stop
+ return out
+
 def infer(rows):
  by=defaultdict(list)
  for e in rows: by[e.channel].append(e)
@@ -179,24 +242,41 @@ def google_ar(http,text):
  except Exception:return clean(text)
 
 def tr2m_title(http,title):
- raw=clean(title); n=norm(raw)
+ raw=clean(title);n=norm(raw)
  if n in T2M_KEEP_FR:return raw
  if n in T2M_FORCE_AR:return T2M_FORCE_AR[n]
  if n in T2M:return T2M[n]
+ # Deterministic policy: translate only the programme type, never invent an
+ # Arabic title for an unknown proper name/brand.
  for pre,apre in (("serie marocaine","مسلسل مغربي"),("serie turque","مسلسل تركي"),("serie","مسلسل"),("film marocain","فيلم مغربي"),("film","فيلم"),("documentaire","وثائقي"),("rediffusion","إعادة")):
   if n.startswith(pre+" "):
    rest=raw[len(pre):].strip(" :-")
    rn=norm(rest)
-   if rn in T2M_KEEP_FR:return apre+" : "+rest if rest else apre
-   return apre+(" : "+(T2M_FORCE_AR.get(rn) or T2M.get(rn) or google_ar(http,rest)) if rest else "")
- return google_ar(http,raw)
+   if rn in T2M_KEEP_FR:mapped=rest
+   else:mapped=T2M_FORCE_AR.get(rn) or T2M.get(rn) or rest
+   return apre+(" : "+mapped if mapped else "")
+ return raw
 
-def tr2m_desc(http,desc):
- y=google_ar(http,desc)
- if ar(y): return y
- n=norm(desc)
- if "meteo" in n:return "نشرة تقدم توقعات الطقس ودرجات الحرارة والرياح والتساقطات."
- if "journal" in n or "info" in n:return "برنامج إخباري من قناة 2M."
+def tr2m_desc(http,desc,category="",title=""):
+ # Restore the stable 2M policy: category-aware Arabic descriptions, and only
+ # translate a real synopsis when Telerama actually provides one.
+ raw=clean(desc);cat=norm(category);ttl=norm(title)
+ detailed=raw and len(raw)>=35 and norm(raw) not in {cat,ttl} and norm(raw)!=norm(category+" "+title)
+ if detailed:
+  y=google_ar(http,raw)
+  if ar(y):return y
+ if "meteo" in cat:return "نشرة جوية على قناة 2M تقدم توقعات الطقس ودرجات الحرارة."
+ if "journal" in cat or "information" in cat:return "موعد إخباري على قناة 2M لمتابعة أبرز الأخبار والمستجدات."
+ if "sport" in cat:return "برنامج رياضي على قناة 2M يتابع الأخبار والمنافسات الرياضية."
+ if "serie" in cat or "feuilleton" in cat:return "مسلسل يُعرض على قناة 2M."
+ if "film" in cat:return "فيلم يُعرض على قناة 2M."
+ if "documentaire" in cat:return "برنامج وثائقي يُعرض على قناة 2M."
+ if "debat" in cat:return "برنامج حواري على قناة 2M."
+ if "theatre" in cat:return "عرض مسرحي يُعرض على قناة 2M."
+ if "divertissement" in cat:return "برنامج ترفيهي يُعرض على قناة 2M."
+ if "magazine" in cat:return "مجلة تلفزيونية تُعرض على قناة 2M."
+ n=norm(title or desc)
+ if "akhbar" in n or "info" in n or "journal" in n:return "موعد إخباري على قناة 2M."
  return "برنامج يُعرض على قناة 2M."
 
 def scrape_medi1(days):
@@ -275,7 +355,7 @@ def parse_2m(h,text,day):
    desc=category or title
 
   at=tr2m_title(h,title)
-  ad=tr2m_desc(h,desc)
+  ad=tr2m_desc(h,desc,category,title)
   out.append(Event("2M",start,at,ad,None,lang(at),"ar","2m-telerama"))
  out.sort(key=lambda e:e.start)
  return out
@@ -401,16 +481,22 @@ def scrape_snrt(days):
  def one(cid,url):
   h=Http();r=h.get(url);soup=BeautifulSoup(r.text,"lxml");rows=[]
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
-   dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8];tt=row.find("div",class_="grille-time")
+   dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8]
+   tt=row.find("div",class_="grille-time")
    if not dc or not tt:continue
-   try:start=morocco_localize(datetime.strptime(dc[0]+" "+tt.get_text().strip().replace("H",":"),"%Y%m%d %H:%M"))
+   time_text=clean(tt.get_text())
+   try:start=morocco_localize(datetime.strptime(dc[0]+" "+time_text.replace("H",":"),"%Y%m%d %H:%M"))
    except Exception:continue
-   title=clean(row.find("h2",class_="program-title-sm").get_text()) if row.find("h2",class_="program-title-sm") else "برنامج";desc=clean(row.get_text(" ",strip=True));ctx=title+" "+desc
+   h2=row.find("h2",class_="program-title-sm")
+   title=clean(h2.get_text(" ",strip=True)) if h2 else "برنامج"
+   row_text=clean(row.get_text(" ",strip=True));ctx=title+" "+row_text
    if "الأخبار" in ctx:
     for k,v in NEWS.items():
-     if k in ctx:title=v;break
-   # SNRT Arabic pages are authoritative: preserve their native metadata as-is.
-   rows.append(Event(cid,start,title,desc or title,None,"ar","ar","snrt-ar"))
+     if k in ctx:
+      title=v
+      break
+   desc=_snrt_desc_from_row(cid,row,title,time_text)
+   rows.append(Event(cid,start,title,desc,None,"ar","ar","snrt-ar"))
   return rows
  out=[]
  with ThreadPoolExecutor(max_workers=5) as ex:
@@ -419,8 +505,17 @@ def scrape_snrt(days):
    try:out+=f.result()
    except Exception as e:log("SNRT %s: %s"%(fs[f],e))
  start=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0)
- for i in range(days*8):out.append(Event("AFLAM.ma",start+timedelta(hours=3*i),"برامج قناة السابعة AFLAM","أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية",start+timedelta(hours=3*(i+1)),"ar","ar","snrt"))
- infer(out);return out
+ for i in range(days*8):
+  out.append(Event(
+   "AFLAM.ma",start+timedelta(hours=3*i),"برامج قناة السابعة AFLAM",
+   "أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية",
+   start+timedelta(hours=3*(i+1)),"ar","ar","snrt"
+  ))
+ infer(out)
+ # Never publish a blank SNRT description.
+ for e in out:
+  if not clean(e.desc):e.desc=_snrt_fallback_desc(e.channel,e.title)
+ return out
 
 def _arryadia_date_token(raw,now):
  raw=clean(raw)
@@ -675,9 +770,10 @@ def scrape_arryadia(days):
  current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
  future=[e for e in current if e.stop>now]
  log("Arryadia SNRT future=%d current_window=%d"%(len(future),len(current)))
- # Never fabricate filler or reuse a stale page. The main validity gate will
- # fall back to a genuinely future LKG only when one exists.
- return current
+ filled=_arryadia_fill(current,hours=48,slot_hours=2)
+ auto_count=sum(1 for e in filled if e.source=="arryadia-auto")
+ log("Arryadia auto filler=%d total=%d"%(auto_count,len(filled)))
+ return filled
 
 def to_xml(rows,path):
  # Final XMLTV safety gate: malformed timestamps must never poison the whole

@@ -38,18 +38,15 @@ pack_source() {
 case "$SOURCE" in
   bein)
     grab_upstream bein "$ROOT/output/source-build/bein.channels.xml" "$ROOT/output/source-build/bein.raw.xml" "" || true
-    grab_upstream bein-hybrid "$ROOT/output/source-build/bein_hybrid_en.channels.xml" "$ROOT/output/source-build/bein.hybrid.en.raw.xml" "500" || true
+    grab_upstream bein-en "$ROOT/output/source-build/bein_en.channels.xml" "$ROOT/output/source-build/bein.en.raw.xml" "500" || true
     pack_source bein output/source-build/bein.raw.xml output/source-build/bein.channels.xml || true
     if [ -s output/final/bein.xml.gz ]; then
       python tools/bein_arabize.py --input output/final/bein.xml.gz --output output/final/bein.ar.xml.gz --cache data/bein_translation_cache.json --report reports/bein-translation.json || true
       [ -s output/final/bein.ar.xml.gz ] && mv output/final/bein.ar.xml.gz output/final/bein.xml.gz
     fi
-    if [ -n "${OPENAI_API_KEY:-}${GEMINI_API_KEY:-}" ] && [ -s output/final/bein.xml.gz ]; then
-      python tools/bein_ai_refine.py --input output/final/bein.xml.gz --output output/final/bein.ai.xml.gz --cache data/bein_ai_cache.json --report reports/bein-ai-refine.json || true
-      [ -s output/final/bein.ai.xml.gz ] && mv output/final/bein.ai.xml.gz output/final/bein.xml.gz
-    fi
-    if [ -s output/final/bein.xml.gz ] && has_programmes output/source-build/bein.hybrid.en.raw.xml; then
-      python tools/bein_hybrid.py --input output/final/bein.xml.gz --english output/source-build/bein.hybrid.en.raw.xml --policy config/bein-language-policy.json --cache data/bein_hybrid_translation_cache.json --output output/final/bein.hybrid.xml.gz --report reports/bein-hybrid.json || true
+    # Titles come from the full English beIN guide; descriptions remain/are translated to Arabic.
+    if [ -s output/final/bein.xml.gz ] && has_programmes output/source-build/bein.en.raw.xml; then
+      python tools/bein_hybrid.py --input output/final/bein.xml.gz --english output/source-build/bein.en.raw.xml --policy config/bein-language-policy.json --cache data/bein_hybrid_translation_cache.json --output output/final/bein.hybrid.xml.gz --report reports/bein-hybrid.json || true
       [ -s output/final/bein.hybrid.xml.gz ] && mv output/final/bein.hybrid.xml.gz output/final/bein.xml.gz
     fi
     ;;

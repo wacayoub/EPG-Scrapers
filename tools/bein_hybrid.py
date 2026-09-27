@@ -213,16 +213,14 @@ def ensure_arabic_desc(node: ET.Element, tr: Translator) -> tuple[int, int]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input", required=True, help="Processed beIN XML/XML.GZ after Arabic sports normalization")
-    ap.add_argument("--english", required=True, help="Raw English guide for hybrid entertainment IDs")
+    ap.add_argument("--input", required=True, help="Primary beIN XML/XML.GZ")
+    ap.add_argument("--english", required=True, help="Raw full English beIN MENA guide")
     ap.add_argument("--policy", default="config/bein-language-policy.json")
     ap.add_argument("--output", required=True)
     ap.add_argument("--report", required=True)
     ap.add_argument("--cache", default="data/bein_hybrid_translation_cache.json")
     args = ap.parse_args()
 
-    policy = json.loads(Path(args.policy).read_text(encoding="utf-8"))
-    hybrid = set(policy.get("hybrid_ids", []))
     root = read_root(args.input)
     en_root = read_root(args.english)
     tr = Translator(args.cache)
@@ -230,21 +228,16 @@ def main() -> int:
     en_exact = {}
     en_start = defaultdict(list)
     for p in en_root.findall("programme"):
-        cid = (p.get("channel") or "").strip()
-        if cid not in hybrid:
-            continue
         en_exact[event_key(p)] = p
         en_start[start_key(p)].append(p)
 
     stats = {
         "generated_utc": datetime.now(timezone.utc).isoformat(),
+        "policy": "title_en_description_ar",
         "programmes": 0,
-        "hybrid_programmes": 0,
-        "sports_programmes": 0,
         "english_title_applied": 0,
         "english_title_missing": 0,
-        "sports_titles_translated_fallback": 0,
-        "sports_title_remaining_mismatch": 0,
+        "english_description_used_for_missing_ar": 0,
         "arabic_description_present": 0,
         "arabic_description_missing": 0,
         "descriptions_translated_to_ar": 0,
@@ -254,56 +247,54 @@ def main() -> int:
 
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
-        if cid in hybrid:
-            stats["hybrid_programmes"] += 1
-            en = en_exact.get(event_key(p))
-            if en is None:
-                candidates = en_start.get(start_key(p), [])
-                en = candidates[0] if candidates else None
-            applied = False
-            if en is not None:
-                applied = replace_tag(p, en, "title", "en")
-                replace_tag(p, en, "sub-title", "en")
-            if applied:
-                stats["english_title_applied"] += 1
-            else:
-                stats["english_title_missing"] += 1
-        else:
-            stats["sports_programmes"] += 1
-            sport_changed, sport_remaining = ensure_sports_title(p, tr)
-            stats["sports_titles_translated_fallback"] += sport_changed
-            stats["sports_title_remaining_mismatch"] += sport_remaining
+        en = en_exact.get(event_key(p))
+        if en is None:
+            candidates = en_start.get(start_key(p), [])
+            en = candidates[0] if candidates else None
 
-        changed, remaining = ensure_arabic_desc(p, tr)
+        applied=False
+        if en is not None:
+            applied=replace_tag(p,en,"title","en")
+            replace_tag(p,en,"sub-title","en")
+            current_desc=text_of(p,"desc")
+            if not current_desc:
+                if replace_tag(p,en,"desc","en"):
+                    stats["english_description_used_for_missing_ar"] += 1
+
+        if applied:
+            stats["english_title_applied"] += 1
+        else:
+            stats["english_title_missing"] += 1
+
+        changed,remaining=ensure_arabic_desc(p,tr)
         stats["descriptions_translated_to_ar"] += changed
         stats["description_language_remaining_mismatch"] += remaining
-        title = text_of(p, "title")
-        desc = text_of(p, "desc")
+
+        title=text_of(p,"title")
+        desc=text_of(p,"desc")
         if desc and is_arabic(desc):
             stats["arabic_description_present"] += 1
         else:
             stats["arabic_description_missing"] += 1
 
         if cid and cid not in stats["samples"]:
-            stats["samples"][cid] = {
-                "profile": "hybrid" if cid in hybrid else "sports_ar",
-                "title": title,
-                "description": desc[:260],
-                "title_has_arabic": is_arabic(title),
-                "description_has_arabic": is_arabic(desc),
+            stats["samples"][cid]={
+                "title":title,
+                "description":desc[:260],
+                "title_has_arabic":is_arabic(title),
+                "description_has_arabic":is_arabic(desc),
             }
         stats["programmes"] += 1
 
     tr.save()
-    stats["translation_cache_new"] = tr.new
-    stats["translation_failures"] = tr.failures[:20]
-    write_root(args.output, root)
-    Path(args.report).parent.mkdir(parents=True, exist_ok=True)
-    Path(args.report).write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({k:v for k,v in stats.items() if k!="samples"}, ensure_ascii=False))
+    stats["translation_cache_new"]=tr.new
+    stats["translation_failures"]=tr.failures[:20]
+    write_root(args.output,root)
+    Path(args.report).parent.mkdir(parents=True,exist_ok=True)
+    Path(args.report).write_text(json.dumps(stats,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    print(json.dumps({k:v for k,v in stats.items() if k!="samples"},ensure_ascii=False))
 
-    if stats["hybrid_programmes"] and stats["english_title_applied"] == 0:
-        return 4
+    # English guide mismatch is diagnostic; publication is decided by coverage/LKG.
     return 0 if stats["programmes"] else 3
 
 

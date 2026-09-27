@@ -292,11 +292,46 @@ def build_bein():
     path=OUT/"bein.channels.xml"
     path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
 
+    # Build a full English mirror using exactly the same canonical IDs.
+    # This is the title source for the EN-title / AR-description production policy.
+    en_best={}
+    for site,p,rank in [
+        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml",0),
+        ("bein.com",ROOT/"bein.com"/"bein.com_en.channels.xml",1),
+    ]:
+        if not p.exists():
+            continue
+        try:
+            rr=ET.parse(p).getroot()
+        except Exception:
+            continue
+        for ch in rr.findall("channel"):
+            sid=(ch.get("site_id") or "").strip()
+            name=(ch.text or "").strip()
+            key=_bein_norm_name(name)
+            if not sid or key not in best:
+                continue
+            if "afc" in key:
+                continue
+            node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
+            node.set("xmltv_id",best[key][1])
+            pref=(rank,p.name)
+            if key not in en_best or pref<en_best[key][0]:
+                en_best[key]=(pref,node)
+
+    en_root=ET.Element("channels")
+    for key in sorted(en_best,key=lambda k:(en_best[k][1].get("xmltv_id") or "").casefold()):
+        en_root.append(ET.fromstring(ET.tostring(en_best[key][1],encoding="utf-8")))
+    ET.indent(en_root,space="  ")
+    en_path=OUT/"bein_en.channels.xml"
+    en_path.write_bytes(ET.tostring(en_root,encoding="utf-8",xml_declaration=True))
+
     import json
     audit={
         "scope":"beIN MENA owned services only; AFC excluded",
         "source_entries":source_counts,
         "catalogue_ids":len(root),
+        "english_catalogue_ids":len(en_root),
         "generated_local_ids":len(generated_ids),
         "generated_ids":sorted(generated_ids,key=str.casefold),
         "zero_epg_policy":"retain valid beIN MENA IDs",
@@ -310,10 +345,12 @@ def build_bein():
         f"bein MENA owned: {len(root)} IDs "
         f"(sports source={source_counts['beinsports_mena_ar']}, "
         f"bein Arabic source={source_counts['bein_ar']}, "
-        f"generated={len(generated_ids)})"
+        f"English mirror={len(en_root)}, generated={len(generated_ids)})"
     )
     if len(root)==0:
         raise SystemExit("bein MENA: empty catalogue")
+    if len(en_root)<20:
+        raise SystemExit(f"bein MENA English catalogue unexpectedly small: {len(en_root)}")
 
 build_bein()
 

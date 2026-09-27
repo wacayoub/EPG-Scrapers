@@ -1,21 +1,11 @@
 {
-  "mode": "hybrid",
-  "hybrid_ids": [
-    "beINGourmet.qa@SD",
-    "beINMovies1Premiere.qa@SD",
-    "beINMovies2Action.qa@SD",
-    "beINMovies3Drama.qa@SD",
-    "beINMovies4Family.qa@SD",
-    "beINSeries1.qa@SD"
-  ],
-  "sports_policy": {
-    "title": "ar_with_latin_teams",
-    "description": "ar",
-    "notes": "Competition/programme names stay Arabic; club/team names stay in Latin script."
+  "mode": "english_title_arabic_description",
+  "all_bein_mena_ids": true,
+  "title": "en",
+  "description": "ar",
+  "fallback": {
+    "title": "source_when_english_match_missing",
+    "description": "source_or_auto_translate_to_ar"
   },
-  "hybrid_policy": {
-    "title": "en",
-    "subtitle": "en",
-    "description": "ar"
-  }
+  "notes": "All beIN MENA programme titles use the English guide when available. Descriptions stay Arabic when provided by the Arabic source; otherwise English descriptions are automatically translated to Arabic. No machine translation of titles."
 }
