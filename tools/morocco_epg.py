@@ -69,7 +69,7 @@ T2M={
  "jabha f rassou":"جبهة فراسو",
 
  "charqi ou gharbi":"شرقي أو غربي","charqi ou lgharbi":"شرقي أو غربي","soiree chaabi":"سهرة شعبية",
- "soiree cha3bi":"سهرة شعبية","attahssina":"التحصينة","at tahssina":"التحصينة",
+ "soiree cha3bi":"سهرة شعبية","soirees chaabi":"سهرة شعبية","soirees cha3bi":"سهرة شعبية","attahssina":"التحصينة","at tahssina":"التحصينة",
  "priere du vendredi":"صلاة الجمعة","priere vendredi":"صلاة الجمعة","ayne lkebrite":"عين الكبريت",
  "ayn lkebrite":"عين الكبريت","wlad 3li":"ولاد علي","oulad 3li":"ولاد علي","jt arabe":"الأخبار بالعربية",
  "journal amazigh":"الأخبار بالأمازيغية","al massaiya":"المسائية","al dahira":"الظهيرة","rachid show":"رشيد شو",
