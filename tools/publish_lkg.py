@@ -69,6 +69,7 @@ def stats(path: Path):
     channels = {(c.get("id") or "").strip() for c in root.findall("channel")}
     channels.discard("")
     now = datetime.now(timezone.utc)
+    valid_by_channel = {cid: 0 for cid in channels}
     future_by_channel = {cid: 0 for cid in channels}
     programmes = 0
     invalid = 0
@@ -82,16 +83,21 @@ def stats(path: Path):
             invalid += 1
             continue
         programmes += 1
+        valid_by_channel[cid] = valid_by_channel.get(cid, 0) + 1
         if stop > now:
             future_by_channel[cid] = future_by_channel.get(cid, 0) + 1
             if latest_stop is None or stop > latest_stop:
                 latest_stop = stop
 
+    active_channels = sum(1 for n in valid_by_channel.values() if n > 0)
     future_channels = sum(1 for n in future_by_channel.values() if n > 0)
-    ratio = future_channels / len(channels) if channels else 0.0
+    # Zero-EPG catalogue IDs stay visible but do not dilute source freshness.
+    ratio = future_channels / active_channels if active_channels else 0.0
     horizon = ((latest_stop - now).total_seconds() / 3600.0) if latest_stop else 0.0
     return {
         "channels": len(channels),
+        "active_channels": active_channels,
+        "zero_epg_channels": max(0, len(channels) - active_channels),
         "programmes": programmes,
         "future_channels": future_channels,
         "future_ratio": ratio,
@@ -105,8 +111,8 @@ def evaluate(key: str, candidate: Path, previous: Path):
     cur = stats(candidate)
     reasons = []
 
-    if cur["channels"] < p["min_channels"]:
-        reasons.append(f"channels<{p['min_channels']}")
+    if cur["active_channels"] < p["min_channels"]:
+        reasons.append(f"active_channels<{p['min_channels']}")
     if cur["programmes"] < p["min_programmes"]:
         reasons.append(f"programmes<{p['min_programmes']}")
     if cur["future_ratio"] < p["min_future_ratio"]:
@@ -173,6 +179,7 @@ for key in POLICY:
         print(
             "PUBLISHED", key,
             f"channels={cur['channels']}",
+            f"active={cur['active_channels']}",
             f"programmes={cur['programmes']}",
             f"future={cur['future_ratio']:.1%}",
             f"horizon={cur['future_horizon_hours']:.1f}h",
