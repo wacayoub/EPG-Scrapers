@@ -64,6 +64,28 @@ for tag in s.find_all("script",src=True):
     except Exception as exc:
         asset_probes.append({"url":u,"status":"ERROR","error":str(exc)})
 
+schedule_api_samples=[]
+selected_date="2026-09-28"
+for channel_id in (23,22,50,32,12,11,34,35):
+    u=f"https://www.tabie.net/Live/GetSchedule?channelId={channel_id}&date={selected_date}"
+    try:
+        rr=requests.get(u,headers={"User-Agent":UA,"Referer":URL,"Accept":"application/json,text/plain,*/*"},timeout=20)
+        sample=rr.text[:12000]
+        parsed=None
+        if "json" in (rr.headers.get("content-type") or "").lower() or sample.lstrip().startswith(("{","[")):
+            try: parsed=rr.json()
+            except Exception: parsed=None
+        schedule_api_samples.append({
+            "channel_id":channel_id,
+            "status":rr.status_code,
+            "content_type":rr.headers.get("content-type",""),
+            "bytes":len(rr.content),
+            "json":parsed,
+            "text_sample":sample if parsed is None else None,
+        })
+    except Exception as exc:
+        schedule_api_samples.append({"channel_id":channel_id,"status":"ERROR","error":str(exc)})
+
 out={
     "status":r.status_code,
     "bytes":len(r.content),
@@ -72,6 +94,7 @@ out={
     "channel_nodes":channel_nodes,
     "scripts":scripts,
     "asset_probes":asset_probes,
+    "schedule_api_samples":schedule_api_samples,
 }
 Path("reports").mkdir(exist_ok=True)
 Path("reports/tabie-structure.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
