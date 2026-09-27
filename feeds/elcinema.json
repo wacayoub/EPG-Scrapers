@@ -1,16 +1,18 @@
 {
   "label": "elcinema",
   "channels": 103,
-  "active_channels": 90,
-  "zero_epg_channels": 13,
+  "active_channels": 88,
+  "zero_epg_channels": 15,
   "zero_epg_ids": [
     "2MMonde.ma@SD",
+    "AbuDhabiTV.ae@SD",
     "AlManar.lb@SD",
     "ATV.kw@SD",
     "BahrainTV.bh@SD",
     "CBCSofra.eg@SD",
     "DiscoveryChannelMiddleEastAfrica.us@SD",
     "DubaiOne.ae@SD",
+    "JordanTV.jo@SD",
     "KTV1.kw@SD",
     "NationalGeographicAbuDhabi.ae@SD",
     "NationalGeographicMiddleEast.uk@SD",
@@ -19,13 +21,13 @@
     "SamaDubai.ae@SD"
   ],
   "input_channels": 103,
-  "coverage_pct": 87.4,
-  "programmes": 3375,
+  "coverage_pct": 85.4,
+  "programmes": 3371,
   "rejected_invalid_time": 0,
-  "inferred_stop": 0,
+  "inferred_stop": 1,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 174518,
-  "sha256": "289a2276c9840aad32b97db3c482cc8f7085d29980d332c57c8f966498614040",
-  "generated_utc": "2026-09-27T16:52:57.986101+00:00"
+  "size_bytes": 174258,
+  "sha256": "0a7ea4b4d91b411d8fbe33a500cf5142b1db1ea727544ff261e70fc1f71cc559",
+  "generated_utc": "2026-09-27T17:25:26.648976+00:00"
 }
