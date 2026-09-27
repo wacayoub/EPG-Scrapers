@@ -34,7 +34,6 @@ TARGETS = {
         "https://www.maspero.eg/",
     ],
     "Iraq": [
-        "https://www.alsumaria.tv/TV-grid",
         "https://www.imn.iq/ar",
         "https://news.imn.iq/",
     ],
@@ -47,9 +46,6 @@ TARGETS = {
         "https://www.media.gov.kw/Frequency.aspx?FreqType=TVKSC",
     ],
     "Lebanon": [
-        "https://www.lbcgroup.tv/schedule/ar",
-        "https://www.lbcgroup.tv/schedule/en",
-        "https://www.mtv.com.lb/Schedule",
         "https://www.teleliban.com.lb/",
     ],
     "Libya": [
@@ -61,12 +57,6 @@ TARGETS = {
     "Morocco": [
         "https://snrt.ma/",
         "https://www.2m.ma/",
-    ],
-    "Oman": [
-        "https://ayn.om/services",
-        "https://ayn.om/tv-shows",
-        "https://ayn.om/schedule/158/",
-        "https://www.omaninfo.om/",
     ],
     "Palestine": [
         "https://www.pbc.ps/category/programs/",
