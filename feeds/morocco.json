@@ -1,37 +1,37 @@
 {
   "channel_counts": {
-    "2M": 71,
+    "2M": 72,
     "AFLAM.ma": 24,
     "AlAoula": 401,
     "AlMaghribiya": 411,
     "Arrabiaa": 184,
-    "Arryadia_HD": 6,
-    "Arryadia_TNT": 6,
+    "Arryadia_HD": 5,
+    "Arryadia_TNT": 5,
     "Assadisa": 508,
-    "Chada TV": 34,
+    "Chada TV": 60,
     "MEDI1TV_AR.ma": 23,
     "MEDI1TV_MAGHREB.ma": 8,
     "Tamazight": 263
   },
   "channels": 12,
-  "generated": "2026-09-27T00:11:47.366633+00:00",
-  "programmes": 1939,
-  "sha256": "24f96c34068c684f19230fb99ad7c79e29fab3a6b6ecbc892c062ccb2d2f3f8c",
-  "size": 38764,
+  "generated": "2026-09-27T00:39:28.122033+00:00",
+  "programmes": 1964,
+  "sha256": "75b484aadac82730dac859d415292826f5e9463392ebb6274328b27f48f81a6e",
+  "size": 39146,
   "sources": {
     "2m": {
-      "detail": "events=71",
-      "events": 71,
+      "detail": "events=72",
+      "events": 72,
       "mode": "fresh"
     },
     "arryadia": {
-      "detail": "events=12",
-      "events": 12,
+      "detail": "events=10",
+      "events": 10,
       "mode": "fresh"
     },
     "chada": {
-      "detail": "events=34",
-      "events": 34,
+      "detail": "events=60",
+      "events": 60,
       "mode": "fresh"
     },
     "medi1": {
@@ -40,12 +40,12 @@
       "mode": "fresh"
     },
     "snrt": {
-      "detail": "events=1362",
+      "detail": "events=1357",
       "events": 1791,
       "mode": "fresh"
     }
   },
   "timezone": "Africa/Casablanca",
   "url": "morocco.xml.gz",
-  "version": "20260927-001147"
+  "version": "20260927-003928"
 }
