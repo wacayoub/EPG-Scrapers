@@ -461,7 +461,8 @@ BOTOLA_AR={
  "mas fes":"المغرب الفاسي","maghreb fes":"المغرب الفاسي",
  "moghreb tetouan":"المغرب التطواني","mat tetouan":"المغرب التطواني",
  "raja casablanca":"الرجاء الرياضي","raja ca":"الرجاء الرياضي",
- "renaissance zemamra":"نهضة الزمامرة","rc zemamra":"نهضة الزمامرة",
+ "renaissance zemamra":"نهضة الزمامرة","renaissance club zemamra":"نهضة الزمامرة",
+ "renaissance zemamra club":"نهضة الزمامرة","rc zemamra":"نهضة الزمامرة",
  "rs berkane":"نهضة بركان","renaissance berkane":"نهضة بركان",
  "amal tiznit":"أمل تيزنيت",
  "union touarga":"اتحاد تواركة","ut salé":"اتحاد تواركة","ut sale":"اتحاد تواركة",
@@ -524,9 +525,7 @@ def _sofascore_botola_fixtures(http,hours=48):
     ha=_botola_team_ar(home);aa=_botola_team_ar(away)
     title="مباشر: البطولة الاحترافية - %s × %s"%(ha,aa)
     rd=("، الجولة %s"%rnd) if rnd else ""
-    desc=("مباراة %s و%s ضمن البطولة الاحترافية إنوي%s. "
-          "الموعد مأخوذ تلقائياً من جدول المباريات؛ توزيع قناة الرياضية الفرعية "
-          "مؤقت إلى أن تنشر SNRT شبكة البث الرسمية.")%(ha,aa,rd)
+    desc="مباراة %s و%s ضمن البطولة الاحترافية إنوي%s."%(ha,aa,rd)
     out.append({"id":eid,"start":start,"stop":stop,
                 "home":home,"away":away,"title":title,"desc":desc})
    except Exception as e:
@@ -585,11 +584,10 @@ def _livescore_botola_fixtures(http,hours=48):
      ha=_botola_team_ar(home);aa=_botola_team_ar(away)
      title="مباشر: البطولة الاحترافية - %s × %s"%(ha,aa)
      phase=clean(ev.get("Eps"))
-     score=""
-     if ev.get("Tr1") is not None and ev.get("Tr2") is not None:
-      score="، النتيجة الحالية %s-%s"%(clean(ev.get("Tr1")),clean(ev.get("Tr2")))
-     desc=("مباراة %s و%s ضمن البطولة الاحترافية إنوي%s%s. "
-           "الموعد مأخوذ من LiveScore كمسار احتياطي عندما يتعذر الوصول إلى SofaScore.")%(ha,aa,("، "+phase) if phase else "",score)
+     # Keep the public EPG clean and stable: data-source/debug information and
+     # live scores become stale quickly and must stay in logs, not in the TV synopsis.
+     phase_txt=("، "+phase) if phase and phase.casefold() not in ("not started","scheduled") else ""
+     desc="مباراة %s و%s ضمن البطولة الاحترافية إنوي%s."%(ha,aa,phase_txt)
      out.append({"id":eid,"start":start,"stop":stop,"home":home,"away":away,
                  "title":title,"desc":desc})
     except Exception as e:
@@ -1110,7 +1108,29 @@ def scrape_medi1(days):
    k=(e.start,e.title.casefold())
    prev=seen.get(k)
    if prev is None or len(e.desc or "")>len(prev.desc or ""):seen[k]=e
-  out+=sorted(seen.values(),key=lambda e:e.start)
+
+  # A linear TV channel cannot air two different programmes at the exact same
+  # start time. Medi1 occasionally publishes a stale duplicate card (e.g.
+  # Sunday 21:15 "ريمونطادا" beside the real Sunday show "مثير للجدل").
+  # Enigma2 may then drop both overlapping rows. Resolve same-start collisions
+  # by preferring the entry with the richest official synopsis.
+  by_start=defaultdict(list)
+  for e in seen.values():by_start[e.start].append(e)
+  resolved=[];collisions=0
+  for start,items in by_start.items():
+   if len(items)==1:
+    resolved.append(items[0]);continue
+   collisions+=1
+   def medi_score(e):
+    d=clean(e.desc)
+    generic=(not d or d.startswith("برنامج «") or d.startswith("موعد إخباري على قناة ميدي1"))
+    return (0 if generic else 1,len(d),1 if e.source=="medi1-card" else 0)
+   winner=max(items,key=medi_score)
+   dropped=", ".join(x.title for x in items if x is not winner)
+   log("Medi1 %s collision %s keep=%s drop=%s"%(cid,start.strftime("%F %H:%M"),winner.title,dropped))
+   resolved.append(winner)
+  out+=sorted(resolved,key=lambda e:e.start)
+  if collisions:log("Medi1 %s same-start collisions resolved=%d"%(cid,collisions))
  infer(out)
  # Never publish a blank/title-only Medi1 description.
  for e in out:
