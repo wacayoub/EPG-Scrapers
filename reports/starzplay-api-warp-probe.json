@@ -1,0 +1,27 @@
+{
+  "generated_utc": "2026-09-27T16:41:15.141615+00:00",
+  "rows": [
+    {
+      "version": "v1.1",
+      "url": "https://sp-new-api.aws.playco.com/api/v1.1/epg/channel/config",
+      "status": "ERROR",
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    },
+    {
+      "version": "v1.0",
+      "url": "https://sp-new-api.aws.playco.com/api/v1.0/epg/channel/config",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 9,
+      "sample": "Not Found"
+    },
+    {
+      "version": "v2.0",
+      "url": "https://sp-new-api.aws.playco.com/api/v2.0/epg/channel/config",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 9,
+      "sample": "Not Found"
+    }
+  ]
+}
