@@ -4,7 +4,7 @@
 
 Receiver policy:
 - keep every TV channel ID exposed by the STC public channel catalogue;
-- scrape schedules sequentially once per run, without parallel fan-out;
+- fetch one public batch schedule per UTC day instead of per-channel fan-out;
 - channels with no programme in the current window stay in XMLTV/index and are
   reported as zero-EPG instead of being deleted;
 - timestamps come from STC epoch milliseconds and are emitted as UTC +0000.
@@ -134,7 +134,7 @@ def main():
     ap.add_argument("--report", required=True)
     ap.add_argument("--id-index", default="feeds/mena.txt")
     ap.add_argument("--window-hours", type=int, default=48)
-    ap.add_argument("--delay", type=float, default=1.5)
+    ap.add_argument("--delay", type=float, default=0.2)
     ap.add_argument("--timeout", type=int, default=20)
     ap.add_argument(
         "--max-channels",
@@ -277,22 +277,40 @@ def main():
         if args.catalogue_only:
             prepared = []
 
-        for ci, (ch, name, sid, cid, prof) in enumerate(prepared):
-            allrows = []
+        # The public schedule API supports a full-day batch response containing
+        # all channelIds. This reduces a 144-channel/48h refresh from hundreds
+        # of HTTP calls to roughly one call per UTC day.
+        schedule_by_id = {}
+        batch_errors = []
+        if prepared:
             for di, date in enumerate(days):
                 try:
                     data2 = get_json(
                         sess,
                         f"{SCHEDULE_BASE}/{date}/3",
-                        {"apikey": SCHEDULE_KEY, "productKey": "stc-tv", "byId": sid},
+                        {"apikey": SCHEDULE_KEY, "productKey": "stc-tv"},
                         args.timeout,
                     )
                     stats["requests"] += 1
-                    allrows.extend(rows(data2))
-                except Exception:
-                    pass
+                    if isinstance(data2, list):
+                        for block in data2:
+                            if not isinstance(block, dict):
+                                continue
+                            bid = str(block.get("channelId") or "").strip()
+                            listings = block.get("listings") or []
+                            if bid and isinstance(listings, list):
+                                schedule_by_id.setdefault(bid, []).extend(listings)
+                except Exception as exc:
+                    batch_errors.append({"date": date, "error": str(exc)[:240]})
                 if di + 1 < len(days):
                     time.sleep(max(0, args.delay))
+        stats["schedule_mode"] = "batch_per_day"
+        stats["schedule_days"] = days
+        stats["schedule_channel_blocks"] = len(schedule_by_id)
+        stats["batch_errors"] = batch_errors
+
+        for ci, (ch, name, sid, cid, prof) in enumerate(prepared):
+            allrows = list(schedule_by_id.get(sid, []))
 
             seen = set()
             keep = []
@@ -350,8 +368,7 @@ def main():
             else:
                 stats["zero_epg"].append({"id": cid, "name": name})
 
-            if ci + 1 < len(prepared):
-                time.sleep(max(0, args.delay))
+            # No per-channel network delay is needed in batch mode.
 
     except Exception as e:
         stats["error"] = str(e)
