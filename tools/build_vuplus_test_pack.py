@@ -93,6 +93,7 @@ def audit(key,path):
         if cid in channels: duplicate_ids+=1
         channels[cid]=c
     now=datetime.now(timezone.utc)
+    valid=defaultdict(int)
     future=defaultdict(int)
     latest=None
     programmes=0
@@ -108,14 +109,18 @@ def audit(key,path):
             invalid+=1
             continue
         programmes+=1
+        valid[cid]+=1
         if sp>now:
             future[cid]+=1
             if latest is None or sp>latest: latest=sp
+    active_channels=sum(1 for cid in channels if valid[cid]>0)
     future_channels=sum(1 for cid in channels if future[cid]>0)
-    ratio=future_channels/len(channels) if channels else 0.0
+    ratio=future_channels/active_channels if active_channels else 0.0
     horizon=max(0.0,(latest-now).total_seconds()/3600.0) if latest else 0.0
     stats={
         "channels":len(channels),
+        "active_channels":active_channels,
+        "zero_epg_channels":max(0,len(channels)-active_channels),
         "programmes":programmes,
         "future_channels":future_channels,
         "future_ratio":round(ratio,4),
@@ -126,7 +131,7 @@ def audit(key,path):
     }
     p=POLICY[key]
     reasons=[]
-    if stats["channels"]<p["min_channels"]: reasons.append(f"channels<{p['min_channels']}")
+    if stats["active_channels"]<p["min_channels"]: reasons.append(f"active_channels<{p['min_channels']}")
     if stats["programmes"]<p["min_programmes"]: reasons.append(f"programmes<{p['min_programmes']}")
     if ratio<p["min_future_ratio"]: reasons.append(f"future_ratio<{p['min_future_ratio']:.2f}")
     if horizon<p["min_horizon_hours"]: reasons.append(f"future_horizon<{p['min_horizon_hours']}h")
@@ -139,7 +144,7 @@ manifest={
     "generated_utc":datetime.now(timezone.utc).isoformat(),
     "mode":"vuplus-direct-safe-test",
     "repository":"wacayoub/EPG-Scrapers",
-    "policy":"Expose only healthy published direct XMLTV feeds; broken/empty sources remain disabled.",
+    "policy":"Keep complete per-source ID catalogues; validate EPG health on active channels; normalize receiver test timestamps to UTC.",
     "sources":[],
     "disabled_sources":[
         {"key":"starzplay","label":LABELS["starzplay"],"enabled":False,"reason":"parser currently returns 0 programmes; keep hidden until a real XMLTV feed passes validation"},
@@ -186,7 +191,12 @@ for key in PRIORITY:
     for p in root.findall("programme"):
         cid=(p.get("channel") or "").strip()
         if cid in source_channels:
-            by_ch[cid].append(p)
+            pp=clone(p)
+            st=parse_dt(pp.get("start")); sp=parse_dt(pp.get("stop"))
+            if st and sp and sp>st:
+                pp.set("start",st.strftime("%Y%m%d%H%M%S +0000"))
+                pp.set("stop",sp.strftime("%Y%m%d%H%M%S +0000"))
+                by_ch[cid].append(pp)
     for cid,c in source_channels.items():
         if cid in channels: continue
         channels[cid]=clone(c)
@@ -235,12 +245,12 @@ md=[
     f"Generated: {manifest['generated_utc']}","",
     f"Ready direct sources: **{len(enabled)}/{len(manifest['sources'])}**  ",
     f"Merged test feed: **{len(channels)} channels / {count} programmes**","",
-    "| Source | Ready | Channels | Programmes | Future | Horizon | Reason |",
-    "|---|---:|---:|---:|---:|---:|---|",
+    "| Source | Ready | IDs | Active | Programmes | Future(active) | Horizon | Reason |",
+    "|---|---:|---:|---:|---:|---:|---:|---|",
 ]
 for s in manifest["sources"]:
     st=s.get("stats",{})
-    md.append(f"| {s['label']} | {'YES' if s['enabled'] else 'NO'} | {st.get('channels','-')} | {st.get('programmes','-')} | {('%0.0f%%'%(100*st.get('future_ratio',0))) if st else '-'} | {st.get('future_horizon_hours','-')}h | {s.get('reason','')} |")
+    md.append(f"| {s['label']} | {'YES' if s['enabled'] else 'NO'} | {st.get('channels','-')} | {st.get('active_channels','-')} | {st.get('programmes','-')} | {('%0.0f%%'%(100*st.get('future_ratio',0))) if st else '-'} | {st.get('future_horizon_hours','-')}h | {s.get('reason','')} |")
 md += ["","## Intentionally disabled for first Vu+ test","",
        "- STARZPLAY — parser currently produces no real programmes.",
        "- GOBX — access/discovery is still unresolved.",
