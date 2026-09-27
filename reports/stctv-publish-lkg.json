@@ -1,0 +1,31 @@
+{
+  "generated_utc": "2026-09-27T09:06:08.013290+00:00",
+  "sources": {
+    "stctv": {
+      "candidate": "output/final/stctv.xml.gz",
+      "published": true,
+      "candidate_stats": {
+        "channels": 144,
+        "active_channels": 144,
+        "zero_epg_channels": 0,
+        "programmes": 8804,
+        "future_channels": 144,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 50.89775677388889,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 144,
+        "active_channels": 144,
+        "zero_epg_channels": 0,
+        "programmes": 8824,
+        "future_channels": 144,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 43.89770921611112,
+        "invalid_rows": 0
+      },
+      "decision": "PUBLISH",
+      "reasons": []
+    }
+  }
+}
