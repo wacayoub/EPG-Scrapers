@@ -41,8 +41,8 @@ jobs:
               r.raise_for_status()
               soup=BeautifulSoup(r.text,"lxml")
               rows=[]
-              for div in soup.select('.container-tvguide > div[id^="channels_"]'):
-                  m=re.match(r"channels_(\d+)",div.get("id") or "")
+              for div in soup.select('[id^="channels_"]'):
+                  m=re.match(r"channels_(\d+)$",div.get("id") or "")
                   if not m: continue
                   sid=int(m.group(1))
                   a=div.find("a",href=True)
