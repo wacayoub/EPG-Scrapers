@@ -119,6 +119,14 @@ STARZPLAY_LIVE_CATALOGUE = (
     {"name": "Zee Bangla", "aliases": ("zee bangla",)},
     {"name": "Emasala Simply South", "aliases": ("emasala simply south",)},
     {"name": "ARY Digital", "aliases": ("ary digital",)},
+    {"name": "eJunior", "aliases": ("ejunior", "e junior")},
+    {"name": "Colors HD", "aliases": ("colors hd", "colors tv")},
+    {"name": "Zee Keralam", "aliases": ("zee keralam",)},
+    {"name": "Sony TV", "aliases": ("sony tv",)},
+    {"name": "Asianet Movies HD", "aliases": ("asianet movies hd", "asianet movies")},
+    {"name": "Flowers International", "aliases": ("flowers international",)},
+    {"name": "Mazhavil Manorama", "aliases": ("mazhavil manorama",)},
+    {"name": "Asianet ME", "aliases": ("asianet me",)},
 )
 
 
