@@ -7,8 +7,9 @@ setting status=403. The generic upstream grabber rejects that response before it
 parser can see it. This scraper validates the HTML body instead of trusting the
 status code alone, then parses the same official interactive guide.
 
-No programme is invented. Channels whose official guide is N/A are omitted from
-the active XMLTV output by the downstream packer.
+No programme is invented. Every configured Rotana channel ID stays in the XMLTV
+catalogue even when the current guide is N/A; zero-EPG status is reported
+separately so EPGManager can let the user choose.
 """
 from __future__ import annotations
 
@@ -185,10 +186,9 @@ def main():
         "generator-info-url":"https://www.rotana.net/tv/channels",
     })
     for site_id,(cid,name) in CHANNELS.items():
-        if cid not in active:
-            continue
         ch=ET.SubElement(root,"channel",{"id":cid})
         ET.SubElement(ch,"display-name",{"lang":"ar"}).text=name
+        ET.SubElement(ch,"url",{"system":"rotana-id"}).text=site_id
     for cid,start,stop,title in sorted(all_events,key=lambda x:(x[1],x[0],x[3])):
         p=ET.SubElement(root,"programme",{"start":fmt(start),"stop":fmt(stop),"channel":cid})
         ET.SubElement(p,"title",{"lang":"ar"}).text=title
@@ -202,7 +202,9 @@ def main():
         "timezone":"Asia/Riyadh",
         "channels_configured":len(CHANNELS),
         "channels_with_epg":len(active),
+        "zero_epg_ids":sorted(set(cid for _,(cid,_) in CHANNELS.items())-active),
         "programmes":len(all_events),
+        "timezone_output":"UTC +0000",
         "channels":status,
     }
     rp=Path(args.report); rp.parent.mkdir(parents=True,exist_ok=True)
