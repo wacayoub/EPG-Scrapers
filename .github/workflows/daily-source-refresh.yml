@@ -97,8 +97,17 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  oman:
+  tabie:
     needs: aljazeera
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: tabie
+      scheduled: false
+    secrets: inherit
+
+  oman:
+    needs: tabie
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
