@@ -80,6 +80,7 @@ def main() -> int:
     ar_root = ET.parse(args.arabic).getroot()
     en_root = ET.parse(args.english).getroot()
     channels = {(c.get("id") or "").strip(): deepcopy(c) for c in ar_root.findall("channel") if (c.get("id") or "").strip()}
+    en_channels = {(c.get("id") or "").strip(): c for c in en_root.findall("channel") if (c.get("id") or "").strip()}
 
     ar_native_ids = set(policy.get("arabic_native_ids", []))
     hybrid_ids = set(policy.get("hybrid_ids", []))
@@ -92,10 +93,16 @@ def main() -> int:
             return "arabic_native"
         if cid in hybrid_ids:
             return "hybrid"
-        name = norm(channel_name(channels.get(cid)))
-        if any(tok and tok in name for tok in ar_tokens):
+        # Classification must not depend only on the Arabic localized
+        # display-name. The English page is the reliable signal for international
+        # channel brands such as National Geographic, CNN, Cartoon Network, Zee
+        # and STARZPLAY thematic channels.
+        name_ar = norm(channel_name(channels.get(cid)))
+        name_en = norm(channel_name(en_channels.get(cid)))
+        names = " | ".join(x for x in (name_ar, name_en) if x)
+        if any(tok and tok in names for tok in ar_tokens):
             return "arabic_native"
-        if any(tok and tok in name for tok in hy_tokens):
+        if any(tok and tok in names for tok in hy_tokens):
             return "hybrid"
         return default_profile
 
