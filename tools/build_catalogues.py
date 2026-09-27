@@ -290,6 +290,11 @@ choose("rotana",["rotana.net"],arabic_only=True)
 # placeholders remain excluded. AFC temporary feeds stay excluded.
 BEIN_ZERO_EPG_EXCLUDE = set()
 
+BEIN_SITE_ID_OVERRIDES = {
+    ("bein.com", "entertainment#8"): ("beINBoxOffice1.qa@SD", "beIN BOX OFFICE 1"),
+    ("bein.com", "entertainment#30"): ("beINBoxOffice2.qa@SD", "beIN BOX OFFICE 2"),
+}
+
 BEIN_PACKAGE_DISPLAY_OVERRIDES = {
     "AlJazeeraDocumentary.qa@SD": "Al Jazeera Documentary",
     "AlkassOne.qa@SD": "Alkass One",
@@ -387,7 +392,10 @@ def build_bein():
                 continue
             cid=(ch.get("xmltv_id") or "").strip()
             name=(ch.text or "").strip()
-            if not cid:
+            forced=BEIN_SITE_ID_OVERRIDES.get((site,sid))
+            if forced:
+                cid,name=forced
+            elif not cid:
                 cid=fallback_by_site.get((site,sid),"")
             if cid in BEIN_PACKAGE_DISPLAY_OVERRIDES:
                 name=BEIN_PACKAGE_DISPLAY_OVERRIDES[cid]
@@ -471,6 +479,9 @@ def build_bein():
         for ch in rr.findall("channel"):
             sid=(ch.get("site_id") or "").strip()
             name=(ch.text or "").strip()
+            forced=BEIN_SITE_ID_OVERRIDES.get((site,sid))
+            if forced:
+                _,name=forced
             key=_bein_norm_name(name)
             if not sid or key not in winning_keys:
                 continue
