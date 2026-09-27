@@ -311,9 +311,11 @@ def main() -> int:
     ap.add_argument("--timeout", type=int, default=25)
     ap.add_argument("--html-file", help="Offline/test input; skips network fetch")
     ap.add_argument("--base-url", default="https://www.starzplay.com")
+    ap.add_argument("--country", default="AE")
+    ap.add_argument("--city", default="Dubai")
     args = ap.parse_args()
 
-    query = urlencode({"selectcountry": "MA", "selectcity": "Casablanca"})
+    query = urlencode({"selectcountry": args.country.upper(), "selectcity": args.city})
     url = f"{args.base_url.rstrip('/')}/{args.lang}/live?{query}"
     status = 200
     final_url = url
