@@ -14,6 +14,8 @@ import requests
 from bs4 import BeautifulSoup
 
 START = [
+    "https://web.stctv.com/livetv",
+    "https://web.stctv.com/",
     "https://app.stctv.com/",
     "https://www.stctv.com/",
     "https://stctv.com/",
