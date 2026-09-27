@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/refresh-gobx.yml"
+      - ".github/workflows/refresh-source-core.yml"
       - "tools/gobx_source.py"
   schedule:
     - cron: "0 5,6 * * *"
