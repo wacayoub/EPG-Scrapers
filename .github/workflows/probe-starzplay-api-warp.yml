@@ -66,7 +66,7 @@ jobs:
           from pathlib import Path
           from datetime import datetime, timezone
 
-          base="https://sp-new-api.aws.playco.com/api"
+          bases=["https://epg.aws.playco.com/api","https://sp-new-api.aws.playco.com/api"]
           headers={
             "User-Agent":"Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36",
             "Client-Type":"Android",
@@ -77,29 +77,30 @@ jobs:
           versions=("v1.1","v1.0","v2.0")
           rows=[]; payloads={}
 
-          for version in versions:
+          for base in bases:
+           for version in versions:
             url=f"{base}/{version}/epg/channel/config"
             req=urllib.request.Request(url,headers=headers)
             try:
               with urllib.request.urlopen(req,timeout=25) as r:
                 body=r.read(5_000_000)
-                row={"version":version,"url":url,"status":r.status,
+                row={"base":base,"version":version,"url":url,"status":r.status,
                      "content_type":r.headers.get("content-type",""),"bytes":len(body)}
                 try:
                   obj=json.loads(body)
                   row["json_type"]=type(obj).__name__
                   row["top_keys"]=list(obj)[:50] if isinstance(obj,dict) else []
-                  payloads[version]=obj
+                  payloads[f"{base}|{version}"]=obj
                 except Exception as e:
                   row["json_error"]=str(e)
                   row["sample"]=body[:1000].decode("utf-8","replace")
             except urllib.error.HTTPError as e:
               b=e.read(100000)
-              row={"version":version,"url":url,"status":e.code,
+              row={"base":base,"version":version,"url":url,"status":e.code,
                    "content_type":e.headers.get("content-type","") if e.headers else "",
                    "bytes":len(b),"sample":b[:1000].decode("utf-8","replace")}
             except Exception as e:
-              row={"version":version,"url":url,"status":"ERROR","error":str(e)}
+              row={"base":base,"version":version,"url":url,"status":"ERROR","error":str(e)}
             rows.append(row)
 
           Path("reports").mkdir(exist_ok=True)
