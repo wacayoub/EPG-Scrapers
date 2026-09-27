@@ -1,0 +1,102 @@
+{
+  "generated_utc": "2026-09-27T09:04:55.975495+00:00",
+  "mode": "source-aware",
+  "feeds": [
+    {
+      "feed": "dubaiplus.xml.gz",
+      "generated_utc": "2026-09-27T09:04:55.975371+00:00",
+      "target_hours": 48.0,
+      "minimum_acceptable_hours": 8.0,
+      "max_gap_minutes_warning": 90,
+      "channels": 9,
+      "invalid_times": 0,
+      "orphan_programmes": 0,
+      "failed_channels": 0,
+      "warning_channels": 4,
+      "status": "WARN",
+      "rows": [
+        {
+          "id": "DubaiOne.ae@SD",
+          "status": "WARN",
+          "reason": "INTERNAL_GAP",
+          "future_hours": 49.92,
+          "latest_stop_utc": "2026-09-29T11:00:00+00:00",
+          "max_gap_minutes": 200.0,
+          "programmes": 32
+        },
+        {
+          "id": "DubaiRacing1.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 50.92,
+          "latest_stop_utc": "2026-09-29T12:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 24
+        },
+        {
+          "id": "DubaiRacing2.ae@SD",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 38.55,
+          "latest_stop_utc": "2026-09-28T23:38:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 20
+        },
+        {
+          "id": "DubaiSports1.ae@SD",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 41.42,
+          "latest_stop_utc": "2026-09-29T02:30:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 34
+        },
+        {
+          "id": "DubaiSports2.ae@SD",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 41.42,
+          "latest_stop_utc": "2026-09-29T02:30:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 37
+        },
+        {
+          "id": "DubaiTV.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.42,
+          "latest_stop_utc": "2026-09-29T09:30:00+00:00",
+          "max_gap_minutes": 30.0,
+          "programmes": 72
+        },
+        {
+          "id": "DubaiZaman.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.42,
+          "latest_stop_utc": "2026-09-29T09:30:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 83
+        },
+        {
+          "id": "NoorDubaiTV.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.0,
+          "latest_stop_utc": "2026-09-29T09:05:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 58
+        },
+        {
+          "id": "SamaDubai.ae@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.42,
+          "latest_stop_utc": "2026-09-29T09:30:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 76
+        }
+      ]
+    }
+  ]
+}
