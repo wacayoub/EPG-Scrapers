@@ -405,7 +405,7 @@ def _snrt_flat_events(cid,soup):
  return out
 
 def _arryadia_is_generic(e):
- return norm(e.title) in {"arryadia programme","programme arryadia"} or e.source=="arryadia-auto"
+ return norm(e.title) in {"arryadia programme","programme arryadia"} or e.source in ("arryadia-auto","arryadia-smart","arryadia-repeat")
 
 def _arryadia_repeat_safe(e):
  # Reuse only stable magazine/studio programmes. Never project a match/live
@@ -659,12 +659,15 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
    out.append(Event(cid,e.start,e.title,e.desc,e.stop,e.tl,e.dl,"arryadia-lkg"))
    occupied.append(e);retained+=1
 
-  # Learn only strong recurrence. SNRT commonly shifts stable programmes
-  # by 5-30 minutes, so group the same title into 30-minute wall-clock slots
-  # instead of requiring an identical minute on every day.
+  # SMART recurrence model.
+  # Only official SNRT observations are allowed to teach the model. Previous
+  # generated EPG rows (LKG/repeat/auto/external fixtures) are never evidence,
+  # otherwise one bad inference could reinforce itself on later refreshes.
   samples=[
    e for e in (list(rows)+history)
-   if e.channel==cid and e.stop and e.stop>e.start and _arryadia_repeat_safe(e)
+   if e.channel==cid and e.stop and e.stop>e.start and
+      e.source in ("arryadia-snrt","arryadia-history") and
+      _arryadia_repeat_safe(e)
   ]
   buckets=defaultdict(list)
   for e in samples:
@@ -673,30 +676,65 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
    if slot>=24*60:slot=0
    key=(norm(e.title),slot)
    if key[0]:buckets[key].append(e)
+
   templates=[]
+  smart_rejected=0
   for key,evs in buckets.items():
-   # Require the slot on at least two distinct dates. Multiple parser rows on
-   # one day never count as recurrence evidence.
+   # De-duplicate HD/TNT/parser duplicates on the same broadcast day.
+   per_day={}
+   for e in sorted(evs,key=lambda x:x.start):
+    d=e.start.date()
+    prev=per_day.get(d)
+    if prev is None or len(e.desc or "")>len(prev.desc or ""):per_day[d]=e
+   evs=list(per_day.values())
    dates={e.start.date() for e in evs}
-   if len(dates)<2:continue
+   if len(dates)<2:
+    smart_rejected+=1;continue
+
    ev=max(evs,key=lambda x:x.start)
    valid_durations=[e.stop-e.start for e in evs if e.stop and timedelta(0)<e.stop-e.start<=timedelta(hours=4)]
-   if not valid_durations:continue
+   if not valid_durations:
+    smart_rejected+=1;continue
    valid_durations.sort()
    dur=valid_durations[len(valid_durations)//2]
+
+   mins=sorted(e.start.hour*60+e.start.minute for e in evs)
+   median_min=mins[len(mins)//2]
+   deviations=[abs(m-median_min) for m in mins]
+   jitter=sorted(deviations)[len(deviations)//2] if deviations else 0
+
+   observations=len(dates)
+   if observations>=5:base=.93
+   elif observations==4:base=.86
+   elif observations==3:base=.78
+   else:base=.64
+   if jitter<=10:base+=.04
+   elif jitter<=30:base+=.02
+   elif jitter>45:base-=.10
+   base=max(0.0,min(1.0,base))
+
    slot=key[1];hh=(slot//60)%24;mm=slot%60
-   templates.append((key[0],hh,mm,ev,dur,len(dates)))
+   weekdays={e.start.weekday() for e in evs}
+   templates.append((key[0],hh,mm,ev,dur,observations,base,weekdays))
 
   day=start.date()
   while day<=end.date():
-   for nt,hh,mm,ev,dur,observations in templates:
+   for nt,hh,mm,ev,dur,observations,base,weekdays in templates:
+    confidence=base
+    # A programme seen on the same weekday in the seven-day SNRT archive gets
+    # a small boost, useful for weekly magazines without making one sighting
+    # sufficient by itself.
+    if day.weekday() in weekdays:confidence=min(1.0,confidence+.05)
+    if confidence<.76:
+     smart_rejected+=1;continue
     ts=morocco_wall_clock(day,dtime(hh,mm));te=ts+dur
     if ts<start or ts>=end or te<=ts:continue
     if overlaps(occupied,ts,te):continue
-    out.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-repeat"))
-    occupied.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-repeat"))
+    out.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-smart"))
+    occupied.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-smart"))
     repeated+=1
    day+=timedelta(days=1)
+  log("Arryadia smart cid=%s templates=%d accepted=%d rejected=%d"%(cid,len(templates),repeated,smart_rejected))
 
   # Fill only what remains completely unknown.
   occupied=sorted(occupied,key=lambda e:e.start)
