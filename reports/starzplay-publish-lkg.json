@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-27T04:14:07.103850+00:00",
+  "generated_utc": "2026-09-27T09:05:38.300970+00:00",
   "sources": {
     "starzplay": {
       "candidate": "output/final/starzplay.xml.gz",
@@ -8,10 +8,20 @@
         "channels": 3,
         "active_channels": 3,
         "zero_epg_channels": 0,
+        "programmes": 144,
+        "future_channels": 3,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 48.906027174444446,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 3,
+        "active_channels": 3,
+        "zero_epg_channels": 0,
         "programmes": 145,
         "future_channels": 3,
         "future_ratio": 1.0,
-        "future_horizon_hours": 48.76469301305555,
+        "future_horizon_hours": 43.90602623972222,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
