@@ -61,12 +61,12 @@ jobs:
           echo "$?" > reports/vuplus/dubaiplus-pack.rc
           exit 0
 
-      - name: Refresh STC targeted public metadata
+      - name: Refresh full STC public channel catalogue
         shell: bash
         run: |
           set +e
           mkdir -p output/vuplus reports/vuplus
-          python tools/stctv_source.py             --output output/vuplus/stctv.raw.xml             --report reports/vuplus/stctv-scrape.json             --id-index feeds/mena.txt             --window-hours 48             --delay 1.5             --max-channels 10             --profile starzplay-sports
+          python tools/stctv_source.py             --output output/vuplus/stctv.raw.xml             --report reports/vuplus/stctv-scrape.json             --id-index feeds/mena.txt             --window-hours 48             --delay 1.5             --max-channels 0             --profile all
           rc=$?
           echo "$rc" > reports/vuplus/stctv-scrape.rc
           python tools/source_feed_pack.py             --input output/vuplus/stctv.raw.xml             --output-gz output/vuplus/stctv.xml.gz             --output-txt output/vuplus/stctv.txt             --stats output/vuplus/stctv.json             --label stctv             --window-hours 48
@@ -100,18 +100,20 @@ jobs:
               raw=Path(path).read_bytes()
               root=ET.fromstring(gzip.decompress(raw))
               ids={(c.get("id") or "").strip() for c in root.findall("channel") if (c.get("id") or "").strip()}
-              now=datetime.now(timezone.utc); fut={x:0 for x in ids}; latest=None; pr=0; bad=0
+              now=datetime.now(timezone.utc); valid={x:0 for x in ids}; fut={x:0 for x in ids}; latest=None; pr=0; bad=0
               for p in root.findall("programme"):
                   cid=(p.get("channel") or "").strip(); s=dt(p.get("start")); e=dt(p.get("stop"))
                   if cid not in ids or not s or not e or e<=s:
                       bad+=1; continue
                   pr+=1
+                  valid[cid]=valid.get(cid,0)+1
                   if e>now:
                       fut[cid]=fut.get(cid,0)+1
                       latest=e if latest is None or e>latest else latest
-              ratio=sum(1 for x in ids if fut.get(x,0)>0)/len(ids) if ids else 0
+              active=sum(1 for x in ids if valid.get(x,0)>0)
+              ratio=sum(1 for x in ids if fut.get(x,0)>0)/active if active else 0
               horizon=max(0,(latest-now).total_seconds()/3600) if latest else 0
-              return {"channels":len(ids),"programmes":pr,"future_ratio":ratio,"future_horizon_hours":horizon,"invalid_rows":bad}
+              return {"channels":len(ids),"active_channels":active,"zero_epg_channels":max(0,len(ids)-active),"programmes":pr,"future_ratio":ratio,"future_horizon_hours":horizon,"invalid_rows":bad}
           result={}
           for key,p in policy.items():
               src=Path("output/vuplus")/(key+".xml.gz")
@@ -121,7 +123,7 @@ jobs:
               try:
                   s=audit(src); row["stats"]=s
                   reasons=[]
-                  if s["channels"]<p["min_channels"]: reasons.append("too_few_channels")
+                  if s["active_channels"]<p["min_channels"]: reasons.append("too_few_active_channels")
                   if s["programmes"]<p["min_programmes"]: reasons.append("too_few_programmes")
                   if s["future_ratio"]<p["min_ratio"]: reasons.append("low_future_ratio")
                   if s["future_horizon_hours"]<p["min_horizon"]: reasons.append("short_future_horizon")
