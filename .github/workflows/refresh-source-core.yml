@@ -52,7 +52,7 @@ jobs:
         shell: bash
         run: |
           case "${{ inputs.source }}" in
-            bein|osn|shahid|elcinema|oman) echo "upstream=true" >> "$GITHUB_OUTPUT" ;;
+            bein|osn|shahid|elcinema) echo "upstream=true" >> "$GITHUB_OUTPUT" ;;
             *) echo "upstream=false" >> "$GITHUB_OUTPUT" ;;
           esac
 
