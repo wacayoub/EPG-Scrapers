@@ -65,8 +65,9 @@ T2M={
  "sahatna jmi3":"صحتنا جميع","tajwid al qor an":"تجويد القرآن","ch hiwat bladi":"شهيوات بلادي",
  "kif al hal":"كيف الحال","al barlamane wa annass":"البرلمان والناس","alhane 3chaqnaha":"ألحان عشقناها",
  "salon shehrazade":"صالون شهرزاد","ch hiwa ma3a choumicha":"شهيوة مع شميشة","al amana":"الأمانة",
- "asrar al mondial":"أسرار المونديال","bulletin meteo":"النشرة الجوية","journal amazigh":"الأخبار بالأمازيغية",
+ "asrar al mondial":"أسرار المونديال","bulletin meteo":"النشرة الجوية","meteo":"النشرة الجوية","journal amazigh":"الأخبار بالأمازيغية",
  "3ailti":"عائلتي","sir al morjane":"سر المرجان","bahr addalam":"بحر الظلام","qalb aswad":"قلب أسود",
+ "nass al khir":"ناس الخير","nass lkhir":"ناس الخير",
  "mondial stories":"حكايات المونديال","info soir":"أخبار المساء","eco news":"أخبار الاقتصاد",
  "al massaiya":"المسائية","hikayat chama":"حكايات شامة",
  "jabha f rassou":"جبهة فراسو",
@@ -76,11 +77,14 @@ T2M={
  "priere du vendredi":"صلاة الجمعة","priere vendredi":"صلاة الجمعة","ayne lkebrite":"عين الكبريت",
  "ayn lkebrite":"عين الكبريت","wlad 3li":"ولاد علي","oulad 3li":"ولاد علي","jt arabe":"الأخبار بالعربية",
  "journal amazigh":"الأخبار بالأمازيغية","al massaiya":"المسائية","al dahira":"الظهيرة","rachid show":"رشيد شو",
- "moudawala":"مداولة","lmktoub":"المكتوب","dar nsa":"دار النسا","najm chaabi":"النجم الشعبي"}
+ "talk show rachid show":"رشيد شو","coran avec laureat":"القرآن مع الفائزين",
+ "coran avec laureats":"القرآن مع الفائزين","coran avec lauréat":"القرآن مع الفائزين",
+ "coran avec lauréats":"القرآن مع الفائزين","moudawala":"مداولة","lmktoub":"المكتوب",
+ "dar nsa":"دار النسا","najm chaabi":"النجم الشعبي"}
 
 # 2M title language policy: keep native French programme brands in French.
 T2M_KEEP_FR={
- "info soir","bulletin meteo","meteo","eco news","econews","auto moto","planete foot","planète foot",
+ "info soir","eco news","econews","auto moto","planete foot","planète foot",
  "ahsane patissier","ahsane pâtissier"
 }
 T2M_FORCE_AR={
@@ -93,10 +97,11 @@ T2M_MIXED={
  "clips soirees chaabi":"سهرات شعبية",
  "clips soiree chaabi":"سهرة شعبية",
  "talk show twahachnak":"توحشناك",
- "twahachnak":"توحشناك",
+ "talk show rachid show":"رشيد شو","twahachnak":"توحشناك",
  "akhir tamanna":"آخر تمني","akhir tamane":"آخر ثمن","akhir tamaneh":"آخر ثمن",
  "al khobare":"الأخبار",
- "coran avec laureats tajwid al qor an":"Coran avec lauréats تجويد القرآن",
+ "coran avec laureats tajwid al qor an":"القرآن مع الفائزين",
+ "coran avec laureat tajwid al qor an":"القرآن مع الفائزين",
  "tajwid al qor an":"تجويد القرآن"
 }
 
@@ -542,7 +547,7 @@ def _sofascore_botola_fixtures(http,hours=48):
     ts=ev.get("startTimestamp")
     if not ts:continue
     start=_morocco_from_unix(ts)
-    stop=start+timedelta(hours=2,minutes=15)
+    stop=start+timedelta(hours=2)
     # Keep matches that are already in progress. The former 15-minute grace
     # dropped a match as soon as a refresh happened >15 minutes after kickoff.
     if stop<=now-timedelta(minutes=10) or start>=end:continue
@@ -606,7 +611,7 @@ def _livescore_botola_fixtures(http,hours=48):
     try:
      start=_livescore_parse_start(ev.get("Esd"))
      if not start:continue
-     stop=start+timedelta(hours=2,minutes=15)
+     stop=start+timedelta(hours=2)
      if stop<=now-timedelta(minutes=10) or start>=end:continue
      t1=(ev.get("T1") or [{}])[0] or {};t2=(ev.get("T2") or [{}])[0] or {}
      home=clean(t1.get("Nm"));away=clean(t2.get("Nm"))
@@ -715,25 +720,36 @@ def _botola_event_matches_text(fx,e):
  text=norm((e.title or "")+" "+(e.desc or ""))
  if not text:return False
  # A direct team-name match is enough to identify an already official fixture.
- for team in (fx["home"],fx["away"],_botola_team_ar(fx["home"]),_botola_team_ar(fx["away"])):
+ for team in (fx["home"],fx["away"],_botola_team_fr(fx["home"]),_botola_team_fr(fx["away"]),
+              _botola_team_ar(fx["home"]),_botola_team_ar(fx["away"])):
   n=norm(team)
   if n and len(n)>=4 and n in text:return True
  return False
 
 def _arryadia_add_botola(rows,fixtures):
- # Add Botola fixtures only where SNRT has not already identified that match.
- # Concurrent fixtures are distributed across free Arryadia service IDs.
+ # Botola fallback policy:
+ # - every non-simultaneous match goes to Arryadia_HD (main channel);
+ # - simultaneous kick-offs fan out to TNT/HD1/HD2/HD3;
+ # - a generic "Arryadia Programme" must never hide a known Botola fixture.
  out=list(rows);occupied=defaultdict(list);added=0;confirmed=0;unplaced=0
  for e in rows:
   if e.channel in ARR_IDS and e.stop:occupied[e.channel].append(e)
 
- def busy(cid,s,t):
-  return any(e.stop and e.stop>s and e.start<t for e in occupied[cid])
+ def blockers(cid,s,t):
+  return [e for e in occupied[cid] if e.stop and e.stop>s and e.start<t and not _arryadia_is_generic(e)]
+
+ def drop_generic_overlap(cid,s,t):
+  nonlocal out
+  doomed=[e for e in occupied[cid] if e.stop and e.stop>s and e.start<t and _arryadia_is_generic(e)]
+  if not doomed:return
+  occupied[cid]=[e for e in occupied[cid] if e not in doomed]
+  out=[e for e in out if e not in doomed]
 
  groups=defaultdict(list)
  for fx in fixtures:groups[fx["start"]].append(fx)
  for start in sorted(groups):
-  for fx in groups[start]:
+  same_start=groups[start]
+  for pos,fx in enumerate(same_start):
    stop=fx["stop"]
    official_hit=False
    for e in rows:
@@ -743,12 +759,26 @@ def _arryadia_add_botola(rows,fixtures):
      official_hit=True;confirmed+=1;break
    if official_hit:continue
 
-   # Main channel first; simultaneous games then use the extra Arryadia feeds.
-   cid=next((x for x in ARR_IDS if not busy(x,start,stop)),None)
+   # First match at a kickoff always targets main Arryadia HD.
+   preferred=ARR_IDS if pos==0 else ARR_IDS[1:]+["Arryadia_HD"]
+   cid=None
+   for candidate in preferred:
+    drop_generic_overlap(candidate,start,stop)
+    b=blockers(candidate,start,stop)
+    if not b:
+     cid=candidate;break
+    # Consecutive Botola fixtures often start exactly two hours apart. If our
+    # previous fallback slightly overlaps the next kickoff, clip it instead of
+    # moving the next match off the main channel.
+    if candidate=="Arryadia_HD" and all(x.source=="botola-sofascore" for x in b):
+     if all(x.start<start and x.stop-start<=timedelta(minutes=20) for x in b):
+      for x in b:x.stop=start
+      cid=candidate;break
    if cid is None:
     unplaced+=1;continue
-   ev=Event(cid,start,fx["title"],fx["desc"],stop,"ar","ar","botola-sofascore")
+   ev=Event(cid,start,fx["title"],fx["desc"],stop,"fr","fr","botola-sofascore")
    out.append(ev);occupied[cid].append(ev);added+=1
+   log("Arryadia Botola place %s | %s | %s"%(start.strftime("%F %H:%M"),cid,fx["title"]))
  log("Arryadia Botola external added=%d official_matches=%d unplaced=%d"%(added,confirmed,unplaced))
  return out
 
@@ -1261,6 +1291,10 @@ def parse_2m(h,text,day,detail_cache=None):
    desc=category or title
 
   at=tr2m_title(h,title)
+  # 2M language exception: the weather bulletin immediately following
+  # Info Soir keeps its French on-air title. Other weather bulletins are Arabic.
+  if norm(title) in ("bulletin meteo","meteo") and out and norm(out[-1].title)=="info soir":
+   at=title
   ad=tr2m_desc(h,desc,category,title)
   out.append(Event("2M",start,at,ad,None,lang(at),"ar","2m-telerama"))
  out.sort(key=lambda e:e.start)
