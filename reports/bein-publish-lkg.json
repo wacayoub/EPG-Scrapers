@@ -1,17 +1,17 @@
 {
-  "generated_utc": "2026-09-27T21:31:12.348866+00:00",
+  "generated_utc": "2026-09-27T21:36:02.173422+00:00",
   "sources": {
     "bein": {
       "candidate": "output/final/bein.xml.gz",
-      "published": false,
+      "published": true,
       "candidate_stats": {
         "channels": 69,
-        "active_channels": 0,
-        "zero_epg_channels": 69,
-        "programmes": 0,
-        "future_channels": 0,
-        "future_ratio": 0.0,
-        "future_horizon_hours": 0.0,
+        "active_channels": 66,
+        "zero_epg_channels": 3,
+        "programmes": 2525,
+        "future_channels": 66,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 47.1493912825,
         "invalid_rows": 0
       },
       "previous_stats": {
@@ -21,17 +21,11 @@
         "programmes": 1503,
         "future_channels": 49,
         "future_ratio": 0.8305084745762712,
-        "future_horizon_hours": 50.47990006305555,
+        "future_horizon_hours": 50.39937825611111,
         "invalid_rows": 0
       },
-      "decision": "KEEP_LKG",
-      "reasons": [
-        "active_channels<35",
-        "programmes<500",
-        "future_ratio<0.80",
-        "future_horizon<8h",
-        "programme_regression>65%"
-      ]
+      "decision": "PUBLISH",
+      "reasons": []
     }
   }
 }
