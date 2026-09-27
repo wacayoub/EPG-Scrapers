@@ -48,57 +48,6 @@
       "notes": "Direct official Watania 1/2 scraper validated with three schedule days; 48h future coverage, Arabic titles/descriptions retained."
     },
     {
-      "id": "lbci",
-      "name": "LBCI",
-      "country": "LB",
-      "status": "confirmed_schedule",
-      "tier": "A",
-      "urls": [
-        "https://www.lbcgroup.tv/schedule/en",
-        "https://www.lbcgroup.tv/schedule/ar"
-      ],
-      "expected_channels": [
-        "LBCI",
-        "LB2"
-      ],
-      "language": "ar/en",
-      "notes": "Official multi-day schedule. Preserve Beirut timezone."
-    },
-    {
-      "id": "alsumaria",
-      "name": "Alsumaria",
-      "country": "IQ",
-      "status": "confirmed_schedule",
-      "tier": "A",
-      "urls": [
-        "https://www.alsumaria.tv/TV-grid"
-      ],
-      "expected_channels": [
-        "Alsumaria"
-      ],
-      "language": "ar",
-      "notes": "Official grid with times, durations and Arabic descriptions."
-    },
-    {
-      "id": "ayn_oman",
-      "name": "AYN / Oman TV",
-      "country": "OM",
-      "status": "parser_fix_needed",
-      "tier": "A",
-      "urls": [
-        "https://ayn.om/services",
-        "https://ayn.om/tv-shows"
-      ],
-      "expected_channels": [
-        "قناة عمان العامة",
-        "قناة عمان الرياضية",
-        "قناة عمان الثقافية",
-        "قناة عمان مباشر"
-      ],
-      "language": "ar",
-      "notes": "Official schedule pages and four Oman TV IDs confirmed, but the former upstream parser currently returns 0 programmes. LKG blocks empty publication until a new dynamic/API parser is validated."
-    },
-    {
       "id": "tabie_qmc",
       "name": "Tabie / Qatar Media Corporation",
       "country": "QA",
@@ -118,22 +67,6 @@
       ],
       "language": "ar",
       "notes": "Public QMC schedule API validated. QTV1/QTV2/QBC/Tabie services active; direct horizon currently about one day, then canonical MENA merge may extend strictly after the official stop using lower-priority fallbacks."
-    },
-    {
-      "id": "mtv_lebanon",
-      "name": "MTV Lebanon",
-      "country": "LB",
-      "status": "confirmed_schedule_dynamic",
-      "tier": "A-candidate",
-      "urls": [
-        "https://www.mtv.com.lb/Schedule"
-      ],
-      "expected_channels": [
-        "MTV Lebanon",
-        "One TV"
-      ],
-      "language": "ar/en",
-      "notes": "Official schedule route exists but appears client-rendered; API discovery required before publication."
     },
     {
       "id": "roya",
@@ -227,19 +160,6 @@
       "expected_channels": [],
       "language": "ar/en",
       "notes": "Operator source candidate. Do not promote until a public guide endpoint and exact channel identities are validated."
-    },
-    {
-      "id": "fotmob_sports_overlay",
-      "name": "FotMob MENA sports overlay",
-      "country": "MENA",
-      "status": "overlay_only",
-      "tier": "auxiliary",
-      "urls": [
-        "https://www.fotmob.com/ar/tv-guide/me"
-      ],
-      "expected_channels": [],
-      "language": "ar/en",
-      "notes": "Sports event/broadcaster correction layer only; never a general EPG primary source."
     }
   ]
 }
