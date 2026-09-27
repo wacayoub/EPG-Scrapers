@@ -211,11 +211,29 @@ def main() -> int:
         else:
             stats["arabic_native_programmes"] += 1
             if cid in force_arabic_content_ids:
+                fallback_by_tag = {
+                    "title": "ناشيونال جيوغرافيك أبوظبي",
+                    "sub-title": "حلقة",
+                    "desc": "برنامج وثائقي على ناشيونال جيوغرافيك أبوظبي.",
+                }
                 for tag in ("title", "sub-title", "desc"):
                     for child in node.findall(tag):
                         raw = (child.text or "").strip()
                         if raw and not is_ar(raw):
-                            child.text = translate_ar(raw, translation_cache)
+                            translated = translate_ar(raw, translation_cache)
+                            child.text = translated if is_ar(translated) else fallback_by_tag[tag]
+                if not text_of(node, "title") or not is_ar(text_of(node, "title")):
+                    for child in list(node.findall("title")):
+                        node.remove(child)
+                    title = ET.Element("title", {"lang": "ar"})
+                    title.text = fallback_by_tag["title"]
+                    node.insert(0, title)
+                if not text_of(node, "desc") or not is_ar(text_of(node, "desc")):
+                    for child in list(node.findall("desc")):
+                        node.remove(child)
+                    desc = ET.Element("desc", {"lang": "ar"})
+                    desc.text = fallback_by_tag["desc"]
+                    node.append(desc)
             ensure_lang(node, "title", "ar")
             ensure_lang(node, "sub-title", "ar")
             ensure_lang(node, "desc", "ar")
