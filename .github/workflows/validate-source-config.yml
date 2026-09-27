@@ -49,6 +49,12 @@ jobs:
               cid=(c.get("xmltv_id") or "").strip()
               name=(c.text or "").strip()
               key="".join(ch.lower() for ch in name if ch.isalnum())
+              m=re.fullmatch(r"beinsports(\d+)(en|fr)",key)
+              if m:
+                  key=f"beinsports{m.group(2)}{m.group(1)}"
+              m=re.fullmatch(r"beinsports(en|fr)(\d+)",key)
+              if m:
+                  key=f"beinsports{m.group(1)}{m.group(2)}"
               rows.append((cid,name))
               if not key.startswith("bein") or "afc" in key or "afc" in cid.casefold():
                   bad.append((cid,name))

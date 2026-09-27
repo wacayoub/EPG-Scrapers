@@ -183,10 +183,10 @@ def _bein_norm_name(value: str) -> str:
     raw="".join(ch.lower() for ch in (value or "") if ch.isalnum())
     # The two official MENA endpoints use both "SPORTS EN 1" and
     # "SPORTS1EN" (same service). Canonicalize token order before dedupe.
-    m=re.fullmatch(r"beinsports(\\d+)(en|fr)",raw)
+    m=re.fullmatch(r"beinsports(\d+)(en|fr)",raw)
     if m:
         return f"beinsports{m.group(2)}{m.group(1)}"
-    m=re.fullmatch(r"beinsports(en|fr)(\\d+)",raw)
+    m=re.fullmatch(r"beinsports(en|fr)(\d+)",raw)
     if m:
         return f"beinsports{m.group(1)}{m.group(2)}"
     return raw
