@@ -389,25 +389,8 @@ jobs:
           fi
           exit 0
 
-      - name: Scrape STC full public channel catalogue
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          set +e
-          mkdir -p output/source-build reports
-          python tools/stctv_source.py \
-            --output output/source-build/stctv.raw.xml \
-            --report reports/stctv-scrape.json \
-            --window-hours 48 \
-            --delay 1.5 \
-            --max-channels 0 \
-            --profile all
-          rc=$?
-          echo "$rc" > output/source-build/stctv.grab.rc
-          if [ ! -s output/source-build/stctv.raw.xml ]; then
-            echo '<?xml version="1.0"?><tv></tv>' > output/source-build/stctv.raw.xml
-          fi
-          exit 0
+      # STC scraping intentionally disabled: keep the last-known-good published STC feed.
+      # Re-enable only for a dedicated/manual STC refresh, because the full catalogue scrape is slow.
 
       - name: Pack candidate feeds and preserve complete ID catalogues
         if: steps.gate.outputs.run == 'true'
@@ -415,7 +398,7 @@ jobs:
         run: |
           set +e
           mkdir -p output/final
-          for key in elcinema osn bein shahid rotana sport24 starzplay dubaiplus stctv; do
+          for key in elcinema osn bein shahid rotana sport24 starzplay dubaiplus; do
             catalogue_args=()
             if [ -s "output/source-build/$key.channels.xml" ]; then
               catalogue_args=(--catalogue "output/source-build/$key.channels.xml")
@@ -518,7 +501,7 @@ jobs:
           set +e
           mkdir -p reports
           candidates=()
-          for key in morocco bein shahid elcinema osn rotana sport24 starzplay dubaiplus stctv; do
+          for key in morocco bein shahid elcinema osn rotana sport24 starzplay dubaiplus; do
             [ -s "output/final/$key.xml.gz" ] && candidates+=("output/final/$key.xml.gz")
           done
           if [ "${#candidates[@]}" -gt 0 ]; then
