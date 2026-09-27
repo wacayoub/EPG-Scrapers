@@ -1,0 +1,53 @@
+{
+  "generated_utc": "2026-09-27T09:05:10.207824+00:00",
+  "mode": "source-aware",
+  "feeds": [
+    {
+      "feed": "aljazeera.xml.gz",
+      "generated_utc": "2026-09-27T09:05:10.207790+00:00",
+      "target_hours": 48.0,
+      "minimum_acceptable_hours": 8.0,
+      "max_gap_minutes_warning": 90,
+      "channels": 4,
+      "invalid_times": 0,
+      "orphan_programmes": 0,
+      "failed_channels": 2,
+      "warning_channels": 0,
+      "status": "FAIL",
+      "rows": [
+        {
+          "id": "AlJazeera.qa@Arabic",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.91,
+          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 40
+        },
+        {
+          "id": "AlJazeera2.qa@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 55.91,
+          "latest_stop_utc": "2026-09-29T17:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 23
+        },
+        {
+          "id": "AlJazeeraDocumentary.qa@SD",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "AlJazeeraMubasher.qa@SD",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        }
+      ]
+    }
+  ]
+}
