@@ -60,56 +60,66 @@ jobs:
           tail -20 /tmp/gobx-jadx.log 2>/dev/null || true
           tail -20 /tmp/starz-jadx.log 2>/dev/null || true
 
-      - name: Extract sanitized public EPG routes
+      - name: Extract targeted public EPG routes
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           import json,re
 
-          roots={'gobx':Path('/tmp/decompiled/gobx'),'starzplay':Path('/tmp/decompiled/starz')}
-          hint=re.compile(r'(epg|tv.?guide|programme|program|schedule|channel.?guide|live.?channel|now.?show|gracenote|listing)',re.I)
-          route=re.compile(r'["\']([^"\']{1,300})["\']')
-          url=re.compile(r'https?://[^\s"\'<>\\]{5,500}',re.I)
-          annotation=re.compile(r'@(GET|POST|Query|Path|Headers?)\s*\(([^)]{0,500})\)',re.I)
           sensitive=re.compile(r'(authorization|bearer|password|secret|access.?token|refresh.?token|license|widevine|drm|payment|credit.?card)',re.I)
 
-          result={}
-          for key,root in roots.items():
-              matches=[]; urls=[]; routes=[]
-              if root.exists():
-                  for p in root.rglob('*.java'):
-                      try: txt=p.read_text(encoding='utf-8',errors='ignore')
-                      except Exception: continue
-                      if not hint.search(txt): continue
-                      lines=txt.splitlines()
-                      for i,line in enumerate(lines):
-                          if not hint.search(line) or sensitive.search(line): continue
-                          lo=max(0,i-5); hi=min(len(lines),i+6)
-                          excerpt='\n'.join(lines[lo:hi])
-                          if sensitive.search(excerpt): continue
-                          matches.append({'file':str(p.relative_to(root)),'line':i+1,'excerpt':excerpt[:5000]})
-                          for u in url.findall(excerpt):
-                              if not sensitive.search(u): urls.append(u.rstrip(');,'))
-                          for s in route.findall(excerpt):
-                              if hint.search(s) and not sensitive.search(s): routes.append(s)
-                          for _,inside in annotation.findall(excerpt):
-                              if hint.search(inside) and not sensitive.search(inside): routes.append(inside)
-                          if len(matches)>=180: break
-                      if len(matches)>=180: break
-              def uniq(xs,limit):
-                  out=[]; seen=set()
-                  for x in xs:
-                      x=x.strip()
-                      if x and x not in seen:
-                          seen.add(x); out.append(x)
-                      if len(out)>=limit: break
-                  return out
-              result[key]={'matches':matches,'candidate_urls':uniq(urls,120),'candidate_routes':uniq(routes,250)}
+          def excerpts(root, files, needles):
+              out=[]
+              for p in files:
+                  try: txt=p.read_text(encoding='utf-8',errors='ignore')
+                  except Exception: continue
+                  if not any(n.search(txt) for n in needles): continue
+                  lines=txt.splitlines()
+                  for i,line in enumerate(lines):
+                      if not any(n.search(line) for n in needles): continue
+                      lo=max(0,i-12); hi=min(len(lines),i+13)
+                      ex='\n'.join(lines[lo:hi])
+                      if sensitive.search(ex): continue
+                      out.append({'file':str(p.relative_to(root)),'line':i+1,'excerpt':ex[:9000]})
+                      if len(out)>=120: return out
+              return out
+
+          gobx=Path('/tmp/decompiled/gobx')
+          starz=Path('/tmp/decompiled/starz')
+
+          gobx_files=[]
+          appdir=gobx/'sources'/'net'/'mbc'/'gobx'
+          if appdir.exists():
+              gobx_files=[p for p in appdir.rglob('*.java') if p.name!='R.java']
+          gobx_needles=[
+              re.compile(r'fe-api\.prod\.gobx\.com',re.I),
+              re.compile(r'gracenote-fe-api',re.I),
+              re.compile(r'programmeApi|getLiveChannel|getTvGuideFilterApiCall|callNowShowingAPI',re.I),
+              re.compile(r'@(GET|POST)\s*\(',re.I),
+              re.compile(r'ChannelGuide|TVGuide',re.I),
+          ]
+
+          starz_files=[p for p in (starz/'sources').rglob('*.java') if p.name!='R.java'] if (starz/'sources').exists() else []
+          starz_needles=[
+              re.compile(r'/epg/category/config/',re.I),
+              re.compile(r'/epg/category/events/',re.I),
+              re.compile(r'/epg/channel/start/',re.I),
+              re.compile(r'sp-new-api\.aws\.playco\.com',re.I),
+              re.compile(r'@(GET|POST)\s*\([^\n]*(epg|channel)',re.I),
+          ]
+
+          result={
+              'gobx':{'matches':excerpts(gobx,gobx_files,gobx_needles)},
+              'starzplay':{'matches':excerpts(starz,starz_files,starz_needles)},
+          }
           Path('reports').mkdir(exist_ok=True)
           Path('reports/deep-public-epg-routes.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           for key,row in result.items():
-              print(key,'matches',len(row['matches']),'urls',row['candidate_urls'],'routes',row['candidate_routes'][:80])
+              print('\n###',key,'matches',len(row['matches']))
+              for m in row['matches'][:50]:
+                  print('\nFILE',m['file'],'LINE',m['line'])
+                  print(m['excerpt'])
           PY
 
       - name: Publish discovery report
