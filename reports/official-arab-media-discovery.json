@@ -4,13 +4,13 @@
       {
         "url": "https://www.entv.dz/ar/tv1",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: /ar/tv1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f081dec6450>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: /ar/tv1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f41b3e7ead0>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
         "discovery_score": 0
       },
       {
         "url": "https://www.entv.dz/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f081dec7310>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.entv.dz', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.entv.dz', port=443) at 0x7f41b3e7f750>, 'Connection to www.entv.dz timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -21,14 +21,13 @@
         "final_url": "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dDZyEvUUZRSS9ZTlEh/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الصفحة الرئيسية",
-        "bytes": 129258,
+        "bytes": 123327,
         "guide_hits": 0,
         "time_tokens": 2,
         "arabic_time_hits": 0,
         "json_scripts": [],
         "js_assets": [
           "https://www.bahrain.bh/wps/mypoc/ruxitagentjs_ICA7NQVfhqrux_10345260810170330.js",
-          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!DXQD2WDg1eZ9AFilCnRlTw/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1681210125266&entry=wp_client_main__0.0%3Ahead_js&entry=wp_client_ext__0.0%3Ahead_js&entry=wp_client_logging__0.0%3Ahead_js&entry=wp_client_tracing__0.0%3Ahead_js&entry=wp_modules__0.0%3Ahead_js&entry=wp_photon_dom__0.0%3Ahead_js&entry=wp_toolbar_common__0.0%3Ahead_js&entry=wp_dialog_util__0.0%3Ahead_js&entry=wp_dialog_draggable__0.0%3Ahead_js&entry=wp_dialog_main__0.0%3Ahead_js&entry=wp_a11y__0.0%3Ahead_js&entry=wp_state_page__0.0%3Ahead_js&entry=wp_theme_portal_85__0.0%3Ahead_js&entry=wp_theme_utils__0.0%3Ahead_js&entry=wp_toolbar_viewframe_validator__0.0%3Ahead_js&entry=wp_analytics_aggregator__0.0%3Ahead_js",
           "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js",
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyDR09JMkFLq7CfkUASF_syEo3VP5gnHb6M&libraries=places",
           "https://cdn.jsdelivr.net/npm/flatpickr",
@@ -37,16 +36,15 @@
           "https://cdn.jsdelivr.net/npm/hls.js@1",
           "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dDZyEvUUZRSS9ZTlEh/p0/IZ7_K0HAG3S01PBC506PES9KVU3007=CZ6_1I50H8C009UUF068GF4468R757=NEjavax.faces.resource!QCPjsf.js=ln!javax.faces=com.ibm.faces.portlet.PATH!QCPjavax.faces.resourceQCPjsf.js==/",
           "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0",
-          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle.js?v=1790463934806",
-          "about:blank?v=1790463934806",
+          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle.js?v=1790476793256",
+          "about:blank?v=1790476793256",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/bundle_extension.js",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/js/jquery-eu-cookie-law-popup_ar.js",
           "https://www.googletagmanager.com/gtag/js?id=G-6SFQ2RLYBZ",
-          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1789541508726&entry=wp_portal__0.0%3Aconfig_config_static&entry=wcm_config__0.0%3Aconfig_config_static&entry=wcm_inplaceEdit__0.0%3Aconfig_config_static",
+          "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1789973305242&entry=wp_portal__0.0%3Aconfig_config_static&entry=wcm_config__0.0%3Aconfig_config_static&entry=wcm_inplaceEdit__0.0%3Aconfig_config_static",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!a9u35S-GsJR__LxzULIWAA/mashup/ra:collection?themeID=ZJ_4GDIHH422HV2D06S6PVMIM0035&locale=ar&locale=en&mime-type=text%2Fjavascript&lm=1681210129343&entry=wp_dialog_main__0.0%3Aconfig_js&entry=wp_high_contrast__0.0%3Aconfig_js&entry=wp_toolbar_utils__0.0%3Aconfig_js&entry=wp_state_page_modes__0.0%3Aconfig_js&entry=wp_simple_contextmenu_ext__0.0%3Aconfig_js&entry=wp_simple_contextmenu_js__0.0%3Aconfig_js&entry=wp_toolbar_actionbar__0.0%3Aconfig_js&entry=wp_toolbar_menuactions__0.0%3Aconfig_js&entry=wp_toolbar_sitepreview_menuactions__0.0%3Aconfig_js&entry=wp_ic4_wai_resources__0.0%3Aconfig_js&entry=wp_theme_skin_region__0.0%3Aconfig_js&entry=wp_status_bar__0.0%3Aconfig_js&entry=wp_toolbar_projectmenu__0.0%3Aconfig_js&entry=wp_toolbar_contextmenu__0.0%3Aconfig_js&entry=wp_toolbar_sitepreview__0.0%3Aconfig_js"
         ],
         "api_candidates": [
-          "http://www.ibm.com/xmlns/prod/websphere/portal/publicparams",
           "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/",
           "https://www.bahrain.bh/wps/portal/BNP/HomeNationalPortal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MLEND3QzMLNzdTEzMLILMTc31wwkpiAJKG-AAjgZA_VFgJXATDENCDQwCwzwdg_zdXAwNTAyhCvCYUZAbYZDpqKgIAGWtYeA!/dz/d5/L3dJVUEvUU93RFFFQSEvNE5sSFVBISEvWjZfMUk1MEg4QzAwOVVVRjA2OEdGNDQ2OFI3NTc!/",
           "https://www.bahrain.bh/wps/contenthandler/!ut/p/digest!VjBueQcDg9ZtERuc1v4-zw/dav/fs-type1/themes/BahrainGovPortalThemeDX95/assets/images/Logo_ar.svg",
@@ -95,7 +93,8 @@
           "https://www.linkedin.com/company/igabahrain/",
           "http://www.youtube.com/c/iGABahrain",
           "https://bh.bh/A/igawhatsapp",
-          "http://services.bahrain.bh/wps/portal/tawasul/Home_ar"
+          "http://services.bahrain.bh/wps/portal/tawasul/Home_ar",
+          "https://www.iga.gov.bh/"
         ],
         "guide_links": [],
         "sample": "الصفحة الرئيسية تسجيل الدخول لاستخدام امكانيات التأليف فتح قائمة الموقع المواقع المقر الأساسي لشركة HCL Technologies HCL Digital Experience شعار Digital Experience بدء الاتصال English  weather النمط الداكن تسجيل الدخول دليل المعلومات الصفحة الرئيسية هنا في البحرين عن البحرين اكتشف البحرين دليل الخدمات الحكومية المشاركة الإلكترونية \"شاركنا\" الخدمات الإلكترونية الصفحة الرئيسية الخدمات الإلكترونية حسب التصنيف الخدمات الإلكترونية حسب المقدم متجر تطبيقات الحكومة الإلكترونية weather تسجيل الدخول إعدادات النص والعرض حجم الخط حجم الخط الحالي + تكبير - تصغير إعادة ضبط حجم الخط ألوان النص والخلفية الأسود والأبيض (افتراضي) أسود و بيج (عسر القراءة) الأسود والأصفر الفاتح (عسر القراءة 1) الأسود والأصفر (عالي التباين) البوابة الوطنية الصفحة الرئيسية {} البوابة الوطنية لمملكة البحرين بوابتك للوصول إلى الخدمات والمعلومات الحكومية البحث Search هنا في البحرين كل ما تحتاج معرفته عن الحياة في البحرين. التعليم والتدريب الطلبة والمدارس والجامعات والمعاهد التدريبية العمالة والتقاعد من مرحلة البداية إلى التقاعد: طريق البحرين إلى النجاح المهني الرعاية الصحية الرعاية الصحية في مملكة البحرين: تعزيز الجودة وسهولة الوصول والابتكار الهوية الوطنية والتأشيرات معلومات حول الهوية الرسمية، بطاقة الهوية، جوازات السفر",
@@ -109,7 +108,7 @@
         "final_url": "https://ortc.km/",
         "content_type": "text/html; charset=UTF-8",
         "title": "Accueil - ortc.km",
-        "bytes": 236705,
+        "bytes": 236704,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
@@ -154,7 +153,7 @@
           "https://ortc.km/wp-content/themes/astra/assets/css/minified/menu-animation.min.css?ver=4.14.0",
           "https://ortc.km/wp-content/plugins/wp-stats-manager/css/style.css?ver=1.2",
           "https://ortc.km/wp-content/plugins/audioigniter/player/build/style.css?ver=2.0.4",
-          "https://ortc.km/wp-content/plugins/omnisend/styles/site-styles.css?1790463936&#038;ver=1.9.1",
+          "https://ortc.km/wp-content/plugins/omnisend/styles/site-styles.css?1790476795&#038;ver=1.9.1",
           "https://ortc.km/wp-content/plugins/wpfront-notification-bar/css/wpfront-notification-bar.min.css?ver=3.5.1.05102",
           "https://ortc.km/wp-content/plugins/wps-visitor-counter/styles/css/default.css?ver=1.4.9",
           "https://ortc.km/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
@@ -199,101 +198,20 @@
     "Djibouti": [
       {
         "url": "https://rtd.dj/",
-        "status": 200,
+        "status": 403,
         "final_url": "https://rtd.dj/",
-        "content_type": "text/html",
-        "title": "RTD – Radio TÃ©lÃ©vision Djibouti",
-        "bytes": 227188,
+        "content_type": "application/json",
+        "title": "",
+        "bytes": 107,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
-        "json_scripts": [
-          {
-            "id": "wp-emoji-settings",
-            "type": "application/json",
-            "bytes": 240
-          }
-        ],
-        "js_assets": [
-          "https://rtd.dj/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "https://rtd.dj/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/jquery.cookie.js?ver=7.1.2",
-          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/ytprefs.min.js?ver=14.2.6.1",
-          "https://rtd.dj/wp-content/plugins/blockspare/dist/block_animation_script.js?ver=5.0.0",
-          "https://rtd.dj/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
-          "https://rtd.dj/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
-          "https://rtd.dj/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.7",
-          "https://rtd.dj/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.7",
-          "https://rtd.dj/wp-includes/js/jquery/ui/core.min.js?ver=1.14.2",
-          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/shuffle/modernizr.custom.min.js?ver=7.1.2",
-          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/shuffle/jquery.shuffle.min.js?ver=7.1.2",
-          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/shuffle/random-shuffle-min.js?ver=7.1.2",
-          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/js/custom.js?ver=3.0.2",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/toggle-script.js?ver=6.2.10",
-          "https://rtd.dj/wp-content/themes/chromenews/js/navigation.js?ver=20151215",
-          "https://rtd.dj/wp-content/themes/chromenews/js/skip-link-focus-fix.js?ver=6.2.10",
-          "https://rtd.dj/wp-content/themes/chromenews/admin-dashboard/dist/chromenews_scripts.build.js?ver=6.2.10",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/sidr/js/jquery.sidr.min.js?ver=6.2.10",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/marquee/jquery.marquee.js?ver=6.2.10",
-          "https://rtd.dj/wp-content/plugins/blockspare/assets/slick/js/slick.min.js?ver=5.0.0",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/bootstrap/js/bootstrap.min.js?ver=6.2.10",
-          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/fitvids.min.js?ver=14.2.6.1"
-        ],
-        "api_candidates": [
-          "http://gmpg.org/xfn/11",
-          "https://fonts.googleapis.com/css?family=Jost:400,700|Noto+Serif:400,700&#038;subset=latin&#038;display=swap",
-          "https://fonts.googleapis.com",
-          "https://fonts.gstatic.com",
-          "https://rtd.dj/feed/",
-          "https://rtd.dj/comments/feed/",
-          "https://rtd.dj/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frtd.dj%2F",
-          "https://rtd.dj/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frtd.dj%2F&#038;format=xml",
-          "https://rtd.dj/wp-content/plugins/blockspare/assets/fontawesome/css/all.css?ver=5.0.0",
-          "https://rtd.dj/wp-content/plugins/magic-content-box-lite/src/assets/fontawesome/css/all.css?ver=1765491231",
-          "https://rtd.dj/wp-content/plugins/magic-content-box-lite/dist/blocks.style.build.css?ver=7.1.2",
-          "https://rtd.dj/wp-content/plugins/blockspare/dist/lates_post_css.css?ver=5.0.0",
-          "https://rtd.dj/wp-content/plugins/blockspare/dist/common_all_blocks.css?ver=5.0.0",
-          "https://rtd.dj/wp-content/plugins/blockspare/dist/block_animation.css?ver=5.0.0",
-          "https://rtd.dj/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.7",
-          "https://rtd.dj/wp-content/plugins/ultimate-social-media-icons/css/sfsi-style.css?ver=3.0.2",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/icons/style.css?ver=7.1.2",
-          "https://rtd.dj/wp-content/themes/chromenews/style.min.css?ver=6.2.10",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/sidr/css/jquery.sidr.dark.css?ver=6.2.10",
-          "https://rtd.dj/wp-content/plugins/blockspare/assets/slick/css/slick.min.css?ver=5.0.0",
-          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/styles/ytprefs.min.css?ver=14.2.6.1",
-          "https://rtd.dj/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
-          "https://rtd.dj/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
-          "https://rtd.dj/wp-content/themes/chromenews/assets/jquery.cookie.js?ver=7.1.2",
-          "https://rtd.dj/wp-admin/admin-ajax.php",
-          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/",
-          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/",
-          "https://rtd.dj/wp-content/plugins/youtube-embed-plus/scripts/ytprefs.min.js?ver=14.2.6.1",
-          "https://api.w.org/",
-          "https://rtd.dj/wp-json/",
-          "https://rtd.dj/wp-json/wp/v2/pages/336",
-          "https://rtd.dj/xmlrpc.php?rsd",
-          "https://rtd.dj/",
-          "https://rtd.dj/wp-content/uploads/2024/11/cropped-TV5MONDE-Le-Journal-International-COVER-8884ef56-2.jpg",
-          "https://rtd.dj/wp-content/uploads/2024/11/cropped-logortd-2-150x150.png",
-          "https://rtd.dj/wp-content/uploads/2024/11/cropped-logortd-2.png",
-          "https://www.facebook.com/INFOS.DJ",
-          "https://www.youtube.com/@RTDTELEDJIBOUTI",
-          "https://rtd.dj/category/a-la-une/",
-          "https://rtd.dj/category/economie/",
-          "https://rtd.dj/category/education/",
-          "https://rtd.dj/category/faits-divers/",
-          "https://rtd.dj/category/parlement/",
-          "https://rtd.dj/category/politique/",
-          "https://rtd.dj/category/sante/",
-          "https://rtd.dj/category/social-culture/",
-          "https://rtd.dj/category/sports/",
-          "https://rtd.dj/actualites/",
-          "https://rtd.dj/nos-emissions/",
-          "https://rtd.dj/rtd-en-direct/"
-        ],
+        "json_scripts": [],
+        "js_assets": [],
+        "api_candidates": [],
         "guide_links": [],
-        "sample": "RTD – Radio TÃ©lÃ©vision Djibouti Aller au contenu 26/09/2026 Facebook YouTube RTD Radio TÃ©lÃ©vision Djibouti Connect with Us Facebook YouTube CatÃ©gories Ã la Une Economie Education Faits divers Parlement Politique SantÃ© Social/Culture Sports Menu principal Accueil ActualitÃ©s SantÃ© Education Sports Economie Social/Culture Politique Parlement Journal TV RTD en Direct Contact RechercherÂ : Fil d'actualitÃ© Damerjog : Djibouti lance un projet Ã©nergÃ©tique stratÃ©gique de 160 millions de dollars pour renforcer le corridor vers lâÃthiopie Le mÃ©diateur de la RÃ©publique participe Ã une table ronde sur le processus Ã©lectoral en Russie MinistÃ¨re de l’Agriculture : lancement officiel du financement de 50 sous-projets LâUNFD reÃ§oit un don significatif de Qatar Charity MinistÃ¨re du Travail : signature de convention entre lâANEFIP et lâInstitut FranÃ§ais de Djibouti Ã la Une Damerjog : Djibouti lance un projet Ã©nergÃ©tique stratÃ©gique de 160 millions de dollars pour renforcer le corridor vers lâÃthiopie RTD 25/09/2026 0 Ã la Une Le Premier ministre prÃ©side la rÃ©union de prÃ©sentation de la feuille de route de lâaxe II Abdillahi Ahmed 23/09/2026 0 Ã la Une Le ch",
-        "discovery_score": 13.0
+        "sample": "{ \"message\": \"Access denied by Imunify360 bot-protection. IPs used for automation should be whitelisted\" }",
+        "discovery_score": 0.0
       }
     ],
     "Egypt": [
@@ -303,7 +221,7 @@
         "final_url": "https://www.maspero.eg/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الهيئة الوطنية للإعلام",
-        "bytes": 228308,
+        "bytes": 227595,
         "guide_hits": 0,
         "time_tokens": 83,
         "arabic_time_hits": 0,
@@ -614,7 +532,7 @@
             "url": "https://news.gov.kw/"
           }
         ],
-        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 16 ربــيـــع الآخــِــر 1448 | 47 °م 34 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م × لاخر المستجدات يرجى متابعة قنوات البث المباشر لتلفزيون دولة الكويت وحسابات التواصل الاجتماعي التابعة لوزارة الإعلام الكويتية وموقع الاخبار إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة إعلان إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة الاخبار الترددات الهندسية مجلة ا",
+        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 16 ربــيـــع الآخــِــر 1448 | 47 °م 27 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م × لاخر المستجدات يرجى متابعة قنوات البث المباشر لتلفزيون دولة الكويت وحسابات التواصل الاجتماعي التابعة لوزارة الإعلام الكويتية وموقع الاخبار إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة إعلان إعلان بشأن المقابلات الشخصية الخاصة بالوظائف الإشرافية لشغل وظيفة مدير إدارة الاخبار الترددات الهندسية مجلة ا",
         "discovery_score": 11.8
       },
       {
@@ -674,7 +592,7 @@
           "https://www.googletagmanager.com/gtag/js?id=G-59GQS9JJ91"
         ],
         "guide_links": [],
-        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 16 ربــيـــع الآخــِــر 1448 | 47 °م 34 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م الرئيسية / القنوات التلفزيونية / الترددات الهندسية TV KSC القنوات الفضائية الكويتية – البث الفضائي التلفزيوني و الإذاعي KUWAIT SPACE CHANNELS (KSC) – INTERNATIONAL SATELLITE TV & RADIO BROADCAST COVERAGE AREA Pol. FEC SR MS/S FREQ.[MHZ] RADIO Sat Pos. PROGRAM SATELLITE & BAND Middle East, Central Africa, Southern Europe H 2/3 27.5 ",
+        "sample": "Ministry Of Information Kuwait - State Of Kuwait | وزارة الإعلام - دولة الكويت | 16 ربــيـــع الآخــِــر 1448 | 47 °م 27 °م إضافة عمود جانبي يوتيوب تويتر تويتر القائمة وزارة الاعلام الرئيسية عن الوزارة استراتيجية وزارة الاعلام عن الوزارة عن قطاعات الوزارة المواد الاعلامية فيديوهات عن الكويت الكتب السنوية صور عن الكويت معالم الكويت معالم الكويت الحديثة صور لابراج الكويت خدماتنا الموظفين خدمة البريد الالكتروني خدمة التراسل الالكتروني خدمة النماذج الالكترونية الجهات والافراد خدمة حق الاطلاع خدمة تصاريح الدخول لمبنى وزارة الاعلام خدمة الإبلاغ عن حالة وفاة خدمة اشتراكات مجلة الكويت خدمة اشتراكات جريدة كويت اليوم خدمة تراخيص السياحة خدمة تراخيص النشر الالكتروني خدمة تراخيص المصنفات الفنية تراخيص المطبوعات والنشر تسجيل الشركات واستدراج العروض تواصل معنا نموذج الاتصال بنا ارقام الهواتف للوزارة موقع الوزارة تواصل مع مكتب معالي وزير الإعلام Search for الكويت 30 °م الرئيسية / القنوات التلفزيونية / الترددات الهندسية TV KSC القنوات الفضائية الكويتية – البث الفضائي التلفزيوني و الإذاعي KUWAIT SPACE CHANNELS (KSC) – INTERNATIONAL SATELLITE TV & RADIO BROADCAST COVERAGE AREA Pol. FEC SR MS/S FREQ.[MHZ] RADIO Sat Pos. PROGRAM SATELLITE & BAND Middle East, Central Africa, Southern Europe H 2/3 27.5 ",
         "discovery_score": 11.0
       }
     ],
@@ -1059,7 +977,7 @@
         "final_url": "https://www.pbc.ps/",
         "content_type": "text/html; charset=UTF-8",
         "title": "الرئيسية - تلفزيون فلسطين",
-        "bytes": 189140,
+        "bytes": 189139,
         "guide_hits": 0,
         "time_tokens": 0,
         "arabic_time_hits": 0,
@@ -1157,7 +1075,7 @@
       {
         "url": "https://www.qatartv.com/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.qatartv.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.qatartv.com', port=443) at 0x7f081dc93250>, 'Connection to www.qatartv.com timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.qatartv.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.qatartv.com', port=443) at 0x7f41b3ca41d0>, 'Connection to www.qatartv.com timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -1393,7 +1311,7 @@
       {
         "url": "https://www.sharjahtv.ae/",
         "status": "ERROR",
-        "error": "HTTPSConnectionPool(host='www.sharjahtv.ae', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.sharjahtv.ae', port=443) at 0x7f081cf44f10>, 'Connection to www.sharjahtv.ae timed out. (connect timeout=22)'))",
+        "error": "HTTPSConnectionPool(host='www.sharjahtv.ae', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.sharjahtv.ae', port=443) at 0x7f41b2a7f090>, 'Connection to www.sharjahtv.ae timed out. (connect timeout=22)'))",
         "discovery_score": 0
       }
     ],
@@ -1414,7 +1332,7 @@
           "http://www.w3.org/TR/html4/loose.dtd"
         ],
         "guide_links": [],
-        "sample": "ERROR: The request could not be satisfied 403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner. If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation. Generated by cloudfront (CloudFront) Request ID: 6bG3mPfW1af_LKsOsGR2FR3NAXZJVyFAUE05V7qxrjnSxB3GL8UzYw==",
+        "sample": "ERROR: The request could not be satisfied 403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner. If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation. Generated by cloudfront (CloudFront) Request ID: ZZISSmWF5_d_NW2IGzlwYR1cn56yfHxi5FVvAcfce_FNQ_4-nRmamQ==",
         "discovery_score": 0.7
       }
     ],
@@ -1425,7 +1343,7 @@
         "final_url": "https://yementv.tv/",
         "content_type": "text/html; charset=UTF-8",
         "title": "قناة اليمن الفضائية | الموقع الرسمي التابع للحكومة الشرعية",
-        "bytes": 228687,
+        "bytes": 228631,
         "guide_hits": 0,
         "time_tokens": 3,
         "arabic_time_hits": 6,
@@ -1448,7 +1366,7 @@
           "https://fr.yementv.tv/",
           "https://fa.yementv.tv/",
           "https://zh.yementv.tv/",
-          "https://yementv.tv/wp-content/litespeed/css/d973c902a99fc832f9654e89a06d850d.css?ver=742df",
+          "https://yementv.tv/wp-content/litespeed/css/d973c902a99fc832f9654e89a06d850d.css?ver=43c35",
           "https://www.fontstatic.com/f=jazeera?ver=7.1.2",
           "https://www.fontstatic.com/f=droidkufi-regular?ver=7.1.2",
           "https://yementv.tv/wp-includes/js/jquery/jquery.min.js",

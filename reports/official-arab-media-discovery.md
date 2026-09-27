@@ -5,7 +5,7 @@
 | Algeria | ERROR | 0 | 0 | 0 | 0 | 0 | NO_SIGNAL |
 | Bahrain | 200 | 11.6 | 0 | 2 | 0 | 50 | REACHABLE_NEEDS_API |
 | Comoros | 200 | 15.0 | 0 | 0 | 2 | 50 | PROMISING |
-| Djibouti | 200 | 13.0 | 0 | 0 | 1 | 50 | PROMISING |
+| Djibouti | 403 | 0.0 | 0 | 0 | 0 | 0 | BLOCKED |
 | Egypt | 200 | 29.0 | 0 | 83 | 2 | 50 | PROMISING |
 | Iraq | 403 | 0.0 | 0 | 0 | 0 | 0 | BLOCKED |
 | Jordan | 200 | 5.4 | 0 | 0 | 0 | 2 | REACHABLE_NEEDS_API |
