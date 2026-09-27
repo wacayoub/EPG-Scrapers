@@ -219,7 +219,7 @@ def _snrt_desc_from_row(cid,row,title,time_text,original_title=""):
   txt=clean(sib.get_text(" ",strip=True))
   if not txt:
    continue
-  if re.match(r"^[0-2]?\\d\\s*[Hh:]\\s*[0-5]\\d\\b",txt):
+  if re.match(r"^[0-2]?\d\s*[Hh:]\s*[0-5]\d\b",txt):
    break
   if len(txt)<=600:
    candidates.insert(0,txt)
@@ -918,8 +918,8 @@ def _medi1_detail_desc(http,href,title="",cache=None):
 
 def _parse_medi1_page(cid,text,day,http=None,detail_cache=None):
  soup=BeautifulSoup(text,"lxml")
- tre=re.compile(r"^([0-2]?\\d)[:hH]([0-5]\\d)\\s*(.*)$")
- exact=re.compile(r"^([0-2]?\\d)[:hH]([0-5]\\d)$")
+ tre=re.compile(r"^([0-2]?\d)[:hH]([0-5]\d)\s*(.*)$")
+ exact=re.compile(r"^([0-2]?\d)[:hH]([0-5]\d)$")
  ctas={x.casefold() for x in (
   "صفحة البرنامج","صفحة النشرة","شاهد النشرات","شاهد البرنامج","التفاصيل","المزيد",
   "voir les jts","voir le programme","page de l'émission","en direct","المباشر",
