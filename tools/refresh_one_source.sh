@@ -143,7 +143,7 @@ case "$SOURCE" in
       pack_source starzplay output/source-build/starzplay.raw.xml "" || true
       printf '%s\n' '{"mode":"direct-starzplay","fallback":false}' > reports/starzplay-source-mode.json
     else
-      echo "STARZPLAY direct endpoint unavailable; using official STC metadata for STARZPLAY Sports only."
+      echo "STARZPLAY direct endpoint unavailable; keeping the official STARZPLAY live catalogue and using STC metadata where schedules overlap."
       python tools/stctv_source.py \
         --output output/source-build/starzplay.raw.xml \
         --report reports/starzplay-fallback-stctv.json \
@@ -151,10 +151,10 @@ case "$SOURCE" in
         --window-hours "$HOURS" \
         --delay 0.2 \
         --max-channels 0 \
-        --profile starzplay-sports || true
+        --profile starzplay-live || true
       if has_programmes output/source-build/starzplay.raw.xml; then
         pack_source starzplay output/source-build/starzplay.raw.xml "" || true
-        printf '%s\n' '{"mode":"stctv-public-metadata-fallback","fallback":true,"scope":"STARZPLAY Sports 1-3"}' > reports/starzplay-source-mode.json
+        printf '%s\n' '{"mode":"starzplay-live-catalogue+stctv-epg-fallback","fallback":true,"scope":"official STARZPLAY live catalogue; STC schedules used only for matching channels"}' > reports/starzplay-source-mode.json
       else
         echo "STARZPLAY fallback also unavailable; LKG will be preserved."
       fi
