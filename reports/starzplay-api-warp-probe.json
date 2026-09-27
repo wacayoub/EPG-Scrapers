@@ -1,7 +1,40 @@
 {
-  "generated_utc": "2026-09-27T16:43:29.460911+00:00",
+  "generated_utc": "2026-09-27T16:45:42.622101+00:00",
   "rows": [
     {
+      "base": "https://epg.aws.playco.com/api",
+      "version": "v1.1",
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/config",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 203,
+      "json_type": "dict",
+      "top_keys": [
+        "status",
+        "runtime",
+        "data"
+      ]
+    },
+    {
+      "base": "https://epg.aws.playco.com/api",
+      "version": "v1.0",
+      "url": "https://epg.aws.playco.com/api/v1.0/epg/channel/config",
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 34,
+      "sample": "{\"status\":404,\"error\":\"Not Found\"}"
+    },
+    {
+      "base": "https://epg.aws.playco.com/api",
+      "version": "v2.0",
+      "url": "https://epg.aws.playco.com/api/v2.0/epg/channel/config",
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 34,
+      "sample": "{\"status\":404,\"error\":\"Not Found\"}"
+    },
+    {
+      "base": "https://sp-new-api.aws.playco.com/api",
       "version": "v1.1",
       "url": "https://sp-new-api.aws.playco.com/api/v1.1/epg/channel/config",
       "status": 200,
@@ -15,6 +48,7 @@
       ]
     },
     {
+      "base": "https://sp-new-api.aws.playco.com/api",
       "version": "v1.0",
       "url": "https://sp-new-api.aws.playco.com/api/v1.0/epg/channel/config",
       "status": 404,
@@ -23,6 +57,7 @@
       "sample": "Not Found"
     },
     {
+      "base": "https://sp-new-api.aws.playco.com/api",
       "version": "v2.0",
       "url": "https://sp-new-api.aws.playco.com/api/v2.0/epg/channel/config",
       "status": 404,
