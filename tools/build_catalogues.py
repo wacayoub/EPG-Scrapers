@@ -6,12 +6,9 @@ ROOT = Path("vendor/iptv-org-epg/sites")
 OUT = Path("output/source-build")
 
 # Explicit production exclusions confirmed by manual EPG comparison.
-ELCINEMA_PRODUCTION_EXCLUDE = {
-    # Explicit user blacklist. Other ElCinema channels are retained so the
-    # raw source remains complete; source priority is handled by the merged
-    # MENA feed instead of deleting valid channel IDs here.
-    "AlAoula.ma@MiddleEast",
-}
+# Keep the full provider catalogue. Source preference is decided later in
+# EPGManager/merged feeds; catalogue construction must not delete valid IDs.
+ELCINEMA_PRODUCTION_EXCLUDE = set()
 
 def elcinema_excluded(cid: str) -> bool:
     return cid in ELCINEMA_PRODUCTION_EXCLUDE
@@ -53,17 +50,8 @@ OSN_OFFICIAL_ID_OVERRIDES = {
 }
 
 def shahid_mbc_allowed(cid: str) -> bool:
-    # Keep the direct Shahid source focused on MBC Group television services.
-    # Do not let third-party carriage or radio feeds override richer providers.
-    if cid in SHAHID_MBC_EXTRA:
-        return True
-    if not cid.casefold().startswith("mbc"):
-        return False
-    if "usa." in cid.casefold():
-        return False
-    if cid in {"MBCFM.ae@SD"}:
-        return False
-    return True
+    # Full-source mode: retain every valid XMLTV ID exposed by Shahid.
+    return bool(cid)
 
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -174,15 +162,8 @@ build_osn_english()
 choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
 
-BEIN_ZERO_EPG_EXCLUDE = {
-    "AlkassEight.qa@SD",
-    "beINSportsNBA.qa@SD",
-
-    # Upstream mappings currently point to unrelated schedules. Quarantine
-    # them until their beIN site IDs are revalidated.
-    "Baraem.qa@SD",
-    "BeJunior.qa@SD",
-}
+# Full-source mode: zero-EPG IDs stay visible and are reported separately.
+BEIN_ZERO_EPG_EXCLUDE = set()
 
 def build_bein():
     rows=[]
@@ -220,21 +201,8 @@ def build_bein():
                         ch.set("xmltv_id",cid)
                 if not cid or not sid:
                     continue
-                # Production beIN feed must stay source-pure. The upstream
-                # catalogue also exposes unrelated MENA channels; keep only
-                # beIN Media family services here.
-                cid_cf=cid.casefold()
-                name_cf=(ch.text or "").casefold()
-                if not (
-                    cid_cf.startswith("bein")
-                    or cid_cf.startswith("bejunior")
-                    or cid_cf.startswith("baraem")
-                ):
-                    continue
-                # AFC temporary/event channels are no longer valid for the
-                # production beIN MENA feed.
-                if "afc" in cid.lower() or "afc" in (ch.text or "").lower():
-                    continue
+                # Keep every valid ID published by the selected beIN source
+                # catalogues. EPG health and user selection are handled later.
                 if cid in BEIN_ZERO_EPG_EXCLUDE:
                     continue
                 lang=(ch.get("lang") or "").lower()
