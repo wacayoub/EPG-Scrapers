@@ -166,12 +166,8 @@ def _snrt_flat_events(cid,soup):
  strings=[clean(x) for x in soup.stripped_strings if clean(x)]
  time_rx=re.compile(r"^([0-2]?\d)\s*[Hh:]\s*([0-5]\d)$")
  day_rx=re.compile(r"(\d{1,2})\s*/\s*(\d{1,2})")
- first_time=None;day_labels=[]
+ day_labels=[];day_positions=[]
  for pos,txt in enumerate(strings):
-  if first_time is None and time_rx.match(txt):
-   first_time=pos
-  if first_time is not None and pos>=first_time:
-   break
   m=day_rx.search(txt)
   if not m:continue
   try:
@@ -180,9 +176,15 @@ def _snrt_flat_events(cid,soup):
    if d>now.date()+timedelta(days=180):d=datetime(now.year-1,d.month,d.day).date()
   except Exception:
    continue
-  if abs((d-now.date()).days)<=14 and d not in day_labels:
-   day_labels.append(d)
- if first_time is None or not day_labels:
+  if abs((d-now.date()).days)<=14:
+   day_positions.append(pos)
+   if d not in day_labels:day_labels.append(d)
+ # Ignore unrelated clock strings in the site header. The programme grid begins
+ # after the cluster of visible date tabs.
+ if not day_labels or not day_positions:
+  return []
+ first_time=next((pos for pos in range(max(day_positions)+1,len(strings)) if time_rx.match(strings[pos])),None)
+ if first_time is None:
   return []
 
  footer={"الرئيسية","الشركة","القنوات","الوسيط","طلبات العروض","Régie publicitaire","Mentions légales"}
