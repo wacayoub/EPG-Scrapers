@@ -112,6 +112,100 @@ jobs:
           print(json.dumps(rows,ensure_ascii=False,indent=2))
           PY
 
+      - name: Probe complete STARZPLAY category events
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, time, urllib.parse, urllib.request, urllib.error, uuid
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+
+          base="https://epg.aws.playco.com/api/v1.1"
+          headers={
+            "User-Agent":"Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36",
+            "Client-Type":"Android",
+            "Accept":"application/json",
+            "Accept-Language":"ar-MA,ar;q=0.9,en;q=0.7",
+            "x-geo-country":"MA",
+          }
+
+          def get(url):
+            req=urllib.request.Request(url,headers=headers)
+            try:
+              with urllib.request.urlopen(req,timeout=25) as r:
+                body=r.read(8_000_000)
+                try: obj=json.loads(body)
+                except Exception: obj=None
+                return r.status,r.headers.get("content-type",""),body,obj
+            except urllib.error.HTTPError as e:
+              body=e.read(500_000)
+              try: obj=json.loads(body)
+              except Exception: obj=None
+              return e.code,e.headers.get("content-type","") if e.headers else "",body,obj
+            except Exception as e:
+              return 0,"",str(e).encode(),None
+
+          cfg_status,_,_,cfg=get(f"{base}/epg/channel/config")
+          slugs=[]
+          if isinstance(cfg,dict):
+            for row in cfg.get("data") or []:
+              if isinstance(row,dict) and row.get("slug"):
+                slugs.append(str(row["slug"]))
+          slugs=list(dict.fromkeys(slugs))
+
+          now=datetime.now(timezone.utc)
+          start_s=int((now-timedelta(hours=2)).timestamp())
+          end_s=int((now+timedelta(hours=52)).timestamp())
+          user_ids=["0","guest","anonymous","00000000-0000-0000-0000-000000000000"]
+          rows=[]
+          payloads={}
+          winners=[]
+
+          for uid in user_ids:
+            u=f"{base}/epg/category/config/{urllib.parse.quote(uid,safe='')}"
+            qs=urllib.parse.urlencode({"lang":"ar"})
+            st,ct,body,obj=get(u+"?"+qs)
+            rows.append({"kind":"category_config","userId":uid,"url":u,"status":st,"bytes":len(body),
+                         "top_keys":list(obj)[:30] if isinstance(obj,dict) else [],
+                         "sample":body[:800].decode("utf-8","replace") if not isinstance(obj,(dict,list)) else ""})
+            if st==200 and isinstance(obj,(dict,list)):
+              payloads[f"category_config|{uid}"]=obj
+            time.sleep(.15)
+
+            for slug in slugs:
+              for unit in ("seconds","milliseconds"):
+                ts0=start_s if unit=="seconds" else start_s*1000
+                ts1=end_s if unit=="seconds" else end_s*1000
+                params={"category":slug,"ts_start":ts0,"ts_end":ts1,"lang":"ar","pg":"tv","page":1,"limit":200}
+                url=f"{base}/epg/category/events/{urllib.parse.quote(uid,safe='')}?"+urllib.parse.urlencode(params)
+                st,ct,body,obj=get(url)
+                data_len=0
+                if isinstance(obj,dict):
+                  data=obj.get("data")
+                  if isinstance(data,list): data_len=len(data)
+                  elif isinstance(data,dict): data_len=len(data)
+                row={"kind":"category_events","userId":uid,"category":slug,"unit":unit,
+                     "status":st,"bytes":len(body),"data_len":data_len,
+                     "top_keys":list(obj)[:30] if isinstance(obj,dict) else [],
+                     "url":url}
+                if st!=200:
+                  row["sample"]=body[:900].decode("utf-8","replace")
+                rows.append(row)
+                if st==200 and isinstance(obj,(dict,list)):
+                  payloads[f"events|{uid}|{slug}|{unit}"]=obj
+                  if data_len:
+                    winners.append({"userId":uid,"category":slug,"unit":unit,"data_len":data_len})
+                time.sleep(.15)
+
+          out={"generated_utc":datetime.now(timezone.utc).isoformat(),"country":"MA",
+               "channel_config_status":cfg_status,"categories":slugs,"rows":rows,"winners":winners}
+          Path("reports/starzplay-category-events-probe.json").write_text(
+            json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          Path("reports/starzplay-category-events-payloads.json").write_text(
+            json.dumps(payloads,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps({"categories":slugs,"winners":winners},ensure_ascii=False,indent=2))
+          PY
+
       - name: Disconnect WARP
         if: always()
         shell: bash
@@ -126,7 +220,7 @@ jobs:
           set -e
           git config user.name "epg-diagnostic-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reports/starzplay-api-warp-probe.json reports/starzplay-api-warp-payloads.json reports/starzplay-warp-structure.json 2>/dev/null || true
+          git add reports/starzplay-api-warp-probe.json reports/starzplay-api-warp-payloads.json reports/starzplay-warp-structure.json reports/starzplay-category-events-probe.json reports/starzplay-category-events-payloads.json 2>/dev/null || true
           git commit -m "diagnostic: STARZPLAY EPG API through WARP" || exit 0
           for n in 1 2 3 4 5; do
             git pull --rebase origin main || true
