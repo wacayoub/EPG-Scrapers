@@ -1,0 +1,73 @@
+name: Probe STARZPLAY NMS API versions
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-starzplay-nms.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Probe versioned public NMS routes
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,time,urllib.request,urllib.error
+          from pathlib import Path
+          base="https://sp-nms-api.aws.playco.com"
+          paths=[]
+          for v in range(1,11):
+              paths += [
+                  f"/api/v{v}/epg/channel/config",
+                  f"/api/v{v}/epg/category/config/",
+              ]
+          headers={
+              "User-Agent":"Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36",
+              "Accept":"application/json,text/plain,*/*",
+              "Accept-Language":"ar-MA,ar;q=0.9,en;q=0.7",
+              "Origin":"https://www.starzplay.com",
+              "Referer":"https://www.starzplay.com/",
+              "x-geo-country":"MA",
+          }
+          rows=[]
+          for path in paths:
+              url=base+path
+              req=urllib.request.Request(url,headers=headers)
+              try:
+                  with urllib.request.urlopen(req,timeout=15) as r:
+                      body=r.read(4096)
+                      rows.append({"path":path,"status":r.status,"content_type":r.headers.get("content-type",""),"sample":body[:500].decode("utf-8","replace").replace("\n"," ")})
+              except urllib.error.HTTPError as e:
+                  body=e.read(2048)
+                  rows.append({"path":path,"status":e.code,"content_type":e.headers.get("content-type","") if e.headers else "","sample":body[:500].decode("utf-8","replace").replace("\n"," ")})
+              except Exception as e:
+                  rows.append({"path":path,"status":"ERROR","error":str(e)[:300]})
+              time.sleep(1)
+          Path("reports").mkdir(exist_ok=True)
+          Path("reports/starzplay-nms-version-probe.json").write_text(json.dumps(rows,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(rows,ensure_ascii=False,indent=2))
+          PY
+      - name: Publish report
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/starzplay-nms-version-probe.json
+          git commit -m "diagnostic: probe STARZPLAY NMS API versions" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
