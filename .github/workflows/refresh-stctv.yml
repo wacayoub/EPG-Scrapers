@@ -2,6 +2,10 @@ name: EPG 48h - STC TV
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/stctv_source.py'
 
 permissions:
   contents: write

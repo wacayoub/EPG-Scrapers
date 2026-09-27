@@ -34,3 +34,12 @@ GitHub Actions runs once per day at **06:00 Africa/Casablanca**. Because GitHub 
 - `reports/latest.md`
 
 The repository is designed so EPGManager/Vu+ can consume each source independently.
+
+
+## STARZPLAY hold
+
+STARZPLAY is temporarily excluded from the daily sequential refresh while its catalogue/EPG coverage is being reworked. The last-known-good feed is preserved, but it is not treated as an active production source until re-enabled.
+
+## Multinational language policy
+
+International/multinational channels use the original English programme title/sub-title and Arabic description. Arabic-native channels remain Arabic title + Arabic description. National Geographic Abu Dhabi is an explicit Arabic-native exception. STC and ElCinema enforce this policy for overlapping channels such as Discovery, CNN, Star Action, Star Movies, Star World and National Geographic Middle East.

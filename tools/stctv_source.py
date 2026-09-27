@@ -58,6 +58,28 @@ HYBRID_TOKENS = (
     "mbc action",
     "mbc bollywood",
     "mbc variety",
+    "discovery",
+    "cnn",
+    "star action",
+    "star movies",
+    "star world",
+    "star plus",
+    "bbc",
+    "bloomberg",
+    "national geographic",
+    "nat geo",
+    "animal planet",
+    "history",
+    "tlc",
+    "nickelodeon",
+    "nick jr",
+    "nicktoons",
+)
+ARABIC_NATIVE_TOKENS = (
+    "asharq discovery",
+    "asharq bloomberg",
+    "national geographic abu dhabi",
+    "nat geo abu dhabi",
 )
 CANONICAL_OVERRIDE = {
     "starzplay sports 1": "StarzplaySports1.sa@HD",
@@ -355,7 +377,13 @@ def main():
                     cid = "stctv." + hashlib.sha1((seed + f"|{bump}").encode()).hexdigest()[:12]
                     bump += 1
             seen_cids.add(cid)
-            prof = "hybrid" if any(tok in norm(name) for tok in HYBRID_TOKENS) else "arabic_native"
+            normalized_name = norm(name)
+            if any(tok in normalized_name for tok in ARABIC_NATIVE_TOKENS):
+                prof = "arabic_native"
+            elif any(tok in normalized_name for tok in HYBRID_TOKENS):
+                prof = "hybrid"
+            else:
+                prof = "arabic_native"
             prepared.append((ch, name, sid, cid, prof))
 
             c = ET.SubElement(root, "channel", {"id": cid})

@@ -2,6 +2,11 @@ name: EPG 48h - ElCinema
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'config/elcinema-language-policy.json'
+      - 'tools/elcinema_hybrid.py'
 
 permissions:
   contents: write
