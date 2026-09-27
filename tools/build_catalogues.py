@@ -224,9 +224,8 @@ def build_bein():
             if sid and cid:
                 fallback_by_site[(ch.get("site") or p.parent.name,sid)]=cid
 
-    # First pass: collect every canonical name->ID mapping already known in
-    # either Arabic MENA catalogue. This lets missing IDs reuse a canonical ID
-    # instead of creating a duplicate service.
+    # First pass: collect canonical name->ID mappings already known in the
+    # Arabic MENA catalogues.
     known_name_to_id={}
     selected_files=[
         ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-ar.channels.xml",0),
@@ -255,47 +254,60 @@ def build_bein():
 
     for site,rank,filename,ch,sid,cid,name in parsed:
         node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
+        generated=False
         if not cid:
             cid=known_name_to_id.get(_bein_norm_name(name),"")
         if not cid:
             cid=_bein_generated_id(site,sid,name)
-            generated_ids.add(cid)
+            generated=True
         node.set("xmltv_id",cid)
+
+        service_key=_bein_norm_name(name)
+        # Production scope is beIN MENA itself, not every third-party channel
+        # carried inside a beIN package. AFC temporary feeds are intentionally
+        # excluded as requested.
+        if not service_key.startswith("bein"):
+            continue
+        if "afc" in service_key or "afc" in cid.casefold():
+            continue
         if cid in BEIN_ZERO_EPG_EXCLUDE:
             continue
-        # beinsports.com MENA is preferred for sports because it exposes
-        # descriptions and explicit MENA channel IDs. bein.com Arabic retains
-        # entertainment, kids, factual and any extra sports services.
-        rows.append((cid,rank,filename,node))
+
+        if generated:
+            generated_ids.add(cid)
+        # Deduplicate spelling/order aliases such as SPORTS1EN vs SPORTS EN 1.
+        # Prefer a canonical upstream XMLTV ID over a generated local ID.
+        rows.append((service_key,cid,rank,filename,node,generated))
 
     best={}
-    for cid,rank,name,ch in rows:
-        key=(rank,name)
-        if cid not in best or key < best[cid][0]:
-            best[cid]=(key,ch)
+    for service_key,cid,rank,filename,ch,generated in rows:
+        pref=(1 if generated else 0,rank,filename,cid.casefold())
+        if service_key not in best or pref < best[service_key][0]:
+            best[service_key]=(pref,cid,ch)
 
     root=ET.Element("channels")
-    for cid in sorted(best,key=str.casefold):
-        root.append(ET.fromstring(ET.tostring(best[cid][1],encoding="utf-8")))
+    for service_key in sorted(best,key=lambda k:best[k][1].casefold()):
+        root.append(ET.fromstring(ET.tostring(best[service_key][2],encoding="utf-8")))
     ET.indent(root,space="  ")
     path=OUT/"bein.channels.xml"
     path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
 
-    # Small machine-readable audit used by the one-hour MENA test workflow.
     import json
     audit={
-        "scope":"MENA only",
+        "scope":"beIN MENA owned services only; AFC excluded",
         "source_entries":source_counts,
         "catalogue_ids":len(root),
         "generated_local_ids":len(generated_ids),
         "generated_ids":sorted(generated_ids,key=str.casefold),
-        "zero_epg_policy":"retain",
+        "zero_epg_policy":"retain valid beIN MENA IDs",
+        "third_party_package_channels":"excluded",
+        "afc":"excluded",
     }
     (OUT/"bein-catalogue.json").write_text(
         json.dumps(audit,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
     )
     print(
-        f"bein MENA: {len(root)} IDs "
+        f"bein MENA owned: {len(root)} IDs "
         f"(sports source={source_counts['beinsports_mena_ar']}, "
         f"bein Arabic source={source_counts['bein_ar']}, "
         f"generated={len(generated_ids)})"

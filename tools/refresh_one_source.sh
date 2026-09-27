@@ -164,20 +164,6 @@ case "$SOURCE" in
     fi
     ;;
 
-  gobx)
-    if [ -f tools/gobx_source.py ]; then
-      python tools/gobx_source.py --output output/source-build/gobx.raw.xml --report reports/gobx-scrape.json --hours "$HOURS" || true
-      if [ -s output/source-build/gobx.raw.xml ] && has_programmes output/source-build/gobx.raw.xml; then
-        pack_source gobx output/source-build/gobx.raw.xml "" || true
-      else
-        echo "GOBX public EPG metadata unavailable; LKG will be preserved."
-      fi
-    else
-      python tools/gobx_probe.py || true
-      echo "GOBX source adapter not available yet; LKG will be preserved."
-    fi
-    ;;
-
   *)
     echo "Unsupported source: $SOURCE" >&2
     exit 2

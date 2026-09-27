@@ -1,15 +1,7 @@
 name: EPG 48h - Al Jazeera
 
 on:
-  schedule:
-    - cron: "0 5,6 * * *"
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "tools/aljazeera_source.py"
-      - ".github/workflows/refresh-aljazeera.yml"
 
 permissions:
   contents: write
@@ -19,5 +11,5 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: aljazeera
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit

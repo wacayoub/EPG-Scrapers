@@ -1,8 +1,6 @@
 name: EPG 48h - OSN
 
 on:
-  schedule:
-    - cron: "0 5,6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -13,5 +11,5 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: osn
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit

@@ -131,9 +131,6 @@ jobs:
             starzplay)
               git add reports/starzplay-*.json 2>/dev/null || true
               ;;
-            gobx)
-              git add reports/gobx-*.json reports/gobx-*.md 2>/dev/null || true
-              ;;
           esac
 
           if git diff --cached --quiet; then

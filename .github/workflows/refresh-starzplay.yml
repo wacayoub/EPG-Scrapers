@@ -1,14 +1,6 @@
 name: EPG 48h - STARZPLAY
-# fallback gate verified
-# fallback publish threshold 3 verified
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/refresh-starzplay.yml"
-  schedule:
-    - cron: "0 5,6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -19,5 +11,5 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: starzplay
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit

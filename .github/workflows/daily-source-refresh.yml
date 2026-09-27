@@ -1,0 +1,102 @@
+name: EPG 48h - Daily sequential sources
+
+on:
+  schedule:
+    - cron: "0 5,6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-daily-sequential
+  cancel-in-progress: false
+
+jobs:
+  morocco:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: morocco
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  bein:
+    needs: morocco
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: bein
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  osn:
+    needs: bein
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: osn
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  shahid:
+    needs: osn
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: shahid
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  elcinema:
+    needs: shahid
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: elcinema
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  rotana:
+    needs: elcinema
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: rotana
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  sport24:
+    needs: rotana
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: sport24
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  dubaiplus:
+    needs: sport24
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: dubaiplus
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  aljazeera:
+    needs: dubaiplus
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: aljazeera
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  starzplay:
+    needs: aljazeera
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: starzplay
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
+  stctv:
+    needs: starzplay
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: stctv
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
+
