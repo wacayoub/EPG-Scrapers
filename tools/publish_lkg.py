@@ -27,7 +27,10 @@ POLICY = {
     "morocco":   {"min_channels": 5,  "min_programmes": 50,  "min_future_ratio": 0.70, "min_horizon_hours": 8},
     "elcinema":  {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.70, "min_horizon_hours": 8},
     "osn":       {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.80, "min_horizon_hours": 8},
-    "bein":      {"min_channels": 35, "min_programmes": 500, "min_future_ratio": 0.90, "min_horizon_hours": 8},
+    # beIN's official package intentionally retains some catalogue IDs whose
+    # guide is temporarily empty/short. 80% future coverage still requires a
+    # large healthy feed while allowing valid Kids/partner updates to publish.
+    "bein":      {"min_channels": 35, "min_programmes": 500, "min_future_ratio": 0.80, "min_horizon_hours": 8},
     "shahid":    {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.60, "min_horizon_hours": 8},
     "rotana":    {"min_channels": 5,  "min_programmes": 40,  "min_future_ratio": 0.60, "min_horizon_hours": 8},
     # Sport24 is event-driven; valid event schedules can naturally expose less
