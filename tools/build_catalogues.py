@@ -291,9 +291,19 @@ def build_bein():
         if service_key not in best or pref < best[service_key][0]:
             best[service_key]=(pref,cid,ch)
 
+    # Different provider pages occasionally expose spelling aliases that map to
+    # the same canonical XMLTV ID (e.g. beIN SPORTS 4 / beINSPORT4). Keep one
+    # source per XMLTV ID, preferring the MENA sports provider by rank.
+    unique_by_id={}
+    for service_key,(pref,cid,ch) in best.items():
+        old=unique_by_id.get(cid)
+        if old is None or pref < old[0]:
+            unique_by_id[cid]=(pref,service_key,ch)
+    winning_keys={row[1] for row in unique_by_id.values()}
+
     root=ET.Element("channels")
-    for service_key in sorted(best,key=lambda k:best[k][1].casefold()):
-        root.append(ET.fromstring(ET.tostring(best[service_key][2],encoding="utf-8")))
+    for cid in sorted(unique_by_id,key=str.casefold):
+        root.append(ET.fromstring(ET.tostring(unique_by_id[cid][2],encoding="utf-8")))
     ET.indent(root,space="  ")
     path=OUT/"bein.channels.xml"
     path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
@@ -315,7 +325,7 @@ def build_bein():
             sid=(ch.get("site_id") or "").strip()
             name=(ch.text or "").strip()
             key=_bein_norm_name(name)
-            if not sid or key not in best:
+            if not sid or key not in winning_keys:
                 continue
             if "afc" in key:
                 continue
@@ -337,6 +347,7 @@ def build_bein():
         "scope":"beIN MENA owned services only; AFC excluded",
         "source_entries":source_counts,
         "catalogue_ids":len(root),
+        "service_keys_before_id_dedupe":len(best),
         "english_catalogue_ids":len(en_root),
         "generated_local_ids":len(generated_ids),
         "generated_ids":sorted(generated_ids,key=str.casefold),
