@@ -44,6 +44,13 @@ GROUPS={"snrt":{"AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","AFLA
 SNRT={"AlAoula":"https://www.snrt.ma/ar/node/1208","Arrabiaa":"https://www.snrt.ma/ar/node/4071",
  "AlMaghribiya":"https://www.snrt.ma/ar/node/4072","Assadisa":"https://www.snrt.ma/ar/node/4073",
  "Tamazight":"https://www.snrt.ma/ar/node/4075"}
+SNRT_CATALOG={
+ "AlAoula":("https://www.snrt.ma/index.php/ar/al-aoula","https://www.snrt.ma/index.php/fr/al-aoula"),
+ "Arrabiaa":("https://www.snrt.ma/index.php/ar/athaqafia","https://www.snrt.ma/fr/athaqafia"),
+ "AlMaghribiya":("https://www.snrt.ma/index.php/ar/almaghribia","https://www.snrt.ma/index.php/fr/almaghribia"),
+ "Assadisa":("https://www.snrt.ma/index.php/ar/assadissa","https://www.snrt.ma/index.php/fr/assadissa"),
+ "Tamazight":("https://www.snrt.ma/index.php/ar/tamazight","https://www.snrt.ma/index.php/fr/tamazight")
+}
 SNRT_AR_NAMES={
  "AlAoula":"قناة الأولى","Arrabiaa":"قناة الثقافية","AlMaghribiya":"قناة المغربية",
  "Assadisa":"قناة السادسة","Tamazight":"قناة الأمازيغية","AFLAM.ma":"قناة السابعة أفلام"
@@ -1256,10 +1263,65 @@ def scrape_chada(days):
  infer(cleanrows)
  return cleanrows
 
+def _snrt_catalog_descs(http,cid):
+ out={}
+ bad_titles={norm(x) for x in (
+  "الرئيسية","الأخبار","البرامج","المزيد","Toute la grille","A LA UNE","Les épisodes",
+  "JOURNAL TÉLÉVISÉ","النشرات الإخبارية","الأخبار","برامج","مختارات","Nouveautés"
+ )}
+ for url in SNRT_CATALOG.get(cid,()):
+  try:
+   soup=BeautifulSoup(http.get(url,headers={"Referer":"https://www.snrt.ma/"}).text,"lxml")
+  except Exception:
+   continue
+  # Featured programme cards expose a heading plus a synopsis paragraph.
+  for h in soup.find_all(["h1","h2","h3","h4","h5"]):
+   title=clean(h.get_text(" ",strip=True))
+   nt=norm(title)
+   if not title or len(title)>160 or nt in bad_titles:continue
+   candidates=[]
+   parent=h.parent
+   if parent is not None:
+    for p in parent.find_all("p"):
+     txt=clean(p.get_text(" ",strip=True))
+     if txt:candidates.append(txt)
+   # Some templates put the synopsis in the next sibling/card block.
+   cur=h
+   for _ in range(4):
+    cur=cur.find_next_sibling() if cur is not None else None
+    if cur is None:break
+    txt=clean(cur.get_text(" ",strip=True))
+    if txt and len(txt)<=1400:candidates.append(txt)
+   for desc in candidates:
+    nd=norm(desc)
+    if len(desc)<25 or nd==nt:continue
+    if any(x in desc.casefold() for x in ("toute la grille","voir plus","copyright snrt")):continue
+    prev=out.get(nt,"")
+    if not prev or (ar(desc) and not ar(prev)) or len(desc)>len(prev):
+     out[nt]=desc
+    break
+ log("SNRT %s catalogue_desc=%d"%(cid,len(out)))
+ return out
+
+def _snrt_catalog_match(catalog,title):
+ nt=norm(title)
+ if not nt:return ""
+ if nt in catalog:return catalog[nt]
+ # Conservative fuzzy fallback: only near-identical programme names.
+ best=""
+ for k,v in catalog.items():
+  if len(k)<5:continue
+  if k in nt or nt in k:
+   delta=abs(len(k)-len(nt))
+   if delta<=max(4,int(.25*max(len(k),len(nt)))):
+    if not best or len(v)>len(best):best=v
+ return best
+
 def scrape_snrt(days):
  def one(cid,url):
   h=Http();r=h.get(url);soup=BeautifulSoup(r.text,"lxml");structured=[]
   visible=_snrt_visible_descs(soup);visible_used=defaultdict(int);visible_matches=0
+  catalog=_snrt_catalog_descs(h,cid);catalog_matches=0
   detail_cache={};detail_matches=0
   now=datetime.now(TZ);detail_from=now-timedelta(hours=12);detail_until=now+timedelta(days=min(max(days,1),3))
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
@@ -1301,6 +1363,12 @@ def scrape_snrt(days):
      generic=(not desc or norm(desc)==norm(original_title) or desc.startswith("برنامج «") or desc.startswith("نشرة إخبارية على ") or desc.startswith("نشرة الطقس على "))
      if vdesc and (generic or len(vdesc)>len(desc)):
       desc=vdesc;visible_matches+=1
+   # If the grid row itself has no synopsis, use the official programme
+   # catalogue description for the same title.
+   if _snrt_generic_desc(desc,original_title):
+    rich=_snrt_catalog_match(catalog,original_title)
+    if rich:
+     desc=rich;catalog_matches+=1
    title=original_title
    row_text=clean(row.get_text(" ",strip=True));ctx=original_title+" "+row_text+" "+desc
    if "الأخبار" in ctx or "الاخبار" in ctx:
@@ -1308,7 +1376,7 @@ def scrape_snrt(days):
      if k in ctx:
       title=v
       break
-   structured.append(Event(cid,start,title,desc,None,"ar","ar","snrt-ar"))
+   structured.append(Event(cid,start,title,desc,None,"ar",lang(desc,"ar"),"snrt-ar"))
 
   flat=_snrt_flat_events(cid,soup)
   # One programme per channel/start. Prefer an official non-generic synopsis;
@@ -1325,7 +1393,7 @@ def scrape_snrt(days):
   rows=sorted(merged.values(),key=lambda e:e.start)
   infer(rows)
   official=sum(1 for e in rows if score(e)[0])
-  log("SNRT %s structured=%d flat=%d merged=%d official_desc=%d detail_matches=%d detail_pages=%d visible_matches=%d visible_keys=%d"%(cid,len(structured),len(flat),len(rows),official,detail_matches,len(detail_cache),visible_matches,len(visible)))
+  log("SNRT %s structured=%d flat=%d merged=%d official_desc=%d detail_matches=%d detail_pages=%d visible_matches=%d catalog_matches=%d catalog_keys=%d visible_keys=%d"%(cid,len(structured),len(flat),len(rows),official,detail_matches,len(detail_cache),visible_matches,catalog_matches,len(catalog),len(visible)))
   return rows
 
  out=[]
