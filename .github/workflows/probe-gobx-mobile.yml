@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install probe dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir requests
+
       - name: Test alternate official web hostnames first
         shell: bash
         run: |
