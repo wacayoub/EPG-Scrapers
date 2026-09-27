@@ -116,13 +116,31 @@ NAME_ALIASES = {
 }
 
 
+SOURCE_ID_ALIASES = {
+    # Stable STARZPLAY IDs verified against the current Live TV catalogue.
+    "720335400126": "AbuDhabiSports1.ae@SD",
+    "720335400127": "AbuDhabiSports2.ae@SD",
+    "720335400128": "NationalGeographicAbuDhabi.ae@SD",
+    "558369320039": "ZeeAflam.ae@SD",
+    "311102504197": "StarzplaySports3.sa@HD",
+}
+
+
 def make_channel_id(name: str, source_id: str, index: dict[str, str]) -> str:
+    """Return a collision-safe canonical ID.
+
+    STARZPLAY's numeric Live TV ID is authoritative.  The generic MENA name
+    index is deliberately NOT consulted here: localized Arabic display names
+    caused unrelated channels to collapse onto existing IDs.  Only explicit,
+    verified aliases are allowed to replace the STARZPLAY ID.
+    """
     normalized = norm_name(name)
+    stable_source = (source_id or "").strip()
+    if stable_source in SOURCE_ID_ALIASES:
+        return SOURCE_ID_ALIASES[stable_source]
     if normalized in NAME_ALIASES:
         return NAME_ALIASES[normalized]
-    if normalized in index:
-        return index[normalized]
-    stable = re.sub(r"[^A-Za-z0-9_.-]+", "-", source_id or "").strip("-")
+    stable = re.sub(r"[^A-Za-z0-9_.-]+", "-", stable_source).strip("-")
     if stable:
         return f"starzplay.{stable}"
     digest = hashlib.sha1(normalized.encode("utf-8")).hexdigest()[:14]
