@@ -1,244 +1,190 @@
 {
-  "scope": "beIN MENA only",
-  "test_window": "now to +60 minutes",
-  "timezone": "UTC +0000",
-  "catalogue": {
-    "scope": "MENA only",
-    "source_entries": {
-      "beinsports_mena_ar": 39,
-      "bein_ar": 71
-    },
-    "catalogue_ids": 82,
-    "generated_local_ids": 23,
-    "generated_ids": [
-      "beINMENA.beindrama",
-      "beINMENA.beinjunior",
-      "beINMENA.beinseries2",
-      "beINMENA.beinsports1en",
-      "beINMENA.beinsports1fr",
-      "beINMENA.beinsports2en",
-      "beINMENA.beinsports2fr",
-      "beINMENA.beinsports4afc",
-      "beINMENA.beinsports5afc",
-      "beINMENA.beinsports6afc",
-      "beINMENA.beinsportsen1",
-      "beINMENA.beinsportsen2",
-      "beINMENA.beinsportsfr1",
-      "beINMENA.beinsportsfr2",
-      "beINMENA.beinsportsxtra3",
-      "beINMENA.beinsportsxtra4",
-      "beINMENA.beinsportsxtra5",
-      "beINMENA.beinsportsxtra6",
-      "beINMENA.beinsportsxtra7",
-      "beINMENA.beinsportsxtra8",
-      "beINMENA.beinsportsxtra9",
-      "beINMENA.guide.entertainment8",
-      "beINMENA.jeemtv"
-    ],
-    "zero_epg_policy": "retain"
-  },
-  "result": {
-    "label": "bein-mena-1h",
-    "channels": 82,
-    "active_channels": 48,
-    "zero_epg_channels": 34,
-    "zero_epg_ids": [
-      "AlJazeeraDocumentary.qa@SD",
-      "AlkassEight.qa@SD",
-      "AlkassOne.qa@SD",
-      "AlkassThree.qa@SD",
-      "AlkassTwo.qa@SD",
-      "Baraem.qa@SD",
-      "beINGourmet.qa@SD",
-      "beINMENA.beindrama",
-      "beINMENA.beinjunior",
-      "beINMENA.beinseries2",
-      "beINMENA.beinsports4afc",
-      "beINMENA.beinsports5afc",
-      "beINMENA.beinsports6afc",
-      "beINMENA.jeemtv",
-      "beINMovies2Action.qa@SD",
-      "beINMovies3Drama.qa@SD",
-      "beINSeries1.qa@SD",
-      "beINSports4KHDR.qa",
-      "beINSportsAFC.qa@SD",
-      "beINSportsAFC1.qa@SD",
-      "beINSportsAFC2.qa@SD",
-      "beINSportsAFC3.qa@SD",
-      "beINSportsNBA.qa@SD",
-      "BloombergTV.us@MiddleEast",
-      "CBeebiesMiddleEast.uk@SD",
-      "CNNArabic.ae@SD",
-      "EuronewsEnglish.fr@SD",
-      "Fatafeat.ae@SD",
-      "FoxActionMoviesMENA.hk@SD",
-      "FoxArabia.ae@SD",
-      "FoxMoviesMiddleEast.us@SD",
-      "JeemTV.qa@SD",
-      "MTV90s.uk@SD",
-      "StarMoviesMiddleEast.ae@SD"
-    ],
-    "input_channels": 82,
-    "coverage_pct": 58.5,
-    "programmes": 97,
-    "rejected_invalid_time": 42,
-    "inferred_stop": 0,
-    "window_hours": 1,
-    "timezone_output": "UTC +0000",
-    "size_bytes": 5402,
-    "sha256": "1f07f5e9ab10c2a66114ed2cd93a2f8693af3e843380e0b65ee75207ca0355b1",
-    "generated_utc": "2026-09-27T02:18:19.177395+00:00"
-  },
-  "sample_programmes": [
+  "programmes": 49,
+  "title_policy": "EN",
+  "description_policy": "AR",
+  "titles_with_arabic": 0,
+  "arabic_descriptions": 46,
+  "non_arabic_descriptions": 0,
+  "samples": [
     {
-      "channel": "AlkassFive.qa@SD",
-      "start": "20260927000000 +0000",
-      "stop": "20260927050000 +0000",
-      "title": "رالي قطر الدولي"
-    },
-    {
-      "channel": "AlkassFour.qa@SD",
-      "start": "20260927003000 +0000",
-      "stop": "20260927023000 +0000",
-      "title": "دوري نجوم قطر"
-    },
-    {
-      "channel": "AlkassFour.qa@SD",
-      "start": "20260927023000 +0000",
-      "stop": "20260927030000 +0000",
-      "title": "كرة السلة العالمية"
-    },
-    {
-      "channel": "AlkassFour.qa@SD",
-      "start": "20260927030000 +0000",
-      "stop": "20260927033000 +0000",
-      "title": "الأخبار"
-    },
-    {
-      "channel": "AlkassSeven.qa@SD",
-      "start": "20260927020000 +0000",
-      "stop": "20260927070000 +0000",
-      "title": "مهرجان كتارا الدولي للخيل العربية"
-    },
-    {
-      "channel": "AlkassSix.qa@SD",
-      "start": "20260927020000 +0000",
-      "stop": "20260927023000 +0000",
-      "title": "المرأة"
-    },
-    {
-      "channel": "AlkassSix.qa@SD",
-      "start": "20260927023000 +0000",
-      "stop": "20260927050000 +0000",
-      "title": "بطولة غرب آسيا للكرة الطائرة"
+      "channel": "beIN4K.qa@SD",
+      "start": "20260927075000 +0000",
+      "title": "Fulham v Manchester United - English Premier League 2026/2027",
+      "description": "لم يحقق فولهام أي فوز في آخر 10 مباريات على أرضه في الدوري الإنجليزي الممتاز ضد مانشستر يونايتد منذ فوزه في مباراتين متتاليتين ضدهم في كرافن كوتيدج في عام 2009. خسر مانشستر يونايتد مرة واحدة فقط من آخر 21 مباراة في الدوري الإنجليزي الممتاز "
     },
     {
       "channel": "beIN4K.qa@SD",
-      "start": "20260927004000 +0000",
-      "stop": "20260927022000 +0000",
-      "title": "Fulham v Manchester United - English Premier League 2026/2027"
-    },
-    {
-      "channel": "beIN4K.qa@SD",
-      "start": "20260927022000 +0000",
-      "stop": "20260927042000 +0000",
-      "title": "Main Race - F1 Azerbaijan Grand Prix - FIA Formula 1 World Championship 2026"
-    },
-    {
-      "channel": "beINMENA.beinsports1en",
-      "start": "20260927020000 +0000",
-      "stop": "20260927023000 +0000",
-      "title": "Italy vs Belgium - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
-    },
-    {
-      "channel": "beINMENA.beinsports1en",
-      "start": "20260927023000 +0000",
-      "stop": "20260927030000 +0000",
-      "title": "Netherlands vs Germany - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
-    },
-    {
-      "channel": "beINMENA.beinsports1en",
-      "start": "20260927030000 +0000",
-      "stop": "20260927033000 +0000",
-      "title": "Türkiye vs France - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
-    },
-    {
-      "channel": "beINMENA.beinsports1fr",
-      "start": "20260927020000 +0000",
-      "stop": "20260927030000 +0000",
-      "title": "Achat - Magazine 2026"
-    },
-    {
-      "channel": "beINMENA.beinsports1fr",
-      "start": "20260927030000 +0000",
-      "stop": "20260927040000 +0000",
-      "title": "Salon VIP - Magazine 2026-2027"
-    },
-    {
-      "channel": "beINMENA.beinsports2en",
-      "start": "20260926223000 +0000",
-      "stop": "20260927023000 +0000",
-      "title": "Athletics - Marathon Race Walk - Asian Games Aichi-Nagoya 2026 - W/M"
-    },
-    {
-      "channel": "beINMENA.beinsports2en",
-      "start": "20260927023000 +0000",
-      "stop": "20260927030000 +0000",
-      "title": "EN ATP Tour: This Week 2026 Ep.37"
-    },
-    {
-      "channel": "beINMENA.beinsports2en",
-      "start": "20260927030000 +0000",
-      "stop": "20260927043000 +0000",
-      "title": "IND vs IRI - Kabaddi - Finals - Asian Games Aichi-Nagoya 2026 - W"
-    },
-    {
-      "channel": "beINMENA.beinsports2fr",
-      "start": "20260927020000 +0000",
-      "stop": "20260927031500 +0000",
-      "title": "Doc Rse Au Dela Des Sommets Ff Handisport - Documentaire"
-    },
-    {
-      "channel": "beINMENA.beinsports2fr",
-      "start": "20260927031500 +0000",
-      "stop": "20260927040000 +0000",
-      "title": "Film Des Finales 2026 - Championnat De France - Volleyball 2526"
+      "start": "20260927093000 +0000",
+      "title": "Main Race - F1 Azerbaijan Grand Prix - FIA Formula 1 World Championship 2026",
+      "description": "24 سباق الجائزة الكبرى من موسم الفورمولا 1 مباشرة وحصريا على beIN. جميع الممارسات والتصفيات والسباقات متاحة مباشرة مع خيار التعليق باللغة العربية أو الإنجليزية. سيتألف موسم 2026 من 6 سباقات سبرينت خلال 24 عطلة نهاية أسبوع. لأول مرة، سيتنافس"
     },
     {
       "channel": "beINMENA.beinsportsen1",
-      "start": "20260927020000 +0000",
-      "stop": "20260927023000 +0000",
-      "title": "Italy vs Belgium - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+      "start": "20260927060000 +0000",
+      "title": "England vs Spain - UEFA Nations League 2026/27 - Match Day 1",
+      "description": "فازت إنجلترا مرتين فقط من آخر 13 مباراة ضد حاملي كأس العالم FIFA، وخسرت تسع مرات؛ جاءت هذه الانتصارات على أرضها أمام إسبانيا في نوفمبر 2011 وخارج ملعبها أمام ألمانيا في مارس 2016. وفازت إسبانيا بستة من آخر تسعة مواجهات لها مع إنجلترا في جمي"
     },
     {
       "channel": "beINMENA.beinsportsen1",
-      "start": "20260927023000 +0000",
-      "stop": "20260927030000 +0000",
-      "title": "Netherlands vs Germany - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
-    },
-    {
-      "channel": "beINMENA.beinsportsen1",
-      "start": "20260927030000 +0000",
-      "stop": "20260927033000 +0000",
-      "title": "Türkiye vs France - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+      "start": "20260927093500 +0000",
+      "title": "Athletics - Asian Games Aichi-Nagoya 2026 - W/M",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
     },
     {
       "channel": "beINMENA.beinsportsen2",
-      "start": "20260926223000 +0000",
-      "stop": "20260927030000 +0000",
-      "title": "Athletics - Marathon Race Walk - Asian Games Aichi-Nagoya 2026 - W/M"
-    },
-    {
-      "channel": "beINMENA.beinsportsen2",
-      "start": "20260927030000 +0000",
-      "stop": "20260927043000 +0000",
-      "title": "IND vs IRI - Kabaddi - Finals - Asian Games Aichi-Nagoya 2026 - W"
+      "start": "20260927080000 +0000",
+      "title": "Weightlifting - 77kg Final - Asian Games Aichi-Nagoya 2026 - W",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
     },
     {
       "channel": "beINMENA.beinsportsfr1",
-      "start": "20260927020000 +0000",
-      "stop": "20260927030000 +0000",
-      "title": "Achat - Magazine 2026"
+      "start": "20260927090000 +0000",
+      "title": "F Tba P01 - Bjkcup 2026 - Tennis",
+      "description": "رياضة، تنس."
+    },
+    {
+      "channel": "beINMENA.beinsportsfr2",
+      "start": "20260927080000 +0000",
+      "title": "Maroc vs Gabon - AFCON  Qualifications - FOOTBALL 2027",
+      "description": "رياضة."
+    },
+    {
+      "channel": "beINMENA.beinsportsfr2",
+      "start": "20260927100000 +0000",
+      "title": "L2 Extra - Football 2026-2027",
+      "description": "رياضة."
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra3",
+      "start": "20260927060000 +0000",
+      "title": "Squash - Asian Games Aichi-Nagoya 2026",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra3",
+      "start": "20260927095800 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra4",
+      "start": "20260927080000 +0000",
+      "title": "Esports - Substage - Asian Games Aichi-Nagoya 2026",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra5",
+      "start": "20260927090000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra5",
+      "start": "20260927100000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra6",
+      "start": "20260927090000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra6",
+      "start": "20260927100000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra7",
+      "start": "20260927090000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra7",
+      "start": "20260927100000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra8",
+      "start": "20260927090000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra8",
+      "start": "20260927100000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra9",
+      "start": "20260927090000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMENA.beinsportsxtra9",
+      "start": "20260927100000 +0000",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة"
+    },
+    {
+      "channel": "beINMovies1Premiere.qa@SD",
+      "start": "20260927091500 +0000",
+      "title": "The Great Escaper",
+      "description": ""
+    },
+    {
+      "channel": "beINMovies4Family.qa@SD",
+      "start": "20260927085900 +0000",
+      "title": "Rugrats Go Wild",
+      "description": ""
+    },
+    {
+      "channel": "beINSports.qa@MENA",
+      "start": "20260927060000 +0000",
+      "title": "All - Sports - Asian Games Aichi-Nagoya 2026",
+      "description": "استوديو يومي يغطي الأحداث التي تجري في دورة الألعاب الآسيوية العشرين من محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. يتضمن الاستوديو المستمر لمدة ست ساعات تغطية حية من اليابان مع ردود أفعال الرياضيين المشاركين وضي"
+    },
+    {
+      "channel": "beINSports1.qa@MENA",
+      "start": "20260927090400 +0000",
+      "title": "CHN vs HKG - Beach Volleyball - Asian Games Aichi-Nagoya 2026 - M",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
+    },
+    {
+      "channel": "beINSports1.qa@MENA",
+      "start": "20260927100000 +0000",
+      "title": "England vs Spain - Mini Matche - UEFA Nations League 2026/27 - Match Day 1",
+      "description": "فازت إنجلترا مرتين فقط من آخر 13 مباراة ضد حاملي كأس العالم FIFA، وخسرت تسع مرات؛ جاءت هذه الانتصارات على أرضها أمام إسبانيا في نوفمبر 2011 وخارج ملعبها أمام ألمانيا في مارس 2016. وفازت إسبانيا بستة من آخر تسعة مواجهات لها مع إنجلترا في جمي"
+    },
+    {
+      "channel": "beINSports2.qa@MENA",
+      "start": "20260927090000 +0000",
+      "title": "3x3 Basketball - Final - Asian Games Aichi-Nagoya 2026 W",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
+    },
+    {
+      "channel": "beINSports2.qa@MENA",
+      "start": "20260927093500 +0000",
+      "title": "Athletics - Asian Games Aichi-Nagoya 2026 - W/M",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
+    },
+    {
+      "channel": "beINSports3.qa@MENA",
+      "start": "20260927062000 +0000",
+      "title": "Fencing - M Epee team/ W- Sabre Team SF - Asian Games Aichi-Nagoya 2026",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
+    },
+    {
+      "channel": "beINSports3.qa@MENA",
+      "start": "20260927094000 +0000",
+      "title": "Fencing - Epee Team Final - Asian Games Aichi-Nagoya 2026 - W/M",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات."
     }
   ]
 }
