@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-27T01:44:25.655208+00:00",
+  "generated_utc": "2026-09-27T01:45:06.631017+00:00",
   "mode": "vuplus-direct-safe-test",
   "repository": "wacayoub/EPG-Scrapers",
   "policy": "Expose only healthy published direct XMLTV feeds; broken/empty sources remain disabled.",
@@ -15,7 +15,7 @@
         "programmes": 1964,
         "future_channels": 12,
         "future_ratio": 1.0,
-        "future_horizon_hours": 191.18,
+        "future_horizon_hours": 191.16,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -33,7 +33,7 @@
         "programmes": 803,
         "future_channels": 27,
         "future_ratio": 1.0,
-        "future_horizon_hours": 52.26,
+        "future_horizon_hours": 52.25,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -51,7 +51,7 @@
         "programmes": 461,
         "future_channels": 9,
         "future_ratio": 1.0,
-        "future_horizon_hours": 58.26,
+        "future_horizon_hours": 58.25,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -69,7 +69,7 @@
         "programmes": 1405,
         "future_channels": 22,
         "future_ratio": 1.0,
-        "future_horizon_hours": 70.24,
+        "future_horizon_hours": 70.23,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -87,7 +87,7 @@
         "programmes": 258,
         "future_channels": 7,
         "future_ratio": 1.0,
-        "future_horizon_hours": 48.26,
+        "future_horizon_hours": 48.25,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -105,7 +105,7 @@
         "programmes": 194,
         "future_channels": 9,
         "future_ratio": 1.0,
-        "future_horizon_hours": 23.26,
+        "future_horizon_hours": 23.25,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -123,7 +123,7 @@
         "programmes": 5606,
         "future_channels": 78,
         "future_ratio": 1.0,
-        "future_horizon_hours": 54.26,
+        "future_horizon_hours": 54.25,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -141,7 +141,7 @@
         "programmes": 3214,
         "future_channels": 84,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.26,
+        "future_horizon_hours": 49.25,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -155,11 +155,11 @@
       "feed_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/stctv.xml.gz",
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/stctv.txt",
       "stats": {
-        "channels": 16,
-        "programmes": 1051,
-        "future_channels": 16,
+        "channels": 3,
+        "programmes": 139,
+        "future_channels": 3,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.93,
+        "future_horizon_hours": 48.25,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -185,8 +185,8 @@
     "enabled": true,
     "feed_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/vuplus-test.xml.gz",
     "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/vuplus-test.txt",
-    "channels": 214,
-    "programmes": 12695,
+    "channels": 208,
+    "programmes": 12150,
     "owners": {
       "2M": "morocco",
       "AFLAM.ma": "morocco",
@@ -393,17 +393,11 @@
       "ThikrayatTV.sa@SD": "elcinema",
       "UTV.iq@SD": "elcinema",
       "ZeeAlwan.ae@SD": "elcinema",
-      "AlArabiya.sa@HD": "stctv",
-      "MBC1.sa@HD": "stctv",
-      "MBC2.sa@HD": "stctv",
-      "MBC3.sa@HD": "stctv",
-      "MBC4.sa@HD": "stctv",
-      "MBCMasr2.eg@HD": "stctv",
       "StarzplaySports1.sa@HD": "stctv",
       "StarzplaySports2.sa@HD": "stctv",
       "StarzplaySports3.sa@HD": "stctv"
     },
-    "size_bytes": 594186,
-    "sha256": "f51e824f9d0ad53d9da09581b20314c390a30d91a17aac95c1bfc63408771406"
+    "size_bytes": 571420,
+    "sha256": "0c69dfe1a3d9c5b54f2fa16a155c225b85980a714ce842d317b4b55be3d99c24"
   }
 }

@@ -1,21 +1,21 @@
 # Vu+ direct EPG test readiness
 
-Generated: 2026-09-27T01:44:25.655208+00:00
+Generated: 2026-09-27T01:45:06.631017+00:00
 
 Ready direct sources: **9/9**  
-Merged test feed: **214 channels / 12695 programmes**
+Merged test feed: **208 channels / 12150 programmes**
 
 | Source | Ready | Channels | Programmes | Future | Horizon | Reason |
 |---|---:|---:|---:|---:|---:|---|
-| Morocco | YES | 12 | 1964 | 100% | 191.18h | PASS |
-| beIN MENA | YES | 27 | 803 | 100% | 52.26h | PASS |
-| Dubai+ | YES | 9 | 461 | 100% | 58.26h | PASS |
-| Shahid / MBC | YES | 22 | 1405 | 100% | 70.24h | PASS |
-| Rotana | YES | 7 | 258 | 100% | 48.26h | PASS |
-| Sport24 | YES | 9 | 194 | 100% | 23.26h | PASS |
-| OSN | YES | 78 | 5606 | 100% | 54.26h | PASS |
-| ElCinema | YES | 84 | 3214 | 100% | 49.26h | PASS |
-| STC TV | YES | 16 | 1051 | 100% | 49.93h | PASS |
+| Morocco | YES | 12 | 1964 | 100% | 191.16h | PASS |
+| beIN MENA | YES | 27 | 803 | 100% | 52.25h | PASS |
+| Dubai+ | YES | 9 | 461 | 100% | 58.25h | PASS |
+| Shahid / MBC | YES | 22 | 1405 | 100% | 70.23h | PASS |
+| Rotana | YES | 7 | 258 | 100% | 48.25h | PASS |
+| Sport24 | YES | 9 | 194 | 100% | 23.25h | PASS |
+| OSN | YES | 78 | 5606 | 100% | 54.25h | PASS |
+| ElCinema | YES | 84 | 3214 | 100% | 49.25h | PASS |
+| STC TV | YES | 3 | 139 | 100% | 48.25h | PASS |
 
 ## Intentionally disabled for first Vu+ test
 
