@@ -385,7 +385,7 @@ jobs:
           fi
           exit 0
 
-      - name: Scrape STC targeted fallback
+      - name: Scrape STC full public channel catalogue
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -396,7 +396,8 @@ jobs:
             --report reports/stctv-scrape.json \
             --window-hours 48 \
             --delay 1.5 \
-            --max-channels 30
+            --max-channels 0 \
+            --profile all
           rc=$?
           echo "$rc" > output/source-build/stctv.grab.rc
           if [ ! -s output/source-build/stctv.raw.xml ]; then
@@ -404,19 +405,36 @@ jobs:
           fi
           exit 0
 
-      - name: Pack candidate feeds
+      - name: Pack candidate feeds and preserve complete ID catalogues
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set +e
           mkdir -p output/final
           for key in elcinema osn bein shahid rotana sport24 starzplay dubaiplus stctv; do
-            python tools/source_feed_pack.py               --input "output/source-build/$key.raw.xml"               --output-gz "output/final/$key.xml.gz"               --output-txt "output/final/$key.txt"               --stats "output/final/$key.json"               --label "$key"               --window-hours 48
+            catalogue_args=()
+            if [ -s "output/source-build/$key.channels.xml" ]; then
+              catalogue_args=(--catalogue "output/source-build/$key.channels.xml")
+            fi
+            python tools/source_feed_pack.py \
+              --input "output/source-build/$key.raw.xml" \
+              "${catalogue_args[@]}" \
+              --output-gz "output/final/$key.xml.gz" \
+              --output-txt "output/final/$key.txt" \
+              --stats "output/final/$key.json" \
+              --label "$key" \
+              --window-hours 48
             echo "$?" > "output/final/$key.pack.rc"
           done
           if [ -s output/morocco/morocco.xml.gz ]; then
-            cp output/morocco/morocco.xml.gz output/final/morocco.xml.gz
-            cp output/morocco/manifest.json output/final/morocco.json
+            python tools/source_feed_pack.py \
+              --input output/morocco/morocco.xml.gz \
+              --output-gz output/final/morocco.xml.gz \
+              --output-txt output/final/morocco.txt \
+              --stats output/final/morocco.json \
+              --label morocco \
+              --window-hours 48
+            echo "$?" > output/final/morocco.pack.rc
           else
             echo "Morocco candidate missing; previous LKG will be preserved."
           fi
