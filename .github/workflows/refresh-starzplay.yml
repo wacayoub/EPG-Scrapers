@@ -2,6 +2,14 @@ name: EPG 48h - STARZPLAY
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/starzplay_api_source.py"
+      - "tools/starzplay_source.py"
+      - "tools/starzplay_hybrid.py"
+      - "config/starzplay-language-policy.json"
+      - ".github/workflows/refresh-starzplay.yml"
 
 permissions:
   contents: write
