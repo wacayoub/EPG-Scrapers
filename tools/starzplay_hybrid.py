@@ -17,6 +17,8 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
+import requests
+
 AR = re.compile(r"[\u0600-\u06ff]")
 
 
@@ -67,6 +69,29 @@ def is_ar(text: str) -> bool:
     return bool(AR.search(text or ""))
 
 
+def translate_ar(text: str, cache: dict[str, str]) -> str:
+    raw = (text or "").strip()
+    if not raw or is_ar(raw):
+        return raw
+    if raw in cache:
+        return cache[raw]
+    try:
+        r = requests.get(
+            "https://translate.googleapis.com/translate_a/single",
+            params={"client": "gtx", "sl": "auto", "tl": "ar", "dt": "t", "q": raw},
+            timeout=12,
+        )
+        data = r.json()
+        out = "".join(x[0] for x in data[0] if x and x[0]).strip()
+        if out and is_ar(out):
+            cache[raw] = out
+            return out
+    except Exception:
+        pass
+    cache[raw] = raw
+    return raw
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--arabic", required=True)
@@ -85,6 +110,8 @@ def main() -> int:
     ar_native_ids = set(policy.get("arabic_native_ids", []))
     hybrid_ids = set(policy.get("hybrid_ids", []))
     arabic_display_name_ids = set(policy.get("arabic_display_name_ids", []))
+    force_arabic_content_ids = set(policy.get("force_arabic_content_ids", []))
+    translation_cache: dict[str, str] = {}
 
     # IDs stay stable for existing EPGManager mappings. Only the human-readable
     # channel label is switched to the English STARZPLAY catalogue. The one
@@ -154,6 +181,8 @@ def main() -> int:
         "english_channel_names_applied": english_channel_names_applied,
         "english_channel_names_missing": english_channel_names_missing,
         "arabic_display_name_ids": sorted(arabic_display_name_ids),
+        "force_arabic_content_ids": sorted(force_arabic_content_ids),
+        "translations_cached": 0,
         "profiles": {},
         "samples": {},
     }
@@ -181,6 +210,12 @@ def main() -> int:
             ensure_lang(node, "desc", "ar")
         else:
             stats["arabic_native_programmes"] += 1
+            if cid in force_arabic_content_ids:
+                for tag in ("title", "sub-title", "desc"):
+                    for child in node.findall(tag):
+                        raw = (child.text or "").strip()
+                        if raw and not is_ar(raw):
+                            child.text = translate_ar(raw, translation_cache)
             ensure_lang(node, "title", "ar")
             ensure_lang(node, "sub-title", "ar")
             ensure_lang(node, "desc", "ar")
@@ -203,6 +238,7 @@ def main() -> int:
         out.append(node)
         stats["programmes"] += 1
 
+    stats["translations_cached"] = len(translation_cache)
     ET.indent(out, space="  ")
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     Path(args.output).write_bytes(ET.tostring(out, encoding="utf-8", xml_declaration=True))
