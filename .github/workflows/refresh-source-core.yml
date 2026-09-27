@@ -172,6 +172,29 @@ jobs:
           done
           exit 0
 
+      - name: Refresh live beIN channel catalogue
+        if: steps.gate.outputs.run == 'true' && inputs.source == 'bein'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p "$GITHUB_WORKSPACE/output/source-build"
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          cfg="./sites/bein.com/bein.com.config.js"
+          for lang in ar en; do
+            out="$GITHUB_WORKSPACE/output/source-build/bein_live_${lang}.channels.xml"
+            rm -f "$out"
+            npm run channels:parse --               --config="$cfg"               --output="$out"               --set="lang:${lang}"
+            rc=$?
+            rows="$(grep -c '<channel ' "$out" 2>/dev/null || true)"
+            echo "beIN live catalogue ${lang}: rows=${rows:-0} rc=$rc"
+            grep -Ei '>(jeem|baraem|be.?junior|beinjunior).*<' "$out" 2>/dev/null || true
+            if [ "$rc" -ne 0 ] || [ "${rows:-0}" -eq 0 ]; then
+              echo "beIN live catalogue ${lang} unavailable; static catalogue remains fallback."
+              rm -f "$out"
+            fi
+          done
+          exit 0
+
       - name: Build provider catalogues
         if: steps.gate.outputs.run == 'true' && steps.req.outputs.upstream == 'true'
         run: python tools/build_catalogues.py
