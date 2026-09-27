@@ -1,14 +1,6 @@
 name: Test beIN only
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/test-bein-only.yml"
-      - "tools/build_catalogues.py"
-      - "tools/bein_hybrid.py"
-      - "tools/bein_arabize.py"
-      - "config/bein-language-policy.json"
   workflow_dispatch:
 
 permissions:
