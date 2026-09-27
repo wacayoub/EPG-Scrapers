@@ -1,8 +1,8 @@
 {
-  "generated_utc": "2026-09-27T01:45:06.631017+00:00",
+  "generated_utc": "2026-09-27T01:55:17.700835+00:00",
   "mode": "vuplus-direct-safe-test",
   "repository": "wacayoub/EPG-Scrapers",
-  "policy": "Expose only healthy published direct XMLTV feeds; broken/empty sources remain disabled.",
+  "policy": "Keep complete per-source ID catalogues; validate EPG health on active channels; normalize receiver test timestamps to UTC.",
   "sources": [
     {
       "key": "morocco",
@@ -12,10 +12,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/morocco.txt",
       "stats": {
         "channels": 12,
+        "active_channels": 12,
+        "zero_epg_channels": 0,
         "programmes": 1964,
         "future_channels": 12,
         "future_ratio": 1.0,
-        "future_horizon_hours": 191.16,
+        "future_horizon_hours": 191.0,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -30,10 +32,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/bein.txt",
       "stats": {
         "channels": 27,
+        "active_channels": 27,
+        "zero_epg_channels": 0,
         "programmes": 803,
         "future_channels": 27,
         "future_ratio": 1.0,
-        "future_horizon_hours": 52.25,
+        "future_horizon_hours": 52.08,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -48,10 +52,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/dubaiplus.txt",
       "stats": {
         "channels": 9,
+        "active_channels": 9,
+        "zero_epg_channels": 0,
         "programmes": 461,
         "future_channels": 9,
         "future_ratio": 1.0,
-        "future_horizon_hours": 58.25,
+        "future_horizon_hours": 58.08,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -66,10 +72,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/shahid.txt",
       "stats": {
         "channels": 22,
+        "active_channels": 22,
+        "zero_epg_channels": 0,
         "programmes": 1405,
         "future_channels": 22,
         "future_ratio": 1.0,
-        "future_horizon_hours": 70.23,
+        "future_horizon_hours": 70.06,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -84,10 +92,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/rotana.txt",
       "stats": {
         "channels": 7,
+        "active_channels": 7,
+        "zero_epg_channels": 0,
         "programmes": 258,
         "future_channels": 7,
         "future_ratio": 1.0,
-        "future_horizon_hours": 48.25,
+        "future_horizon_hours": 48.08,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -102,10 +112,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/sport24.txt",
       "stats": {
         "channels": 9,
+        "active_channels": 9,
+        "zero_epg_channels": 0,
         "programmes": 194,
         "future_channels": 9,
         "future_ratio": 1.0,
-        "future_horizon_hours": 23.25,
+        "future_horizon_hours": 23.08,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -120,10 +132,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/osn.txt",
       "stats": {
         "channels": 78,
+        "active_channels": 78,
+        "zero_epg_channels": 0,
         "programmes": 5606,
         "future_channels": 78,
         "future_ratio": 1.0,
-        "future_horizon_hours": 54.25,
+        "future_horizon_hours": 54.08,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -138,10 +152,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/elcinema.txt",
       "stats": {
         "channels": 84,
+        "active_channels": 84,
+        "zero_epg_channels": 0,
         "programmes": 3214,
         "future_channels": 84,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.25,
+        "future_horizon_hours": 49.08,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -156,10 +172,12 @@
       "id_index_url": "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/stctv.txt",
       "stats": {
         "channels": 3,
+        "active_channels": 3,
+        "zero_epg_channels": 0,
         "programmes": 139,
         "future_channels": 3,
         "future_ratio": 1.0,
-        "future_horizon_hours": 48.25,
+        "future_horizon_hours": 48.08,
         "invalid_rows": 0,
         "orphan_programmes": 0,
         "duplicate_ids": 0
@@ -397,7 +415,7 @@
       "StarzplaySports2.sa@HD": "stctv",
       "StarzplaySports3.sa@HD": "stctv"
     },
-    "size_bytes": 571420,
-    "sha256": "0c69dfe1a3d9c5b54f2fa16a155c225b85980a714ce842d317b4b55be3d99c24"
+    "size_bytes": 571318,
+    "sha256": "25786b289f9c82aec94a6141a842241fccd70f1a3f571d39dc5fd53fbf3225ac"
   }
 }

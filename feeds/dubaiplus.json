@@ -1,13 +1,17 @@
 {
   "label": "dubaiplus",
   "channels": 9,
+  "active_channels": 9,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
   "input_channels": 9,
   "coverage_pct": 100.0,
   "programmes": 461,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
-  "size_bytes": 15300,
-  "sha256": "a547ef11b3c89dadc22c025d263beebb5a54e4d91ba44ad999c434f29aaf833b",
-  "generated_utc": "2026-09-27T01:44:47.069042+00:00"
+  "timezone_output": "UTC +0000",
+  "size_bytes": 15307,
+  "sha256": "6709fcfdebace4a1e9b00a6cd4cd37ccd68de9310541a858345735865d8730f1",
+  "generated_utc": "2026-09-27T01:54:44.387466+00:00"
 }

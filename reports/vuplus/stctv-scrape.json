@@ -1,9 +1,10 @@
 {
-  "generated_utc": "2026-09-27T01:44:47.157757+00:00",
+  "generated_utc": "2026-09-27T01:54:44.519818+00:00",
   "channels": 3,
+  "channels_with_epg": 3,
   "programmes": 139,
   "requests": 13,
-  "target_channels": 3,
+  "source_channels": 144,
   "zero_epg": [],
   "hybrid_channels": [
     "StarzplaySports1.sa@HD",
@@ -30,5 +31,7 @@
       "desc": "تابعوا الإثارة وأفضل الأحداث لـ (بطولة القتال النهائي) يو إف سي فايت نايت."
     }
   },
-  "profile": "starzplay-sports"
+  "timezone_output": "UTC +0000",
+  "profile": "starzplay-sports",
+  "selected_channels": 3
 }
