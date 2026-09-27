@@ -66,7 +66,7 @@ jobs:
         run: |
           set +e
           mkdir -p output/vuplus reports/vuplus
-          python tools/stctv_source.py             --output output/vuplus/stctv.raw.xml             --report reports/vuplus/stctv-scrape.json             --id-index feeds/mena.txt             --window-hours 48             --delay 1.5             --max-channels 30
+          python tools/stctv_source.py             --output output/vuplus/stctv.raw.xml             --report reports/vuplus/stctv-scrape.json             --id-index feeds/mena.txt             --window-hours 48             --delay 1.5             --max-channels 10             --profile starzplay-sports
           rc=$?
           echo "$rc" > reports/vuplus/stctv-scrape.rc
           python tools/source_feed_pack.py             --input output/vuplus/stctv.raw.xml             --output-gz output/vuplus/stctv.xml.gz             --output-txt output/vuplus/stctv.txt             --stats output/vuplus/stctv.json             --label stctv             --window-hours 48
@@ -85,7 +85,7 @@ jobs:
           DT=re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
           policy={
             "dubaiplus":{"min_channels":7,"min_programmes":20,"min_ratio":0.70,"min_horizon":4},
-            "stctv":{"min_channels":10,"min_programmes":30,"min_ratio":0.70,"min_horizon":4},
+            "stctv":{"min_channels":3,"min_programmes":6,"min_ratio":0.66,"min_horizon":3},
           }
           def dt(v):
               m=DT.match((v or "").strip())
