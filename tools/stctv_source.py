@@ -229,7 +229,17 @@ def main():
                 continue
             cid = xml_id(name, index, sid)
             if cid in seen_cids:
-                continue
+                # Two STC source entries may legitimately share the same
+                # display name/canonical alias (regional or package variants).
+                # Never drop the second source ID: keep the canonical ID for
+                # the first occurrence and give subsequent variants a stable
+                # source-ID-based local identifier.
+                seed = norm(name) + "|" + sid
+                cid = "stctv." + hashlib.sha1(seed.encode()).hexdigest()[:12]
+                bump = 1
+                while cid in seen_cids:
+                    cid = "stctv." + hashlib.sha1((seed + f"|{bump}").encode()).hexdigest()[:12]
+                    bump += 1
             seen_cids.add(cid)
             prof = "hybrid" if any(tok in norm(name) for tok in HYBRID_TOKENS) else "arabic_native"
             prepared.append((ch, name, sid, cid, prof))
