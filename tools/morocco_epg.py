@@ -125,6 +125,56 @@ class Http:
 class Event:
  channel:str; start:datetime; title:str; desc:str=""; stop:datetime|None=None; tl:str="ar"; dl:str="ar"; source:str=""
 
+def _arryadia_history_load(path,days=7):
+ p=Path(path)
+ if not p.exists():return []
+ try:
+  data=json.loads(p.read_text(encoding="utf-8"))
+  rows=[]
+  cutoff=datetime.now(TZ)-timedelta(days=days)
+  for x in data.get("events",[]):
+   try:
+    s=datetime.fromisoformat(x["start"]).astimezone(TZ)
+    e=datetime.fromisoformat(x["stop"]).astimezone(TZ)
+    if e<cutoff:continue
+    rows.append(Event(x["channel"],s,x["title"],x.get("desc",""),e,
+                      x.get("tl","ar"),x.get("dl","ar"),"arryadia-history"))
+   except Exception:
+    continue
+  return rows
+ except Exception as e:
+  log("Arryadia history load: %s"%e);return []
+
+def _arryadia_history_update(path,official_rows,days=7):
+ p=Path(path);p.parent.mkdir(parents=True,exist_ok=True)
+ old=_arryadia_history_load(p,days=days)
+ cutoff=datetime.now(TZ)-timedelta(days=days)
+ # Persist only real SNRT rows; external fixtures and inferred fillers must
+ # never become training data for the recurring-programme model.
+ fresh=[
+  e for e in official_rows
+  if e.channel in ARR_IDS and e.stop and e.stop>e.start and
+     e.source.startswith("arryadia-snrt") and e.stop>=cutoff
+ ]
+ merged={}
+ for e in old+fresh:
+  if e.stop<cutoff:continue
+  k=(e.channel,e.start.isoformat(),norm(e.title))
+  prev=merged.get(k)
+  if prev is None or len(e.desc or "")>len(prev.desc or ""):merged[k]=e
+ rows=sorted(merged.values(),key=lambda e:(e.start,e.channel,e.title.casefold()))
+ payload={
+  "generated":datetime.now(TZ).isoformat(),
+  "retention_days":days,
+  "events":[{
+   "channel":e.channel,"start":e.start.isoformat(),"stop":e.stop.isoformat(),
+   "title":e.title,"desc":e.desc,"tl":e.tl,"dl":e.dl
+  } for e in rows]
+ }
+ p.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+ log("Arryadia official history=%d events / %d days"%(len(rows),days))
+ return rows
+
 def _snrt_fallback_desc(cid,title):
  channel=SNRT_AR_NAMES.get(cid,CHANNELS.get(cid,cid))
  if "أخبار" in title or "الأخبار" in title:
@@ -1375,7 +1425,7 @@ def _parse_arryadia_flat(soup):
  log("Arryadia flat parser groups=%d dates=%s events=%d"%(len(groups),",".join(d.isoformat() for d in dates),len(out)))
  return out
 
-def scrape_arryadia(days,history=None):
+def scrape_arryadia(days,history=None,history_path=None):
  h=Http();parsed=[];flat=[]
  try:
   r=h.get("https://www.snrt.ma/ar/node/4070",
@@ -1432,6 +1482,12 @@ def scrape_arryadia(days,history=None):
   if prev is None or len(e.desc or "")>len(prev.desc or ""):dedup[k]=e
  out=sorted(dedup.values(),key=lambda e:(e.channel,e.start,e.title.casefold()))
  infer(out)
+ # Capture every official SNRT row still visible, including past days, before
+ # trimming the live feed. This becomes a rolling seven-day recurrence corpus.
+ archive=[]
+ if history_path:
+  archive=_arryadia_history_update(history_path,out,days=7)
+ combined_history=list(history or [])+archive
  now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
  current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
  future=[e for e in current if e.stop>now]
@@ -1444,7 +1500,7 @@ def scrape_arryadia(days,history=None):
 
  fixtures=_sofascore_botola_fixtures(h,hours=48)
  current=_arryadia_add_botola(current,fixtures)
- filled=_arryadia_fill(current,hours=48,slot_hours=2,history=history)
+ filled=_arryadia_fill(current,hours=48,slot_hours=2,history=combined_history)
  auto_count=sum(1 for e in filled if e.source=="arryadia-auto")
  log("Arryadia auto filler=%d total=%d"%(auto_count,len(filled)))
  return filled
@@ -1467,9 +1523,9 @@ def to_xml(rows,path):
  ET.indent(root,space="  ");ET.ElementTree(root).write(path,encoding="utf-8",xml_declaration=True);return dict(counts)
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument("--output-dir",default="output");ap.add_argument("--previous",default="");ap.add_argument("--days",type=int,default=7);ap.add_argument("--scheduled",action="store_true");a=ap.parse_args();now=datetime.now(TZ)
+ ap=argparse.ArgumentParser();ap.add_argument("--output-dir",default="output");ap.add_argument("--previous",default="");ap.add_argument("--days",type=int,default=7);ap.add_argument("--arryadia-history",default="data/arryadia-history.json");ap.add_argument("--scheduled",action="store_true");a=ap.parse_args();now=datetime.now(TZ)
  if a.scheduled and now.hour not in (6,18):log("Schedule gate skip: local hour %02d"%now.hour);return 0
- outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(min(a.days,3),old),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
+ outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(min(a.days,3),old,a.arryadia_history),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
  with ThreadPoolExecutor(max_workers=4) as ex:
   fs={ex.submit(fn):name for name,fn in jobs.items()}
   for f in as_completed(fs):
