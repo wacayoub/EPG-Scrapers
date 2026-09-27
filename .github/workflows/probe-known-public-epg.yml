@@ -34,8 +34,9 @@ jobs:
           import json,re,requests
           from pathlib import Path
           targets=[
+            ('starzplay','https://sp-new-api.aws.playco.com/api/epg/channel/config'),
+            ('starzplay','https://api.aws.playco.com/api/epg/channel/config'),
             ('starzplay','https://sp-new-api.aws.playco.com/api/epg/category/config/'),
-            ('starzplay','https://api.aws.playco.com/api/epg/category/config/'),
             ('gobx','https://fe-api.prod.gobx.com/api/'),
             ('gobx','https://fe-api.prod.gobx.com/api/v2/gracenote-fe-api/'),
             ('gobx','https://fe-api.prod.gobx.com/api/outlets/'),
@@ -45,6 +46,7 @@ jobs:
             'User-Agent':'Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36',
             'Accept':'application/json,text/plain,*/*',
             'Accept-Language':'ar,en;q=0.8',
+            'x-geo-country':'MA',
           })
           sensitive=re.compile(r'(token|authorization|bearer|password|secret|license|drm|widevine|payment)',re.I)
           rows=[]
