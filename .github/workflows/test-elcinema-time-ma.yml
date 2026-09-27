@@ -77,9 +77,40 @@ jobs:
           cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
           timeout --signal=TERM --kill-after=20s 480s npm run grab --             --channels="$GITHUB_WORKSPACE/output/elcinema-time/channels.xml"             --output="$GITHUB_WORKSPACE/output/elcinema-time/raw.xml"             --days=1             --maxConnections=1             --timeout=20000             --delay=350
 
-      - name: Pack four-hour test
+      - name: Inspect raw scrape and pack twelve-hour test
+        shell: bash
         run: |
-          python tools/source_feed_pack.py             --input output/elcinema-time/raw.xml             --catalogue output/elcinema-time/channels.xml             --output-gz feeds/tests/elcinema-ma-time-4h.xml.gz             --output-txt feeds/tests/elcinema-ma-time-4h.txt             --stats reports/elcinema-ma-time-4h.json             --label elcinema-ma-time-4h             --window-hours 4             --keep-past-hours 1
+          python - <<'PY'
+          import json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          root=ET.parse("output/elcinema-time/raw.xml").getroot()
+          rows=[]
+          for p in root.findall("programme"):
+              t=p.find("title")
+              rows.append({
+                  "channel":p.get("channel"),
+                  "start":p.get("start"),
+                  "stop":p.get("stop"),
+                  "title":((t.text or "").strip() if t is not None else "")
+              })
+          Path("reports/elcinema-ma-raw-sample.json").write_text(
+              json.dumps({"programmes":len(rows),"rows":rows},ensure_ascii=False,indent=2)+"\\n",
+              encoding="utf-8"
+          )
+          print(json.dumps(rows,ensure_ascii=False))
+          PY
+
+          set +e
+          python tools/source_feed_pack.py \
+            --input output/elcinema-time/raw.xml \
+            --catalogue output/elcinema-time/channels.xml \
+            --output-gz feeds/tests/elcinema-ma-time-12h.xml.gz \
+            --output-txt feeds/tests/elcinema-ma-time-12h.txt \
+            --stats reports/elcinema-ma-time-12h.json \
+            --label elcinema-ma-time-12h \
+            --window-hours 12 \
+            --keep-past-hours 2
+          exit 0
 
       - name: Compare production vs Morocco-time test
         run: |
@@ -169,7 +200,11 @@ jobs:
           set -e
           git config user.name "EPG Scraper Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add feeds/tests/elcinema-ma-time-4h.xml.gz                   feeds/tests/elcinema-ma-time-4h.txt                   reports/elcinema-ma-time-4h.json                   reports/elcinema-time-compare.json
+          git add reports/elcinema-ma-raw-sample.json \
+                  reports/elcinema-ma-time-12h.json \
+                  reports/elcinema-time-compare.json
+          [ -f feeds/tests/elcinema-ma-time-12h.xml.gz ] && git add feeds/tests/elcinema-ma-time-12h.xml.gz
+          [ -f feeds/tests/elcinema-ma-time-12h.txt ] && git add feeds/tests/elcinema-ma-time-12h.txt
           if git diff --cached --quiet; then
             echo "No quick-test changes."
             exit 0
