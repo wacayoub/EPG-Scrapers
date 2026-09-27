@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-09-27T16:47:10.113119+00:00",
+  "generated_utc": "2026-09-27T16:56:59.294343+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "morocco.xml.gz",
-      "generated_utc": "2026-09-27T16:47:10.112867+00:00",
+      "generated_utc": "2026-09-27T16:56:59.294117+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 90,
@@ -19,16 +19,16 @@
           "id": "2M",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.8,
+          "future_hours": 48.63,
           "latest_stop_utc": "2026-09-29T17:35:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 77
+          "programmes": 76
         },
         {
           "id": "AFLAM.ma",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.21,
+          "future_hours": 49.05,
           "latest_stop_utc": "2026-09-29T18:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 18
@@ -37,7 +37,7 @@
           "id": "AlAoula",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.46,
+          "future_hours": 49.3,
           "latest_stop_utc": "2026-09-29T18:15:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 82
@@ -46,7 +46,7 @@
           "id": "AlMaghribiya",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.21,
+          "future_hours": 48.05,
           "latest_stop_utc": "2026-09-29T17:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 86
@@ -55,16 +55,16 @@
           "id": "Arrabiaa",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.88,
+          "future_hours": 48.72,
           "latest_stop_utc": "2026-09-29T17:40:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 41
+          "programmes": 40
         },
         {
           "id": "Arryadia_HD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.46,
+          "future_hours": 49.3,
           "latest_stop_utc": "2026-09-29T18:15:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 34
@@ -73,8 +73,8 @@
           "id": "Arryadia_HD1",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 48.0,
-          "latest_stop_utc": "2026-09-29T16:47:00+00:00",
+          "future_hours": 47.98,
+          "latest_stop_utc": "2026-09-29T16:56:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 25
         },
@@ -82,8 +82,8 @@
           "id": "Arryadia_HD2",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 48.0,
-          "latest_stop_utc": "2026-09-29T16:47:00+00:00",
+          "future_hours": 47.98,
+          "latest_stop_utc": "2026-09-29T16:56:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 25
         },
@@ -91,8 +91,8 @@
           "id": "Arryadia_HD3",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 48.0,
-          "latest_stop_utc": "2026-09-29T16:47:00+00:00",
+          "future_hours": 47.98,
+          "latest_stop_utc": "2026-09-29T16:56:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 25
         },
@@ -100,7 +100,7 @@
           "id": "Arryadia_TNT",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.46,
+          "future_hours": 49.3,
           "latest_stop_utc": "2026-09-29T18:15:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 34
@@ -109,16 +109,16 @@
           "id": "Assadisa",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-09-29T16:50:00+00:00",
+          "future_hours": 48.13,
+          "latest_stop_utc": "2026-09-29T17:05:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 103
+          "programmes": 104
         },
         {
           "id": "Chada TV",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 30.71,
+          "future_hours": 30.55,
           "latest_stop_utc": "2026-09-28T23:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 44
@@ -127,7 +127,7 @@
           "id": "MEDI1TV_AR.ma",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 7.21,
+          "future_hours": 7.05,
           "latest_stop_utc": "2026-09-28T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 11
@@ -136,7 +136,7 @@
           "id": "MEDI1TV_MAGHREB.ma",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 7.21,
+          "future_hours": 7.05,
           "latest_stop_utc": "2026-09-28T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 4
@@ -145,7 +145,7 @@
           "id": "Tamazight",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 9.71,
+          "future_hours": 9.55,
           "latest_stop_utc": "2026-09-28T02:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 21
