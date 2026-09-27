@@ -1,0 +1,449 @@
+{
+  "generated_utc": "2026-09-27T17:04:25.118008+00:00",
+  "country": "MA",
+  "channel_config_status": 200,
+  "categories": [
+    "starzplaysports",
+    "starzplay",
+    "criclife"
+  ],
+  "rows": [
+    {
+      "kind": "category_config",
+      "userId": "0",
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/config/0",
+      "status": 200,
+      "bytes": 3247,
+      "top_keys": [
+        "status",
+        "runtime",
+        "data"
+      ],
+      "sample": ""
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "starzplaysports",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "starzplaysports",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "starzplay",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "starzplay",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "criclife",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "criclife",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_config",
+      "userId": "guest",
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/config/guest",
+      "status": 200,
+      "bytes": 3247,
+      "top_keys": [
+        "status",
+        "runtime",
+        "data"
+      ],
+      "sample": ""
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "starzplaysports",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "starzplaysports",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "starzplay",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "starzplay",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "criclife",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "criclife",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_config",
+      "userId": "anonymous",
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/config/anonymous",
+      "status": 200,
+      "bytes": 3247,
+      "top_keys": [
+        "status",
+        "runtime",
+        "data"
+      ],
+      "sample": ""
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "starzplaysports",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "starzplaysports",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "starzplay",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "starzplay",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "criclife",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "criclife",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_config",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/config/00000000-0000-0000-0000-000000000000",
+      "status": 200,
+      "bytes": 3247,
+      "top_keys": [
+        "status",
+        "runtime",
+        "data"
+      ],
+      "sample": ""
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "starzplaysports",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "starzplaysports",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "starzplay",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "starzplay",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "criclife",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "criclife",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+    }
+  ],
+  "winners": []
+}
