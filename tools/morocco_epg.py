@@ -369,12 +369,136 @@ def _arryadia_repeat_safe(e):
  if any(k in (e.title or "")+(e.desc or "") for k in ("مباشر","مباراة","كأس","دوري","البطولة")):return False
  return not _arryadia_is_generic(e)
 
+BOTOLA_AR={
+ "as far":"الجيش الملكي","far rabat":"الجيش الملكي",
+ "codm meknes":"النادي المكناسي","cod meknes":"النادي المكناسي",
+ "difaa el jadida":"الدفاع الحسني الجديدي","difa el jadida":"الدفاع الحسني الجديدي",
+ "fus rabat":"الفتح الرياضي","fath union sport":"الفتح الرياضي",
+ "hassania agadir":"حسنية أكادير","husa":"حسنية أكادير",
+ "ittihad tanger":"اتحاد طنجة","ir tanger":"اتحاد طنجة",
+ "kawkab marrakech":"الكوكب المراكشي","kacm":"الكوكب المراكشي",
+ "mas fes":"المغرب الفاسي","maghreb fes":"المغرب الفاسي",
+ "moghreb tetouan":"المغرب التطواني","mat tetouan":"المغرب التطواني",
+ "raja casablanca":"الرجاء الرياضي","raja ca":"الرجاء الرياضي",
+ "renaissance zemamra":"نهضة الزمامرة","rc zemamra":"نهضة الزمامرة",
+ "rs berkane":"نهضة بركان","renaissance berkane":"نهضة بركان",
+ "amal tiznit":"أمل تيزنيت",
+ "union touarga":"اتحاد تواركة","ut salé":"اتحاد تواركة","ut sale":"اتحاد تواركة",
+ "wydad casablanca":"الوداد الرياضي","wac":"الوداد الرياضي",
+ "wydad temara":"وداد تمارة","ws temara":"وداد تمارة"
+}
+
+def _botola_team_ar(name):
+ raw=clean(name);n=norm(raw)
+ if n in BOTOLA_AR:return BOTOLA_AR[n]
+ for k,v in BOTOLA_AR.items():
+  if len(k)>=4 and (k in n or n in k):return v
+ return raw
+
+def _morocco_from_unix(ts):
+ u=datetime.fromtimestamp(int(ts),timezone.utc)
+ # Since 2026-09-20 Morocco legal/broadcast clock is UTC+0.
+ if u.replace(tzinfo=None)>=MOROCCO_GMT_EFFECTIVE_LOCAL:return u
+ return u.astimezone(TZ)
+
+def _sofascore_botola_fixtures(http,hours=48):
+ # SofaScore is only a fixture/calendar fallback. It never overrides an
+ # official SNRT row. Filtering by uniqueTournament=937 prevents other leagues
+ # from entering the Arryadia EPG.
+ now=datetime.now(timezone.utc)
+ end=now+timedelta(hours=max(1,hours))
+ days=[]
+ d=now.date()
+ while d<=end.date():
+  days.append(d);d+=timedelta(days=1)
+ out=[];seen=set()
+ for day in days:
+  try:
+   url="https://www.sofascore.com/api/v1/sport/football/scheduled-events/%s"%day.isoformat()
+   data=http.get(url,headers={"Referer":"https://www.sofascore.com/","Accept":"application/json"}).json()
+   events=data.get("events",[]) if isinstance(data,dict) else []
+  except Exception as e:
+   log("Botola SofaScore %s: %s"%(day,e));continue
+  for ev in events:
+   try:
+    tournament=ev.get("tournament") or {}
+    ut=tournament.get("uniqueTournament") or {}
+    if int(ut.get("id") or 0)!=937:continue
+    status=((ev.get("status") or {}).get("type") or "").casefold()
+    if status in ("canceled","cancelled","postponed"):continue
+    ts=ev.get("startTimestamp")
+    if not ts:continue
+    start=_morocco_from_unix(ts)
+    if start<datetime.now(timezone.utc)-timedelta(minutes=15) or start>=end:continue
+    home=clean((ev.get("homeTeam") or {}).get("name"))
+    away=clean((ev.get("awayTeam") or {}).get("name"))
+    if not home or not away:continue
+    eid=str(ev.get("id") or "%s-%s-%s"%(int(ts),home,away))
+    if eid in seen:continue
+    seen.add(eid)
+    rnd=(ev.get("roundInfo") or {}).get("round")
+    ha=_botola_team_ar(home);aa=_botola_team_ar(away)
+    title="مباشر: البطولة الاحترافية - %s × %s"%(ha,aa)
+    rd=("، الجولة %s"%rnd) if rnd else ""
+    desc=("مباراة %s و%s ضمن البطولة الاحترافية إنوي%s. "
+          "الموعد مأخوذ تلقائياً من جدول المباريات؛ توزيع قناة الرياضية الفرعية "
+          "مؤقت إلى أن تنشر SNRT شبكة البث الرسمية.")%(ha,aa,rd)
+    out.append({"id":eid,"start":start,"stop":start+timedelta(hours=2),
+                "home":home,"away":away,"title":title,"desc":desc})
+   except Exception as e:
+    log("Botola fixture parse: %s"%e)
+ out.sort(key=lambda x:(x["start"],norm(x["home"]),norm(x["away"])))
+ log("Botola SofaScore fixtures=%d window=%dh"%(len(out),hours))
+ return out
+
+def _botola_event_matches_text(fx,e):
+ text=norm((e.title or "")+" "+(e.desc or ""))
+ if not text:return False
+ # A direct team-name match is enough to identify an already official fixture.
+ for team in (fx["home"],fx["away"],_botola_team_ar(fx["home"]),_botola_team_ar(fx["away"])):
+  n=norm(team)
+  if n and len(n)>=4 and n in text:return True
+ return False
+
+def _arryadia_add_botola(rows,fixtures):
+ # Add Botola fixtures only where SNRT has not already identified that match.
+ # Concurrent fixtures are distributed across free Arryadia service IDs.
+ out=list(rows);occupied=defaultdict(list);added=0;confirmed=0;unplaced=0
+ for e in rows:
+  if e.channel in ARR_IDS and e.stop:occupied[e.channel].append(e)
+
+ def busy(cid,s,t):
+  return any(e.stop and e.stop>s and e.start<t for e in occupied[cid])
+
+ groups=defaultdict(list)
+ for fx in fixtures:groups[fx["start"]].append(fx)
+ for start in sorted(groups):
+  for fx in groups[start]:
+   stop=fx["stop"]
+   official_hit=False
+   for e in rows:
+    if e.channel not in ARR_IDS or not e.stop:continue
+    if abs((e.start-start).total_seconds())>35*60:continue
+    if _botola_event_matches_text(fx,e):
+     official_hit=True;confirmed+=1;break
+   if official_hit:continue
+
+   # Main channel first; simultaneous games then use the extra Arryadia feeds.
+   cid=next((x for x in ARR_IDS if not busy(x,start,stop)),None)
+   if cid is None:
+    unplaced+=1;continue
+   ev=Event(cid,start,fx["title"],fx["desc"],stop,"ar","ar","botola-sofascore")
+   out.append(ev);occupied[cid].append(ev);added+=1
+ log("Arryadia Botola external added=%d official_matches=%d unplaced=%d"%(added,confirmed,unplaced))
+ return out
+
 def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
  # Priority for gaps:
  #   1) current official SNRT event
- #   2) exact event already published in the previous LKG feed
- #   3) proven recurring programme at the same clock (seen >=2 times)
- #   4) generic Arryadia Programme filler
+ #   2) Botola fixture calendar injected by _arryadia_add_botola()
+ #   3) exact event already published in the previous LKG feed
+ #   4) proven recurring programme at the same clock (seen >=2 times)
+ #   5) generic Arryadia Programme filler
  # This prevents a temporary blank SNRT page from erasing known programmes.
  history=list(history or [])
  now=datetime.now(TZ)
@@ -1231,6 +1355,10 @@ def scrape_arryadia(days,history=None):
  current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
  future=[e for e in current if e.stop>now]
  log("Arryadia SNRT future=%d current_window=%d"%(len(future),len(current)))
+ # When SNRT has not yet published the TV grid, preserve Botola matches from
+ # the fixture calendar instead of showing a generic two-hour block.
+ fixtures=_sofascore_botola_fixtures(h,hours=48)
+ current=_arryadia_add_botola(current,fixtures)
  filled=_arryadia_fill(current,hours=48,slot_hours=2,history=history)
  auto_count=sum(1 for e in filled if e.source=="arryadia-auto")
  log("Arryadia auto filler=%d total=%d"%(auto_count,len(filled)))
