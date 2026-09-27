@@ -1,30 +1,33 @@
 {
-  "generated_utc": "2026-09-27T13:00:09.643531+00:00",
+  "generated_utc": "2026-09-27T20:18:15.652205+00:00",
   "policy": "source_aware_title_ar_or_en_description_ar",
-  "programmes": 1624,
-  "arabic_native_title_kept": 147,
-  "english_title_applied": 1187,
-  "english_title_missing": 290,
+  "programmes": 1503,
+  "arabic_native_title_kept": 110,
+  "english_title_applied": 1120,
+  "english_title_missing": 207,
+  "sports_news_titles_arabized": 64,
+  "sports_news_titles_still_non_arabic": 2,
+  "title_datetime_tokens_removed": 22,
   "english_description_used_for_missing_ar": 0,
-  "arabic_description_present": 1624,
+  "arabic_description_present": 1503,
   "arabic_description_missing": 0,
   "descriptions_translated_to_ar": 0,
-  "description_language_remaining_mismatch": 509,
+  "description_language_remaining_mismatch": 557,
   "samples": {
     "AlJazeeraDocumentary.qa@SD": {
-      "title": "الأخبار",
+      "title": "نطاق",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "AlkassFive.qa@SD": {
-      "title": "بطولة غرب آسيا للكرة الطائرة",
+      "title": "إستديو سباقات الخيل",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "AlkassFour.qa@SD": {
-      "title": "دوري الدرجة الثانية القطري",
+      "title": "الأخبار",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -36,19 +39,19 @@
       "description_has_arabic": true
     },
     "AlkassSeven.qa@SD": {
-      "title": "تواصل",
+      "title": "دوري أبطال الخليج للأندية",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "AlkassSix.qa@SD": {
-      "title": "بطولة الكويت الدولية لسباق الهجن",
+      "title": "دوري أبطال الخليج للأندية",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "AlkassThree.qa@SD": {
-      "title": "ذا جيم بلان",
+      "title": "أخبار",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -60,7 +63,7 @@
       "description_has_arabic": true
     },
     "Baraem.qa@SD": {
-      "title": "نيوز",
+      "title": "نيوزفيد",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -72,49 +75,49 @@
       "description_has_arabic": true
     },
     "beINBoxOffice1.qa@SD": {
-      "title": "Wild for the Night",
+      "title": "Pearl Harbor",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINGourmet.qa@SD": {
-      "title": "Samak Sea Bass Maa Robiyan Wa Arz S1 | E3",
+      "title": "El Classico S1 | E17",
       "description": "برنامج طبخ وترفيه يُعرض على قناة beIN Gourmet.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beindrama": {
-      "title": "Sarmaşık Zamanı S1 | E16",
+      "title": "Darb Althahab S1 | E17",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinseries2": {
-      "title": "Rabbit Hole S1 | E6",
+      "title": "Black Clover S4 | E3",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsen1": {
-      "title": "Athletics - Asian Games Aichi-Nagoya 2026 - W/M",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "Norway vs Portugal - UEFA Nations League 2026/27 - Match Day 2",
+      "description": "النرويج - البرتغال في 27 سبتمبر 2026، مكة 21:45 بتوقيت جرينتش 18:45 دوري الأمم الأوروبية لموسم 2026/2027، الجولة التأهيلية المجموعة A4 ملعب أوليفال ستاديون",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsen2": {
-      "title": "Weightlifting - 69kg Grp Finals - Asian Games Aichi-Nagoya 2026 - W",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "Israel vs Republic of Ireland - UEFA Nations League 2026/27 - Match Day 2",
+      "description": "سيكون هذا أول لقاء بين إسرائيل وجمهورية أيرلندا منذ يونيو 2005 في تصفيات كأس العالم FIFA في دبلن - أعطى إيان هارت وروبي كين تقدم فريق الأولاد باللون الأخضر مبكرًا 2-0 قبل انتهاء المباراة 2-2. خسرت جمهورية أيرلندا 3-0 في أول لقاء لها مع إسرائيل في أبريل 1984، ل",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsfr1": {
-      "title": "F Tba P02 - Bjkcup 2026 - Tennis",
-      "description": "رياضة، تنس.",
+      "title": "Baltimore Ravens vs Dallas Cowboys - NFL - J03 - Football Américain 2026-2027",
+      "description": "رياضة.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsfr2": {
-      "title": "Marseille vs PSG - Ligue 1 - J05 - FOOTBALL 2026-2027",
+      "title": "Pof Indiana Fever Aces - WNBA - Basketball 2026",
       "description": "رياضة.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -162,7 +165,7 @@
       "description_has_arabic": true
     },
     "beINMovies1Premiere.qa@SD": {
-      "title": "Karate Kid: Legends",
+      "title": "Bridget Jones: Mad About the Boy",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -180,32 +183,32 @@
       "description_has_arabic": true
     },
     "beINMovies4Family.qa@SD": {
-      "title": "The Adventures of Elmo in Grouchland",
+      "title": "Annie",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSeries1.qa@SD": {
-      "title": "Yellowjackets S2 | E9",
+      "title": "All American S8 | E9",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports.qa@MENA": {
-      "title": "All - Sports - Asian Games Aichi-Nagoya 2026",
-      "description": "استوديو يومي يغطي الأحداث التي تجري في دورة الألعاب الآسيوية العشرين من محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. يتضمن الاستوديو المستمر لمدة ست ساعات تغطية حية من اليابان مع ردود أفعال الرياضيين المشاركين وضيوف الاستوديو وأفضل أ",
+      "title": "Shooting - Air Rifle MXD Final - Asian Games Aichi-Nagoya 2026 - W/M/X",
+      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports1.qa@MENA": {
-      "title": "Lithuania vs Azerbaijan - UEFA Nations League 2026/27 - Match Day 2",
-      "description": "ليتوانيا - أذربيجان في 27 سبتمبر 2026، مكة 16:00، بتوقيت جرينتش 13:00 دوري الأمم الأوروبية لموسم 2026/2027، الجولة التأهيلية المجموعة D2 ملعب إس داريوس وإس جيرينو.",
+      "title": "Norway vs Portugal - UEFA Nations League 2026/27 - Match Day 2",
+      "description": "النرويج - البرتغال في 27 سبتمبر 2026، مكة 21:45 بتوقيت جرينتش 18:45 دوري الأمم الأوروبية لموسم 2026/2027، الجولة التأهيلية المجموعة A4 ملعب أوليفال ستاديون",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports2.qa@MENA": {
-      "title": "Athletics - Asian Games Aichi-Nagoya 2026 - W/M",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "Germany vs Greece - UEFA Nations League 2026/27 - Match Day 2",
+      "description": "ألمانيا ضد اليونان في 27 سبتمبر 2026، مكة 21:45 بتوقيت جرينتش 18:45 دوري الأمم الأوروبية لموسم 2026/2027، جولة التصفيات المجموعة A2، ملعب WWK ARENA",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -216,7 +219,7 @@
       "description_has_arabic": true
     },
     "beINSports4.qa@MENA": {
-      "title": "Athletics - Marathon Race Walk - Asian Games Aichi-Nagoya 2026 - W/M",
+      "title": "Gymnastics - Trampoline - Asian Games Aichi-Nagoya 2026",
       "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -228,32 +231,32 @@
       "description_has_arabic": true
     },
     "beINSports5.qa@MENA": {
-      "title": "Table Tennis - Asian Games Aichi-Nagoya 2026 - W/M",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
-      "title_has_arabic": false,
-      "description_has_arabic": true
-    },
-    "beINSports6.qa@MENA": {
-      "title": "Valladolid vs Cordoba - LaLiga Hypermotion 2026/2027",
+      "title": "Mallorca vs Almeria - LaLiga Hypermotion 2026/2027",
       "description": "الدوري الإسباني 2 هو قسم كرة القدم الاحترافي الثاني للرجال في نظام الدوري الإسباني لكرة القدم. يتنافس عليها 22 فريقًا، حيث يتم ترقية الفريقين الأولين بالإضافة إلى الفائز في مباراة فاصلة إلى الدوري الأسباني، ويتم استبدالهم بالفرق الثلاثة الأقل مركزًا في هذا الق",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
+    "beINSports6.qa@MENA": {
+      "title": "New York Liberty @ Minnesota Lynx - Women's National Basketball Association - WNBA",
+      "description": "ويمثل موسم 2026 الموسم الثلاثين للدوري، ويمتد من 8 مايو إلى 24 سبتمبر، مع 15 فريقًا بعد إضافة بورتلاند فاير وتورونتو تيمبو. تتميز المنافسة بكرة السلة للسيدات على مدار الموسم العادي والتصفيات، حيث تطارد الفرق البطولة في دوري متنامٍ مع وصول موسع واهتمام عالمي مت",
+      "title_has_arabic": false,
+      "description_has_arabic": true
+    },
     "beINSports7.qa@MENA": {
-      "title": "Flavio Cobolli (EUR) Jakub Mensik (EUR) vs Alex DE Minaur (WLD) Taylor Fritz (WLD) - Laver Cup 2026",
-      "description": "يجمع أفضل لاعبي التنس من أوروبا والعالم لمدة ثلاثة أيام من المنافسة الفردية والزوجية. تتميز بتنسيق الفريق الفريد، حيث يتنافس اللاعبون مع فرقهم الخاصة، مع زيادة النقاط طوال الحدث. تعرض المنافسة التنس النخبة وروح الفريق والمواجهات الشديدة حيث يتنافس الجانبان على",
+      "title": "Indiana Fever vs Las Vegas Aces - Women's National Basketball Association - WNBA",
+      "description": "ويمثل موسم 2026 الموسم الثلاثين للدوري، ويمتد من 8 مايو إلى 24 سبتمبر، مع 15 فريقًا بعد إضافة بورتلاند فاير وتورونتو تيمبو. تتميز المنافسة بكرة السلة للسيدات على مدار الموسم العادي والتصفيات، حيث تطارد الفرق البطولة في دوري متنامٍ مع وصول موسع واهتمام عالمي مت",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports8.qa@MENA": {
-      "title": "Japan vs Uzbekistan - Volleyball Men's - Asian Games Aichi-Nagoya 2026",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "Cincinatti Bengals @ Pittsburgh Steelers - NFL -National Footbal League - 2026/27",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports9.qa@MENA": {
-      "title": "Equestrian - Dressage - Asian Games Aichi-Nagoya 2026",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "Longines Global Champions Tour - Vienna Jumping - Grand Prix",
+      "description": "جولة لونجين العالمية للأبطال 2026 هي سلسلة دولية رائدة في قفز الحواجز تضم أفضل مجموعات الخيول والفارس في العالم. يمتد الموسم على 17 مرحلة عبر أربع قارات، حيث يتنافس الدراجون على نقاط البطولة الفردية في كل سباق الجائزة الكبرى. تتضمن الجولة أيضًا دوري أبطال العا",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -294,43 +297,43 @@
       "description_has_arabic": true
     },
     "beINSportsNews.qa@SD": {
-      "title": "All - Sports - Asian Games Aichi-Nagoya 2026",
-      "description": "استوديو يومي يغطي الأحداث التي تجري في دورة الألعاب الآسيوية العشرين من محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. يتضمن الاستوديو المستمر لمدة ست ساعات تغطية حية من اليابان مع ردود أفعال الرياضيين المشاركين وضيوف الاستوديو وأفضل أ",
-      "title_has_arabic": false,
+      "title": "أخبار آسيا",
+      "description": "ابق على اطلاع بتغطيتنا اليومية لدورة الألعاب الآسيوية العشرين، المقررة في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026، في ناغويا، اليابان.",
+      "title_has_arabic": true,
       "description_has_arabic": true
     },
     "beINSportsXtra1.qa@SD": {
-      "title": "Finals - Softball - Baseball - Asian Games Aichi-Nagoya 2026 - M",
-      "description": "تقام دورة الألعاب الآسيوية العشرين في محافظة آيتشي وناغويا باليابان في الفترة من 19 سبتمبر إلى 4 أكتوبر 2026. وستجتمع 46 دولة و10840 رياضيًا من جميع أنحاء آسيا معًا للاستمتاع بلحظات لا تُنسى من المنافسة والإنجازات.",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsXtra2.qa@SD": {
-      "title": "F 1 vs F 2 - Bille Jean King Cup Finals 2026",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+      "description": "beIN SPORTS XTRA لتغطية حية وحصرية للأحداث الرياضية المتميزة",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "BeJunior.qa@SD": {
-      "title": "حماية كهف سون دونج",
+      "title": "شاكلتون.. الرحلة المستحيلة",
       "description": "برنامج ترفيهي للأطفال يُعرض على قنوات beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "ClubMTVEurope.uk@SD": {
-      "title": "وير ذا وايلد مان آر (موسم 6، حلقة4)",
+      "title": "تراست مي أم دوكتور (موسم 7، حلقة1)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "Fatafeat.ae@SD": {
-      "title": "بلومبرج سيرفيلانس",
+      "title": "بلومبيرج: بلانس أوف باور",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "FoodNetworkEMEA.us@SD": {
-      "title": "تجديد (موسم 3، حلقة10)",
+      "title": "الدار داركم (موسم 1، حلقة7)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -348,25 +351,25 @@
       "description_has_arabic": true
     },
     "HGTVArabia.us@SD": {
-      "title": "هوتيل كوكايين (موسم 1، حلقة4)",
+      "title": "هوتيل كوكايين (موسم 1، حلقة5)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "MTV80s.uk@SD": {
-      "title": "ذي إنكريدبول دكتور بول (موسم 22، حلقة2)",
+      "title": "كيلر سفاري (موسم 1، حلقة3)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "StarWorldMiddleEast.ae@SD": {
-      "title": "TIP THE MOUSE S1 EP 39 - I want to be tall as a tower",
+      "title": "GOGO Bus",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     }
   },
-  "arabic_description_fallbacks": 742,
-  "translation_cache_new": 0,
+  "arabic_description_fallbacks": 588,
+  "translation_cache_new": 14,
   "translation_failures": []
 }
