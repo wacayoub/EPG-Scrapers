@@ -144,6 +144,25 @@ def _snrt_desc_from_row(cid,row,title,time_text,original_title=""):
    if txt:candidates.append(txt)
  full=clean(row.get_text(" ",strip=True))
  if full:candidates.append(full)
+ # Some SNRT channel pages render the synopsis as a sibling block immediately
+ # after grille-line instead of nesting it inside the programme row.
+ sibling_count=0
+ for sib in row.next_siblings:
+  if getattr(sib,"name",None) is None:
+   continue
+  classes=" ".join(sib.get("class",[]) or []).casefold()
+  if "grille-line" in classes.split():
+   break
+  txt=clean(sib.get_text(" ",strip=True))
+  if not txt:
+   continue
+  if re.match(r"^[0-2]?\\d\\s*[Hh:]\\s*[0-5]\\d\\b",txt):
+   break
+  if len(txt)<=600:
+   candidates.insert(0,txt)
+   sibling_count+=1
+  if sibling_count>=3:
+   break
  for raw in candidates:
   desc=clean(raw)
   if time_text:
