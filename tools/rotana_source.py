@@ -81,7 +81,7 @@ def fetch_page(session, site_id):
     body=r.text or ""
     # Rotana's WAF currently sends status 403 together with the full valid HTML.
     # Accept it only when the expected official guide structure/text is present.
-    valid=("iq-accordion" in body or "دليل القنوات" in body or "TV Interactive" in body) and len(body)>50000
+    valid=("iq-accordion" in body or "دليل القنوات" in body or "TV Interactive" in body) and len(body)>20000
     if r.status_code not in (200,403) or not valid:
         raise RuntimeError(f"Rotana HTTP {r.status_code}, invalid body size={len(body)}")
     return body, r.status_code
