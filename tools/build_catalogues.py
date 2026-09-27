@@ -331,6 +331,17 @@ BEIN_PACKAGE_DISPLAY_OVERRIDES = {
     "StarWorldMiddleEast.ae@SD": "Star World Middle East",
 }
 
+BEIN_CANONICAL_NAME_IDS = {
+    "jeem": "JeemTV.qa@SD",
+    "jeemtv": "JeemTV.qa@SD",
+    "baraem": "Baraem.qa@SD",
+    "baraemtv": "Baraem.qa@SD",
+    "bejunior": "BeJunior.qa@SD",
+    "cbeebies": "CBeebiesMiddleEast.uk@SD",
+    "cbeebiesmiddleeast": "CBeebiesMiddleEast.uk@SD",
+}
+
+
 def _bein_norm_name(value: str) -> str:
     raw="".join(ch.lower() for ch in (value or "") if ch.isalnum())
     # The two official MENA endpoints use both "SPORTS EN 1" and
@@ -355,7 +366,7 @@ def _bein_generated_id(site: str, sid: str, name: str) -> str:
 
 def build_bein():
     rows=[]
-    source_counts={"beinsports_mena_ar":0,"bein_ar":0}
+    source_counts={"bein_live_ar":0,"bein_static_ar":0,"beinsports_mena_ar":0}
     generated_ids=set()
 
     # English mirrors are used only to recover missing canonical XMLTV IDs.
@@ -382,8 +393,9 @@ def build_bein():
     # Prefer the official full beIN TV guide supplied by the user for both
     # Sports and Entertainment. beinsports.com remains a sports-only fallback.
     selected_files=[
-        ("bein.com",ROOT/"bein.com"/"bein.com_ar.channels.xml",0),
-        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-ar.channels.xml",1),
+        ("bein.com",OUT/"bein_live_ar.channels.xml",0),
+        ("bein.com",ROOT/"bein.com"/"bein.com_ar.channels.xml",1),
+        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-ar.channels.xml",2),
     ]
     parsed=[]
     for site,p,rank in selected_files:
@@ -393,22 +405,38 @@ def build_bein():
             rr=ET.parse(p).getroot()
         except Exception:
             continue
-        source_counts["beinsports_mena_ar" if site=="beinsports.com" else "bein_ar"]=len(rr.findall("channel"))
+        if site == "beinsports.com":
+            source_counts["beinsports_mena_ar"] = len(rr.findall("channel"))
+        elif p == OUT/"bein_live_ar.channels.xml":
+            source_counts["bein_live_ar"] = len(rr.findall("channel"))
+        else:
+            source_counts["bein_static_ar"] = len(rr.findall("channel"))
         for ch in rr.findall("channel"):
             sid=(ch.get("site_id") or "").strip()
             if not sid:
                 continue
             cid=(ch.get("xmltv_id") or "").strip()
             name=(ch.text or "").strip()
-            forced=BEIN_SITE_ID_OVERRIDES_AR.get((site,sid))
-            if forced:
-                cid,name=forced
-            elif not cid:
-                cid=fallback_by_site.get((site,sid),"")
+            # Site slot numbers move on the live guide. Prefer stable name
+            # identity for Kids/package services and use site-id overrides only
+            # for the checked-in static fallback.
+            name_key=_bein_norm_name(name)
+            if p == OUT/"bein_live_ar.channels.xml":
+                cid=BEIN_CANONICAL_NAME_IDS.get(name_key,cid)
+            else:
+                forced=BEIN_SITE_ID_OVERRIDES_AR.get((site,sid))
+                if forced:
+                    cid,name=forced
+                    name_key=_bein_norm_name(name)
+                elif not cid:
+                    cid=fallback_by_site.get((site,sid),"")
+            if not cid:
+                cid=BEIN_CANONICAL_NAME_IDS.get(name_key,"")
             if cid in BEIN_PACKAGE_DISPLAY_OVERRIDES:
                 name=BEIN_PACKAGE_DISPLAY_OVERRIDES[cid]
+                name_key=_bein_norm_name(name)
             if cid and name:
-                known_name_to_id.setdefault(_bein_norm_name(name),cid)
+                known_name_to_id.setdefault(name_key,cid)
             parsed.append((site,rank,p.name,ch,sid,cid,name))
 
     for site,rank,filename,ch,sid,cid,name in parsed:
@@ -433,11 +461,10 @@ def build_bein():
             continue
         if "afc" in service_key or "afc" in cid.casefold():
             continue
-        # Upstream site_id entertainment#23 currently returns Al Jazeera
-        # English programmes (News Hour, Inside Story, Counting the Cost...)
-        # under the stale beINJUNIOR label. Exclude the wrong service rather
-        # than publishing a confidently wrong EPG.
-        if service_key == "beinjunior":
+        # The checked-in static Arabic catalogue contains a stale
+        # entertainment#23 "beINJUNIOR" row. Ignore only that stale fallback;
+        # never suppress the live-discovered beJunior service.
+        if filename == "bein.com_ar.channels.xml" and sid == "entertainment#23" and service_key == "beinjunior":
             continue
         if cid in BEIN_ZERO_EPG_EXCLUDE:
             continue
@@ -475,8 +502,9 @@ def build_bein():
     # This is the title source for the EN-title / AR-description production policy.
     en_best={}
     for site,p,rank in [
-        ("bein.com",ROOT/"bein.com"/"bein.com_en.channels.xml",0),
-        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml",1),
+        ("bein.com",OUT/"bein_live_en.channels.xml",0),
+        ("bein.com",ROOT/"bein.com"/"bein.com_en.channels.xml",1),
+        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml",2),
     ]:
         if not p.exists():
             continue
@@ -487,16 +515,23 @@ def build_bein():
         for ch in rr.findall("channel"):
             sid=(ch.get("site_id") or "").strip()
             name=(ch.text or "").strip()
-            forced=BEIN_SITE_ID_OVERRIDES_EN.get((site,sid))
-            if forced:
-                _,name=forced
+            if p != OUT/"bein_live_en.channels.xml":
+                forced=BEIN_SITE_ID_OVERRIDES_EN.get((site,sid))
+                if forced:
+                    _,name=forced
             key=_bein_norm_name(name)
-            if not sid or key not in winning_keys:
+            if not sid:
+                continue
+            canonical_id=BEIN_CANONICAL_NAME_IDS.get(key)
+            if key not in winning_keys and canonical_id not in unique_by_id:
                 continue
             if "afc" in key:
                 continue
             node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
-            node.set("xmltv_id",best[key][1])
+            mapped_id = best[key][1] if key in best else BEIN_CANONICAL_NAME_IDS.get(key)
+            if not mapped_id:
+                continue
+            node.set("xmltv_id",mapped_id)
             pref=(rank,p.name)
             if key not in en_best or pref<en_best[key][0]:
                 en_best[key]=(pref,node)
@@ -511,7 +546,7 @@ def build_bein():
     import json
     audit={
         "scope":"beIN MENA official package: bein.com AR+EN primary, beinsports.com fallback; beIN-owned + canonical partner channels; AFC excluded",
-        "source_priority":["bein.com official TV guide AR+EN","beinsports.com MENA fallback"],
+        "source_priority":["bein.com live-discovered AR+EN","bein.com static fallback","beinsports.com MENA fallback"],
         "source_entries":source_counts,
         "catalogue_ids":len(root),
         "service_keys_before_id_dedupe":len(best),
@@ -527,8 +562,9 @@ def build_bein():
     )
     print(
         f"bein MENA package: {len(root)} IDs "
-        f"(sports source={source_counts['beinsports_mena_ar']}, "
-        f"bein Arabic source={source_counts['bein_ar']}, "
+        f"(live AR={source_counts['bein_live_ar']}, "
+        f"static AR={source_counts['bein_static_ar']}, "
+        f"sports fallback={source_counts['beinsports_mena_ar']}, "
         f"English mirror={len(en_root)}, generated={len(generated_ids)})"
     )
     if len(root)==0:
