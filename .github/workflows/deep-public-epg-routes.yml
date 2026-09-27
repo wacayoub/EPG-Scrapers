@@ -74,14 +74,15 @@ jobs:
           gobx=Path('/tmp/decompiled/gobx')
           if gobx.exists():
               exact_names={'ApiInterface.java','APIDetails.java','APIServiceLayer.java','BuildConstants.java','ChannelGuideViewModel.java','TVGuideViewModel.java'}
+              endpoint_decl=re.compile(r'getChannelGuideProgramme|getChannelGuide|getLiveChannel|getTvGuideFilter|callNowShowingAPI',re.I)
               for p in (gobx/'sources'/'net'/'mbc'/'gobx').rglob('*.java'):
                   txt=p.read_text(encoding='utf-8',errors='ignore')
-                  relevant=(p.name in exact_names or re.search(r'gracenote-fe-api|programmeApi|getLiveChannel|getTvGuideFilterApiCall|callNowShowingAPI|@GET\(|@POST\(',txt,re.I))
+                  relevant=(p.name in exact_names or endpoint_decl.search(txt) or re.search(r'gracenote-fe-api|programmeApi|@GET\(|@POST\(',txt,re.I))
                   if not relevant: continue
                   lines=txt.splitlines()
                   keep=[]
                   for i,line in enumerate(lines):
-                      if re.search(r'gracenote-fe-api|programmeApi|getLiveChannel|getTvGuideFilterApiCall|callNowShowingAPI|@GET\(|@POST\(|@Query\(|BASE_URL|ChannelGuide',line,re.I):
+                      if re.search(r'gracenote-fe-api|programmeApi|getChannelGuideProgramme|getChannelGuide|getLiveChannel|getTvGuideFilter|callNowShowingAPI|@GET\(|@POST\(|@Query\(|BASE_URL',line,re.I):
                           lo=max(0,i-8); hi=min(len(lines),i+9)
                           ex='\n'.join(lines[lo:hi])
                           if not sensitive.search(ex): keep.append({'line':i+1,'excerpt':ex[:8000]})
