@@ -1,85 +1,83 @@
 {
-  "generated_utc": "2026-09-27T09:04:20.569029+00:00",
+  "generated_utc": "2026-09-27T23:27:03.813583+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "rotana.xml.gz",
-      "generated_utc": "2026-09-27T09:04:20.568944+00:00",
+      "generated_utc": "2026-09-27T23:27:03.813469+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 180,
       "channels": 9,
       "invalid_times": 0,
       "orphan_programmes": 0,
-      "failed_channels": 2,
+      "failed_channels": 4,
       "warning_channels": 0,
       "status": "FAIL",
       "rows": [
         {
           "id": "AlResalah.sa@SD",
-          "status": "FAIL",
-          "reason": "NO_FUTURE_EPG",
-          "future_hours": 0.0,
-          "max_gap_minutes": null
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.63,
+          "latest_stop_utc": "2026-09-30T00:05:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 124
         },
         {
           "id": "LBC.sa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.93,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-09-30T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 45
         },
         {
           "id": "RotanaCinemaEgypt.eg@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 49.93,
-          "latest_stop_utc": "2026-09-29T11:00:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 28
-        },
-        {
-          "id": "RotanaCinemaKSA.sa@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.93,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 28
-        },
-        {
-          "id": "RotanaClassic.sa@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.93,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 37
-        },
-        {
-          "id": "RotanaClip.sa@SD",
           "status": "FAIL",
           "reason": "NO_FUTURE_EPG",
           "future_hours": 0.0,
           "max_gap_minutes": null
         },
         {
-          "id": "RotanaComedy.sa@SD",
+          "id": "RotanaCinemaKSA.sa@SD",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "RotanaClassic.sa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.93,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
+          "future_hours": 48.05,
+          "latest_stop_utc": "2026-09-29T23:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 26
+          "programmes": 34
+        },
+        {
+          "id": "RotanaClip.sa@SD",
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 0.0,
+          "latest_stop_utc": "2026-09-27T23:27:03.806615+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 1
+        },
+        {
+          "id": "RotanaComedy.sa@SD",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
         },
         {
           "id": "RotanaDrama.sa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.93,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-09-30T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -87,10 +85,10 @@
           "id": "RotanaKhalijia.sa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.43,
-          "latest_stop_utc": "2026-09-29T10:30:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-09-30T00:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 50
+          "programmes": 55
         }
       ]
     }

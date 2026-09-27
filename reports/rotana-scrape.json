@@ -1,22 +1,23 @@
 {
-  "generated_utc": "2026-09-27T09:04:20.437822+00:00",
+  "generated_utc": "2026-09-27T23:27:03.631083+00:00",
   "source": "https://www.rotana.net/ar/streams",
-  "timezone": "Asia/Riyadh",
+  "timezone": "UTC (Rotana streams page clock)",
   "channels_configured": 9,
-  "channels_with_epg": 7,
+  "channels_with_epg": 6,
   "zero_epg_ids": [
-    "AlResalah.sa@SD",
-    "RotanaClip.sa@SD"
+    "RotanaCinemaEgypt.eg@SD",
+    "RotanaCinemaKSA.sa@SD",
+    "RotanaComedy.sa@SD"
   ],
-  "programmes": 265,
+  "programmes": 310,
   "timezone_output": "UTC +0000",
   "channels": {
     "RotanaCinemaKSA.sa@SD": {
       "site_id": "431",
       "name": "روتانا سينما السعودية",
-      "http_status": 200,
-      "programmes": 28,
-      "state": "ok"
+      "programmes": 0,
+      "state": "error",
+      "error": "Rotana HTTP 200, invalid body size=47792"
     },
     "LBC.sa@SD": {
       "site_id": "434",
@@ -28,30 +29,30 @@
     "RotanaCinemaEgypt.eg@SD": {
       "site_id": "439",
       "name": "روتانا سينما مصر",
-      "http_status": 200,
-      "programmes": 28,
-      "state": "ok"
+      "programmes": 0,
+      "state": "error",
+      "error": "Rotana HTTP 200, invalid body size=48255"
     },
     "RotanaClassic.sa@SD": {
       "site_id": "438",
       "name": "روتانا كلاسيك",
       "http_status": 200,
-      "programmes": 37,
+      "programmes": 34,
       "state": "ok"
     },
     "RotanaClip.sa@SD": {
       "site_id": "443",
       "name": "روتانا كليب",
-      "programmes": 0,
-      "state": "error",
-      "error": "Rotana HTTP 200, invalid body size=24575"
+      "http_status": 200,
+      "programmes": 1,
+      "state": "ok"
     },
     "RotanaComedy.sa@SD": {
       "site_id": "437",
       "name": "روتانا كوميدي",
-      "http_status": 200,
-      "programmes": 26,
-      "state": "ok"
+      "programmes": 0,
+      "state": "error",
+      "error": "Rotana HTTP 200, invalid body size=47476"
     },
     "RotanaDrama.sa@SD": {
       "site_id": "436",
@@ -64,15 +65,15 @@
       "site_id": "435",
       "name": "روتانا خليجية",
       "http_status": 200,
-      "programmes": 50,
+      "programmes": 55,
       "state": "ok"
     },
     "AlResalah.sa@SD": {
       "site_id": "446",
       "name": "الرسالة",
-      "programmes": 0,
-      "state": "error",
-      "error": "Rotana HTTP 200, invalid body size=24575"
+      "http_status": 200,
+      "programmes": 124,
+      "state": "ok"
     }
   }
 }
