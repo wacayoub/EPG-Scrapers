@@ -3382,6 +3382,524 @@ FILE smali_classes6/he/p.smali
 
 ===== BLOCK =====
 
+FILE smali_classes6/he/g.smali
+1: .class public final synthetic Lhe/g;
+2: .super Ljava/lang/Object;
+3: .source "SourceFile"
+4: 
+5: # interfaces
+6: .implements Lokhttp3/Interceptor;
+7: 
+8: 
+9: # instance fields
+10: .field public final synthetic a:Ljava/lang/String;
+11: 
+12: .field public final synthetic b:Ljava/lang/String;
+13: 
+14: .field public final synthetic c:Z
+15: 
+16: 
+17: # direct methods
+18: .method public synthetic constructor <init>(Ljava/lang/String;Ljava/lang/String;Z)V
+19:     .locals 0
+20: 
+21:     .line 1
+22:     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+23: 
+24:     iput-object p1, p0, Lhe/g;->a:Ljava/lang/String;
+25: 
+26:     iput-object p2, p0, Lhe/g;->b:Ljava/lang/String;
+27: 
+28:     iput-boolean p3, p0, Lhe/g;->c:Z
+29: 
+30:     return-void
+31: .end method
+32: 
+33: 
+34: # virtual methods
+35: .method public final intercept(Lokhttp3/Interceptor$Chain;)Lokhttp3/Response;
+36:     .locals 3
+37: 
+38:     .line 1
+39:     iget-object v0, p0, Lhe/g;->a:Ljava/lang/String;
+40: 
+41:     iget-object v1, p0, Lhe/g;->b:Ljava/lang/String;
+42: 
+43:     iget-boolean v2, p0, Lhe/g;->c:Z
+44: 
+45:     invoke-static {v0, v1, v2, p1}, Lhe/p;->l(Ljava/lang/String;Ljava/lang/String;ZLokhttp3/Interceptor$Chain;)Lokhttp3/Response;
+46: 
+47:     move-result-object p1
+48: 
+49:     return-object p1
+50: .end method
+
+===== BLOCK =====
+
+FILE smali_classes6/com/starzplay/sdk/rest/peg/a.smali
+1: .class public final Lcom/starzplay/sdk/rest/peg/a;
+2: .super Ljava/lang/Object;
+3: .source "SourceFile"
+4: 
+5: 
+6: # direct methods
+7: .method public static final a(Lokhttp3/Request$Builder;)Lokhttp3/Request$Builder;
+8:     .locals 3
+9: 
+10:     .line 1
+11:     const-string v0, "<this>"
+12: 
+13:     .line 2
+14:     .line 3
+15:     invoke-static {p0, v0}, Lkotlin/jvm/internal/x;->j(Ljava/lang/Object;Ljava/lang/String;)V
+16: 
+17:     .line 4
+18:     .line 5
+19:     .line 6
+20:     invoke-static {}, Lza/l;->k()Ljava/lang/String;
+21: 
+22:     .line 7
+23:     .line 8
+24:     .line 9
+25:     move-result-object v0
+26: 
+27:     .line 10
+28:     if-eqz v0, :cond_0
+29: 
+30:     .line 11
+31:     .line 12
+32:     const-string v1, "x-profileType"
+33: 
+34:     .line 13
+35:     .line 14
+36:     invoke-virtual {p0, v1, v0}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+37: 
+38:     .line 15
+39:     .line 16
+40:     .line 17
+41:     :cond_0
+42:     sget-object v0, Lza/k;->a:Lza/k;
+43: 
+44:     .line 18
+45:     .line 19
+46:     invoke-virtual {v0}, Lza/k;->a()Lza/m;
+47: 
+48:     .line 20
+49:     .line 21
+50:     .line 22
+51:     move-result-object v0
+52: 
+53:     .line 23
+54:     if-eqz v0, :cond_1
+55: 
+56:     .line 24
+57:     .line 25
+58:     invoke-virtual {v0}, Lza/m;->f0()Lfc/e;
+59: 
+60:     .line 26
+61:     .line 27
+62:     .line 28
+63:     move-result-object v0
+64: 
+65:     .line 29
+66:     if-eqz v0, :cond_1
+67: 
+68:     .line 30
+69:     .line 31
+70:     invoke-interface {v0}, Lfc/b;->m()Lcom/starzplay/sdk/model/peg/Geolocation;
+71: 
+72:     .line 32
+73:     .line 33
+74:     .line 34
+75:     move-result-object v0
+76: 
+77:     .line 35
+78:     if-eqz v0, :cond_1
+79: 
+80:     .line 36
+81:     .line 37
+82:     invoke-virtual {v0}, Lcom/starzplay/sdk/model/peg/Geolocation;->getCountry()Ljava/lang/String;
+83: 
+84:     .line 38
+85:     .line 39
+86:     .line 40
+87:     move-result-object v0
+88: 
+89:     .line 41
+90:     if-eqz v0, :cond_1
+91: 
+92:     .line 42
+93:     .line 43
+94:     const-string v1, "x-geo-country"
+95: 
+96:     .line 44
+97:     .line 45
+98:     invoke-virtual {p0, v1, v0}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+99: 
+100:     .line 46
+101:     .line 47
+102:     .line 48
+103:     :cond_1
+104:     invoke-static {}, Lza/l;->e()Lcom/starzplay/sdk/model/peg/profiles/Profile;
+105: 
+106:     .line 49
+107:     .line 50
+108:     .line 51
+109:     move-result-object v0
+110: 
+111:     .line 52
+112:     if-eqz v0, :cond_3
+113: 
+114:     .line 53
+115:     .line 54
+116:     invoke-virtual {v0}, Lcom/starzplay/sdk/model/peg/profiles/Profile;->getProfileId()Ljava/lang/String;
+117: 
+118:     .line 55
+119:     .line 56
+120:     .line 57
+121:     move-result-object v1
+122: 
+123:     .line 58
+124:     if-eqz v1, :cond_2
+125: 
+126:     .line 59
+127:     .line 60
+128:     const-string v2, "x-profile-id"
+129: 
+130:     .line 61
+131:     .line 62
+132:     invoke-virtual {p0, v2, v1}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+133: 
+134:     .line 63
+135:     .line 64
+136:     .line 65
+137:     :cond_2
+138:     const-string v1, "x-profile-category"
+139: 
+140:     .line 66
+141:     .line 67
+142:     invoke-virtual {v0}, Lcom/starzplay/sdk/model/peg/profiles/Profile;->getProfileCategory()Ljava/lang/String;
+143: 
+144:     .line 68
+145:     .line 69
+146:     .line 70
+147:     move-result-object v0
+148: 
+149:     .line 71
+150:     invoke-virtual {p0, v1, v0}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+151: 
+152:     .line 72
+153:     .line 73
+154:     .line 74
+155:     :cond_3
+156:     invoke-static {}, Lza/l;->h()Lcom/starzplay/sdk/model/peg/User;
+157: 
+158:     .line 75
+159:     .line 76
+160:     .line 77
+161:     move-result-object v0
+162: 
+163:     .line 78
+164:     if-eqz v0, :cond_4
+165: 
+166:     .line 79
+167:     .line 80
+168:     invoke-virtual {v0}, Lcom/starzplay/sdk/model/peg/User;->getGlobalUserId()Ljava/lang/String;
+169: 
+170:     .line 81
+171:     .line 82
+172:     .line 83
+173:     move-result-object v0
+174: 
+175:     .line 84
+176:     if-eqz v0, :cond_4
+177: 
+178:     .line 85
+179:     .line 86
+180:     const-string v1, "x-user-id"
+181: 
+182:     .line 87
+183:     .line 88
+184:     invoke-virtual {p0, v1, v0}, Lokhttp3/Request$Builder;->addHeader(Ljava/lang/String;Ljava/lang/String;)Lokhttp3/Request$Builder;
+185: 
+186:     .line 89
+187:     .line 90
+188:     .line 91
+189:     :cond_4
+190:     return-object p0
+191:     .line 92
+192:     .line 93
+193:     .line 94
+194:     .line 95
+195:     .line 96
+196:     .line 97
+197:     .line 98
+198:     .line 99
+199:     .line 100
+200:     .line 101
+201:     .line 102
+202:     .line 103
+203:     .line 104
+204:     .line 105
+205:     .line 106
+206:     .line 107
+207:     .line 108
+208:     .line 109
+209:     .line 110
+210:     .line 111
+211:     .line 112
+212:     .line 113
+213:     .line 114
+214:     .line 115
+215: .end method
+
+===== BLOCK =====
+
+FILE smali_classes6/com/starzplay/sdk/utils/r0.smali
+39:     .line 15
+40:     .line 16
+41:     move-result v1
+42: 
+43:     .line 17
+44:     if-eqz v1, :cond_1
+45: 
+46:     .line 18
+47:     .line 19
+48:     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+49: 
+50:     .line 20
+51:     .line 21
+52:     .line 22
+53:     move-result-object v1
+54: 
+55:     .line 23
+56:     check-cast v1, Ljava/util/Map$Entry;
+57: 
+58:     .line 24
+59:     .line 25
+60:     invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+61: 
+62:     .line 26
+63:     .line 27
+64:     .line 28
+65:     move-result-object v2
+66: 
+67:     .line 29
+68:     check-cast v2, Ljava/lang/String;
+69: 
+70:     .line 30
+71:     .line 31
+72:     invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+73: 
+74:     .line 32
+75:     .line 33
+76:     .line 34
+77:     move-result-object v1
+78: 
+79:     .line 35
+80:     check-cast v1, Ljava/lang/String;
+81: 
+82:     .line 36
+83:     .line 37
+84:     invoke-virtual {p0, v2}, Lokhttp3/Request;->header(Ljava/lang/String;)Ljava/lang/String;
+85: 
+86:     .line 38
+87:     .line 39
+88:     .line 40
+89:     move-result-object v3
+90: 
+91:     .line 41
+92:     const-string v4, "true"
+93: 
+94:     .line 42
+95:     .line 43
+96:     invoke-static {v3, v4}, Ljava/util/Objects;->equals(Ljava/lang/Object;Ljava/lang/Object;)Z
+97: 
+98:     .line 44
+99:     .line 45
+100:     .line 46
+101:     move-result v3
+102: 
+103:     .line 47
+104:     if-eqz v3, :cond_0
+105: 
+106:     .line 48
+107:     .line 49
+108:     invoke-virtual {p0}, Lokhttp3/Request;->newBuilder()Lokhttp3/Request$Builder;
+109: 
+110:     .line 50
+111:     .line 51
+112:     .line 52
+113:     move-result-object p0
+114: 
+115:     .line 53
+116:     invoke-virtual {p0, v1}, Lokhttp3/Request$Builder;->removeHeader(Ljava/lang/String;)Lokhttp3/Request$Builder;
+117: 
+118:     .line 54
+119:     .line 55
+120:     .line 56
+121:     move-result-object p0
+122: 
+123:     .line 57
+124:     invoke-virtual {p0, v2}, Lokhttp3/Request$Builder;->removeHeader(Ljava/lang/String;)Lokhttp3/Request$Builder;
+125: 
+126:     .line 58
+127:     .line 59
+128:     .line 60
+129:     move-result-object p0
+130: 
+131:     .line 61
+132:     invoke-virtual {p0}, Lokhttp3/Request$Builder;->build()Lokhttp3/Request;
+133: 
+134:     .line 62
+135:     .line 63
+136:     .line 64
+137:     move-result-object p0
+138: 
+139:     .line 65
+140:     :cond_1
+141:     return-object p0
+142:     .line 66
+143:     .line 67
+144:     .line 68
+145:     .line 69
+146:     .line 70
+147:     .line 71
+148:     .line 72
+149:     .line 73
+150:     .line 74
+151:     .line 75
+152:     .line 76
+153:     .line 77
+154:     .line 78
+155:     .line 79
+156:     .line 80
+157:     .line 81
+158:     .line 82
+159:     .line 83
+160:     .line 84
+161:     .line 85
+162:     .line 86
+163:     .line 87
+164:     .line 88
+165:     .line 89
+166:     .line 90
+167:     .line 91
+168:     .line 92
+169:     .line 93
+170:     .line 94
+171:     .line 95
+172:     .line 96
+173:     .line 97
+174:     .line 98
+175:     .line 99
+176:     .line 100
+177:     .line 101
+178:     .line 102
+179:     .line 103
+180:     .line 104
+181:     .line 105
+182:     .line 106
+183:     .line 107
+184:     .line 108
+185:     .line 109
+186:     .line 110
+187:     .line 111
+188:     .line 112
+189:     .line 113
+190:     .line 114
+191:     .line 115
+192: .end method
+193: 
+194: .method public static b()Ljava/util/Map;
+195:     .locals 3
+196:     .annotation system Ldalvik/annotation/Signature;
+197:         value = {
+198:             "()",
+199:             "Ljava/util/Map<",
+200:             "Ljava/lang/String;",
+201:             "Ljava/lang/String;",
+202:             ">;"
+203:         }
+204:     .end annotation
+205: 
+206:     .line 1
+207:     new-instance v0, Ljava/util/HashMap;
+208: 
+209:     .line 2
+210:     .line 3
+211:     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+212: 
+213:     .line 4
+214:     .line 5
+215:     .line 6
+216:     const-string v1, "InternalExcludeXProfileType"
+217: 
+218:     .line 7
+219:     .line 8
+220:     const-string v2, "x-profileType"
+221: 
+222:     .line 9
+223:     .line 10
+224:     invoke-interface {v0, v1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+225: 
+226:     .line 11
+227:     .line 12
+228:     .line 13
+229:     return-object v0
+230:     .line 14
+231:     .line 15
+232:     .line 16
+233:     .line 17
+234:     .line 18
+235:     .line 19
+236:     .line 20
+237:     .line 21
+238:     .line 22
+239:     .line 23
+240:     .line 24
+241: .end method
+242: 
+243: .method public static c()Lokhttp3/logging/HttpLoggingInterceptor;
+244:     .locals 2
+245: 
+246:     .line 1
+247:     new-instance v0, Lokhttp3/logging/HttpLoggingInterceptor;
+248: 
+249:     .line 2
+250:     .line 3
+251:     invoke-direct {v0}, Lokhttp3/logging/HttpLoggingInterceptor;-><init>()V
+252: 
+253:     .line 4
+254:     .line 5
+255:     .line 6
+256:     sget-object v1, Lokhttp3/logging/HttpLoggingInterceptor$Level;->NONE:Lokhttp3/logging/HttpLoggingInterceptor$Level;
+257: 
+258:     .line 7
+259:     .line 8
+260:     invoke-virtual {v0, v1}, Lokhttp3/logging/HttpLoggingInterceptor;->setLevel(Lokhttp3/logging/HttpLoggingInterceptor$Level;)Lokhttp3/logging/HttpLoggingInterceptor;
+261: 
+262:     .line 9
+263:     .line 10
+264:     .line 11
+265:     return-object v0
+266:     .line 12
+267:     .line 13
+268:     .line 14
+269:     .line 15
+270:     .line 16
+271:     .line 17
+272:     .line 18
+273:     .line 19
+274:     .line 20
+275:     .line 21
+276:     .line 22
+277:     .line 23
+278:     .line 24
+279: .end method
+
+===== BLOCK =====
+
 FILE smali_classes6/oe/b.smali
 29:             ")",
 30:             "Lfj/b<",
