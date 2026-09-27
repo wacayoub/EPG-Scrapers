@@ -342,6 +342,21 @@ BEIN_CANONICAL_NAME_IDS = {
     "cbeebiesmiddleeast": "CBeebiesMiddleEast.uk@SD",
 }
 
+# Verified against the live official beIN guide on 2026-09-27.
+# The page's href labels are stale/repeated for several rows, so Kids channels
+# must be pinned by schedule-bearing slot, not by the displayed link label.
+BEIN_LIVE_KIDS_AR = {
+    "entertainment#16": ("BeJunior.qa@SD", "beJunior"),
+    "entertainment#32": ("JeemTV.qa@SD", "Jeem TV"),
+    "entertainment#33": ("Baraem.qa@SD", "Baraem"),
+}
+BEIN_LIVE_KIDS_EN = {
+    "entertainment#23": ("BeJunior.qa@SD", "beJunior"),
+    "entertainment#24": ("JeemTV.qa@SD", "Jeem TV"),
+    "entertainment#25": ("Baraem.qa@SD", "Baraem"),
+}
+
+
 
 def _bein_norm_name(value: str) -> str:
     raw="".join(ch.lower() for ch in (value or "") if ch.isalnum())
@@ -418,13 +433,22 @@ def build_bein():
                 continue
             cid=(ch.get("xmltv_id") or "").strip()
             name=(ch.text or "").strip()
-            # Site slot numbers move on the live guide. Prefer stable name
-            # identity for Kids/package services and use site-id overrides only
-            # for the checked-in static fallback.
+            # The live beIN HTML repeats incorrect href labels across many
+            # entertainment rows. Use the live catalogue only for the three
+            # Kids slots verified by their actual schedules; all other services
+            # continue to use the stable static/canonical catalogues.
             name_key=_bein_norm_name(name)
             if p == OUT/"bein_live_ar.channels.xml":
-                cid=BEIN_CANONICAL_NAME_IDS.get(name_key,cid)
+                forced_live=BEIN_LIVE_KIDS_AR.get(sid)
+                if not forced_live:
+                    continue
+                cid,name=forced_live
+                name_key=_bein_norm_name(name)
             else:
+                # Never keep a static service on a slot now occupied by a
+                # verified live Kids channel (notably Star World on old #16).
+                if site == "bein.com" and sid in BEIN_LIVE_KIDS_AR:
+                    continue
                 forced=BEIN_SITE_ID_OVERRIDES_AR.get((site,sid))
                 if forced:
                     cid,name=forced
@@ -516,20 +540,30 @@ def build_bein():
         for ch in rr.findall("channel"):
             sid=(ch.get("site_id") or "").strip()
             name=(ch.text or "").strip()
-            if p != OUT/"bein_live_en.channels.xml":
+            if not sid:
+                continue
+            if p == OUT/"bein_live_en.channels.xml":
+                forced_live=BEIN_LIVE_KIDS_EN.get(sid)
+                if not forced_live:
+                    continue
+                _,name=forced_live
+            else:
+                if site == "bein.com" and sid in BEIN_LIVE_KIDS_EN:
+                    continue
                 forced=BEIN_SITE_ID_OVERRIDES_EN.get((site,sid))
                 if forced:
                     _,name=forced
             key=_bein_norm_name(name)
-            if not sid:
-                continue
             canonical_id=BEIN_CANONICAL_NAME_IDS.get(key)
             if key not in winning_keys and canonical_id not in unique_by_id:
                 continue
             if "afc" in key:
                 continue
             node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
-            mapped_id = best[key][1] if key in best else BEIN_CANONICAL_NAME_IDS.get(key)
+            if p == OUT/"bein_live_en.channels.xml":
+                mapped_id = BEIN_LIVE_KIDS_EN[sid][0]
+            else:
+                mapped_id = best[key][1] if key in best else BEIN_CANONICAL_NAME_IDS.get(key)
             if not mapped_id:
                 continue
             node.set("xmltv_id",mapped_id)
