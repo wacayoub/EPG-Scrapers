@@ -26,18 +26,63 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Download latest public myGOBX package
+      - name: Test alternate official web hostnames first
         shell: bash
         run: |
-          set -e
+          python - <<'PY'
+          import json, requests
+          from pathlib import Path
+          urls=[
+            'https://www.gobx.com/en/whats-on',
+            'https://gobx.com/en/whats-on',
+            'https://www.gobox.com/en/whats-on',
+            'https://gobox.com/en/whats-on',
+            'https://www.gobx.com/ar/whats-on',
+          ]
+          uas={
+            'desktop':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
+            'android':'Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36',
+          }
+          rows=[]
+          for u in urls:
+              for mode,ua in uas.items():
+                  try:
+                      r=requests.get(u,headers={'User-Agent':ua,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'ar,en;q=0.8'},timeout=15,allow_redirects=True)
+                      rows.append({'url':u,'ua':mode,'status':r.status_code,'final_url':r.url,'bytes':len(r.content),'server':r.headers.get('server','')})
+                  except Exception as e:
+                      rows.append({'url':u,'ua':mode,'status':'ERROR','error':str(e)[:250]})
+          Path('reports').mkdir(exist_ok=True)
+          Path('reports/gobx-alt-hosts.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')
+          print(json.dumps(rows,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Download latest public myGOBX package
+        id: apk
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
           mkdir -p /tmp/mygobx reports
-          curl -fL --retry 2 --connect-timeout 20 --max-time 180 \
+          curl -fL --retry 1 --connect-timeout 20 --max-time 180 \
             'https://d.apkpure.net/b/XAPK/net.mbc.gobx?version=latest' \
             -o /tmp/mygobx/mygobx.xapk
-          unzip -q /tmp/mygobx/mygobx.xapk -d /tmp/mygobx/xapk
-          find /tmp/mygobx/xapk -maxdepth 2 -type f -printf '%p %s bytes\n' | sort | head -100
+          rc=$?
+          if [ "$rc" -ne 0 ] || [ ! -s /tmp/mygobx/mygobx.xapk ]; then
+            echo "APKPure failed rc=$rc; trying APKCombo public redirect"
+            curl -fL --retry 1 --connect-timeout 20 --max-time 180 \
+              'https://apkcombo.com/mygobx/net.mbc.gobx/download/apk' \
+              -o /tmp/mygobx/apkcombo.html || true
+          fi
+          if [ -s /tmp/mygobx/mygobx.xapk ]; then
+            unzip -q /tmp/mygobx/mygobx.xapk -d /tmp/mygobx/xapk
+            find /tmp/mygobx/xapk -maxdepth 2 -type f -printf '%p %s bytes\\n' | sort | head -100
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Extract public endpoint candidates from APK strings
+        if: steps.apk.outputs.available == 'true'
         shell: bash
         run: |
           python - <<'PY'
@@ -97,6 +142,7 @@ jobs:
           PY
 
       - name: Build low-rate public endpoint probe list
+        if: steps.apk.outputs.available == 'true'
         shell: bash
         run: |
           python - <<'PY'
@@ -128,6 +174,7 @@ jobs:
           PY
 
       - name: Probe only unauthenticated public metadata candidates
+        if: steps.apk.outputs.available == 'true'
         shell: bash
         run: |
           python - <<'PY'
@@ -158,43 +205,15 @@ jobs:
           print(json.dumps(rows,ensure_ascii=False,indent=2))
           PY
 
-      - name: Test alternate official web hostnames
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json, requests
-          from pathlib import Path
-
-          urls=[
-            'https://www.gobx.com/en/whats-on',
-            'https://gobx.com/en/whats-on',
-            'https://www.gobox.com/en/whats-on',
-            'https://gobox.com/en/whats-on',
-            'https://www.gobx.com/ar/whats-on',
-          ]
-          uas={
-            'desktop':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
-            'android':'Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36',
-          }
-          rows=[]
-          for u in urls:
-              for mode,ua in uas.items():
-                  try:
-                      r=requests.get(u,headers={'User-Agent':ua,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'ar,en;q=0.8'},timeout=15,allow_redirects=True)
-                      rows.append({'url':u,'ua':mode,'status':r.status_code,'final_url':r.url,'bytes':len(r.content),'server':r.headers.get('server','')})
-                  except Exception as e:
-                      rows.append({'url':u,'ua':mode,'status':'ERROR','error':str(e)[:250]})
-          Path('reports/gobx-alt-hosts.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          print(json.dumps(rows,ensure_ascii=False,indent=2))
-          PY
-
       - name: Publish sanitized diagnostic reports
         if: always()
         shell: bash
         run: |
           git config user.name "epg-diagnostic-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reports/gobx-mobile-endpoints.json reports/gobx-mobile-public-probe.json reports/gobx-alt-hosts.json 2>/dev/null || true
+          git add reports/gobx-alt-hosts.json 2>/dev/null || true
+          [ -f reports/gobx-mobile-endpoints.json ] && git add reports/gobx-mobile-endpoints.json || true
+          [ -f reports/gobx-mobile-public-probe.json ] && git add reports/gobx-mobile-public-probe.json || true
           if git diff --cached --quiet; then
             echo "No report changes"
           else
