@@ -149,6 +149,8 @@ case "$SOURCE" in
           --output "output/source-build/starzplay.$lang.web.xml" \
           --report "reports/starzplay-$lang-scrape.json" \
           --id-index feeds/mena.txt \
+          --country AE \
+          --city Dubai \
           --hours "$HOURS" || true
         if has_programmes "output/source-build/starzplay.$lang.web.xml"; then
           mv "output/source-build/starzplay.$lang.web.xml" "output/source-build/starzplay.$lang.raw.xml"
@@ -163,7 +165,7 @@ case "$SOURCE" in
         [ -s output/source-build/starzplay.hybrid.raw.xml ] && mv output/source-build/starzplay.hybrid.raw.xml output/source-build/starzplay.raw.xml
       fi
       pack_source starzplay output/source-build/starzplay.raw.xml "" || true
-      printf '%s\n' '{"mode":"direct-starzplay","fallback":false}' > reports/starzplay-source-mode.json
+      printf '%s\n' '{"mode":"direct-starzplay","fallback":false,"scope":"GCC union AE,SA,KW,QA,BH,OM"}' > reports/starzplay-source-mode.json
     else
       echo "STARZPLAY direct endpoint unavailable; keeping the official STARZPLAY live catalogue and using STC metadata where schedules overlap."
       python tools/stctv_source.py \
