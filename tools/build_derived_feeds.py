@@ -7,7 +7,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 FEEDS=Path("feeds")
-PRIORITY=["morocco","bein","dubaiplus","shahid","aljazeera","oman","rotana","sport24","osn","elcinema","starzplay","stctv"]
+PRIORITY=["morocco","bein","dubaiplus","shahid","aljazeera","tabie","oman","rotana","sport24","osn","elcinema","starzplay","stctv"]
 def read_root(path: Path):
     raw=path.read_bytes()
     if path.suffix==".gz" or raw[:2]==b"\x1f\x8b":
