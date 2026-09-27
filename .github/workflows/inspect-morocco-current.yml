@@ -15,15 +15,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Show SNRT 2M Arryadia samples
+        with:
+          fetch-depth: 0
+
+      - name: Compare current with pre-fix Morocco descriptions
+        shell: bash
         run: |
+          git show d992334ad2f8ab23cafab8b92b32d08df66dc1f4:feeds/morocco.xml.gz > /tmp/morocco-before.xml.gz
           python - <<'PY'
           import gzip,json,xml.etree.ElementTree as ET
           from pathlib import Path
-          root=ET.fromstring(gzip.decompress(Path("feeds/morocco.xml.gz").read_bytes()))
+
+          def read(path):
+              return ET.fromstring(gzip.decompress(Path(path).read_bytes()))
+
+          current=read("feeds/morocco.xml.gz")
+          before=read("/tmp/morocco-before.xml.gz")
           wanted=["AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","2M","Arryadia_HD"]
-          out={}
-          for cid in wanted:
+
+          def sample(root,cid,n=8):
               rows=[]
               for p in root.findall("programme"):
                   if p.get("channel")!=cid:continue
@@ -31,11 +41,11 @@ jobs:
                   rows.append({
                       "start":p.get("start"),
                       "title":(t.text or "").strip() if t is not None else "",
-                      "title_lang":t.get("lang") if t is not None else "",
-                      "desc":(d.text or "").strip()[:300] if d is not None else "",
-                      "desc_lang":d.get("lang") if d is not None else "",
+                      "desc":(d.text or "").strip()[:400] if d is not None else "",
                   })
-                  if len(rows)>=5:break
-              out[cid]=rows
+                  if len(rows)>=n:break
+              return rows
+
+          out={cid:{"before":sample(before,cid),"current":sample(current,cid)} for cid in wanted}
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
