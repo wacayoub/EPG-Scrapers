@@ -119,6 +119,12 @@ case "$SOURCE" in
     pack_source dubaiplus output/source-build/dubaiplus.raw.xml "" || true
     ;;
 
+  aljazeera)
+    python tools/aljazeera_source.py --output output/source-build/aljazeera.raw.xml --report reports/aljazeera-scrape.json --hours "$HOURS" || true
+    [ -s output/source-build/aljazeera.raw.xml ] || empty_xml output/source-build/aljazeera.raw.xml
+    pack_source aljazeera output/source-build/aljazeera.raw.xml "" || true
+    ;;
+
   stctv)
     # STC is deliberately isolated: it can be slow without delaying any other source.
     python tools/stctv_source.py --output output/source-build/stctv.raw.xml --report reports/stctv-scrape.json --id-index feeds/mena.txt --window-hours "$HOURS" --delay 0.2 --max-channels 0 --profile all || true
