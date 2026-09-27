@@ -24,7 +24,7 @@ jobs:
           import re, requests
           from bs4 import BeautifulSoup, Tag
 
-          url="https://www.snrt.ma/ar/node/4073"
+          url="https://www.snrt.ma/ar/mn-dhb-alsyrt"
           r=requests.get(url,timeout=25,headers={
               "User-Agent":"Mozilla/5.0 EPGManagerCloud/8.2.2",
               "Accept-Language":"ar,fr;q=.9,en;q=.7",
@@ -32,8 +32,23 @@ jobs:
           })
           print("HTTP",r.status_code,"bytes",len(r.text))
           soup=BeautifulSoup(r.text,"lxml")
-          rows=soup.find_all("div",class_=lambda x:x and "grille-line" in x.split())
-          print("ROWS",len(rows))
+          print("TITLE", soup.title.get_text(" ",strip=True) if soup.title else "")
+          for meta in soup.find_all("meta"):
+              name=(meta.get("name") or meta.get("property") or "").lower()
+              if "description" in name:
+                  print("META",name,":",(meta.get("content") or "")[:2000])
+          h1=soup.find("h1")
+          print("H1",h1.get_text(" ",strip=True) if h1 else "")
+          if h1:
+              cur=h1
+              for j in range(1,15):
+                  cur=cur.find_next()
+                  if cur is None:break
+                  if isinstance(cur,Tag) and cur.name in ("p","div","section"):
+                      txt=cur.get_text(" | ",strip=True)
+                      if txt:
+                          print("AFTER",j,"name=",cur.name,"class=",cur.get("class"),"text=",txt[:2500])
+          rows=[] 
           for n,row in enumerate(rows[:4]):
               print("\n=== ROW",n,"===")
               print(str(row)[:5000])
