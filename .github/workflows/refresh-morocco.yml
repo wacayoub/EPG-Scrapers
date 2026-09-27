@@ -1,5 +1,7 @@
 name: EPG 48h - Morocco
 
+# manual refresh trigger 2026-09-27T18:06Z
+
 on:
   workflow_dispatch:
   push:
