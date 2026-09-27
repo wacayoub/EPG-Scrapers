@@ -1,0 +1,93 @@
+{
+  "generated_utc": "2026-09-27T21:32:28.184036+00:00",
+  "mode": "source-aware",
+  "feeds": [
+    {
+      "feed": "alkass.xml.gz",
+      "generated_utc": "2026-09-27T21:32:28.183965+00:00",
+      "target_hours": 48.0,
+      "minimum_acceptable_hours": 24.0,
+      "max_gap_minutes_warning": 240,
+      "channels": 8,
+      "invalid_times": 0,
+      "orphan_programmes": 0,
+      "failed_channels": 0,
+      "warning_channels": 4,
+      "status": "WARN",
+      "rows": [
+        {
+          "id": "AlkassEight.qa@SD",
+          "status": "WARN",
+          "reason": "INTERNAL_GAP",
+          "future_hours": 49.46,
+          "latest_stop_utc": "2026-09-29T23:00:00+00:00",
+          "max_gap_minutes": 267.5,
+          "programmes": 37
+        },
+        {
+          "id": "AlkassFive.qa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.46,
+          "latest_stop_utc": "2026-09-29T22:00:00+00:00",
+          "max_gap_minutes": 147.5,
+          "programmes": 45
+        },
+        {
+          "id": "AlkassFour.qa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 50.46,
+          "latest_stop_utc": "2026-09-30T00:00:00+00:00",
+          "max_gap_minutes": 147.5,
+          "programmes": 34
+        },
+        {
+          "id": "AlkassOne.qa@SD",
+          "status": "WARN",
+          "reason": "INTERNAL_GAP",
+          "future_hours": 49.46,
+          "latest_stop_utc": "2026-09-29T23:00:00+00:00",
+          "max_gap_minutes": 267.5,
+          "programmes": 37
+        },
+        {
+          "id": "AlkassSeven.qa@SD",
+          "status": "WARN",
+          "reason": "INTERNAL_GAP",
+          "future_hours": 49.46,
+          "latest_stop_utc": "2026-09-29T23:00:00+00:00",
+          "max_gap_minutes": 267.5,
+          "programmes": 41
+        },
+        {
+          "id": "AlkassSix.qa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.71,
+          "latest_stop_utc": "2026-09-29T22:15:00+00:00",
+          "max_gap_minutes": 147.5,
+          "programmes": 21
+        },
+        {
+          "id": "AlkassThree.qa@SD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.71,
+          "latest_stop_utc": "2026-09-29T22:15:00+00:00",
+          "max_gap_minutes": 147.5,
+          "programmes": 21
+        },
+        {
+          "id": "AlkassTwo.qa@SD",
+          "status": "WARN",
+          "reason": "INTERNAL_GAP",
+          "future_hours": 49.46,
+          "latest_stop_utc": "2026-09-29T23:00:00+00:00",
+          "max_gap_minutes": 267.5,
+          "programmes": 41
+        }
+      ]
+    }
+  ]
+}
