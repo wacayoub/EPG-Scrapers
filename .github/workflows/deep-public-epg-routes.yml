@@ -69,26 +69,36 @@ jobs:
 
           sensitive=re.compile(r'(authorization|bearer|password|secret|access.?token|refresh.?token|license|widevine|drm|payment|credit.?card)',re.I)
 
+          def sanitized_excerpt(lines, lo, hi):
+              out=[]
+              for raw in lines[lo:hi]:
+                  if sensitive.search(raw):
+                      out.append('[REDACTED SENSITIVE HEADER LINE]')
+                  else:
+                      out.append(raw)
+              return '\n'.join(out)
+
           result={'gobx':{'files':[]},'starzplay':{'files':[]}}
 
           gobx=Path('/tmp/decompiled/gobx')
           if gobx.exists():
-              exact_names={'ApiInterface.java','APIDetails.java','APIServiceLayer.java','BuildConstants.java','ChannelGuideViewModel.java','TVGuideViewModel.java'}
-              endpoint_decl=re.compile(r'getChannelGuideProgramme|getChannelGuide|getLiveChannel|getTvGuideFilter|callNowShowingAPI',re.I)
+              exact_names={'ApiInterface.java','APIDetails.java','APIServiceLayer.java','BuildConstants.java','ChannelGuideViewModel.java','TVGuideViewModel.java','Endpoint.java','Endpoints.java'}
+              endpoint_decl=re.compile(r'getChannelGuideProgramme|getChannelGuide|getLiveChannel|getTvGuideFilter|getSeriesTvGuide|getNowShowingEvents|programmeApi|callNowShowingAPI',re.I)
+              retrofit_decl=re.compile(r'(?:@|retrofit2\.http\.)(?:GET|POST|Query|Path|Header|Headers)\b',re.I)
               for p in (gobx/'sources'/'net'/'mbc'/'gobx').rglob('*.java'):
                   txt=p.read_text(encoding='utf-8',errors='ignore')
-                  relevant=(p.name in exact_names or endpoint_decl.search(txt) or re.search(r'gracenote-fe-api|programmeApi|@GET\(|@POST\(',txt,re.I))
+                  relevant=(p.name in exact_names or endpoint_decl.search(txt) or re.search(r'gracenote-fe-api',txt,re.I))
                   if not relevant: continue
                   lines=txt.splitlines()
                   keep=[]
                   for i,line in enumerate(lines):
-                      if re.search(r'gracenote-fe-api|programmeApi|getChannelGuideProgramme|getChannelGuide|getLiveChannel|getTvGuideFilter|callNowShowingAPI|@GET\(|@POST\(|@Query\(|BASE_URL',line,re.I):
-                          lo=max(0,i-8); hi=min(len(lines),i+9)
-                          ex='\n'.join(lines[lo:hi])
-                          if not sensitive.search(ex): keep.append({'line':i+1,'excerpt':ex[:8000]})
+                      if endpoint_decl.search(line) or re.search(r'gracenote-fe-api|BASE_URL',line,re.I) or retrofit_decl.search(line):
+                          lo=max(0,i-10); hi=min(len(lines),i+12)
+                          ex=sanitized_excerpt(lines,lo,hi)
+                          keep.append({'line':i+1,'excerpt':ex[:10000]})
                   if keep:
-                      result['gobx']['files'].append({'file':str(p.relative_to(gobx)),'matches':keep[:25]})
-                  if len(result['gobx']['files'])>=30: break
+                      result['gobx']['files'].append({'file':str(p.relative_to(gobx)),'matches':keep[:40]})
+                  if len(result['gobx']['files'])>=60: break
 
           starz=Path('/tmp/decompiled/starz')
           if starz.exists():
