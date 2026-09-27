@@ -58,7 +58,7 @@ CHANNELS = (
     ChannelSpec("AlJazeeraDocumentary.qa@SD", "Al Jazeera Documentary", "/video/live/الجزيرة-الوثائقية"),
 )
 
-GRAPHQL_URL = BASE + "/graphql"
+GRAPHQL_URL = "https://www.aljazeera.com/graphql"
 # The public schedule UI historically exposes a SchedulePageQuery. Keep the
 # rendered HTML parser as fallback; GraphQL is used only when the public
 # endpoint returns structured schedule objects.
@@ -246,7 +246,9 @@ def parse_graphql_schedule(payload: object, default_day: date) -> list[dict]:
                     except (OverflowError, OSError, ValueError):
                         pass
                 hh, mm = map(int, clock.split(":"))
-                start = datetime.combine(day, time(hh, mm), tzinfo=DOHA)
+                # Current aljazeera.com ArchipelagoSchedulePageQuery exposes
+                # showTimeslot as UTC; mirror the maintained iptv-org adapter.
+                start = datetime.combine(day, time(hh, mm), tzinfo=timezone.utc)
                 found.append({
                     "start": start,
                     "title": title,
@@ -289,7 +291,7 @@ def fetch_graphql_schedule(
 ) -> tuple[list[dict], int, str]:
     params = {
         "wp-site": wp_site,
-        "operationName": "SchedulePageQuery",
+        "operationName": "ArchipelagoSchedulePageQuery",
         "variables": json.dumps({"postName": post_name, "preview": ""}, ensure_ascii=False, separators=(",", ":")),
         "extensions": "{}",
     }
