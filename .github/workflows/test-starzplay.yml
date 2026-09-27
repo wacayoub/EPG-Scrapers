@@ -24,31 +24,24 @@ jobs:
         run: |
           python -m py_compile tools/starzplay_source.py
           python -m py_compile tools/starzplay_hybrid.py
-      - name: Probe Arabic and English
+      - name: Probe official STARZPLAY hosts
         shell: bash
         run: |
           set +e
           mkdir -p /tmp/starz
-          for lang in ar en; do
-            python tools/starzplay_source.py \
-              --lang "$lang" \
-              --output "/tmp/starz/$lang.xml" \
-              --report "/tmp/starz/$lang.json" \
-              --id-index feeds/mena.txt \
-              --hours 72
-            echo "STARZPLAY_$lang_RC=$?"
-            cat "/tmp/starz/$lang.json"
+          for base in https://www.starzplay.com https://starzplay.com https://playarabia-prod.starzplay.com; do
+            tag="$(echo "$base" | sed 's#https://##; s#[^A-Za-z0-9]#_#g')"
+            for lang in ar en; do
+              python tools/starzplay_source.py \
+                --lang "$lang" \
+                --base-url "$base" \
+                --output "/tmp/starz/$tag.$lang.xml" \
+                --report "/tmp/starz/$tag.$lang.json" \
+                --id-index feeds/mena.txt \
+                --hours 72
+              rc=$?
+              echo "STARZPLAY_${tag}_${lang}_RC=$rc"
+              cat "/tmp/starz/$tag.$lang.json"
+            done
           done
-          if grep -q '<programme ' /tmp/starz/ar.xml && grep -q '<programme ' /tmp/starz/en.xml; then
-            python tools/starzplay_hybrid.py \
-              --arabic /tmp/starz/ar.xml \
-              --english /tmp/starz/en.xml \
-              --policy config/starzplay-language-policy.json \
-              --output /tmp/starz/hybrid.xml \
-              --report /tmp/starz/hybrid.json
-            echo "HYBRID_RC=$?"
-            cat /tmp/starz/hybrid.json
-          else
-            echo "HYBRID_SKIPPED=no_bilingual_schedule"
-          fi
           exit 0
