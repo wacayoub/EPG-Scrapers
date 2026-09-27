@@ -211,6 +211,30 @@ def ensure_arabic_desc(node: ET.Element, tr: Translator) -> tuple[int, int]:
             child.set("lang", "ar")
     return translated, remaining
 
+def ensure_arabic_desc_fallback(node: ET.Element, channel: str) -> bool:
+    if text_of(node, "desc"):
+        return False
+    title = text_of(node, "title")
+    cid = (channel or "").casefold()
+    if "movie" in cid:
+        desc = "فيلم يُعرض على قنوات beIN Movies."
+    elif "series" in cid or "drama" in cid:
+        desc = "مسلسل أو برنامج درامي يُعرض على قنوات beIN."
+    elif "junior" in cid:
+        desc = "برنامج ترفيهي للأطفال يُعرض على قنوات beIN."
+    elif "gourmet" in cid:
+        desc = "برنامج طبخ وترفيه يُعرض على قناة beIN Gourmet."
+    else:
+        desc = "برنامج رياضي يُعرض على قنوات beIN SPORTS."
+    if title:
+        # Do not translate or alter the English title; description stays Arabic.
+        desc = desc
+    d = ET.SubElement(node, "desc")
+    d.set("lang", "ar")
+    d.text = desc
+    return True
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", required=True, help="Primary beIN XML/XML.GZ")
@@ -269,6 +293,9 @@ def main() -> int:
         changed,remaining=ensure_arabic_desc(p,tr)
         stats["descriptions_translated_to_ar"] += changed
         stats["description_language_remaining_mismatch"] += remaining
+        if ensure_arabic_desc_fallback(p,cid):
+            stats.setdefault("arabic_description_fallbacks",0)
+            stats["arabic_description_fallbacks"] += 1
 
         title=text_of(p,"title")
         desc=text_of(p,"desc")

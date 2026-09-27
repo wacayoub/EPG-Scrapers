@@ -44,6 +44,10 @@ GROUPS={"snrt":{"AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","AFLA
 SNRT={"AlAoula":"https://www.snrt.ma/ar/node/1208","Arrabiaa":"https://www.snrt.ma/ar/node/4071",
  "AlMaghribiya":"https://www.snrt.ma/ar/node/4072","Assadisa":"https://www.snrt.ma/ar/node/4073",
  "Tamazight":"https://www.snrt.ma/ar/node/4075"}
+SNRT_AR_NAMES={
+ "AlAoula":"قناة الأولى","Arrabiaa":"قناة الثقافية","AlMaghribiya":"قناة المغربية",
+ "Assadisa":"قناة السادسة","Tamazight":"قناة الأمازيغية","AFLAM.ma":"قناة السابعة أفلام"
+}
 MEDI1=(
  ("MEDI1TV_AR.ma",("https://www.medi1tv.com/ar/grille/arabic","https://www.medi1tv.ma/ar/grille/arabic")),
  ("MEDI1TV_MAGHREB.ma",("https://www.medi1tv.ma/ar/grille/maghreb","https://www.medi1tv.com/ar/grille/maghreb")))
@@ -122,7 +126,7 @@ class Event:
  channel:str; start:datetime; title:str; desc:str=""; stop:datetime|None=None; tl:str="ar"; dl:str="ar"; source:str=""
 
 def _snrt_fallback_desc(cid,title):
- channel=CHANNELS.get(cid,cid)
+ channel=SNRT_AR_NAMES.get(cid,CHANNELS.get(cid,cid))
  if "أخبار" in title or "الأخبار" in title:
   return "نشرة إخبارية على %s تقدم أبرز الأخبار والمستجدات."%channel
  if "طقس" in title or "النشرة الجوية" in title:

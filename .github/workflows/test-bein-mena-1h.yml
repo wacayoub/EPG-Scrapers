@@ -125,6 +125,14 @@ jobs:
           print(json.dumps(report,ensure_ascii=False,indent=2))
           if report["programmes"]<10:
               raise SystemExit("too few beIN programmes")
+          if report["titles_with_arabic"] != 0:
+              raise SystemExit(f"Arabic titles remain: {report['titles_with_arabic']}")
+          if report["non_arabic_descriptions"] != 0:
+              raise SystemExit(f"Non-Arabic descriptions remain: {report['non_arabic_descriptions']}")
+          if report["arabic_descriptions"] != report["programmes"]:
+              raise SystemExit(
+                  f"Missing Arabic descriptions: {report['programmes']-report['arabic_descriptions']}"
+              )
           PY
 
       - name: Commit isolated test result
