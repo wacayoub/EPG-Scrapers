@@ -1,0 +1,244 @@
+{
+  "scope": "beIN MENA only",
+  "test_window": "now to +60 minutes",
+  "timezone": "UTC +0000",
+  "catalogue": {
+    "scope": "MENA only",
+    "source_entries": {
+      "beinsports_mena_ar": 39,
+      "bein_ar": 71
+    },
+    "catalogue_ids": 82,
+    "generated_local_ids": 23,
+    "generated_ids": [
+      "beINMENA.beindrama",
+      "beINMENA.beinjunior",
+      "beINMENA.beinseries2",
+      "beINMENA.beinsports1en",
+      "beINMENA.beinsports1fr",
+      "beINMENA.beinsports2en",
+      "beINMENA.beinsports2fr",
+      "beINMENA.beinsports4afc",
+      "beINMENA.beinsports5afc",
+      "beINMENA.beinsports6afc",
+      "beINMENA.beinsportsen1",
+      "beINMENA.beinsportsen2",
+      "beINMENA.beinsportsfr1",
+      "beINMENA.beinsportsfr2",
+      "beINMENA.beinsportsxtra3",
+      "beINMENA.beinsportsxtra4",
+      "beINMENA.beinsportsxtra5",
+      "beINMENA.beinsportsxtra6",
+      "beINMENA.beinsportsxtra7",
+      "beINMENA.beinsportsxtra8",
+      "beINMENA.beinsportsxtra9",
+      "beINMENA.guide.entertainment8",
+      "beINMENA.jeemtv"
+    ],
+    "zero_epg_policy": "retain"
+  },
+  "result": {
+    "label": "bein-mena-1h",
+    "channels": 82,
+    "active_channels": 48,
+    "zero_epg_channels": 34,
+    "zero_epg_ids": [
+      "AlJazeeraDocumentary.qa@SD",
+      "AlkassEight.qa@SD",
+      "AlkassOne.qa@SD",
+      "AlkassThree.qa@SD",
+      "AlkassTwo.qa@SD",
+      "Baraem.qa@SD",
+      "beINGourmet.qa@SD",
+      "beINMENA.beindrama",
+      "beINMENA.beinjunior",
+      "beINMENA.beinseries2",
+      "beINMENA.beinsports4afc",
+      "beINMENA.beinsports5afc",
+      "beINMENA.beinsports6afc",
+      "beINMENA.jeemtv",
+      "beINMovies2Action.qa@SD",
+      "beINMovies3Drama.qa@SD",
+      "beINSeries1.qa@SD",
+      "beINSports4KHDR.qa",
+      "beINSportsAFC.qa@SD",
+      "beINSportsAFC1.qa@SD",
+      "beINSportsAFC2.qa@SD",
+      "beINSportsAFC3.qa@SD",
+      "beINSportsNBA.qa@SD",
+      "BloombergTV.us@MiddleEast",
+      "CBeebiesMiddleEast.uk@SD",
+      "CNNArabic.ae@SD",
+      "EuronewsEnglish.fr@SD",
+      "Fatafeat.ae@SD",
+      "FoxActionMoviesMENA.hk@SD",
+      "FoxArabia.ae@SD",
+      "FoxMoviesMiddleEast.us@SD",
+      "JeemTV.qa@SD",
+      "MTV90s.uk@SD",
+      "StarMoviesMiddleEast.ae@SD"
+    ],
+    "input_channels": 82,
+    "coverage_pct": 58.5,
+    "programmes": 97,
+    "rejected_invalid_time": 42,
+    "inferred_stop": 0,
+    "window_hours": 1,
+    "timezone_output": "UTC +0000",
+    "size_bytes": 5402,
+    "sha256": "1f07f5e9ab10c2a66114ed2cd93a2f8693af3e843380e0b65ee75207ca0355b1",
+    "generated_utc": "2026-09-27T02:18:19.177395+00:00"
+  },
+  "sample_programmes": [
+    {
+      "channel": "AlkassFive.qa@SD",
+      "start": "20260927000000 +0000",
+      "stop": "20260927050000 +0000",
+      "title": "رالي قطر الدولي"
+    },
+    {
+      "channel": "AlkassFour.qa@SD",
+      "start": "20260927003000 +0000",
+      "stop": "20260927023000 +0000",
+      "title": "دوري نجوم قطر"
+    },
+    {
+      "channel": "AlkassFour.qa@SD",
+      "start": "20260927023000 +0000",
+      "stop": "20260927030000 +0000",
+      "title": "كرة السلة العالمية"
+    },
+    {
+      "channel": "AlkassFour.qa@SD",
+      "start": "20260927030000 +0000",
+      "stop": "20260927033000 +0000",
+      "title": "الأخبار"
+    },
+    {
+      "channel": "AlkassSeven.qa@SD",
+      "start": "20260927020000 +0000",
+      "stop": "20260927070000 +0000",
+      "title": "مهرجان كتارا الدولي للخيل العربية"
+    },
+    {
+      "channel": "AlkassSix.qa@SD",
+      "start": "20260927020000 +0000",
+      "stop": "20260927023000 +0000",
+      "title": "المرأة"
+    },
+    {
+      "channel": "AlkassSix.qa@SD",
+      "start": "20260927023000 +0000",
+      "stop": "20260927050000 +0000",
+      "title": "بطولة غرب آسيا للكرة الطائرة"
+    },
+    {
+      "channel": "beIN4K.qa@SD",
+      "start": "20260927004000 +0000",
+      "stop": "20260927022000 +0000",
+      "title": "Fulham v Manchester United - English Premier League 2026/2027"
+    },
+    {
+      "channel": "beIN4K.qa@SD",
+      "start": "20260927022000 +0000",
+      "stop": "20260927042000 +0000",
+      "title": "Main Race - F1 Azerbaijan Grand Prix - FIA Formula 1 World Championship 2026"
+    },
+    {
+      "channel": "beINMENA.beinsports1en",
+      "start": "20260927020000 +0000",
+      "stop": "20260927023000 +0000",
+      "title": "Italy vs Belgium - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+    },
+    {
+      "channel": "beINMENA.beinsports1en",
+      "start": "20260927023000 +0000",
+      "stop": "20260927030000 +0000",
+      "title": "Netherlands vs Germany - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+    },
+    {
+      "channel": "beINMENA.beinsports1en",
+      "start": "20260927030000 +0000",
+      "stop": "20260927033000 +0000",
+      "title": "Türkiye vs France - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+    },
+    {
+      "channel": "beINMENA.beinsports1fr",
+      "start": "20260927020000 +0000",
+      "stop": "20260927030000 +0000",
+      "title": "Achat - Magazine 2026"
+    },
+    {
+      "channel": "beINMENA.beinsports1fr",
+      "start": "20260927030000 +0000",
+      "stop": "20260927040000 +0000",
+      "title": "Salon VIP - Magazine 2026-2027"
+    },
+    {
+      "channel": "beINMENA.beinsports2en",
+      "start": "20260926223000 +0000",
+      "stop": "20260927023000 +0000",
+      "title": "Athletics - Marathon Race Walk - Asian Games Aichi-Nagoya 2026 - W/M"
+    },
+    {
+      "channel": "beINMENA.beinsports2en",
+      "start": "20260927023000 +0000",
+      "stop": "20260927030000 +0000",
+      "title": "EN ATP Tour: This Week 2026 Ep.37"
+    },
+    {
+      "channel": "beINMENA.beinsports2en",
+      "start": "20260927030000 +0000",
+      "stop": "20260927043000 +0000",
+      "title": "IND vs IRI - Kabaddi - Finals - Asian Games Aichi-Nagoya 2026 - W"
+    },
+    {
+      "channel": "beINMENA.beinsports2fr",
+      "start": "20260927020000 +0000",
+      "stop": "20260927031500 +0000",
+      "title": "Doc Rse Au Dela Des Sommets Ff Handisport - Documentaire"
+    },
+    {
+      "channel": "beINMENA.beinsports2fr",
+      "start": "20260927031500 +0000",
+      "stop": "20260927040000 +0000",
+      "title": "Film Des Finales 2026 - Championnat De France - Volleyball 2526"
+    },
+    {
+      "channel": "beINMENA.beinsportsen1",
+      "start": "20260927020000 +0000",
+      "stop": "20260927023000 +0000",
+      "title": "Italy vs Belgium - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+    },
+    {
+      "channel": "beINMENA.beinsportsen1",
+      "start": "20260927023000 +0000",
+      "stop": "20260927030000 +0000",
+      "title": "Netherlands vs Germany - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+    },
+    {
+      "channel": "beINMENA.beinsportsen1",
+      "start": "20260927030000 +0000",
+      "stop": "20260927033000 +0000",
+      "title": "Türkiye vs France - Mini Matche - UEFA Nations League 2026/27 - Match Day 1"
+    },
+    {
+      "channel": "beINMENA.beinsportsen2",
+      "start": "20260926223000 +0000",
+      "stop": "20260927030000 +0000",
+      "title": "Athletics - Marathon Race Walk - Asian Games Aichi-Nagoya 2026 - W/M"
+    },
+    {
+      "channel": "beINMENA.beinsportsen2",
+      "start": "20260927030000 +0000",
+      "stop": "20260927043000 +0000",
+      "title": "IND vs IRI - Kabaddi - Finals - Asian Games Aichi-Nagoya 2026 - W"
+    },
+    {
+      "channel": "beINMENA.beinsportsfr1",
+      "start": "20260927020000 +0000",
+      "stop": "20260927030000 +0000",
+      "title": "Achat - Magazine 2026"
+    }
+  ]
+}
