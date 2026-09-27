@@ -102,6 +102,31 @@ jobs:
         working-directory: vendor/iptv-org-epg
         run: npm ci --no-audit --no-fund
 
+      - name: Fix beIN guide date anchoring
+        if: steps.gate.outputs.run == 'true' && inputs.source == 'bein'
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("vendor/iptv-org-epg/sites/bein.com/bein.com.config.js")
+          text=p.read_text(encoding="utf-8")
+          old="    date = dayjs(date.valueOf()).subtract(1, 'day')"
+          new="""    const firstTimeMatch = items.length
+      ? (cheerio.load(items[0])('.time').text().match(/^(\\d{2}):/) || null)
+      : null
+    date = dayjs(date.valueOf())
+    // beIN sometimes starts a daily grid late on the previous evening
+    // (23:xx), but Kids grids often start exactly at 00:00. Subtracting one
+    // day unconditionally makes the whole Kids schedule 24h old.
+    if (firstTimeMatch && Number(firstTimeMatch[1]) >= 18) {
+      date = date.subtract(1, 'day')
+    }"""
+          if old not in text:
+              raise SystemExit("beIN date-anchor patch target not found")
+          p.write_text(text.replace(old,new,1),encoding="utf-8")
+          print("beIN date anchoring patched: midnight grids stay on requested cdate")
+          PY
+
       - name: Refresh live OSN channel catalogue
         if: steps.gate.outputs.run == 'true' && inputs.source == 'osn'
         shell: bash
@@ -197,7 +222,14 @@ jobs:
 
       - name: Build provider catalogues
         if: steps.gate.outputs.run == 'true' && steps.req.outputs.upstream == 'true'
-        run: python tools/build_catalogues.py
+        run: |
+          python tools/build_catalogues.py
+          if [ "${{ inputs.source }}" = "bein" ]; then
+            echo "Verified beIN Kids catalogue rows:"
+            grep -Ei 'xmltv_id="(JeemTV\.qa@SD|Baraem\.qa@SD|BeJunior\.qa@SD)"' output/source-build/bein.channels.xml || true
+            echo "Verified beIN Kids English rows:"
+            grep -Ei 'xmltv_id="(JeemTV\.qa@SD|Baraem\.qa@SD|BeJunior\.qa@SD)"' output/source-build/bein_en.channels.xml || true
+          fi
 
       - name: Verify refresh scripts
         if: steps.gate.outputs.run == 'true'
