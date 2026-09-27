@@ -1,13 +1,6 @@
 name: Test 2M only
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/test-2m-only.yml"
-      - "tools/run_2m_only.py"
-      - "tools/morocco_epg.py"
   workflow_dispatch:
 
 permissions:

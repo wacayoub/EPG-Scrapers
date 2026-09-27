@@ -1,12 +1,6 @@
 name: Scrape Morocco unified
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/scrape-morocco-unified.yml"
-      - "tools/morocco_epg.py"
-      - "config/full-refresh-trigger.txt"
   workflow_dispatch:
 
 permissions:
