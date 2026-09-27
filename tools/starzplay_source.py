@@ -211,6 +211,23 @@ def fetch_page(url: str, lang: str, timeout: int) -> tuple[int, str, str]:
 
 def make_channel_id(name: str, source_id: str, index: dict[str, str]) -> str:
     normalized = norm_name(name)
+    stable = source_id.strip()
+
+    # The STARZPLAY content/channel ID is the cross-locale identity key. Use it
+    # before names so Arabic and English pages can never diverge just because a
+    # channel display name was localized.
+    source_aliases = {
+        "720335400126": "AbuDhabiSports1.ae@SD",
+        "720335400128": "NationalGeographicAbuDhabi.ae@SD",
+        "558369320039": "ZeeAflam.ae@SD",
+    }
+    if stable in source_aliases:
+        return source_aliases[stable]
+    if stable:
+        stable = re.sub(r"[^A-Za-z0-9_.-]+", "-", stable).strip("-")
+        return f"starzplay.{stable}"
+
+    # Name matching is only a fallback when STARZPLAY did not expose a stable ID.
     if normalized in index:
         return index[normalized]
     aliases = {
@@ -226,8 +243,7 @@ def make_channel_id(name: str, source_id: str, index: dict[str, str]) -> str:
     }
     if normalized in aliases:
         return aliases[normalized]
-    stable = source_id.strip() or hashlib.sha1(normalized.encode("utf-8")).hexdigest()[:14]
-    stable = re.sub(r"[^A-Za-z0-9_.-]+", "-", stable).strip("-")
+    stable = hashlib.sha1(normalized.encode("utf-8")).hexdigest()[:14]
     return f"starzplay.{stable}"
 
 
