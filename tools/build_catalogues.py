@@ -144,34 +144,94 @@ def build_elcinema_fallback():
     print(f"elcinema fallback: {len(root)} channels ({recovered} English alternates)")
 
 build_elcinema_fallback()
-choose("osn",["osn.com"])
 
-def build_osn_english():
+def _osn_local_id(site_id: str) -> str:
+    safe_sid=re.sub(r"[^A-Za-z0-9._-]+","",site_id) or "unknown"
+    return f"osn.{safe_sid}"
+
+def _osn_static_id_map():
+    """Preserve canonical IDs already known upstream, keyed by OSN GUID."""
     base=ROOT/"osn.com"
-    path=base/"osn.com_en.channels.xml"
-    rr=ET.parse(path).getroot()
-    rows=[]
-    for c in rr.findall("channel"):
-        cid=(c.get("xmltv_id") or "").strip()
-        sid=(c.get("site_id") or "").strip()
-        if not cid and sid in OSN_OFFICIAL_ID_OVERRIDES:
-            c=ET.fromstring(ET.tostring(c,encoding="utf-8"))
-            cid=OSN_OFFICIAL_ID_OVERRIDES[sid]
-            c.set("xmltv_id",cid)
-        if not cid or not sid:
+    out=dict(OSN_OFFICIAL_ID_OVERRIDES)
+    for path in (base/"osn.com_ar.channels.xml", base/"osn.com_en.channels.xml"):
+        if not path.exists():
             continue
-        rows.append((cid,c))
-    root=ET.Element("channels")
-    for cid,c in sorted(rows,key=lambda x:x[0].casefold()):
-        root.append(ET.fromstring(ET.tostring(c,encoding="utf-8")))
-    ET.indent(root,space="  ")
-    out=OUT/"osn_en.channels.xml"
-    out.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
-    print(f"osn English: {len(root)} channels")
-    if len(root)==0:
-        raise SystemExit("osn English: empty catalogue")
+        try:
+            rr=ET.parse(path).getroot()
+        except Exception:
+            continue
+        for ch in rr.findall("channel"):
+            sid=(ch.get("site_id") or "").strip()
+            cid=(ch.get("xmltv_id") or "").strip()
+            if sid and cid:
+                out.setdefault(sid,cid)
+    return out
 
-build_osn_english()
+def build_osn_catalogue(lang: str, output_name: str):
+    """Union the checked-in OSN catalogue with the live OSN API catalogue.
+
+    refresh-source-core creates osn_live_<lang>.channels.xml directly from
+    OSN's current /apidata/channels endpoint via the upstream adapter.  The
+    checked-in iptv-org file is retained as a fallback and as the canonical
+    site_id -> xmltv_id mapping.  Newly exposed OSN channels are never dropped:
+    when iptv-org has no canonical ID yet, use the stable provider GUID as
+    EPGManager-local ID (osn.<guid>).
+    """
+    base=ROOT/"osn.com"
+    static_path=base/f"osn.com_{lang}.channels.xml"
+    live_path=OUT/f"osn_live_{lang}.channels.xml"
+    paths=[static_path]
+    if live_path.exists():
+        try:
+            if ET.parse(live_path).getroot().findall("channel"):
+                paths.append(live_path)
+        except Exception:
+            pass
+
+    canonical=_osn_static_id_map()
+    by_sid={}
+    source_counts={}
+    for path in paths:
+        if not path.exists():
+            continue
+        try:
+            rr=ET.parse(path).getroot()
+        except Exception:
+            continue
+        source_counts[path.name]=len(rr.findall("channel"))
+        for ch in rr.findall("channel"):
+            sid=(ch.get("site_id") or "").strip()
+            if not sid:
+                continue
+            node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
+            cid=(node.get("xmltv_id") or "").strip()
+            if not cid:
+                cid=canonical.get(sid) or _osn_local_id(sid)
+            node.set("xmltv_id",cid)
+            node.set("lang",lang)
+            # Live catalogue comes last and therefore refreshes the display name
+            # while canonical IDs remain stable through the site_id mapping.
+            by_sid[sid]=node
+
+    by_cid={}
+    for sid,node in by_sid.items():
+        cid=(node.get("xmltv_id") or "").strip()
+        if cid and cid not in by_cid:
+            by_cid[cid]=node
+
+    root=ET.Element("channels")
+    for cid in sorted(by_cid,key=str.casefold):
+        root.append(ET.fromstring(ET.tostring(by_cid[cid],encoding="utf-8")))
+    ET.indent(root,space="  ")
+    out=OUT/output_name
+    out.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
+    mode="live+static" if live_path in paths else "static-fallback"
+    print(f"osn {lang}: {len(root)} channels mode={mode} sources={source_counts}")
+    if len(root)==0:
+        raise SystemExit(f"osn {lang}: empty catalogue")
+
+build_osn_catalogue("ar","osn.channels.xml")
+build_osn_catalogue("en","osn_en.channels.xml")
 choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
 
