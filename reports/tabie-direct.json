@@ -1,0 +1,229 @@
+{
+  "generated_qatar": "2026-09-28T00:24:14.699991+03:00",
+  "dates": [
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30"
+  ],
+  "endpoint": "/Live/GetSchedule",
+  "channels": {
+    "QatarTelevision.qa@SD": {
+      "channel_id": 23,
+      "name": "Qatar TV",
+      "programmes": 46,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 46,
+          "api_rows": 46
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 46
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 46
+        }
+      },
+      "errors": [],
+      "status": "ACTIVE"
+    },
+    "QatarTelevision2.qa@SD": {
+      "channel_id": 22,
+      "name": "Qatar TV 2",
+      "programmes": 46,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 46,
+          "api_rows": 46
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 46
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 46
+        }
+      },
+      "errors": [],
+      "status": "ACTIVE"
+    },
+    "QatarQuranTV.qa@SD": {
+      "channel_id": 36,
+      "name": "Qatar TV Quran",
+      "programmes": 0,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        }
+      },
+      "errors": [],
+      "status": "ZERO_EPG"
+    },
+    "QatarBusinessChannel.qa@SD": {
+      "channel_id": 50,
+      "name": "QBC",
+      "programmes": 44,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 44,
+          "api_rows": 44
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 44
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 44
+        }
+      },
+      "errors": [],
+      "status": "ACTIVE"
+    },
+    "AlkassOne.qa@SD": {
+      "channel_id": 32,
+      "name": "Alkass One",
+      "programmes": 0,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        }
+      },
+      "errors": [],
+      "status": "ZERO_EPG"
+    },
+    "AlRayyanTV.qa@SD": {
+      "channel_id": 12,
+      "name": "Al Rayyan TV",
+      "programmes": 0,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        }
+      },
+      "errors": [],
+      "status": "ZERO_EPG"
+    },
+    "AlRayyanAlQadeem.qa@SD": {
+      "channel_id": 11,
+      "name": "Al Rayyan Al Qadeem",
+      "programmes": 0,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        }
+      },
+      "errors": [],
+      "status": "ZERO_EPG"
+    },
+    "TabieNow.qa": {
+      "channel_id": 34,
+      "name": "Tabie Now",
+      "programmes": 1128,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 1128,
+          "api_rows": 1128
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1128
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1128
+        }
+      },
+      "errors": [],
+      "status": "ACTIVE"
+    },
+    "TabieKids.qa": {
+      "channel_id": 35,
+      "name": "Tabie Kids",
+      "programmes": 75,
+      "days": {
+        "2026-09-28": {
+          "status": "OK",
+          "programmes": 75,
+          "api_rows": 75
+        },
+        "2026-09-29": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 75
+        },
+        "2026-09-30": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 75
+        }
+      },
+      "errors": [],
+      "status": "ACTIVE"
+    }
+  },
+  "programmes": 1339,
+  "active_channels": 5
+}
