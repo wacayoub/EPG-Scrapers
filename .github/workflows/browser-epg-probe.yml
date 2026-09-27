@@ -1,0 +1,52 @@
+name: Browser EPG probe - low rate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/browser-epg-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browser-epg-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install browser
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Run low-rate browser probe
+        run: python tools/browser_epg_probe.py
+      - name: Print summaries
+        run: |
+          for f in reports/browser-probe/*.json; do
+            echo "### $f"
+            python - "$f" <<'PY'
+import json,sys
+x=json.load(open(sys.argv[1],encoding="utf-8"))
+if isinstance(x,list):
+    for r in x:
+        print({k:r.get(k) for k in ("name","main_status","final_url","title","visible_epg_tokens","contains_schedule_times","error")})
+else:
+    print({k:x.get(k) for k in ("name","main_status","final_url","title","visible_epg_tokens","contains_schedule_times","error")})
+    print("network matches",len(x.get("network",[])))
+    for n in x.get("network",[])[:40]:
+        print(n)
+PY
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: browser-epg-probe
+          path: reports/browser-probe/
