@@ -238,6 +238,30 @@ jobs:
           print(json.dumps({"categories":slugs,"winners":winners},ensure_ascii=False,indent=2))
           PY
 
+      - name: Test full STARZPLAY API scraper
+        shell: bash
+        run: |
+          python -m py_compile tools/starzplay_api_source.py
+          python tools/starzplay_api_source.py \
+            --lang ar \
+            --output /tmp/starzplay-api-test.xml \
+            --report reports/starzplay-api-source-test.json \
+            --id-index feeds/mena.txt \
+            --hours 48
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("reports/starzplay-api-source-test.json").read_text(encoding="utf-8"))
+          print(json.dumps({
+            "status":p.get("status"),
+            "channels":p.get("channels"),
+            "programmes":p.get("programmes"),
+            "zero_epg_channels":p.get("zero_epg_channels"),
+            "categories":p.get("category_slugs"),
+            "channel_catalogue":p.get("channel_catalogue"),
+          },ensure_ascii=False,indent=2))
+          PY
+
       - name: Disconnect WARP
         if: always()
         shell: bash
@@ -252,7 +276,7 @@ jobs:
           set -e
           git config user.name "epg-diagnostic-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reports/starzplay-api-warp-probe.json reports/starzplay-api-warp-payloads.json reports/starzplay-warp-structure.json reports/starzplay-category-events-probe.json reports/starzplay-category-events-payloads.json 2>/dev/null || true
+          git add reports/starzplay-api-warp-probe.json reports/starzplay-api-warp-payloads.json reports/starzplay-warp-structure.json reports/starzplay-category-events-probe.json reports/starzplay-category-events-payloads.json reports/starzplay-api-source-test.json 2>/dev/null || true
           git commit -m "diagnostic: STARZPLAY EPG API through WARP" || exit 0
           for n in 1 2 3 4 5; do
             git pull --rebase origin main || true
