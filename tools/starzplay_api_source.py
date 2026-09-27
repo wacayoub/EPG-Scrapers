@@ -411,6 +411,14 @@ def main() -> int:
         Path(args.output).write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
         report.update(meta)
         report.update(stats)
+        report["channel_catalogue"] = [
+            {
+                "id": node.get("id") or "",
+                "name": scalar(first({x.tag: x.text for x in node.findall("display-name")}, ("display-name",))) or (node.get("id") or ""),
+                "source_id": next(((u.text or "").strip() for u in node.findall("url") if u.get("system") == "starzplay-id"), ""),
+            }
+            for node in root.findall("channel")
+        ]
         report["raw_channel_rows"] = len(channel_rows)
         report["raw_event_rows"] = len(event_rows)
         report["status"] = "PASS" if stats["channels"] else "FAIL"
