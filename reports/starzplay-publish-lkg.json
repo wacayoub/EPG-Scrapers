@@ -1,0 +1,23 @@
+{
+  "generated_utc": "2026-09-27T04:10:36.773681+00:00",
+  "sources": {
+    "starzplay": {
+      "candidate": "output/final/starzplay.xml.gz",
+      "published": false,
+      "candidate_stats": {
+        "channels": 3,
+        "active_channels": 3,
+        "zero_epg_channels": 0,
+        "programmes": 145,
+        "future_channels": 3,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 48.82311800916666,
+        "invalid_rows": 0
+      },
+      "decision": "KEEP_LKG",
+      "reasons": [
+        "active_channels<5"
+      ]
+    }
+  }
+}

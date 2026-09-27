@@ -1,0 +1,48 @@
+{
+  "generated_utc": "2026-09-27T04:10:36.739382+00:00",
+  "mode": "source-aware",
+  "feeds": [
+    {
+      "feed": "starzplay.xml.gz",
+      "generated_utc": "2026-09-27T04:10:36.739319+00:00",
+      "target_hours": 48.0,
+      "minimum_acceptable_hours": 8.0,
+      "max_gap_minutes_warning": 90,
+      "channels": 3,
+      "invalid_times": 0,
+      "orphan_programmes": 0,
+      "failed_channels": 0,
+      "warning_channels": 0,
+      "status": "PASS",
+      "rows": [
+        {
+          "id": "StarzplaySports1.sa@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.82,
+          "latest_stop_utc": "2026-09-29T05:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 49
+        },
+        {
+          "id": "StarzplaySports2.sa@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.82,
+          "latest_stop_utc": "2026-09-29T05:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 47
+        },
+        {
+          "id": "StarzplaySports3.sa@HD",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.82,
+          "latest_stop_utc": "2026-09-29T05:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 49
+        }
+      ]
+    }
+  ]
+}
