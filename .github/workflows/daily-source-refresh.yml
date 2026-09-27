@@ -2,7 +2,7 @@ name: EPG 48h - Daily sequential sources
 
 on:
   schedule:
-    - cron: "7 6 * * *"
+    - cron: "0 6 * * *"
       timezone: "Africa/Casablanca"
   workflow_dispatch:
   push:
@@ -125,15 +125,23 @@ jobs:
     secrets: inherit
 
 
-  stctv:
+  starzplay:
     needs: tabie
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: starzplay
+      scheduled: false
+    secrets: inherit
+
+  stctv:
+    needs: starzplay
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: stctv
       scheduled: false
     secrets: inherit
-
 
   finalize:
     needs: stctv
