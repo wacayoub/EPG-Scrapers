@@ -63,13 +63,38 @@ jobs:
           Path('reports/stctv-batch-probe.json').write_text(json.dumps(row,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print(json.dumps({k:v for k,v in row.items() if k!='samples'},ensure_ascii=False,indent=2))
           PY
+      - name: Test optimized full STC 48h scraper
+        shell: bash
+        run: |
+          set -e
+          python tools/stctv_source.py \
+            --output /tmp/stctv-fast-48h.xml \
+            --report reports/stctv-fast-48h.json \
+            --id-index feeds/mena.txt \
+            --window-hours 48 \
+            --delay 0.1 \
+            --max-channels 0 \
+            --profile all
+          python - <<'PY'
+          import json,xml.etree.ElementTree as ET
+          from pathlib import Path
+          r=json.loads(Path('reports/stctv-fast-48h.json').read_text())
+          root=ET.parse('/tmp/stctv-fast-48h.xml').getroot()
+          ch=len(root.findall('channel')); pr=len(root.findall('programme'))
+          assert ch >= 140, (ch,pr)
+          assert pr >= 1000, (ch,pr)
+          assert r.get('schedule_mode') == 'batch_per_day'
+          assert r.get('requests',999) <= 6, r.get('requests')
+          print('STC_FAST_48H_OK', 'channels',ch,'programmes',pr,'requests',r.get('requests'),'blocks',r.get('schedule_channel_blocks'))
+          PY
+
       - name: Publish
         shell: bash
         run: |
           set -e
           git config user.name "epg-diagnostic-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reports/stctv-batch-probe.json
+          git add reports/stctv-batch-probe.json reports/stctv-fast-48h.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "diagnostic: probe STC batch EPG"
           git pull --rebase origin main
