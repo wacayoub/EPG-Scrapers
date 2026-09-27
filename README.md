@@ -8,7 +8,7 @@ Production XMLTV scrapers for MENA channels.
 - `bein`: beIN MENA
 - `osn`: OSN
 - `sport24`: sports fallback/auxiliary source
-- `starzplay`: STARZPLAY Live public schedule metadata, hybrid AR/EN when accessible
+- `starzplay`: STARZPLAY Live public schedule metadata, hybrid AR/EN when accessible\n- `aljazeera`: Al Jazeera Network official Arabic schedules for Al Jazeera, Al Jazeera 2, Mubasher and Documentary
 
 ### Hybrid language policy
 For STARZPLAY international/foreign channels, EPGManager keeps the English programme title/subtitle and the Arabic description. Arabic-native channels keep Arabic title/subtitle/description. STARZPLAY is published only after normal feed validation and last-known-good checks; blocked or empty fetches never overwrite a healthy feed.
