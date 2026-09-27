@@ -413,18 +413,57 @@ def main() -> int:
     ap.add_argument("--id-index", default="feeds/mena.txt")
     ap.add_argument("--hours", type=int, default=48)
     ap.add_argument("--timeout", type=int, default=25)
-    ap.add_argument("--country", default="MA")
+    ap.add_argument("--country", default="AE", help="Single country fallback/compatibility code")
+    ap.add_argument("--countries", default="", help="Comma-separated country codes to union, e.g. AE,SA,KW,QA,BH,OM")
     args = ap.parse_args()
+
+    countries = []
+    for code in (args.countries.split(",") if args.countries else [args.country]):
+        code = code.strip().upper()
+        if code and code not in countries:
+            countries.append(code)
+    if not countries:
+        countries = ["AE"]
 
     report: dict[str, Any] = {
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "language": args.lang,
-        "country": args.country,
+        "country": countries[0],
+        "countries": countries,
+        "catalogue_scope": "GCC union" if len(countries) > 1 else countries[0],
         "api_base": API_BASE,
         "hours": args.hours,
     }
     try:
-        channel_rows, event_rows, meta = fetch_all(args.lang, args.country, args.hours, args.timeout)
+        channel_rows: list[dict[str, str]] = []
+        event_rows: list[dict[str, Any]] = []
+        country_stats: list[dict[str, Any]] = []
+        merged_errors: list[dict[str, Any]] = []
+        for country in countries:
+            try:
+                c_rows, e_rows, c_meta = fetch_all(args.lang, country, args.hours, args.timeout)
+                channel_rows.extend(c_rows)
+                event_rows.extend(e_rows)
+                merged_errors.extend([{"country": country, **e} for e in c_meta.get("errors", [])])
+                country_stats.append({
+                    "country": country,
+                    "raw_channel_rows": len(c_rows),
+                    "raw_event_rows": len(e_rows),
+                    "category_slugs": c_meta.get("category_slugs", []),
+                    "category_stats": c_meta.get("category_stats", []),
+                    "errors": c_meta.get("errors", []),
+                })
+            except Exception as exc:
+                merged_errors.append({"country": country, "error": str(exc)})
+                country_stats.append({"country": country, "status": "FAIL", "error": str(exc)})
+
+        if not channel_rows:
+            raise RuntimeError("No STARZPLAY channels returned for requested countries: " + ",".join(countries))
+
+        meta = {
+            "country_stats": country_stats,
+            "errors": merged_errors,
+        }
         index = read_id_index(Path(args.id_index) if args.id_index else None)
         root, stats = build_xml(channel_rows, event_rows, lang=args.lang, index=index, hours=args.hours)
         ET.indent(root, space="  ")
