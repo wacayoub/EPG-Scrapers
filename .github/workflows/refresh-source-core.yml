@@ -93,10 +93,57 @@ jobs:
           set +e
           mkdir -p "$GITHUB_WORKSPACE/output/source-build"
           cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+
+          cfg="./sites/osn.com/osn.com.config.js"
+          cp "$cfg" "$cfg.epgmanager.orig"
+
+          # OSN's web site can expose a richer channel set than the Android
+          # catalogue. Probe the known platform variants and keep the largest
+          # catalogue that works for both Arabic and English. The selected
+          # platform remains patched in the vendored config so the subsequent
+          # grab step queries the same channel universe.
+          best_platform="Android"
+          best_rows=0
+          for platform in Android Web web Website iOS IOS SmartTV; do
+            cp "$cfg.epgmanager.orig" "$cfg"
+            sed -i "s/platform=Android/platform=${platform}/g" "$cfg"
+
+            ar_out="$GITHUB_WORKSPACE/output/source-build/osn_probe_${platform}_ar.channels.xml"
+            en_out="$GITHUB_WORKSPACE/output/source-build/osn_probe_${platform}_en.channels.xml"
+            rm -f "$ar_out" "$en_out"
+
+            npm run channels:parse -- --config="$cfg" --output="$ar_out" --set="lang:ar" >/tmp/osn-ar.log 2>&1
+            ar_rc=$?
+            npm run channels:parse -- --config="$cfg" --output="$en_out" --set="lang:en" >/tmp/osn-en.log 2>&1
+            en_rc=$?
+
+            ar_rows="$(grep -c '<channel ' "$ar_out" 2>/dev/null || true)"
+            en_rows="$(grep -c '<channel ' "$en_out" 2>/dev/null || true)"
+            ar_rows="${ar_rows:-0}"
+            en_rows="${en_rows:-0}"
+            score="$ar_rows"
+            [ "$en_rows" -lt "$score" ] && score="$en_rows"
+
+            echo "OSN platform=${platform}: ar=${ar_rows} en=${en_rows} rc_ar=${ar_rc} rc_en=${en_rc}"
+            grep -Ei '>(Alfa|Alpha|OSN.*Cinema|.*Musalsalat|.*Series).*<' "$ar_out" 2>/dev/null || true
+
+            if [ "$ar_rc" -eq 0 ] && [ "$en_rc" -eq 0 ] && [ "$score" -gt "$best_rows" ]; then
+              best_rows="$score"
+              best_platform="$platform"
+            fi
+          done
+
+          cp "$cfg.epgmanager.orig" "$cfg"
+          sed -i "s/platform=Android/platform=${best_platform}/g" "$cfg"
+          echo "OSN selected platform=${best_platform} rows=${best_rows}"
+
           for lang in ar en; do
             out="$GITHUB_WORKSPACE/output/source-build/osn_live_${lang}.channels.xml"
             rm -f "$out"
-            npm run channels:parse ---               --config=./sites/osn.com/osn.com.config.js               --output="$out"               --set="lang:${lang}"
+            npm run channels:parse -- \
+              --config="$cfg" \
+              --output="$out" \
+              --set="lang:${lang}"
             rc=$?
             rows="$(grep -c '<channel ' "$out" 2>/dev/null || true)"
             if [ "$rc" -ne 0 ] || [ "${rows:-0}" -eq 0 ]; then
@@ -104,6 +151,7 @@ jobs:
               rm -f "$out"
             else
               echo "OSN live catalogue ${lang}: $rows channels"
+              grep -Ei '>(Alfa|Alpha|OSN.*Cinema|.*Musalsalat|.*Series).*<' "$out" 2>/dev/null || true
             fi
           done
           exit 0
