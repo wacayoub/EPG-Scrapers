@@ -1,12 +1,6 @@
 name: Test Shahid Rotana direct
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/test-shahid-rotana.yml"
-      - "tools/build_catalogues.py"
-      - "tools/rotana_source.py"
   workflow_dispatch:
 
 jobs:
