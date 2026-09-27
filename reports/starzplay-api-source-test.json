@@ -1,198 +1,98 @@
 {
-  "generated_utc": "2026-09-27T17:25:04.597268+00:00",
+  "generated_utc": "2026-09-27T18:18:50.653586+00:00",
   "language": "ar",
-  "country": "MA",
+  "country": "AE",
+  "countries": [
+    "AE"
+  ],
+  "catalogue_scope": "AE",
   "api_base": "https://epg.aws.playco.com/api/v1.1",
   "hours": 48,
-  "categories": [
+  "country_stats": [
     {
-      "count": 17,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/featured.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/featured.svg"
-      },
-      "label": "متميز",
-      "order": 1,
-      "slug": "featured"
-    },
-    {
-      "count": 16,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/news.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/news.svg"
-      },
-      "label": "أخبار",
-      "order": 2,
-      "slug": "news"
-    },
-    {
-      "count": 17,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/sports.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/sports.svg"
-      },
-      "label": "رياضات",
-      "order": 3,
-      "slug": "sports"
-    },
-    {
-      "count": 9,
-      "icon": {
-        "png": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/admnicon.png",
-        "svg": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/admnicon.svg"
-      },
-      "label": "ADMN TV",
-      "order": 4,
-      "slug": "live-tv"
-    },
-    {
-      "count": 30,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/entertainment.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/entertainment.svg"
-      },
-      "label": "ترفيه",
-      "order": 5,
-      "slug": "entertainment"
-    },
-    {
-      "count": 10,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/kids.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/kids.svg"
-      },
-      "label": "أطفال",
-      "order": 6,
-      "slug": "kids"
-    },
-    {
-      "count": 30,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/favourites.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/favourites.svg"
-      },
-      "label": "جنوب آسيا",
-      "order": 7,
-      "slug": "southasian"
-    },
-    {
-      "count": 6,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/cinema.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/cinema.svg"
-      },
-      "label": "أفلام",
-      "order": 8,
-      "slug": "movies"
-    },
-    {
-      "count": 8,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/lifestyle.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/lifestyle.svg"
-      },
-      "label": "نمط الحياة",
-      "order": 9,
-      "slug": "lifestyle"
-    },
-    {
-      "count": 2,
-      "icon": {
-        "png": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/religious.png",
-        "svg": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/religious.svg"
-      },
-      "label": "ديني",
-      "order": 10,
-      "slug": "religious"
-    },
-    {
-      "count": 8,
-      "icon": {
-        "png": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/radioadmn.png",
-        "svg": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/icons/radioadmn.svg"
-      },
-      "label": "ADMN Radio",
-      "order": 11,
-      "slug": "radio"
-    }
-  ],
-  "category_slugs": [
-    "featured",
-    "news",
-    "sports",
-    "live-tv",
-    "entertainment",
-    "kids",
-    "southasian",
-    "movies",
-    "lifestyle",
-    "religious"
-  ],
-  "category_stats": [
-    {
-      "slug": "featured",
-      "pages": 1,
-      "channels_seen": 17,
-      "events_seen": 1284
-    },
-    {
-      "slug": "news",
-      "pages": 1,
-      "channels_seen": 15,
-      "events_seen": 1416
-    },
-    {
-      "slug": "sports",
-      "pages": 1,
-      "channels_seen": 15,
-      "events_seen": 643
-    },
-    {
-      "slug": "live-tv",
-      "pages": 1,
-      "channels_seen": 9,
-      "events_seen": 614
-    },
-    {
-      "slug": "entertainment",
-      "pages": 1,
-      "channels_seen": 26,
-      "events_seen": 1517
-    },
-    {
-      "slug": "kids",
-      "pages": 1,
-      "channels_seen": 9,
-      "events_seen": 1251
-    },
-    {
-      "slug": "southasian",
-      "pages": 1,
-      "channels_seen": 29,
-      "events_seen": 1717
-    },
-    {
-      "slug": "movies",
-      "pages": 1,
-      "channels_seen": 6,
-      "events_seen": 153
-    },
-    {
-      "slug": "lifestyle",
-      "pages": 1,
-      "channels_seen": 8,
-      "events_seen": 1156
-    },
-    {
-      "slug": "religious",
-      "pages": 1,
-      "channels_seen": 2,
-      "events_seen": 67
+      "country": "AE",
+      "raw_channel_rows": 140,
+      "raw_event_rows": 10301,
+      "category_slugs": [
+        "featured",
+        "news",
+        "sports",
+        "live-tv",
+        "entertainment",
+        "kids",
+        "southasian",
+        "movies",
+        "lifestyle",
+        "religious"
+      ],
+      "category_stats": [
+        {
+          "slug": "featured",
+          "pages": 1,
+          "channels_seen": 20,
+          "events_seen": 1577
+        },
+        {
+          "slug": "news",
+          "pages": 1,
+          "channels_seen": 13,
+          "events_seen": 1294
+        },
+        {
+          "slug": "sports",
+          "pages": 1,
+          "channels_seen": 17,
+          "events_seen": 746
+        },
+        {
+          "slug": "live-tv",
+          "pages": 1,
+          "channels_seen": 9,
+          "events_seen": 617
+        },
+        {
+          "slug": "entertainment",
+          "pages": 1,
+          "channels_seen": 26,
+          "events_seen": 1527
+        },
+        {
+          "slug": "kids",
+          "pages": 1,
+          "channels_seen": 10,
+          "events_seen": 1447
+        },
+        {
+          "slug": "southasian",
+          "pages": 1,
+          "channels_seen": 29,
+          "events_seen": 1720
+        },
+        {
+          "slug": "movies",
+          "pages": 1,
+          "channels_seen": 6,
+          "events_seen": 155
+        },
+        {
+          "slug": "lifestyle",
+          "pages": 1,
+          "channels_seen": 8,
+          "events_seen": 1151
+        },
+        {
+          "slug": "religious",
+          "pages": 1,
+          "channels_seen": 2,
+          "events_seen": 67
+        }
+      ],
+      "errors": []
     }
   ],
   "errors": [],
-  "channels": 109,
-  "programmes": 7616,
+  "channels": 110,
+  "programmes": 7787,
   "zero_epg_channels": 0,
   "zero_epg_ids": [],
   "channel_catalogue": [
@@ -235,11 +135,6 @@
       "id": "starzplay.293821992325",
       "name": "كريكبز 2",
       "source_id": "293821992325"
-    },
-    {
-      "id": "starzplay.419604520351",
-      "name": "قناة الحدث - مباشر",
-      "source_id": "419604520351"
     },
     {
       "id": "starzplay.422146600308",
@@ -295,11 +190,6 @@
       "id": "starzplay.460872744016",
       "name": "الشرق بلومبرغ",
       "source_id": "460872744016"
-    },
-    {
-      "id": "starzplay.462076456406",
-      "name": "العربية بيزنس - مباشر",
-      "source_id": "462076456406"
     },
     {
       "id": "starzplay.462129704245",
@@ -407,6 +297,16 @@
       "source_id": "703793704007"
     },
     {
+      "id": "starzplay.705949224430",
+      "name": "ستارز بلاي سبورتس 1",
+      "source_id": "705949224430"
+    },
+    {
+      "id": "starzplay.705949224431",
+      "name": "أبوظبي الرياضية بريميوم 2 - الدوري الإيطالي",
+      "source_id": "705949224431"
+    },
+    {
       "id": "starzplay.719537704271",
       "name": "سي جي تي ان تشاينا ترافل",
       "source_id": "719537704271"
@@ -455,6 +355,11 @@
       "id": "starzplay.727306280331",
       "name": "بلوم",
       "source_id": "727306280331"
+    },
+    {
+      "id": "starzplay.732523560319",
+      "name": "إي جونيور",
+      "source_id": "732523560319"
     },
     {
       "id": "starzplay.743718440268",
@@ -742,7 +647,7 @@
       "source_id": "558369320039"
     }
   ],
-  "raw_channel_rows": 136,
-  "raw_event_rows": 9818,
+  "raw_channel_rows": 140,
+  "raw_event_rows": 10301,
   "status": "PASS"
 }
