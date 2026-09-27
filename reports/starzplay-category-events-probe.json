@@ -1,11 +1,19 @@
 {
-  "generated_utc": "2026-09-27T17:04:25.118008+00:00",
+  "generated_utc": "2026-09-27T17:07:47.459641+00:00",
   "country": "MA",
   "channel_config_status": 200,
+  "category_config_status": 200,
   "categories": [
-    "starzplaysports",
-    "starzplay",
-    "criclife"
+    "featured",
+    "news",
+    "sports",
+    "live-tv",
+    "entertainment",
+    "kids",
+    "southasian",
+    "movies",
+    "lifestyle",
+    "religious"
   ],
   "rows": [
     {
@@ -24,7 +32,7 @@
     {
       "kind": "category_events",
       "userId": "0",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -35,12 +43,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=featured&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "0",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -51,12 +59,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=featured&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "0",
-      "category": "starzplay",
+      "category": "news",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -67,12 +75,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=news&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "0",
-      "category": "starzplay",
+      "category": "news",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -83,12 +91,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=news&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "0",
-      "category": "criclife",
+      "category": "sports",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -99,12 +107,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=sports&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "0",
-      "category": "criclife",
+      "category": "sports",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -115,7 +123,231 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=sports&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "live-tv",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=live-tv&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "live-tv",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=live-tv&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "entertainment",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=entertainment&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "entertainment",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=entertainment&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "kids",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=kids&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "kids",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=kids&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "southasian",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=southasian&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "southasian",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=southasian&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "movies",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=movies&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "movies",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=movies&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "lifestyle",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=lifestyle&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "lifestyle",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=lifestyle&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "religious",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=religious&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "0",
+      "category": "religious",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 52,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=religious&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_config",
@@ -133,7 +365,7 @@
     {
       "kind": "category_events",
       "userId": "guest",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -144,12 +376,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=featured&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "guest",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -160,12 +392,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=featured&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "guest",
-      "category": "starzplay",
+      "category": "news",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -176,12 +408,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=news&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "guest",
-      "category": "starzplay",
+      "category": "news",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -192,12 +424,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=news&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "guest",
-      "category": "criclife",
+      "category": "sports",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -208,12 +440,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=sports&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "guest",
-      "category": "criclife",
+      "category": "sports",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -224,7 +456,231 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=sports&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "live-tv",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=live-tv&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "live-tv",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=live-tv&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "entertainment",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=entertainment&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "entertainment",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=entertainment&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "kids",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=kids&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "kids",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=kids&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "southasian",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=southasian&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "southasian",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=southasian&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "movies",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=movies&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "movies",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=movies&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "lifestyle",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=lifestyle&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "lifestyle",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=lifestyle&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "religious",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=religious&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "guest",
+      "category": "religious",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/guest?category=religious&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_config",
@@ -242,7 +698,7 @@
     {
       "kind": "category_events",
       "userId": "anonymous",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -253,12 +709,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=featured&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "anonymous",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -269,12 +725,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=featured&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "anonymous",
-      "category": "starzplay",
+      "category": "news",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -285,12 +741,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=news&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "anonymous",
-      "category": "starzplay",
+      "category": "news",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -301,12 +757,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=news&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "anonymous",
-      "category": "criclife",
+      "category": "sports",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -317,12 +773,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=sports&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "anonymous",
-      "category": "criclife",
+      "category": "sports",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -333,7 +789,231 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=sports&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "live-tv",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=live-tv&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "live-tv",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=live-tv&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "entertainment",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=entertainment&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "entertainment",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=entertainment&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "kids",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=kids&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "kids",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=kids&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "southasian",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=southasian&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "southasian",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=southasian&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "movies",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=movies&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "movies",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=movies&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "lifestyle",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=lifestyle&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "lifestyle",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=lifestyle&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "religious",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=religious&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "anonymous",
+      "category": "religious",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/anonymous?category=religious&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_config",
@@ -351,7 +1031,7 @@
     {
       "kind": "category_events",
       "userId": "00000000-0000-0000-0000-000000000000",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -362,12 +1042,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplaysports&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=featured&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "00000000-0000-0000-0000-000000000000",
-      "category": "starzplaysports",
+      "category": "featured",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -378,12 +1058,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplaysports&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=featured&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "00000000-0000-0000-0000-000000000000",
-      "category": "starzplay",
+      "category": "news",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -394,12 +1074,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplay&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=news&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "00000000-0000-0000-0000-000000000000",
-      "category": "starzplay",
+      "category": "news",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -410,12 +1090,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=starzplay&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=news&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "00000000-0000-0000-0000-000000000000",
-      "category": "criclife",
+      "category": "sports",
       "unit": "seconds",
       "status": 200,
       "bytes": 51,
@@ -426,12 +1106,12 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=criclife&ts_start=1790521455&ts_end=1790715855&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=sports&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
     },
     {
       "kind": "category_events",
       "userId": "00000000-0000-0000-0000-000000000000",
-      "category": "criclife",
+      "category": "sports",
       "unit": "milliseconds",
       "status": 200,
       "bytes": 51,
@@ -442,7 +1122,231 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=criclife&ts_start=1790521455000&ts_end=1790715855000&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=sports&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "live-tv",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=live-tv&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "live-tv",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=live-tv&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "entertainment",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=entertainment&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "entertainment",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=entertainment&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "kids",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 53,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=kids&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "kids",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=kids&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "southasian",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=southasian&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "southasian",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=southasian&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "movies",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=movies&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "movies",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=movies&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "lifestyle",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=lifestyle&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "lifestyle",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=lifestyle&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "religious",
+      "unit": "seconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=religious&ts_start=1790521642&ts_end=1790716042&lang=ar&pg=tv&page=1&limit=200"
+    },
+    {
+      "kind": "category_events",
+      "userId": "00000000-0000-0000-0000-000000000000",
+      "category": "religious",
+      "unit": "milliseconds",
+      "status": 200,
+      "bytes": 51,
+      "data_len": 0,
+      "top_keys": [
+        "status",
+        "runtime",
+        "total",
+        "data"
+      ],
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/00000000-0000-0000-0000-000000000000?category=religious&ts_start=1790521642000&ts_end=1790716042000&lang=ar&pg=tv&page=1&limit=200"
     }
   ],
   "winners": []
