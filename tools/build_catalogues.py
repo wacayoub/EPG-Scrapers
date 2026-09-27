@@ -162,75 +162,124 @@ build_osn_english()
 choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
 
-# Full-source mode: zero-EPG IDs stay visible and are reported separately.
+# Full-source mode: keep the complete MENA catalogue, including zero-EPG
+# services and entries that upstream has not assigned an xmltv_id yet.
 BEIN_ZERO_EPG_EXCLUDE = set()
+
+def _bein_norm_name(value: str) -> str:
+    return "".join(ch.lower() for ch in (value or "") if ch.isalnum())
+
+def _bein_generated_id(site: str, sid: str, name: str) -> str:
+    # Prefer a semantic ID so the same MENA service discovered through the
+    # sports API and the legacy beIN guide converges to one stable ID.
+    slug = _bein_norm_name(name)
+    if slug and not slug.isdigit():
+        return f"beINMENA.{slug}"
+    safe_sid = "".join(ch for ch in sid if ch.isalnum())
+    prefix = "sports" if site == "beinsports.com" else "guide"
+    return f"beINMENA.{prefix}.{safe_sid}"
 
 def build_bein():
     rows=[]
-    mena_en_by_site={}
-    mena_en=ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml"
-    if mena_en.exists():
+    source_counts={"beinsports_mena_ar":0,"bein_ar":0}
+    generated_ids=set()
+
+    # English mirrors are used only to recover missing canonical XMLTV IDs.
+    fallback_by_site={}
+    for p in [
+        ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml",
+        ROOT/"bein.com"/"bein.com_en.channels.xml",
+    ]:
+        if not p.exists():
+            continue
         try:
-            rr=ET.parse(mena_en).getroot()
-            for ch in rr.findall("channel"):
-                sid=(ch.get("site_id") or "").strip()
-                cid=(ch.get("xmltv_id") or "").strip()
-                if sid and cid:
-                    mena_en_by_site[sid]=cid
+            rr=ET.parse(p).getroot()
         except Exception:
-            pass
-    for site in ["beinsports.com","bein.com"]:
-        base=ROOT/site
-        files=sorted(base.glob("*.channels.xml"))
-        if site=="beinsports.com":
-            files=[p for p in files if "_mena-ar.channels.xml" in p.name.lower()]
-        elif site=="bein.com":
-            files=[p for p in files if p.name.lower().endswith("_ar.channels.xml")]
-        for p in files:
-            try:
-                rr=ET.parse(p).getroot()
-            except Exception:
+            continue
+        for ch in rr.findall("channel"):
+            sid=(ch.get("site_id") or "").strip()
+            cid=(ch.get("xmltv_id") or "").strip()
+            if sid and cid:
+                fallback_by_site[(ch.get("site") or p.parent.name,sid)]=cid
+
+    # First pass: collect every canonical name->ID mapping already known in
+    # either Arabic MENA catalogue. This lets missing IDs reuse a canonical ID
+    # instead of creating a duplicate service.
+    known_name_to_id={}
+    selected_files=[
+        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-ar.channels.xml",0),
+        ("bein.com",ROOT/"bein.com"/"bein.com_ar.channels.xml",1),
+    ]
+    parsed=[]
+    for site,p,rank in selected_files:
+        if not p.exists():
+            continue
+        try:
+            rr=ET.parse(p).getroot()
+        except Exception:
+            continue
+        source_counts["beinsports_mena_ar" if site=="beinsports.com" else "bein_ar"]=len(rr.findall("channel"))
+        for ch in rr.findall("channel"):
+            sid=(ch.get("site_id") or "").strip()
+            if not sid:
                 continue
-            for ch in rr.findall("channel"):
-                cid=(ch.get("xmltv_id") or "").strip()
-                sid=(ch.get("site_id") or "").strip()
-                if site=="beinsports.com" and sid and not cid:
-                    cid=mena_en_by_site.get(sid,"")
-                    if cid:
-                        ch=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
-                        ch.set("xmltv_id",cid)
-                if not cid or not sid:
-                    continue
-                # Keep every valid ID published by the selected beIN source
-                # catalogues. EPG health and user selection are handled later.
-                if cid in BEIN_ZERO_EPG_EXCLUDE:
-                    continue
-                lang=(ch.get("lang") or "").lower()
-                name=p.name.lower()
-                # MENA sports API is preferred because its parser includes full
-                # event descriptions. The legacy bein.com HTML adapter is kept
-                # for entertainment and any IDs missing from the sports API.
-                if site=="beinsports.com" and "mena-ar" in name:
-                    rank=0
-                elif site=="bein.com" and lang.startswith("ar"):
-                    rank=1
-                else:
-                    rank=2
-                rows.append((cid,rank,name,ch))
+            cid=(ch.get("xmltv_id") or "").strip()
+            name=(ch.text or "").strip()
+            if not cid:
+                cid=fallback_by_site.get((site,sid),"")
+            if cid and name:
+                known_name_to_id.setdefault(_bein_norm_name(name),cid)
+            parsed.append((site,rank,p.name,ch,sid,cid,name))
+
+    for site,rank,filename,ch,sid,cid,name in parsed:
+        node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
+        if not cid:
+            cid=known_name_to_id.get(_bein_norm_name(name),"")
+        if not cid:
+            cid=_bein_generated_id(site,sid,name)
+            generated_ids.add(cid)
+        node.set("xmltv_id",cid)
+        if cid in BEIN_ZERO_EPG_EXCLUDE:
+            continue
+        # beinsports.com MENA is preferred for sports because it exposes
+        # descriptions and explicit MENA channel IDs. bein.com Arabic retains
+        # entertainment, kids, factual and any extra sports services.
+        rows.append((cid,rank,filename,node))
+
     best={}
     for cid,rank,name,ch in rows:
         key=(rank,name)
         if cid not in best or key < best[cid][0]:
             best[cid]=(key,ch)
+
     root=ET.Element("channels")
     for cid in sorted(best,key=str.casefold):
         root.append(ET.fromstring(ET.tostring(best[cid][1],encoding="utf-8")))
     ET.indent(root,space="  ")
     path=OUT/"bein.channels.xml"
     path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
-    print(f"bein: {len(root)} channels (MENA sports API preferred for descriptions)")
+
+    # Small machine-readable audit used by the one-hour MENA test workflow.
+    import json
+    audit={
+        "scope":"MENA only",
+        "source_entries":source_counts,
+        "catalogue_ids":len(root),
+        "generated_local_ids":len(generated_ids),
+        "generated_ids":sorted(generated_ids,key=str.casefold),
+        "zero_epg_policy":"retain",
+    }
+    (OUT/"bein-catalogue.json").write_text(
+        json.dumps(audit,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+    )
+    print(
+        f"bein MENA: {len(root)} IDs "
+        f"(sports source={source_counts['beinsports_mena_ar']}, "
+        f"bein Arabic source={source_counts['bein_ar']}, "
+        f"generated={len(generated_ids)})"
+    )
     if len(root)==0:
-        raise SystemExit("bein: empty catalogue")
+        raise SystemExit("bein MENA: empty catalogue")
 
 build_bein()
 
