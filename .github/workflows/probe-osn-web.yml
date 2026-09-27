@@ -40,7 +40,7 @@ jobs:
             return JSON.parse(d.update(x.encrypted,'base64','utf8')+d.final('utf8'));
           }
           const platforms=[
-            '', 'Android','android','Web','web','Website','WebSite','WebApp','Browser',
+            '', 'Android','Other','other','android','Web','web','Website','WebSite','WebApp','Browser',
             'iOS','IOS','SmartTV','TV','STB','SetTopBox','Box','OSNBox','OSNBOX',
             'Satellite','DTH','IPTV','OTT','Kaon','Humax','Receiver','Portal'
           ];
