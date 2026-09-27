@@ -1,0 +1,203 @@
+name: Probe GOBX mobile public EPG endpoints
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-gobx-mobile.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gobx-mobile-endpoint-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download latest public myGOBX package
+        shell: bash
+        run: |
+          set -e
+          mkdir -p /tmp/mygobx reports
+          curl -fL --retry 2 --connect-timeout 20 --max-time 180 \
+            'https://d.apkpure.net/b/XAPK/net.mbc.gobx?version=latest' \
+            -o /tmp/mygobx/mygobx.xapk
+          unzip -q /tmp/mygobx/mygobx.xapk -d /tmp/mygobx/xapk
+          find /tmp/mygobx/xapk -maxdepth 2 -type f -printf '%p %s bytes\n' | sort | head -100
+
+      - name: Extract public endpoint candidates from APK strings
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, re, subprocess
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          root=Path('/tmp/mygobx/xapk')
+          apks=sorted(root.rglob('*.apk'))
+          url_re=re.compile(r'https?://[^\s"\'<>\\]{5,500}', re.I)
+          host_hint=re.compile(r'(gobx|gobox|mbc|shahid|epg|guide|schedule|program|channel|content|api)', re.I)
+          sensitive=re.compile(r'(token=|authorization|bearer|password|secret|license|widevine|drm|payment)', re.I)
+
+          urls=[]
+          lines=[]
+          for apk in apks:
+              p=subprocess.run(['strings','-a','-n','5',str(apk)],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True,errors='ignore')
+              for line in p.stdout.splitlines():
+                  if host_hint.search(line) and not sensitive.search(line):
+                      line=line.strip()
+                      if len(line)<=600:
+                          lines.append(line)
+                  for u in url_re.findall(line):
+                      u=u.rstrip(').,;]')
+                      if host_hint.search(u) and not sensitive.search(u):
+                          urls.append(u)
+
+          def uniq(seq):
+              seen=set(); out=[]
+              for x in seq:
+                  if x not in seen:
+                      seen.add(x); out.append(x)
+              return out
+
+          urls=uniq(urls)[:500]
+          lines=uniq(lines)[:1000]
+          hosts=[]
+          for u in urls:
+              try:
+                  h=urlparse(u).hostname
+                  if h: hosts.append(h)
+              except Exception:
+                  pass
+          hosts=uniq(hosts)
+
+          # Keep only metadata useful for public endpoint discovery. Do not retain
+          # user/account/payment/auth strings or the APK itself.
+          report={
+              'apk_count':len(apks),
+              'candidate_hosts':hosts,
+              'candidate_urls':urls,
+              'keyword_strings':lines,
+              'policy':'static analysis of public app package; no credentials/auth/DRM data retained'
+          }
+          Path('reports/gobx-mobile-endpoints.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'apk_count':len(apks),'hosts':hosts,'url_count':len(urls),'keyword_count':len(lines)},ensure_ascii=False,indent=2))
+          PY
+
+      - name: Build low-rate public endpoint probe list
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, re
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          data=json.loads(Path('reports/gobx-mobile-endpoints.json').read_text())
+          hints=re.compile(r'(epg|guide|schedule|program|programme|channel|listing|whats.?on)',re.I)
+          urls=[]
+          for u in data.get('candidate_urls',[]):
+              try:
+                  p=urlparse(u)
+              except Exception:
+                  continue
+              if p.scheme not in ('http','https') or not p.hostname:
+                  continue
+              if hints.search(u) and not any(x in u.lower() for x in ('login','signin','oauth','token','account','payment','license','drm','widevine')):
+                  urls.append(u)
+          # One request maximum per unique public metadata candidate, cap at 15.
+          out=[]
+          seen=set()
+          for u in urls:
+              if u in seen: continue
+              seen.add(u); out.append(u)
+              if len(out)>=15: break
+          Path('/tmp/mygobx/public_candidates.json').write_text(json.dumps(out))
+          print(json.dumps(out,indent=2))
+          PY
+
+      - name: Probe only unauthenticated public metadata candidates
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, requests, re
+          from pathlib import Path
+
+          urls=json.loads(Path('/tmp/mygobx/public_candidates.json').read_text())
+          s=requests.Session()
+          s.headers.update({
+              'User-Agent':'Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36',
+              'Accept':'application/json,text/plain,*/*',
+              'Accept-Language':'ar,en;q=0.8',
+          })
+          rows=[]
+          for u in urls:
+              try:
+                  r=s.get(u,timeout=15,allow_redirects=True)
+                  sample=re.sub(r'\s+',' ',r.text[:500]).strip() if 'text' in r.headers.get('content-type','') or 'json' in r.headers.get('content-type','') else ''
+                  rows.append({
+                      'url':u,'status':r.status_code,'final_url':r.url,
+                      'content_type':r.headers.get('content-type',''),
+                      'bytes':len(r.content),'sample':sample
+                  })
+                  # Do not retry or add credentials when auth/access control is returned.
+              except Exception as e:
+                  rows.append({'url':u,'status':'ERROR','error':str(e)[:250]})
+          Path('reports/gobx-mobile-public-probe.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(rows,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Test alternate official web hostnames
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, requests
+          from pathlib import Path
+
+          urls=[
+            'https://www.gobx.com/en/whats-on',
+            'https://gobx.com/en/whats-on',
+            'https://www.gobox.com/en/whats-on',
+            'https://gobox.com/en/whats-on',
+            'https://www.gobx.com/ar/whats-on',
+          ]
+          uas={
+            'desktop':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
+            'android':'Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36',
+          }
+          rows=[]
+          for u in urls:
+              for mode,ua in uas.items():
+                  try:
+                      r=requests.get(u,headers={'User-Agent':ua,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'ar,en;q=0.8'},timeout=15,allow_redirects=True)
+                      rows.append({'url':u,'ua':mode,'status':r.status_code,'final_url':r.url,'bytes':len(r.content),'server':r.headers.get('server','')})
+                  except Exception as e:
+                      rows.append({'url':u,'ua':mode,'status':'ERROR','error':str(e)[:250]})
+          Path('reports/gobx-alt-hosts.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(rows,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Publish sanitized diagnostic reports
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/gobx-mobile-endpoints.json reports/gobx-mobile-public-probe.json reports/gobx-alt-hosts.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No report changes"
+          else
+            git commit -m "diagnostic: probe GOBX mobile public EPG endpoints"
+            git push
+          fi
