@@ -28,8 +28,8 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
 AR = re.compile(r"[\u0600-\u06FF]")
-DATE_TOKEN_RE = re.compile(r"(?<!\\d)(?:\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})(?!\\d)")
-TIME_TOKEN_RE = re.compile(r"(?<!\\d)@?\\d{1,2}:\\d{2}(?!\\d)")
+DATE_TOKEN_RE = re.compile(r"(?<!\d)(?:\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{4}[/-]\d{1,2}[/-]\d{1,2})(?!\d)")
+TIME_TOKEN_RE = re.compile(r"(?<!\d)@?\d{1,2}:\d{2}(?!\d)")
 TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
 
 BEIN_SPORTS_NEWS_IDS = {
