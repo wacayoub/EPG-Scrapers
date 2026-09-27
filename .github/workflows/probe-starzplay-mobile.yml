@@ -88,8 +88,19 @@ jobs:
           hint=re.compile(r'(starz|api|epg|guide|schedule|program|programme|channel|live|content|graphql)',re.I)
           sensitive=re.compile(r'(token=|authorization|bearer|password|secret|license|widevine|drm|payment)',re.I)
           urls=[]; lines=[]
-          for apk in apks:
-              p=subprocess.run(['strings','-a','-n','5',str(apk)],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True,errors='ignore')
+          scan_files=[]
+          unpack_root=Path('/tmp/apk-deep')
+          unpack_root.mkdir(parents=True,exist_ok=True)
+          for idx,apk in enumerate(apks):
+              dest=unpack_root/str(idx)
+              dest.mkdir(parents=True,exist_ok=True)
+              subprocess.run(['unzip','-q','-o',str(apk),'-d',str(dest)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+              scan_files.extend([p for p in dest.rglob('*') if p.is_file() and (p.suffix in {'.dex','.xml','.json','.arsc','.properties','.txt'} or p.name in {'AndroidManifest.xml'})])
+          scan_files.extend(apks)
+          route_re=re.compile(r'(?:"|\'|^)(/[A-Za-z0-9_./?={}&%:+-]{3,250})(?:"|\'|$)')
+          routes=[]
+          for scan in scan_files:
+              p=subprocess.run(['strings','-a','-n','4',str(scan)],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True,errors='ignore')
               for line in p.stdout.splitlines():
                   if hint.search(line) and not sensitive.search(line):
                       s=line.strip()
@@ -97,22 +108,25 @@ jobs:
                   for u in url_re.findall(line):
                       u=u.rstrip(').,;]')
                       if hint.search(u) and not sensitive.search(u): urls.append(u)
+                  for route in route_re.findall(line):
+                      if hint.search(route) and not sensitive.search(route) and len(route) < 260:
+                          routes.append(route)
           def uniq(xs):
               out=[];seen=set()
               for x in xs:
                   if x not in seen:
                       seen.add(x);out.append(x)
               return out
-          urls=uniq(urls)[:700];lines=uniq(lines)[:1400]
+          urls=uniq(urls)[:700];lines=uniq(lines)[:1400];routes=uniq(routes)[:1200]
           hosts=[]
           for u in urls:
               try:
                   h=urlparse(u).hostname
                   if h: hosts.append(h)
               except Exception: pass
-          report={'apk_count':len(apks),'candidate_hosts':uniq(hosts),'candidate_urls':urls,'keyword_strings':lines,'policy':'public app static analysis only; credentials/auth/DRM data excluded'}
+          report={'apk_count':len(apks),'candidate_hosts':uniq(hosts),'candidate_urls':urls,'candidate_routes':routes,'keyword_strings':lines,'policy':'public app static analysis only; credentials/auth/DRM data excluded'}
           Path('reports/starzplay-mobile-endpoints.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          print(json.dumps({'apk_count':len(apks),'hosts':report['candidate_hosts'],'url_count':len(urls),'keyword_count':len(lines)},ensure_ascii=False,indent=2))
+          print(json.dumps({'apk_count':len(apks),'hosts':report['candidate_hosts'],'url_count':len(urls),'route_count':len(routes),'keyword_count':len(lines)},ensure_ascii=False,indent=2))
           PY
 
       - name: Probe only unauthenticated public metadata candidates
