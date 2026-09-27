@@ -2,6 +2,11 @@ name: EPG 48h - Rotana
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/rotana_source.py"
+      - ".github/workflows/refresh-rotana.yml"
 
 permissions:
   contents: write
