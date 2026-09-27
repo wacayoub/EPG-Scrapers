@@ -181,7 +181,7 @@ jobs:
               for unit in ("seconds",):
                 ts0=start_s if unit=="seconds" else start_s*1000
                 ts1=end_s if unit=="seconds" else end_s*1000
-                params={"category":slug,"ts_start":ts0,"ts_end":ts1,"lang":"ar","pg":"tv","page":1,"limit":200}
+                params={"category":slug,"ts_start":ts0,"ts_end":ts1,"lang":"ar","pg":"18","page":1,"limit":200}
                 url=f"{base}/epg/category/events/{urllib.parse.quote(uid,safe='')}?"+urllib.parse.urlencode(params)
                 st,ct,body,obj=get(url)
                 data_len=0
