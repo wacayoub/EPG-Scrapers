@@ -75,19 +75,47 @@ def translate_ar(text: str, cache: dict[str, str]) -> str:
         return raw
     if raw in cache:
         return cache[raw]
+
+    headers = {"User-Agent": "Mozilla/5.0", "Accept-Language": "en-US,en;q=0.9"}
+    # Primary translator: Google public endpoint. Retry once because GitHub
+    # runners occasionally get a transient empty/429 response.
+    for _ in range(2):
+        try:
+            r = requests.get(
+                "https://translate.googleapis.com/translate_a/single",
+                headers=headers,
+                params={"client": "gtx", "sl": "en", "tl": "ar", "dt": "t", "q": raw},
+                timeout=15,
+            )
+            r.raise_for_status()
+            data = r.json()
+            out = "".join(x[0] for x in data[0] if x and x[0]).strip()
+            if out and is_ar(out):
+                cache[raw] = out
+                return out
+        except Exception:
+            pass
+
+    # Independent fallback translator. This is only used for the explicit
+    # NatGeo Abu Dhabi Arabic-only exception, so request volume stays small.
     try:
         r = requests.get(
-            "https://translate.googleapis.com/translate_a/single",
-            params={"client": "gtx", "sl": "auto", "tl": "ar", "dt": "t", "q": raw},
-            timeout=12,
+            "https://api.mymemory.translated.net/get",
+            headers=headers,
+            params={"q": raw, "langpair": "en|ar"},
+            timeout=15,
         )
+        r.raise_for_status()
         data = r.json()
-        out = "".join(x[0] for x in data[0] if x and x[0]).strip()
+        out = str(((data.get("responseData") or {}).get("translatedText")) or "").strip()
         if out and is_ar(out):
             cache[raw] = out
             return out
     except Exception:
         pass
+
+    # Never replace a real programme title with the channel name. Keep the
+    # original text if both translators fail; the audit will expose it.
     cache[raw] = raw
     return raw
 
@@ -183,6 +211,9 @@ def main() -> int:
         "arabic_display_name_ids": sorted(arabic_display_name_ids),
         "force_arabic_content_ids": sorted(force_arabic_content_ids),
         "translations_cached": 0,
+        "forced_arabic_source_titles": [],
+        "forced_arabic_translation_failures": [],
+        "forced_arabic_samples": [],
         "profiles": {},
         "samples": {},
     }
@@ -211,29 +242,42 @@ def main() -> int:
         else:
             stats["arabic_native_programmes"] += 1
             if cid in force_arabic_content_ids:
-                fallback_by_tag = {
-                    "title": "ناشيونال جيوغرافيك أبوظبي",
-                    "sub-title": "حلقة",
-                    "desc": "برنامج وثائقي على ناشيونال جيوغرافيك أبوظبي.",
-                }
+                source_title = text_of(node, "title")
+                if source_title and source_title not in stats["forced_arabic_source_titles"]:
+                    stats["forced_arabic_source_titles"].append(source_title)
                 for tag in ("title", "sub-title", "desc"):
                     for child in node.findall(tag):
                         raw = (child.text or "").strip()
                         if raw and not is_ar(raw):
                             translated = translate_ar(raw, translation_cache)
-                            child.text = translated if is_ar(translated) else fallback_by_tag[tag]
-                if not text_of(node, "title") or not is_ar(text_of(node, "title")):
-                    for child in list(node.findall("title")):
-                        node.remove(child)
+                            if is_ar(translated):
+                                child.text = translated
+                            elif tag == "title":
+                                # Preserve the real programme title rather than
+                                # corrupting the guide with a repeated channel name.
+                                child.text = raw
+                                if raw not in stats["forced_arabic_translation_failures"]:
+                                    stats["forced_arabic_translation_failures"].append(raw)
+                            elif tag == "desc":
+                                child.text = "برنامج وثائقي على ناشيونال جيوغرافيك أبوظبي."
+                            else:
+                                child.text = raw
+                if not text_of(node, "title"):
                     title = ET.Element("title", {"lang": "ar"})
-                    title.text = fallback_by_tag["title"]
+                    title.text = "برنامج وثائقي"
                     node.insert(0, title)
                 if not text_of(node, "desc") or not is_ar(text_of(node, "desc")):
                     for child in list(node.findall("desc")):
                         node.remove(child)
                     desc = ET.Element("desc", {"lang": "ar"})
-                    desc.text = fallback_by_tag["desc"]
+                    desc.text = "برنامج وثائقي على ناشيونال جيوغرافيك أبوظبي."
                     node.append(desc)
+                if len(stats["forced_arabic_samples"]) < 24:
+                    stats["forced_arabic_samples"].append({
+                        "source_title": source_title,
+                        "title": text_of(node, "title"),
+                        "description": text_of(node, "desc")[:240],
+                    })
             ensure_lang(node, "title", "ar")
             ensure_lang(node, "sub-title", "ar")
             ensure_lang(node, "desc", "ar")
