@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-09-27T17:24:00.733736+00:00",
+  "generated_utc": "2026-09-27T18:18:36.515077+00:00",
   "sources": {
     "starzplay": {
       "candidate": "output/final/starzplay.xml.gz",
       "published": true,
       "candidate_stats": {
+        "channels": 112,
+        "active_channels": 112,
+        "zero_epg_channels": 0,
+        "programmes": 7901,
+        "future_channels": 112,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 70.17318040250001,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
         "channels": 109,
         "active_channels": 109,
         "zero_epg_channels": 0,
         "programmes": 7617,
         "future_channels": 109,
         "future_ratio": 1.0,
-        "future_horizon_hours": 71.08311793611111,
-        "invalid_rows": 0
-      },
-      "previous_stats": {
-        "channels": 109,
-        "active_channels": 13,
-        "zero_epg_channels": 96,
-        "programmes": 7560,
-        "future_channels": 13,
-        "future_ratio": 1.0,
-        "future_horizon_hours": 71.08307540638889,
+        "future_horizon_hours": 70.17314677888889,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
