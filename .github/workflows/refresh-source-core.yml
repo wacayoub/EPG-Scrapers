@@ -65,6 +65,22 @@ jobs:
           path: vendor/iptv-org-epg
           fetch-depth: 1
 
+      - name: Pin ElCinema guide timezone
+        if: steps.gate.outputs.run == 'true' && inputs.source == 'elcinema'
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js")
+          text = p.read_text(encoding="utf-8")
+          old = "return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', dayjs.tz.guess())"
+          new = "return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', 'Africa/Cairo')"
+          if old not in text:
+              raise SystemExit("ElCinema timezone patch target not found; upstream adapter changed")
+          p.write_text(text.replace(old, new, 1), encoding="utf-8")
+          print("ElCinema guide timezone pinned to Africa/Cairo")
+          PY
+
       - name: Set up Python
         if: steps.gate.outputs.run == 'true'
         uses: actions/setup-python@v5
