@@ -1,13 +1,20 @@
 {
   "label": "rotana",
-  "channels": 7,
-  "input_channels": 7,
-  "coverage_pct": 100.0,
-  "programmes": 258,
+  "channels": 9,
+  "active_channels": 7,
+  "zero_epg_channels": 2,
+  "zero_epg_ids": [
+    "AlResalah.sa@SD",
+    "RotanaClip.sa@SD"
+  ],
+  "input_channels": 9,
+  "coverage_pct": 77.8,
+  "programmes": 261,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
-  "size_bytes": 3226,
-  "sha256": "bc7d518058395f2681acc0606c79e8a5cab33c3d4220585b39bcec6079a67483",
-  "generated_utc": "2026-09-27T00:39:55.633706+00:00"
+  "timezone_output": "UTC +0000",
+  "size_bytes": 3265,
+  "sha256": "9c8b3f9a5b02dd7c688d8a8ee0cbb517b8bdba581dec37b0d7ca53139361b541",
+  "generated_utc": "2026-09-27T03:16:23.344437+00:00"
 }

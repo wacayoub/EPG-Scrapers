@@ -1,13 +1,17 @@
 {
   "label": "sport24",
   "channels": 9,
+  "active_channels": 9,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
   "input_channels": 9,
   "coverage_pct": 100.0,
-  "programmes": 194,
+  "programmes": 188,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
-  "size_bytes": 5132,
-  "sha256": "ad3a14ca287e5072d72244c658d24f7d00752c11ccc5cd85d31bb81a24cc8216",
-  "generated_utc": "2026-09-27T00:39:55.693880+00:00"
+  "timezone_output": "UTC +0000",
+  "size_bytes": 5154,
+  "sha256": "748c38b938f8bb2924240f0d50bb5ff4962a1ae1368fd91731f8732859ce785c",
+  "generated_utc": "2026-09-27T03:16:23.416085+00:00"
 }

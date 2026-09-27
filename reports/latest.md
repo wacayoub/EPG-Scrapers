@@ -1,8 +1,8 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-09-27T00:40:45.184085+00:00
+Generated: 2026-09-27T03:17:36.320104+00:00
 
-Total monitored IDs: **3072**
+Total monitored IDs: **3928**
 
 | Status | IDs |
 |---|---:|
@@ -12,23 +12,26 @@ Total monitored IDs: **3072**
 | DUPLICATE | 230 |
 | DUPLICATE_WINNER | 409 |
 | INVALID_SOURCE | 335 |
-| NO_EPG | 149 |
-| OK | 442 |
+| NO_EPG | 231 |
+| OK | 1216 |
 | QUARANTINE | 933 |
 
 ## Direct feeds
 
 | Feed | IDs | Programmes | Dup IDs | Dup programmes | Invalid times | Zero EPG |
 |---|---:|---:|---:|---:|---:|---:|
-| bein.xml.gz | 27 | 803 | 0 | 1 | 0 | 0 |
+| bein.xml.gz | 82 | 1601 | 0 | 1 | 0 | 25 |
 | chada.xml.gz | 1 | 60 | 0 | 0 | 0 | 0 |
-| elcinema.xml.gz | 84 | 3214 | 0 | 0 | 0 | 0 |
-| mena.xml.gz | 198 | 11632 | 0 | 0 | 0 | 0 |
+| dubaiplus.xml.gz | 9 | 463 | 0 | 0 | 0 | 0 |
+| elcinema.xml.gz | 103 | 3406 | 0 | 0 | 0 | 16 |
+| mena.xml.gz | 444 | 23636 | 0 | 0 | 0 | 37 |
 | morocco.xml.gz | 12 | 1964 | 0 | 0 | 0 | 0 |
-| osn.xml.gz | 78 | 5606 | 0 | 0 | 0 | 0 |
+| osn.xml.gz | 80 | 5776 | 0 | 0 | 0 | 2 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 149 |
-| rotana.xml.gz | 7 | 258 | 0 | 0 | 0 | 0 |
-| shahid.xml.gz | 22 | 1405 | 0 | 0 | 0 | 0 |
-| sport24.xml.gz | 9 | 194 | 0 | 0 | 0 | 0 |
+| rotana.xml.gz | 9 | 261 | 0 | 0 | 0 | 2 |
+| shahid.xml.gz | 71 | 4321 | 0 | 0 | 0 | 0 |
+| sport24.xml.gz | 9 | 188 | 0 | 0 | 0 | 0 |
+| stctv.xml.gz | 144 | 8824 | 0 | 0 | 0 | 0 |
+| vuplus-test.xml.gz | 330 | 19769 | 0 | 0 | 0 | 0 |
 
 Interactive/filterable page: reports/epg-source-id-monitoring.html

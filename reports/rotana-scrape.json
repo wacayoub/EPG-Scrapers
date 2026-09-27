@@ -1,10 +1,15 @@
 {
-  "generated_utc": "2026-09-27T00:39:21.302664+00:00",
+  "generated_utc": "2026-09-27T02:50:59.344619+00:00",
   "source": "https://www.rotana.net/ar/streams",
   "timezone": "Asia/Riyadh",
   "channels_configured": 9,
   "channels_with_epg": 7,
-  "programmes": 385,
+  "zero_epg_ids": [
+    "AlResalah.sa@SD",
+    "RotanaClip.sa@SD"
+  ],
+  "programmes": 388,
+  "timezone_output": "UTC +0000",
   "channels": {
     "RotanaCinemaKSA.sa@SD": {
       "site_id": "431",
@@ -31,7 +36,7 @@
       "site_id": "438",
       "name": "روتانا كلاسيك",
       "http_status": 200,
-      "programmes": 53,
+      "programmes": 54,
       "state": "ok"
     },
     "RotanaClip.sa@SD": {
@@ -59,7 +64,7 @@
       "site_id": "435",
       "name": "روتانا خليجية",
       "http_status": 200,
-      "programmes": 75,
+      "programmes": 77,
       "state": "ok"
     },
     "AlResalah.sa@SD": {

@@ -1,13 +1,17 @@
 {
   "label": "shahid",
-  "channels": 22,
-  "input_channels": 22,
+  "channels": 71,
+  "active_channels": 71,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
+  "input_channels": 71,
   "coverage_pct": 100.0,
-  "programmes": 1405,
+  "programmes": 4321,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
-  "size_bytes": 68287,
-  "sha256": "231e44fa6caa92e8b36001990886022f37efc36a5768bc39b76166de79675e71",
-  "generated_utc": "2026-09-27T00:39:55.564951+00:00"
+  "timezone_output": "UTC +0000",
+  "size_bytes": 171681,
+  "sha256": "be744b88ef1fd179a8b6064b2bf5c758429fbebcc8a0e8edb73fbbbcb6c516e3",
+  "generated_utc": "2026-09-27T03:16:23.246869+00:00"
 }

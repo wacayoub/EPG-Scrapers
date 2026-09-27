@@ -1,13 +1,20 @@
 {
   "label": "osn",
-  "channels": 78,
+  "channels": 80,
+  "active_channels": 78,
+  "zero_epg_channels": 2,
+  "zero_epg_ids": [
+    "OSNPopUp2.ae@SD",
+    "SaudiThaqafiyaTV.sa@SD"
+  ],
   "input_channels": 80,
   "coverage_pct": 97.5,
-  "programmes": 5606,
+  "programmes": 5776,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
-  "size_bytes": 380219,
-  "sha256": "70455e5198d5934f113f1737f0763720b61ae44b8a51a3d4d7316f43ab29e803",
-  "generated_utc": "2026-09-27T00:39:55.186765+00:00"
+  "timezone_output": "UTC +0000",
+  "size_bytes": 383665,
+  "sha256": "8bb48f21988c8cdddf36254a72943618f800f0cd8f891aec0ec7490829b008f9",
+  "generated_utc": "2026-09-27T03:16:22.164873+00:00"
 }
