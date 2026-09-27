@@ -270,6 +270,12 @@ def build_bein():
             continue
         if "afc" in service_key or "afc" in cid.casefold():
             continue
+        # Upstream site_id entertainment#23 currently returns Al Jazeera
+        # English programmes (News Hour, Inside Story, Counting the Cost...)
+        # under the stale beINJUNIOR label. Exclude the wrong service rather
+        # than publishing a confidently wrong EPG.
+        if service_key == "beinjunior":
+            continue
         if cid in BEIN_ZERO_EPG_EXCLUDE:
             continue
 
