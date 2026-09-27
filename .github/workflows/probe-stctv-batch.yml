@@ -88,13 +88,38 @@ jobs:
           print('STC_FAST_48H_OK', 'channels',ch,'programmes',pr,'requests',r.get('requests'),'blocks',r.get('schedule_channel_blocks'))
           PY
 
+      - name: Test STARZPLAY Sports 48h fallback
+        shell: bash
+        run: |
+          set -e
+          python tools/stctv_source.py \
+            --output /tmp/starzplay-fallback.xml \
+            --report reports/starzplay-fallback-test.json \
+            --id-index feeds/mena.txt \
+            --window-hours 48 \
+            --delay 0.1 \
+            --max-channels 0 \
+            --profile starzplay-sports
+          python - <<'PY'
+          import json,xml.etree.ElementTree as ET
+          from pathlib import Path
+          r=json.loads(Path('reports/starzplay-fallback-test.json').read_text())
+          root=ET.parse('/tmp/starzplay-fallback.xml').getroot()
+          ids=[(x.get('id') or '') for x in root.findall('channel')]
+          pr=root.findall('programme')
+          assert len(ids)==3, ids
+          assert len(pr)>=20, len(pr)
+          assert r.get('requests',999)<=6, r.get('requests')
+          print('STARZPLAY_FALLBACK_48H_OK',ids,'programmes',len(pr),'requests',r.get('requests'))
+          PY
+
       - name: Publish
         shell: bash
         run: |
           set -e
           git config user.name "epg-diagnostic-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reports/stctv-batch-probe.json reports/stctv-fast-48h.json
+          git add reports/stctv-batch-probe.json reports/stctv-fast-48h.json reports/starzplay-fallback-test.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "diagnostic: probe STC batch EPG"
           git pull --rebase origin main
