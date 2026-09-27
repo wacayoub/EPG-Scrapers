@@ -21,8 +21,8 @@ PROFILES={
     "osn.xml.gz":{"target_hours":48.0,"min_hours":36.0,"gap_warn":90},
     "shahid.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "rotana.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
-    # Sport24 is event-driven. A short horizon can be perfectly valid.
-    "sport24.xml.gz":{"target_hours":8.0,"min_hours":4.0,"gap_warn":360},
+    # Request/audit 48h for Sport24 too; short event-driven coverage is WARN, never fabricated.
+    "sport24.xml.gz":{"target_hours":48.0,"min_hours":4.0,"gap_warn":360},
 }
 
 def dt(v):
