@@ -2,7 +2,8 @@ name: EPG 48h - Daily sequential sources
 
 on:
   schedule:
-    - cron: "0 5,6 * * *"
+    - cron: "7 6 * * *"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
   push:
     branches: [main]
@@ -21,7 +22,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: morocco
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   bein:
@@ -30,7 +31,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: bein
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   osn:
@@ -39,7 +40,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: osn
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   shahid:
@@ -48,7 +49,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: shahid
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   elcinema:
@@ -57,7 +58,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: elcinema
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   rotana:
@@ -66,7 +67,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: rotana
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   sport24:
@@ -75,7 +76,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: sport24
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   dubaiplus:
@@ -84,7 +85,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: dubaiplus
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   aljazeera:
@@ -93,7 +94,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: aljazeera
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   starzplay:
@@ -102,7 +103,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: starzplay
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
   stctv:
@@ -111,7 +112,7 @@ jobs:
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: stctv
-      scheduled: ${{ github.event_name == 'schedule' }}
+      scheduled: false
     secrets: inherit
 
 
@@ -121,39 +122,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Casablanca 06:00 finalize gate
-        id: gate
-        shell: bash
-        run: |
-          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          hour="$(TZ=Africa/Casablanca date +%H)"
-          if [ "$hour" = "06" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "Skip duplicate UTC finalizer slot; Casablanca hour=$hour"
-          fi
-
       - uses: actions/checkout@v4
-        if: steps.gate.outputs.run == 'true'
         with:
           ref: main
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
-        if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.11"
 
       - name: Build canonical MENA feed
-        if: steps.gate.outputs.run == 'true'
         run: python tools/build_derived_feeds.py
 
       - name: Build final monitoring dashboard
-        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -168,7 +149,6 @@ jobs:
             --reports-dir reports
 
       - name: Publish final merged feed and monitoring
-        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
