@@ -1,0 +1,31 @@
+{
+  "generated_utc": "2026-09-27T08:53:35.065004+00:00",
+  "sources": {
+    "osn": {
+      "candidate": "output/final/osn.xml.gz",
+      "published": true,
+      "candidate_stats": {
+        "channels": 80,
+        "active_channels": 78,
+        "zero_epg_channels": 2,
+        "programmes": 5792,
+        "future_channels": 78,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 63.1069047775,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 80,
+        "active_channels": 78,
+        "zero_epg_channels": 2,
+        "programmes": 5776,
+        "future_channels": 78,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 47.10686001972223,
+        "invalid_rows": 0
+      },
+      "decision": "PUBLISH",
+      "reasons": []
+    }
+  }
+}
