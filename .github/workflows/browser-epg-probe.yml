@@ -31,21 +31,7 @@ jobs:
         run: python tools/browser_epg_probe.py
       - name: Print summaries
         run: |
-          for f in reports/browser-probe/*.json; do
-            echo "### $f"
-            python - "$f" <<'PY'
-import json,sys
-x=json.load(open(sys.argv[1],encoding="utf-8"))
-if isinstance(x,list):
-    for r in x:
-        print({k:r.get(k) for k in ("name","main_status","final_url","title","visible_epg_tokens","contains_schedule_times","error")})
-else:
-    print({k:x.get(k) for k in ("name","main_status","final_url","title","visible_epg_tokens","contains_schedule_times","error")})
-    print("network matches",len(x.get("network",[])))
-    for n in x.get("network",[])[:40]:
-        print(n)
-PY
-          done
+          python -c "import json; x=json.load(open('reports/browser-probe/all.json',encoding='utf-8')); [print({k:r.get(k) for k in ('name','main_status','final_url','title','visible_epg_tokens','contains_schedule_times','error')}) for r in x]"
       - uses: actions/upload-artifact@v4
         with:
           name: browser-epg-probe
