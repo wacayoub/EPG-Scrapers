@@ -45,6 +45,15 @@ ALIASES={
  "al arabiya":"AlArabiya.sa@HD",
 }
 HYBRID_TOKENS=("starzplay sports","mbc 2","mbc max","mbc 4","mbc action","mbc bollywood","mbc variety")
+# Exact overrides only where the shared legacy index is known to be ambiguous.
+CANONICAL_OVERRIDE={
+ "starzplay sports 1":"StarzplaySports1.sa@HD",
+ "starzplay sports 2":"StarzplaySports2.sa@HD",
+ "starzplay sports 3":"StarzplaySports3.sa@HD",
+ "al arabiya":"AlArabiya.sa@HD",
+ "al arabiya business":"AlArabiyaBusiness.ae@SD",
+ "wanasah":"Wanasah.ae@SD",
+}
 
 def norm(s):
     return " ".join(NONWORD.sub(" ",(s or "").casefold()).split())
@@ -62,6 +71,7 @@ def read_index(path):
 
 def xml_id(name,index):
     n=norm(name)
+    if n in CANONICAL_OVERRIDE: return CANONICAL_OVERRIDE[n]
     if n in index: return index[n]
     if n in ALIASES: return ALIASES[n]
     for k,v in ALIASES.items():
