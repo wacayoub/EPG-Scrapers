@@ -146,12 +146,17 @@ jobs:
               return 0,"",str(e).encode(),None
 
           cfg_status,_,_,cfg=get(f"{base}/epg/channel/config")
+
+          # The channel/config endpoint exposes internal channel families
+          # (starzplaysports/starzplay/criclife). The category/events endpoint
+          # expects the public Live TV category slugs instead.
+          cat_status,_,_,cat_cfg=get(f"{base}/epg/category/config/0?lang=ar")
           slugs=[]
-          if isinstance(cfg,dict):
-            for row in cfg.get("data") or []:
+          if isinstance(cat_cfg,dict):
+            for row in cat_cfg.get("data") or []:
               if isinstance(row,dict) and row.get("slug"):
                 slugs.append(str(row["slug"]))
-          slugs=list(dict.fromkeys(slugs))
+          slugs=[s for s in dict.fromkeys(slugs) if s != "radio"]
 
           now=datetime.now(timezone.utc)
           start_s=int((now-timedelta(hours=2)).timestamp())
@@ -198,7 +203,8 @@ jobs:
                 time.sleep(.15)
 
           out={"generated_utc":datetime.now(timezone.utc).isoformat(),"country":"MA",
-               "channel_config_status":cfg_status,"categories":slugs,"rows":rows,"winners":winners}
+               "channel_config_status":cfg_status,"category_config_status":cat_status,
+               "categories":slugs,"rows":rows,"winners":winners}
           Path("reports/starzplay-category-events-probe.json").write_text(
             json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           Path("reports/starzplay-category-events-payloads.json").write_text(
