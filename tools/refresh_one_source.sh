@@ -131,7 +131,28 @@ case "$SOURCE" in
 
   starzplay)
     for lang in ar en; do
-      python tools/starzplay_source.py --lang "$lang" --output "output/source-build/starzplay.$lang.raw.xml" --report "reports/starzplay-$lang-scrape.json" --id-index feeds/mena.txt --hours "$HOURS" || true
+      # Primary: official STARZPLAY public EPG API. It discovers the complete
+      # current TV catalogue dynamically and preserves channels with 0 EPG.
+      python tools/starzplay_api_source.py \
+        --lang "$lang" \
+        --output "output/source-build/starzplay.$lang.raw.xml" \
+        --report "reports/starzplay-$lang-api-scrape.json" \
+        --id-index feeds/mena.txt \
+        --hours "$HOURS" || true
+
+      # Secondary: public rendered web metadata, only if the API produced no
+      # programmes. This is intentionally not allowed to replace a healthy API.
+      if ! has_programmes "output/source-build/starzplay.$lang.raw.xml"; then
+        python tools/starzplay_source.py \
+          --lang "$lang" \
+          --output "output/source-build/starzplay.$lang.web.xml" \
+          --report "reports/starzplay-$lang-scrape.json" \
+          --id-index feeds/mena.txt \
+          --hours "$HOURS" || true
+        if has_programmes "output/source-build/starzplay.$lang.web.xml"; then
+          mv "output/source-build/starzplay.$lang.web.xml" "output/source-build/starzplay.$lang.raw.xml"
+        fi
+      fi
       [ -s "output/source-build/starzplay.$lang.raw.xml" ] || empty_xml "output/source-build/starzplay.$lang.raw.xml"
     done
     if has_programmes output/source-build/starzplay.ar.raw.xml; then
