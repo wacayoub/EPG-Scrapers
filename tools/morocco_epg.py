@@ -176,6 +176,45 @@ def _snrt_desc_from_row(cid,row,title,time_text,original_title=""):
    return desc
  return _snrt_fallback_desc(cid,title)
 
+def _snrt_detail_desc(http,href,title=""):
+ href=clean(href)
+ if not href or href.startswith("#") or "javascript:" in href.casefold() or "jascript:" in href.casefold():
+  return ""
+ url=href if href.startswith("http") else "https://www.snrt.ma/"+href.lstrip("/")
+ try:
+  soup=BeautifulSoup(http.get(url,headers={"Referer":"https://www.snrt.ma/ar/"}).text,"lxml")
+ except Exception:
+  return ""
+ candidates=[]
+ for attrs in ({"name":"description"},{"property":"og:description"},{"name":"twitter:description"}):
+  el=soup.find("meta",attrs=attrs)
+  if el:
+   txt=clean(el.get("content"))
+   if txt:candidates.append(txt)
+ # The current SNRT detail template also exposes the synopsis in this block.
+ for el in soup.select(".carousel-program-info-content p, .carousel-program-info p, .field--name-body p"):
+  txt=clean(el.get_text(" ",strip=True))
+  if txt:candidates.append(txt)
+ nt=norm(title)
+ for desc in candidates:
+  nd=norm(desc)
+  if not desc or len(desc)<20 or nd==nt:
+   continue
+  # Reject generic site metadata/navigation if SNRT ever changes templates.
+  if "الشركة الوطنية للإذاعة والتلفزة" in desc and len(desc)<80:
+   continue
+  return desc
+ return ""
+
+def _snrt_generic_desc(desc,title=""):
+ d=clean(desc);n=norm(d);t=norm(title)
+ return (
+  not d or n==t or len(d)<35
+  or d.startswith("برنامج «")
+  or d.startswith("نشرة إخبارية على ")
+  or d.startswith("نشرة الطقس على ")
+ )
+
 def _snrt_visible_descs(soup):
  # Build a date-agnostic lookup from the actual visible SNRT sequence.
  # Some channel pages emit "07H00 Title" in one text node, while others emit
@@ -644,6 +683,8 @@ def scrape_snrt(days):
  def one(cid,url):
   h=Http();r=h.get(url);soup=BeautifulSoup(r.text,"lxml");structured=[]
   visible=_snrt_visible_descs(soup);visible_used=defaultdict(int);visible_matches=0
+  detail_cache={};detail_matches=0
+  now=datetime.now(TZ);detail_from=now-timedelta(hours=12);detail_until=now+timedelta(days=min(max(days,1),3))
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
    dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8]
    tt=row.find("div",class_="grille-time")
@@ -654,6 +695,18 @@ def scrape_snrt(days):
    h2=row.find("h2",class_="program-title-sm")
    original_title=clean(h2.get_text(" ",strip=True)) if h2 else "برنامج"
    desc=_snrt_desc_from_row(cid,row,original_title,time_text,original_title)
+   # Most current SNRT grids expose only time/title (or a genre badge). The
+   # full official synopsis is on the linked programme page. Fetch it only for
+   # the 48-72h working window and only when the row itself has no rich synopsis.
+   if detail_from<=start<detail_until and _snrt_generic_desc(desc,original_title):
+    a=h2.find_parent("a") if h2 else None
+    href=clean(a.get("href")) if a else ""
+    if href and "javascript:" not in href.casefold() and "jascript:" not in href.casefold():
+     if href not in detail_cache:
+      detail_cache[href]=_snrt_detail_desc(h,href,original_title)
+     rich=clean(detail_cache.get(href))
+     if rich and not _snrt_generic_desc(rich,original_title):
+      desc=rich;detail_matches+=1
    tm=re.search(r"([0-2]?\d)\s*[Hh:]\s*([0-5]\d)",time_text)
    if tm:
     key=("%02d:%02d"%(int(tm.group(1)),int(tm.group(2))),norm(original_title))
@@ -688,7 +741,7 @@ def scrape_snrt(days):
   rows=sorted(merged.values(),key=lambda e:e.start)
   infer(rows)
   official=sum(1 for e in rows if score(e)[0])
-  log("SNRT %s structured=%d flat=%d merged=%d official_desc=%d visible_matches=%d visible_keys=%d"%(cid,len(structured),len(flat),len(rows),official,visible_matches,len(visible)))
+  log("SNRT %s structured=%d flat=%d merged=%d official_desc=%d detail_matches=%d detail_pages=%d visible_matches=%d visible_keys=%d"%(cid,len(structured),len(flat),len(rows),official,detail_matches,len(detail_cache),visible_matches,len(visible)))
   return rows
 
  out=[]
