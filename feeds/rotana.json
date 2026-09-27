@@ -1,21 +1,17 @@
 {
   "label": "rotana",
   "channels": 9,
-  "active_channels": 6,
-  "zero_epg_channels": 3,
-  "zero_epg_ids": [
-    "RotanaCinemaEgypt.eg@SD",
-    "RotanaCinemaKSA.sa@SD",
-    "RotanaComedy.sa@SD"
-  ],
+  "active_channels": 9,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
   "input_channels": 9,
-  "coverage_pct": 66.7,
-  "programmes": 310,
+  "coverage_pct": 100.0,
+  "programmes": 392,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 3715,
-  "sha256": "1203917d8fc90d6a50ba933cab35b620394b4329bf10d9121bc5c1fc2ceb32f0",
-  "generated_utc": "2026-09-27T23:27:03.759888+00:00"
+  "size_bytes": 4699,
+  "sha256": "47a9b9d3c308e7ba556876f6f5f2e5d07fc69a0a245748a7d3fae132dd7a6dd6",
+  "generated_utc": "2026-09-27T23:28:21.352532+00:00"
 }

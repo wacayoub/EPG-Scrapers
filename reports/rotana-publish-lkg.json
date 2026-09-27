@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-09-27T23:27:03.856945+00:00",
+  "generated_utc": "2026-09-27T23:28:21.442164+00:00",
   "sources": {
     "rotana": {
       "candidate": "output/final/rotana.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 9,
+        "active_channels": 9,
+        "zero_epg_channels": 0,
+        "programmes": 392,
+        "future_channels": 8,
+        "future_ratio": 0.8888888888888888,
+        "future_horizon_hours": 49.52737654222222,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 9,
         "active_channels": 6,
         "zero_epg_channels": 3,
         "programmes": 310,
         "future_channels": 5,
         "future_ratio": 0.8333333333333334,
-        "future_horizon_hours": 48.63226133055556,
-        "invalid_rows": 0
-      },
-      "previous_stats": {
-        "channels": 9,
-        "active_channels": 7,
-        "zero_epg_channels": 2,
-        "programmes": 265,
-        "future_channels": 7,
-        "future_ratio": 1.0,
-        "future_horizon_hours": 35.548925965555554,
+        "future_horizon_hours": 48.610707581388894,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",

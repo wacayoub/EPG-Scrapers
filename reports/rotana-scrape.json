@@ -1,23 +1,19 @@
 {
-  "generated_utc": "2026-09-27T23:27:03.631083+00:00",
+  "generated_utc": "2026-09-27T23:28:21.232908+00:00",
   "source": "https://www.rotana.net/ar/streams",
   "timezone": "UTC (Rotana streams page clock)",
   "channels_configured": 9,
-  "channels_with_epg": 6,
-  "zero_epg_ids": [
-    "RotanaCinemaEgypt.eg@SD",
-    "RotanaCinemaKSA.sa@SD",
-    "RotanaComedy.sa@SD"
-  ],
-  "programmes": 310,
+  "channels_with_epg": 9,
+  "zero_epg_ids": [],
+  "programmes": 392,
   "timezone_output": "UTC +0000",
   "channels": {
     "RotanaCinemaKSA.sa@SD": {
       "site_id": "431",
       "name": "روتانا سينما السعودية",
-      "programmes": 0,
-      "state": "error",
-      "error": "Rotana HTTP 200, invalid body size=47792"
+      "http_status": 200,
+      "programmes": 28,
+      "state": "ok"
     },
     "LBC.sa@SD": {
       "site_id": "434",
@@ -29,9 +25,9 @@
     "RotanaCinemaEgypt.eg@SD": {
       "site_id": "439",
       "name": "روتانا سينما مصر",
-      "programmes": 0,
-      "state": "error",
-      "error": "Rotana HTTP 200, invalid body size=48255"
+      "http_status": 200,
+      "programmes": 28,
+      "state": "ok"
     },
     "RotanaClassic.sa@SD": {
       "site_id": "438",
@@ -50,9 +46,9 @@
     "RotanaComedy.sa@SD": {
       "site_id": "437",
       "name": "روتانا كوميدي",
-      "programmes": 0,
-      "state": "error",
-      "error": "Rotana HTTP 200, invalid body size=47476"
+      "http_status": 200,
+      "programmes": 26,
+      "state": "ok"
     },
     "RotanaDrama.sa@SD": {
       "site_id": "436",
