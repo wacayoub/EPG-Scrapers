@@ -103,13 +103,99 @@ jobs:
           print('\n'.join(out[:800]))
           PY
 
+
+      - name: Probe public GOBX EPG API for 2h
+        shell: bash
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timedelta, timezone
+          from pathlib import Path
+          import json, time
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+          from urllib.error import HTTPError, URLError
+
+          base='https://fe-api.prod.gobx.com/api/v2/gracenote-fe-api/'
+          headers={
+              'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/126 Safari/537.36',
+              'Accept':'application/json,text/plain,*/*',
+              'Referer':'https://www.gobx.com/',
+          }
+
+          def get(path, params):
+              url=base+path+'?'+urlencode(params)
+              req=Request(url,headers=headers,method='GET')
+              try:
+                  with urlopen(req,timeout=20) as r:
+                      raw=r.read()
+                      status=r.status
+                      ctype=r.headers.get('content-type','')
+              except HTTPError as e:
+                  raw=e.read()
+                  status=e.code
+                  ctype=e.headers.get('content-type','') if e.headers else ''
+              except URLError as e:
+                  return {'url':url,'status':0,'error':str(e)}
+              text=raw.decode('utf-8','replace')
+              item={'url':url,'status':status,'content_type':ctype,'bytes':len(raw)}
+              try:
+                  data=json.loads(text)
+                  item['json_type']=type(data).__name__
+                  if isinstance(data,dict):
+                      item['top_keys']=list(data)[:30]
+                  item['sample']=data
+              except Exception:
+                  item['sample_text']=text[:2500]
+              return item
+
+          report={'generated_utc':datetime.now(timezone.utc).isoformat(),'base_url':base,'language_tests':[]}
+          chosen=None
+          for lang in ('ARABIC','AR','ar','ENGLISH','EN','en'):
+              item=get('now-showing',{'contentLanguage':lang})
+              report['language_tests'].append({k:v for k,v in item.items() if k!='sample'})
+              sample=item.get('sample')
+              ok=item.get('status')==200 and isinstance(sample,dict) and sample
+              if ok:
+                  chosen=lang
+                  report['now_showing']=item
+                  break
+              time.sleep(1)
+
+          if chosen:
+              now=datetime.now(timezone.utc)
+              start=int(now.timestamp()*1000)
+              end=int((now+timedelta(hours=2)).timestamp()*1000)
+              report['chosen_language']=chosen
+              report['channel_filter_2h']=get('channel/filter',{
+                  'pageNumber':0,'pageSize':12,'startTime':start,'endTime':end,
+                  'contentLanguage':chosen,'status':'PUBLISHED'
+              })
+              time.sleep(1)
+              report['vocab_config']=get('vocab-config',{'contentLanguage':chosen})
+
+          # Keep the report compact and public-metadata-only.
+          def trim(v, depth=0):
+              if depth>5:
+                  return '<trimmed>'
+              if isinstance(v,dict):
+                  return {str(k):trim(x,depth+1) for k,x in list(v.items())[:30]}
+              if isinstance(v,list):
+                  return [trim(x,depth+1) for x in v[:8]]
+              if isinstance(v,str):
+                  return v[:500]
+              return v
+          report=trim(report)
+          Path('reports/gobx-api-probe.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False,indent=2)[:30000])
+          PY
+
       - name: Publish GOBX API definition report
         shell: bash
         run: |
           set -e
           git config user.name "epg-diagnostic-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add reports/gobx-api-definitions.txt
+          git add reports/gobx-api-definitions.txt reports/gobx-api-probe.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "diagnostic: publish targeted GOBX EPG API definitions"
           for n in 1 2 3 4 5; do
