@@ -68,6 +68,59 @@ CANONICAL_OVERRIDE = {
     "wanasah": "Wanasah.ae@SD",
 }
 
+# STARZPLAY's public site currently advertises 50+ live/digital channels.
+# Keep a provider catalogue even when the direct STARZPLAY EPG endpoints return
+# 403 from GitHub Actions. Aliases below are normalized STC names used only to
+# borrow schedule metadata; unmatched official STARZPLAY channels remain visible
+# as zero-EPG instead of disappearing from the source.
+STARZPLAY_LIVE_CATALOGUE = (
+    {"name": "STARZPLAY Sports 1", "aliases": ("starzplay sports 1",)},
+    {"name": "STARZPLAY Sports 2", "aliases": ("starzplay sports 2",)},
+    {"name": "STARZPLAY Sports 3", "aliases": ("starzplay sports 3",)},
+    {"name": "StarzPlay Movie", "aliases": ("starzplay movie",)},
+    {"name": "StarzPlay Rugby", "aliases": ("starzplay rugby",)},
+    {"name": "STARZPLAY Cricket", "aliases": ("starzplay cricket",)},
+    {"name": "Abu Dhabi Sports 1", "aliases": ("abu dhabi sports 1", "ad sports 1")},
+    {"name": "Abu Dhabi Sports 2", "aliases": ("abu dhabi sports 2", "ad sports 2")},
+    {"name": "AD Sports Extra", "aliases": ("ad sports extra",)},
+    {"name": "DAZN Ringside", "aliases": ("dazn ringside",)},
+    {"name": "FIFA+ Live", "aliases": ("fifa live", "fifa plus live")},
+    {"name": "Red Bull TV Live", "aliases": ("red bull tv live", "red bull tv")},
+    {"name": "AD Fight", "aliases": ("ad fight",)},
+    {"name": "Yas", "aliases": ("yas", "yas tv")},
+    {"name": "YAS TV Extra", "aliases": ("yas tv extra",)},
+    {"name": "Abu Dhabi TV", "aliases": ("abu dhabi tv", "abu dhabi")},
+    {"name": "Asianet News", "aliases": ("asianet news",)},
+    {"name": "Sky News Arabia - Live", "aliases": ("sky news arabia live", "sky news arabia", "sky news arabia hd")},
+    {"name": "Asianet Cinema", "aliases": ("asianet cinema",)},
+    {"name": "Saudi Quran", "aliases": ("saudi quran",)},
+    {"name": "National Geographic Abu Dhabi", "aliases": ("national geographic abu dhabi", "nat geo ad", "nat geo abu dhabi")},
+    {"name": "Spacetoon", "aliases": ("spacetoon",)},
+    {"name": "Majid TV", "aliases": ("majid tv", "majid")},
+    {"name": "Al Emarat TV", "aliases": ("al emarat tv", "al emarat")},
+    {"name": "Cartoon Network Arabic", "aliases": ("cartoon network arabic", "cn arabic")},
+    {"name": "Sky News", "aliases": ("sky news",)},
+    {"name": "Zee Aflam", "aliases": ("zee aflam",)},
+    {"name": "Zee Alwan", "aliases": ("zee alwan",)},
+    {"name": "Saudi 1", "aliases": ("saudi 1",)},
+    {"name": "Geo TV", "aliases": ("geo tv",)},
+    {"name": "Baynounah TV", "aliases": ("baynounah tv",)},
+    {"name": "Looney Tunes By CN", "aliases": ("looney tunes by cn",)},
+    {"name": "Sab TV", "aliases": ("sab tv",)},
+    {"name": "Manorama News", "aliases": ("manorama news",)},
+    {"name": "Al Jadeed", "aliases": ("al jadeed",)},
+    {"name": "India Today TV", "aliases": ("india today tv",)},
+    {"name": "Reporter TV", "aliases": ("reporter tv",)},
+    {"name": "Rotana Comedy", "aliases": ("rotana comedy",)},
+    {"name": "Rotana Drama", "aliases": ("rotana drama",)},
+    {"name": "Rotana Classic", "aliases": ("rotana classic",)},
+    {"name": "Star Plus HD", "aliases": ("star plus hd", "star plus")},
+    {"name": "SET Max", "aliases": ("set max",)},
+    {"name": "Zee Bangla", "aliases": ("zee bangla",)},
+    {"name": "Emasala Simply South", "aliases": ("emasala simply south",)},
+    {"name": "ARY Digital", "aliases": ("ary digital",)},
+)
+
 
 def norm(s):
     return " ".join(NONWORD.sub(" ", (s or "").casefold()).split())
@@ -102,6 +155,22 @@ def xml_id(name, index, sid=""):
     # variants cannot collapse onto the same XMLTV ID.
     seed = n + "|" + str(sid or "")
     return "stctv." + hashlib.sha1(seed.encode()).hexdigest()[:12]
+
+
+def starzplay_catalogue_match(name):
+    n = norm(name)
+    for item in STARZPLAY_LIVE_CATALOGUE:
+        if n in item["aliases"]:
+            return item
+    return None
+
+
+def starzplay_catalogue_id(item, index):
+    for alias in item["aliases"]:
+        if alias in index:
+            return index[alias]
+    stable = hashlib.sha1(norm(item["name"]).encode("utf-8")).hexdigest()[:14]
+    return "starzplay." + stable
 
 
 def get_json(s, url, params, timeout):
@@ -144,9 +213,9 @@ def main():
     )
     ap.add_argument(
         "--profile",
-        choices=("all", "starzplay-sports"),
+        choices=("all", "starzplay-sports", "starzplay-live"),
         default="all",
-        help="all keeps every STC channel; starzplay-sports is retained only for diagnostics",
+        help="all keeps every STC channel; starzplay-live projects the official STARZPLAY live catalogue onto available STC schedule metadata",
     )
     ap.add_argument(
         "--catalogue-only",
@@ -215,6 +284,17 @@ def main():
                     "starzplay sports "
                 )
             ]
+        elif args.profile == "starzplay-live":
+            matched = []
+            for ch in targets:
+                source_name = str(ch.get("channelTitle") or ch.get("channelTitleAr") or "").strip()
+                item = starzplay_catalogue_match(source_name)
+                if item:
+                    row = dict(ch)
+                    row["_starzplay_name"] = item["name"]
+                    row["_starzplay_aliases"] = list(item["aliases"])
+                    matched.append(row)
+            targets = matched
         if args.max_channels and args.max_channels > 0:
             targets = targets[: args.max_channels]
 
@@ -227,7 +307,7 @@ def main():
             title_en = str(ch.get("channelTitle") or "").strip()
             title_ar = str(ch.get("channelTitleAr") or "").strip()
             sid = str(ch.get("channelID") or "").strip()
-            name = title_en or title_ar
+            name = str(ch.get("_starzplay_name") or title_en or title_ar).strip()
             if not sid:
                 stats["source_metadata_issues"].append({
                     "source_index": source_index,
@@ -246,7 +326,14 @@ def main():
                     "reason": "missing_title_placeholder_used",
                     "retained": True,
                 })
-            cid = xml_id(name, index, sid)
+            if args.profile == "starzplay-live":
+                item = starzplay_catalogue_match(name) or {
+                    "name": name,
+                    "aliases": tuple(ch.get("_starzplay_aliases") or (norm(name),)),
+                }
+                cid = starzplay_catalogue_id(item, index)
+            else:
+                cid = xml_id(name, index, sid)
             if cid in seen_cids:
                 # Two STC source entries may legitimately share the same
                 # display name/canonical alias (regional or package variants).
@@ -272,6 +359,30 @@ def main():
             stats["channels"] += 1
             if prof == "hybrid":
                 stats["hybrid_channels"].append(cid)
+
+        if args.profile == "starzplay-live":
+            matched_names = {norm(name) for _, name, _, _, _ in prepared}
+            added_catalogue_only = 0
+            for item in STARZPLAY_LIVE_CATALOGUE:
+                if norm(item["name"]) in matched_names:
+                    continue
+                cid = starzplay_catalogue_id(item, index)
+                if cid in seen_cids:
+                    continue
+                seen_cids.add(cid)
+                c = ET.SubElement(root, "channel", {"id": cid})
+                ET.SubElement(c, "display-name", {"lang": "en"}).text = item["name"]
+                ET.SubElement(c, "url", {"system": "starzplay-catalogue"}).text = item["name"]
+                stats["channels"] += 1
+                stats["zero_epg"].append({
+                    "id": cid,
+                    "name": item["name"],
+                    "reason": "not_available_in_stctv_schedule_fallback",
+                })
+                added_catalogue_only += 1
+            stats["official_catalogue_channels"] = len(STARZPLAY_LIVE_CATALOGUE)
+            stats["matched_fallback_channels"] = len(prepared)
+            stats["catalogue_only_channels"] = added_catalogue_only
 
         stats["catalogue_only"] = bool(args.catalogue_only)
         if args.catalogue_only:
