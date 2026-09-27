@@ -113,6 +113,11 @@ case "$SOURCE" in
     pack_source tabie output/source-build/tabie.raw.xml output/source-build/tabie.channels.xml || true
     ;;
 
+  alkass)
+    python tools/alkass_source.py
+    pack_source alkass output/source-build/alkass.raw.xml output/source-build/alkass.channels.xml || true
+    ;;
+
   rotana)
     python tools/rotana_source.py --output output/source-build/rotana.raw.xml --report reports/rotana-scrape.json --window-hours "$HOURS" || true
     [ -s output/source-build/rotana.raw.xml ] || empty_xml output/source-build/rotana.raw.xml
