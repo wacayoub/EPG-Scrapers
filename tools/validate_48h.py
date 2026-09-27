@@ -21,7 +21,6 @@ PROFILES={
     "osn.xml.gz":{"target_hours":48.0,"min_hours":36.0,"gap_warn":90},
     "shahid.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "rotana.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
-    "oman.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "tabie.xml.gz":{"target_hours":48.0,"min_hours":24.0,"gap_warn":180,"allow_zero_epg":True},
     "alkass.xml.gz":{"target_hours":48.0,"min_hours":24.0,"gap_warn":240},
     "tunisiatv.xml.gz":{"target_hours":48.0,"min_hours":24.0,"gap_warn":240},
