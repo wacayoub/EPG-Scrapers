@@ -50,7 +50,7 @@ SNRT_AR_NAMES={
 }
 MEDI1=(
  ("MEDI1TV_AR.ma",("https://www.medi1tv.com/ar/grille/arabic","https://www.medi1tv.ma/ar/grille/arabic")),
- ("MEDI1TV_MAGHREB.ma",("https://www.medi1tv.ma/ar/grille/maghreb","https://www.medi1tv.com/ar/grille/maghreb")))
+ ("MEDI1TV_MAGHREB.ma",("https://www.medi1tv.com/ar/grille/maghreb","https://www.medi1tv.ma/ar/grille/maghreb")))
 ARR_IDS=["Arryadia_HD","Arryadia_TNT","Arryadia_HD1","Arryadia_HD2","Arryadia_HD3"]
 ARR_TAGS={r"\btnt\b":"Arryadia_TNT",r"\bsat\b":"Arryadia_HD",r"\bhd1\b":"Arryadia_HD1",r"\bhd2\b":"Arryadia_HD2",r"\bhd3\b":"Arryadia_HD3"}
 NEWS={"الظهيرة":"أخبار الظهيرة","الأمازيغية":"الأخبار الأمازيغية","الفرنسية":"الأخبار الفرنسية",
@@ -83,6 +83,18 @@ T2M_KEEP_FR={
 T2M_FORCE_AR={
  "les interventions des partis politiques":"مداخلات الأحزاب السياسية",
  "interventions des partis politiques":"مداخلات الأحزاب السياسية"
+}
+T2M_MIXED={
+ "telefilm chrif moul lbaraka":"Téléfilm شريف مول البركة",
+ "chrif moul lbaraka":"شريف مول البركة",
+ "clips soirees chaabi":"Clips سهرات شعبية",
+ "clips soiree chaabi":"Clips سهرة شعبية",
+ "talk show twahachnak":"Talk-show توحشناك",
+ "twahachnak":"توحشناك",
+ "akhir tamanna":"آخر تمني",
+ "al khobare":"الأخبار",
+ "coran avec laureats tajwid al qor an":"Coran avec lauréats تجويد القرآن",
+ "tajwid al qor an":"تجويد القرآن"
 }
 
 CHADA={
@@ -237,15 +249,26 @@ def _snrt_detail_desc(http,href,title=""):
  except Exception:
   return ""
  candidates=[]
- for attrs in ({"name":"description"},{"property":"og:description"},{"name":"twitter:description"}):
+ # Prefer the programme body itself; site-wide meta text is only a fallback.
+ for el in soup.select(
+  ".carousel-program-info-content p, .carousel-program-info p, "
+  ".field--name-body p, .field--name-field-description p, "
+  ".programme-description p, .program-description p, article p"
+ ):
+  txt=clean(el.get_text(" ",strip=True))
+  if txt:candidates.append(txt)
+ # Also support a title immediately followed by the official synopsis.
+ heading=soup.find(["h1","h2","h3"],string=lambda x:x and norm(clean(x))==norm(title))
+ if heading:
+  p=heading.find_next("p")
+  if p:
+   txt=clean(p.get_text(" ",strip=True))
+   if txt:candidates.insert(0,txt)
+ for attrs in ({"property":"og:description"},{"name":"description"},{"name":"twitter:description"}):
   el=soup.find("meta",attrs=attrs)
   if el:
    txt=clean(el.get("content"))
    if txt:candidates.append(txt)
- # The current SNRT detail template also exposes the synopsis in this block.
- for el in soup.select(".carousel-program-info-content p, .carousel-program-info p, .field--name-body p"):
-  txt=clean(el.get_text(" ",strip=True))
-  if txt:candidates.append(txt)
  nt=norm(title)
  for desc in candidates:
   nd=norm(desc)
@@ -822,6 +845,7 @@ def tr2m_title(http,title):
  raw=clean(title);n=norm(raw)
  if n in T2M_KEEP_FR:return raw
  if n in T2M_FORCE_AR:return T2M_FORCE_AR[n]
+ if n in T2M_MIXED:return T2M_MIXED[n]
  if n in T2M:return T2M[n]
  # Deterministic policy: translate only the programme type, never invent an
  # Arabic title for an unknown proper name/brand.
@@ -862,7 +886,37 @@ def _medi1_fallback_desc(cid,title):
   return "موعد إخباري على قناة ميدي1 تيفي لمتابعة أبرز الأخبار والمستجدات."
  return "برنامج «%s» يُعرض على قناة ميدي1 تيفي."%title
 
-def _parse_medi1_page(cid,text,day):
+def _medi1_detail_desc(http,href,title="",cache=None):
+ href=clean(href)
+ if not http or not href or href.startswith("#") or "javascript:" in href.casefold():return ""
+ url=href if href.startswith("http") else requests.compat.urljoin("https://www.medi1tv.com/",href)
+ if cache is not None and url in cache:return cache[url]
+ out=""
+ try:
+  soup=BeautifulSoup(http.get(url,headers={"Referer":"https://www.medi1tv.com/ar/grille/"}).text,"lxml")
+  nt=norm(title)
+  candidates=[]
+  heading=soup.find(["h1","h2","h3"],string=lambda x:x and nt and norm(clean(x))==nt)
+  if heading:
+   p=heading.find_next("p")
+   if p:candidates.append(clean(p.get_text(" ",strip=True)))
+  for el in soup.select(".description, .emission-description, .program-description, article p, .content p"):
+   txt=clean(el.get_text(" ",strip=True))
+   if txt:candidates.append(txt)
+  for attrs in ({"property":"og:description"},{"name":"description"}):
+   el=soup.find("meta",attrs=attrs)
+   if el:
+    txt=clean(el.get("content"))
+    if txt:candidates.append(txt)
+  for d in candidates:
+   if len(d)>=25 and norm(d)!=nt and "copyright medi1" not in d.casefold():
+    out=d;break
+ except Exception:
+  out=""
+ if cache is not None:cache[url]=out
+ return out
+
+def _parse_medi1_page(cid,text,day,http=None,detail_cache=None):
  soup=BeautifulSoup(text,"lxml")
  tre=re.compile(r"^([0-2]?\\d)[:hH]([0-5]\\d)\\s*(.*)$")
  exact=re.compile(r"^([0-2]?\\d)[:hH]([0-5]\\d)$")
@@ -878,25 +932,33 @@ def _parse_medi1_page(cid,text,day):
   "الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت","الأحد")}
  rows=[]
 
- # Primary path: current Medi1 programme cards. Many descriptions are published
- # directly inside the schedule link, so preserve them verbatim.
+ # Primary path: current Medi1 programme cards. A schedule card may put
+ # "HH:MM title" in one text node and the synopsis in the next one.
  prev=None;pday=day
+ if detail_cache is None:detail_cache={}
  for a in soup.find_all("a"):
   pieces=[clean(x) for x in a.stripped_strings if clean(x)]
   if not pieces:continue
-  m=tre.match(pieces[0]); only=exact.match(pieces[0]);payload=[]
-  if only:
-   h1,m1=int(only.group(1)),int(only.group(2));payload=pieces[1:]
-  elif m:
-   h1,m1=int(m.group(1)),int(m.group(2));payload=([clean(m.group(3))] if clean(m.group(3)) else [])+pieces[1:]
-  else:continue
-  payload=[x for x in payload if x.casefold() not in ctas and x.casefold() not in stop_words]
+  idx=None;m=None
+  for pos,piece in enumerate(pieces):
+   mm=tre.match(piece)
+   if mm:
+    idx=pos;m=mm;break
+  if m is None:continue
+  h1,m1=int(m.group(1)),int(m.group(2))
+  tail=clean(m.group(3) or "")
+  payload=([tail] if tail else [])+pieces[idx+1:]
+  payload=[x for x in payload if x.casefold() not in ctas and x.casefold() not in stop_words and not re.fullmatch(r"image",x,re.I)]
   if not payload:continue
   mins=h1*60+m1
   if prev is not None and mins+300<prev:pday+=timedelta(days=1)
   prev=mins
   title=payload[0]
   desc=clean(" ".join(x for x in payload[1:] if x!=title))
+  if len(desc)>1000:desc=""
+  href=clean(a.get("href"))
+  if not desc and href and any(k in href for k in ("/emission/","/programme/","/program/")):
+   desc=_medi1_detail_desc(http,href,title,detail_cache)
   if not desc:desc=_medi1_fallback_desc(cid,title)
   rows.append(Event(cid,morocco_wall_clock(pday,dtime(h1,m1)),title,desc,None,lang(title),lang(desc),"medi1-card"))
 
@@ -906,14 +968,14 @@ def _parse_medi1_page(cid,text,day):
  strings=[clean(x) for x in soup.stripped_strings if clean(x)]
  raw=[];i=0
  while i<len(strings):
-  m=exact.match(strings[i])
+  m=tre.match(strings[i])
   if not m:
    i+=1;continue
   h1,m1=int(m.group(1)),int(m.group(2))
-  j=i+1;parts=[]
-  while j<len(strings) and not exact.match(strings[j]):
-   s=strings[j]
-   sf=s.casefold()
+  tail=clean(m.group(3) or "")
+  j=i+1;parts=([tail] if tail else [])
+  while j<len(strings) and not tre.match(strings[j]):
+   s=strings[j];sf=s.casefold()
    if sf in stop_words and parts:break
    if sf not in ctas and sf not in stop_words and not re.fullmatch(r"image",s,re.I):
     parts.append(s)
@@ -922,8 +984,7 @@ def _parse_medi1_page(cid,text,day):
   if parts:
    title=parts[0]
    desc=clean(" ".join(x for x in parts[1:] if x!=title))
-   # Avoid swallowing navigation text when a programme has no synopsis.
-   if len(desc)>800:desc=""
+   if len(desc)>1000:desc=""
    raw.append((h1,m1,title,desc))
   i=max(j,i+1)
 
@@ -953,24 +1014,24 @@ def _parse_medi1_page(cid,text,day):
  return out
 
 def scrape_medi1(days):
- h=Http();out=[];today=datetime.now(TZ).date()
+ h=Http();out=[];today=datetime.now(TZ).date();detail_cache={}
  for cid,bases in MEDI1:
   rows=[]
   for i in range(days):
-   day=today+timedelta(days=i);ds=day.strftime("%d-%m-%Y");r=None
+   day=today+timedelta(days=i);ds=day.strftime("%d-%m-%Y")
+   best=[]
+   # Probe both official hosts and keep the richest parse. Some .ma pages are
+   # cached/stale while .com exposes the complete current card list.
    for base in bases:
-    try:
-     r=h.get(base+"/"+ds,headers={"Referer":"https://www.medi1tv.com/ar/"})
-     break
-    except Exception:pass
-   if r is None and i==0:
-    for base in bases:
+    for url in (base+"/"+ds,base) if i==0 else (base+"/"+ds,):
      try:
-      r=h.get(base,headers={"Referer":"https://www.medi1tv.com/ar/"})
-      break
+      r=h.get(url,headers={"Referer":"https://www.medi1tv.com/ar/"})
+      cand=_parse_medi1_page(cid,r.text,day,h,detail_cache)
+      if len(cand)>len(best):best=cand
      except Exception:pass
-   if r is None:continue
-   rows+=_parse_medi1_page(cid,r.text,day)
+   if best:
+    log("Medi1 %s %s selected=%d events"%(cid,day.isoformat(),len(best)))
+    rows+=best
   seen={}
   for e in sorted(rows,key=lambda e:e.start):
    k=(e.start,e.title.casefold())
@@ -1215,7 +1276,11 @@ def scrape_snrt(days):
    # full official synopsis is on the linked programme page. Fetch it only for
    # the 48-72h working window and only when the row itself has no rich synopsis.
    if detail_from<=start<detail_until and _snrt_generic_desc(desc,original_title):
-    a=h2.find_parent("a") if h2 else None
+    a=None
+    if h2:
+     a=h2.find("a",href=True) or h2.find_parent("a")
+    if a is None:
+     a=row.find("a",href=True)
     href=clean(a.get("href")) if a else ""
     if href and "javascript:" not in href.casefold() and "jascript:" not in href.casefold():
      if href not in detail_cache:
