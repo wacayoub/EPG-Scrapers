@@ -94,7 +94,7 @@ jobs:
         shell: bash
         run: |
           bash -n tools/refresh_one_source.sh
-          python -m py_compile tools/publish_lkg.py tools/source_feed_pack.py tools/validate_48h.py tools/aljazeera_source.py
+          python -m py_compile tools/build_catalogues.py tools/publish_lkg.py tools/source_feed_pack.py tools/validate_48h.py tools/aljazeera_source.py tools/starzplay_source.py tools/stctv_source.py tools/dubaiplus_api_source.py tools/rotana_source.py tools/sport24_source.py
 
       - name: Refresh ${{ inputs.source }} for 48h
         if: steps.gate.outputs.run == 'true'

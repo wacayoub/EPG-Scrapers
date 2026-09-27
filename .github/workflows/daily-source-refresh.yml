@@ -22,6 +22,7 @@ jobs:
 
   bein:
     needs: morocco
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: bein
@@ -30,6 +31,7 @@ jobs:
 
   osn:
     needs: bein
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: osn
@@ -38,6 +40,7 @@ jobs:
 
   shahid:
     needs: osn
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: shahid
@@ -46,6 +49,7 @@ jobs:
 
   elcinema:
     needs: shahid
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: elcinema
@@ -54,6 +58,7 @@ jobs:
 
   rotana:
     needs: elcinema
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: rotana
@@ -62,6 +67,7 @@ jobs:
 
   sport24:
     needs: rotana
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: sport24
@@ -70,6 +76,7 @@ jobs:
 
   dubaiplus:
     needs: sport24
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: dubaiplus
@@ -78,6 +85,7 @@ jobs:
 
   aljazeera:
     needs: dubaiplus
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: aljazeera
@@ -86,6 +94,7 @@ jobs:
 
   starzplay:
     needs: aljazeera
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: starzplay
@@ -94,6 +103,7 @@ jobs:
 
   stctv:
     needs: starzplay
+    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: stctv

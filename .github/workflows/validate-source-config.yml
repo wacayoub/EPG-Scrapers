@@ -1,0 +1,71 @@
+name: Validate source configuration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate-source-config.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Syntax checks
+        run: |
+          bash -n tools/refresh_one_source.sh
+          python -m py_compile             tools/build_catalogues.py             tools/publish_lkg.py             tools/source_feed_pack.py             tools/validate_48h.py             tools/aljazeera_source.py             tools/starzplay_source.py             tools/stctv_source.py             tools/dubaiplus_api_source.py             tools/rotana_source.py             tools/sport24_source.py
+
+      - name: Validate catalogues and beIN MENA scope
+        run: |
+          python tools/build_catalogues.py
+          python - <<'PY'
+          import json, re
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          root=ET.parse("output/source-build/bein.channels.xml").getroot()
+          rows=[]
+          bad=[]
+          seen=set()
+          for c in root.findall("channel"):
+              cid=(c.get("xmltv_id") or "").strip()
+              name=(c.text or "").strip()
+              key="".join(ch.lower() for ch in name if ch.isalnum())
+              rows.append((cid,name))
+              if not key.startswith("bein") or "afc" in key or "afc" in cid.casefold():
+                  bad.append((cid,name))
+              if key in seen:
+                  raise SystemExit(f"duplicate beIN service key: {key}")
+              seen.add(key)
+
+          if bad:
+              raise SystemExit(f"out-of-scope beIN rows: {bad}")
+          if len(rows) < 20:
+              raise SystemExit(f"beIN catalogue unexpectedly small: {len(rows)}")
+
+          audit=json.loads(Path("output/source-build/bein-catalogue.json").read_text())
+          print(json.dumps({
+              "bein_ids":len(rows),
+              "scope":audit.get("scope"),
+              "generated_local_ids":audit.get("generated_local_ids"),
+              "sample":rows[:20],
+          },ensure_ascii=False,indent=2))
+          PY
