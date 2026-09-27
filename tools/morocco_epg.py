@@ -118,7 +118,10 @@ def log(x): print("[%s] %s"%(datetime.now(TZ).strftime("%F %T %Z"),x),flush=True
 def clean(x): return re.sub(r"\s+"," ",html.unescape(str(x or "")).replace("\xa0"," ")).strip()
 def norm(x):
  x=clean(x).casefold().replace("’","'"); x="".join(c for c in unicodedata.normalize("NFKD",x) if not unicodedata.combining(c))
- return re.sub(r"\s+"," ",re.sub(r"[^a-z0-9%]+"," ",x)).strip()
+ # Keep Arabic letters in normalization. Dropping them made every Arabic title
+ # normalize to an empty string, so legitimate SNRT Arabic synopses were
+ # incorrectly rejected as "same as title" and cross-channel matching failed.
+ return re.sub(r"\s+"," ",re.sub(r"[^a-z0-9\u0600-\u06ff%]+"," ",x)).strip()
 def ar(x): return bool(re.search(r"[\u0600-\u06ff]",str(x or "")))
 def lang(x,default="ar"): return "ar" if ar(x) else ("fr" if re.search(r"[A-Za-zÀ-ÿ]",str(x or "")) else default)
 def xdt(d): return d.strftime("%Y%m%d%H%M%S %z")
@@ -507,7 +510,10 @@ def _sofascore_botola_fixtures(http,hours=48):
     ts=ev.get("startTimestamp")
     if not ts:continue
     start=_morocco_from_unix(ts)
-    if start<datetime.now(timezone.utc)-timedelta(minutes=15) or start>=end:continue
+    stop=start+timedelta(hours=2,minutes=15)
+    # Keep matches that are already in progress. The former 15-minute grace
+    # dropped a match as soon as a refresh happened >15 minutes after kickoff.
+    if stop<=now-timedelta(minutes=10) or start>=end:continue
     home=clean((ev.get("homeTeam") or {}).get("name"))
     away=clean((ev.get("awayTeam") or {}).get("name"))
     if not home or not away:continue
@@ -521,12 +527,75 @@ def _sofascore_botola_fixtures(http,hours=48):
     desc=("مباراة %s و%s ضمن البطولة الاحترافية إنوي%s. "
           "الموعد مأخوذ تلقائياً من جدول المباريات؛ توزيع قناة الرياضية الفرعية "
           "مؤقت إلى أن تنشر SNRT شبكة البث الرسمية.")%(ha,aa,rd)
-    out.append({"id":eid,"start":start,"stop":start+timedelta(hours=2),
+    out.append({"id":eid,"start":start,"stop":stop,
                 "home":home,"away":away,"title":title,"desc":desc})
    except Exception as e:
     log("Botola fixture parse: %s"%e)
  out.sort(key=lambda x:(x["start"],norm(x["home"]),norm(x["away"])))
  log("Botola SofaScore fixtures=%d window=%dh"%(len(out),hours))
+ return out
+
+
+def _livescore_parse_start(raw):
+ s=str(raw or "").strip()
+ m=re.match(r"^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$",s)
+ if not m:return None
+ try:
+  dt=datetime(*(int(x) for x in m.groups()),tzinfo=timezone.utc)
+  return _morocco_from_unix(int(dt.timestamp()))
+ except Exception:
+  return None
+
+def _livescore_stage_is_botola(stage):
+ label=" ".join(clean(stage.get(k)) for k in ("Cnm","Snm","CompN","CompUrlName","Scd"))
+ n=norm(label)
+ return "botola" in n or ("morocco" in n and any(k in n for k in ("pro","league","premier")))
+
+def _livescore_botola_fixtures(http,hours=48):
+ # LiveScore CDN is an unauthenticated fallback when SofaScore blocks GitHub
+ # runners. It also exposes in-progress matches, which is essential when the
+ # refresh happens after kickoff.
+ now=datetime.now(timezone.utc);end=now+timedelta(hours=max(1,hours))
+ urls=["https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en"]
+ d=now.date()
+ while d<=end.date():
+  urls.append("https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/%s/0?countryCode=MA&locale=en"%d.strftime("%Y%m%d"))
+  d+=timedelta(days=1)
+ out=[];seen=set()
+ headers={"Referer":"https://www.livescore.com/","Origin":"https://www.livescore.com","Accept":"application/json"}
+ for url in urls:
+  try:
+   data=http.get(url,headers=headers).json()
+  except Exception as e:
+   log("Botola LiveScore %s: %s"%(url.split("/app/")[-1].split("?")[0],e));continue
+  for stage in data.get("Stages",[]) if isinstance(data,dict) else []:
+   if not _livescore_stage_is_botola(stage):continue
+   for ev in stage.get("Events",[]) or []:
+    try:
+     start=_livescore_parse_start(ev.get("Esd"))
+     if not start:continue
+     stop=start+timedelta(hours=2,minutes=15)
+     if stop<=now-timedelta(minutes=10) or start>=end:continue
+     t1=(ev.get("T1") or [{}])[0] or {};t2=(ev.get("T2") or [{}])[0] or {}
+     home=clean(t1.get("Nm"));away=clean(t2.get("Nm"))
+     if not home or not away:continue
+     eid="ls:"+str(ev.get("Eid") or "%s-%s-%s"%(int(start.timestamp()),home,away))
+     if eid in seen:continue
+     seen.add(eid)
+     ha=_botola_team_ar(home);aa=_botola_team_ar(away)
+     title="مباشر: البطولة الاحترافية - %s × %s"%(ha,aa)
+     phase=clean(ev.get("Eps"))
+     score=""
+     if ev.get("Tr1") is not None and ev.get("Tr2") is not None:
+      score="، النتيجة الحالية %s-%s"%(clean(ev.get("Tr1")),clean(ev.get("Tr2")))
+     desc=("مباراة %s و%s ضمن البطولة الاحترافية إنوي%s%s. "
+           "الموعد مأخوذ من LiveScore كمسار احتياطي عندما يتعذر الوصول إلى SofaScore.")%(ha,aa,("، "+phase) if phase else "",score)
+     out.append({"id":eid,"start":start,"stop":stop,"home":home,"away":away,
+                 "title":title,"desc":desc})
+    except Exception as e:
+     log("Botola LiveScore event parse: %s"%e)
+ out.sort(key=lambda x:(x["start"],norm(x["home"]),norm(x["away"])))
+ log("Botola LiveScore fixtures=%d window=%dh"%(len(out),hours))
  return out
 
 MOROCCO_SENIOR_SOFASCORE_ID=4778
@@ -1640,6 +1709,9 @@ def scrape_arryadia(days,history=None,history_path=None):
  current=_arryadia_add_morocco_tnt(current,nt_fixtures)
 
  fixtures=_sofascore_botola_fixtures(h,hours=48)
+ if not fixtures:
+  log("Botola SofaScore unavailable/empty; trying LiveScore CDN fallback")
+  fixtures=_livescore_botola_fixtures(h,hours=48)
  current=_arryadia_add_botola(current,fixtures)
  filled=_arryadia_fill(current,hours=48,slot_hours=2,history=combined_history)
  auto_count=sum(1 for e in filled if e.source=="arryadia-auto")
