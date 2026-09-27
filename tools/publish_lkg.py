@@ -149,8 +149,15 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["channels"] < max(p["min_channels"], int(old["channels"] * 0.60))
             ):
                 reasons.append("channel_regression>40%")
-            if old["programmes"] and cur["programmes"] < max(p["min_programmes"], int(old["programmes"] * 0.35)):
-                reasons.append("programme_regression>65%")
+            if old["programmes"]:
+                # Compare like-for-like windows. A 48h candidate must not be
+                # rejected merely because the previous LKG still contains
+                # several days of older/future programmes.
+                old_h=max(float(old.get("future_horizon_hours") or 0.0),1.0)
+                cur_h=max(float(cur.get("future_horizon_hours") or 0.0),1.0)
+                comparable_old=old["programmes"]*min(1.0,cur_h/old_h)
+                if cur["programmes"] < max(p["min_programmes"], int(comparable_old * 0.35)):
+                    reasons.append("programme_regression>65%")
         except Exception as exc:
             old = {"warning": f"previous unreadable: {exc}"}
 
