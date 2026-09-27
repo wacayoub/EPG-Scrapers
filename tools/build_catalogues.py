@@ -290,9 +290,15 @@ choose("rotana",["rotana.net"],arabic_only=True)
 # placeholders remain excluded. AFC temporary feeds stay excluded.
 BEIN_ZERO_EPG_EXCLUDE = set()
 
-BEIN_SITE_ID_OVERRIDES = {
+BEIN_SITE_ID_OVERRIDES_AR = {
     ("bein.com", "entertainment#8"): ("beINBoxOffice1.qa@SD", "beIN BOX OFFICE 1"),
     ("bein.com", "entertainment#30"): ("beINBoxOffice2.qa@SD", "beIN BOX OFFICE 2"),
+}
+
+BEIN_SITE_ID_OVERRIDES_EN = {
+    ("bein.com", "entertainment#8"): ("beINBoxOffice1.qa@SD", "beIN BOX OFFICE 1"),
+    # The official English beIN guide uses a different channel slot from AR.
+    ("bein.com", "entertainment#31"): ("beINBoxOffice2.qa@SD", "beIN BOX OFFICE 2"),
 }
 
 BEIN_PACKAGE_DISPLAY_OVERRIDES = {
@@ -373,9 +379,11 @@ def build_bein():
     # First pass: collect canonical name->ID mappings already known in the
     # Arabic MENA catalogues.
     known_name_to_id={}
+    # Prefer the official full beIN TV guide supplied by the user for both
+    # Sports and Entertainment. beinsports.com remains a sports-only fallback.
     selected_files=[
-        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-ar.channels.xml",0),
-        ("bein.com",ROOT/"bein.com"/"bein.com_ar.channels.xml",1),
+        ("bein.com",ROOT/"bein.com"/"bein.com_ar.channels.xml",0),
+        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-ar.channels.xml",1),
     ]
     parsed=[]
     for site,p,rank in selected_files:
@@ -392,7 +400,7 @@ def build_bein():
                 continue
             cid=(ch.get("xmltv_id") or "").strip()
             name=(ch.text or "").strip()
-            forced=BEIN_SITE_ID_OVERRIDES.get((site,sid))
+            forced=BEIN_SITE_ID_OVERRIDES_AR.get((site,sid))
             if forced:
                 cid,name=forced
             elif not cid:
@@ -467,8 +475,8 @@ def build_bein():
     # This is the title source for the EN-title / AR-description production policy.
     en_best={}
     for site,p,rank in [
-        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml",0),
-        ("bein.com",ROOT/"bein.com"/"bein.com_en.channels.xml",1),
+        ("bein.com",ROOT/"bein.com"/"bein.com_en.channels.xml",0),
+        ("beinsports.com",ROOT/"beinsports.com"/"beinsports.com_mena-en.channels.xml",1),
     ]:
         if not p.exists():
             continue
@@ -479,7 +487,7 @@ def build_bein():
         for ch in rr.findall("channel"):
             sid=(ch.get("site_id") or "").strip()
             name=(ch.text or "").strip()
-            forced=BEIN_SITE_ID_OVERRIDES.get((site,sid))
+            forced=BEIN_SITE_ID_OVERRIDES_EN.get((site,sid))
             if forced:
                 _,name=forced
             key=_bein_norm_name(name)
@@ -502,7 +510,8 @@ def build_bein():
 
     import json
     audit={
-        "scope":"beIN MENA official package: beIN-owned + canonical partner channels; AFC excluded",
+        "scope":"beIN MENA official package: bein.com AR+EN primary, beinsports.com fallback; beIN-owned + canonical partner channels; AFC excluded",
+        "source_priority":["bein.com official TV guide AR+EN","beinsports.com MENA fallback"],
         "source_entries":source_counts,
         "catalogue_ids":len(root),
         "service_keys_before_id_dedupe":len(best),
