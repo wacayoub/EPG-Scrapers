@@ -151,7 +151,7 @@ def fetch_day(session, site_id, name, target):
 
 def main()->int:
     now=datetime.now(TZ)
-    targets=[now.date(),now.date()+timedelta(days=1)]
+    targets=[now.date()+timedelta(days=i) for i in range(3)]
     sess=requests.Session()
     sess.headers.update({"User-Agent":UA,"Accept-Language":"ar,en;q=0.8"})
 
