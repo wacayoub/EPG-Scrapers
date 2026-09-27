@@ -60,7 +60,7 @@ jobs:
           )
           blocks = []
           for root in Path('/tmp/starzclient/decoded').glob('apk*'):
-              candidates = list(root.rglob('oe/a.smali')) + list(root.rglob('he/p.smali')) + list(root.rglob('he/g.smali')) + list(root.rglob('com/starzplay/sdk/rest/peg/a.smali')) + list(root.rglob('com/starzplay/sdk/utils/r0.smali'))
+              candidates = list(root.rglob('oe/a.smali')) + list(root.rglob('he/p.smali')) + list(root.rglob('he/g.smali')) + list(root.rglob('com/starzplay/sdk/rest/peg/a.smali')) + list(root.rglob('com/starzplay/sdk/utils/r0.smali')) + list(root.rglob('re/b.smali'))
               candidates += [p for p in root.rglob('*.smali') if p.name != 'a.smali' and 'oe' in p.parts[-2:]]
               seen=set()
               for p in candidates:
