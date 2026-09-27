@@ -1,11 +1,32 @@
 {
-  "generated_utc": "2026-09-27T16:26:23.927444+00:00",
+  "generated_utc": "2026-09-27T16:32:46.476261+00:00",
   "source": "STARZPLAY public NMS EPG",
   "country": "MA",
   "rows": [
     {
       "version": "v2.0",
       "kind": "channel_config",
+      "client_type": "Android",
+      "url": "https://sp-nms-api.aws.playco.com/api/v2.0/epg/channel/config",
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 69,
+      "sample": "{\"error\":\"Invalid API version\",\"path\":\"/api/v2.0/epg/channel/config\"}"
+    },
+    {
+      "version": "v2.0",
+      "kind": "channel_config",
+      "client_type": "android",
+      "url": "https://sp-nms-api.aws.playco.com/api/v2.0/epg/channel/config",
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 69,
+      "sample": "{\"error\":\"Invalid API version\",\"path\":\"/api/v2.0/epg/channel/config\"}"
+    },
+    {
+      "version": "v2.0",
+      "kind": "channel_config",
+      "client_type": "(none)",
       "url": "https://sp-nms-api.aws.playco.com/api/v2.0/epg/channel/config",
       "status": 404,
       "content_type": "application/json; charset=utf-8",
@@ -15,6 +36,27 @@
     {
       "version": "v2.1",
       "kind": "channel_config",
+      "client_type": "Android",
+      "url": "https://sp-nms-api.aws.playco.com/api/v2.1/epg/channel/config",
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 69,
+      "sample": "{\"error\":\"Invalid API version\",\"path\":\"/api/v2.1/epg/channel/config\"}"
+    },
+    {
+      "version": "v2.1",
+      "kind": "channel_config",
+      "client_type": "android",
+      "url": "https://sp-nms-api.aws.playco.com/api/v2.1/epg/channel/config",
+      "status": 404,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 69,
+      "sample": "{\"error\":\"Invalid API version\",\"path\":\"/api/v2.1/epg/channel/config\"}"
+    },
+    {
+      "version": "v2.1",
+      "kind": "channel_config",
+      "client_type": "(none)",
       "url": "https://sp-nms-api.aws.playco.com/api/v2.1/epg/channel/config",
       "status": 404,
       "content_type": "application/json; charset=utf-8",
