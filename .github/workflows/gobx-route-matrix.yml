@@ -1,0 +1,130 @@
+name: GOBX public route matrix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/gobx-route-matrix.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gobx-public-route-matrix
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Probe public GoBX EPG route matrix
+        shell: bash
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timedelta, timezone
+          from pathlib import Path
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+          from urllib.error import HTTPError, URLError
+          import json, time
+
+          now=datetime.now(timezone.utc)
+          start=int((now-timedelta(hours=1)).timestamp()*1000)
+          end=int((now+timedelta(hours=2)).timestamp()*1000)
+
+          bases=[
+              'https://fe-api.prod.gobx.com/api/v2/gracenote-fe-api/',
+              'https://fe-api.prod.gobx.com/api/',
+          ]
+          tests=[
+              ('now-showing', {'contentLanguage':'ARABIC'}),
+              ('channel/filter', {'pageNumber':0,'pageSize':3,'startTime':start,'endTime':end,'contentLanguage':'ARABIC','status':'PUBLISHED'}),
+              ('channel/search', {'pageNumber':0,'pageSize':3,'startTime':start,'endTime':end,'contentLanguage':'ARABIC','status':'PUBLISHED','searchQuery':'MBC'}),
+              ('channel/programme-list', {'pageNumber':0,'pageSize':3,'channelName':'MBC 1','contentLanguage':'ARABIC','startTime':start,'endTime':end}),
+              ('vocab-config', {'contentLanguage':'ARABIC'}),
+          ]
+          headers={
+              'User-Agent':'Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36',
+              'Accept':'application/json,text/plain,*/*',
+              'Accept-Language':'ar,en;q=0.8',
+          }
+
+          rows=[]
+          for base in bases:
+              for route,params in tests:
+                  url=base+route+'?'+urlencode(params)
+                  req=Request(url,headers=headers,method='GET')
+                  try:
+                      with urlopen(req,timeout=18) as r:
+                          raw=r.read(200000)
+                          status=r.status
+                          ctype=r.headers.get('content-type','')
+                          server=r.headers.get('server','')
+                  except HTTPError as e:
+                      raw=e.read(12000)
+                      status=e.code
+                      ctype=e.headers.get('content-type','') if e.headers else ''
+                      server=e.headers.get('server','') if e.headers else ''
+                  except URLError as e:
+                      rows.append({'base':base,'route':route,'status':0,'error':str(e)[:250]})
+                      time.sleep(1)
+                      continue
+                  txt=raw.decode('utf-8','replace')
+                  challenge=('cloudflare' in server.lower() or 'just a moment' in txt[:3000].lower() or 'challenges.cloudflare.com' in txt[:4000].lower())
+                  item={
+                      'base':base,'route':route,'status':status,
+                      'content_type':ctype,'bytes_sampled':len(raw),
+                      'server':server,'challenge_or_block':challenge,
+                  }
+                  if status==200 and 'json' in ctype.lower():
+                      try:
+                          data=json.loads(txt)
+                          item['json_type']=type(data).__name__
+                          if isinstance(data,dict):
+                              item['top_keys']=list(data)[:30]
+                          elif isinstance(data,list):
+                              item['list_len']=len(data)
+                      except Exception:
+                          item['json_parse_error']=True
+                  else:
+                      item['sample']=txt[:180].replace('\n',' ')
+                  rows.append(item)
+                  time.sleep(1)
+
+          report={
+              'generated_utc':datetime.now(timezone.utc).isoformat(),
+              'policy':'unauthenticated public metadata only; no Cloudflare/auth/geo/DRM bypass',
+              'results':rows,
+          }
+          Path('reports').mkdir(exist_ok=True)
+          Path('reports/gobx-route-matrix.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Publish route matrix report
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/gobx-route-matrix.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diagnostic: publish GoBX public route matrix"
+          for n in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            git rebase origin/main
+            sleep $((n*2))
+          done
+          exit 1
