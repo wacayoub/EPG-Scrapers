@@ -451,6 +451,87 @@ def _sofascore_botola_fixtures(http,hours=48):
  log("Botola SofaScore fixtures=%d window=%dh"%(len(out),hours))
  return out
 
+MOROCCO_SENIOR_SOFASCORE_ID=4778
+NATIONAL_TEAM_AR={
+ "gabon":"الغابون","congo":"الكونغو","congo republic":"الكونغو",
+ "senegal":"السنغال","tunisia":"تونس","algeria":"الجزائر","egypt":"مصر",
+ "south africa":"جنوب إفريقيا","cameroon":"الكاميرون","nigeria":"نيجيريا",
+ "ivory coast":"ساحل العاج","cote d ivoire":"ساحل العاج","mali":"مالي",
+ "ghana":"غانا","france":"فرنسا","spain":"إسبانيا","portugal":"البرتغال",
+ "netherlands":"هولندا","belgium":"بلجيكا","brazil":"البرازيل","argentina":"الأرجنتين"
+}
+
+def _national_team_ar(name):
+ raw=clean(name);n=norm(raw)
+ return NATIONAL_TEAM_AR.get(n,raw)
+
+def _sofascore_morocco_home_fixtures(http,hours=72):
+ # Morocco senior men's national team only (SofaScore team 4778).
+ # Home fixtures are inserted on Arryadia TNT as an EPG fallback when SNRT has
+ # not yet exposed the detailed TV grid.
+ now=datetime.now(timezone.utc);end=now+timedelta(hours=max(1,hours))
+ days=[];d=now.date()
+ while d<=end.date():
+  days.append(d);d+=timedelta(days=1)
+ out=[];seen=set()
+ for day in days:
+  try:
+   url="https://www.sofascore.com/api/v1/sport/football/scheduled-events/%s"%day.isoformat()
+   data=http.get(url,headers={"Referer":"https://www.sofascore.com/","Accept":"application/json"}).json()
+   events=data.get("events",[]) if isinstance(data,dict) else []
+  except Exception as e:
+   log("Morocco NT SofaScore %s: %s"%(day,e));continue
+  for ev in events:
+   try:
+    home=ev.get("homeTeam") or {};away=ev.get("awayTeam") or {}
+    if int(home.get("id") or 0)!=MOROCCO_SENIOR_SOFASCORE_ID:continue
+    status=((ev.get("status") or {}).get("type") or "").casefold()
+    if status in ("canceled","cancelled","postponed"):continue
+    ts=ev.get("startTimestamp")
+    if not ts:continue
+    start=_morocco_from_unix(ts)
+    if start<datetime.now(timezone.utc)-timedelta(minutes=15) or start>=end:continue
+    away_name=clean(away.get("name"))
+    if not away_name:continue
+    eid=str(ev.get("id") or "%s-%s"%(int(ts),away_name))
+    if eid in seen:continue
+    seen.add(eid)
+    opp=_national_team_ar(away_name)
+    tournament=clean(((ev.get("tournament") or {}).get("name")) or
+                     (((ev.get("tournament") or {}).get("uniqueTournament") or {}).get("name")))
+    title="مباشر: المغرب × %s"%opp
+    desc="مباراة المنتخب المغربي أمام %s على أرض المغرب"%opp
+    if tournament:desc+=" ضمن %s"%tournament
+    desc+=". مضافة تلقائياً إلى Arryadia TNT من جدول المباريات إلى أن تنشر SNRT شبكة البث الرسمية."
+    out.append({"id":eid,"start":start,"stop":start+timedelta(hours=2,minutes=15),
+                "opponent":away_name,"title":title,"desc":desc})
+   except Exception as e:
+    log("Morocco NT fixture parse: %s"%e)
+ out.sort(key=lambda x:x["start"])
+ log("Morocco NT home fixtures=%d window=%dh"%(len(out),hours))
+ return out
+
+def _arryadia_add_morocco_tnt(rows,fixtures):
+ out=list(rows);added=0;official=0
+ def overlap(s,t):
+  return any(e.channel=="Arryadia_TNT" and e.stop and e.stop>s and e.start<t for e in out)
+ for fx in fixtures:
+  s,t=fx["start"],fx["stop"]
+  # If SNRT already has a TNT programme at the same kickoff window, keep SNRT.
+  hit=any(
+   e.channel=="Arryadia_TNT" and e.stop and
+   abs((e.start-s).total_seconds())<=35*60 and
+   ("المغرب" in (e.title or "") or "maroc" in norm(e.title) or "morocco" in norm(e.title))
+   for e in rows
+  )
+  if hit:
+   official+=1;continue
+  if overlap(s,t):continue
+  out.append(Event("Arryadia_TNT",s,fx["title"],fx["desc"],t,"ar","ar","morocco-nt-sofascore"))
+  added+=1
+ log("Arryadia Morocco NT TNT added=%d official=%d"%(added,official))
+ return out
+
 def _botola_event_matches_text(fx,e):
  text=norm((e.title or "")+" "+(e.desc or ""))
  if not text:return False
@@ -1357,6 +1438,10 @@ def scrape_arryadia(days,history=None):
  log("Arryadia SNRT future=%d current_window=%d"%(len(future),len(current)))
  # When SNRT has not yet published the TV grid, preserve Botola matches from
  # the fixture calendar instead of showing a generic two-hour block.
+ # Morocco senior home matches are a dedicated TNT-only fallback.
+ nt_fixtures=_sofascore_morocco_home_fixtures(h,hours=72)
+ current=_arryadia_add_morocco_tnt(current,nt_fixtures)
+
  fixtures=_sofascore_botola_fixtures(h,hours=48)
  current=_arryadia_add_botola(current,fixtures)
  filled=_arryadia_fill(current,hours=48,slot_hours=2,history=history)
