@@ -7,6 +7,8 @@ on:
     paths:
       - "tools/morocco_epg.py"
       - "tools/refresh_one_source.sh"
+      - "tools/publish_lkg.py"
+      - ".github/workflows/refresh-source-core.yml"
       - ".github/workflows/refresh-morocco.yml"
 
 permissions:
