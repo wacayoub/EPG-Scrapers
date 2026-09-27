@@ -1,0 +1,62 @@
+name: Rebuild derived MENA feed
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "feeds/morocco.xml.gz"
+      - "feeds/bein.xml.gz"
+      - "feeds/dubaiplus.xml.gz"
+      - "feeds/shahid.xml.gz"
+      - "feeds/aljazeera.xml.gz"
+      - "feeds/rotana.xml.gz"
+      - "feeds/sport24.xml.gz"
+      - "feeds/osn.xml.gz"
+      - "feeds/elcinema.xml.gz"
+      - "feeds/starzplay.xml.gz"
+      - "feeds/stctv.xml.gz"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-derived-mena
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild from latest source feeds
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Derived Feed Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+
+            python tools/build_derived_feeds.py
+            git add feeds/mena.xml.gz feeds/mena.txt feeds/mena.json
+
+            if git diff --cached --quiet; then
+              echo "MENA derived feed already current"
+              exit 0
+            fi
+
+            git commit -m "Rebuild MENA derived feed"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Main changed during rebuild; retrying from latest source feeds"
+          done
+
+          echo "Unable to publish derived MENA feed after retries"
+          exit 1
