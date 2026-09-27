@@ -118,6 +118,11 @@ case "$SOURCE" in
     pack_source alkass output/source-build/alkass.raw.xml output/source-build/alkass.channels.xml || true
     ;;
 
+  tunisiatv)
+    python tools/tunisiatv_source.py
+    pack_source tunisiatv output/source-build/tunisiatv.raw.xml output/source-build/tunisiatv.channels.xml || true
+    ;;
+
   rotana)
     python tools/rotana_source.py --output output/source-build/rotana.raw.xml --report reports/rotana-scrape.json --window-hours "$HOURS" || true
     [ -s output/source-build/rotana.raw.xml ] || empty_xml output/source-build/rotana.raw.xml
