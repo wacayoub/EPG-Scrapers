@@ -1,13 +1,6 @@
 name: Test ElCinema only
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/test-elcinema-only.yml"
-      - "tools/elcinema_hybrid.py"
-      - "config/elcinema-language-policy.json"
-      - "tools/build_catalogues.py"
   workflow_dispatch:
 
 permissions:
