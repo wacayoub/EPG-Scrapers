@@ -28,6 +28,27 @@ jobs:
       - name: Install grabber
         working-directory: vendor/iptv-org-epg
         run: npm ci --no-audit --no-fund
+      - name: Patch beIN midnight date anchor
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path("vendor/iptv-org-epg/sites/bein.com/bein.com.config.js")
+          text=p.read_text(encoding="utf-8")
+          old="    date = dayjs(date.valueOf()).subtract(1, 'day')"
+          new="\n".join([
+              "    const firstTimeMatch = items.length",
+              "      ? (cheerio.load(items[0])('.time').text().match(/^(\\d{2}):/) || null)",
+              "      : null",
+              "    date = dayjs(date.valueOf())",
+              "    if (firstTimeMatch && Number(firstTimeMatch[1]) >= 18) {",
+              "      date = date.subtract(1, 'day')",
+              "    }",
+          ])
+          if old not in text:
+              raise SystemExit("date anchor target missing")
+          p.write_text(text.replace(old,new,1),encoding="utf-8")
+          PY
       - name: Build explicit verified Kids catalogue
         shell: bash
         run: |
