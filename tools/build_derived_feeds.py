@@ -78,19 +78,50 @@ sources={name:source_data(name) for name in PRIORITY if (FEEDS/f"{name}.xml.gz")
 merged_channels={}
 merged_programmes=defaultdict(list)
 owners={}
+extensions=defaultdict(list)
+
+def _latest_stop(rows):
+    stops=[(p.get("stop") or "").strip() for p in rows if (p.get("stop") or "").strip()]
+    return max(stops) if stops else ""
+
 for src in PRIORITY:
     if src not in sources:
         continue
     channels,programmes=sources[src]
     for cid,node in channels.items():
-        if cid in merged_channels:
+        incoming=list(programmes.get(cid,[]))
+        if cid not in merged_channels:
+            merged_channels[cid]=node
+            merged_programmes[cid]=incoming
+            owners[cid]=src
             continue
-        merged_channels[cid]=node
-        merged_programmes[cid]=programmes.get(cid,[])
-        owners[cid]=src
+
+        current=list(merged_programmes.get(cid,[]))
+        # A higher-priority catalogue placeholder with zero EPG must never
+        # suppress a lower-priority source that has real future listings.
+        if not current and incoming:
+            merged_channels[cid]=node
+            merged_programmes[cid]=incoming
+            owners[cid]=src
+            continue
+
+        # Preserve the direct/high-priority source inside its published horizon,
+        # but allow a lower-priority source to extend coverage strictly after
+        # the last official stop. This avoids overlapping/conflicting EPG while
+        # still reaching the 48h target when an official source publishes only
+        # today's schedule.
+        if current and incoming:
+            cutoff=_latest_stop(current)
+            tail=[p for p in incoming if (p.get("start") or "").strip() >= cutoff]
+            if tail:
+                merged_programmes[cid].extend(tail)
+                extensions[cid].append(src)
+
 if merged_channels:
     write_feed("mena",merged_channels,merged_programmes,{
         "generator":"EPG-Scrapers canonical MENA merged feed",
         "priority":PRIORITY,
         "owners":owners,
+        "extensions":dict(extensions),
+        "fallback_rule":"lower-priority source may extend only after primary latest stop; zero-EPG placeholders never block active fallback",
     })
