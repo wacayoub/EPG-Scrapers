@@ -9,6 +9,9 @@ on:
       - "tools/monitor_feeds.py"
       - "tools/build_catalogues.py"
       - "tools/osn_hybrid.py"
+      - "tools/starzplay_source.py"
+      - "tools/starzplay_hybrid.py"
+      - "config/starzplay-language-policy.json"
       - "tools/elcinema_hybrid.py"
       - "config/elcinema-language-policy.json"
       - "config/osn-language-policy.json"
@@ -98,6 +101,8 @@ jobs:
         run: |
           python -m py_compile tools/build_catalogues.py
           python -m py_compile tools/osn_hybrid.py
+          python -m py_compile tools/starzplay_source.py
+          python -m py_compile tools/starzplay_hybrid.py
           python -m py_compile tools/elcinema_hybrid.py
           python -m py_compile tools/source_feed_pack.py
           python -m py_compile tools/source_gap_retry.py
@@ -210,6 +215,54 @@ jobs:
             fi
           else
             echo "OSN English/Arabic raw guide missing; keeping Arabic-only OSN candidate."
+          fi
+          exit 0
+
+      - name: Scrape STARZPLAY Arabic and English public guide
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/source-build reports
+          for lang in ar en; do
+            python tools/starzplay_source.py \
+              --lang "$lang" \
+              --output "output/source-build/starzplay.$lang.raw.xml" \
+              --report "reports/starzplay-$lang-scrape.json" \
+              --id-index feeds/mena.txt \
+              --hours 72
+            echo "$?" > "output/source-build/starzplay.$lang.grab.rc"
+          done
+          if grep -q '<programme ' output/source-build/starzplay.ar.raw.xml 2>/dev/null; then
+            cp output/source-build/starzplay.ar.raw.xml output/source-build/starzplay.raw.xml
+          else
+            echo '<?xml version="1.0"?><tv></tv>' > output/source-build/starzplay.raw.xml
+          fi
+          exit 0
+
+      - name: Build STARZPLAY hybrid EN-title AR-description
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          if grep -q '<programme ' output/source-build/starzplay.ar.raw.xml 2>/dev/null && \
+             grep -q '<programme ' output/source-build/starzplay.en.raw.xml 2>/dev/null; then
+            python tools/starzplay_hybrid.py \
+              --arabic output/source-build/starzplay.ar.raw.xml \
+              --english output/source-build/starzplay.en.raw.xml \
+              --policy config/starzplay-language-policy.json \
+              --output output/source-build/starzplay.hybrid.raw.xml \
+              --report reports/starzplay-hybrid.json
+            rc=$?
+            if [ "$rc" -eq 0 ] && [ -s output/source-build/starzplay.hybrid.raw.xml ]; then
+              mv output/source-build/starzplay.hybrid.raw.xml output/source-build/starzplay.raw.xml
+              echo "STARZPLAY hybrid guide enabled."
+            else
+              echo "STARZPLAY hybrid failed rc=$rc; keeping Arabic candidate."
+              rm -f output/source-build/starzplay.hybrid.raw.xml
+            fi
+          else
+            echo "STARZPLAY bilingual inputs unavailable; keeping Arabic candidate/LKG."
           fi
           exit 0
 
@@ -344,7 +397,7 @@ jobs:
         run: |
           set +e
           mkdir -p output/final
-          for key in elcinema osn bein shahid rotana sport24; do
+          for key in elcinema osn bein shahid rotana sport24 starzplay; do
             python tools/source_feed_pack.py               --input "output/source-build/$key.raw.xml"               --output-gz "output/final/$key.xml.gz"               --output-txt "output/final/$key.txt"               --stats "output/final/$key.json"               --label "$key"               --window-hours 48
             echo "$?" > "output/final/$key.pack.rc"
           done
@@ -430,7 +483,7 @@ jobs:
           set +e
           mkdir -p reports
           candidates=()
-          for key in morocco bein shahid elcinema osn rotana sport24; do
+          for key in morocco bein shahid elcinema osn rotana sport24 starzplay; do
             [ -s "output/final/$key.xml.gz" ] && candidates+=("output/final/$key.xml.gz")
           done
           if [ "${#candidates[@]}" -gt 0 ]; then
