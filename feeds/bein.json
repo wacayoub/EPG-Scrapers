@@ -1,10 +1,11 @@
 {
   "label": "bein",
-  "channels": 68,
-  "active_channels": 58,
-  "zero_epg_channels": 10,
+  "channels": 70,
+  "active_channels": 59,
+  "zero_epg_channels": 11,
   "zero_epg_ids": [
     "AlkassEight.qa@SD",
+    "beINBoxOffice2.qa@SD",
     "beINSportsNBA.qa@SD",
     "BloombergTV.us@MiddleEast",
     "CBeebiesMiddleEast.uk@SD",
@@ -15,14 +16,14 @@
     "MTV90s.uk@SD",
     "StarMoviesMiddleEast.ae@SD"
   ],
-  "input_channels": 68,
-  "coverage_pct": 85.3,
-  "programmes": 1607,
-  "rejected_invalid_time": 45,
+  "input_channels": 70,
+  "coverage_pct": 84.3,
+  "programmes": 1624,
+  "rejected_invalid_time": 48,
   "inferred_stop": 25,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 31545,
-  "sha256": "7d9e52cdfbe5878c1019f3662d7abd28fb6b8b4114ef69cdbe3c22e00861d390",
-  "generated_utc": "2026-09-27T12:52:15.398788+00:00"
+  "size_bytes": 31955,
+  "sha256": "d3e235e940140034ed1696c8cace1a1317670226f0f680a3ba4271289ec4f0ea",
+  "generated_utc": "2026-09-27T13:00:09.337546+00:00"
 }
