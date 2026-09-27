@@ -40,9 +40,11 @@ jobs:
             return JSON.parse(d.update(x.encrypted,'base64','utf8')+d.final('utf8'));
           }
           const platforms=[
-            '', 'Android','Other','other','android','Web','web','Website','WebSite','WebApp','Browser',
-            'iOS','IOS','SmartTV','TV','STB','SetTopBox','Box','OSNBox','OSNBOX',
-            'Satellite','DTH','IPTV','OTT','Kaon','Humax','Receiver','Portal'
+            '', 'Android','Other','other','Others','OTHER','OtherBox','OtherBoxes','Other boxes',
+            'OthersBox','OthersBoxes','Generic','GenericBox','Legacy','LegacyBox','SatelliteBox',
+            'SatelliteReceiver','Decoder','DVB','DVB-S','DVB-S2','android','Web','web','Website',
+            'WebSite','WebApp','Browser','iOS','IOS','SmartTV','TV','STB','SetTopBox','Box',
+            'OSNBox','OSNBOX','Satellite','DTH','IPTV','OTT','Kaon','Humax','Receiver','Portal'
           ];
           (async()=>{
             for(const p of platforms){
