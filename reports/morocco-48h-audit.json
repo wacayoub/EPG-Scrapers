@@ -1,26 +1,26 @@
 {
-  "generated_utc": "2026-09-27T21:59:14.550141+00:00",
+  "generated_utc": "2026-09-27T23:14:57.830378+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "morocco.xml.gz",
-      "generated_utc": "2026-09-27T21:59:14.549909+00:00",
+      "generated_utc": "2026-09-27T23:14:57.830109+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 90,
       "channels": 15,
       "invalid_times": 0,
       "orphan_programmes": 0,
-      "failed_channels": 3,
-      "warning_channels": 6,
+      "failed_channels": 4,
+      "warning_channels": 3,
       "status": "FAIL",
       "rows": [
         {
           "id": "2M",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.76,
-          "latest_stop_utc": "2026-09-29T22:45:00+00:00",
+          "future_hours": 48.33,
+          "latest_stop_utc": "2026-09-29T23:35:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 85
         },
@@ -28,44 +28,44 @@
           "id": "AFLAM.ma",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.01,
+          "future_hours": 48.75,
           "latest_stop_utc": "2026-09-30T00:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 18
+          "programmes": 17
         },
         {
           "id": "AlAoula",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.51,
-          "latest_stop_utc": "2026-09-29T22:30:00+00:00",
+          "future_hours": 48.25,
+          "latest_stop_utc": "2026-09-29T23:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 82
+          "programmes": 83
         },
         {
           "id": "AlMaghribiya",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.28,
-          "latest_stop_utc": "2026-09-29T22:16:00+00:00",
+          "future_hours": 48.58,
+          "latest_stop_utc": "2026-09-29T23:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 86
+          "programmes": 84
         },
         {
           "id": "Arrabiaa",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.01,
-          "latest_stop_utc": "2026-09-29T22:00:00+00:00",
+          "future_hours": 48.08,
+          "latest_stop_utc": "2026-09-29T23:20:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 39
         },
         {
           "id": "Arryadia_HD",
-          "status": "WARN",
-          "reason": "SHORT_HORIZON",
-          "future_hours": 47.98,
-          "latest_stop_utc": "2026-09-29T21:58:00+00:00",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 49.17,
+          "latest_stop_utc": "2026-09-30T00:25:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 41
         },
@@ -74,7 +74,7 @@
           "status": "WARN",
           "reason": "SHORT_HORIZON",
           "future_hours": 47.98,
-          "latest_stop_utc": "2026-09-29T21:58:00+00:00",
+          "latest_stop_utc": "2026-09-29T23:14:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 25
         },
@@ -83,7 +83,7 @@
           "status": "WARN",
           "reason": "SHORT_HORIZON",
           "future_hours": 47.98,
-          "latest_stop_utc": "2026-09-29T21:58:00+00:00",
+          "latest_stop_utc": "2026-09-29T23:14:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 25
         },
@@ -92,16 +92,16 @@
           "status": "WARN",
           "reason": "SHORT_HORIZON",
           "future_hours": 47.98,
-          "latest_stop_utc": "2026-09-29T21:58:00+00:00",
+          "latest_stop_utc": "2026-09-29T23:14:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 25
         },
         {
           "id": "Arryadia_TNT",
-          "status": "WARN",
-          "reason": "SHORT_HORIZON",
-          "future_hours": 47.98,
-          "latest_stop_utc": "2026-09-29T21:58:00+00:00",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 49.17,
+          "latest_stop_utc": "2026-09-30T00:25:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 41
         },
@@ -109,46 +109,46 @@
           "id": "Assadisa",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.01,
-          "latest_stop_utc": "2026-09-29T22:00:00+00:00",
+          "future_hours": 48.25,
+          "latest_stop_utc": "2026-09-29T23:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 102
         },
         {
           "id": "Chada TV",
-          "status": "WARN",
-          "reason": "SHORT_HORIZON",
-          "future_hours": 25.51,
-          "latest_stop_utc": "2026-09-28T23:30:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 39
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 1.75,
+          "latest_stop_utc": "2026-09-28T01:00:00+00:00",
+          "max_gap_minutes": 30.0,
+          "programmes": 7
         },
         {
           "id": "MEDI1TV_AR.ma",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 2.01,
+          "future_hours": 0.75,
           "latest_stop_utc": "2026-09-28T00:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 6
+          "programmes": 5
         },
         {
           "id": "MEDI1TV_MAGHREB.ma",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 2.01,
+          "future_hours": 0.75,
           "latest_stop_utc": "2026-09-28T00:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 6
+          "programmes": 5
         },
         {
           "id": "Tamazight",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 4.51,
+          "future_hours": 3.25,
           "latest_stop_utc": "2026-09-28T02:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 12
+          "programmes": 9
         }
       ]
     }
