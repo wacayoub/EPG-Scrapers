@@ -666,7 +666,7 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
   samples=[
    e for e in (list(rows)+history)
    if e.channel==cid and e.stop and e.stop>e.start and
-      e.source in ("arryadia-snrt","arryadia-history") and
+      (e.source.startswith("arryadia-snrt") or e.source=="arryadia-history") and
       _arryadia_repeat_safe(e)
   ]
   buckets=defaultdict(list)
@@ -679,6 +679,7 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
 
   templates=[]
   smart_rejected=0
+  smart_added=0
   for key,evs in buckets.items():
    # De-duplicate HD/TNT/parser duplicates on the same broadcast day.
    per_day={}
@@ -732,9 +733,9 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
     if overlaps(occupied,ts,te):continue
     out.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-smart"))
     occupied.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-smart"))
-    repeated+=1
+    repeated+=1;smart_added+=1
    day+=timedelta(days=1)
-  log("Arryadia smart cid=%s templates=%d accepted=%d rejected=%d"%(cid,len(templates),repeated,smart_rejected))
+  log("Arryadia smart cid=%s templates=%d accepted=%d rejected=%d"%(cid,len(templates),smart_added,smart_rejected))
 
   # Fill only what remains completely unknown.
   occupied=sorted(occupied,key=lambda e:e.start)
