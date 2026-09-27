@@ -32,18 +32,33 @@ OSN_ALFA_NAME_ID_OVERRIDES = {
     "alfaserieschannel": "AlfaSeries.ae@SD",
     "alfaseries2hd": "AlfaSeriesPlus2.ae@SD",
     "alfaseriesplus2hd": "AlfaSeriesPlus2.ae@SD",
-    "alfaalyawmhd": "AlfaAlYawm.ae@SD",
-    "alfaalsafwa": "AlfaAlSafwa.ae@SD",
-    "alsafwa": "AlfaAlSafwa.ae@SD",
-    "alfafann": "AlfaFann.ae@SD",
-    "alfacinema1": "AlfaCinema1.ae@SD",
-    "alfacinema2": "AlfaCinema2.ae@SD",
-    "alfamusichd": "AlfaMusic.ae@SD",
-    "musicnow": "AlfaMusic.ae@SD",
+    "alfaalyawmhd": "AlYawm.ae@SD",
+    "alfaalyawm": "AlYawm.ae@SD",
+    "alfaalsafwa": "AlSafwa.ae@SD",
+    "alsafwa": "AlSafwa.ae@SD",
+    "alfafann": "Fann.ae@SD",
+    "alfacinema1": "Cinema1.ae@SD",
+    "alfacinema2": "Cinema2.ae@SD",
+    "alfamusichd": "MusicNow.ae@SD",
+    "musicnow": "MusicNow.ae@SD",
 }
 
 def _osn_norm_name(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", (value or "").casefold())
+
+# Channels shown by OSN's official "Other boxes" guide but omitted from the
+# Android catalogue. Keep them in EPGManager's OSN ID index even while the
+# provider hides their GUIDs from /apidata/channels?platform=Android.
+OSN_WEB_ONLY_CHANNELS = {
+    "AlfaSeries.ae@SD": ("web-alfa-series", "Alfa Series HD"),
+    "AlfaSeriesPlus2.ae@SD": ("web-alfa-series-plus2", "Alfa Series +2 HD"),
+    "AlYawm.ae@SD": ("web-al-yawm", "Alfa Al Yawm HD"),
+    "AlSafwa.ae@SD": ("web-al-safwa", "Alfa Al Safwa"),
+    "Fann.ae@SD": ("web-alfa-fann", "Alfa Fann"),
+    "Cinema1.ae@SD": ("web-alfa-cinema1", "Alfa Cinema 1"),
+    "Cinema2.ae@SD": ("web-alfa-cinema2", "Alfa Cinema 2"),
+    "MusicNow.ae@SD": ("web-music-now", "Alfa Music HD"),
+}
 
 OSN_OFFICIAL_ID_OVERRIDES = {
     "204": "OSNOne.ae@SD",
@@ -237,6 +252,21 @@ def build_osn_catalogue(lang: str, output_name: str):
         cid=(node.get("xmltv_id") or "").strip()
         if cid and cid not in by_cid:
             by_cid[cid]=node
+
+    # OSN's public web guide contains Alfa channels that are not returned by
+    # the Android channel API. Retain stable IDs in the source index so the
+    # receiver can map them and report them as 0-EPG instead of hiding them.
+    for cid,(sid,name) in OSN_WEB_ONLY_CHANNELS.items():
+        if cid in by_cid:
+            continue
+        node=ET.Element("channel", {
+            "site": "osn.com",
+            "site_id": sid,
+            "lang": lang,
+            "xmltv_id": cid,
+        })
+        node.text=name
+        by_cid[cid]=node
 
     root=ET.Element("channels")
     for cid in sorted(by_cid,key=str.casefold):
