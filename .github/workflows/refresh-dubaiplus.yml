@@ -1,0 +1,17 @@
+name: EPG 48h - Dubai Plus
+
+on:
+  schedule:
+    - cron: "0 5,6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: dubaiplus
+      scheduled: ${{ github.event_name == 'schedule' }}
+    secrets: inherit
