@@ -37,7 +37,9 @@ jobs:
           from datetime import datetime, timezone
 
           bases = [
+              "https://epg.aws.playco.com/api",
               "https://sp-new-api.aws.playco.com/api",
+              "https://app-api.starzplay.com/api/media",
               "https://api.aws.playco.com/api",
           ]
           versions = ["v1.1", "v1.0", "v2.0"]
