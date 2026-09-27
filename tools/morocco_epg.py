@@ -515,8 +515,44 @@ def scrape_medi1(days):
    if k not in seen:seen.add(k);out.append(e)
  infer(out);return out
 
-def parse_2m(h,text,day):
+def _telerama_detail_desc(h,href,title=""):
+ href=clean(href)
+ if not href or href.startswith("#") or "javascript:" in href.casefold():
+  return ""
+ # Programme links are normally relative to television.telerama.fr; cinema
+ # pages may redirect to www.telerama.fr and requests follows that safely.
+ url=requests.compat.urljoin("https://television.telerama.fr/",href)
+ try:
+  soup=BeautifulSoup(h.get(url,headers={"Referer":"https://television.telerama.fr/"}).text,"lxml")
+ except Exception:
+  return ""
+ candidates=[]
+ # Prefer the explicit Synopsis block exposed by current Telerama programme pages.
+ h2=soup.find(["h2","h3"],string=lambda x:x and clean(x).casefold()=="synopsis")
+ if h2:
+  p=h2.find_next("p")
+  if p:
+   txt=clean(p.get_text(" ",strip=True))
+   if txt:candidates.append(txt)
+ # Metadata fallback for template changes.
+ for attrs in ({"property":"og:description"},{"name":"description"},{"name":"twitter:description"}):
+  el=soup.find("meta",attrs=attrs)
+  if el:
+   txt=clean(el.get("content"))
+   if txt:candidates.append(txt)
+ nt=norm(title)
+ for desc in candidates:
+  nd=norm(desc)
+  if not desc or len(desc)<20 or nd==nt:
+   continue
+  if desc.casefold().startswith(("programme tv","retrouvez le programme","telerama")):
+   continue
+  return desc
+ return ""
+
+def parse_2m(h,text,day,detail_cache=None):
  soup=BeautifulSoup(text,"lxml");out=[];seen=set()
+ if detail_cache is None:detail_cache={}
  cats=("Magazine sportif","Documentaire de société","Magazine d'information",
        "Magazine de services","Magazine de société","Magazine culturel",
        "Série dramatique","Série sentimentale","Divertissement","Documentaire",
@@ -542,8 +578,15 @@ def parse_2m(h,text,day):
   start=morocco_wall_clock(day,dtime(hr,mi))
 
   # Same Morocco Cloud 2M logic: normalized Arabic title + translated/normalized description.
+  # Prefer the real synopsis from the linked Telerama programme page, exactly as
+  # SNRT now prefers its programme-detail synopsis over a generic fallback.
   desc=""
-  if len(parts)>1:
+  href=clean(a.get("href")) if a else ""
+  if href and (".php" in href or "/tele/" in href or "/cinema/" in href):
+   if href not in detail_cache:
+    detail_cache[href]=_telerama_detail_desc(h,href,title)
+   desc=clean(detail_cache.get(href))
+  if not desc and len(parts)>1:
    tail=[]
    passed_time=False
    for p in parts:
@@ -566,14 +609,14 @@ def scrape_2m(days):
  # Strict receiver policy: publish only the next 48 hours.
  # We may need up to 3 calendar pages when the run starts late in the day,
  # but events beyond now+48h are never kept.
- h=Http();now=datetime.now(TZ);today=now.date();target=now+timedelta(hours=48);out=[]
+ h=Http();now=datetime.now(TZ);today=now.date();target=now+timedelta(hours=48);out=[];detail_cache={}
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
  page_days=(target.date()-today).days+1
  for i in range(page_days):
   d=today+timedelta(days=i)
   url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
   try:
-   rows=parse_2m(h,h.get(url,headers={"Referer":"https://television.telerama.fr/"}).text,d)
+   rows=parse_2m(h,h.get(url,headers={"Referer":"https://television.telerama.fr/"}).text,d,detail_cache)
    log("2M %s telerama: %d events"%(d.isoformat(),len(rows)))
    out+=rows
   except Exception as ex:
@@ -583,7 +626,7 @@ def scrape_2m(days):
       if ev.start < target and not ((ev.start,ev.title.casefold()) in seen or seen.add((ev.start,ev.title.casefold())))]
  infer(out)
  out=[ev for ev in out if ev.stop and ev.stop>now-timedelta(hours=2) and ev.start<target and ev.stop>ev.start and ev.stop-ev.start<=timedelta(hours=4)]
- log("2M strict 48h total: %d events; cutoff=%s"%(len(out),target.isoformat()))
+ log("2M strict 48h total: %d events; detail_pages=%d; cutoff=%s"%(len(out),len(detail_cache),target.isoformat()))
  return out
 
 def _chada_title_desc(raw):
