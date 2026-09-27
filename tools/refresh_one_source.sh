@@ -138,8 +138,23 @@ case "$SOURCE" in
         [ -s output/source-build/starzplay.hybrid.raw.xml ] && mv output/source-build/starzplay.hybrid.raw.xml output/source-build/starzplay.raw.xml
       fi
       pack_source starzplay output/source-build/starzplay.raw.xml "" || true
+      printf '%s\n' '{"mode":"direct-starzplay","fallback":false}' > reports/starzplay-source-mode.json
     else
-      echo "STARZPLAY direct public metadata unavailable; LKG will be preserved."
+      echo "STARZPLAY direct endpoint unavailable; using official STC metadata for STARZPLAY Sports only."
+      python tools/stctv_source.py \
+        --output output/source-build/starzplay.raw.xml \
+        --report reports/starzplay-fallback-stctv.json \
+        --id-index feeds/mena.txt \
+        --window-hours "$HOURS" \
+        --delay 0.2 \
+        --max-channels 0 \
+        --profile starzplay-sports || true
+      if has_programmes output/source-build/starzplay.raw.xml; then
+        pack_source starzplay output/source-build/starzplay.raw.xml "" || true
+        printf '%s\n' '{"mode":"stctv-public-metadata-fallback","fallback":true,"scope":"STARZPLAY Sports 1-3"}' > reports/starzplay-source-mode.json
+      else
+        echo "STARZPLAY fallback also unavailable; LKG will be preserved."
+      fi
     fi
     ;;
 
