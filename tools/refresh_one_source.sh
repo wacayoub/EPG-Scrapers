@@ -103,10 +103,6 @@ case "$SOURCE" in
     fi
     ;;
 
-  oman)
-    grab_upstream oman "$ROOT/output/source-build/oman.channels.xml" "$ROOT/output/source-build/oman.raw.xml" "" || true
-    pack_source oman output/source-build/oman.raw.xml output/source-build/oman.channels.xml || true
-    ;;
 
   tabie)
     python tools/tabie_source.py --days 3
