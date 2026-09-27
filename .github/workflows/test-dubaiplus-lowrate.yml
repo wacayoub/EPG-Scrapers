@@ -23,8 +23,10 @@ jobs:
       - name: Dubai+ 2h single-page test
         run: |
           mkdir -p output reports
-          python tools/dubaiplus_source.py             --output output/dubaiplus.2h.xml             --report reports/dubaiplus-lowrate-2h.json             --hours 2 \
-            --debug-dir reports/dubaiplus-debug
+          python tools/dubaiplus_api_source.py \
+            --output output/dubaiplus.2h.xml \
+            --report reports/dubaiplus-lowrate-2h.json \
+            --hours 2
           cat reports/dubaiplus-lowrate-2h.json
       - uses: actions/upload-artifact@v4
         if: always()
@@ -33,4 +35,3 @@ jobs:
           path: |
             output/dubaiplus.2h.xml
             reports/dubaiplus-lowrate-2h.json
-            reports/dubaiplus-debug/
