@@ -705,7 +705,10 @@ def scrape_snrt(days):
      if href not in detail_cache:
       detail_cache[href]=_snrt_detail_desc(h,href,original_title)
      rich=clean(detail_cache.get(href))
-     if rich and not _snrt_generic_desc(rich,original_title):
+     # _snrt_detail_desc already rejects empty/title-only/site-generic metadata.
+     # Keep short official SNRT synopses too; some legitimate descriptions are
+     # concise and should not be replaced by our generic fallback.
+     if rich:
       desc=rich;detail_matches+=1
    tm=re.search(r"([0-2]?\d)\s*[Hh:]\s*([0-5]\d)",time_text)
    if tm:
