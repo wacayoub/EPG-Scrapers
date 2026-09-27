@@ -103,6 +103,11 @@ case "$SOURCE" in
     fi
     ;;
 
+  oman)
+    grab_upstream oman "$ROOT/output/source-build/oman.channels.xml" "$ROOT/output/source-build/oman.raw.xml" "" || true
+    pack_source oman output/source-build/oman.raw.xml output/source-build/oman.channels.xml || true
+    ;;
+
   rotana)
     python tools/rotana_source.py --output output/source-build/rotana.raw.xml --report reports/rotana-scrape.json --window-hours "$HOURS" || true
     [ -s output/source-build/rotana.raw.xml ] || empty_xml output/source-build/rotana.raw.xml
