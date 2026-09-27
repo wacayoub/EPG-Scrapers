@@ -5,6 +5,14 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/validate-source-config.yml"
+      - ".github/workflows/daily-source-refresh.yml"
+      - ".github/workflows/refresh-source-core.yml"
+      - ".github/workflows/epg-source-id-monitoring.yml"
+      - ".github/workflows/epg-watchdog.yml"
+      - ".github/workflows/daily-epg.yml"
+      - "tools/build_catalogues.py"
+      - "tools/build_derived_feeds.py"
+      - "tools/refresh_one_source.sh"
   workflow_dispatch:
 
 permissions:
@@ -27,6 +35,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Install YAML validator
+        run: python -m pip install --disable-pip-version-check --no-cache-dir pyyaml
+
+      - name: Workflow YAML syntax checks
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          for p in sorted(Path(".github/workflows").glob("*.yml")):
+              with p.open("r",encoding="utf-8") as fh:
+                  yaml.safe_load(fh)
+              print("YAML_OK",p)
+          PY
 
       - name: Syntax checks
         run: |
