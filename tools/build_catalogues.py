@@ -284,9 +284,41 @@ build_osn_catalogue("en","osn_en.channels.xml")
 choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
 
-# Full-source mode: keep the complete MENA catalogue, including zero-EPG
-# services and entries that upstream has not assigned an xmltv_id yet.
+# Full-source mode: keep beIN-owned services plus real package channels
+# exposed by the official beIN MENA guide. Third-party rows are retained only
+# when upstream supplies a canonical XMLTV ID; generated third-party
+# placeholders remain excluded. AFC temporary feeds stay excluded.
 BEIN_ZERO_EPG_EXCLUDE = set()
+
+BEIN_PACKAGE_DISPLAY_OVERRIDES = {
+    "AlJazeeraDocumentary.qa@SD": "Al Jazeera Documentary",
+    "AlkassOne.qa@SD": "Alkass One",
+    "AlkassTwo.qa@SD": "Alkass Two",
+    "AlkassThree.qa@SD": "Alkass Three",
+    "AlkassFour.qa@SD": "Alkass Four",
+    "AlkassFive.qa@SD": "Alkass Five",
+    "AlkassSix.qa@SD": "Alkass Six",
+    "AlkassSeven.qa@SD": "Alkass Seven",
+    "AlkassEight.qa@SD": "Alkass Eight",
+    "Baraem.qa@SD": "Baraem",
+    "BeJunior.qa@SD": "beJunior",
+    "BloombergTV.us@MiddleEast": "Bloomberg",
+    "CBeebiesMiddleEast.uk@SD": "CBeebies Middle East",
+    "ClubMTVEurope.uk@SD": "Club MTV Europe",
+    "CNNArabic.ae@SD": "CNN Arabic",
+    "EuronewsEnglish.fr@SD": "Euronews English",
+    "Fatafeat.ae@SD": "Fatafeat",
+    "FoodNetworkEMEA.us@SD": "Food Network",
+    "FoxActionMoviesMENA.hk@SD": "Fox Action Movies MENA",
+    "FoxArabia.ae@SD": "Fox Arabia",
+    "FoxMoviesMiddleEast.us@SD": "Fox Movies Middle East",
+    "HGTVArabia.us@SD": "HGTV Arabia",
+    "JeemTV.qa@SD": "Jeem TV",
+    "MTV80s.uk@SD": "MTV 80s",
+    "MTV90s.uk@SD": "MTV 90s",
+    "StarMoviesMiddleEast.ae@SD": "Star Movies Middle East",
+    "StarWorldMiddleEast.ae@SD": "Star World Middle East",
+}
 
 def _bein_norm_name(value: str) -> str:
     raw="".join(ch.lower() for ch in (value or "") if ch.isalnum())
@@ -357,12 +389,15 @@ def build_bein():
             name=(ch.text or "").strip()
             if not cid:
                 cid=fallback_by_site.get((site,sid),"")
+            if cid in BEIN_PACKAGE_DISPLAY_OVERRIDES:
+                name=BEIN_PACKAGE_DISPLAY_OVERRIDES[cid]
             if cid and name:
                 known_name_to_id.setdefault(_bein_norm_name(name),cid)
             parsed.append((site,rank,p.name,ch,sid,cid,name))
 
     for site,rank,filename,ch,sid,cid,name in parsed:
         node=ET.fromstring(ET.tostring(ch,encoding="utf-8"))
+        node.text=name
         generated=False
         if not cid:
             cid=known_name_to_id.get(_bein_norm_name(name),"")
@@ -372,10 +407,13 @@ def build_bein():
         node.set("xmltv_id",cid)
 
         service_key=_bein_norm_name(name)
-        # Production scope is beIN MENA itself, not every third-party channel
-        # carried inside a beIN package. AFC temporary feeds are intentionally
-        # excluded as requested.
-        if not service_key.startswith("bein"):
+        # Keep beIN-owned services plus official package channels that have a
+        # real canonical XMLTV ID (Alkass and non-sports partners included).
+        # Do not invent IDs for arbitrary third-party placeholders.
+        is_bein_owned=service_key.startswith("bein")
+        is_alkass=service_key.startswith("alkass")
+        is_canonical_partner=(not generated and bool(cid))
+        if not (is_bein_owned or is_alkass or is_canonical_partner):
             continue
         if "afc" in service_key or "afc" in cid.casefold():
             continue
@@ -453,7 +491,7 @@ def build_bein():
 
     import json
     audit={
-        "scope":"beIN MENA owned services only; AFC excluded",
+        "scope":"beIN MENA official package: beIN-owned + canonical partner channels; AFC excluded",
         "source_entries":source_counts,
         "catalogue_ids":len(root),
         "service_keys_before_id_dedupe":len(best),
@@ -461,14 +499,14 @@ def build_bein():
         "generated_local_ids":len(generated_ids),
         "generated_ids":sorted(generated_ids,key=str.casefold),
         "zero_epg_policy":"retain valid beIN MENA IDs",
-        "third_party_package_channels":"excluded",
+        "third_party_package_channels":"retained when canonical XMLTV ID exists",
         "afc":"excluded",
     }
     (OUT/"bein-catalogue.json").write_text(
         json.dumps(audit,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
     )
     print(
-        f"bein MENA owned: {len(root)} IDs "
+        f"bein MENA package: {len(root)} IDs "
         f"(sports source={source_counts['beinsports_mena_ar']}, "
         f"bein Arabic source={source_counts['bein_ar']}, "
         f"English mirror={len(en_root)}, generated={len(generated_ids)})"
