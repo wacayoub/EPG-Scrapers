@@ -11,23 +11,41 @@
       "id": "alkass",
       "name": "Al Kass Direct",
       "country": "QA",
-      "status": "confirmed_schedule",
+      "status": "production",
       "tier": "A",
-      "urls": ["https://www.alkass.net/tvguide", "https://dirorigin.alkass.net/tvguide"],
-      "expected_channels": ["Al Kass 1", "Al Kass 2", "Al Kass 3", "Al Kass 4", "Al Kass 5", "Al Kass 6", "Al Kass 7", "Al Kass 8"],
+      "urls": [
+        "https://www.alkass.net/tvguide",
+        "https://dirorigin.alkass.net/tvguide"
+      ],
+      "expected_channels": [
+        "Al Kass 1",
+        "Al Kass 2",
+        "Al Kass 3",
+        "Al Kass 4",
+        "Al Kass 5",
+        "Al Kass 6",
+        "Al Kass 7",
+        "Al Kass 8"
+      ],
       "language": "ar/en",
-      "notes": "Direct broadcaster guide. Prefer over beIN/aggregator fallback for Al Kass IDs."
+      "notes": "Direct broadcaster guide validated: Al Kass 1-8, today+tomorrow, 48h+ horizon. Preferred over beIN/aggregator fallback."
     },
     {
       "id": "tunisiatv",
       "name": "Télévision Tunisienne",
       "country": "TN",
-      "status": "confirmed_schedule",
+      "status": "production",
       "tier": "A",
-      "urls": ["https://www.tunisiatv.tn/ar", "https://tunisiatv.tn/ar"],
-      "expected_channels": ["الوطنية 1", "الوطنية 2"],
+      "urls": [
+        "https://www.tunisiatv.tn/ar",
+        "https://tunisiatv.tn/ar"
+      ],
+      "expected_channels": [
+        "الوطنية 1",
+        "الوطنية 2"
+      ],
       "language": "ar",
-      "notes": "Official programme guide exposes start/stop, titles and descriptions."
+      "notes": "Direct official Watania 1/2 scraper validated with three schedule days; 48h future coverage, Arabic titles/descriptions retained."
     },
     {
       "id": "lbci",
@@ -35,8 +53,14 @@
       "country": "LB",
       "status": "confirmed_schedule",
       "tier": "A",
-      "urls": ["https://www.lbcgroup.tv/schedule/en", "https://www.lbcgroup.tv/schedule/ar"],
-      "expected_channels": ["LBCI", "LB2"],
+      "urls": [
+        "https://www.lbcgroup.tv/schedule/en",
+        "https://www.lbcgroup.tv/schedule/ar"
+      ],
+      "expected_channels": [
+        "LBCI",
+        "LB2"
+      ],
       "language": "ar/en",
       "notes": "Official multi-day schedule. Preserve Beirut timezone."
     },
@@ -46,8 +70,12 @@
       "country": "IQ",
       "status": "confirmed_schedule",
       "tier": "A",
-      "urls": ["https://www.alsumaria.tv/TV-grid"],
-      "expected_channels": ["Alsumaria"],
+      "urls": [
+        "https://www.alsumaria.tv/TV-grid"
+      ],
+      "expected_channels": [
+        "Alsumaria"
+      ],
       "language": "ar",
       "notes": "Official grid with times, durations and Arabic descriptions."
     },
@@ -55,23 +83,41 @@
       "id": "ayn_oman",
       "name": "AYN / Oman TV",
       "country": "OM",
-      "status": "confirmed_schedule",
+      "status": "parser_fix_needed",
       "tier": "A",
-      "urls": ["https://ayn.om/services", "https://ayn.om/tv-shows"],
-      "expected_channels": ["قناة عمان العامة", "قناة عمان الرياضية", "قناة عمان الثقافية", "قناة عمان مباشر"],
+      "urls": [
+        "https://ayn.om/services",
+        "https://ayn.om/tv-shows"
+      ],
+      "expected_channels": [
+        "قناة عمان العامة",
+        "قناة عمان الرياضية",
+        "قناة عمان الثقافية",
+        "قناة عمان مباشر"
+      ],
       "language": "ar",
-      "notes": "Official platform explicitly provides future programme schedules and 48h catch-up."
+      "notes": "Official schedule pages and four Oman TV IDs confirmed, but the former upstream parser currently returns 0 programmes. LKG blocks empty publication until a new dynamic/API parser is validated."
     },
     {
       "id": "tabie_qmc",
       "name": "Tabie / Qatar Media Corporation",
       "country": "QA",
-      "status": "confirmed_schedule",
+      "status": "production_partial_horizon",
       "tier": "A",
-      "urls": ["https://www.tabie.net/live", "https://tabie.net/live"],
-      "expected_channels": ["تلفزيون قطر", "تلفزيون قطر 2", "تلفزيون قطر القرآن الكريم", "QBC", "قناة الريان", "قناة الكأس 1"],
+      "urls": [
+        "https://www.tabie.net/live",
+        "https://tabie.net/live"
+      ],
+      "expected_channels": [
+        "تلفزيون قطر",
+        "تلفزيون قطر 2",
+        "تلفزيون قطر القرآن الكريم",
+        "QBC",
+        "قناة الريان",
+        "قناة الكأس 1"
+      ],
       "language": "ar",
-      "notes": "QMC-owned platform with visible EPG. Use exact-channel validation because it also carries third-party networks."
+      "notes": "Public QMC schedule API validated. QTV1/QTV2/QBC/Tabie services active; direct horizon currently about one day, then canonical MENA merge may extend strictly after the official stop using lower-priority fallbacks."
     },
     {
       "id": "mtv_lebanon",
@@ -79,8 +125,13 @@
       "country": "LB",
       "status": "confirmed_schedule_dynamic",
       "tier": "A-candidate",
-      "urls": ["https://www.mtv.com.lb/Schedule"],
-      "expected_channels": ["MTV Lebanon", "One TV"],
+      "urls": [
+        "https://www.mtv.com.lb/Schedule"
+      ],
+      "expected_channels": [
+        "MTV Lebanon",
+        "One TV"
+      ],
       "language": "ar/en",
       "notes": "Official schedule route exists but appears client-rendered; API discovery required before publication."
     },
@@ -90,8 +141,18 @@
       "country": "JO",
       "status": "now_next_confirmed_api_needed",
       "tier": "A-candidate",
-      "urls": ["https://roya.tv/", "https://en.roya.tv/"],
-      "expected_channels": ["Roya TV", "Roya News", "Roya Drama", "Roya Comedy", "Roya Kitchen", "Roya Sport"],
+      "urls": [
+        "https://roya.tv/",
+        "https://en.roya.tv/"
+      ],
+      "expected_channels": [
+        "Roya TV",
+        "Roya News",
+        "Roya Drama",
+        "Roya Comedy",
+        "Roya Kitchen",
+        "Roya Sport"
+      ],
       "language": "ar/en",
       "notes": "Official site exposes live channels and now/next; probe API for full 24-48h schedule."
     },
@@ -101,8 +162,16 @@
       "country": "AE",
       "status": "probe_only",
       "tier": "A-candidate",
-      "urls": ["https://www.sharjahtv.ae/"],
-      "expected_channels": ["Sharjah TV", "Sharjah Sports", "Al Wousta", "Sharqiya Kalba", "Sharjah Quran"],
+      "urls": [
+        "https://www.sharjahtv.ae/"
+      ],
+      "expected_channels": [
+        "Sharjah TV",
+        "Sharjah Sports",
+        "Al Wousta",
+        "Sharqiya Kalba",
+        "Sharjah Quran"
+      ],
       "language": "ar",
       "notes": "Official SBA family. Discover current public schedule/API before promotion."
     },
@@ -112,8 +181,17 @@
       "country": "KW",
       "status": "probe_only",
       "tier": "A-candidate",
-      "urls": ["https://media.gov.kw/", "https://www.media.gov.kw/Frequency.aspx?FreqType=TVKSC"],
-      "expected_channels": ["Kuwait TV 1", "Kuwait TV 2", "Kuwait News", "Kuwait Sport", "Kuwait Sport Plus"],
+      "urls": [
+        "https://media.gov.kw/",
+        "https://www.media.gov.kw/Frequency.aspx?FreqType=TVKSC"
+      ],
+      "expected_channels": [
+        "Kuwait TV 1",
+        "Kuwait TV 2",
+        "Kuwait News",
+        "Kuwait Sport",
+        "Kuwait Sport Plus"
+      ],
       "language": "ar",
       "notes": "Official channel inventory confirmed; schedule endpoint still to be discovered."
     },
@@ -123,8 +201,17 @@
       "country": "BH",
       "status": "probe_only",
       "tier": "A-candidate",
-      "urls": ["https://www.bahrain.bh/"],
-      "expected_channels": ["Bahrain TV", "Bahrain Lawal", "Bahrain International", "Bahrain Sports 1", "Bahrain Sports 2", "Quraan Kareem"],
+      "urls": [
+        "https://www.bahrain.bh/"
+      ],
+      "expected_channels": [
+        "Bahrain TV",
+        "Bahrain Lawal",
+        "Bahrain International",
+        "Bahrain Sports 1",
+        "Bahrain Sports 2",
+        "Quraan Kareem"
+      ],
       "language": "ar/en",
       "notes": "Official channel family confirmed. Discover public guide/API."
     },
@@ -134,7 +221,9 @@
       "country": "SA/MENA",
       "status": "probe_only",
       "tier": "B-candidate",
-      "urls": ["https://www.jawwy.tv/"],
+      "urls": [
+        "https://www.jawwy.tv/"
+      ],
       "expected_channels": [],
       "language": "ar/en",
       "notes": "Operator source candidate. Do not promote until a public guide endpoint and exact channel identities are validated."
@@ -145,7 +234,9 @@
       "country": "MENA",
       "status": "overlay_only",
       "tier": "auxiliary",
-      "urls": ["https://www.fotmob.com/ar/tv-guide/me"],
+      "urls": [
+        "https://www.fotmob.com/ar/tv-guide/me"
+      ],
       "expected_channels": [],
       "language": "ar/en",
       "notes": "Sports event/broadcaster correction layer only; never a general EPG primary source."
