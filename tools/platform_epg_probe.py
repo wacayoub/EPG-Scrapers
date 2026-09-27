@@ -40,10 +40,6 @@ TARGETS = {
         "https://www.tabie.net/live",
         "https://www.tabie.net/",
     ],
-    "mtv_lebanon": [
-        "https://www.mtv.com.lb/Schedule",
-        "https://www.mtv.com.lb/",
-    ],
     "roya": [
         "https://roya.tv/",
         "https://en.roya.tv/",
