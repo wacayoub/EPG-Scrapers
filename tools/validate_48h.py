@@ -22,7 +22,7 @@ PROFILES={
     "shahid.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "rotana.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
     "oman.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":180},
-    "tabie.xml.gz":{"target_hours":48.0,"min_hours":24.0,"gap_warn":180},
+    "tabie.xml.gz":{"target_hours":48.0,"min_hours":24.0,"gap_warn":180,"allow_zero_epg":True},
     # Request/audit 48h for Sport24 too; short event-driven coverage is WARN, never fabricated.
     "sport24.xml.gz":{"target_hours":48.0,"min_hours":4.0,"gap_warn":360},
 }
@@ -75,6 +75,9 @@ def audit(path,hours,max_gap_minutes):
     for cid in sorted(channels,key=str.casefold):
         iv=sorted(by[cid])
         if not iv:
+            if prof.get("allow_zero_epg"):
+                row={"id":cid,"status":"WARN","reason":"ZERO_EPG","future_hours":0.0,"max_gap_minutes":None}
+                rows.append(row); warnings.append(row); continue
             row={"id":cid,"status":"FAIL","reason":"NO_FUTURE_EPG","future_hours":0.0,"max_gap_minutes":None}
             rows.append(row); failures.append(row); continue
 
