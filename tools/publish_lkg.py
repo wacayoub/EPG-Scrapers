@@ -38,7 +38,7 @@ POLICY = {
     "starzplay":  {"min_channels": 5,  "min_programmes": 20,  "min_future_ratio": 0.50, "min_horizon_hours": 4},
     # Dubai+ official public API: compact nine-channel DMI lineup.
     "dubaiplus": {"min_channels": 7,  "min_programmes": 20,  "min_future_ratio": 0.70, "min_horizon_hours": 4},
-    # STC is intentionally a targeted fallback, not a scrape of the full 144-channel lineup.
+    # STC full public catalogue is fetched in daily batch mode (144 channels currently).
     "stctv":     {"min_channels": 10, "min_programmes": 30, "min_future_ratio": 0.70, "min_horizon_hours": 4},
     "gobx":      {"min_channels": 3,  "min_programmes": 10, "min_future_ratio": 0.60, "min_horizon_hours": 4},
 }
