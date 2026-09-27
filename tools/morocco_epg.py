@@ -91,7 +91,7 @@ T2M_MIXED={
  "clips soiree chaabi":"سهرة شعبية",
  "talk show twahachnak":"توحشناك",
  "twahachnak":"توحشناك",
- "akhir tamanna":"آخر تمني",
+ "akhir tamanna":"آخر تمني","akhir tamane":"آخر ثمن","akhir tamaneh":"آخر ثمن",
  "al khobare":"الأخبار",
  "coran avec laureats tajwid al qor an":"Coran avec lauréats تجويد القرآن",
  "tajwid al qor an":"تجويد القرآن"
