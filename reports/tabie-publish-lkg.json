@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-27T21:24:26.467390+00:00",
+  "generated_utc": "2026-09-27T21:28:40.231668+00:00",
   "sources": {
     "tabie": {
       "candidate": "output/final/tabie.xml.gz",
@@ -8,10 +8,20 @@
         "channels": 9,
         "active_channels": 5,
         "zero_epg_channels": 4,
+        "programmes": 1171,
+        "future_channels": 5,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 26.52215646888889,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 9,
+        "active_channels": 5,
+        "zero_epg_channels": 4,
         "programmes": 1178,
         "future_channels": 5,
         "future_ratio": 1.0,
-        "future_horizon_hours": 587.1426465313889,
+        "future_horizon_hours": 587.072150291111,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",

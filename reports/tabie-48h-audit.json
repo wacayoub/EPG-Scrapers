@@ -1,38 +1,38 @@
 {
-  "generated_utc": "2026-09-27T21:24:26.426659+00:00",
+  "generated_utc": "2026-09-27T21:28:40.193600+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "tabie.xml.gz",
-      "generated_utc": "2026-09-27T21:24:26.426314+00:00",
+      "generated_utc": "2026-09-27T21:28:40.193306+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 24.0,
       "max_gap_minutes_warning": 180,
       "channels": 9,
       "invalid_times": 0,
       "orphan_programmes": 0,
-      "failed_channels": 4,
-      "warning_channels": 3,
-      "status": "FAIL",
+      "failed_channels": 0,
+      "warning_channels": 9,
+      "status": "WARN",
       "rows": [
         {
           "id": "AlkassOne.qa@SD",
-          "status": "FAIL",
-          "reason": "NO_FUTURE_EPG",
+          "status": "WARN",
+          "reason": "ZERO_EPG",
           "future_hours": 0.0,
           "max_gap_minutes": null
         },
         {
           "id": "AlRayyanAlQadeem.qa@SD",
-          "status": "FAIL",
-          "reason": "NO_FUTURE_EPG",
+          "status": "WARN",
+          "reason": "ZERO_EPG",
           "future_hours": 0.0,
           "max_gap_minutes": null
         },
         {
           "id": "AlRayyanTV.qa@SD",
-          "status": "FAIL",
-          "reason": "NO_FUTURE_EPG",
+          "status": "WARN",
+          "reason": "ZERO_EPG",
           "future_hours": 0.0,
           "max_gap_minutes": null
         },
@@ -40,15 +40,15 @@
           "id": "QatarBusinessChannel.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 26.51,
+          "future_hours": 26.44,
           "latest_stop_utc": "2026-09-28T23:55:00+00:00",
-          "max_gap_minutes": 155.6,
+          "max_gap_minutes": 151.3,
           "programmes": 44
         },
         {
           "id": "QatarQuranTV.qa@SD",
-          "status": "FAIL",
-          "reason": "NO_FUTURE_EPG",
+          "status": "WARN",
+          "reason": "ZERO_EPG",
           "future_hours": 0.0,
           "max_gap_minutes": null
         },
@@ -56,37 +56,37 @@
           "id": "QatarTelevision.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 26.59,
+          "future_hours": 26.52,
           "latest_stop_utc": "2026-09-29T00:00:00+00:00",
-          "max_gap_minutes": 155.6,
+          "max_gap_minutes": 151.3,
           "programmes": 46
         },
         {
           "id": "QatarTelevision2.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 26.59,
+          "future_hours": 26.52,
           "latest_stop_utc": "2026-09-29T00:00:00+00:00",
-          "max_gap_minutes": 155.6,
+          "max_gap_minutes": 151.3,
           "programmes": 46
         },
         {
           "id": "TabieKids.qa",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 587.14,
-          "latest_stop_utc": "2026-10-22T08:33:00+00:00",
-          "max_gap_minutes": 157.6,
-          "programmes": 75
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 26.31,
+          "latest_stop_utc": "2026-09-28T23:47:00+00:00",
+          "max_gap_minutes": 176.3,
+          "programmes": 73
         },
         {
           "id": "TabieNow.qa",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 578.59,
-          "latest_stop_utc": "2026-10-22T00:00:00+00:00",
-          "max_gap_minutes": 178.6,
-          "programmes": 967
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 26.47,
+          "latest_stop_utc": "2026-09-28T23:57:00+00:00",
+          "max_gap_minutes": 179.3,
+          "programmes": 962
         }
       ]
     }

@@ -1,5 +1,7 @@
 {
-  "generated_qatar": "2026-09-28T00:24:14.699991+03:00",
+  "generated_qatar": "2026-09-28T00:28:30.863558+03:00",
+  "rejected_long_duration": 6,
+  "date_mismatch_rows": 2664,
   "dates": [
     "2026-09-28",
     "2026-09-29",
@@ -178,22 +180,22 @@
     "TabieNow.qa": {
       "channel_id": 34,
       "name": "Tabie Now",
-      "programmes": 1128,
+      "programmes": 1123,
       "days": {
         "2026-09-28": {
           "status": "OK",
-          "programmes": 1128,
-          "api_rows": 1128
+          "programmes": 1123,
+          "api_rows": 1124
         },
         "2026-09-29": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 1128
+          "api_rows": 1124
         },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 1128
+          "api_rows": 1124
         }
       },
       "errors": [],
@@ -202,28 +204,28 @@
     "TabieKids.qa": {
       "channel_id": 35,
       "name": "Tabie Kids",
-      "programmes": 75,
+      "programmes": 73,
       "days": {
         "2026-09-28": {
           "status": "OK",
-          "programmes": 75,
-          "api_rows": 75
+          "programmes": 73,
+          "api_rows": 74
         },
         "2026-09-29": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 75
+          "api_rows": 74
         },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 75
+          "api_rows": 74
         }
       },
       "errors": [],
       "status": "ACTIVE"
     }
   },
-  "programmes": 1339,
+  "programmes": 1332,
   "active_channels": 5
 }
