@@ -1,0 +1,70 @@
+name: Probe beIN Kids live slots
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-bein-kids-live.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install probe dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir requests beautifulsoup4 lxml
+      - name: Probe official beIN AR and EN entertainment guide
+        shell: bash
+        run: |
+          python - <<'PY'
+          import datetime as dt, json, re, requests
+          from bs4 import BeautifulSoup
+
+          date=dt.datetime.utcnow().date().isoformat()
+          for lang,postid in (("ar","25344"),("en","25356")):
+              url=f"https://www.bein.com/{lang}/epg-ajax-template/"
+              params={
+                  "action":"epg_fetch","category":"entertainment","cdate":date,
+                  "language":lang.upper(),"loadindex":"0","mins":"00","offset":"0",
+                  "postid":postid,"serviceidentity":"bein.net",
+              }
+              r=requests.get(url,params=params,headers={"User-Agent":"Mozilla/5.0 EPGManager/beIN-probe"},timeout=30)
+              print("HTTP",lang,r.status_code,len(r.content),r.url)
+              r.raise_for_status()
+              soup=BeautifulSoup(r.text,"lxml")
+              rows=[]
+              for div in soup.select('.container-tvguide > div[id^="channels_"]'):
+                  m=re.match(r"channels_(\d+)",div.get("id") or "")
+                  if not m: continue
+                  sid=int(m.group(1))
+                  a=div.find("a",href=True)
+                  img=div.find("img")
+                  href=(a.get("href") or "") if a else ""
+                  alt=(img.get("alt") or "") if img else ""
+                  title=(img.get("title") or "") if img else ""
+                  classes=" ".join(div.get("class") or [])
+                  progs=[]
+                  for li in div.select(".slider > ul:first-child > li")[:6]:
+                      t=li.select_one(".title")
+                      tm=li.select_one(".time")
+                      ft=li.select_one(".format")
+                      progs.append({
+                          "time":tm.get_text(" ",strip=True) if tm else "",
+                          "title":t.get_text(" ",strip=True) if t else "",
+                          "format":ft.get_text(" ",strip=True) if ft else "",
+                      })
+                  rows.append({"slot":sid,"href":href,"alt":alt,"img_title":title,"classes":classes,"programmes":progs})
+              print("ROWS",lang,len(rows))
+              for row in rows:
+                  blob=(" ".join([row["href"],row["alt"],row["img_title"]])+" "+json.dumps(row["programmes"],ensure_ascii=False)).lower()
+                  if row["slot"] in range(18,32) or any(k in blob for k in ("jeem","baraem","junior","cartoon","kids","news")):
+                      print("SLOT",lang,json.dumps(row,ensure_ascii=False))
+          PY
