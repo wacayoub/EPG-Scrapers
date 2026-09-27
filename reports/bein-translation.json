@@ -1,18 +1,13 @@
 {
-  "programmes": 1220,
-  "titles_changed": 878,
-  "descriptions_translated": 721,
-  "metadata_moved_from_title": 140,
-  "description_total": 893,
-  "remaining_english_descriptions": 54,
+  "programmes": 1601,
+  "title_policy": "preserve source here; full English titles applied in hybrid pass",
+  "titles_changed": 0,
+  "descriptions_translated": 0,
+  "description_total": 985,
+  "remaining_english_descriptions": 0,
   "new_cache_entries": 0,
-  "translation_failures": [
-    {
-      "text": "Main Race - F1 Azerbaijan Grand Prix - FIA Formula 1 World Championship 2026",
-      "error": "HTTP 429 after backoff; translation paused for remainder of run"
-    }
-  ],
-  "rate_limited": true,
-  "skipped_after_rate_limit": 390,
-  "translation_policy": "best-effort; source text preserved on rate limit/error"
+  "translation_failures": [],
+  "rate_limited": false,
+  "skipped_after_rate_limit": 0,
+  "translation_policy": "descriptions only; source text preserved on rate limit/error"
 }
