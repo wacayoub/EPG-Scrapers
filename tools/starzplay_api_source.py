@@ -26,7 +26,8 @@ UA = (
     "Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/140 Mobile Safari/537.36"
 )
-NONWORD_RE = re.compile(r"[^a-z0-9]+")
+# Unicode-aware normalization: Arabic channel names must remain distinct.
+NONWORD_RE = re.compile(r"[\W_]+", re.UNICODE)
 TV_CATEGORY_BLOCKLIST = {"radio"}
 
 
@@ -235,7 +236,9 @@ def collect_from_payload(payload: Any) -> tuple[list[dict[str, str]], list[dict[
             title = scalar(first(event, ("title", "name", "displayTitle", "eventName")))
             if not title:
                 continue
-            event_source_id = scalar(first(event, ("guid", "channelId", "channel_id"))) or source_id
+            # The enclosing channel ID is authoritative. Event GUIDs identify
+            # programme/stream assets and must never replace the channel ID.
+            event_source_id = source_id or scalar(first(event, ("channelId", "channel_id", "guid")))
             events.append({
                 "channel_name": name or scalar(first(event, ("channelName", "channel_name"))) or event_source_id,
                 "source_id": event_source_id,
