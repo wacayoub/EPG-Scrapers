@@ -8,6 +8,7 @@ per-source freshness/regression gates and keeps the previous feed on failure.
 """
 from __future__ import annotations
 
+import argparse
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import gzip
@@ -39,6 +40,7 @@ POLICY = {
     "dubaiplus": {"min_channels": 7,  "min_programmes": 20,  "min_future_ratio": 0.70, "min_horizon_hours": 4},
     # STC is intentionally a targeted fallback, not a scrape of the full 144-channel lineup.
     "stctv":     {"min_channels": 10, "min_programmes": 30, "min_future_ratio": 0.70, "min_horizon_hours": 4},
+    "gobx":      {"min_channels": 3,  "min_programmes": 10, "min_future_ratio": 0.60, "min_horizon_hours": 4},
 }
 DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
@@ -138,12 +140,19 @@ def evaluate(key: str, candidate: Path, previous: Path):
     return cur, old, reasons
 
 
+ap = argparse.ArgumentParser()
+ap.add_argument("--source", choices=sorted(POLICY), help="Publish only one source; default publishes all candidates")
+ap.add_argument("--report", default="reports/publish-lkg.json")
+args = ap.parse_args()
+
+selected_sources = [args.source] if args.source else list(POLICY)
+
 result = {
     "generated_utc": datetime.now(timezone.utc).isoformat(),
     "sources": {},
 }
 
-for key in POLICY:
+for key in selected_sources:
     src = OUT / f"{key}.xml.gz"
     dst = FEEDS / f"{key}.xml.gz"
     row = {"candidate": str(src), "published": False}
@@ -190,7 +199,9 @@ for key in POLICY:
         result["sources"][key] = row
         print("KEEP LKG", key, exc)
 
-(REPORTS / "publish-lkg.json").write_text(
+report_path = Path(args.report)
+report_path.parent.mkdir(parents=True, exist_ok=True)
+report_path.write_text(
     json.dumps(result, ensure_ascii=False, indent=2) + "\n",
     encoding="utf-8",
 )
