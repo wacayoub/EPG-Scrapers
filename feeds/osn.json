@@ -1,20 +1,28 @@
 {
   "label": "osn",
-  "channels": 81,
+  "channels": 89,
   "active_channels": 79,
-  "zero_epg_channels": 2,
+  "zero_epg_channels": 10,
   "zero_epg_ids": [
+    "AlfaSeries.ae@SD",
+    "AlfaSeriesPlus2.ae@SD",
+    "AlSafwa.ae@SD",
+    "AlYawm.ae@SD",
+    "Cinema1.ae@SD",
+    "Cinema2.ae@SD",
+    "Fann.ae@SD",
+    "MusicNow.ae@SD",
     "OSNPopUp2.ae@SD",
     "SaudiThaqafiyaTV.sa@SD"
   ],
-  "input_channels": 81,
-  "coverage_pct": 97.5,
-  "programmes": 5880,
+  "input_channels": 89,
+  "coverage_pct": 88.8,
+  "programmes": 5889,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 373514,
-  "sha256": "335ff0bb0beec7cb1cbfdba4378bd39e75b2ac6cea61f2f72d410fa1c71f9542",
-  "generated_utc": "2026-09-27T12:06:29.154473+00:00"
+  "size_bytes": 373810,
+  "sha256": "ed7ffcdf91c3fea392ab0b8eab6f3d32bcb53beeeec22ce8d0e8c4c4697a19e5",
+  "generated_utc": "2026-09-27T12:22:53.311878+00:00"
 }

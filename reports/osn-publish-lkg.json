@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-09-27T12:06:29.416201+00:00",
+  "generated_utc": "2026-09-27T12:22:53.536213+00:00",
   "sources": {
     "osn": {
       "candidate": "output/final/osn.xml.gz",
       "published": true,
       "candidate_stats": {
-        "channels": 81,
+        "channels": 89,
         "active_channels": 79,
-        "zero_epg_channels": 2,
-        "programmes": 5880,
+        "zero_epg_channels": 10,
+        "programmes": 5889,
         "future_channels": 79,
         "future_ratio": 1.0,
-        "future_horizon_hours": 59.891811008888894,
+        "future_horizon_hours": 59.61844485333333,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 81,
         "active_channels": 79,
         "zero_epg_channels": 2,
-        "programmes": 5881,
+        "programmes": 5880,
         "future_channels": 79,
         "future_ratio": 1.0,
-        "future_horizon_hours": 59.89177129055555,
+        "future_horizon_hours": 59.618409049722224,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
