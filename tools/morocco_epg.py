@@ -57,7 +57,7 @@ NEWS={"الظهيرة":"أخبار الظهيرة","الأمازيغية":"ال�
  "الإسبانية":"الأخبار الإسبانية","الرئيسية":"الأخبار الرئيسية","الأخيرة":"الأخبار الأخيرة","الرياضية":"أخبار الرياضة"}
 T2M={
  "addam al machrouk":"الدم المشروك",
- "al akhbar":"الأخبار","sabahiyat 2m":"صباحيات 2M","sabahiyat":"صباحيات 2M",
+ "al akhbar":"الأخبار","al khobarae":"الخبراء","sabahiyat 2m":"صباحيات 2M","sabahiyat":"صباحيات 2M",
  "ahsane patissier":"أحسن حلواني","andaloussiyat":"أندلسيات","lharba":"الهربة",
  "sahatna jmi3":"صحتنا جميع","tajwid al qor an":"تجويد القرآن","ch hiwat bladi":"شهيوات بلادي",
  "kif al hal":"كيف الحال","al barlamane wa annass":"البرلمان والناس","alhane 3chaqnaha":"ألحان عشقناها",
