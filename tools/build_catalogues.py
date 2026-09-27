@@ -284,11 +284,14 @@ build_osn_catalogue("en","osn_en.channels.xml")
 choose("shahid",["shahid.mbc.net"],arabic_only=True)
 choose("rotana",["rotana.net"],arabic_only=True)
 
-# Full-source mode: keep beIN-owned services plus real package channels
-# exposed by the official beIN MENA guide. Third-party rows are retained only
-# when upstream supplies a canonical XMLTV ID; generated third-party
-# placeholders remain excluded. AFC temporary feeds stay excluded.
-BEIN_ZERO_EPG_EXCLUDE = set()
+# Full-source mode for the beIN feed. Al Kass is intentionally excluded here:
+# it has its own direct official source (tools/alkass_source.py), so keeping the
+# same IDs in beIN creates duplicate ownership and misleading 0-EPG warnings.
+# Obsolete services such as beIN Sports NBA are also excluded. AFC temporary
+# feeds remain excluded.
+BEIN_ZERO_EPG_EXCLUDE = {
+    "beINSportsNBA.qa@SD",
+}
 
 BEIN_SITE_ID_OVERRIDES_AR = {
     ("bein.com", "entertainment#8"): ("beINBoxOffice1.qa@SD", "beIN BOX OFFICE 1"),
@@ -303,14 +306,6 @@ BEIN_SITE_ID_OVERRIDES_EN = {
 
 BEIN_PACKAGE_DISPLAY_OVERRIDES = {
     "AlJazeeraDocumentary.qa@SD": "Al Jazeera Documentary",
-    "AlkassOne.qa@SD": "Alkass One",
-    "AlkassTwo.qa@SD": "Alkass Two",
-    "AlkassThree.qa@SD": "Alkass Three",
-    "AlkassFour.qa@SD": "Alkass Four",
-    "AlkassFive.qa@SD": "Alkass Five",
-    "AlkassSix.qa@SD": "Alkass Six",
-    "AlkassSeven.qa@SD": "Alkass Seven",
-    "AlkassEight.qa@SD": "Alkass Eight",
     "Baraem.qa@SD": "Baraem",
     "BeJunior.qa@SD": "beJunior",
     "BloombergTV.us@MiddleEast": "Bloomberg",
@@ -475,13 +470,15 @@ def build_bein():
         node.set("xmltv_id",cid)
 
         service_key=_bein_norm_name(name)
-        # Keep beIN-owned services plus official package channels that have a
-        # real canonical XMLTV ID (Alkass and non-sports partners included).
-        # Do not invent IDs for arbitrary third-party placeholders.
+        # Keep beIN-owned services plus canonical package partners, but never
+        # duplicate Al Kass here: Al Kass 1-8 are owned by the dedicated
+        # official `alkass` source.
         is_bein_owned=service_key.startswith("bein")
         is_alkass=service_key.startswith("alkass")
         is_canonical_partner=(not generated and bool(cid))
-        if not (is_bein_owned or is_alkass or is_canonical_partner):
+        if is_alkass:
+            continue
+        if not (is_bein_owned or is_canonical_partner):
             continue
         if "afc" in service_key or "afc" in cid.casefold():
             continue
@@ -579,7 +576,7 @@ def build_bein():
 
     import json
     audit={
-        "scope":"beIN MENA official package: bein.com AR+EN primary, beinsports.com fallback; beIN-owned + canonical partner channels; AFC excluded",
+        "scope":"beIN MENA official package: bein.com AR+EN primary, beinsports.com fallback; Al Kass delegated to dedicated official source; obsolete NBA and AFC excluded",
         "source_priority":["bein.com live-discovered AR+EN","bein.com static fallback","beinsports.com MENA fallback"],
         "source_entries":source_counts,
         "catalogue_ids":len(root),
@@ -589,6 +586,8 @@ def build_bein():
         "generated_ids":sorted(generated_ids,key=str.casefold),
         "zero_epg_policy":"retain valid beIN MENA IDs",
         "third_party_package_channels":"retained when canonical XMLTV ID exists",
+        "alkass":"excluded_from_bein_use_dedicated_alkass_source",
+        "obsolete_ids":["beINSportsNBA.qa@SD"],
         "afc":"excluded",
     }
     (OUT/"bein-catalogue.json").write_text(
