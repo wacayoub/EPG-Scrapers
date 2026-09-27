@@ -222,11 +222,14 @@ def main():
     active=0
     for cid,name,url in TARGETS:
         row={"id":cid,"name":name,"url":url,"programmes":0,"status":"NO_TIMELINE"}
+        ch=ET.SubElement(root,"channel",{"id":cid})
+        ET.SubElement(ch,"display-name",{"lang":"en"}).text=name
+        ET.SubElement(ch,"url",{"system":"sport24-url"}).text=url
         try:
             events,diag=scrape(session,url); row.update(diag)
             events=[e for e in events if e["stop"]>now-timedelta(hours=2) and e["start"]<max_start]
             if events:
-                c=ET.SubElement(root,"channel",{"id":cid}); ET.SubElement(c,"display-name",{"lang":"en"}).text=name; active+=1
+                active+=1
                 for ev in events:
                     p=ET.SubElement(root,"programme",{"channel":cid,"start":xmltv_dt(ev["start"]),"stop":xmltv_dt(ev["stop"])})
                     ET.SubElement(p,"title",{"lang":"ar"}).text=ev["title"]
@@ -236,7 +239,7 @@ def main():
             row["status"]="ERROR"; row["error"]=str(exc)[:240]
         report["channels"].append(row); time.sleep(max(0,args.delay_ms)/1000.0)
     ET.indent(root,space="  "); Path(args.output).write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
-    report["active_channels"]=active; report["generated_utc"]=datetime.now(timezone.utc).isoformat(); Path(args.report).write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    report["channels_total"]=len(TARGETS); report["active_channels"]=active; report["zero_epg_channels"]=len(TARGETS)-active; report["timezone_output"]="UTC +0000"; report["generated_utc"]=datetime.now(timezone.utc).isoformat(); Path(args.report).write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"active_channels":active,"programmes":report["programmes"]})); return 0
 
 if __name__=="__main__": raise SystemExit(main())
