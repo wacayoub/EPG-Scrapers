@@ -111,16 +111,18 @@ jobs:
           p=Path("vendor/iptv-org-epg/sites/bein.com/bein.com.config.js")
           text=p.read_text(encoding="utf-8")
           old="    date = dayjs(date.valueOf()).subtract(1, 'day')"
-          new="""    const firstTimeMatch = items.length
-      ? (cheerio.load(items[0])('.time').text().match(/^(\\d{2}):/) || null)
-      : null
-    date = dayjs(date.valueOf())
-    // beIN sometimes starts a daily grid late on the previous evening
-    // (23:xx), but Kids grids often start exactly at 00:00. Subtracting one
-    // day unconditionally makes the whole Kids schedule 24h old.
-    if (firstTimeMatch && Number(firstTimeMatch[1]) >= 18) {
-      date = date.subtract(1, 'day')
-    }"""
+          new="\\n".join([
+              "    const firstTimeMatch = items.length",
+              "      ? (cheerio.load(items[0])('.time').text().match(/^(\\\\d{2}):/) || null)",
+              "      : null",
+              "    date = dayjs(date.valueOf())",
+              "    // beIN sometimes starts a daily grid late on the previous evening",
+              "    // (23:xx), but Kids grids often start exactly at 00:00. Subtracting one",
+              "    // day unconditionally makes the whole Kids schedule 24h old.",
+              "    if (firstTimeMatch && Number(firstTimeMatch[1]) >= 18) {",
+              "      date = date.subtract(1, 'day')",
+              "    }",
+          ])
           if old not in text:
               raise SystemExit("beIN date-anchor patch target not found")
           p.write_text(text.replace(old,new,1),encoding="utf-8")
