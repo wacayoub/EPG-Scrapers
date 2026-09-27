@@ -189,6 +189,7 @@ def main():
         "programmes": 0,
         "requests": 0,
         "source_channels": 0,
+        "source_metadata_issues": [],
         "zero_epg": [],
         "hybrid_channels": [],
         "samples": {},
@@ -222,11 +223,29 @@ def main():
 
         seen_cids = set()
         prepared = []
-        for ch in targets:
-            name = str(ch.get("channelTitle") or ch.get("channelTitleAr") or "").strip()
+        for source_index, ch in enumerate(targets):
+            title_en = str(ch.get("channelTitle") or "").strip()
+            title_ar = str(ch.get("channelTitleAr") or "").strip()
             sid = str(ch.get("channelID") or "").strip()
-            if not name or not sid:
+            name = title_en or title_ar
+            if not sid:
+                stats["source_metadata_issues"].append({
+                    "source_index": source_index,
+                    "name": name,
+                    "reason": "missing_channelID",
+                    "retained": False,
+                })
                 continue
+            if not name:
+                # A valid STC channelID must never disappear just because the
+                # current catalogue omitted both display-title fields.
+                name = f"STC TV {sid}"
+                stats["source_metadata_issues"].append({
+                    "source_index": source_index,
+                    "channelID": sid,
+                    "reason": "missing_title_placeholder_used",
+                    "retained": True,
+                })
             cid = xml_id(name, index, sid)
             if cid in seen_cids:
                 # Two STC source entries may legitimately share the same
