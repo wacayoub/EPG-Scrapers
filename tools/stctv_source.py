@@ -107,6 +107,8 @@ def main():
     ap.add_argument("--delay",type=float,default=1.5)
     ap.add_argument("--timeout",type=int,default=20)
     ap.add_argument("--max-channels",type=int,default=30)
+    ap.add_argument("--profile",choices=("all","starzplay-sports"),default="all",
+                    help="Limit receiver-facing output to unique STARZPLAY Sports channels when requested")
     args=ap.parse_args()
 
     now=datetime.now(timezone.utc); end=now+timedelta(hours=max(1,args.window_hours))
@@ -132,8 +134,11 @@ def main():
             ar=str(ch.get("channelTitleAr") or "")
             if TARGET.search(en) or TARGET.search(ar):
                 targets.append(ch)
+        if args.profile=="starzplay-sports":
+            targets=[ch for ch in targets if norm(str(ch.get("channelTitle") or ch.get("channelTitleAr") or "")).startswith("starzplay sports ")]
         targets=targets[:args.max_channels]
         stats["target_channels"]=len(targets)
+        stats["profile"]=args.profile
         for ci,ch in enumerate(targets):
             name=str(ch.get("channelTitle") or ch.get("channelTitleAr") or "").strip()
             sid=str(ch.get("channelID") or "")
