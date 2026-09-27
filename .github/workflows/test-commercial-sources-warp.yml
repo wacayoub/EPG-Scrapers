@@ -125,6 +125,11 @@ jobs:
           print(json.dumps(out,ensure_ascii=False,indent=2))
           PY
 
+      - name: Probe STARZPLAY public page structure through WARP
+        shell: bash
+        run: |
+          python tools/starzplay_structure_probe.py --lang ar --output reports/commercial-warp-test/starzplay-structure-ar.json
+
       - name: Two-hour STARZPLAY and Dubai+ parser test through WARP
         shell: bash
         run: |
