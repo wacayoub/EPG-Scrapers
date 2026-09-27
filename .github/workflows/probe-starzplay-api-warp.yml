@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/probe-starzplay-api-warp.yml"
+      - "tools/starzplay_api_source.py"
 
 permissions:
   contents: write
