@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "updated": "2026-09-27",
+  "policy": {
+    "primary_rule": "official/direct broadcaster or operator schedule first",
+    "fallback_rule": "Rytec/OpenEPG/EPGShare only after direct/validated sources",
+    "publication_rule": "candidate must pass live validation and 24h minimum future coverage before production promotion"
+  },
+  "sources": [
+    {
+      "id": "alkass",
+      "name": "Al Kass Direct",
+      "country": "QA",
+      "status": "confirmed_schedule",
+      "tier": "A",
+      "urls": ["https://www.alkass.net/tvguide", "https://dirorigin.alkass.net/tvguide"],
+      "expected_channels": ["Al Kass 1", "Al Kass 2", "Al Kass 3", "Al Kass 4", "Al Kass 5", "Al Kass 6", "Al Kass 7", "Al Kass 8"],
+      "language": "ar/en",
+      "notes": "Direct broadcaster guide. Prefer over beIN/aggregator fallback for Al Kass IDs."
+    },
+    {
+      "id": "tunisiatv",
+      "name": "Télévision Tunisienne",
+      "country": "TN",
+      "status": "confirmed_schedule",
+      "tier": "A",
+      "urls": ["https://www.tunisiatv.tn/ar", "https://tunisiatv.tn/ar"],
+      "expected_channels": ["الوطنية 1", "الوطنية 2"],
+      "language": "ar",
+      "notes": "Official programme guide exposes start/stop, titles and descriptions."
+    },
+    {
+      "id": "lbci",
+      "name": "LBCI",
+      "country": "LB",
+      "status": "confirmed_schedule",
+      "tier": "A",
+      "urls": ["https://www.lbcgroup.tv/schedule/en", "https://www.lbcgroup.tv/schedule/ar"],
+      "expected_channels": ["LBCI", "LB2"],
+      "language": "ar/en",
+      "notes": "Official multi-day schedule. Preserve Beirut timezone."
+    },
+    {
+      "id": "alsumaria",
+      "name": "Alsumaria",
+      "country": "IQ",
+      "status": "confirmed_schedule",
+      "tier": "A",
+      "urls": ["https://www.alsumaria.tv/TV-grid"],
+      "expected_channels": ["Alsumaria"],
+      "language": "ar",
+      "notes": "Official grid with times, durations and Arabic descriptions."
+    },
+    {
+      "id": "ayn_oman",
+      "name": "AYN / Oman TV",
+      "country": "OM",
+      "status": "confirmed_schedule",
+      "tier": "A",
+      "urls": ["https://ayn.om/services", "https://ayn.om/tv-shows"],
+      "expected_channels": ["قناة عمان العامة", "قناة عمان الرياضية", "قناة عمان الثقافية", "قناة عمان مباشر"],
+      "language": "ar",
+      "notes": "Official platform explicitly provides future programme schedules and 48h catch-up."
+    },
+    {
+      "id": "tabie_qmc",
+      "name": "Tabie / Qatar Media Corporation",
+      "country": "QA",
+      "status": "confirmed_schedule",
+      "tier": "A",
+      "urls": ["https://www.tabie.net/live", "https://tabie.net/live"],
+      "expected_channels": ["تلفزيون قطر", "تلفزيون قطر 2", "تلفزيون قطر القرآن الكريم", "QBC", "قناة الريان", "قناة الكأس 1"],
+      "language": "ar",
+      "notes": "QMC-owned platform with visible EPG. Use exact-channel validation because it also carries third-party networks."
+    },
+    {
+      "id": "mtv_lebanon",
+      "name": "MTV Lebanon",
+      "country": "LB",
+      "status": "confirmed_schedule_dynamic",
+      "tier": "A-candidate",
+      "urls": ["https://www.mtv.com.lb/Schedule"],
+      "expected_channels": ["MTV Lebanon", "One TV"],
+      "language": "ar/en",
+      "notes": "Official schedule route exists but appears client-rendered; API discovery required before publication."
+    },
+    {
+      "id": "roya",
+      "name": "Roya",
+      "country": "JO",
+      "status": "now_next_confirmed_api_needed",
+      "tier": "A-candidate",
+      "urls": ["https://roya.tv/", "https://en.roya.tv/"],
+      "expected_channels": ["Roya TV", "Roya News", "Roya Drama", "Roya Comedy", "Roya Kitchen", "Roya Sport"],
+      "language": "ar/en",
+      "notes": "Official site exposes live channels and now/next; probe API for full 24-48h schedule."
+    },
+    {
+      "id": "maraya_sharjah",
+      "name": "Maraya / Sharjah Broadcasting Authority",
+      "country": "AE",
+      "status": "probe_only",
+      "tier": "A-candidate",
+      "urls": ["https://www.sharjahtv.ae/"],
+      "expected_channels": ["Sharjah TV", "Sharjah Sports", "Al Wousta", "Sharqiya Kalba", "Sharjah Quran"],
+      "language": "ar",
+      "notes": "Official SBA family. Discover current public schedule/API before promotion."
+    },
+    {
+      "id": "kuwait_media",
+      "name": "Kuwait Ministry of Information",
+      "country": "KW",
+      "status": "probe_only",
+      "tier": "A-candidate",
+      "urls": ["https://media.gov.kw/", "https://www.media.gov.kw/Frequency.aspx?FreqType=TVKSC"],
+      "expected_channels": ["Kuwait TV 1", "Kuwait TV 2", "Kuwait News", "Kuwait Sport", "Kuwait Sport Plus"],
+      "language": "ar",
+      "notes": "Official channel inventory confirmed; schedule endpoint still to be discovered."
+    },
+    {
+      "id": "bahrain_tv",
+      "name": "Bahrain TV & Radio",
+      "country": "BH",
+      "status": "probe_only",
+      "tier": "A-candidate",
+      "urls": ["https://www.bahrain.bh/"],
+      "expected_channels": ["Bahrain TV", "Bahrain Lawal", "Bahrain International", "Bahrain Sports 1", "Bahrain Sports 2", "Quraan Kareem"],
+      "language": "ar/en",
+      "notes": "Official channel family confirmed. Discover public guide/API."
+    },
+    {
+      "id": "jawwy",
+      "name": "Jawwy TV",
+      "country": "SA/MENA",
+      "status": "probe_only",
+      "tier": "B-candidate",
+      "urls": ["https://www.jawwy.tv/"],
+      "expected_channels": [],
+      "language": "ar/en",
+      "notes": "Operator source candidate. Do not promote until a public guide endpoint and exact channel identities are validated."
+    },
+    {
+      "id": "fotmob_sports_overlay",
+      "name": "FotMob MENA sports overlay",
+      "country": "MENA",
+      "status": "overlay_only",
+      "tier": "auxiliary",
+      "urls": ["https://www.fotmob.com/ar/tv-guide/me"],
+      "expected_channels": [],
+      "language": "ar/en",
+      "notes": "Sports event/broadcaster correction layer only; never a general EPG primary source."
+    }
+  ]
+}
