@@ -116,6 +116,8 @@ def main() -> int:
 
     report = {
         "generated_qatar": now.isoformat(),
+        "rejected_long_duration": 0,
+        "date_mismatch_rows": 0,
         "dates": dates,
         "endpoint": "/Live/GetSchedule",
         "channels": {},
@@ -146,6 +148,14 @@ def main() -> int:
                 stop = parse_local(row.get("endTime"))
                 if not start or not stop or stop <= start:
                     continue
+                # Reject pathological provider rows that span many days. Normal
+                # TV events may be long, but a >18h single programme is not a
+                # usable EPG event and would falsely inflate feed horizon.
+                if stop - start > timedelta(hours=18):
+                    report["rejected_long_duration"] += 1
+                    continue
+                if start.date().isoformat() != date:
+                    report["date_mismatch_rows"] += 1
 
                 key = (start.isoformat(), stop.isoformat(), title)
                 if key in seen:
