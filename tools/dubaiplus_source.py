@@ -193,6 +193,76 @@ def parse_schedule(page: str, channel_name: str, now_utc: datetime | None = None
     return rows
 
 
+def parse_multi_schedule(page: str, now_utc: datetime | None = None) -> dict[str, list[dict]]:
+    """Parse the public Dubai+ EPG page in one pass.
+
+    Dubai+ currently renders all TV channels on the same public EPG page. This
+    avoids the old per-channel query assumption and reduces load to one request
+    per language.
+    """
+    now_utc = now_utc or datetime.now(timezone.utc)
+    now_local = now_utc.astimezone(DUBAI_TZ)
+    lines = _clean_lines(page)
+    out: dict[str, list[dict]] = {}
+    current: str | None = None
+    i = 0
+    day = now_local.date()
+    last_start: dict[str, int] = {}
+    rollover: dict[str, int] = {}
+    while i < len(lines):
+        spec = channel_spec(lines[i])
+        if spec:
+            current = spec[1]
+            out.setdefault(current, [])
+            i += 1
+            continue
+        m = TIME_RE.match(lines[i])
+        if not current or not m:
+            i += 1
+            continue
+        sh, sm = _clock(int(m.group(1)), int(m.group(2)), m.group(3))
+        eh, em = _clock(int(m.group(4)), int(m.group(5)), m.group(6))
+        start_min = sh * 60 + sm
+        prev = last_start.get(current)
+        if prev is not None and start_min + 8 * 60 < prev:
+            rollover[current] = rollover.get(current, 0) + 1
+        last_start[current] = start_min
+        ro = rollover.get(current, 0)
+        start_local = datetime.combine(day + timedelta(days=ro), datetime.min.time(), tzinfo=DUBAI_TZ).replace(hour=sh, minute=sm)
+        stop_local = datetime.combine(day + timedelta(days=ro), datetime.min.time(), tzinfo=DUBAI_TZ).replace(hour=eh, minute=em)
+        if stop_local <= start_local:
+            stop_local += timedelta(days=1)
+        title = lines[i + 1].strip() if i + 1 < len(lines) else ""
+        desc_parts: list[str] = []
+        j = i + 2
+        while j < len(lines):
+            if TIME_RE.match(lines[j]) or channel_spec(lines[j]):
+                break
+            low = lines[j].casefold()
+            if low.startswith("watch ") or norm(lines[j]) in IGNORE_LINES:
+                j += 1
+                continue
+            if low not in {"nan", "none", "null", "n/a", "-"}:
+                desc_parts.append(lines[j])
+            j += 1
+        if title and title.casefold() not in {"nan", "none", "null", "n/a", "-"}:
+            out[current].append({
+                "start": start_local.astimezone(timezone.utc),
+                "stop": stop_local.astimezone(timezone.utc),
+                "title": title,
+                "desc": " ".join(desc_parts).strip(),
+            })
+        i = max(j, i + 1)
+    # If the page's clock-only schedule was interpreted as yesterday, move that
+    # channel forward one day. Never invent programmes; only normalize date.
+    for cname, rows in out.items():
+        if rows and max(r["stop"] for r in rows) < now_utc - timedelta(hours=6):
+            for row in rows:
+                row["start"] += timedelta(days=1)
+                row["stop"] += timedelta(days=1)
+    return out
+
+
 def match_english(ar_event: dict, english: Iterable[dict]) -> dict | None:
     best = None
     best_delta = 10**9
@@ -233,8 +303,10 @@ def build(ar_pages: dict[str, str], en_pages: dict[str, str], channel_ids: dict[
         if xmlid in seen_ids:
             continue
         seen_ids.add(xmlid)
-        ar_rows = parse_schedule(ar_pages.get(cname, ""), cname, now) if ar_pages.get(cname) else []
-        en_rows = parse_schedule(en_pages.get(cname, ""), cname, now) if en_pages.get(cname) else []
+        ar_all = parse_multi_schedule(ar_pages.get(cname, ""), now) if ar_pages.get(cname) else {}
+        en_all = parse_multi_schedule(en_pages.get(cname, ""), now) if en_pages.get(cname) else {}
+        ar_rows = ar_all.get(cname, [])
+        en_rows = en_all.get(cname, [])
         base = ar_rows or en_rows
         if not base:
             continue
@@ -299,17 +371,15 @@ def main() -> int:
     try:
         ar_index = fetch(epg_url + "?lang=ar-AE", "ar-AE", args.timeout)
         en_index = fetch(epg_url + "?lang=en-US", "en-US", args.timeout)
+        # Dubai+ renders the complete EPG on one page. Parse that directly to
+        # avoid unnecessary per-channel requests and runner rate limiting.
+        ar_multi = parse_multi_schedule(ar_index)
+        en_multi = parse_multi_schedule(en_index)
+        for cname in sorted(set(ar_multi) | set(en_multi)):
+            ar_pages[cname] = ar_index
+            en_pages[cname] = en_index
         channel_ids.update(discover_channels(ar_index))
         channel_ids.update(discover_channels(en_index))
-        if not channel_ids:
-            ar_pages["Dubai TV"] = ar_index
-            en_pages["Dubai TV"] = en_index
-        for cname, site_id in channel_ids.items():
-            spec = channel_spec(cname)
-            if not spec:
-                continue
-            ar_pages[cname] = fetch(f"{epg_url}?channel={site_id}&lang=ar-AE", "ar-AE", args.timeout)
-            en_pages[cname] = fetch(f"{epg_url}?channel={site_id}&lang=en-US", "en-US", args.timeout)
     except requests.HTTPError as exc:
         status = int(exc.response.status_code) if exc.response is not None else 0
         error = str(exc)
