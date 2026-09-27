@@ -133,28 +133,128 @@ def _snrt_fallback_desc(cid,title):
   return "نشرة الطقس على %s مع توقعات الأحوال الجوية."%channel
  return "برنامج «%s» يُعرض على %s."%(title,channel)
 
-def _snrt_desc_from_row(cid,row,title,time_text):
- # Prefer a real synopsis/description node when SNRT exposes one.
+def _snrt_desc_from_row(cid,row,title,time_text,original_title=""):
+ # Prefer the exact synopsis published by SNRT. The current site can place it
+ # either inside a dedicated description node or as plain text in the row.
  candidates=[]
  for el in row.find_all(["p","div","span"]):
   classes=" ".join(el.get("class",[]) or []).casefold()
   if any(k in classes for k in ("description","desc","synopsis","resume","résumé","program-text","programme-text","grille-desc")):
    txt=clean(el.get_text(" ",strip=True))
    if txt:candidates.append(txt)
- # Fallback to the row text, but strip time/title/navigation noise.
  full=clean(row.get_text(" ",strip=True))
  if full:candidates.append(full)
  for raw in candidates:
   desc=clean(raw)
   if time_text:
    desc=clean(desc.replace(clean(time_text)," ",1))
-  if title:
-   desc=clean(desc.replace(title," ",1))
+  for ttl in (original_title,title):
+   if ttl:
+    desc=clean(desc.replace(clean(ttl)," ",1))
   desc=re.sub(r"\b(?:SAT|TNT|HD|الآن|مباشر)\b"," ",desc,flags=re.I)
   desc=clean(desc).strip(" -–—|:")
-  if len(desc)>=8 and norm(desc)!=norm(title):
+  if len(desc)>=8 and norm(desc)!=norm(title) and norm(desc)!=norm(original_title):
    return desc
  return _snrt_fallback_desc(cid,title)
+
+def _snrt_flat_events(cid,soup):
+ # SNRT increasingly renders schedule metadata as a flat visible sequence:
+ # date tabs, then repeated "time / title / synopsis" blocks. Parse that
+ # representation as a second authoritative path so synopses are not lost
+ # when the old grille-line markup changes.
+ now=datetime.now(TZ)
+ strings=[clean(x) for x in soup.stripped_strings if clean(x)]
+ time_rx=re.compile(r"^([0-2]?\d)\s*[Hh:]\s*([0-5]\d)$")
+ day_rx=re.compile(r"(\d{1,2})\s*/\s*(\d{1,2})")
+ first_time=None;day_labels=[]
+ for pos,txt in enumerate(strings):
+  if first_time is None and time_rx.match(txt):
+   first_time=pos
+  if first_time is not None and pos>=first_time:
+   break
+  m=day_rx.search(txt)
+  if not m:continue
+  try:
+   d=datetime(now.year,int(m.group(2)),int(m.group(1))).date()
+   if d<now.date()-timedelta(days=180):d=datetime(now.year+1,d.month,d.day).date()
+   if d>now.date()+timedelta(days=180):d=datetime(now.year-1,d.month,d.day).date()
+  except Exception:
+   continue
+  if abs((d-now.date()).days)<=14 and d not in day_labels:
+   day_labels.append(d)
+ if first_time is None or not day_labels:
+  return []
+
+ footer={"الرئيسية","الشركة","القنوات","الوسيط","طلبات العروض","Régie publicitaire","Mentions légales"}
+ noise={"الآن","SAT","TNT","Image"}
+ raw=[];i=first_time
+ while i<len(strings):
+  m=time_rx.match(strings[i])
+  if not m:
+   i+=1;continue
+  hr,mi=int(m.group(1)),int(m.group(2))
+  if hr>23:
+   i+=1;continue
+  j=i+1;parts=[]
+  while j<len(strings) and not time_rx.match(strings[j]):
+   txt=strings[j]
+   if txt in footer:
+    break
+   if not day_rx.search(txt) and txt not in noise:
+    parts.append(txt)
+   j+=1
+  if parts:
+   title=parts[0]
+   desc=clean(" ".join(parts[1:]))
+   if norm(desc)==norm(title):
+    desc=""
+   raw.append({"minutes":hr*60+mi,"hr":hr,"mi":mi,"title":title,"desc":desc})
+  i=max(j,i+1)
+ if not raw:
+  return []
+
+ # Split the visible sequence into day groups. Post-midnight rows stay attached
+ # to the preceding broadcast day; a morning restart starts the next tab/day.
+ groups=[[]];prev=None
+ for item in raw:
+  cur=item["minutes"];new_day=False
+  if prev is not None:
+   if prev<5*60 and cur>=5*60:
+    new_day=True
+   elif cur+4*60<prev and cur>=5*60:
+    new_day=True
+  if new_day:groups.append([])
+  groups[-1].append(item);prev=cur
+ groups=[g for g in groups if g]
+ if not groups:return []
+ dates=sorted(day_labels)[-len(groups):]
+ if len(dates)!=len(groups):
+  return []
+
+ out=[]
+ for day,group in zip(dates,groups):
+  carry=False;prev=None
+  for item in group:
+   cur=item["minutes"]
+   if prev is not None and cur+4*60<prev and cur<5*60:carry=True
+   if prev is not None and prev<5*60 and cur>=5*60:carry=False
+   evday=day+(timedelta(days=1) if carry and item["hr"]<5 else timedelta(0))
+   start=morocco_wall_clock(evday,dtime(item["hr"],item["mi"]))
+   original_title=item["title"]
+   desc=item["desc"]
+   title=original_title
+   ctx=original_title+" "+desc
+   if "الأخبار" in ctx or "الاخبار" in ctx:
+    for k,v in NEWS.items():
+     if k in ctx:
+      title=v
+      break
+   if not desc:
+    desc=_snrt_fallback_desc(cid,title)
+   out.append(Event(cid,start,title,desc,None,"ar","ar","snrt-ar-flat"))
+   prev=cur
+ infer(out)
+ return out
 
 def _arryadia_fill(rows,hours=48,slot_hours=2):
  # Keep every real official event, then fill only uncovered windows.
@@ -483,7 +583,7 @@ def scrape_chada(days):
 
 def scrape_snrt(days):
  def one(cid,url):
-  h=Http();r=h.get(url);soup=BeautifulSoup(r.text,"lxml");rows=[]
+  h=Http();r=h.get(url);soup=BeautifulSoup(r.text,"lxml");structured=[]
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
    dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8]
    tt=row.find("div",class_="grille-time")
@@ -492,16 +592,35 @@ def scrape_snrt(days):
    try:start=morocco_localize(datetime.strptime(dc[0]+" "+time_text.replace("H",":"),"%Y%m%d %H:%M"))
    except Exception:continue
    h2=row.find("h2",class_="program-title-sm")
-   title=clean(h2.get_text(" ",strip=True)) if h2 else "برنامج"
-   row_text=clean(row.get_text(" ",strip=True));ctx=title+" "+row_text
-   if "الأخبار" in ctx:
+   original_title=clean(h2.get_text(" ",strip=True)) if h2 else "برنامج"
+   title=original_title
+   row_text=clean(row.get_text(" ",strip=True));ctx=original_title+" "+row_text
+   if "الأخبار" in ctx or "الاخبار" in ctx:
     for k,v in NEWS.items():
      if k in ctx:
       title=v
       break
-   desc=_snrt_desc_from_row(cid,row,title,time_text)
-   rows.append(Event(cid,start,title,desc,None,"ar","ar","snrt-ar"))
+   desc=_snrt_desc_from_row(cid,row,title,time_text,original_title)
+   structured.append(Event(cid,start,title,desc,None,"ar","ar","snrt-ar"))
+
+  flat=_snrt_flat_events(cid,soup)
+  # One programme per channel/start. Prefer an official non-generic synopsis;
+  # when both parsers found it, keep the richer description.
+  merged={}
+  def score(e):
+   d=clean(e.desc)
+   generic=(not d or norm(d)==norm(e.title) or d.startswith("برنامج «") or d.startswith("نشرة إخبارية على ") or d.startswith("نشرة الطقس على "))
+   return (0 if generic else 1,len(d),1 if e.source=="snrt-ar-flat" else 0)
+  for e in structured+flat:
+   prev=merged.get(e.start)
+   if prev is None or score(e)>score(prev):
+    merged[e.start]=e
+  rows=sorted(merged.values(),key=lambda e:e.start)
+  infer(rows)
+  official=sum(1 for e in rows if score(e)[0])
+  log("SNRT %s structured=%d flat=%d merged=%d official_desc=%d"%(cid,len(structured),len(flat),len(rows),official))
   return rows
+
  out=[]
  with ThreadPoolExecutor(max_workers=5) as ex:
   fs={ex.submit(one,c,u):c for c,u in SNRT.items()}
