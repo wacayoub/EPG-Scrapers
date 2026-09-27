@@ -68,7 +68,7 @@ T2M={
  "al massaiya":"المسائية","hikayat chama":"حكايات شامة",
  "jabha f rassou":"جبهة فراسو",
 
- "charqi ou gharbi":"شرقي أو غربي","charqi ou lgharbi":"شرقي أو غربي","soiree chaabi":"سهرة شعبية",
+ "charqi ou gharbi":"شرقي و غربي","charqi ou lgharbi":"شرقي و غربي","soiree chaabi":"سهرة شعبية",
  "soiree cha3bi":"سهرة شعبية","soirees chaabi":"سهرة شعبية","soirees cha3bi":"سهرة شعبية","attahssina":"التحصينة","at tahssina":"التحصينة",
  "priere du vendredi":"صلاة الجمعة","priere vendredi":"صلاة الجمعة","ayne lkebrite":"عين الكبريت",
  "ayn lkebrite":"عين الكبريت","wlad 3li":"ولاد علي","oulad 3li":"ولاد علي","jt arabe":"الأخبار بالعربية",
@@ -77,7 +77,8 @@ T2M={
 
 # 2M title language policy: keep native French programme brands in French.
 T2M_KEEP_FR={
- "info soir","bulletin meteo","meteo","eco news","econews","auto moto","planete foot","planète foot"
+ "info soir","bulletin meteo","meteo","eco news","econews","auto moto","planete foot","planète foot",
+ "ahsane patissier","ahsane pâtissier"
 }
 T2M_FORCE_AR={
  "les interventions des partis politiques":"مداخلات الأحزاب السياسية",
