@@ -669,7 +669,11 @@ def parse_2m(h,text,day,detail_cache=None):
   if k in seen:continue
   seen.add(k)
   hr,mi=int(m.group(1)),int(m.group(2))
-  start=morocco_wall_clock(day,dtime(hr,mi))
+  # Telerama's 2M grid is published one hour ahead of the actual Morocco
+  # broadcast clock. Keep a fixed -1h correction here; do NOT convert through
+  # Europe/Paris, otherwise summer time would incorrectly shift 13:45 to 11:45.
+  source_dt=datetime.combine(day,dtime(hr,mi))-timedelta(hours=1)
+  start=morocco_wall_clock(source_dt.date(),source_dt.time())
 
   # Same Morocco Cloud 2M logic: normalized Arabic title + translated/normalized description.
   # Prefer the real synopsis from the linked Telerama programme page, exactly as
