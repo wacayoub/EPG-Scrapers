@@ -102,7 +102,7 @@ jobs:
         working-directory: vendor/iptv-org-epg
         run: npm ci --no-audit --no-fund
 
-      - name: Fix beIN guide date anchoring
+      - name: Fix beIN AR EN guide adapter
         if: steps.gate.outputs.run == 'true' && inputs.source == 'bein'
         shell: bash
         run: |
@@ -125,8 +125,16 @@ jobs:
           ])
           if old not in text:
               raise SystemExit("beIN date-anchor patch target not found")
+          text=text.replace(
+              "https://www.bein.com/en/epg-ajax-template/?action=epg_fetch",
+              "https://www.bein.com/${lang === 'ar' ? 'ar' : 'en'}/epg-ajax-template/?action=epg_fetch",
+          )
+          text=text.replace(
+              "&language=${lang.toUpperCase()}&postid=25356&loadindex=0",
+              "&language=${lang.toUpperCase()}&postid=${lang === 'ar' ? '25344' : '25356'}&loadindex=0",
+          )
           p.write_text(text.replace(old,new,1),encoding="utf-8")
-          print("beIN date anchoring patched: midnight grids stay on requested cdate")
+          print("beIN adapter patched: AR/EN discovery endpoints + midnight date anchoring")
           PY
 
       - name: Refresh live OSN channel catalogue
