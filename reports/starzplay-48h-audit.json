@@ -1,46 +1,808 @@
 {
-  "generated_utc": "2026-09-27T09:05:38.270672+00:00",
+  "generated_utc": "2026-09-27T17:22:35.317430+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "starzplay.xml.gz",
-      "generated_utc": "2026-09-27T09:05:38.270622+00:00",
+      "generated_utc": "2026-09-27T17:22:35.314080+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 90,
-      "channels": 3,
+      "channels": 109,
       "invalid_times": 0,
       "orphan_programmes": 0,
-      "failed_channels": 0,
+      "failed_channels": 96,
       "warning_channels": 0,
-      "status": "PASS",
+      "status": "FAIL",
       "rows": [
         {
-          "id": "StarzplaySports1.sa@HD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.91,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 48
+          "id": "AbuDhabiSports1.ae@SD",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
         },
         {
-          "id": "StarzplaySports2.sa@HD",
+          "id": "AbuDhabiSports2.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.91,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
+          "future_hours": 50.62,
+          "latest_stop_utc": "2026-09-29T20:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 49
+          "programmes": 116
+        },
+        {
+          "id": "NationalGeographicAbuDhabi.ae@SD",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.227083304121",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.227083304215",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.236275240441",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.236276264229",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.293821992325",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.419604520351",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.422146600308",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.459304488311",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.460049959967",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.62,
+          "latest_stop_utc": "2026-09-29T18:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 54
+        },
+        {
+          "id": "starzplay.460050472021",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 71.11,
+          "latest_stop_utc": "2026-09-30T16:29:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 208
+        },
+        {
+          "id": "starzplay.460050472022",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.460869672233",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.79,
+          "latest_stop_utc": "2026-09-29T18:10:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 75
+        },
+        {
+          "id": "starzplay.460869672258",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.460871719977",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.460871719981",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.460872232189",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 49.12,
+          "latest_stop_utc": "2026-09-29T18:30:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 43
+        },
+        {
+          "id": "starzplay.460872744016",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.462076456406",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.462129704245",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.475882024092",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.479687208265",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.487766568234",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.491982376315",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.62,
+          "latest_stop_utc": "2026-09-29T18:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 51
+        },
+        {
+          "id": "starzplay.497912359959",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.12,
+          "latest_stop_utc": "2026-09-29T17:30:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 43
+        },
+        {
+          "id": "starzplay.524255784372",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.524611624145",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.527810088109",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.62,
+          "latest_stop_utc": "2026-09-29T18:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 51
+        },
+        {
+          "id": "starzplay.529556008087",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.534335528385",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.546513448261",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.546516520035",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.551191592244",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.559865896371",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.587754024122",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.610710056409",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.658209319988",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.687267880423",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.689693224333",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.703793704007",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.719537704271",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.719544360177",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.720334376239",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.720334376240",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.720335400125",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.720335400130",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.720335400131",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 51.12,
+          "latest_stop_utc": "2026-09-29T20:30:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 6275
+        },
+        {
+          "id": "starzplay.720335400133",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.725124136205",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.727306280331",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.743718440268",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.743721512232",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.744863272432",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.744863784271",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.744863784272",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.744867368010",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.744867368011",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.744867368012",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.751015464026",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.752644648261",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.752644648263",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.755362856441",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.755364392036",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.755370536327",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.758277672165",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.764535847985",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.769623592381",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.769623592382",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.769623592383",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.769623592384",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.769627175953",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.769627175955",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.769872424315",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770556968172",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770556968231",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770557480315",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770557992240",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770559016285",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770559016375",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770559016378",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770559016379",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770559528171",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770735656335",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.770738728162",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.775252520426",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.775260200087",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.775600680255",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.777986600371",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.777986600373",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.777988648235",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.29,
+          "latest_stop_utc": "2026-09-29T17:40:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 72
+        },
+        {
+          "id": "starzplay.777994280349",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.777994280350",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.777994792182",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.04,
+          "latest_stop_utc": "2026-09-29T17:25:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 35
+        },
+        {
+          "id": "starzplay.777994792183",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.779016232322",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.779016232323",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.779018792381",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.779019304384",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.780808744214",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.780811816096",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.780814888237",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.788725288003",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.789990440241",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
+        },
+        {
+          "id": "starzplay.789990440242",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.62,
+          "latest_stop_utc": "2026-09-29T18:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 498
+        },
+        {
+          "id": "starzplay.812961831972",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
         },
         {
           "id": "StarzplaySports3.sa@HD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.91,
-          "latest_stop_utc": "2026-09-29T10:00:00+00:00",
+          "future_hours": 48.62,
+          "latest_stop_utc": "2026-09-29T18:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 47
+          "programmes": 39
+        },
+        {
+          "id": "ZeeAflam.ae@SD",
+          "status": "FAIL",
+          "reason": "NO_FUTURE_EPG",
+          "future_hours": 0.0,
+          "max_gap_minutes": null
         }
       ]
     }
