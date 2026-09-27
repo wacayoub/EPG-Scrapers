@@ -1,21 +1,21 @@
 {
-  "generated_utc": "2026-09-27T20:55:17.599122+00:00",
+  "generated_utc": "2026-09-27T21:15:17.383126+00:00",
   "policy": "source_aware_title_ar_or_en_description_ar",
-  "programmes": 1104,
-  "arabic_native_title_kept": 106,
-  "english_title_applied": 757,
-  "english_title_missing": 204,
-  "sports_news_titles_arabized": 35,
-  "sports_news_titles_still_non_arabic": 2,
+  "programmes": 1187,
+  "arabic_native_title_kept": 113,
+  "english_title_applied": 732,
+  "english_title_missing": 307,
+  "sports_news_titles_arabized": 34,
+  "sports_news_titles_still_non_arabic": 1,
   "title_datetime_tokens_removed": 21,
   "english_description_used_for_missing_ar": 0,
-  "arabic_description_present": 1104,
+  "arabic_description_present": 1187,
   "arabic_description_missing": 0,
   "descriptions_translated_to_ar": 0,
   "description_language_remaining_mismatch": 6,
   "samples": {
     "AlJazeeraDocumentary.qa@SD": {
-      "title": "نطاق",
+      "title": "الأخبار",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -27,7 +27,7 @@
       "description_has_arabic": true
     },
     "AlkassFour.qa@SD": {
-      "title": "حصيلة كرة القدم",
+      "title": "عالم السرعة",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -51,13 +51,13 @@
       "description_has_arabic": true
     },
     "AlkassTwo.qa@SD": {
-      "title": "جلوبال تشامبيونز آرابيان تور",
+      "title": "إستديو سباقات الخيل",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "Baraem.qa@SD": {
-      "title": "ريزينج إكسبيكتشينز :ذا تروث أبوت إيه آي",
+      "title": "نيوزآور",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -74,8 +74,14 @@
       "title_has_arabic": false,
       "description_has_arabic": true
     },
+    "beINBoxOffice2.qa@SD": {
+      "title": "كويست ميينز بيزنس",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
     "beINGourmet.qa@SD": {
-      "title": "El Classico S1 | E17",
+      "title": "Samak Sea Bass Maa Robiyan Wa Arz S1 | E3",
       "description": "برنامج طبخ وترفيه يُعرض على قناة beIN Gourmet.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -86,8 +92,14 @@
       "title_has_arabic": false,
       "description_has_arabic": true
     },
+    "beINMENA.beinjunior": {
+      "title": "Atom Town S1 EP 20 - Atomic Pickle",
+      "description": "برنامج ترفيهي للأطفال يُعرض على قنوات beIN.",
+      "title_has_arabic": false,
+      "description_has_arabic": true
+    },
     "beINMENA.beinseries2": {
-      "title": "Black Clover S4 | E4",
+      "title": "Star Trek: Discovery S5 | E4",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -183,7 +195,7 @@
       "description_has_arabic": true
     },
     "beINSeries1.qa@SD": {
-      "title": "All American S8 | E9",
+      "title": "DOC S2 | E21",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -285,13 +297,13 @@
       "description_has_arabic": true
     },
     "beINSportsMax6.qa@MENA": {
-      "title": "Al Majlis",
+      "title": "beIN Sports MAX",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsNews.qa@SD": {
-      "title": "نشرة الساعة التاسعة",
+      "title": "الملخص 1 - 28/09/26",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -309,31 +321,49 @@
       "description_has_arabic": true
     },
     "BeJunior.qa@SD": {
-      "title": "الطهطشيون.. أبناء الغابة",
+      "title": "أسرار في عمق الجليد",
       "description": "برنامج ترفيهي للأطفال يُعرض على قنوات beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "BloombergTV.us@MiddleEast": {
-      "title": "نشرة الأخبار",
+      "title": "الاتجاه المعاكس",
+      "description": "برنامج يُعرض ضمن باقة beIN.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "CBeebiesMiddleEast.uk@SD": {
+      "title": "الموجز الأوروبي",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "ClubMTVEurope.uk@SD": {
-      "title": "تراست مي أم دوكتور (موسم 7، حلقة1)",
+      "title": "ميديترينيان ويز سيمون ريفز (موسم 1، حلقة1)",
+      "description": "برنامج يُعرض ضمن باقة beIN.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "CNNArabic.ae@SD": {
+      "title": "الأخبار",
+      "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "EuronewsEnglish.fr@SD": {
+      "title": "الأخبار",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "Fatafeat.ae@SD": {
-      "title": "بلومبيرج: بلانس أوف باور",
+      "title": "بلومبيرج بيزنس ويك",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "FoodNetworkEMEA.us@SD": {
-      "title": "الدار داركم (موسم 1، حلقة8)",
+      "title": "بهاماز لايف (موسم 1، حلقة11)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -341,6 +371,12 @@
     "FoxActionMoviesMENA.hk@SD": {
       "title": "الحرائق",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "FoxArabia.ae@SD": {
+      "title": "بوبيس تريبل ثريد (موسم 2، حلقة3)",
+      "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -356,20 +392,38 @@
       "title_has_arabic": true,
       "description_has_arabic": true
     },
+    "JeemTV.qa@SD": {
+      "title": "نيوز",
+      "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
     "MTV80s.uk@SD": {
       "title": "كيلر سفاري (موسم 1، حلقة3)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
-    "StarWorldMiddleEast.ae@SD": {
-      "title": "PINS AND NETTIE EP 16 - Hedgie Thunder",
+    "MTV90s.uk@SD": {
+      "title": "إنجنيرينج باي كاتاستروفي (موسم 1، حلقة3)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
-      "title_has_arabic": false,
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "StarMoviesMiddleEast.ae@SD": {
+      "title": "ذا واكينج ديد (موسم 9)",
+      "description": "فيلم يُعرض على قنوات beIN Movies.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "StarWorldMiddleEast.ae@SD": {
+      "title": "S5 الأرقام و باولا",
+      "description": "برنامج يُعرض ضمن باقة beIN.",
+      "title_has_arabic": true,
       "description_has_arabic": true
     }
   },
-  "arabic_description_fallbacks": 1078,
-  "translation_cache_new": 1,
+  "arabic_description_fallbacks": 1161,
+  "translation_cache_new": 0,
   "translation_failures": []
 }
