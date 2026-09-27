@@ -355,6 +355,7 @@ def main() -> int:
     ap.add_argument("--hours", type=int, default=48)
     ap.add_argument("--timeout", type=int, default=25)
     ap.add_argument("--base-url", default=BASE)
+    ap.add_argument("--debug-dir", help="Optional directory to save fetched HTML for diagnostics")
     args = ap.parse_args()
 
     epg_url = args.base_url.rstrip("/") + "/web/epg"
@@ -371,6 +372,11 @@ def main() -> int:
     try:
         ar_index = fetch(epg_url + "?lang=ar-AE", "ar-AE", args.timeout)
         en_index = fetch(epg_url + "?lang=en-US", "en-US", args.timeout)
+        if args.debug_dir:
+            dbg = Path(args.debug_dir)
+            dbg.mkdir(parents=True, exist_ok=True)
+            (dbg / "dubaiplus-ar.html").write_text(ar_index, encoding="utf-8")
+            (dbg / "dubaiplus-en.html").write_text(en_index, encoding="utf-8")
         # Dubai+ renders the complete EPG on one page. Parse that directly to
         # avoid unnecessary per-channel requests and runner rate limiting.
         ar_multi = parse_multi_schedule(ar_index)
