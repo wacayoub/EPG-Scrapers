@@ -33,9 +33,9 @@ POLICY = {
     # Sport24 is event-driven; valid event schedules can naturally expose less
     # than eight continuous hours while still being fresher than the current LKG.
     "sport24":   {"min_channels": 2,  "min_programmes": 10,  "min_future_ratio": 0.60, "min_horizon_hours": 4},
-    # STARZPLAY is a broad MENA live source, but publication starts conservatively
-    # while its current public-guide coverage is being validated.
-    "starzplay":  {"min_channels": 5,  "min_programmes": 20,  "min_future_ratio": 0.50, "min_horizon_hours": 4},
+    # Direct STARZPLAY preferred; fallback is verified STC public metadata for Sports 1-3.
+
+    "starzplay":  {"min_channels": 3,  "min_programmes": 20, "min_future_ratio": 0.66, "min_horizon_hours": 8},
     # Dubai+ official public API: compact nine-channel DMI lineup.
     "dubaiplus": {"min_channels": 7,  "min_programmes": 20,  "min_future_ratio": 0.70, "min_horizon_hours": 4},
     # STC full public catalogue is fetched in daily batch mode (144 channels currently).
