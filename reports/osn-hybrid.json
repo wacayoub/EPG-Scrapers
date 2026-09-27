@@ -1,13 +1,13 @@
 {
-  "generated_utc": "2026-09-27T08:53:32.848092+00:00",
+  "generated_utc": "2026-09-27T11:57:25.888086+00:00",
   "mode": "hybrid",
-  "channels": 80,
-  "programmes": 8295,
+  "channels": 81,
+  "programmes": 8415,
   "hybrid_programmes": 5069,
-  "arabic_native_programmes": 3226,
+  "arabic_native_programmes": 3346,
   "english_title_applied": 5069,
   "english_title_missing": 0,
-  "arabic_description_present": 8283,
+  "arabic_description_present": 8403,
   "arabic_description_missing": 12,
   "non_arabic_description_removed": 12,
   "profiles": {
@@ -54,6 +54,7 @@
     "NickJrArabia.ae@SD": "hybrid",
     "NicktoonsArabia.ae@SD": "hybrid",
     "OmanTV.om@SD": "arabic_native",
+    "osn.9816": "arabic_native",
     "OSNBlippiAndFriends": "hybrid",
     "OSNComedy.ae@SD": "hybrid",
     "OSNCrime.ae@SD": "hybrid",
@@ -389,6 +390,13 @@
       "profile": "arabic_native",
       "title": "على قد الحب",
       "description": "مريم سيدة أعمال ناجحة تمر بمنعطفات لم تكن بالحسبان، فمع شيوع أسرار من الماضي تهدد استقرار حياتها، يبقى أمامها خياران لا ثالث لهما، إما أن تتكيف مع الأمر الواقع أو تستسلم فتخسر كل شيء.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "osn.9816": {
+      "profile": "arabic_native",
+      "title": "نيوزلاين",
+      "description": "برنامج إخباري يومي يقدم تحديثات حول التطورات الرئيسية في فيتنام وحول العالم، ويغطي السياسة والاقتصاد والمجتمع والثقافة والشؤون الدولية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
