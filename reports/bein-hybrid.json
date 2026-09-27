@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-09-27T21:15:17.383126+00:00",
+  "generated_utc": "2026-09-27T21:24:35.524649+00:00",
   "policy": "source_aware_title_ar_or_en_description_ar",
-  "programmes": 1187,
-  "arabic_native_title_kept": 113,
-  "english_title_applied": 732,
-  "english_title_missing": 307,
+  "programmes": 1173,
+  "arabic_native_title_kept": 229,
+  "english_title_applied": 739,
+  "english_title_missing": 170,
   "sports_news_titles_arabized": 34,
   "sports_news_titles_still_non_arabic": 1,
-  "title_datetime_tokens_removed": 21,
+  "title_datetime_tokens_removed": 20,
   "english_description_used_for_missing_ar": 0,
-  "arabic_description_present": 1187,
+  "arabic_description_present": 1173,
   "arabic_description_missing": 0,
   "descriptions_translated_to_ar": 0,
   "description_language_remaining_mismatch": 6,
@@ -89,12 +89,6 @@
     "beINMENA.beindrama": {
       "title": "Another Chance S1",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
-      "title_has_arabic": false,
-      "description_has_arabic": true
-    },
-    "beINMENA.beinjunior": {
-      "title": "Atom Town S1 EP 20 - Atomic Pickle",
-      "description": "برنامج ترفيهي للأطفال يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -297,7 +291,7 @@
       "description_has_arabic": true
     },
     "beINSportsMax6.qa@MENA": {
-      "title": "beIN Sports MAX",
+      "title": "Al Majlis",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -321,9 +315,9 @@
       "description_has_arabic": true
     },
     "BeJunior.qa@SD": {
-      "title": "أسرار في عمق الجليد",
+      "title": "Monchhichi S2 - P2 - EP 13 Leafy's Dream",
       "description": "برنامج ترفيهي للأطفال يُعرض على قنوات beIN.",
-      "title_has_arabic": true,
+      "title_has_arabic": false,
       "description_has_arabic": true
     },
     "BloombergTV.us@MiddleEast": {
@@ -345,13 +339,13 @@
       "description_has_arabic": true
     },
     "CNNArabic.ae@SD": {
-      "title": "الأخبار",
+      "title": "رياضة",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "EuronewsEnglish.fr@SD": {
-      "title": "الأخبار",
+      "title": "الاقتصاد",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -393,7 +387,7 @@
       "description_has_arabic": true
     },
     "JeemTV.qa@SD": {
-      "title": "نيوز",
+      "title": "على هذه الأرض",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -415,15 +409,9 @@
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": true,
       "description_has_arabic": true
-    },
-    "StarWorldMiddleEast.ae@SD": {
-      "title": "S5 الأرقام و باولا",
-      "description": "برنامج يُعرض ضمن باقة beIN.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
     }
   },
-  "arabic_description_fallbacks": 1161,
+  "arabic_description_fallbacks": 1147,
   "translation_cache_new": 0,
   "translation_failures": []
 }
