@@ -1,0 +1,31 @@
+{
+  "generated_utc": "2026-09-27T09:04:20.603199+00:00",
+  "sources": {
+    "rotana": {
+      "candidate": "output/final/rotana.xml.gz",
+      "published": true,
+      "candidate_stats": {
+        "channels": 9,
+        "active_channels": 7,
+        "zero_epg_channels": 2,
+        "programmes": 265,
+        "future_channels": 7,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 49.92760977138889,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 9,
+        "active_channels": 7,
+        "zero_epg_channels": 2,
+        "programmes": 261,
+        "future_channels": 7,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 43.92760828583333,
+        "invalid_rows": 0
+      },
+      "decision": "PUBLISH",
+      "reasons": []
+    }
+  }
+}
