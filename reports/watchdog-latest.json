@@ -1,16 +1,7 @@
 {
-  "checked_local": "2026-09-26T08:50:55.452195+00:00",
-  "status": "stale",
-  "stale": [
-    "morocco:stale:2026-09-25",
-    "bein:stale:2026-09-25",
-    "osn:stale:2026-09-25",
-    "elcinema:stale:2026-09-25",
-    "sport24:stale:2026-09-25",
-    "rotana:manifest-missing",
-    "shahid:manifest-missing",
-    "mena:manifest-missing"
-  ],
+  "checked_local": "2026-09-27T04:45:21.151199+00:00",
+  "status": "healthy",
+  "stale": [],
   "required": [
     "morocco",
     "bein",
@@ -19,6 +10,10 @@
     "sport24",
     "rotana",
     "shahid",
+    "dubaiplus",
+    "aljazeera",
+    "starzplay",
+    "stctv",
     "mena"
   ]
 }
