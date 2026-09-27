@@ -84,6 +84,28 @@ def main() -> int:
 
     ar_native_ids = set(policy.get("arabic_native_ids", []))
     hybrid_ids = set(policy.get("hybrid_ids", []))
+    arabic_display_name_ids = set(policy.get("arabic_display_name_ids", []))
+
+    # IDs stay stable for existing EPGManager mappings. Only the human-readable
+    # channel label is switched to the English STARZPLAY catalogue. The one
+    # explicit exception is National Geographic Abu Dhabi, which stays 100% AR.
+    english_channel_names_applied = 0
+    english_channel_names_missing = 0
+    for cid, node in channels.items():
+        if cid in arabic_display_name_ids:
+            ensure_lang(node, "display-name", "ar")
+            continue
+        en_node = en_channels.get(cid)
+        en_name = channel_name(en_node)
+        if en_node is not None and en_name:
+            for old in list(node.findall("display-name")):
+                node.remove(old)
+            dn = ET.Element("display-name", {"lang": "en"})
+            dn.text = en_name
+            node.insert(0, dn)
+            english_channel_names_applied += 1
+        else:
+            english_channel_names_missing += 1
     ar_tokens = [norm(x) for x in policy.get("arabic_native_name_tokens", [])]
     hy_tokens = [norm(x) for x in policy.get("hybrid_name_tokens", [])]
     default_profile = policy.get("default_profile", "arabic_native")
@@ -129,6 +151,9 @@ def main() -> int:
         "english_title_missing": 0,
         "arabic_description_present": 0,
         "arabic_description_missing": 0,
+        "english_channel_names_applied": english_channel_names_applied,
+        "english_channel_names_missing": english_channel_names_missing,
+        "arabic_display_name_ids": sorted(arabic_display_name_ids),
         "profiles": {},
         "samples": {},
     }
