@@ -50,7 +50,7 @@ jobs:
         run: |
           set +e
           GOBX_APK="$(find /tmp/apps/gobx/xapk -name 'net.mbc.gobx.apk' -o -name '*.apk' | head -1)"
-          STARZ_APK="$(find /tmp/apps/starz/xapk -name '*.apk' | head -1)"
+          STARZ_APK="$(find /tmp/apps/starz/xapk -name '*.apk' -printf '%s %p\n' | sort -nr | head -1 | cut -d' ' -f2-)"
           if [ -n "$GOBX_APK" ]; then
             /tmp/jadx/bin/jadx --no-res --no-imports --threads-count 2               -d /tmp/decompiled/gobx "$GOBX_APK" >/tmp/gobx-jadx.log 2>&1 || true
           fi
@@ -60,7 +60,7 @@ jobs:
           tail -20 /tmp/gobx-jadx.log 2>/dev/null || true
           tail -20 /tmp/starz-jadx.log 2>/dev/null || true
 
-      - name: Extract targeted public EPG routes
+      - name: Extract exact app EPG API definitions
         shell: bash
         run: |
           python - <<'PY'
@@ -69,57 +69,46 @@ jobs:
 
           sensitive=re.compile(r'(authorization|bearer|password|secret|access.?token|refresh.?token|license|widevine|drm|payment|credit.?card)',re.I)
 
-          def excerpts(root, files, needles):
-              out=[]
-              for p in files:
-                  try: txt=p.read_text(encoding='utf-8',errors='ignore')
-                  except Exception: continue
-                  if not any(n.search(txt) for n in needles): continue
-                  lines=txt.splitlines()
-                  for i,line in enumerate(lines):
-                      if not any(n.search(line) for n in needles): continue
-                      lo=max(0,i-12); hi=min(len(lines),i+13)
-                      ex='\n'.join(lines[lo:hi])
-                      if sensitive.search(ex): continue
-                      out.append({'file':str(p.relative_to(root)),'line':i+1,'excerpt':ex[:9000]})
-                      if len(out)>=120: return out
-              return out
+          result={'gobx':{'files':[]},'starzplay':{'files':[]}}
 
           gobx=Path('/tmp/decompiled/gobx')
+          if gobx.exists():
+              exact_names={'ApiInterface.java','APIDetails.java','APIServiceLayer.java','BuildConstants.java','ChannelGuideViewModel.java','TVGuideViewModel.java'}
+              for p in (gobx/'sources'/'net'/'mbc'/'gobx').rglob('*.java'):
+                  txt=p.read_text(encoding='utf-8',errors='ignore')
+                  relevant=(p.name in exact_names or re.search(r'gracenote-fe-api|programmeApi|getLiveChannel|getTvGuideFilterApiCall|callNowShowingAPI|@GET\(|@POST\(',txt,re.I))
+                  if not relevant: continue
+                  lines=txt.splitlines()
+                  keep=[]
+                  for i,line in enumerate(lines):
+                      if re.search(r'gracenote-fe-api|programmeApi|getLiveChannel|getTvGuideFilterApiCall|callNowShowingAPI|@GET\(|@POST\(|@Query\(|BASE_URL|ChannelGuide',line,re.I):
+                          lo=max(0,i-8); hi=min(len(lines),i+9)
+                          ex='\n'.join(lines[lo:hi])
+                          if not sensitive.search(ex): keep.append({'line':i+1,'excerpt':ex[:8000]})
+                  if keep:
+                      result['gobx']['files'].append({'file':str(p.relative_to(gobx)),'matches':keep[:25]})
+                  if len(result['gobx']['files'])>=30: break
+
           starz=Path('/tmp/decompiled/starz')
+          if starz.exists():
+              needles=re.compile(r'/epg/category/config/|/epg/category/events/|/epg/channel/start/|sp-new-api\.aws\.playco\.com|epg/category|epg/channel',re.I)
+              for p in (starz/'sources').rglob('*.java'):
+                  if p.name=='R.java': continue
+                  txt=p.read_text(encoding='utf-8',errors='ignore')
+                  if not needles.search(txt): continue
+                  lines=txt.splitlines(); keep=[]
+                  for i,line in enumerate(lines):
+                      if needles.search(line):
+                          lo=max(0,i-12); hi=min(len(lines),i+13)
+                          ex='\n'.join(lines[lo:hi])
+                          if not sensitive.search(ex): keep.append({'line':i+1,'excerpt':ex[:10000]})
+                  if keep:
+                      result['starzplay']['files'].append({'file':str(p.relative_to(starz)),'matches':keep[:30]})
+                  if len(result['starzplay']['files'])>=30: break
 
-          gobx_files=[]
-          appdir=gobx/'sources'/'net'/'mbc'/'gobx'
-          if appdir.exists():
-              gobx_files=[p for p in appdir.rglob('*.java') if p.name!='R.java']
-          gobx_needles=[
-              re.compile(r'fe-api\.prod\.gobx\.com',re.I),
-              re.compile(r'gracenote-fe-api',re.I),
-              re.compile(r'programmeApi|getLiveChannel|getTvGuideFilterApiCall|callNowShowingAPI',re.I),
-              re.compile(r'@(GET|POST)\s*\(',re.I),
-              re.compile(r'ChannelGuide|TVGuide',re.I),
-          ]
-
-          starz_files=[p for p in (starz/'sources').rglob('*.java') if p.name!='R.java'] if (starz/'sources').exists() else []
-          starz_needles=[
-              re.compile(r'/epg/category/config/',re.I),
-              re.compile(r'/epg/category/events/',re.I),
-              re.compile(r'/epg/channel/start/',re.I),
-              re.compile(r'sp-new-api\.aws\.playco\.com',re.I),
-              re.compile(r'@(GET|POST)\s*\([^\n]*(epg|channel)',re.I),
-          ]
-
-          result={
-              'gobx':{'matches':excerpts(gobx,gobx_files,gobx_needles)},
-              'starzplay':{'matches':excerpts(starz,starz_files,starz_needles)},
-          }
           Path('reports').mkdir(exist_ok=True)
           Path('reports/deep-public-epg-routes.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          for key,row in result.items():
-              print('\n###',key,'matches',len(row['matches']))
-              for m in row['matches'][:50]:
-                  print('\nFILE',m['file'],'LINE',m['line'])
-                  print(m['excerpt'])
+          print(json.dumps(result,ensure_ascii=False,indent=2)[:50000])
           PY
 
       - name: Publish discovery report
