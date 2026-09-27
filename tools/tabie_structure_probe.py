@@ -39,12 +39,39 @@ for tag in s.find_all("script"):
         scripts.append({"src":src,"sample":raw[:3000]})
         if len(scripts)>=40: break
 
+channel_nodes=[]
+for node in s.select("[data-channel-id]"):
+    channel_nodes.append({
+        "tag":node.name,
+        "id":node.get("id"),
+        "class":node.get("class"),
+        "data_channel_id":node.get("data-channel-id"),
+        "text":" ".join(node.stripped_strings)[:350],
+    })
+    if len(channel_nodes)>=100: break
+
+asset_probes=[]
+for tag in s.find_all("script",src=True):
+    src=tag.get("src") or ""
+    if "live.js" not in src: continue
+    from urllib.parse import urljoin
+    u=urljoin(URL,src)
+    try:
+        rr=requests.get(u,headers={"User-Agent":UA,"Referer":URL},timeout=20)
+        txt=rr.text
+        urls=sorted(set(re.findall(r"""['"]([^'"]*(?:schedule|epg|program|channel|date)[^'"]*)['"]""",txt,re.I)))
+        asset_probes.append({"url":u,"status":rr.status_code,"bytes":len(rr.content),"candidate_strings":urls[:150],"sample":txt[:20000]})
+    except Exception as exc:
+        asset_probes.append({"url":u,"status":"ERROR","error":str(exc)})
+
 out={
     "status":r.status_code,
     "bytes":len(r.content),
     "time_nodes":len(s.find_all(string=TIME)),
     "rows":rows,
+    "channel_nodes":channel_nodes,
     "scripts":scripts,
+    "asset_probes":asset_probes,
 }
 Path("reports").mkdir(exist_ok=True)
 Path("reports/tabie-structure.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
