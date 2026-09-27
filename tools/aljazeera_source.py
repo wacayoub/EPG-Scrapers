@@ -58,6 +58,15 @@ CHANNELS = (
     ChannelSpec("AlJazeeraDocumentary.qa@SD", "Al Jazeera Documentary", "/video/live/الجزيرة-الوثائقية"),
 )
 
+GRAPHQL_URL = BASE + "/graphql"
+# The public schedule UI historically exposes a SchedulePageQuery. Keep the
+# rendered HTML parser as fallback; GraphQL is used only when the public
+# endpoint returns structured schedule objects.
+GRAPHQL_PROFILES = {
+    "AlJazeera.qa@Arabic": ("aja", "schedule"),
+    "AlJazeera2.qa@HD": ("aja", "schedule-aj2"),
+}
+
 
 def headers() -> dict[str, str]:
     return {
@@ -197,6 +206,102 @@ def parse_schedule(html: str, day: date) -> list[dict]:
     return dedup
 
 
+def _duration_delta(value: object) -> timedelta | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    parts = text.split(":")
+    try:
+        nums = [int(x) for x in parts]
+    except ValueError:
+        return None
+    if len(nums) == 3:
+        h, m, s = nums
+    elif len(nums) == 2:
+        h, m, s = 0, nums[0], nums[1]
+    else:
+        return None
+    if h < 0 or m < 0 or s < 0:
+        return None
+    return timedelta(hours=h, minutes=m, seconds=s)
+
+
+def parse_graphql_schedule(payload: object, default_day: date) -> list[dict]:
+    """Extract SchedulePageQuery rows without depending on GraphQL nesting."""
+    found: list[dict] = []
+
+    def walk(node: object) -> None:
+        if isinstance(node, dict):
+            clock = norm_text(str(node.get("showTimeslot") or ""))
+            title = norm_text(str(node.get("showName") or ""))
+            if TIME_RE.match(clock) and title:
+                day = default_day
+                raw_stamp = str(node.get("startDate") or "").strip()
+                if raw_stamp.isdigit():
+                    try:
+                        stamp = int(raw_stamp)
+                        if stamp > 10_000_000_000:
+                            stamp //= 1000
+                        day = datetime.fromtimestamp(stamp, tz=timezone.utc).astimezone(DOHA).date()
+                    except (OverflowError, OSError, ValueError):
+                        pass
+                hh, mm = map(int, clock.split(":"))
+                start = datetime.combine(day, time(hh, mm), tzinfo=DOHA)
+                found.append({
+                    "start": start,
+                    "title": title,
+                    "desc": norm_text(str(node.get("showDescription") or ""))[:2000],
+                    "duration": _duration_delta(node.get("duration")),
+                })
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    walk(payload)
+
+    rows: list[dict] = []
+    seen = set()
+    for row in sorted(found, key=lambda x: (x["start"], x["title"])):
+        key = (row["start"], row["title"])
+        if key in seen:
+            continue
+        seen.add(key)
+        rows.append(row)
+    for idx, row in enumerate(rows):
+        nxt = rows[idx + 1]["start"] if idx + 1 < len(rows) else None
+        duration = row.pop("duration", None)
+        if duration and duration.total_seconds() > 0:
+            stop = row["start"] + duration
+        elif nxt and nxt > row["start"]:
+            stop = nxt
+        else:
+            stop = row["start"] + timedelta(hours=1)
+        if nxt and nxt > row["start"] and stop > nxt:
+            stop = nxt
+        row["stop"] = stop
+    return rows
+
+
+def fetch_graphql_schedule(
+    session: requests.Session, wp_site: str, post_name: str, timeout: int, default_day: date
+) -> tuple[list[dict], int, str]:
+    params = {
+        "wp-site": wp_site,
+        "operationName": "SchedulePageQuery",
+        "variables": json.dumps({"postName": post_name, "preview": ""}, ensure_ascii=False, separators=(",", ":")),
+        "extensions": "{}",
+    }
+    h = headers()
+    h["wp-site"] = wp_site
+    h["Accept"] = "application/json,text/plain,*/*"
+    r = session.get(GRAPHQL_URL, params=params, headers=h, timeout=timeout, allow_redirects=True)
+    r.raise_for_status()
+    payload = r.json()
+    return parse_graphql_schedule(payload, default_day), int(r.status_code), r.url
+
+
 def fmt_utc(dt: datetime) -> str:
     return dt.astimezone(timezone.utc).strftime("%Y%m%d%H%M%S +0000")
 
@@ -266,6 +371,21 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
             candidates.extend(urljoin(BASE, s) for s in suffixes)
 
         all_rows: list[dict] = []
+        profile = GRAPHQL_PROFILES.get(spec.xmltv_id)
+        if profile:
+            try:
+                graph_rows, graph_status, graph_url = fetch_graphql_schedule(
+                    session, profile[0], profile[1], timeout, today_doha
+                )
+                report["graphql"] = {
+                    "status": graph_status,
+                    "url": graph_url,
+                    "programmes_found": len(graph_rows),
+                }
+                all_rows.extend(graph_rows)
+            except Exception as exc:
+                report["graphql"] = {"error": str(exc), "programmes_found": 0}
+
         visited = set()
         for schedule_url in candidates:
             if schedule_url in visited:
