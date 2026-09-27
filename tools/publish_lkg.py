@@ -41,7 +41,7 @@ POLICY = {
     # Al Jazeera official public schedule. Four IDs are retained; publication
     # accepts two active channels because the official indexed guide currently
     # exposes complete schedules for Al Jazeera and Al Jazeera 2.
-    "aljazeera": {"min_channels": 2, "min_programmes": 12, "min_future_ratio": 0.70, "min_horizon_hours": 4},
+    "aljazeera": {"min_channels": 2, "min_programmes": 40, "min_future_ratio": 0.95, "min_horizon_hours": 36},
     # STC full public catalogue is fetched in daily batch mode (144 channels currently).
     "stctv":     {"min_channels": 10, "min_programmes": 30, "min_future_ratio": 0.70, "min_horizon_hours": 4},
     "gobx":      {"min_channels": 3,  "min_programmes": 10, "min_future_ratio": 0.60, "min_horizon_hours": 4},
