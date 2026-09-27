@@ -1,11 +1,18 @@
 {
-  "generated_utc": "2026-09-27T16:41:15.141615+00:00",
+  "generated_utc": "2026-09-27T16:43:29.460911+00:00",
   "rows": [
     {
       "version": "v1.1",
       "url": "https://sp-new-api.aws.playco.com/api/v1.1/epg/channel/config",
-      "status": "ERROR",
-      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 203,
+      "json_type": "dict",
+      "top_keys": [
+        "status",
+        "runtime",
+        "data"
+      ]
     },
     {
       "version": "v1.0",
