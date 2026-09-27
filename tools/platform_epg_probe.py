@@ -31,12 +31,39 @@ TARGETS = {
         "https://starzplay.com/en/aboutus",
         "https://starzplay.com/ar/",
     ],
+    "jawwy": [
+        "https://www.jawwy.tv/",
+        "https://www.jawwy.tv/en/",
+        "https://cast.jawwy.tv/index.html",
+    ],
+    "tabie": [
+        "https://www.tabie.net/live",
+        "https://www.tabie.net/",
+    ],
+    "mtv_lebanon": [
+        "https://www.mtv.com.lb/Schedule",
+        "https://www.mtv.com.lb/",
+    ],
+    "roya": [
+        "https://roya.tv/",
+        "https://en.roya.tv/",
+    ],
     "awaan": [
         "https://www.awaan.ae/live/6/Dubai",
         "https://www.awaan.ae/catchup/6/%D9%82%D9%86%D8%A7%D8%A9-%D8%AF%D8%A8%D9%8A",
     ],
     "sba": [
         "https://sbctv.sba.sa/",
+    ],
+    "sharjah_sba": [
+        "https://www.sharjahtv.ae/",
+    ],
+    "kuwait_media": [
+        "https://media.gov.kw/",
+        "https://www.media.gov.kw/Frequency.aspx?FreqType=TVKSC",
+    ],
+    "bahrain_tv": [
+        "https://www.bahrain.bh/",
     ],
     "weyyak": [
         "https://weyyak.com/",
