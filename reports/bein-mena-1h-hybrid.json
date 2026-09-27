@@ -1,12 +1,12 @@
 {
-  "generated_utc": "2026-09-27T09:17:29.050444+00:00",
+  "generated_utc": "2026-09-27T09:20:54.558880+00:00",
   "policy": "title_en_description_ar",
   "programmes": 49,
   "english_title_applied": 49,
   "english_title_missing": 0,
   "english_description_used_for_missing_ar": 0,
-  "arabic_description_present": 46,
-  "arabic_description_missing": 3,
+  "arabic_description_present": 49,
+  "arabic_description_missing": 0,
   "descriptions_translated_to_ar": 6,
   "description_language_remaining_mismatch": 19,
   "samples": {
@@ -84,15 +84,15 @@
     },
     "beINMovies1Premiere.qa@SD": {
       "title": "The Great Escaper",
-      "description": "",
+      "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
-      "description_has_arabic": false
+      "description_has_arabic": true
     },
     "beINMovies4Family.qa@SD": {
       "title": "Rugrats Go Wild",
-      "description": "",
+      "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
-      "description_has_arabic": false
+      "description_has_arabic": true
     },
     "beINSports.qa@MENA": {
       "title": "All - Sports - Asian Games Aichi-Nagoya 2026",
@@ -204,11 +204,12 @@
     },
     "beINSportsXtra2.qa@SD": {
       "title": "F 1 vs F 2 - Bille Jean King Cup Finals 2026",
-      "description": "",
+      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
-      "description_has_arabic": false
+      "description_has_arabic": true
     }
   },
+  "arabic_description_fallbacks": 3,
   "translation_cache_new": 0,
   "translation_failures": []
 }
