@@ -1,0 +1,122 @@
+name: GOBX fast public EPG API discovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/gobx-api-fast.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deep-public-epg-routes
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download public GOBX app package
+        shell: bash
+        run: |
+          set -e
+          mkdir -p /tmp/gobx/xapk
+          curl -fL --retry 2 --connect-timeout 20 --max-time 180             'https://d.apkpure.net/b/XAPK/net.mbc.gobx?version=latest'             -o /tmp/gobx/app.xapk
+          unzip -q /tmp/gobx/app.xapk -d /tmp/gobx/xapk
+          GOBX_APK="$(find /tmp/gobx/xapk -name 'net.mbc.gobx.apk' -o -name '*.apk' | head -1)"
+          test -n "$GOBX_APK"
+          echo "GOBX_APK=$GOBX_APK" >> "$GITHUB_ENV"
+
+      - name: Locate EPG API classes from DEX
+        shell: bash
+        run: |
+          set -e
+          mkdir -p /tmp/gobx/apk
+          unzip -q "$GOBX_APK" -d /tmp/gobx/apk
+          python - <<'PY'
+          from pathlib import Path
+          import re, subprocess
+          roots=list(Path('/tmp/gobx/apk').glob('classes*.dex'))
+          raw=''
+          for p in roots:
+              proc=subprocess.run(['strings','-a',str(p)],capture_output=True,text=True,errors='ignore')
+              raw += proc.stdout + '\n'
+          classes=[]
+          for m in re.finditer(r'Lnet/mbc/gobx/[A-Za-z0-9_$/.-]*(?:ApiInterface|APIDetails|APIServiceLayer|TVGuideViewModel|ChannelGuideViewModel);',raw,re.I):
+              desc=m.group(0)
+              cls=desc[1:-1].replace('/','.')
+              if cls not in classes:
+                  classes.append(cls)
+          Path('/tmp/gobx/classes.txt').write_text('\n'.join(classes)+'\n',encoding='utf-8')
+          print('\n'.join(classes))
+          PY
+
+      - name: Install JADX
+        shell: bash
+        run: |
+          set -e
+          curl -fL --retry 2             'https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip'             -o /tmp/jadx.zip
+          unzip -q /tmp/jadx.zip -d /tmp/jadx
+          /tmp/jadx/bin/jadx --version
+
+      - name: Extract targeted public API definitions
+        shell: bash
+        run: |
+          set +e
+          rm -rf /tmp/gobx/decompiled
+          mkdir -p /tmp/gobx/decompiled reports
+          while IFS= read -r cls; do
+            [ -n "$cls" ] || continue
+            safe="$(printf '%s' "$cls" | tr '.$' '__')"
+            /tmp/jadx/bin/jadx --no-res --no-imports --threads-count 2               --single-class "$cls" --single-class-output "/tmp/gobx/decompiled/$safe.java"               "$GOBX_APK" >/tmp/gobx/jadx-"$safe".log 2>&1 || true
+          done < /tmp/gobx/classes.txt
+
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          sensitive=re.compile(r'(authorization|bearer|password|secret|access.?token|refresh.?token|license|widevine|drm|payment|credit.?card)',re.I)
+          useful=re.compile(r'(gracenote|channel|programme|program|getLive|getNowShowing|TvGuide|ChannelGuide|@(?:GET|POST|Query|Path|Header|Headers)|retrofit2\.http\.)',re.I)
+          out=[]
+          base=Path('/tmp/gobx/decompiled')
+          for p in sorted(base.glob('*.java')):
+              text=p.read_text(encoding='utf-8',errors='ignore')
+              lines=text.splitlines()
+              out.append('===== '+p.name+' =====')
+              for i,line in enumerate(lines):
+                  if not useful.search(line):
+                      continue
+                  lo=max(0,i-4); hi=min(len(lines),i+6)
+                  for n in range(lo,hi):
+                      raw=lines[n]
+                      if sensitive.search(raw):
+                          raw='[REDACTED SENSITIVE HEADER LINE]'
+                      out.append(f'{n+1:04d}: {raw}')
+                  out.append('')
+          Path('reports/gobx-api-definitions.txt').write_text('\n'.join(out)+'\n',encoding='utf-8')
+          print('\n'.join(out[:800]))
+          PY
+
+      - name: Publish GOBX API definition report
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/gobx-api-definitions.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diagnostic: publish targeted GOBX EPG API definitions"
+          for n in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            git rebase origin/main
+            sleep $((n*2))
+          done
+          exit 1
