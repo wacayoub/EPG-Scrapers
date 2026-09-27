@@ -468,7 +468,13 @@ def main() -> int:
     ET.indent(root, space="  ")
     out.write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
     report.write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({k: v for k, v in stats.items() if k != "channel_reports"}, ensure_ascii=False))
+    summary = {k: v for k, v in stats.items() if k != "channel_reports"}
+    summary["graphql"] = {
+        cid: row.get("graphql")
+        for cid, row in stats["channel_reports"].items()
+        if row.get("graphql")
+    }
+    print(json.dumps(summary, ensure_ascii=False))
     return 0 if stats["programmes"] > 0 else 11
 
 
