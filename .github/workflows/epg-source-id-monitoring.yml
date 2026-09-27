@@ -6,14 +6,6 @@ on:
     paths:
       - ".github/workflows/epg-source-id-monitoring.yml"
       - "tools/monitor_feeds.py"
-      - "feeds/**"
-      - "reports/arab-fallback-all-channels.csv"
-      - "reports/arab-fallback-zero-epg-blacklist.csv"
-      - "reports/arab-fallback-source-blacklist.json"
-      - "reports/arab-fallback-duplicate-decisions.csv"
-      - "reports/arab-fallback-already-covered.csv"
-      - "reports/new-arab-epg-ids.csv"
-      - "reports/rotana-art-programmes.json"
   workflow_dispatch:
 
 permissions:

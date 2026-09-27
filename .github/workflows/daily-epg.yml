@@ -2,9 +2,6 @@ name: Manual full EPG refresh (legacy)
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "config/full-refresh-trigger.txt"
 
 permissions:
   contents: write

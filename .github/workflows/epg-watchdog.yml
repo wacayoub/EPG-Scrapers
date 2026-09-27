@@ -7,7 +7,7 @@ on:
       - ".github/workflows/epg-watchdog.yml"
       - "config/watchdog-trigger.txt"
   schedule:
-    - cron: "15 7,8 * * *"
+    - cron: "30 8,9 * * *"
   workflow_dispatch:
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Casablanca 08:15 gate
+      - name: Casablanca 09:30 gate
         id: gate
         shell: bash
         run: |
@@ -30,7 +30,7 @@ jobs:
             exit 0
           fi
           hour="$(TZ=Africa/Casablanca date +%H)"
-          if [ "$hour" = "08" ]; then
+          if [ "$hour" = "09" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -55,7 +55,7 @@ jobs:
 
           tz = ZoneInfo("Africa/Casablanca")
           today = datetime.now(tz).date()
-          required = ["morocco", "bein", "osn", "elcinema", "sport24", "rotana", "shahid", "mena"]
+          required = ["morocco", "bein", "osn", "elcinema", "sport24", "rotana", "shahid", "dubaiplus", "aljazeera", "starzplay", "stctv", "mena"]
           stale = []
 
           for name in required:
@@ -101,11 +101,11 @@ jobs:
         run: |
           set -e
           stamp="$(TZ=Africa/Casablanca date '+%F %T %Z')"
-          printf 'watchdog-retry %s\n' "$stamp" > config/full-refresh-trigger.txt
+          printf 'watchdog-retry %s\n' "$stamp" > config/source-refresh-trigger.txt
           git config user.name "EPG Watchdog"
           git config user.email "actions@users.noreply.github.com"
-          git add config/full-refresh-trigger.txt reports/watchdog-latest.json
-          git commit -m "Watchdog retry EPG refresh $(TZ=Africa/Casablanca date +%F)"
+          git add config/source-refresh-trigger.txt reports/watchdog-latest.json
+          git commit -m "Watchdog retry sequential EPG refresh $(TZ=Africa/Casablanca date +%F)"
           git pull --rebase origin main
           git push origin HEAD:main
 
