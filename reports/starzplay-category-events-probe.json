@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-27T17:10:09.673011+00:00",
+  "generated_utc": "2026-09-27T17:13:10.853965+00:00",
   "country": "MA",
   "channel_config_status": 200,
   "category_config_status": 200,
@@ -35,15 +35,15 @@
       "category": "featured",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 2650337,
+      "data_len": 17,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=featured&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=featured&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -51,15 +51,15 @@
       "category": "news",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 3014123,
+      "data_len": 15,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=news&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=news&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -67,15 +67,15 @@
       "category": "sports",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 1465138,
+      "data_len": 15,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=sports&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=sports&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -83,15 +83,15 @@
       "category": "live-tv",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 1148019,
+      "data_len": 9,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=live-tv&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=live-tv&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -99,15 +99,15 @@
       "category": "entertainment",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 2722427,
+      "data_len": 26,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=entertainment&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=entertainment&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -115,15 +115,15 @@
       "category": "kids",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 2614635,
+      "data_len": 9,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=kids&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=kids&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -131,15 +131,15 @@
       "category": "southasian",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 3442389,
+      "data_len": 29,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=southasian&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=southasian&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -147,15 +147,15 @@
       "category": "movies",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 273804,
+      "data_len": 6,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=movies&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=movies&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -163,15 +163,15 @@
       "category": "lifestyle",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 2641453,
+      "data_len": 8,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=lifestyle&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=lifestyle&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "category_events",
@@ -179,15 +179,15 @@
       "category": "religious",
       "unit": "seconds",
       "status": 200,
-      "bytes": 51,
-      "data_len": 0,
+      "bytes": 79635,
+      "data_len": 2,
       "top_keys": [
         "status",
         "runtime",
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=religious&ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv&page=1&limit=200"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/category/events/0?category=religious&ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18&page=1&limit=200"
     },
     {
       "kind": "channel_start",
@@ -203,7 +203,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801&ts_end=1790716201&lang=ar"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973&ts_end=1790716373&lang=ar"
     },
     {
       "kind": "channel_start",
@@ -219,7 +219,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801&ts_end=1790716201&lang=ar&pg="
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973&ts_end=1790716373&lang=ar&pg="
     },
     {
       "kind": "channel_start",
@@ -235,7 +235,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801&ts_end=1790716201&lang=ar&pg=0"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973&ts_end=1790716373&lang=ar&pg=0"
     },
     {
       "kind": "channel_start",
@@ -251,7 +251,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801&ts_end=1790716201&lang=ar&pg=18"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973&ts_end=1790716373&lang=ar&pg=18"
     },
     {
       "kind": "channel_start",
@@ -267,7 +267,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801&ts_end=1790716201&lang=ar&pg=tv"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973&ts_end=1790716373&lang=ar&pg=tv"
     },
     {
       "kind": "channel_start",
@@ -283,7 +283,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801000&ts_end=1790716201000&lang=ar"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973000&ts_end=1790716373000&lang=ar"
     },
     {
       "kind": "channel_start",
@@ -299,7 +299,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801000&ts_end=1790716201000&lang=ar&pg="
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973000&ts_end=1790716373000&lang=ar&pg="
     },
     {
       "kind": "channel_start",
@@ -315,7 +315,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801000&ts_end=1790716201000&lang=ar&pg=0"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973000&ts_end=1790716373000&lang=ar&pg=0"
     },
     {
       "kind": "channel_start",
@@ -331,7 +331,7 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801000&ts_end=1790716201000&lang=ar&pg=18"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973000&ts_end=1790716373000&lang=ar&pg=18"
     },
     {
       "kind": "channel_start",
@@ -347,8 +347,69 @@
         "total",
         "data"
       ],
-      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521801000&ts_end=1790716201000&lang=ar&pg=tv"
+      "url": "https://epg.aws.playco.com/api/v1.1/epg/channel/start/0?ts_start=1790521973000&ts_end=1790716373000&lang=ar&pg=tv"
     }
   ],
-  "winners": []
+  "winners": [
+    {
+      "userId": "0",
+      "category": "featured",
+      "unit": "seconds",
+      "data_len": 17
+    },
+    {
+      "userId": "0",
+      "category": "news",
+      "unit": "seconds",
+      "data_len": 15
+    },
+    {
+      "userId": "0",
+      "category": "sports",
+      "unit": "seconds",
+      "data_len": 15
+    },
+    {
+      "userId": "0",
+      "category": "live-tv",
+      "unit": "seconds",
+      "data_len": 9
+    },
+    {
+      "userId": "0",
+      "category": "entertainment",
+      "unit": "seconds",
+      "data_len": 26
+    },
+    {
+      "userId": "0",
+      "category": "kids",
+      "unit": "seconds",
+      "data_len": 9
+    },
+    {
+      "userId": "0",
+      "category": "southasian",
+      "unit": "seconds",
+      "data_len": 29
+    },
+    {
+      "userId": "0",
+      "category": "movies",
+      "unit": "seconds",
+      "data_len": 6
+    },
+    {
+      "userId": "0",
+      "category": "lifestyle",
+      "unit": "seconds",
+      "data_len": 8
+    },
+    {
+      "userId": "0",
+      "category": "religious",
+      "unit": "seconds",
+      "data_len": 2
+    }
+  ]
 }
