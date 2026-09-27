@@ -161,7 +161,7 @@ jobs:
           now=datetime.now(timezone.utc)
           start_s=int((now-timedelta(hours=2)).timestamp())
           end_s=int((now+timedelta(hours=52)).timestamp())
-          user_ids=["0","guest","anonymous","00000000-0000-0000-0000-000000000000"]
+          user_ids=["0"]
           rows=[]
           payloads={}
           winners=[]
@@ -178,7 +178,7 @@ jobs:
             time.sleep(.15)
 
             for slug in slugs:
-              for unit in ("seconds","milliseconds"):
+              for unit in ("seconds",):
                 ts0=start_s if unit=="seconds" else start_s*1000
                 ts1=end_s if unit=="seconds" else end_s*1000
                 params={"category":slug,"ts_start":ts0,"ts_end":ts1,"lang":"ar","pg":"tv","page":1,"limit":200}
@@ -202,6 +202,32 @@ jobs:
                     winners.append({"userId":uid,"category":slug,"unit":unit,"data_len":data_len})
                 time.sleep(.15)
 
+          start_rows=[]
+          start_payloads={}
+          for unit in ("seconds","milliseconds"):
+            ts0=start_s if unit=="seconds" else start_s*1000
+            ts1=end_s if unit=="seconds" else end_s*1000
+            for pg in (None,"","0","18","tv"):
+              params={"ts_start":ts0,"ts_end":ts1,"lang":"ar"}
+              if pg is not None:
+                params["pg"]=pg
+              url=f"{base}/epg/channel/start/0?"+urllib.parse.urlencode(params)
+              st,ct,body,obj=get(url)
+              total=obj.get("total") if isinstance(obj,dict) else None
+              data=obj.get("data") if isinstance(obj,dict) else None
+              dlen=len(data) if isinstance(data,(list,dict)) else 0
+              row={"kind":"channel_start","unit":unit,"pg":pg,"status":st,"bytes":len(body),
+                   "total":total,"data_len":dlen,"top_keys":list(obj)[:30] if isinstance(obj,dict) else [],
+                   "url":url}
+              if st!=200:
+                row["sample"]=body[:900].decode("utf-8","replace")
+              start_rows.append(row)
+              if st==200 and isinstance(obj,(dict,list)):
+                start_payloads[f"{unit}|{pg!r}"]=obj
+              time.sleep(.12)
+
+          rows.extend(start_rows)
+          payloads.update({f"channel_start|{k}":v for k,v in start_payloads.items()})
           out={"generated_utc":datetime.now(timezone.utc).isoformat(),"country":"MA",
                "channel_config_status":cfg_status,"category_config_status":cat_status,
                "categories":slugs,"rows":rows,"winners":winners}
