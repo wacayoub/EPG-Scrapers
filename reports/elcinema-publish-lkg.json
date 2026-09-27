@@ -1,0 +1,31 @@
+{
+  "generated_utc": "2026-09-27T09:04:00.689655+00:00",
+  "sources": {
+    "elcinema": {
+      "candidate": "output/final/elcinema.xml.gz",
+      "published": true,
+      "candidate_stats": {
+        "channels": 103,
+        "active_channels": 91,
+        "zero_epg_channels": 12,
+        "programmes": 3073,
+        "future_channels": 91,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 49.93313584777778,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 103,
+        "active_channels": 87,
+        "zero_epg_channels": 16,
+        "programmes": 3406,
+        "future_channels": 87,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 44.599786576944446,
+        "invalid_rows": 0
+      },
+      "decision": "PUBLISH",
+      "reasons": []
+    }
+  }
+}
