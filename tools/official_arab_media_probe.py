@@ -34,10 +34,12 @@ TARGETS = {
         "https://www.maspero.eg/",
     ],
     "Iraq": [
+        "https://www.alsumaria.tv/TV-grid",
         "https://www.imn.iq/ar",
         "https://news.imn.iq/",
     ],
     "Jordan": [
+        "https://roya.tv/",
         "https://www.jrtv.gov.jo/",
     ],
     "Kuwait": [
@@ -45,6 +47,9 @@ TARGETS = {
         "https://www.media.gov.kw/Frequency.aspx?FreqType=TVKSC",
     ],
     "Lebanon": [
+        "https://www.lbcgroup.tv/schedule/ar",
+        "https://www.lbcgroup.tv/schedule/en",
+        "https://www.mtv.com.lb/Schedule",
         "https://www.teleliban.com.lb/",
     ],
     "Libya": [
@@ -58,7 +63,9 @@ TARGETS = {
         "https://www.2m.ma/",
     ],
     "Oman": [
-        "https://www.omaninfo.om/omanrd/module.php?CatID=153&ID=516&m=pages-showpage",
+        "https://ayn.om/services",
+        "https://ayn.om/tv-shows",
+        "https://ayn.om/schedule/158/",
         "https://www.omaninfo.om/",
     ],
     "Palestine": [
@@ -66,6 +73,9 @@ TARGETS = {
         "https://www.pbc.ps/",
     ],
     "Qatar": [
+        "https://www.alkass.net/tvguide",
+        "https://dirorigin.alkass.net/tvguide",
+        "https://www.tabie.net/live",
         "https://www.qatartv.com/",
     ],
     "Saudi Arabia": [
@@ -82,6 +92,8 @@ TARGETS = {
         "https://www.ortas.online/",
     ],
     "Tunisia": [
+        "https://www.tunisiatv.tn/ar",
+        "https://tunisiatv.tn/ar",
         "https://www.television.tn/",
     ],
     "UAE - Dubai": [
