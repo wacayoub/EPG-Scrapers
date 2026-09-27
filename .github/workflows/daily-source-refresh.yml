@@ -34,8 +34,17 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  bein:
+  tunisiatv:
     needs: alkass
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: tunisiatv
+      scheduled: false
+    secrets: inherit
+
+  bein:
+    needs: tunisiatv
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
