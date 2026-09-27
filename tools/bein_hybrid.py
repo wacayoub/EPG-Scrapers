@@ -52,14 +52,6 @@ SPORTS_NEWS_TITLES = {
 
 ARABIC_NATIVE_PACKAGE_IDS = {
     "AlJazeeraDocumentary.qa@SD",
-    "AlkassOne.qa@SD",
-    "AlkassTwo.qa@SD",
-    "AlkassThree.qa@SD",
-    "AlkassFour.qa@SD",
-    "AlkassFive.qa@SD",
-    "AlkassSix.qa@SD",
-    "AlkassSeven.qa@SD",
-    "AlkassEight.qa@SD",
     "Baraem.qa@SD",
     "BeJunior.qa@SD",
     "CNNArabic.ae@SD",
@@ -395,8 +387,8 @@ def main() -> int:
         arabic_native = cid in ARABIC_NATIVE_PACKAGE_IDS
         sports_news = cid in BEIN_SPORTS_NEWS_IDS
         if arabic_native:
-            # Pure Arab package channels (notably Alkass) keep the authoritative
-            # Arabic title from the Arabic beIN guide.
+            # Pure Arabic package channels retained in the beIN feed keep the
+            # authoritative Arabic title from the Arabic beIN guide.
             for t in p.findall("title"):
                 if is_arabic((t.text or "").strip()):
                     t.set("lang","ar")
