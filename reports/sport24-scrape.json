@@ -6,7 +6,7 @@
       "id": "sport24.adsports.1",
       "name": "Abu Dhabi Sports 1",
       "url": "https://www.sport24.rest/channels/adsports/1",
-      "programmes": 21,
+      "programmes": 19,
       "status": "OK",
       "http_status": 200,
       "html_bytes": 95764,
@@ -21,7 +21,7 @@
       "id": "sport24.adsports.2",
       "name": "Abu Dhabi Sports 2",
       "url": "https://www.sport24.rest/channels/adsports/2",
-      "programmes": 14,
+      "programmes": 13,
       "status": "OK",
       "http_status": 200,
       "html_bytes": 87290,
@@ -39,7 +39,7 @@
       "programmes": 13,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 90570,
+      "html_bytes": 91460,
       "candidate_events": 22,
       "parsed_json_blobs": 1,
       "valid_timeline_events": 22,
@@ -51,7 +51,7 @@
       "id": "sport24.adsports.4",
       "name": "Abu Dhabi Sports 4",
       "url": "https://www.sport24.rest/channels/adsports/4",
-      "programmes": 12,
+      "programmes": 11,
       "status": "OK",
       "http_status": 200,
       "html_bytes": 88677,
@@ -96,13 +96,13 @@
       "id": "sport24.thmanyah.1",
       "name": "Thmanyah 1",
       "url": "https://www.sport24.rest/channels/thmanyah/1",
-      "programmes": 15,
+      "programmes": 14,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 82104,
-      "candidate_events": 16,
+      "html_bytes": 80699,
+      "candidate_events": 15,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 16,
+      "valid_timeline_events": 15,
       "used_time_keys": [
         "dom:data-time[0]"
       ]
@@ -111,13 +111,13 @@
       "id": "sport24.thmanyah.2",
       "name": "Thmanyah 2",
       "url": "https://www.sport24.rest/channels/thmanyah/2",
-      "programmes": 15,
+      "programmes": 14,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 85064,
-      "candidate_events": 18,
+      "html_bytes": 80849,
+      "candidate_events": 15,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 18,
+      "valid_timeline_events": 15,
       "used_time_keys": [
         "dom:data-time[0]"
       ]
@@ -126,7 +126,7 @@
       "id": "sport24.thmanyah.3",
       "name": "Thmanyah 3",
       "url": "https://www.sport24.rest/channels/thmanyah/3",
-      "programmes": 15,
+      "programmes": 14,
       "status": "OK",
       "http_status": 200,
       "html_bytes": 82254,
@@ -138,10 +138,10 @@
       ]
     }
   ],
-  "programmes": 129,
+  "programmes": 122,
   "channels_total": 9,
   "active_channels": 9,
   "zero_epg_channels": 0,
   "timezone_output": "UTC +0000",
-  "generated_utc": "2026-09-28T11:35:59.822074+00:00"
+  "generated_utc": "2026-09-28T12:22:40.034607+00:00"
 }
