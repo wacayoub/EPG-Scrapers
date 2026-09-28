@@ -24,6 +24,90 @@
   "family_rules": [
     {
       "tokens": [
+        "beinsportsnews",
+        "bein sports news"
+      ],
+      "preferred_sources": [
+        "bein",
+        "elcinema"
+      ],
+      "profile": "arabic"
+    },
+    {
+      "tokens": [
+        "baraem",
+        "bejunior",
+        "be junior",
+        "jeem",
+        "cnn arabic"
+      ],
+      "preferred_sources": [
+        "bein",
+        "elcinema"
+      ],
+      "profile": "arabic"
+    },
+    {
+      "tokens": [
+        "mbc2",
+        "mbc 2",
+        "mbc4",
+        "mbc 4",
+        "mbcaction",
+        "mbc action",
+        "mbcbollywood",
+        "mbc bollywood",
+        "mbcmax",
+        "mbc max"
+      ],
+      "preferred_sources": [
+        "shahid",
+        "elcinema",
+        "stctv"
+      ],
+      "profile": "hybrid"
+    },
+    {
+      "tokens": [
+        "dubai one",
+        "dubaione"
+      ],
+      "preferred_sources": [
+        "dubaiplus",
+        "elcinema",
+        "stctv"
+      ],
+      "profile": "hybrid"
+    },
+    {
+      "tokens": [
+        "osnyahala",
+        "osntv yahala",
+        "yahala aflam",
+        "yahala bil arabi"
+      ],
+      "preferred_sources": [
+        "osn",
+        "elcinema"
+      ],
+      "profile": "arabic"
+    },
+    {
+      "tokens": [
+        "alfa",
+        "cinema1",
+        "cinema2",
+        "fann.ae",
+        "musicnow"
+      ],
+      "preferred_sources": [
+        "osn",
+        "elcinema"
+      ],
+      "profile": "arabic"
+    },
+    {
+      "tokens": [
         "alkass",
         "al kass"
       ],
