@@ -1,31 +1,35 @@
 {
-  "generated_utc": "2026-09-27T10:20:39.170741+00:00",
+  "generated_utc": "2026-09-28T09:09:35.003130+00:00",
   "sources": {
     "stctv": {
       "candidate": "output/final/stctv.xml.gz",
-      "published": true,
+      "published": false,
       "candidate_stats": {
-        "channels": 144,
-        "active_channels": 144,
+        "channels": 3,
+        "active_channels": 3,
         "zero_epg_channels": 0,
-        "programmes": 8787,
-        "future_channels": 144,
+        "programmes": 143,
+        "future_channels": 3,
         "future_ratio": 1.0,
-        "future_horizon_hours": 53.65576825583334,
+        "future_horizon_hours": 48.84027647333334,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 144,
         "active_channels": 144,
         "zero_epg_channels": 0,
-        "programmes": 8804,
+        "programmes": 8787,
         "future_channels": 144,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.65571709416667,
+        "future_horizon_hours": 30.840256792222224,
         "invalid_rows": 0
       },
-      "decision": "PUBLISH",
-      "reasons": []
+      "decision": "KEEP_LKG",
+      "reasons": [
+        "active_channels<10",
+        "channel_regression>40%",
+        "programme_regression>65%"
+      ]
     }
   }
 }
