@@ -1,7 +1,7 @@
 {
-  "generated_qatar": "2026-09-28T12:07:30.987913+03:00",
+  "generated_qatar": "2026-09-28T14:36:52.532314+03:00",
   "rejected_long_duration": 6,
-  "date_mismatch_rows": 1326,
+  "date_mismatch_rows": 1032,
   "dates": [
     "2026-09-28",
     "2026-09-29",
@@ -12,22 +12,22 @@
     "QatarTelevision.qa@SD": {
       "channel_id": 23,
       "name": "Qatar TV",
-      "programmes": 26,
+      "programmes": 21,
       "days": {
         "2026-09-28": {
           "status": "OK",
-          "programmes": 26,
-          "api_rows": 26
+          "programmes": 21,
+          "api_rows": 21
         },
         "2026-09-29": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 26
+          "api_rows": 21
         },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 26
+          "api_rows": 21
         }
       },
       "errors": [],
@@ -36,22 +36,22 @@
     "QatarTelevision2.qa@SD": {
       "channel_id": 22,
       "name": "Qatar TV 2",
-      "programmes": 26,
+      "programmes": 21,
       "days": {
         "2026-09-28": {
           "status": "OK",
-          "programmes": 26,
-          "api_rows": 26
+          "programmes": 21,
+          "api_rows": 21
         },
         "2026-09-29": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 26
+          "api_rows": 21
         },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 26
+          "api_rows": 21
         }
       },
       "errors": [],
@@ -84,26 +84,26 @@
     "QatarBusinessChannel.qa@SD": {
       "channel_id": 50,
       "name": "QBC",
-      "programmes": 28,
+      "programmes": 0,
       "days": {
         "2026-09-28": {
           "status": "OK",
-          "programmes": 28,
-          "api_rows": 28
+          "programmes": 0,
+          "api_rows": 1
         },
         "2026-09-29": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 28
+          "api_rows": 1
         },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 28
+          "api_rows": 1
         }
       },
       "errors": [],
-      "status": "ACTIVE"
+      "status": "ZERO_EPG"
     },
     "AlkassOne.qa@SD": {
       "channel_id": 32,
@@ -180,22 +180,22 @@
     "TabieNow.qa": {
       "channel_id": 34,
       "name": "Tabie Now",
-      "programmes": 546,
+      "programmes": 445,
       "days": {
         "2026-09-28": {
           "status": "OK",
-          "programmes": 546,
-          "api_rows": 547
+          "programmes": 445,
+          "api_rows": 446
         },
         "2026-09-29": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 547
+          "api_rows": 446
         },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 547
+          "api_rows": 446
         }
       },
       "errors": [],
@@ -204,28 +204,28 @@
     "TabieKids.qa": {
       "channel_id": 35,
       "name": "Tabie Kids",
-      "programmes": 37,
+      "programmes": 29,
       "days": {
         "2026-09-28": {
           "status": "OK",
-          "programmes": 37,
-          "api_rows": 38
+          "programmes": 29,
+          "api_rows": 30
         },
         "2026-09-29": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 38
+          "api_rows": 30
         },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 38
+          "api_rows": 30
         }
       },
       "errors": [],
       "status": "ACTIVE"
     }
   },
-  "programmes": 663,
-  "active_channels": 5
+  "programmes": 516,
+  "active_channels": 4
 }
