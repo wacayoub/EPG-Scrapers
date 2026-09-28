@@ -744,6 +744,331 @@
           "id": "StarzplaySports3.sa@HD"
         }
       ]
+    },
+    {
+      "canonical_id": "MBC1.ae@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "shahid",
+        "osn",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "shahid",
+          "id": "MBC1.ae@SD"
+        },
+        {
+          "source": "osn",
+          "id": "MBC1.ae@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "MBC1.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "MBC1.sa@HD"
+        }
+      ]
+    },
+    {
+      "canonical_id": "MBC2.ae@SD",
+      "profile": "hybrid",
+      "preferred_sources": [
+        "shahid",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "shahid",
+          "id": "MBC2.ae@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "MBC2.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "MBC2.sa@HD"
+        }
+      ]
+    },
+    {
+      "canonical_id": "MBC3.ae@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "shahid",
+        "osn",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "shahid",
+          "id": "MBC3.ae@SD"
+        },
+        {
+          "source": "osn",
+          "id": "MBC3.ae@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "MBC3.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "MBC3.sa@HD"
+        }
+      ]
+    },
+    {
+      "canonical_id": "MBC4.ae@SD",
+      "profile": "hybrid",
+      "preferred_sources": [
+        "shahid",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "shahid",
+          "id": "MBC4.ae@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "MBC4.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "MBC4.sa@HD"
+        }
+      ]
+    },
+    {
+      "canonical_id": "MBCMasr2.eg@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "shahid",
+        "osn",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "shahid",
+          "id": "MBCMasr2.eg@SD"
+        },
+        {
+          "source": "osn",
+          "id": "MBCMasr2.eg@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "MBCMasr2.eg@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "MBCMasr2.eg@HD"
+        }
+      ]
+    },
+    {
+      "canonical_id": "MBCPlusDrama.sa@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "shahid",
+        "osn",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "shahid",
+          "id": "MBCPlusDrama.sa@SD"
+        },
+        {
+          "source": "osn",
+          "id": "MBCPlusDrama.sa@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "MBCPlusDrama.sa@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "stctv.ded3c52222aa"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alarabiya.ae@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "shahid",
+        "osn",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "shahid",
+          "id": "Alarabiya.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "AlArabiya.sa@HD"
+        }
+      ]
+    },
+    {
+      "canonical_id": "AbuDhabiTV.ae@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "starzplay",
+        "osn",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "starzplay",
+          "id": "starzplay.720335400133"
+        },
+        {
+          "source": "osn",
+          "id": "AbuDhabiTV.ae@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "AbuDhabiTV.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "stctv.8875990f46d0"
+        }
+      ]
+    },
+    {
+      "canonical_id": "SharjahTV.ae@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "starzplay",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "starzplay",
+          "id": "starzplay.460869672258"
+        },
+        {
+          "source": "elcinema",
+          "id": "SharjahTV.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "stctv.6cfe414fd9e7"
+        }
+      ]
+    },
+    {
+      "canonical_id": "RoyaTV.jo@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "osn",
+        "starzplay",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "osn",
+          "id": "RoyaTV.jo@SD"
+        },
+        {
+          "source": "starzplay",
+          "id": "starzplay.497912359959"
+        },
+        {
+          "source": "elcinema",
+          "id": "RoyaTV.jo@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "stctv.6cedc6b20fd3"
+        }
+      ]
+    },
+    {
+      "canonical_id": "ZeeAlwan.ae@SD",
+      "profile": "hybrid",
+      "preferred_sources": [
+        "starzplay",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "starzplay",
+          "id": "ZeeAlwan.ae@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "ZeeAlwan.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "stctv.776df24a1b3a"
+        }
+      ]
+    },
+    {
+      "canonical_id": "ZeeAflam.ae@SD",
+      "profile": "hybrid",
+      "preferred_sources": [
+        "starzplay",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "starzplay",
+          "id": "ZeeAflam.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "stctv.82dabc2df5b5"
+        }
+      ]
+    },
+    {
+      "canonical_id": "DubaiTV.ae@SD",
+      "profile": "arabic",
+      "preferred_sources": [
+        "dubaiplus",
+        "osn",
+        "elcinema",
+        "stctv"
+      ],
+      "members": [
+        {
+          "source": "dubaiplus",
+          "id": "DubaiTV.ae@SD"
+        },
+        {
+          "source": "osn",
+          "id": "DubaiTV.ae@SD"
+        },
+        {
+          "source": "elcinema",
+          "id": "DubaiTV.ae@SD"
+        },
+        {
+          "source": "stctv",
+          "id": "stctv.9169f174ca77"
+        }
+      ]
     }
   ]
 }
