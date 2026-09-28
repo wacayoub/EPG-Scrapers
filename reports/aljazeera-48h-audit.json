@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-09-28T09:07:12.173182+00:00",
+  "generated_utc": "2026-09-28T11:36:38.035544+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "aljazeera.xml.gz",
-      "generated_utc": "2026-09-28T09:07:12.173148+00:00",
+      "generated_utc": "2026-09-28T11:36:38.035508+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 90,
@@ -19,16 +19,16 @@
           "id": "AlJazeera.qa@Arabic",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.8,
-          "latest_stop_utc": "2026-09-30T09:55:00+00:00",
+          "future_hours": 50.39,
+          "latest_stop_utc": "2026-09-30T14:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 44
+          "programmes": 45
         },
         {
           "id": "AlJazeera2.qa@HD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 55.88,
+          "future_hours": 53.39,
           "latest_stop_utc": "2026-09-30T17:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 23
