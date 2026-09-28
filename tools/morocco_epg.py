@@ -1331,12 +1331,13 @@ def _chada_title_desc(raw):
  n=norm(title)
  meta=next((CHADA[k] for k in sorted(CHADA,key=len,reverse=True) if k in n),None)
  if meta:return meta
- if "capsule sport" in n:return ("Capsule sport","Capsule sportive sur Chada TV.")
- if "capsule culinaire" in n:return ("Capsule culinaire","Capsule culinaire sur Chada TV.")
- if "capsule beaute" in n:return ("Capsule beauté","Capsule beauté sur Chada TV.")
- if "capsule mode" in n:return ("Capsule mode","Capsule mode sur Chada TV.")
- if "capsule bien etre" in n:return ("Capsule bien-être","Capsule bien-être sur Chada TV.")
- return (title,"Programme diffusé sur Chada TV.")
+ # Chada is Arabic-native: do not publish French generic descriptions.
+ if "capsule sport" in n:return ("كبسولة رياضية","كبسولة رياضية على قناة شدى تي في.")
+ if "capsule culinaire" in n:return ("كبسولة طبخ","كبسولة طبخ على قناة شدى تي في.")
+ if "capsule beaute" in n:return ("كبسولة جمال","كبسولة جمال على قناة شدى تي في.")
+ if "capsule mode" in n:return ("كبسولة موضة","كبسولة موضة على قناة شدى تي في.")
+ if "capsule bien etre" in n:return ("كبسولة رفاهية","كبسولة رفاهية على قناة شدى تي في.")
+ return (title,"برنامج يُعرض على قناة شدى تي في.")
 
 def _parse_chada_piisas(text,day):
  soup=BeautifulSoup(text,"lxml");raw=[]
