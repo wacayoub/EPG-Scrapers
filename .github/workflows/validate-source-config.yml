@@ -12,6 +12,8 @@ on:
       - ".github/workflows/daily-epg.yml"
       - "tools/build_catalogues.py"
       - "tools/build_derived_feeds.py"
+      - "tools/publish_lkg.py"
+      - "config/canonical-channel-policy.json"
       - "tools/refresh_one_source.sh"
   workflow_dispatch:
 
@@ -54,7 +56,10 @@ jobs:
       - name: Syntax checks
         run: |
           bash -n tools/refresh_one_source.sh
-          python -m py_compile             tools/build_catalogues.py             tools/publish_lkg.py             tools/source_feed_pack.py             tools/validate_48h.py             tools/aljazeera_source.py             tools/starzplay_source.py             tools/stctv_source.py             tools/dubaiplus_api_source.py             tools/rotana_source.py             tools/sport24_source.py
+          python -m py_compile             tools/build_catalogues.py             tools/build_derived_feeds.py             tools/publish_lkg.py             tools/source_feed_pack.py             tools/validate_48h.py             tools/aljazeera_source.py             tools/starzplay_source.py             tools/stctv_source.py             tools/dubaiplus_api_source.py             tools/rotana_source.py             tools/sport24_source.py
+
+      - name: Validate canonical routing policy
+        run: python -c "import json,pathlib; d=json.loads(pathlib.Path('config/canonical-channel-policy.json').read_text(encoding='utf-8')); assert d.get('default_source_order'); assert isinstance(d.get('alias_groups'),list); assert len({x['canonical_id'] for x in d['alias_groups']}) == len(d['alias_groups']); print('CANONICAL_POLICY_OK',len(d['alias_groups']))"
 
       - name: Validate catalogues and beIN MENA scope
         run: |
