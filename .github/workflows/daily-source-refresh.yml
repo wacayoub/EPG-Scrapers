@@ -182,7 +182,8 @@ jobs:
           git config user.name "EPG Finalizer"
           git config user.email "actions@users.noreply.github.com"
           git add feeds/mena.xml.gz feeds/mena.txt feeds/mena.json
-          git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv\n          git add reports/canonical-source-routing.json reports/canonical-source-routing.md
+          git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv
+          git add reports/canonical-source-routing.json reports/canonical-source-routing.md
           if git diff --cached --quiet; then
             exit 0
           fi
