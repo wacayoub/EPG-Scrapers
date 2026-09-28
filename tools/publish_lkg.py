@@ -49,8 +49,10 @@ POLICY = {
     # accepts two active channels because the official indexed guide currently
     # exposes complete schedules for Al Jazeera and Al Jazeera 2.
     "aljazeera": {"min_channels": 2, "min_programmes": 40, "min_future_ratio": 0.95, "min_horizon_hours": 36},
-    # STC full public catalogue is fetched in daily batch mode (144 channels currently).
-    "stctv":     {"min_channels": 10, "min_programmes": 30, "min_future_ratio": 0.70, "min_horizon_hours": 4},
+    # Daily STC production is intentionally scoped to STARZPLAY Sports 1-3.
+    # A healthy three-channel candidate is therefore a planned scope change,
+    # not a catastrophic regression from the historical 144-channel LKG.
+    "stctv":     {"min_channels": 3, "min_programmes": 20, "min_future_ratio": 1.00, "min_horizon_hours": 8},
 }
 DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
@@ -150,13 +152,22 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["active_channels"] >= 35
                 and cur["future_ratio"] >= 0.90
             )
+            planned_stctv_scope_rebase = (
+                key == "stctv"
+                and old["channels"] >= 100
+                and cur["channels"] == 3
+                and cur["active_channels"] == 3
+                and cur["future_ratio"] >= 0.99
+                and cur["programmes"] >= 20
+            )
+            planned_scope_rebase = planned_bein_scope_rebase or planned_stctv_scope_rebase
             if (
-                not planned_bein_scope_rebase
+                not planned_scope_rebase
                 and old["channels"]
                 and cur["channels"] < max(p["min_channels"], int(old["channels"] * 0.60))
             ):
                 reasons.append("channel_regression>40%")
-            if old["programmes"]:
+            if old["programmes"] and not planned_scope_rebase:
                 # Compare like-for-like windows. A 48h candidate must not be
                 # rejected merely because the previous LKG still contains
                 # several days of older/future programmes.
