@@ -1,11 +1,10 @@
 {
   "label": "elcinema",
   "channels": 103,
-  "active_channels": 92,
-  "zero_epg_channels": 11,
+  "active_channels": 93,
+  "zero_epg_channels": 10,
   "zero_epg_ids": [
     "2MMonde.ma@SD",
-    "AbuDhabiTV.ae@SD",
     "AlManar.lb@SD",
     "ATV.kw@SD",
     "BahrainTV.bh@SD",
@@ -17,13 +16,13 @@
     "SalamTV.ly@SD"
   ],
   "input_channels": 103,
-  "coverage_pct": 89.3,
-  "programmes": 3472,
+  "coverage_pct": 90.3,
+  "programmes": 3599,
   "rejected_invalid_time": 0,
-  "inferred_stop": 1,
+  "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 173741,
-  "sha256": "9256ddd5665dd43946d233d3e0df5e5a3106c3325d4676a4f9a49a8ad42e986b",
-  "generated_utc": "2026-09-28T11:35:09.381103+00:00"
+  "size_bytes": 176365,
+  "sha256": "34aaf51eee7886a125167d3f1a18fa38ca2cab5c941c29af243e3302e761046f",
+  "generated_utc": "2026-09-28T12:21:51.832874+00:00"
 }
