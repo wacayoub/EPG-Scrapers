@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-09-27T23:14:57.870896+00:00",
+  "generated_utc": "2026-09-28T08:48:14.641135+00:00",
   "sources": {
     "morocco": {
       "candidate": "output/final/morocco.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 15,
-        "active_channels": 15,
-        "zero_epg_channels": 0,
-        "programmes": 593,
-        "future_channels": 15,
+        "active_channels": 14,
+        "zero_epg_channels": 1,
+        "programmes": 715,
+        "future_channels": 14,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.16725672361111,
+        "future_horizon_hours": 51.22926510222222,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 15,
         "active_channels": 15,
         "zero_epg_channels": 0,
-        "programmes": 632,
-        "future_channels": 15,
-        "future_ratio": 1.0,
-        "future_horizon_hours": 48.75058623,
+        "programmes": 593,
+        "future_channels": 11,
+        "future_ratio": 0.7333333333333333,
+        "future_horizon_hours": 39.612594960277775,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
