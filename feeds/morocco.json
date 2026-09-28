@@ -1,19 +1,17 @@
 {
   "label": "morocco",
   "channels": 15,
-  "active_channels": 14,
-  "zero_epg_channels": 1,
-  "zero_epg_ids": [
-    "Tamazight"
-  ],
+  "active_channels": 15,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
   "input_channels": 15,
-  "coverage_pct": 93.3,
-  "programmes": 704,
-  "rejected_invalid_time": 0,
+  "coverage_pct": 100.0,
+  "programmes": 750,
+  "rejected_invalid_time": 3,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 22510,
-  "sha256": "34a4aabcbce8ee3f8cce3f9ba102b69c72adb0d9373d134baf8c1b40d71de193",
-  "generated_utc": "2026-09-28T11:19:49.303625+00:00"
+  "size_bytes": 23491,
+  "sha256": "40226a085a8cd262972c11e95bf0ab6088eb71c56f2f54219aebb2313e6a66cb",
+  "generated_utc": "2026-09-28T12:00:32.586228+00:00"
 }
