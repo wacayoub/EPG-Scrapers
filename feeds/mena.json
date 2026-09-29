@@ -1,9 +1,9 @@
 {
   "label": "mena",
-  "channels": 409,
-  "programmes": 23298,
-  "generated_utc": "2026-09-28T13:16:29.419473+00:00",
-  "sha256": "ce51337530fc66984dea1a3de3c4a5584d61c4b0468cf9c7382a4ea5d39575b8",
+  "channels": 411,
+  "programmes": 23367,
+  "generated_utc": "2026-09-29T11:40:38.870829+00:00",
+  "sha256": "61d76e6811199fd4ff75577b052d9703bcfc0854866fcfc191d73be6fd95b9d7",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -163,7 +163,7 @@
     "DiscoveryChannelMiddleEastAfrica.us@SD": "osn",
     "DMC.eg@SD": "osn",
     "DMCDrama.eg@SD": "elcinema",
-    "DubaiOne.ae@SD": "dubaiplus",
+    "DubaiOne.ae@SD": "elcinema",
     "DubaiRacing1.ae@SD": "dubaiplus",
     "DubaiRacing2.ae@SD": "dubaiplus",
     "DubaiSports1.ae@SD": "sport24",
@@ -238,7 +238,7 @@
     "MotorvisionPlus.de@SD": "osn",
     "MoviesAction.sa@SD": "shahid",
     "MoviesThriller.sa@SD": "shahid",
-    "MTV.lb@SD": "shahid",
+    "MTV.lb@SD": "elcinema",
     "MTV80s.uk@SD": "bein",
     "MTV90s.uk@SD": "bein",
     "MusicNow.ae@SD": "osn",
@@ -349,6 +349,7 @@
     "starzplay.479687208265": "starzplay",
     "starzplay.487766568234": "starzplay",
     "starzplay.491982376315": "starzplay",
+    "starzplay.515470888131": "starzplay",
     "starzplay.524255784372": "starzplay",
     "starzplay.524611624145": "starzplay",
     "starzplay.527810088109": "starzplay",
@@ -360,6 +361,7 @@
     "starzplay.559865896371": "starzplay",
     "starzplay.587754024122": "starzplay",
     "starzplay.658209319988": "starzplay",
+    "starzplay.666427944412": "starzplay",
     "starzplay.687267880423": "starzplay",
     "starzplay.689693224333": "starzplay",
     "starzplay.703793704007": "starzplay",
@@ -434,6 +436,18 @@
   "extensions": {
     "AbuDhabiSports1.ae@SD": [
       "osn"
+    ],
+    "AlArabiyaBusiness.ae@SD": [
+      "starzplay"
+    ],
+    "CartoonNetworkArabic.ae@SD": [
+      "starzplay"
+    ],
+    "MBC3.ae@SD": [
+      "elcinema"
+    ],
+    "RoyaTV.jo@SD": [
+      "starzplay"
     ]
   },
   "routing_policy": "canonical channel -> healthy MAIN -> B1/B2; language/title/description quality gates; backup may extend only after selected source horizon"
