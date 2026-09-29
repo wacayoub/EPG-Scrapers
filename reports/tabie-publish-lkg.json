@@ -1,17 +1,17 @@
 {
-  "generated_utc": "2026-09-28T13:13:33.550797+00:00",
+  "generated_utc": "2026-09-29T11:36:55.341352+00:00",
   "sources": {
     "tabie": {
       "candidate": "output/final/tabie.xml.gz",
       "published": false,
       "candidate_stats": {
         "channels": 9,
-        "active_channels": 4,
-        "zero_epg_channels": 5,
-        "programmes": 357,
-        "future_channels": 4,
+        "active_channels": 5,
+        "zero_epg_channels": 4,
+        "programmes": 465,
+        "future_channels": 5,
         "future_ratio": 1.0,
-        "future_horizon_hours": 10.774013118333333,
+        "future_horizon_hours": 12.384626998333333,
         "invalid_rows": 0
       },
       "previous_stats": {
@@ -19,15 +19,14 @@
         "active_channels": 5,
         "zero_epg_channels": 4,
         "programmes": 1171,
-        "future_channels": 5,
-        "future_ratio": 1.0,
-        "future_horizon_hours": 10.774010069444444,
+        "future_channels": 0,
+        "future_ratio": 0.0,
+        "future_horizon_hours": 0.0,
         "invalid_rows": 0
       },
       "decision": "KEEP_LKG",
       "reasons": [
-        "future_horizon<24h",
-        "programme_regression>65%"
+        "future_horizon<24h"
       ]
     }
   }
