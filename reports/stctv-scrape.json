@@ -1,8 +1,8 @@
 {
-  "generated_utc": "2026-09-28T13:15:55.210823+00:00",
+  "generated_utc": "2026-09-29T11:40:13.058157+00:00",
   "channels": 3,
   "channels_with_epg": 3,
-  "programmes": 133,
+  "programmes": 145,
   "requests": 5,
   "source_channels": 144,
   "source_metadata_issues": [],
@@ -16,20 +16,20 @@
     "StarzplaySports1.sa@HD": {
       "name": "StarzPLAY Sports 1",
       "profile": "hybrid",
-      "title": "Serie A:Fiorentina X Napoli",
+      "title": "Serie A:Parma x Genoa",
       "desc": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
     },
     "StarzplaySports2.sa@HD": {
       "name": "StarzPLAY Sports 2",
       "profile": "hybrid",
-      "title": "Serie A:Monza X Sassuolo",
+      "title": "Serie A:Roma X Inter Milan",
       "desc": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
     },
     "StarzplaySports3.sa@HD": {
       "name": "StarzPLAY Sports 3",
       "profile": "hybrid",
-      "title": "AEW All Elite Wrestling",
-      "desc": "قائمة عالمية من المصارعين المتنوعين من الذكور والإناث تمنح المشجعين تجربة مصارعة جديدة لأول مرة منذ 20 سنة."
+      "title": "UFC Fight Night:Rosas Jr. X Barcelos - Main Card",
+      "desc": "تابعوا الإثارة وأفضل الأحداث لـ (بطولة القتال النهائي) يو إف سي فايت نايت."
     }
   },
   "timezone_output": "UTC +0000",
@@ -38,10 +38,10 @@
   "catalogue_only": false,
   "schedule_mode": "batch_per_day",
   "schedule_days": [
-    "2026-09-28",
     "2026-09-29",
     "2026-09-30",
-    "2026-10-01"
+    "2026-10-01",
+    "2026-10-02"
   ],
   "schedule_channel_blocks": 175,
   "batch_errors": []
