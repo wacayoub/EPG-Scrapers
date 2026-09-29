@@ -1,17 +1,19 @@
 {
   "label": "rotana",
   "channels": 9,
-  "active_channels": 9,
-  "zero_epg_channels": 0,
-  "zero_epg_ids": [],
+  "active_channels": 8,
+  "zero_epg_channels": 1,
+  "zero_epg_ids": [
+    "RotanaClip.sa@SD"
+  ],
   "input_channels": 9,
-  "coverage_pct": 100.0,
-  "programmes": 537,
+  "coverage_pct": 88.9,
+  "programmes": 302,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 6731,
-  "sha256": "30250d4f681347e263f95dd36a8cff3d9aabd51ef8903508873239f363ea8327",
-  "generated_utc": "2026-09-28T13:12:13.146389+00:00"
+  "size_bytes": 3917,
+  "sha256": "9b150b9c979280278554d83c9dd14219cf020a772df59938dd897719043fed2e",
+  "generated_utc": "2026-09-29T11:35:40.529790+00:00"
 }

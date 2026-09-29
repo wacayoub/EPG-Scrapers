@@ -1,74 +1,76 @@
 {
-  "generated_utc": "2026-09-28T13:12:13.000875+00:00",
+  "generated_utc": "2026-09-29T11:35:40.446777+00:00",
   "source": "https://www.rotana.net/ar/streams",
   "timezone": "UTC (Rotana streams page clock)",
   "channels_configured": 9,
-  "channels_with_epg": 9,
-  "zero_epg_ids": [],
-  "programmes": 537,
+  "channels_with_epg": 8,
+  "zero_epg_ids": [
+    "RotanaClip.sa@SD"
+  ],
+  "programmes": 302,
   "timezone_output": "UTC +0000",
   "channels": {
     "RotanaCinemaKSA.sa@SD": {
       "site_id": "431",
       "name": "روتانا سينما السعودية",
       "http_status": 200,
-      "programmes": 28,
+      "programmes": 19,
       "state": "ok"
     },
     "LBC.sa@SD": {
       "site_id": "434",
       "name": "إل بي سي",
       "http_status": 200,
-      "programmes": 45,
+      "programmes": 34,
       "state": "ok"
     },
     "RotanaCinemaEgypt.eg@SD": {
       "site_id": "439",
       "name": "روتانا سينما مصر",
       "http_status": 200,
-      "programmes": 28,
+      "programmes": 19,
       "state": "ok"
     },
     "RotanaClassic.sa@SD": {
       "site_id": "438",
       "name": "روتانا كلاسيك",
       "http_status": 200,
-      "programmes": 36,
+      "programmes": 28,
       "state": "ok"
     },
     "RotanaClip.sa@SD": {
       "site_id": "443",
       "name": "روتانا كليب",
       "http_status": 200,
-      "programmes": 132,
-      "state": "ok"
+      "programmes": 0,
+      "state": "no-guide"
     },
     "RotanaComedy.sa@SD": {
       "site_id": "437",
       "name": "روتانا كوميدي",
       "http_status": 200,
-      "programmes": 26,
+      "programmes": 20,
       "state": "ok"
     },
     "RotanaDrama.sa@SD": {
       "site_id": "436",
       "name": "روتانا دراما",
       "http_status": 200,
-      "programmes": 51,
+      "programmes": 38,
       "state": "ok"
     },
     "RotanaKhalijia.sa@SD": {
       "site_id": "435",
       "name": "روتانا خليجية",
       "http_status": 200,
-      "programmes": 59,
+      "programmes": 47,
       "state": "ok"
     },
     "AlResalah.sa@SD": {
       "site_id": "446",
       "name": "الرسالة",
       "http_status": 200,
-      "programmes": 132,
+      "programmes": 97,
       "state": "ok"
     }
   }
