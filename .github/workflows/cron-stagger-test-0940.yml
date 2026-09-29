@@ -1,0 +1,112 @@
+name: EPG Cron Test - staggered 5min from 09:40
+
+on:
+  schedule:
+    - cron: "40 9 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "45 9 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "50 9 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "55 9 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "0 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "5 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "10 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "15 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "20 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "25 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "30 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "35 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "40 10 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "45 10 * * *"
+      timezone: "Africa/Casablanca"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-cron-test-${{ github.event.schedule || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  morocco:
+    if: ${{ github.event.schedule == '40 9 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: morocco, scheduled: false }
+    secrets: inherit
+  alkass:
+    if: ${{ github.event.schedule == '45 9 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: alkass, scheduled: false }
+    secrets: inherit
+  tunisiatv:
+    if: ${{ github.event.schedule == '50 9 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: tunisiatv, scheduled: false }
+    secrets: inherit
+  bein:
+    if: ${{ github.event.schedule == '55 9 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: bein, scheduled: false }
+    secrets: inherit
+  osn:
+    if: ${{ github.event.schedule == '0 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: osn, scheduled: false }
+    secrets: inherit
+  shahid:
+    if: ${{ github.event.schedule == '5 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: shahid, scheduled: false }
+    secrets: inherit
+  elcinema:
+    if: ${{ github.event.schedule == '10 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: elcinema, scheduled: false }
+    secrets: inherit
+  rotana:
+    if: ${{ github.event.schedule == '15 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: rotana, scheduled: false }
+    secrets: inherit
+  sport24:
+    if: ${{ github.event.schedule == '20 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: sport24, scheduled: false }
+    secrets: inherit
+  dubaiplus:
+    if: ${{ github.event.schedule == '25 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: dubaiplus, scheduled: false }
+    secrets: inherit
+  aljazeera:
+    if: ${{ github.event.schedule == '30 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: aljazeera, scheduled: false }
+    secrets: inherit
+  tabie:
+    if: ${{ github.event.schedule == '35 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: tabie, scheduled: false }
+    secrets: inherit
+  starzplay:
+    if: ${{ github.event.schedule == '40 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: starzplay, scheduled: false }
+    secrets: inherit
+  stctv:
+    if: ${{ github.event.schedule == '45 10 * * *' }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with: { source: stctv, scheduled: false }
+    secrets: inherit
