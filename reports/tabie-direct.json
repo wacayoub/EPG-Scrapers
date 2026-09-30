@@ -1,33 +1,33 @@
 {
-  "generated_qatar": "2026-09-29T14:36:46.302222+03:00",
-  "rejected_long_duration": 3,
-  "date_mismatch_rows": 1062,
+  "generated_qatar": "2026-09-30T14:25:57.735041+03:00",
+  "rejected_long_duration": 6,
+  "date_mismatch_rows": 1042,
   "dates": [
-    "2026-09-29",
     "2026-09-30",
-    "2026-10-01"
+    "2026-10-01",
+    "2026-10-02"
   ],
   "endpoint": "/Live/GetSchedule",
   "channels": {
     "QatarTelevision.qa@SD": {
       "channel_id": 23,
       "name": "Qatar TV",
-      "programmes": 19,
+      "programmes": 18,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 19,
-          "api_rows": 19
-        },
         "2026-09-30": {
           "status": "OK",
-          "programmes": 0,
-          "api_rows": 19
+          "programmes": 18,
+          "api_rows": 18
         },
         "2026-10-01": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 18
+        },
+        "2026-10-02": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 18
         }
       },
       "errors": [],
@@ -36,22 +36,22 @@
     "QatarTelevision2.qa@SD": {
       "channel_id": 22,
       "name": "Qatar TV 2",
-      "programmes": 19,
+      "programmes": 18,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 19,
-          "api_rows": 19
-        },
         "2026-09-30": {
           "status": "OK",
-          "programmes": 0,
-          "api_rows": 19
+          "programmes": 18,
+          "api_rows": 18
         },
         "2026-10-01": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 18
+        },
+        "2026-10-02": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 18
         }
       },
       "errors": [],
@@ -62,17 +62,17 @@
       "name": "Qatar TV Quran",
       "programmes": 0,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1
-        },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
         },
         "2026-10-01": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-10-02": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
@@ -84,43 +84,43 @@
     "QatarBusinessChannel.qa@SD": {
       "channel_id": 50,
       "name": "QBC",
-      "programmes": 19,
+      "programmes": 0,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 19,
-          "api_rows": 19
-        },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 1
         },
         "2026-10-01": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 1
+        },
+        "2026-10-02": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
         }
       },
       "errors": [],
-      "status": "ACTIVE"
+      "status": "ZERO_EPG"
     },
     "AlkassOne.qa@SD": {
       "channel_id": 32,
       "name": "Alkass One",
       "programmes": 0,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1
-        },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
         },
         "2026-10-01": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-10-02": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
@@ -134,17 +134,17 @@
       "name": "Al Rayyan TV",
       "programmes": 0,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1
-        },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
         },
         "2026-10-01": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-10-02": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
@@ -158,17 +158,17 @@
       "name": "Al Rayyan Al Qadeem",
       "programmes": 0,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1
-        },
         "2026-09-30": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
         },
         "2026-10-01": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1
+        },
+        "2026-10-02": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1
@@ -180,22 +180,22 @@
     "TabieNow.qa": {
       "channel_id": 34,
       "name": "Tabie Now",
-      "programmes": 445,
+      "programmes": 456,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 445,
-          "api_rows": 446
-        },
         "2026-09-30": {
           "status": "OK",
-          "programmes": 0,
-          "api_rows": 446
+          "programmes": 456,
+          "api_rows": 457
         },
         "2026-10-01": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 446
+          "api_rows": 457
+        },
+        "2026-10-02": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 457
         }
       },
       "errors": [],
@@ -206,26 +206,26 @@
       "name": "Tabie Kids",
       "programmes": 29,
       "days": {
-        "2026-09-29": {
-          "status": "OK",
-          "programmes": 29,
-          "api_rows": 29
-        },
         "2026-09-30": {
           "status": "OK",
-          "programmes": 0,
-          "api_rows": 29
+          "programmes": 29,
+          "api_rows": 30
         },
         "2026-10-01": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 29
+          "api_rows": 30
+        },
+        "2026-10-02": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 30
         }
       },
       "errors": [],
       "status": "ACTIVE"
     }
   },
-  "programmes": 531,
-  "active_channels": 5
+  "programmes": 521,
+  "active_channels": 4
 }
