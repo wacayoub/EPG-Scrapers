@@ -1,13 +1,13 @@
 {
-  "generated_utc": "2026-09-30T11:13:42.155762+00:00",
+  "generated_utc": "2026-09-30T15:40:51.715845+00:00",
   "mode": "hybrid",
   "channels": 90,
-  "programmes": 8435,
-  "hybrid_programmes": 5020,
-  "arabic_native_programmes": 3415,
-  "english_title_applied": 5020,
+  "programmes": 8497,
+  "hybrid_programmes": 5127,
+  "arabic_native_programmes": 3370,
+  "english_title_applied": 5127,
   "english_title_missing": 0,
-  "arabic_description_present": 8424,
+  "arabic_description_present": 8486,
   "arabic_description_missing": 11,
   "non_arabic_description_removed": 11,
   "profiles": {
@@ -54,6 +54,7 @@
     "NickJrArabia.ae@SD": "hybrid",
     "NicktoonsArabia.ae@SD": "hybrid",
     "OmanTV.om@SD": "arabic_native",
+    "osn.5677": "hybrid",
     "osn.9816": "arabic_native",
     "OSNBlippiAndFriends": "hybrid",
     "OSNComedy.ae@SD": "hybrid",
@@ -93,8 +94,8 @@
   "samples": {
     "AbuDhabiSports1.ae@SD": {
       "profile": "arabic_native",
-      "title": "استوديو: كأس الخليج العربي 27",
-      "description": "استوديو: كأس الخليج العربي 27",
+      "title": "أبو ظبي الرياضية 1 HD",
+      "description": "أبو ظبي الرياضية 1 HD",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -390,6 +391,13 @@
       "title": "على قد الحب",
       "description": "مريم سيدة أعمال ناجحة تمر بمنعطفات لم تكن بالحسبان، فمع شيوع أسرار من الماضي تهدد استقرار حياتها، يبقى أمامها خياران لا ثالث لهما، إما أن تتكيف مع الأمر الواقع أو تستسلم فتخسر كل شيء.",
       "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "osn.5677": {
+      "profile": "hybrid",
+      "title": "Anne Rice's Talamasca: The Secret Order",
+      "description": "يقوم جاسبر بتكليف غاي بمهمة العثور على \"سبعة خمسة اثنين\" في فندق تابع لجماعة مصاصي دماء محلية.",
+      "title_has_arabic": false,
       "description_has_arabic": true
     },
     "osn.9816": {
