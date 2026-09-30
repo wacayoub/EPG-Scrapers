@@ -1,8 +1,8 @@
 {
-  "generated_utc": "2026-09-29T16:07:42.220568+00:00",
+  "generated_utc": "2026-09-30T11:28:18.509007+00:00",
   "channels": 3,
   "channels_with_epg": 3,
-  "programmes": 147,
+  "programmes": 145,
   "requests": 5,
   "source_channels": 144,
   "source_metadata_issues": [],
@@ -16,20 +16,20 @@
     "StarzplaySports1.sa@HD": {
       "name": "StarzPLAY Sports 1",
       "profile": "hybrid",
-      "title": "Serie A:Juventus X Atalanta",
+      "title": "Serie A:Frosinone X Como",
       "desc": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
     },
     "StarzplaySports2.sa@HD": {
       "name": "StarzPLAY Sports 2",
       "profile": "hybrid",
-      "title": "Serie A:Udinese x Cagliari",
+      "title": "Serie A:Atalanta X Cagliari",
       "desc": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
     },
     "StarzplaySports3.sa@HD": {
       "name": "StarzPLAY Sports 3",
       "profile": "hybrid",
-      "title": "WXV Rugby:France X Canada",
-      "desc": "تتنافس نخبة منتخبات الرغبي للسيدات في مواجهات قوية ومثيرة ضمن بطولة WXV، في رحلة مليئة بالحماس والتحدي."
+      "title": "PFL Highlights:TOP 30 FINISHES",
+      "desc": "ملخص دوري المقاتلين المحترفين."
     }
   },
   "timezone_output": "UTC +0000",
@@ -38,10 +38,10 @@
   "catalogue_only": false,
   "schedule_mode": "batch_per_day",
   "schedule_days": [
-    "2026-09-29",
     "2026-09-30",
     "2026-10-01",
-    "2026-10-02"
+    "2026-10-02",
+    "2026-10-03"
   ],
   "schedule_channel_blocks": 175,
   "batch_errors": []
