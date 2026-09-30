@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-09-30T11:26:07.351185+00:00",
+  "generated_utc": "2026-09-30T16:04:00.832753+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "tabie.xml.gz",
-      "generated_utc": "2026-09-30T11:26:07.351054+00:00",
+      "generated_utc": "2026-09-30T16:04:00.832685+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 24.0,
       "max_gap_minutes_warning": 180,
@@ -54,37 +54,37 @@
           "id": "QatarTelevision.qa@SD",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 12.56,
+          "future_hours": 7.93,
           "latest_stop_utc": "2026-10-01T00:00:00+00:00",
-          "max_gap_minutes": 153.9,
-          "programmes": 18
+          "max_gap_minutes": 176.0,
+          "programmes": 8
         },
         {
           "id": "QatarTelevision2.qa@SD",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 12.56,
+          "future_hours": 7.93,
           "latest_stop_utc": "2026-10-01T00:00:00+00:00",
-          "max_gap_minutes": 153.9,
-          "programmes": 18
+          "max_gap_minutes": 176.0,
+          "programmes": 8
         },
         {
           "id": "TabieKids.qa",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 12.23,
+          "future_hours": 7.6,
           "latest_stop_utc": "2026-09-30T23:40:00+00:00",
-          "max_gap_minutes": 164.9,
-          "programmes": 29
+          "max_gap_minutes": 160.0,
+          "programmes": 15
         },
         {
           "id": "TabieNow.qa",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 12.51,
+          "future_hours": 7.88,
           "latest_stop_utc": "2026-09-30T23:57:00+00:00",
-          "max_gap_minutes": 179.9,
-          "programmes": 389
+          "max_gap_minutes": 179.0,
+          "programmes": 191
         }
       ]
     }
