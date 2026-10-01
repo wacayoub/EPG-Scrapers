@@ -26,7 +26,7 @@ import requests
 from bs4 import BeautifulSoup
 
 EPGSHARE_URL = "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz"
-ALMANAR_URL = "https://manartv.com.lb/programs-schedule/"
+ALMANAR_URL = "https://www.manartv.com.lb/programs-schedule/"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
 
 LOCAL_CANDIDATES = {
