@@ -1,7 +1,7 @@
 {
-  "generated_qatar": "2026-10-01T14:53:17.487787+03:00",
+  "generated_qatar": "2026-10-01T16:57:57.274941+03:00",
   "rejected_long_duration": 3,
-  "date_mismatch_rows": 989,
+  "date_mismatch_rows": 748,
   "dates": [
     "2026-10-01",
     "2026-10-02",
@@ -12,22 +12,22 @@
     "QatarTelevision.qa@SD": {
       "channel_id": 23,
       "name": "Qatar TV",
-      "programmes": 19,
+      "programmes": 14,
       "days": {
         "2026-10-01": {
           "status": "OK",
-          "programmes": 19,
-          "api_rows": 19
+          "programmes": 14,
+          "api_rows": 14
         },
         "2026-10-02": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 14
         },
         "2026-10-03": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 14
         }
       },
       "errors": [],
@@ -36,22 +36,22 @@
     "QatarTelevision2.qa@SD": {
       "channel_id": 22,
       "name": "Qatar TV 2",
-      "programmes": 19,
+      "programmes": 14,
       "days": {
         "2026-10-01": {
           "status": "OK",
-          "programmes": 19,
-          "api_rows": 19
+          "programmes": 14,
+          "api_rows": 14
         },
         "2026-10-02": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 14
         },
         "2026-10-03": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 19
+          "api_rows": 14
         }
       },
       "errors": [],
@@ -180,22 +180,22 @@
     "TabieNow.qa": {
       "channel_id": 34,
       "name": "Tabie Now",
-      "programmes": 428,
+      "programmes": 324,
       "days": {
         "2026-10-01": {
           "status": "OK",
-          "programmes": 428,
-          "api_rows": 429
+          "programmes": 324,
+          "api_rows": 325
         },
         "2026-10-02": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 429
+          "api_rows": 325
         },
         "2026-10-03": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 428
+          "api_rows": 325
         }
       },
       "errors": [],
@@ -204,28 +204,28 @@
     "TabieKids.qa": {
       "channel_id": 35,
       "name": "Tabie Kids",
-      "programmes": 29,
+      "programmes": 22,
       "days": {
         "2026-10-01": {
           "status": "OK",
-          "programmes": 29,
-          "api_rows": 29
+          "programmes": 22,
+          "api_rows": 22
         },
         "2026-10-02": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 29
+          "api_rows": 22
         },
         "2026-10-03": {
           "status": "OK",
           "programmes": 0,
-          "api_rows": 29
+          "api_rows": 22
         }
       },
       "errors": [],
       "status": "ACTIVE"
     }
   },
-  "programmes": 495,
+  "programmes": 374,
   "active_channels": 4
 }

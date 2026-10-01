@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-01T11:53:25.970678+00:00",
+  "generated_utc": "2026-10-01T13:58:06.039328+00:00",
   "sources": {
     "tabie": {
       "candidate": "output/final/tabie.xml.gz",
@@ -8,10 +8,10 @@
         "channels": 9,
         "active_channels": 4,
         "zero_epg_channels": 5,
-        "programmes": 431,
+        "programmes": 322,
         "future_channels": 4,
         "future_ratio": 1.0,
-        "future_horizon_hours": 12.109451834722222,
+        "future_horizon_hours": 10.031655422777778,
         "invalid_rows": 0
       },
       "previous_stats": {
@@ -26,7 +26,8 @@
       },
       "decision": "KEEP_LKG",
       "reasons": [
-        "future_horizon<24h"
+        "future_horizon<24h",
+        "programme_regression>65%"
       ]
     }
   }
