@@ -1,10 +1,13 @@
 name: Rebuild derived MENA feed
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
       - "feeds/morocco.xml.gz"
+      - "feeds/alkass.xml.gz"
+      - "feeds/tunisiatv.xml.gz"
       - "feeds/bein.xml.gz"
       - "feeds/dubaiplus.xml.gz"
       - "feeds/shahid.xml.gz"
@@ -15,6 +18,7 @@ on:
       - "feeds/elcinema.xml.gz"
       - "feeds/starzplay.xml.gz"
       - "feeds/stctv.xml.gz"
+      - "feeds/tabie.xml.gz"
 
 permissions:
   contents: write
