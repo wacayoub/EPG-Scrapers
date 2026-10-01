@@ -147,7 +147,7 @@ case "$SOURCE" in
     # STC is deliberately isolated: it can be slow without delaying any other source.
     # STC is intentionally limited to the three STARZPLAY Sports channels.
     # This keeps the daily job fast and prevents the former ~25 minute 144-channel scrape.
-    python tools/stctv_source.py --output output/source-build/stctv.raw.xml --report reports/stctv-scrape.json --id-index feeds/mena.txt --window-hours "$HOURS" --delay 0.2 --max-channels 0 --profile starzplay-sports || true
+    python tools/stctv_source.py --output output/source-build/stctv.raw.xml --report reports/stctv-scrape.json --id-index feeds/mena.txt --window-hours "$HOURS" --delay 0.2 --max-channels 0 --profile all || true
     [ -s output/source-build/stctv.raw.xml ] || empty_xml output/source-build/stctv.raw.xml
     pack_source stctv output/source-build/stctv.raw.xml "" || true
     ;;
