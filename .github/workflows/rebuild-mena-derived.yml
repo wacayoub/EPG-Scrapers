@@ -6,6 +6,9 @@ on:
   push:
     branches: [main]
     paths:
+      - ".github/workflows/rebuild-mena-derived.yml"
+      - "tools/build_derived_feeds.py"
+      - "tools/monitor_feeds.py"
       - "feeds/morocco.xml.gz"
       - "feeds/alkass.xml.gz"
       - "feeds/tunisiatv.xml.gz"
