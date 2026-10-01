@@ -1,27 +1,26 @@
 {
   "label": "elcinema",
   "channels": 103,
-  "active_channels": 94,
-  "zero_epg_channels": 9,
+  "active_channels": 95,
+  "zero_epg_channels": 8,
   "zero_epg_ids": [
-    "2MMonde.ma@SD",
+    "AbuDhabiTV.ae@SD",
     "AlManar.lb@SD",
     "ATV.kw@SD",
-    "BahrainTV.bh@SD",
-    "CBCSofra.eg@SD",
-    "KTV1.kw@SD",
-    "NationalGeographicAbuDhabi.ae@SD",
-    "QatarTelevision.qa@SD",
-    "SalamTV.ly@SD"
+    "DiscoveryChannelMiddleEastAfrica.us@SD",
+    "FoxActionMoviesMENA.hk@SD",
+    "NationalGeographicMiddleEast.uk@SD",
+    "SalamTV.ly@SD",
+    "StarMoviesMiddleEast.ae@SD"
   ],
   "input_channels": 103,
-  "coverage_pct": 91.3,
-  "programmes": 3608,
+  "coverage_pct": 92.2,
+  "programmes": 4142,
   "rejected_invalid_time": 0,
-  "inferred_stop": 0,
+  "inferred_stop": 1,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 178541,
-  "sha256": "c83ed2905768cba2c395bf9b503cf18982195c71db4e4b43aa18c8095e97c3d7",
-  "generated_utc": "2026-10-01T12:32:28.499460+00:00"
+  "size_bytes": 196707,
+  "sha256": "c20447fe07ec3e547ef4fa133d0831f41303e446360639b303231a9314530424",
+  "generated_utc": "2026-10-01T20:03:35.186149+00:00"
 }

@@ -1,0 +1,83 @@
+{
+  "generated_utc": "2026-10-01T19:58:33.165113+00:00",
+  "policy": "ElCinema first; local production fallback; EPGShare last resort; official Al-Manar; never replace healthy ElCinema EPG",
+  "before_future": {
+    "2MMonde.ma@SD": 0,
+    "ATV.kw@SD": 0,
+    "AlManar.lb@SD": 0,
+    "BahrainTV.bh@SD": 0,
+    "CBCSofra.eg@SD": 0,
+    "KTV1.kw@SD": 0,
+    "NationalGeographicAbuDhabi.ae@SD": 0,
+    "QatarTelevision.qa@SD": 0,
+    "SalamTV.ly@SD": 0
+  },
+  "applied": {
+    "2MMonde.ma@SD": {
+      "source": "starzplay:2M Monde",
+      "programmes_added": 80,
+      "future_programmes": 66
+    },
+    "BahrainTV.bh@SD": {
+      "source": "stctv:Bahrain TV",
+      "programmes_added": 50,
+      "future_programmes": 47
+    },
+    "CBCSofra.eg@SD": {
+      "source": "stctv:CBC Sofra",
+      "programmes_added": 50,
+      "future_programmes": 47
+    },
+    "NationalGeographicAbuDhabi.ae@SD": {
+      "source": "starzplay:NatGeo Abu Dhabi",
+      "programmes_added": 71,
+      "future_programmes": 63
+    },
+    "KTV1.kw@SD": {
+      "source": "epgshare:AE1:Kuwait.TV.1.HD.ae",
+      "programmes_added": 99,
+      "future_programmes": 80
+    },
+    "QatarTelevision.qa@SD": {
+      "source": "epgshare:AE1:Qatar.TV.HD.ae",
+      "programmes_added": 166,
+      "future_programmes": 131
+    }
+  },
+  "external": {
+    "almanar": {
+      "error": "HTTPSConnectionPool(host='manartv.com.lb', port=443): Max retries exceeded with url: /programs-schedule/ (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'manartv.com.lb'. (_ssl.c:1016)\")))",
+      "url": "https://manartv.com.lb/programs-schedule/"
+    },
+    "epgshare": {
+      "status": 200,
+      "bytes": 2246793,
+      "url": "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz"
+    }
+  },
+  "errors": [],
+  "after_future": {
+    "2MMonde.ma@SD": 66,
+    "ATV.kw@SD": 0,
+    "AlManar.lb@SD": 0,
+    "BahrainTV.bh@SD": 47,
+    "CBCSofra.eg@SD": 47,
+    "KTV1.kw@SD": 80,
+    "NationalGeographicAbuDhabi.ae@SD": 63,
+    "QatarTelevision.qa@SD": 131,
+    "SalamTV.ly@SD": 0
+  },
+  "resolved": [
+    "2MMonde.ma@SD",
+    "BahrainTV.bh@SD",
+    "CBCSofra.eg@SD",
+    "KTV1.kw@SD",
+    "NationalGeographicAbuDhabi.ae@SD",
+    "QatarTelevision.qa@SD"
+  ],
+  "unresolved": [
+    "ATV.kw@SD",
+    "AlManar.lb@SD",
+    "SalamTV.ly@SD"
+  ]
+}
