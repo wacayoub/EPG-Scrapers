@@ -30,7 +30,6 @@ on:
       timezone: "Africa/Casablanca"
     - cron: "10 8 * * *"
       timezone: "Africa/Casablanca"
-  workflow_dispatch:
 
 permissions:
   contents: write
