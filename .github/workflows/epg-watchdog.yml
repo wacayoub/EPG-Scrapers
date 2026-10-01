@@ -25,7 +25,7 @@ jobs:
           ref: main
           fetch-depth: 1
 
-      - name: Verify today's production feeds
+      - name: Verify today's source feeds and LKG state
         id: health
         shell: bash
         run: |
@@ -39,64 +39,128 @@ jobs:
           tz = ZoneInfo("Africa/Casablanca")
           now = datetime.now(tz)
           today = now.date()
-          required = [
+          sources = [
               "morocco", "alkass", "tunisiatv", "bein", "osn", "shahid",
               "elcinema", "rotana", "sport24", "dubaiplus", "aljazeera",
-              "tabie", "starzplay", "stctv", "mena"
+              "tabie", "starzplay", "stctv",
           ]
-          stale = []
 
-          for name in required:
-              p = Path("feeds") / f"{name}.json"
-              if not p.exists():
-                  stale.append(f"{name}:manifest-missing")
+          stale_sources = []
+          lkg_sources = []
+          fresh_sources = []
+
+          def local_day(raw):
+              if not raw:
+                  return None
+              dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+              if dt.tzinfo is None:
+                  dt = dt.replace(tzinfo=timezone.utc)
+              return dt.astimezone(tz).date()
+
+          for name in sources:
+              feed = Path("feeds") / f"{name}.json"
+              feed_day = None
+              if feed.exists():
+                  try:
+                      data = json.loads(feed.read_text(encoding="utf-8"))
+                      feed_day = local_day(data.get("generated_utc") or data.get("generated"))
+                  except Exception:
+                      feed_day = None
+
+              if feed_day == today:
+                  fresh_sources.append(name)
                   continue
-              try:
-                  data = json.loads(p.read_text(encoding="utf-8"))
-                  raw = data.get("generated_utc") or data.get("generated")
-                  if not raw:
-                      stale.append(f"{name}:timestamp-missing")
-                      continue
-                  dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
-                  if dt.tzinfo is None:
-                      dt = dt.replace(tzinfo=timezone.utc)
-                  local_day = dt.astimezone(tz).date()
-                  if local_day != today:
-                      stale.append(f"{name}:stale:{local_day}")
-              except Exception as exc:
-                  stale.append(f"{name}:invalid-manifest:{exc}")
 
-          status = "healthy" if not stale else "stale"
+              lkg = Path("reports") / f"{name}-publish-lkg.json"
+              accepted_lkg = False
+              if lkg.exists():
+                  try:
+                      data = json.loads(lkg.read_text(encoding="utf-8"))
+                      report_day = local_day(data.get("generated_utc"))
+                      decision = (
+                          data.get("sources", {})
+                              .get(name, {})
+                              .get("decision", "")
+                      )
+                      if report_day == today and decision == "KEEP_LKG":
+                          accepted_lkg = True
+                  except Exception:
+                      accepted_lkg = False
+
+              if accepted_lkg:
+                  lkg_sources.append(name)
+              else:
+                  stale_sources.append(name)
+
+          mena = Path("feeds/mena.json")
+          mena_fresh = False
+          if mena.exists():
+              try:
+                  data = json.loads(mena.read_text(encoding="utf-8"))
+                  mena_fresh = local_day(data.get("generated_utc") or data.get("generated")) == today
+              except Exception:
+                  mena_fresh = False
+
+          if stale_sources:
+              status = "stale_sources"
+          elif not mena_fresh:
+              status = "mena_stale"
+          elif lkg_sources:
+              status = "healthy_lkg"
+          else:
+              status = "healthy"
+
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
               fh.write(f"status={status}\n")
-              fh.write("stale=" + ";".join(stale) + "\n")
-          print("WATCHDOG", now.isoformat(), status, stale)
+              fh.write("stale_sources=" + ";".join(stale_sources) + "\n")
+              fh.write("lkg_sources=" + ";".join(lkg_sources) + "\n")
+              fh.write("fresh_sources=" + ";".join(fresh_sources) + "\n")
+              fh.write("mena_fresh=" + ("true" if mena_fresh else "false") + "\n")
+
+          print("WATCHDOG", now.isoformat())
+          print("status=", status)
+          print("fresh=", fresh_sources)
+          print("lkg=", lkg_sources)
+          print("stale=", stale_sources)
+          print("mena_fresh=", mena_fresh)
           PY
 
-      - name: Check for recovery already running
-        if: steps.health.outputs.status == 'stale'
+      - name: Check for source recovery already running
+        if: steps.health.outputs.status == 'stale_sources'
         id: recovery
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          active="$(gh run list --repo "$GITHUB_REPOSITORY" \
-            --workflow daily-source-refresh.yml \
-            --limit 20 \
-            --json status,event \
-            --jq '[.[] | select((.status == "queued" or .status == "in_progress") and .event == "workflow_dispatch")] | length')"
+          active="$(gh run list --repo "$GITHUB_REPOSITORY"             --workflow daily-source-refresh.yml             --limit 20             --json status,event             --jq '[.[] | select((.status == "queued" or .status == "in_progress") and .event == "workflow_dispatch")] | length')"
           echo "active=$active" >> "$GITHUB_OUTPUT"
-          echo "Active recovery runs: $active"
 
-      - name: Dispatch recovery refresh
-        if: steps.health.outputs.status == 'stale' && steps.recovery.outputs.active == '0'
+      - name: Dispatch source recovery
+        if: steps.health.outputs.status == 'stale_sources' && steps.recovery.outputs.active == '0'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "Stale feeds: ${{ steps.health.outputs.stale }}"
+          echo "Stale sources: ${{ steps.health.outputs.stale_sources }}"
           gh workflow run daily-source-refresh.yml --repo "$GITHUB_REPOSITORY" --ref main
-          echo "Recovery workflow_dispatch sent."
+
+      - name: Check for MENA rebuild already running
+        if: steps.health.outputs.status == 'mena_stale'
+        id: mena
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          active="$(gh run list --repo "$GITHUB_REPOSITORY"             --workflow rebuild-mena-derived.yml             --limit 20             --json status,event             --jq '[.[] | select(.status == "queued" or .status == "in_progress")] | length')"
+          echo "active=$active" >> "$GITHUB_OUTPUT"
+
+      - name: Dispatch MENA-only rebuild
+        if: steps.health.outputs.status == 'mena_stale' && steps.mena.outputs.active == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run rebuild-mena-derived.yml --repo "$GITHUB_REPOSITORY" --ref main
 
       - name: Watchdog summary
         if: always()
@@ -105,6 +169,8 @@ jobs:
           {
             echo "## EPG watchdog"
             echo "- Status: ${{ steps.health.outputs.status }}"
-            echo "- Stale: ${{ steps.health.outputs.stale }}"
-            echo "- Active recovery: ${{ steps.recovery.outputs.active || '0' }}"
+            echo "- Fresh sources: ${{ steps.health.outputs.fresh_sources }}"
+            echo "- LKG accepted today: ${{ steps.health.outputs.lkg_sources }}"
+            echo "- Stale sources: ${{ steps.health.outputs.stale_sources }}"
+            echo "- MENA fresh: ${{ steps.health.outputs.mena_fresh }}"
           } >> "$GITHUB_STEP_SUMMARY"
