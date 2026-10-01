@@ -1,14 +1,7 @@
 name: EPG 48h - Daily sequential sources
 
 on:
-  schedule:
-    - cron: "7 6 * * *"
-      timezone: "Africa/Casablanca"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "config/source-refresh-trigger.txt"
 
 permissions:
   contents: write
