@@ -1,8 +1,8 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-09-30T11:28:51.764271+00:00
+Generated: 2026-10-01T11:56:45.419562+00:00
 
-Total monitored IDs: **3887**
+Total monitored IDs: **3893**
 
 | Status | IDs |
 |---|---:|
@@ -12,30 +12,30 @@ Total monitored IDs: **3887**
 | DUPLICATE | 227 |
 | DUPLICATE_WINNER | 406 |
 | INVALID_SOURCE | 335 |
-| NO_EPG | 533 |
-| OK | 873 |
+| NO_EPG | 540 |
+| OK | 872 |
 | QUARANTINE | 933 |
 
 ## Direct feeds
 
 | Feed | IDs | Programmes | Dup IDs | Dup programmes | Invalid times | Zero EPG |
 |---|---:|---:|---:|---:|---:|---:|
-| aljazeera.xml.gz | 4 | 64 | 0 | 0 | 0 | 2 |
-| alkass.xml.gz | 8 | 275 | 0 | 0 | 0 | 0 |
-| bein.xml.gz | 68 | 2758 | 0 | 0 | 0 | 1 |
-| dubaiplus.xml.gz | 9 | 465 | 0 | 0 | 0 | 0 |
-| elcinema.xml.gz | 103 | 3747 | 0 | 0 | 0 | 10 |
-| mena.xml.gz | 410 | 23656 | 0 | 0 | 0 | 20 |
-| morocco.xml.gz | 15 | 759 | 0 | 0 | 0 | 0 |
-| osn.xml.gz | 90 | 5906 | 0 | 0 | 0 | 12 |
-| others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 152 |
-| rotana.xml.gz | 9 | 301 | 0 | 0 | 0 | 1 |
-| shahid.xml.gz | 71 | 4507 | 0 | 0 | 0 | 0 |
-| sport24.xml.gz | 9 | 120 | 0 | 0 | 0 | 0 |
-| starzplay.xml.gz | 113 | 7901 | 0 | 0 | 0 | 0 |
-| stctv.xml.gz | 3 | 145 | 0 | 0 | 0 | 0 |
+| aljazeera.xml.gz | 4 | 56 | 0 | 0 | 0 | 2 |
+| alkass.xml.gz | 8 | 288 | 0 | 0 | 0 | 0 |
+| bein.xml.gz | 68 | 2704 | 0 | 0 | 0 | 1 |
+| dubaiplus.xml.gz | 9 | 417 | 0 | 0 | 0 | 0 |
+| elcinema.xml.gz | 103 | 3610 | 0 | 0 | 0 | 10 |
+| mena.xml.gz | 413 | 23966 | 0 | 0 | 0 | 23 |
+| morocco.xml.gz | 15 | 747 | 0 | 0 | 0 | 0 |
+| osn.xml.gz | 90 | 5982 | 0 | 0 | 0 | 11 |
+| others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
+| rotana.xml.gz | 9 | 261 | 0 | 0 | 0 | 2 |
+| shahid.xml.gz | 71 | 4633 | 0 | 0 | 0 | 0 |
+| sport24.xml.gz | 9 | 84 | 0 | 0 | 0 | 3 |
+| starzplay.xml.gz | 116 | 8119 | 0 | 0 | 0 | 0 |
+| stctv.xml.gz | 3 | 138 | 0 | 0 | 0 | 0 |
 | tabie.xml.gz | 9 | 1171 | 0 | 0 | 0 | 9 |
-| tunisiatv.xml.gz | 2 | 120 | 0 | 0 | 0 | 0 |
+| tunisiatv.xml.gz | 2 | 125 | 0 | 0 | 0 | 0 |
 | vuplus-test.xml.gz | 330 | 19769 | 0 | 0 | 0 | 326 |
 
 Interactive/filterable page: reports/epg-source-id-monitoring.html

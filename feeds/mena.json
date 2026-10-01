@@ -1,9 +1,9 @@
 {
   "label": "mena",
-  "channels": 410,
-  "programmes": 23656,
-  "generated_utc": "2026-09-30T11:28:47.667517+00:00",
-  "sha256": "9cb009996d768e29f487c325787306114bd51581b80025b1b0b552a61474f194",
+  "channels": 413,
+  "programmes": 23966,
+  "generated_utc": "2026-10-01T11:56:41.594195+00:00",
+  "sha256": "b97d4d7e88269bf2acb04b05fa13fd910295c1e091a02c2fef648f9fe6e50261",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -419,9 +419,12 @@
     "starzplay.789990440241": "starzplay",
     "starzplay.789990440242": "starzplay",
     "starzplay.812961831972": "starzplay",
-    "StarzplaySports1.sa@HD": "stctv",
-    "StarzplaySports2.sa@HD": "stctv",
-    "StarzplaySports3.sa@HD": "stctv",
+    "starzplay.818304040261": "starzplay",
+    "starzplay.818306088440": "starzplay",
+    "starzplay.818309672031": "starzplay",
+    "StarzplaySports1.sa@HD": "starzplay",
+    "StarzplaySports2.sa@HD": "starzplay",
+    "StarzplaySports3.sa@HD": "starzplay",
     "Tamazight": "morocco",
     "Tarab.sa@SD": "shahid",
     "TeN.eg@SD": "elcinema",
@@ -435,9 +438,6 @@
   "extensions": {
     "AbuDhabiSports1.ae@SD": [
       "osn"
-    ],
-    "CartoonNetworkArabic.ae@SD": [
-      "starzplay"
     ]
   },
   "routing_policy": "canonical channel -> healthy MAIN -> B1/B2; language/title/description quality gates; backup may extend only after selected source horizon"
