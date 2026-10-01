@@ -1,13 +1,14 @@
 {
-  "generated_utc": "2026-09-30T15:56:53.754933+00:00",
+  "generated_utc": "2026-10-01T11:51:49.422153+00:00",
   "source": "https://www.rotana.net/ar/streams",
   "timezone": "UTC (Rotana streams page clock)",
   "channels_configured": 9,
-  "channels_with_epg": 8,
+  "channels_with_epg": 7,
   "zero_epg_ids": [
+    "AlResalah.sa@SD",
     "RotanaClip.sa@SD"
   ],
-  "programmes": 287,
+  "programmes": 261,
   "timezone_output": "UTC +0000",
   "channels": {
     "RotanaCinemaKSA.sa@SD": {
@@ -21,14 +22,14 @@
       "site_id": "434",
       "name": "إل بي سي",
       "http_status": 200,
-      "programmes": 45,
+      "programmes": 42,
       "state": "ok"
     },
     "RotanaCinemaEgypt.eg@SD": {
       "site_id": "439",
       "name": "روتانا سينما مصر",
       "http_status": 200,
-      "programmes": 27,
+      "programmes": 28,
       "state": "ok"
     },
     "RotanaClassic.sa@SD": {
@@ -49,7 +50,7 @@
       "site_id": "437",
       "name": "روتانا كوميدي",
       "http_status": 200,
-      "programmes": 26,
+      "programmes": 23,
       "state": "ok"
     },
     "RotanaDrama.sa@SD": {
@@ -63,15 +64,15 @@
       "site_id": "435",
       "name": "روتانا خليجية",
       "http_status": 200,
-      "programmes": 56,
+      "programmes": 55,
       "state": "ok"
     },
     "AlResalah.sa@SD": {
       "site_id": "446",
       "name": "الرسالة",
       "http_status": 200,
-      "programmes": 20,
-      "state": "ok"
+      "programmes": 0,
+      "state": "no-guide"
     }
   }
 }
