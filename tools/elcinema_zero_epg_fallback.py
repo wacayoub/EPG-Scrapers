@@ -30,6 +30,23 @@ ALMANAR_URL = "https://www.manartv.com.lb/programs-schedule/"
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36"
 
 LOCAL_CANDIDATES = {
+    "AbuDhabiTV.ae@SD": [
+        ("feeds/osn.xml.gz", "AbuDhabiTV.ae@SD", "osn:Abu Dhabi TV"),
+    ],
+    "DiscoveryChannelMiddleEastAfrica.us@SD": [
+        ("feeds/osn.xml.gz", "DiscoveryChannelMiddleEastAfrica.us@SD", "osn:Discovery Channel"),
+        ("feeds/stctv.xml.gz", "stctv.0e734380e4d7", "stctv:Discovery"),
+    ],
+    "FoxActionMoviesMENA.hk@SD": [
+        ("feeds/bein.xml.gz", "FoxActionMoviesMENA.hk@SD", "bein:Fox Action Movies"),
+    ],
+    "NationalGeographicMiddleEast.uk@SD": [
+        ("feeds/stctv.xml.gz", "stctv.ddec643117e3", "stctv:Nat Geo"),
+    ],
+    "StarMoviesMiddleEast.ae@SD": [
+        ("feeds/stctv.xml.gz", "stctv.5c3e1fd60f8e", "stctv:Star Movies"),
+        ("feeds/bein.xml.gz", "StarMoviesMiddleEast.ae@SD", "bein:Star Movies"),
+    ],
     "2MMonde.ma@SD": [
         ("feeds/starzplay.xml.gz", "starzplay.460869672233", "starzplay:2M Monde"),
     ],
@@ -56,6 +73,11 @@ EPGSHARE_CANDIDATES = {
 }
 
 EXPECTED_ZERO_IDS = {
+    "AbuDhabiTV.ae@SD",
+    "DiscoveryChannelMiddleEastAfrica.us@SD",
+    "FoxActionMoviesMENA.hk@SD",
+    "NationalGeographicMiddleEast.uk@SD",
+    "StarMoviesMiddleEast.ae@SD",
     "2MMonde.ma@SD",
     "AlManar.lb@SD",
     "ATV.kw@SD",
