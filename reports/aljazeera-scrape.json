@@ -1,13 +1,13 @@
 {
   "source": "Al Jazeera Network official public schedules",
   "source_url": "https://www.aljazeera.net/video/live",
-  "generated_utc": "2026-10-01T11:52:54.996202+00:00",
+  "generated_utc": "2026-10-01T13:51:20.864387+00:00",
   "timezone_source": "Asia/Qatar",
   "timezone_output": "UTC +0000",
   "window_hours": 48,
   "channels": 4,
   "active_channels": 2,
-  "programmes": 56,
+  "programmes": 54,
   "channel_reports": {
     "AlJazeera.qa@Arabic": {
       "xmltv_id": "AlJazeera.qa@Arabic",
@@ -19,14 +19,14 @@
           "status": 200
         }
       ],
-      "programmes": 33,
+      "programmes": 31,
       "error": "",
       "graphql": {
         "status": 200,
         "url": "https://www.aljazeera.com/graphql?wp-site=aja&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
         "programmes_found": 137
       },
-      "first_start_utc": "2026-10-01T08:00:00+00:00",
+      "first_start_utc": "2026-10-01T11:00:00+00:00",
       "last_stop_utc": "2026-10-03T22:59:59+00:00"
     },
     "AlJazeera2.qa@HD": {
