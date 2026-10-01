@@ -1,26 +1,20 @@
 {
   "label": "elcinema",
   "channels": 103,
-  "active_channels": 95,
-  "zero_epg_channels": 8,
+  "active_channels": 101,
+  "zero_epg_channels": 2,
   "zero_epg_ids": [
-    "AbuDhabiTV.ae@SD",
-    "AlManar.lb@SD",
     "ATV.kw@SD",
-    "DiscoveryChannelMiddleEastAfrica.us@SD",
-    "FoxActionMoviesMENA.hk@SD",
-    "NationalGeographicMiddleEast.uk@SD",
-    "SalamTV.ly@SD",
-    "StarMoviesMiddleEast.ae@SD"
+    "SalamTV.ly@SD"
   ],
   "input_channels": 103,
-  "coverage_pct": 92.2,
-  "programmes": 4142,
+  "coverage_pct": 98.1,
+  "programmes": 4360,
   "rejected_invalid_time": 0,
-  "inferred_stop": 1,
+  "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 196707,
-  "sha256": "c20447fe07ec3e547ef4fa133d0831f41303e446360639b303231a9314530424",
-  "generated_utc": "2026-10-01T20:03:35.186149+00:00"
+  "size_bytes": 215883,
+  "sha256": "8f0f493167f703ffefa2af2fc5fc60f7e8cc909dbace5c75b7007ea99c7c4934",
+  "generated_utc": "2026-10-01T20:10:28.097777+00:00"
 }
