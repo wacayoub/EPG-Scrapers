@@ -30,6 +30,8 @@ on:
       timezone: "Africa/Casablanca"
     - cron: "10 8 * * *"
       timezone: "Africa/Casablanca"
+    - cron: "15 8 * * *"
+      timezone: "Africa/Casablanca"
 
 permissions:
   contents: write
@@ -108,4 +110,9 @@ jobs:
     if: ${{ github.event.schedule == '10 8 * * *' }}
     uses: ./.github/workflows/refresh-source-core.yml
     with: { source: stctv, scheduled: false }
+    secrets: inherit
+
+  finalize:
+    if: ${{ github.event.schedule == '15 8 * * *' }}
+    uses: ./.github/workflows/rebuild-mena-derived.yml
     secrets: inherit
