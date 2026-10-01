@@ -84,6 +84,16 @@ case "$SOURCE" in
       fi
     fi
 
+    # Fill only ElCinema catalogue IDs that still have no future EPG.
+    # Priority: verified production feeds -> EPGShare exact match -> official Al-Manar.
+    python tools/elcinema_zero_epg_fallback.py \
+      --input output/source-build/elcinema.raw.xml \
+      --output output/source-build/elcinema.fallback.raw.xml \
+      --report reports/elcinema-zero-epg-fallback.json || true
+    if [ -s output/source-build/elcinema.fallback.raw.xml ]; then
+      mv output/source-build/elcinema.fallback.raw.xml output/source-build/elcinema.raw.xml
+    fi
+
     grab_upstream elcinema-en "$ROOT/output/source-build/elcinema_hybrid_en.channels.xml" "$ROOT/output/source-build/elcinema.hybrid.en.raw.xml" "1000" || true
     if has_programmes output/source-build/elcinema.raw.xml && has_programmes output/source-build/elcinema.hybrid.en.raw.xml; then
       python tools/elcinema_hybrid.py merge --arabic output/source-build/elcinema.raw.xml --english output/source-build/elcinema.hybrid.en.raw.xml --policy config/elcinema-language-policy.json --cache data/elcinema_translation_cache.json --output output/source-build/elcinema.hybrid.raw.xml --report reports/elcinema-hybrid.json || true
