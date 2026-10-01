@@ -1,21 +1,19 @@
 {
   "label": "sport24",
   "channels": 9,
-  "active_channels": 6,
-  "zero_epg_channels": 3,
+  "active_channels": 8,
+  "zero_epg_channels": 1,
   "zero_epg_ids": [
-    "sport24.adsports.3",
-    "sport24.thmanyah.2",
-    "sport24.thmanyah.3"
+    "sport24.thmanyah.2"
   ],
   "input_channels": 9,
-  "coverage_pct": 66.7,
-  "programmes": 84,
+  "coverage_pct": 88.9,
+  "programmes": 102,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 4020,
-  "sha256": "6a5ad66442a36c7a0454fc1c1ec610979475725e8385e7d09abcd066282fca3f",
-  "generated_utc": "2026-10-01T11:52:20.251654+00:00"
+  "size_bytes": 4047,
+  "sha256": "0b229eb0b0fcc102918362c6fe87d3bf1bdc3a6953a38ed5ac612deac6471756",
+  "generated_utc": "2026-10-01T13:19:17.913776+00:00"
 }
