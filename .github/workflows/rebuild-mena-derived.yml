@@ -1,6 +1,7 @@
 name: Rebuild derived MENA feed
 
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [main]
@@ -47,7 +48,17 @@ jobs:
             git reset --hard origin/main
 
             python tools/build_derived_feeds.py
+            shopt -s nullglob
+            feeds=(feeds/*.xml.gz)
+            python tools/monitor_feeds.py "${feeds[@]}" \
+              --json reports/latest.json \
+              --md reports/latest.md \
+              --html reports/epg-source-id-monitoring.html \
+              --csv reports/epg-source-id-monitoring.csv \
+              --reports-dir reports
             git add feeds/mena.xml.gz feeds/mena.txt feeds/mena.json
+            git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv
+            git add reports/canonical-source-routing.json reports/canonical-source-routing.md
 
             if git diff --cached --quiet; then
               echo "MENA derived feed already current"
