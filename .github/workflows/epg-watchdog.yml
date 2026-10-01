@@ -1,17 +1,16 @@
 name: EPG Daily Watchdog
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/epg-watchdog.yml"
-      - "config/watchdog-trigger.txt"
   schedule:
-    - cron: "30 8,9 * * *"
+    - cron: "37 8 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "37 9 * * *"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  actions: write
 
 concurrency:
   group: epg-watchdog
@@ -21,28 +20,12 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Casablanca 09:30 gate
-        id: gate
-        shell: bash
-        run: |
-          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          hour="$(TZ=Africa/Casablanca date +%H)"
-          if [ "$hour" = "09" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - uses: actions/checkout@v4
-        if: steps.gate.outputs.run == 'true'
         with:
-          fetch-depth: 0
+          ref: main
+          fetch-depth: 1
 
       - name: Verify today's production feeds
-        if: steps.gate.outputs.run == 'true'
         id: health
         shell: bash
         run: |
@@ -54,8 +37,13 @@ jobs:
           from zoneinfo import ZoneInfo
 
           tz = ZoneInfo("Africa/Casablanca")
-          today = datetime.now(tz).date()
-          required = ["morocco", "bein", "osn", "elcinema", "sport24", "rotana", "shahid", "dubaiplus", "aljazeera", "starzplay", "stctv", "mena"]
+          now = datetime.now(tz)
+          today = now.date()
+          required = [
+              "morocco", "alkass", "tunisiatv", "bein", "osn", "shahid",
+              "elcinema", "rotana", "sport24", "dubaiplus", "aljazeera",
+              "tabie", "starzplay", "stctv", "mena"
+          ]
           stale = []
 
           for name in required:
@@ -69,7 +57,7 @@ jobs:
                   if not raw:
                       stale.append(f"{name}:timestamp-missing")
                       continue
-                  dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+                  dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
                   if dt.tzinfo is None:
                       dt = dt.replace(tzinfo=timezone.utc)
                   local_day = dt.astimezone(tz).date()
@@ -79,47 +67,44 @@ jobs:
                   stale.append(f"{name}:invalid-manifest:{exc}")
 
           status = "healthy" if not stale else "stale"
-          Path("reports").mkdir(exist_ok=True)
-          Path("reports/watchdog-latest.json").write_text(
-              json.dumps({
-                  "checked_local": datetime.now(tz).isoformat(),
-                  "status": status,
-                  "stale": stale,
-                  "required": required,
-              }, ensure_ascii=False, indent=2) + "\n",
-              encoding="utf-8",
-          )
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
               fh.write(f"status={status}\n")
               fh.write("stale=" + ";".join(stale) + "\n")
-          print("WATCHDOG", status, stale)
+          print("WATCHDOG", now.isoformat(), status, stale)
           PY
 
-      - name: Trigger automatic retry when stale
-        if: steps.gate.outputs.run == 'true' && steps.health.outputs.status == 'stale'
+      - name: Check for recovery already running
+        if: steps.health.outputs.status == 'stale'
+        id: recovery
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          set -e
-          stamp="$(TZ=Africa/Casablanca date '+%F %T %Z')"
-          printf 'watchdog-retry %s\n' "$stamp" > config/source-refresh-trigger.txt
-          git config user.name "EPG Watchdog"
-          git config user.email "actions@users.noreply.github.com"
-          git add config/source-refresh-trigger.txt reports/watchdog-latest.json
-          git commit -m "Watchdog retry sequential EPG refresh $(TZ=Africa/Casablanca date +%F)"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          active="$(gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow daily-source-refresh.yml \
+            --limit 20 \
+            --json status,event \
+            --jq '[.[] | select((.status == "queued" or .status == "in_progress") and .event == "workflow_dispatch")] | length')"
+          echo "active=$active" >> "$GITHUB_OUTPUT"
+          echo "Active recovery runs: $active"
 
-      - name: Save healthy watchdog report
-        if: steps.gate.outputs.run == 'true' && steps.health.outputs.status == 'healthy'
+      - name: Dispatch recovery refresh
+        if: steps.health.outputs.status == 'stale' && steps.recovery.outputs.active == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Stale feeds: ${{ steps.health.outputs.stale }}"
+          gh workflow run daily-source-refresh.yml --repo "$GITHUB_REPOSITORY" --ref main
+          echo "Recovery workflow_dispatch sent."
+
+      - name: Watchdog summary
+        if: always()
         shell: bash
         run: |
-          set -e
-          git config user.name "EPG Watchdog"
-          git config user.email "actions@users.noreply.github.com"
-          git add reports/watchdog-latest.json
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m "Watchdog healthy $(TZ=Africa/Casablanca date +%F)"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          {
+            echo "## EPG watchdog"
+            echo "- Status: ${{ steps.health.outputs.status }}"
+            echo "- Stale: ${{ steps.health.outputs.stale }}"
+            echo "- Active recovery: ${{ steps.recovery.outputs.active || '0' }}"
+          } >> "$GITHUB_STEP_SUMMARY"
