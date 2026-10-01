@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - 'tools/stctv_source.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-stctv.yml'
 
 permissions:
   contents: write
