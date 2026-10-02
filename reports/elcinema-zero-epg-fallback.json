@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-02T16:43:25.252646+00:00",
+  "generated_utc": "2026-10-02T16:53:18.017144+00:00",
   "policy": "ElCinema first; local production fallback; EPGShare last resort; official Al-Manar; never replace healthy ElCinema EPG",
   "before_future": {
     "2MMonde.ma@SD": 0,
@@ -21,7 +21,7 @@
     "2MMonde.ma@SD": {
       "source": "starzplay:2M Monde",
       "programmes_added": 74,
-      "future_programmes": 62
+      "future_programmes": 61
     },
     "AbuDhabiTV.ae@SD": {
       "source": "osn:Abu Dhabi TV",
@@ -96,7 +96,7 @@
   },
   "errors": [],
   "after_future": {
-    "2MMonde.ma@SD": 62,
+    "2MMonde.ma@SD": 61,
     "ATV.kw@SD": 0,
     "AbuDhabiTV.ae@SD": 66,
     "AlManar.lb@SD": 5,
