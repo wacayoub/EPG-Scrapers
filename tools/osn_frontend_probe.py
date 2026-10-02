@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from datetime import datetime, timedelta
 from urllib.parse import urljoin
 
 import cloudscraper
@@ -145,12 +146,82 @@ def main() -> int:
             })
 
     report["candidate_platform_literals"] = sorted(candidates)
+    # Probe OSN's official package APIs used by the "Other boxes" guide.
+    package_defs = {
+        "OSNTV_CONNECT": 3720,
+        "OSNTV_PRIME": 3733,
+        "ALFA": 1281,
+        "OSN_PINOY_PLUS_EXTRA": 3519,
+    }
+    package_probe = {}
+    for pkg_name, pkg_id in package_defs.items():
+        url = f"https://www.osn.com/api/tvchannels.ashx?culture=en-US&packageId={pkg_id}&country=AE"
+        rr = get(s, url) or get(cloud, url)
+        row = {"package_id": pkg_id, "url": url, "status": getattr(rr, "status_code", None), "channels": 0, "items": []}
+        if rr is not None and rr.status_code == 200:
+            try:
+                data = rr.json()
+                if isinstance(data, list):
+                    row["channels"] = len(data)
+                    row["items"] = [
+                        {
+                            "channelCode": str(x.get("channelCode") or ""),
+                            "channeltitle": str(x.get("channeltitle") or ""),
+                        }
+                        for x in data[:200] if isinstance(x, dict)
+                    ]
+            except Exception as exc:
+                row["parse_error"] = str(exc)
+        package_probe[pkg_name] = row
+
+    # Verify that the short channel codes returned by ALFA/PINOY have a working
+    # schedule endpoint today and tomorrow.
+    schedule_probe = []
+    sample_codes = []
+    for pkg_name in ("ALFA", "OSN_PINOY_PLUS_EXTRA"):
+        for item in package_probe.get(pkg_name, {}).get("items", [])[:4]:
+            code = item.get("channelCode")
+            if code:
+                sample_codes.append((pkg_name, code, item.get("channeltitle") or ""))
+    for pkg_name, code, title in sample_codes:
+        for day_offset in (0, 1):
+            dt = (datetime.utcnow() + timedelta(days=day_offset)).strftime("%m/%d/%Y")
+            url = (
+                "https://www.osn.com/api/TVScheduleWebService.asmx/time"
+                f"?dt={dt}&co=AE&ch={code}&mo=false&hr=0"
+            )
+            rr = get(s, url) or get(cloud, url)
+            item = {
+                "package": pkg_name,
+                "channelCode": code,
+                "title": title,
+                "date": dt,
+                "status": getattr(rr, "status_code", None),
+                "programmes": 0,
+            }
+            if rr is not None and rr.status_code == 200:
+                try:
+                    data = rr.json()
+                    if isinstance(data, list):
+                        item["programmes"] = len(data)
+                        item["sample_title"] = str((data[0] if data else {}).get("Title") or "")
+                except Exception as exc:
+                    item["parse_error"] = str(exc)
+            schedule_probe.append(item)
+
+    report["official_package_probe"] = package_probe
+    report["official_schedule_probe"] = schedule_probe
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print("OSN_FRONTEND_PAGES", json.dumps(pages_meta, ensure_ascii=False))
     print("OSN_FRONTEND_PROBE scripts=", len(src_urls))
     print("OSN_FRONTEND_CANDIDATES", json.dumps(report["candidate_platform_literals"], ensure_ascii=False))
+    print("OSN_OFFICIAL_PACKAGES", json.dumps({
+        k: {"package_id": v["package_id"], "status": v["status"], "channels": v["channels"]}
+        for k, v in package_probe.items()
+    }, ensure_ascii=False))
+    print("OSN_OFFICIAL_SCHEDULES", json.dumps(schedule_probe, ensure_ascii=False))
     for item in report["hits"]:
         important = {
             k: v for k, v in item["matches"].items()
