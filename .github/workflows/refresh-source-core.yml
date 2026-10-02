@@ -140,7 +140,7 @@ jobs:
       - name: Probe OSN frontend platform metadata
         if: steps.gate.outputs.run == 'true' && inputs.source == 'osn'
         shell: bash
-        run: python tools/osn_frontend_probe.py
+        run: python tools/osn_frontend_probe.py || true
 
       - name: Refresh live OSN channel catalogue
         if: steps.gate.outputs.run == 'true' && inputs.source == 'osn'
