@@ -55,8 +55,9 @@ jobs:
                 try{data=dec(r.body)}catch(e){err=e.message}
                 const arr=Array.isArray(data)?data:[];
                 const alfa=arr.filter(x=>/alfa|alpha|musals|cinema/i.test(String(x.title||x.name||'')));
-                console.log('PLATFORM',p||'<none>','status',r.status,'count',arr.length,'alfa',alfa.length,err?('err='+err):'');
-                for(const x of alfa) console.log('  ALFA',JSON.stringify({guid:x.guid,title:x.title,number:x.number||x.channelNumber||x.logicalChannelNumber}));
+                const focus=arr.filter(x=>/alfa|alpha|cinema|gma|tfc|cine.?mo|kass|oman tv sport|oman tv mubashir/i.test(String(x.title||x.name||'')));
+                console.log('PLATFORM',p||'<none>','status',r.status,'count',arr.length,'alfa',alfa.length,'blankGuid',arr.filter(x=>!String(x.guid||'').trim()).length,err?('err='+err):'');
+                for(const x of focus) console.log('  FOCUS_FULL',JSON.stringify(x));
               }catch(e){console.log('PLATFORM_ERR',p||'<none>',e.message)}
             }
           })();
