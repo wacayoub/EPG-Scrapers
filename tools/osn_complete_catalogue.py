@@ -208,8 +208,11 @@ def build(lang: str) -> dict:
     by_cid: dict[str, ET.Element] = {}
     source_for: dict[str, str] = {}
 
+    # The live Android + Legacy/Other catalogues define the current OSN
+    # lineup.  The checked-in static file is still used above as a canonical
+    # site_id -> XMLTV-ID mapping, but static-only services must not be
+    # published as current channels (they otherwise create stale 0-EPG IDs).
     for source, nodes in (
-        ("static", static_nodes(lang)),
         ("android", android),
         ("other", other),
     ):
@@ -261,7 +264,7 @@ def build(lang: str) -> dict:
         ),
         "ownership": {
             key: sum(1 for v in source_for.values() if v == key)
-            for key in ("static", "android", "other", "fallback-index")
+            for key in ("android", "other", "fallback-index")
         },
     }
 
