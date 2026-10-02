@@ -1,118 +1,16 @@
-name: EPG Daily - staggered 10min from 06:00
+name: Legacy staggered EPG schedule (disabled)
 
 on:
-  schedule:
-    - cron: "0 6 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "10 6 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "20 6 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "30 6 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "40 6 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "50 6 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "0 7 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "10 7 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "20 7 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "30 7 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "40 7 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "50 7 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "0 8 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "10 8 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "15 8 * * *"
-      timezone: "Africa/Casablanca"
+  workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: epg-daily-staggered-${{ github.event.schedule || github.run_id }}
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  morocco:
-    if: ${{ github.event.schedule == '0 6 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: morocco, scheduled: false }
-    secrets: inherit
-  alkass:
-    if: ${{ github.event.schedule == '10 6 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: alkass, scheduled: false }
-    secrets: inherit
-  tunisiatv:
-    if: ${{ github.event.schedule == '20 6 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: tunisiatv, scheduled: false }
-    secrets: inherit
-  bein:
-    if: ${{ github.event.schedule == '30 6 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: bein, scheduled: false }
-    secrets: inherit
-  osn:
-    if: ${{ github.event.schedule == '40 6 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: osn, scheduled: false }
-    secrets: inherit
-  shahid:
-    if: ${{ github.event.schedule == '50 6 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: shahid, scheduled: false }
-    secrets: inherit
-  elcinema:
-    if: ${{ github.event.schedule == '0 7 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: elcinema, scheduled: false }
-    secrets: inherit
-  rotana:
-    if: ${{ github.event.schedule == '10 7 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: rotana, scheduled: false }
-    secrets: inherit
-  sport24:
-    if: ${{ github.event.schedule == '20 7 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: sport24, scheduled: false }
-    secrets: inherit
-  dubaiplus:
-    if: ${{ github.event.schedule == '30 7 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: dubaiplus, scheduled: false }
-    secrets: inherit
-  aljazeera:
-    if: ${{ github.event.schedule == '40 7 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: aljazeera, scheduled: false }
-    secrets: inherit
-  tabie:
-    if: ${{ github.event.schedule == '50 7 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: tabie, scheduled: false }
-    secrets: inherit
-  starzplay:
-    if: ${{ github.event.schedule == '0 8 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: starzplay, scheduled: false }
-    secrets: inherit
-  stctv:
-    if: ${{ github.event.schedule == '10 8 * * *' }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with: { source: stctv, scheduled: false }
-    secrets: inherit
-
-  finalize:
-    if: ${{ github.event.schedule == '15 8 * * *' }}
-    uses: ./.github/workflows/rebuild-mena-derived.yml
-    secrets: inherit
+  notice:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Staggered schedule disabled
+        run: |
+          echo "The staggered per-source cron is disabled."
+          echo "Production refresh now uses daily-source-refresh.yml at 06:00 Africa/Casablanca."
