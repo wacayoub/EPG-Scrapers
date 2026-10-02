@@ -248,7 +248,7 @@ jobs:
         shell: bash
         run: |
           bash -n tools/refresh_one_source.sh
-          python -m py_compile tools/build_catalogues.py tools/publish_lkg.py tools/source_feed_pack.py tools/validate_48h.py tools/morocco_epg.py tools/aljazeera_source.py tools/starzplay_source.py tools/starzplay_api_source.py tools/stctv_source.py tools/dubaiplus_api_source.py tools/alkass_source.py tools/tunisiatv_source.py tools/tabie_source.py tools/rotana_source.py tools/sport24_source.py tools/elcinema_zero_epg_fallback.py tools/osn_complete_catalogue.py tools/osn_frontend_probe.py
+          python -m py_compile tools/build_catalogues.py tools/publish_lkg.py tools/source_feed_pack.py tools/validate_48h.py tools/morocco_epg.py tools/aljazeera_source.py tools/starzplay_source.py tools/starzplay_api_source.py tools/stctv_source.py tools/dubaiplus_api_source.py tools/alkass_source.py tools/tunisiatv_source.py tools/tabie_source.py tools/rotana_source.py tools/sport24_source.py tools/elcinema_zero_epg_fallback.py tools/osn_complete_catalogue.py tools/osn_frontend_probe.py tools/osn_zero_epg_fallback.py
 
       - name: Refresh ${{ inputs.source }} for 48h
         if: steps.gate.outputs.run == 'true'
