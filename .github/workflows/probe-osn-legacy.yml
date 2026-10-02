@@ -98,6 +98,52 @@ jobs:
           }, ensure_ascii=False))
           PY
 
+      - name: Probe Legacy schedule box variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          cfg="vendor/iptv-org-epg/sites/osn.com/osn.com.config.js"
+          cp "$cfg" "$cfg.variant.orig"
+          python - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          wanted={"202","203","211","216","217","223","312","2501","5675","5676","9993","9994"}
+          src=ET.parse("output/source-build/osn_legacy_ar.channels.xml").getroot()
+          out=ET.Element("channels")
+          for ch in src.findall("channel"):
+              if (ch.get("site_id") or "") in wanted:
+                  out.append(ET.fromstring(ET.tostring(ch,encoding="utf-8")))
+          ET.indent(out,space="  ")
+          Path("output/source-build/osn_legacy_probe.channels.xml").write_bytes(ET.tostring(out,encoding="utf-8",xml_declaration=True))
+          print("LEGACY_TARGET_ROWS",len(out))
+          PY
+
+          for box in Legacy Android Other; do
+            cp "$cfg.variant.orig" "$cfg"
+            sed -i 's/platform=Android/platform=Legacy/g' "$cfg"
+            sed -i "s/boxAndroid/box${box}/g" "$cfg"
+            out="$GITHUB_WORKSPACE/output/source-build/osn_legacy_box_${box}.xml"
+            (
+              cd vendor/iptv-org-epg
+              timeout --signal=TERM --kill-after=20s 360s npm run grab -- \
+                --channels="$GITHUB_WORKSPACE/output/source-build/osn_legacy_probe.channels.xml" \
+                --output="$out" --days=1 --maxConnections=1 --timeout=20000
+            ) || true
+            python - "$box" "$out" <<'PY'
+          import sys, xml.etree.ElementTree as ET
+          from collections import Counter
+          box,path=sys.argv[1:]
+          try: root=ET.parse(path).getroot()
+          except Exception:
+              print("BOX_RESULT",box,"unreadable")
+              raise SystemExit(0)
+          c=Counter((p.get("channel") or "") for p in root.findall("programme"))
+          print("BOX_RESULT",box,"programmes",sum(c.values()),"channels",sum(v>0 for v in c.values()))
+          for cid,n in sorted(c.items()):
+              if n: print(" BOX_CHANNEL",box,cid,n)
+          PY
+          done
+          cp "$cfg.variant.orig" "$cfg"
       - name: Publish catalogue probe
         shell: bash
         run: |
