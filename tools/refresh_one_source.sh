@@ -57,10 +57,94 @@ case "$SOURCE" in
     ;;
 
   osn)
-    grab_upstream osn "$ROOT/output/source-build/osn.channels.xml" "$ROOT/output/source-build/osn.raw.xml" "" || true
-    grab_upstream osn-en "$ROOT/output/source-build/osn_en.channels.xml" "$ROOT/output/source-build/osn.en.raw.xml" "" || true
+    cfg="$UPSTREAM/sites/osn.com/osn.com.config.js"
+    cfg_orig="$UPSTREAM/sites/osn.com/osn.com.config.js.epgmanager.multi.orig"
+    cp "$cfg" "$cfg_orig"
+
+    patch_osn_platform() {
+      platform="$1"
+      cp "$cfg_orig" "$cfg"
+      python - "$cfg" "$platform" <<'PY'
+from pathlib import Path
+import sys
+p = Path(sys.argv[1])
+platform = sys.argv[2]
+text = p.read_text(encoding="utf-8")
+if "platform=Android" not in text:
+    raise SystemExit("OSN adapter no longer contains platform=Android")
+text = text.replace("platform=Android", f"platform={platform}")
+if "boxAndroid" in text:
+    text = text.replace("boxAndroid", f"box{platform}")
+p.write_text(text, encoding="utf-8")
+print(f"OSN adapter platform={platform}")
+PY
+    }
+
+    merge_osn_raw() {
+      primary="$1"
+      secondary="$2"
+      output="$3"
+      if has_programmes "$primary"; then
+        if has_programmes "$secondary"; then
+          python tools/source_gap_retry.py merge \
+            --primary "$primary" \
+            --retry "$secondary" \
+            --output "$output" || cp "$primary" "$output"
+        else
+          cp "$primary" "$output"
+        fi
+      elif has_programmes "$secondary"; then
+        cp "$secondary" "$output"
+      else
+        empty_xml "$output"
+      fi
+    }
+
+    patch_osn_platform Android
+    grab_upstream osn-android-ar \
+      "$ROOT/output/source-build/osn_android.channels.xml" \
+      "$ROOT/output/source-build/osn.android.raw.xml" "" || true
+    grab_upstream osn-android-en \
+      "$ROOT/output/source-build/osn_android_en.channels.xml" \
+      "$ROOT/output/source-build/osn.android.en.raw.xml" "" || true
+
+    other_platform=""
+    if [ -s "$ROOT/output/source-build/osn_other_platform.txt" ]; then
+      other_platform="$(tr -d '\r\n' < "$ROOT/output/source-build/osn_other_platform.txt")"
+    fi
+
+    if [ -n "$other_platform" ] && grep -q '<channel ' "$ROOT/output/source-build/osn_other.channels.xml" 2>/dev/null; then
+      patch_osn_platform "$other_platform"
+      grab_upstream osn-other-ar \
+        "$ROOT/output/source-build/osn_other.channels.xml" \
+        "$ROOT/output/source-build/osn.other.raw.xml" "" || true
+      grab_upstream osn-other-en \
+        "$ROOT/output/source-build/osn_other_en.channels.xml" \
+        "$ROOT/output/source-build/osn.other.en.raw.xml" "" || true
+    else
+      empty_xml "$ROOT/output/source-build/osn.other.raw.xml"
+      empty_xml "$ROOT/output/source-build/osn.other.en.raw.xml"
+    fi
+
+    cp "$cfg_orig" "$cfg"
+
+    merge_osn_raw \
+      output/source-build/osn.android.raw.xml \
+      output/source-build/osn.other.raw.xml \
+      output/source-build/osn.raw.xml
+    merge_osn_raw \
+      output/source-build/osn.android.en.raw.xml \
+      output/source-build/osn.other.en.raw.xml \
+      output/source-build/osn.en.raw.xml
+
     if has_programmes output/source-build/osn.raw.xml && has_programmes output/source-build/osn.en.raw.xml; then
-      python tools/osn_hybrid.py --arabic output/source-build/osn.raw.xml --english output/source-build/osn.en.raw.xml --policy config/osn-language-policy.json --mode hybrid --output output/source-build/osn.hybrid.raw.xml --report reports/osn-hybrid.json || true
+      python tools/osn_hybrid.py \
+        --arabic output/source-build/osn.raw.xml \
+        --english output/source-build/osn.en.raw.xml \
+        --policy config/osn-language-policy.json \
+        --mode hybrid \
+        --output output/source-build/osn.hybrid.raw.xml \
+        --report reports/osn-hybrid.json || true
       [ -s output/source-build/osn.hybrid.raw.xml ] && mv output/source-build/osn.hybrid.raw.xml output/source-build/osn.raw.xml
     fi
     pack_source osn output/source-build/osn.raw.xml output/source-build/osn.channels.xml || true
