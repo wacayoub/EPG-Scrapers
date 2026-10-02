@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
+import cloudscraper
 
 PAGE = "https://www.osn.com/ar-sa/watch/tv-schedule"
 OUT = Path("reports/osn-frontend-probe.json")
@@ -42,9 +43,17 @@ def contexts(text: str, term: str, radius: int = 350) -> list[str]:
 def main() -> int:
     s = requests.Session()
     s.headers.update({"User-Agent": UA, "Accept-Language": "ar-SA,ar;q=0.9,en;q=0.7"})
-    page = s.get(PAGE, timeout=30)
-    page.raise_for_status()
-    html = page.text
+    html = ""
+    page_status = None
+    for client in (s, cloudscraper.create_scraper()):
+        try:
+            page = client.get(PAGE, timeout=30, headers={"User-Agent": UA, "Accept-Language": "ar-SA,ar;q=0.9,en;q=0.7"})
+            page_status = page.status_code
+            if page.status_code == 200:
+                html = page.text
+                break
+        except Exception:
+            continue
 
     srcs = set(re.findall(r'''(?:src|href)=["']([^"']+\.js(?:\?[^"']*)?)["']''', html))
     # Next.js can also serialize chunk paths inside the page payload.
@@ -57,13 +66,13 @@ def main() -> int:
 
     report = {
         "page": PAGE,
-        "http_status": page.status_code,
+        "http_status": page_status,
         "scripts_discovered": len(urls),
         "hits": [],
         "candidate_platform_literals": [],
     }
 
-    texts = [("page", PAGE, html)]
+    texts = [("page", PAGE, html)] if html else []
     for url in urls[:80]:
         try:
             r = s.get(url, timeout=25)
