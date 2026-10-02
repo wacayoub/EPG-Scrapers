@@ -39,6 +39,29 @@ jobs:
         working-directory: vendor/iptv-org-epg
         run: npm ci --no-audit --no-fund
 
+      - name: Inspect raw Legacy channel objects
+        shell: bash
+        working-directory: vendor/iptv-org-epg
+        run: |
+          set -euo pipefail
+          cfg="./sites/osn.com/osn.com.config.js"
+          cp "$cfg" "$cfg.raw.orig"
+          sed -i 's/platform=Android/platform=Legacy/g' "$cfg"
+          node <<'JS'
+          const cfg=require('./sites/osn.com/osn.com.config.js');
+          (async()=>{
+            try{
+              const rows=await cfg.channels({lang:'ar'});
+              const arr=Array.isArray(rows)?rows:[];
+              const blank=arr.filter(x=>!String(x.site_id||'').trim());
+              const focus=arr.filter(x=>/alfa|alpha|cinema|gma|tfc|cine.?mo|kass|oman tv sport|oman tv mubashir/i.test(String(x.name||'')));
+              console.log('RAW_LEGACY_COUNT',arr.length,'BLANK_SITE_ID',blank.length,'USABLE',arr.length-blank.length);
+              for(const x of focus) console.log('RAW_LEGACY_ITEM',JSON.stringify(x));
+            }catch(e){console.log('RAW_LEGACY_ERR',e && e.message ? e.message : String(e));}
+          })();
+          JS
+          cp "$cfg.raw.orig" "$cfg"
+
       - name: Discover Android and Legacy channels
         shell: bash
         run: |
