@@ -1,6 +1,9 @@
 name: EPG 48h - Daily sequential sources
 
 on:
+  schedule:
+    - cron: "0 6 * * *"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:
@@ -18,127 +21,196 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  alkass:
+  check_morocco:
     needs: morocco
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: morocco
+
+  alkass:
+    needs: check_morocco
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: alkass
       scheduled: false
     secrets: inherit
 
-  tunisiatv:
+  check_alkass:
     needs: alkass
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: alkass
+
+  tunisiatv:
+    needs: check_alkass
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: tunisiatv
       scheduled: false
     secrets: inherit
 
-  bein:
+  check_tunisiatv:
     needs: tunisiatv
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: tunisiatv
+
+  bein:
+    needs: check_tunisiatv
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: bein
       scheduled: false
     secrets: inherit
 
-  osn:
+  check_bein:
     needs: bein
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: bein
+
+  osn:
+    needs: check_bein
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: osn
       scheduled: false
     secrets: inherit
 
-  shahid:
+  check_osn:
     needs: osn
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: osn
+
+  shahid:
+    needs: check_osn
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: shahid
       scheduled: false
     secrets: inherit
 
-  elcinema:
+  check_shahid:
     needs: shahid
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: shahid
+
+  elcinema:
+    needs: check_shahid
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: elcinema
       scheduled: false
     secrets: inherit
 
-  rotana:
+  check_elcinema:
     needs: elcinema
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: elcinema
+
+  rotana:
+    needs: check_elcinema
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: rotana
       scheduled: false
     secrets: inherit
 
-  sport24:
+  check_rotana:
     needs: rotana
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: rotana
+
+  sport24:
+    needs: check_rotana
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: sport24
       scheduled: false
     secrets: inherit
 
-  dubaiplus:
+  check_sport24:
     needs: sport24
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: sport24
+
+  dubaiplus:
+    needs: check_sport24
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: dubaiplus
       scheduled: false
     secrets: inherit
 
-  aljazeera:
+  check_dubaiplus:
     needs: dubaiplus
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: dubaiplus
+
+  aljazeera:
+    needs: check_dubaiplus
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: aljazeera
       scheduled: false
     secrets: inherit
 
-  tabie:
+  check_aljazeera:
     needs: aljazeera
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: aljazeera
+
+  tabie:
+    needs: check_aljazeera
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: tabie
       scheduled: false
     secrets: inherit
 
+  check_tabie:
+    needs: tabie
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: tabie
 
   starzplay:
-    needs: tabie
-    if: ${{ always() }}
+    needs: check_tabie
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: starzplay
       scheduled: false
     secrets: inherit
 
-  stctv:
+  check_starzplay:
     needs: starzplay
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: starzplay
+
+  stctv:
+    needs: check_starzplay
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: stctv
       scheduled: false
     secrets: inherit
 
-  finalize:
+  check_stctv:
     needs: stctv
-    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: stctv
+
+  finalize:
+    needs: check_stctv
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
