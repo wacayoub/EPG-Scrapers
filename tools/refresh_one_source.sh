@@ -75,8 +75,16 @@ if "platform=Android" not in text:
 text = text.replace("platform=Android", f"platform={platform}")
 if "boxAndroid" in text:
     text = text.replace("boxAndroid", f"box{platform}")
+# Legacy currently contains many catalogue rows with an empty GUID.  The
+# upstream adapter used to batch those empty values into schedule requests,
+# which made valid Legacy channels return zero programmes.  Never send blank
+# provider GUIDs in OSN schedule batches (harmless for Android too).
+old_segments = "const _channels = [...allChannels.map(item => item.guid)]"
+new_segments = "const _channels = [...allChannels.map(item => item.guid).filter(Boolean)]"
+if old_segments in text:
+    text = text.replace(old_segments, new_segments, 1)
 p.write_text(text, encoding="utf-8")
-print(f"OSN adapter platform={platform}")
+print(f"OSN adapter platform={platform}; blank GUIDs filtered")
 PY
     }
 
