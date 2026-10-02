@@ -141,10 +141,22 @@ jobs:
           print("LEGACY_TARGET_ROWS",len(out))
           PY
 
-          for box in Legacy Android Other; do
+          for box in Legacy; do
             cp "$cfg.variant.orig" "$cfg"
             sed -i 's/platform=Android/platform=Legacy/g' "$cfg"
             sed -i "s/boxAndroid/box${box}/g" "$cfg"
+            python - "$cfg" <<\'PY\'
+          from pathlib import Path
+          import sys
+          p=Path(sys.argv[1])
+          text=p.read_text(encoding="utf-8")
+          old="const _channels = [...allChannels.map(item => item.guid)]"
+          new="const _channels = [...allChannels.map(item => item.guid).filter(Boolean)]"
+          if old not in text:
+              raise SystemExit("OSN channel segment filter anchor not found")
+          p.write_text(text.replace(old,new,1),encoding="utf-8")
+          print("OSN Legacy schedule: blank GUIDs filtered")
+          PY
             out="$GITHUB_WORKSPACE/output/source-build/osn_legacy_box_${box}.xml"
             (
               cd vendor/iptv-org-epg
