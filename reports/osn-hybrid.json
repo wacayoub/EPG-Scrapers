@@ -1,13 +1,13 @@
 {
-  "generated_utc": "2026-10-02T14:22:15.302226+00:00",
+  "generated_utc": "2026-10-02T14:40:45.672434+00:00",
   "mode": "hybrid",
-  "channels": 79,
-  "programmes": 8609,
-  "hybrid_programmes": 5293,
-  "arabic_native_programmes": 3316,
-  "english_title_applied": 5272,
-  "english_title_missing": 21,
-  "arabic_description_present": 8597,
+  "channels": 101,
+  "programmes": 9848,
+  "hybrid_programmes": 5324,
+  "arabic_native_programmes": 4524,
+  "english_title_applied": 5324,
+  "english_title_missing": 0,
+  "arabic_description_present": 9836,
   "arabic_description_missing": 12,
   "non_arabic_description_removed": 12,
   "profiles": {
@@ -89,12 +89,22 @@
     "RT.ru@SD": "hybrid",
     "RTArabic.ru@SD": "arabic_native",
     "SkyNewsArabia.ae@SD": "arabic_native",
-    "TLCArabia.us@SD": "hybrid"
+    "TLCArabia.us@SD": "hybrid",
+    "AlfaSeries.ae@SD": "arabic_native",
+    "AlfaSeriesPlus2.ae@SD": "arabic_native",
+    "AlSafwa.ae@SD": "arabic_native",
+    "AlYawm.ae@SD": "arabic_native",
+    "ANC.ph": "arabic_native",
+    "Fann.ae@SD": "arabic_native",
+    "MyxMiddleEast.ph": "arabic_native",
+    "osn.213": "arabic_native",
+    "osn.215": "arabic_native",
+    "osn.220": "arabic_native"
   },
   "samples": {
     "AbuDhabiSports1.ae@SD": {
       "profile": "arabic_native",
-      "title": "أبو ظبي الرياضية 1 HD",
+      "title": "كأس الخليج العربي السابع والعشرون 2026",
       "description": "أبو ظبي الرياضية 1 HD",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -115,8 +125,8 @@
     },
     "AlArabyTV2.qa@SD": {
       "profile": "arabic_native",
-      "title": "تحت الأرض: موسم حار",
-      "description": "تحتكر عائلة الصافي الدمشقية سوق التبغ وتفرض سيطرتها المطلقة عليه، لكن تنقلب الموازين مع ظهور منافس جريء وقوي؛ فتشتعل شرارة معركة خطيرة لم تكن في الحسبان.",
+      "title": "جو شو",
+      "description": "صوت سياسي ساخر من الأفكار التي يتبناها المجتمع العربي والتي كشفت الغطاء عنها ثورات الربيع العربي.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -643,6 +653,76 @@
       "title": "Me or the Menu",
       "description": "تحتاج كاثلين نيت لاتخاذ موقف. جيمس وجيسيكا يتجادلان حول الأمور المالية.",
       "title_has_arabic": false,
+      "description_has_arabic": true
+    },
+    "AlfaSeries.ae@SD": {
+      "profile": "arabic_native",
+      "title": "دايماً عامر",
+      "description": "تعمّ الفوضى بسبب مكيدة ضدّ فدوى قام بها أحد الطلاب، لكن سرعان ما يتدخّل عامر لإنقاذ الموقف. من جهة أخرى، تنظّم المدارس حفل مهمّ ويشارك الجميع في التحضيرات.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "AlfaSeriesPlus2.ae@SD": {
+      "profile": "arabic_native",
+      "title": "عباس وإيناس",
+      "description": "تتعرّض إيناس لصدمة عندما تفقد سلحفاتها، فتغدو مرتعبة من فكرة فقدان أولادها في المستقبل. أمّا عباس، فيشعر بأنّ زوجته تبالغ في ردّة فعلها، لكنّه مع ذلك، يحاول أن يواسيها، ويبدأ بالبحث عن السلحفات، لعلّه يجدها.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "AlSafwa.ae@SD": {
+      "profile": "arabic_native",
+      "title": "ورتّل القرآن ترتيلاً",
+      "description": "برنامج لتعليم تلاوة القرآن الكريم بالمشافهة لقواعد وأصول التجويد، تنقل من قارئ إلى قارئ نقلاً عن السلف الأوائل من صحابة وآل بيت رسول الله (صلى الله عليه وسلم) كما سمعوه منه وكما أنزله الله سبحانه وتعالى مرتّلاً.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "AlYawm.ae@SD": {
+      "profile": "arabic_native",
+      "title": "حكايات مجنونة",
+      "description": "قصص مجموعة من الشخصيات المختلفة وتعرضها لمواقف حياتية واجتماعية متفرقة في كل منها عبرة ومغزى إنساني. لكل حلقة موضوعها الجديد مع شخصيات نتابع مصائرها من خلال التفاعل مع هذه القضايا والمشاكل ضمن قالب كوميدي ساخر ليتم التأكيد على طبيعة الإنسان",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "ANC.ph": {
+      "profile": "arabic_native",
+      "title": "هيدستارت",
+      "description": "قناة إخبارية تقدم برامج إخبارية، ووثائقية وحوارية عن الفيليبين والعالم، من أشهر وكالة اخبارية في الفيليبين.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "Fann.ae@SD": {
+      "profile": "arabic_native",
+      "title": "فات الميعاد",
+      "description": "مباشرة من أهم المهرجانات الغنائية العربية، ننقل إليكم بالصوت والصورة أغاني نجومكم الأحب على قلوبكم.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "MyxMiddleEast.ph": {
+      "profile": "arabic_native",
+      "title": "ذا ميوزك روم",
+      "description": "برنامج خاص من قناة Myx TV",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "osn.213": {
+      "profile": "arabic_native",
+      "title": "MOR Global Radio",
+      "description": "بث إذاعي مباشر من قناة أيه بي أس- سي بي أن الإذاعية في الفلبين. يبثها لكم منسقو أغاني إذاعية مشهورين وستستمعون للكثير من الأغاني المحبوبة من الكلاسيكيات إلى أحدث الأغاني الفلبينية الأصلية.",
+      "title_has_arabic": false,
+      "description_has_arabic": true
+    },
+    "osn.215": {
+      "profile": "arabic_native",
+      "title": "DZMM TeleRadyo",
+      "description": "قناة بث مباشر بالصوت والصورة من قناة أيه بي أس- سي بي أن الإذاعية في الفلبين، تنقل لكم تقارير إخبارية، برامج حوارية وبرامج منوعة، ينقلها ويبثها إليكم عدد من شخصيات البث الإذاعي الفلبينيين المعروفين.",
+      "title_has_arabic": false,
+      "description_has_arabic": true
+    },
+    "osn.220": {
+      "profile": "arabic_native",
+      "title": "فرونتلاين بيلبيناس",
+      "description": "نشرة إخبارية ليلية تغطي أهم العناوين الرئيسية في الفلبين. قدمها صحفيون متمرسون لوتشي كروز فالديس ورافي تولفو وإد لينجاو وشيريل كوزيم ولورد دي فيرا.",
+      "title_has_arabic": true,
       "description_has_arabic": true
     }
   }
