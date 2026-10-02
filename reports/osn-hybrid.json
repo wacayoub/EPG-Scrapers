@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-10-02T16:32:08.728490+00:00",
+  "generated_utc": "2026-10-02T16:44:55.280114+00:00",
   "mode": "hybrid",
   "channels": 101,
-  "programmes": 10453,
-  "hybrid_programmes": 5316,
-  "arabic_native_programmes": 5137,
-  "english_title_applied": 5316,
+  "programmes": 11528,
+  "hybrid_programmes": 5283,
+  "arabic_native_programmes": 6245,
+  "english_title_applied": 5283,
   "english_title_missing": 0,
-  "arabic_description_present": 9828,
-  "arabic_description_missing": 625,
-  "non_arabic_description_removed": 594,
+  "arabic_description_present": 11516,
+  "arabic_description_missing": 12,
+  "non_arabic_description_removed": 12,
   "profiles": {
     "AbuDhabiSports1.ae@SD": "arabic_native",
     "AbuDhabiTV.ae@SD": "arabic_native",
@@ -95,16 +95,23 @@
     "AlSafwa.ae@SD": "arabic_native",
     "AlYawm.ae@SD": "arabic_native",
     "ANC.ph": "arabic_native",
+    "Cinema1.ae@SD": "arabic_native",
+    "Cinema2.ae@SD": "arabic_native",
+    "CineMo.ph": "arabic_native",
     "Fann.ae@SD": "arabic_native",
+    "GMALifeTV.ph": "arabic_native",
+    "GMANewsTV.ph": "arabic_native",
+    "GMAPinoyTVMiddleEast.ph": "arabic_native",
+    "MusicNow.ae@SD": "arabic_native",
     "MyxMiddleEast.ph": "arabic_native",
     "osn.213": "arabic_native",
     "osn.215": "arabic_native",
+    "osn.216": "arabic_native",
+    "osn.217": "arabic_native",
     "osn.220": "arabic_native",
     "osn.2501": "arabic_native",
-    "Cinema1.ae@SD": "arabic_native",
-    "Cinema2.ae@SD": "arabic_native",
-    "MusicNow.ae@SD": "arabic_native",
-    "osn.9993": "arabic_native"
+    "osn.9993": "arabic_native",
+    "osn.9994": "arabic_native"
   },
   "samples": {
     "AbuDhabiSports1.ae@SD": {
@@ -695,10 +702,59 @@
       "title_has_arabic": true,
       "description_has_arabic": true
     },
+    "Cinema1.ae@SD": {
+      "profile": "arabic_native",
+      "title": "رغدة متوحشة",
+      "description": "عندما يكتشف إسماعيل، شاب يعمل في أحد مراكز التجميل، أنّ مخرج إعلانات يبحث عن وجه جديد، يقرّر أن يحوّل نفسه إلى فتاة للحصول على هذه الفرصة الذهبيّة. وبالفعل، تنجح خطّته، لكنّه يجد نفسه مواجِهاً مشاكل ومواقف تتعرّض لها المرأة في المجتمع، باست",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "Cinema2.ae@SD": {
+      "profile": "arabic_native",
+      "title": "حنان",
+      "description": "حسن مقاول يعيش حياة هادئة وسعيدة مع زوجته وابنته. وعندما يصبح مراد شريكه في العمل، تحاول شقيقة مراد إيقاع حسن في شباكها لتغطي على أعمال شقيقها المشبوهة. فتنقلب حياة حسن رأساً على عقب وينهار زواجه. تحاول ابنته إعادة لم شمل العائلة. فهل ستنجح",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "CineMo.ph": {
+      "profile": "arabic_native",
+      "title": "سينيكوميديا",
+      "description": "قناة سينيمو هي قناة الأفلام الفيليبينية الوحيدة الموجهة نحو الرجل الفيليبيني الناضج، حيث تعرض مجموعة واسعة من أفلام المغامرات المحلية والأجنبية، أفلام الكونغ فو الآسيوية الكوميدية، الأفلام الرومانسية والضاربة.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
     "Fann.ae@SD": {
       "profile": "arabic_native",
       "title": "فات الميعاد",
       "description": "مباشرة من أهم المهرجانات الغنائية العربية، ننقل إليكم بالصوت والصورة أغاني نجومكم الأحب على قلوبكم.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "GMALifeTV.ph": {
+      "profile": "arabic_native",
+      "title": "ايدول سي كوسينا",
+      "description": "برنامج طهي ترفيهي وغني بالمعلومات يعرض المأكولات الشهية. جنبا إلى جنب مع المشاهير ، فإنه يكشف عن مهارات المطبخ الممتازة وأسرار الطهي التي ستجعل طهي الأطباق أمرًا سهلاً.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "GMANewsTV.ph": {
+      "profile": "arabic_native",
+      "title": "دوبول بي تي في",
+      "description": "تقدم نشرات الأخبار والبرامج المختلفة من سوبر راديو دي زي بي بي الأخبار والمعلومات التي تشتد الحاجة إليها لمشاهديها خاصة خلال هذه الأوقات العصيبة.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "GMAPinoyTVMiddleEast.ph": {
+      "profile": "arabic_native",
+      "title": "ماريا كلارا آت إيبارا",
+      "description": "جي أم إيه بينوي تي هي قناة ترفيه على مدار الساعة طوال الأسبوع حيث تتضمن مسلسلات حديثة، كوميدية، حوارية، واقعية، مسلية ومتنوعة فضلاً عن برامج إخبارية من قناة جي أم إيه في الفيليبين. باللغتين الإنكليزية والفيليبينية.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "MusicNow.ae@SD": {
+      "profile": "arabic_native",
+      "title": "مهرة عرب",
+      "description": "نضع بتصرّفكم مجموعة من الأغاني المصوّرة من أنجح الأعمال التي تلقى رواجاً على الساحة الفنيّة.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -723,6 +779,20 @@
       "title_has_arabic": false,
       "description_has_arabic": true
     },
+    "osn.216": {
+      "profile": "arabic_native",
+      "title": "فاذر جيجيمون",
+      "description": "قناة فليبينية تُقدم أفلاماً على مدار الساعة من أشهر مكتبات ستار سينما، ريغال إنترتينمنت و فيفا فيلمز. إنها قناة الأفلام الفلبينية الأشهر في العالم، حيث يتم عرض الأفلام الفلبينية بشكل حصري بعد ستة أشهر من عرضها في السينما.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "osn.217": {
+      "profile": "arabic_native",
+      "title": "لا فيدا لينا",
+      "description": "قناة تسلية عامة من إيه بي أس-سي بي أن تبث برامج مسلية على مدار الساعة. إنها القناة الفيليبينية الأولى في العالم.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
     "osn.220": {
       "profile": "arabic_native",
       "title": "فرونتلاين بيلبيناس",
@@ -732,38 +802,24 @@
     },
     "osn.2501": {
       "profile": "arabic_native",
-      "title": "Aesr Jeddah",
-      "description": "",
-      "title_has_arabic": false,
-      "description_has_arabic": false
-    },
-    "Cinema1.ae@SD": {
-      "profile": "arabic_native",
-      "title": "Rough Raghda",
-      "description": "",
-      "title_has_arabic": false,
-      "description_has_arabic": false
-    },
-    "Cinema2.ae@SD": {
-      "profile": "arabic_native",
-      "title": "A Clash in the Nile",
-      "description": "",
-      "title_has_arabic": false,
-      "description_has_arabic": false
-    },
-    "MusicNow.ae@SD": {
-      "profile": "arabic_native",
-      "title": "Heloo Hal'ad",
-      "description": "",
-      "title_has_arabic": false,
-      "description_has_arabic": false
+      "title": "المجلس",
+      "description": "يقدم تحليلات ونقاشات معمقة حول آخر مباريات دوري نجوم قطر وكذلك كأس أمم آسيا وكأس الخليج، وغيرها الكثير من البطولات، بمشاركة نخبة من المحللين والخبراء ونجوم الرياضة.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
     },
     "osn.9993": {
       "profile": "arabic_native",
-      "title": "IHF Men's Club World Championship",
-      "description": "",
-      "title_has_arabic": false,
-      "description_has_arabic": false
+      "title": "الدكة",
+      "description": "يضم نخبة من خبراء ومحللي الرياضة، ويقدم تغطية شاملة لأهم الأحداث الرياضية المحلية والعالمية، مع رؤى الخبراء ونقاشات شيقة.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
+    },
+    "osn.9994": {
+      "profile": "arabic_native",
+      "title": "على قد الحب",
+      "description": "مريم سيدة أعمال ناجحة تمر بمنعطفات لم تكن بالحسبان، فمع شيوع أسرار من الماضي تهدد استقرار حياتها، يبقى أمامها خياران لا ثالث لهما، إما أن تتكيف مع الأمر الواقع أو تستسلم فتخسر كل شيء.",
+      "title_has_arabic": true,
+      "description_has_arabic": true
     }
   }
 }
