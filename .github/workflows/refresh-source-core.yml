@@ -156,7 +156,7 @@ jobs:
           best_alt_platform=""
           best_alt_rows=0
 
-          for platform in Android Other other Others OTHER Web web Website iOS IOS SmartTV; do
+          for platform in Android Legacy; do
             cp "$cfg.epgmanager.orig" "$cfg"
             sed -i "s/platform=Android/platform=${platform}/g" "$cfg"
             sed -i "s/boxAndroid/box${platform}/g" "$cfg"
