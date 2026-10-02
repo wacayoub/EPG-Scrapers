@@ -6,7 +6,7 @@ Rules:
 - never replace a target that already has future ElCinema programmes;
 - prefer existing production feeds before external fallbacks;
 - EPGShare is last-resort and only used for exact verified channel matches;
-- Al-Manar is read from its official public daily schedule;
+- production-excluded IDs are omitted from fallback targets;
 - ATV Kuwait and Salam TV Libya are intentionally left untouched until a
   reliable schedule source exists.
 """
@@ -79,7 +79,6 @@ EXPECTED_ZERO_IDS = {
     "NationalGeographicMiddleEast.uk@SD",
     "StarMoviesMiddleEast.ae@SD",
     "2MMonde.ma@SD",
-    "AlManar.lb@SD",
     "ATV.kw@SD",
     "BahrainTV.bh@SD",
     "CBCSofra.eg@SD",

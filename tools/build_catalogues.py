@@ -6,10 +6,16 @@ import xml.etree.ElementTree as ET
 ROOT = Path("vendor/iptv-org-epg/sites")
 OUT = Path("output/source-build")
 
-# Explicit production exclusions confirmed by manual EPG comparison.
-# Keep the full provider catalogue. Source preference is decided later in
-# EPGManager/merged feeds; catalogue construction must not delete valid IDs.
-ELCINEMA_PRODUCTION_EXCLUDE = set()
+# Explicit production exclusions: repeatedly failed the ElCinema 48h audit.
+# Keep unreliable IDs out of the source catalogue and all retry catalogues.
+ELCINEMA_PRODUCTION_EXCLUDE = {
+    "AlManar.lb@SD",
+    "ATV.kw@SD",
+    "ElWatania1.tn@SD",
+    "ElWatania2.tn@SD",
+    "SalamTV.ly@SD",
+    "StarWorldMiddleEast.ae@SD",
+}
 
 def elcinema_excluded(cid: str) -> bool:
     return cid in ELCINEMA_PRODUCTION_EXCLUDE
