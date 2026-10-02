@@ -145,7 +145,7 @@ jobs:
             cp "$cfg.variant.orig" "$cfg"
             sed -i 's/platform=Android/platform=Legacy/g' "$cfg"
             sed -i "s/boxAndroid/box${box}/g" "$cfg"
-            python - "$cfg" <<\'PY\'
+            python - "$cfg" <<'PY'
           from pathlib import Path
           import sys
           p=Path(sys.argv[1])
