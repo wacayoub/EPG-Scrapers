@@ -1,0 +1,102 @@
+{
+  "generated_utc": "2026-10-02T16:32:04.521530+00:00",
+  "policy": "OSN official first; local official fallback; OpenEPG; EPGShare last; never replace healthy OSN EPG",
+  "before_future": {
+    "CineMo.ph": 0,
+    "Cinema1.ae@SD": 0,
+    "Cinema2.ae@SD": 0,
+    "GMALifeTV.ph": 0,
+    "GMANewsTV.ph": 0,
+    "GMAPinoyTVMiddleEast.ph": 0,
+    "MusicNow.ae@SD": 0,
+    "OSNNow.ae@SD": 0,
+    "OSNPopUp2.ae@SD": 0,
+    "SaudiThaqafiyaTV.sa@SD": 0,
+    "osn.216": 0,
+    "osn.217": 0,
+    "osn.2501": 0,
+    "osn.9993": 0,
+    "osn.9994": 0
+  },
+  "applied": {
+    "osn.2501": {
+      "source": "official:alkass:Al Kass 1",
+      "source_id": "AlkassOne.qa@SD",
+      "programmes_added": 31,
+      "future_programmes": 31
+    },
+    "Cinema1.ae@SD": {
+      "source": "openepg:saudiarabia5:Alfa Cinema 1.sa",
+      "source_id": "Alfa Cinema 1.sa",
+      "programmes_added": 21,
+      "future_programmes": 21
+    },
+    "Cinema2.ae@SD": {
+      "source": "openepg:saudiarabia5:Alfa Cinema 2.sa",
+      "source_id": "Alfa Cinema 2.sa",
+      "programmes_added": 19,
+      "future_programmes": 19
+    },
+    "MusicNow.ae@SD": {
+      "source": "openepg:saudiarabia5:Alfa Music HD.sa",
+      "source_id": "Alfa Music HD.sa",
+      "programmes_added": 501,
+      "future_programmes": 501
+    },
+    "osn.9993": {
+      "source": "epgshare:AE1:Oman.TV.Sport.HD.ae",
+      "source_id": "Oman.TV.Sport.HD.ae",
+      "programmes_added": 41,
+      "future_programmes": 41
+    }
+  },
+  "external": {
+    "openepg": {
+      "status": 200,
+      "bytes": 1074240,
+      "url": "https://www.open-epg.com/files/saudiarabia5.xml"
+    },
+    "epgshare": {
+      "status": 200,
+      "bytes": 2165221,
+      "url": "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz"
+    }
+  },
+  "errors": [],
+  "after_future": {
+    "CineMo.ph": 0,
+    "Cinema1.ae@SD": 21,
+    "Cinema2.ae@SD": 19,
+    "GMALifeTV.ph": 0,
+    "GMANewsTV.ph": 0,
+    "GMAPinoyTVMiddleEast.ph": 0,
+    "MusicNow.ae@SD": 501,
+    "OSNNow.ae@SD": 0,
+    "OSNPopUp2.ae@SD": 0,
+    "SaudiThaqafiyaTV.sa@SD": 0,
+    "osn.216": 0,
+    "osn.217": 0,
+    "osn.2501": 31,
+    "osn.9993": 41,
+    "osn.9994": 0
+  },
+  "resolved": [
+    "Cinema1.ae@SD",
+    "Cinema2.ae@SD",
+    "MusicNow.ae@SD",
+    "osn.2501",
+    "osn.9993"
+  ],
+  "unresolved": [
+    "CineMo.ph",
+    "GMALifeTV.ph",
+    "GMANewsTV.ph",
+    "GMAPinoyTVMiddleEast.ph",
+    "OSNNow.ae@SD",
+    "OSNPopUp2.ae@SD",
+    "SaudiThaqafiyaTV.sa@SD",
+    "osn.216",
+    "osn.217",
+    "osn.9994"
+  ]
+}

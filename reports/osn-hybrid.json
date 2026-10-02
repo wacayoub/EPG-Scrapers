@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-10-02T14:40:45.672434+00:00",
+  "generated_utc": "2026-10-02T16:32:08.728490+00:00",
   "mode": "hybrid",
   "channels": 101,
-  "programmes": 9848,
-  "hybrid_programmes": 5324,
-  "arabic_native_programmes": 4524,
-  "english_title_applied": 5324,
+  "programmes": 10453,
+  "hybrid_programmes": 5316,
+  "arabic_native_programmes": 5137,
+  "english_title_applied": 5316,
   "english_title_missing": 0,
-  "arabic_description_present": 9836,
-  "arabic_description_missing": 12,
-  "non_arabic_description_removed": 12,
+  "arabic_description_present": 9828,
+  "arabic_description_missing": 625,
+  "non_arabic_description_removed": 594,
   "profiles": {
     "AbuDhabiSports1.ae@SD": "arabic_native",
     "AbuDhabiTV.ae@SD": "arabic_native",
@@ -99,7 +99,12 @@
     "MyxMiddleEast.ph": "arabic_native",
     "osn.213": "arabic_native",
     "osn.215": "arabic_native",
-    "osn.220": "arabic_native"
+    "osn.220": "arabic_native",
+    "osn.2501": "arabic_native",
+    "Cinema1.ae@SD": "arabic_native",
+    "Cinema2.ae@SD": "arabic_native",
+    "MusicNow.ae@SD": "arabic_native",
+    "osn.9993": "arabic_native"
   },
   "samples": {
     "AbuDhabiSports1.ae@SD": {
@@ -724,6 +729,41 @@
       "description": "نشرة إخبارية ليلية تغطي أهم العناوين الرئيسية في الفلبين. قدمها صحفيون متمرسون لوتشي كروز فالديس ورافي تولفو وإد لينجاو وشيريل كوزيم ولورد دي فيرا.",
       "title_has_arabic": true,
       "description_has_arabic": true
+    },
+    "osn.2501": {
+      "profile": "arabic_native",
+      "title": "Aesr Jeddah",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
+    },
+    "Cinema1.ae@SD": {
+      "profile": "arabic_native",
+      "title": "Rough Raghda",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
+    },
+    "Cinema2.ae@SD": {
+      "profile": "arabic_native",
+      "title": "A Clash in the Nile",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
+    },
+    "MusicNow.ae@SD": {
+      "profile": "arabic_native",
+      "title": "Heloo Hal'ad",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
+    },
+    "osn.9993": {
+      "profile": "arabic_native",
+      "title": "IHF Men's Club World Championship",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
     }
   }
 }
