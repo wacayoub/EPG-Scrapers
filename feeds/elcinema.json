@@ -1,20 +1,22 @@
 {
   "label": "elcinema",
   "channels": 103,
-  "active_channels": 101,
-  "zero_epg_channels": 2,
+  "active_channels": 99,
+  "zero_epg_channels": 4,
   "zero_epg_ids": [
     "ATV.kw@SD",
+    "ElWatania1.tn@SD",
+    "ElWatania2.tn@SD",
     "SalamTV.ly@SD"
   ],
   "input_channels": 103,
-  "coverage_pct": 98.1,
-  "programmes": 4360,
+  "coverage_pct": 96.1,
+  "programmes": 4243,
   "rejected_invalid_time": 0,
-  "inferred_stop": 0,
+  "inferred_stop": 1,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 215883,
-  "sha256": "8f0f493167f703ffefa2af2fc5fc60f7e8cc909dbace5c75b7007ea99c7c4934",
-  "generated_utc": "2026-10-01T20:10:28.097777+00:00"
+  "size_bytes": 218099,
+  "sha256": "9655ea5dec93a36a7a8128c7a38858923edd17cf4331605da7a111c81694343a",
+  "generated_utc": "2026-10-02T12:00:34.290831+00:00"
 }
