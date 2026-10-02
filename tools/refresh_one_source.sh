@@ -137,6 +137,16 @@ PY
       output/source-build/osn.other.en.raw.xml \
       output/source-build/osn.en.raw.xml
 
+    # OSN remains authoritative. Fill only IDs that still have no future EPG
+    # using fallbacks already verified by the repository audits.
+    python tools/osn_zero_epg_fallback.py \
+      --input output/source-build/osn.raw.xml \
+      --output output/source-build/osn.fallback.raw.xml \
+      --report reports/osn-zero-epg-fallback.json || true
+    if [ -s output/source-build/osn.fallback.raw.xml ]; then
+      mv output/source-build/osn.fallback.raw.xml output/source-build/osn.raw.xml
+    fi
+
     if has_programmes output/source-build/osn.raw.xml && has_programmes output/source-build/osn.en.raw.xml; then
       python tools/osn_hybrid.py \
         --arabic output/source-build/osn.raw.xml \
