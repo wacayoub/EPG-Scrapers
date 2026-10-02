@@ -211,6 +211,68 @@ def main() -> int:
 
     report["official_package_probe"] = package_probe
     report["official_schedule_probe"] = schedule_probe
+
+    # Extract the channel catalogue bundled in the current TV-guide frontend.
+    # OSN currently ships an object keyed by Android and Legacy.
+    bundled_catalogues = []
+    for kind, url, script_text in texts:
+        if kind != "script" or "JSON.parse('" not in script_text:
+            continue
+        pos = 0
+        while True:
+            start = script_text.find("JSON.parse('", pos)
+            if start < 0:
+                break
+            i = start + len("JSON.parse('")
+            buf = []
+            escaped = False
+            while i < len(script_text):
+                ch = script_text[i]
+                if escaped:
+                    buf.append("\\" + ch)
+                    escaped = False
+                    i += 1
+                    continue
+                if ch == "\\":
+                    escaped = True
+                    i += 1
+                    continue
+                if ch == "'":
+                    break
+                buf.append(ch)
+                i += 1
+            pos = i + 1
+            raw = "".join(buf)
+            if "Android" not in raw and "Legacy" not in raw:
+                continue
+            try:
+                decoded = bytes(raw, "utf-8").decode("unicode_escape")
+                obj = json.loads(decoded)
+            except Exception:
+                continue
+            if not isinstance(obj, dict):
+                continue
+            if "Android" not in obj and "Legacy" not in obj:
+                continue
+            summary = {"url": url, "groups": {}}
+            for group, rows in obj.items():
+                if not isinstance(rows, list):
+                    continue
+                summary["groups"][group] = {
+                    "channels": len(rows),
+                    "items": [
+                        {
+                            "title": str(x.get("title") or ""),
+                            "guid": str(x.get("guid") or ""),
+                            "otaChannelNumber": str(x.get("otaChannelNumber") or ""),
+                            "genre": x.get("genre") if isinstance(x.get("genre"), list) else [],
+                            "package": x.get("package") if isinstance(x.get("package"), list) else [],
+                        }
+                        for x in rows if isinstance(x, dict)
+                    ],
+                }
+            bundled_catalogues.append(summary)
+    report["bundled_catalogues"] = bundled_catalogues
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -222,6 +284,10 @@ def main() -> int:
         for k, v in package_probe.items()
     }, ensure_ascii=False))
     print("OSN_OFFICIAL_SCHEDULES", json.dumps(schedule_probe, ensure_ascii=False))
+    print("OSN_BUNDLED_CATALOGUES", json.dumps([
+        {"url": x["url"], "groups": {k: v["channels"] for k, v in x["groups"].items()}}
+        for x in bundled_catalogues
+    ], ensure_ascii=False))
     for item in report["hits"]:
         important = {
             k: v for k, v in item["matches"].items()
