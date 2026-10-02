@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-02T14:25:35.853675+00:00",
+  "generated_utc": "2026-10-02T14:35:19.029965+00:00",
   "policy": "ElCinema first; local production fallback; EPGShare last resort; official Al-Manar; never replace healthy ElCinema EPG",
   "before_future": {
     "2MMonde.ma@SD": 0,
@@ -31,7 +31,7 @@
     "AlManar.lb@SD": {
       "source": "official:manartv.com.lb",
       "programmes_added": 29,
-      "future_programmes": 10
+      "future_programmes": 9
     },
     "BahrainTV.bh@SD": {
       "source": "stctv:Bahrain TV",
@@ -56,12 +56,12 @@
     "NationalGeographicAbuDhabi.ae@SD": {
       "source": "starzplay:NatGeo Abu Dhabi",
       "programmes_added": 69,
-      "future_programmes": 65
+      "future_programmes": 64
     },
     "NationalGeographicMiddleEast.uk@SD": {
       "source": "stctv:Nat Geo",
       "programmes_added": 66,
-      "future_programmes": 65
+      "future_programmes": 64
     },
     "StarMoviesMiddleEast.ae@SD": {
       "source": "stctv:Star Movies",
@@ -71,18 +71,18 @@
     "KTV1.kw@SD": {
       "source": "epgshare:AE1:Kuwait.TV.1.HD.ae",
       "programmes_added": 118,
-      "future_programmes": 105
+      "future_programmes": 104
     },
     "QatarTelevision.qa@SD": {
       "source": "epgshare:AE1:Qatar.TV.HD.ae",
       "programmes_added": 152,
-      "future_programmes": 119
+      "future_programmes": 118
     }
   },
   "external": {
     "almanar": {
       "status": 200,
-      "bytes": 45979,
+      "bytes": 45999,
       "programmes_parsed": 29,
       "schedule_date": "2026-10-02",
       "timezone": "Asia/Beirut",
@@ -99,15 +99,15 @@
     "2MMonde.ma@SD": 66,
     "ATV.kw@SD": 0,
     "AbuDhabiTV.ae@SD": 65,
-    "AlManar.lb@SD": 10,
+    "AlManar.lb@SD": 9,
     "BahrainTV.bh@SD": 49,
     "CBCSofra.eg@SD": 49,
     "DiscoveryChannelMiddleEastAfrica.us@SD": 62,
     "FoxActionMoviesMENA.hk@SD": 24,
-    "KTV1.kw@SD": 105,
-    "NationalGeographicAbuDhabi.ae@SD": 65,
-    "NationalGeographicMiddleEast.uk@SD": 65,
-    "QatarTelevision.qa@SD": 119,
+    "KTV1.kw@SD": 104,
+    "NationalGeographicAbuDhabi.ae@SD": 64,
+    "NationalGeographicMiddleEast.uk@SD": 64,
+    "QatarTelevision.qa@SD": 118,
     "SalamTV.ly@SD": 0,
     "StarMoviesMiddleEast.ae@SD": 29
   },
