@@ -148,19 +148,17 @@ jobs:
           cfg="./sites/osn.com/osn.com.config.js"
           cp "$cfg" "$cfg.epgmanager.orig"
 
-          # OSN's web site can expose a richer channel set than the Android
-          # catalogue. Probe the known platform variants and keep the largest
-          # catalogue that works for both Arabic and English. The selected
-          # platform remains patched in the vendored config so the subsequent
-          # grab step queries the same channel universe.
-          best_platform="Android"
-          best_rows=0
-          for platform in Android Web web Website iOS IOS SmartTV; do
+          best_alt_platform=""
+          best_alt_rows=0
+
+          for platform in Android Other other Others OTHER Web web Website iOS IOS SmartTV; do
             cp "$cfg.epgmanager.orig" "$cfg"
             sed -i "s/platform=Android/platform=${platform}/g" "$cfg"
+            sed -i "s/boxAndroid/box${platform}/g" "$cfg"
 
-            ar_out="$GITHUB_WORKSPACE/output/source-build/osn_probe_${platform}_ar.channels.xml"
-            en_out="$GITHUB_WORKSPACE/output/source-build/osn_probe_${platform}_en.channels.xml"
+            slug="$(printf '%s' "$platform" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9')"
+            ar_out="$GITHUB_WORKSPACE/output/source-build/osn_probe_${slug}_ar.channels.xml"
+            en_out="$GITHUB_WORKSPACE/output/source-build/osn_probe_${slug}_en.channels.xml"
             rm -f "$ar_out" "$en_out"
 
             npm run channels:parse -- --config="$cfg" --output="$ar_out" --set="lang:ar" >/tmp/osn-ar.log 2>&1
@@ -176,35 +174,31 @@ jobs:
             [ "$en_rows" -lt "$score" ] && score="$en_rows"
 
             echo "OSN platform=${platform}: ar=${ar_rows} en=${en_rows} rc_ar=${ar_rc} rc_en=${en_rc}"
-            grep -Ei '>(Alfa|Alpha|OSN.*Cinema|.*Musalsalat|.*Series).*<' "$ar_out" 2>/dev/null || true
+            grep -Ei '>(Alfa|Alpha|Cinema One|ANC|MYX|Kapatid|CineMo|Filipino|GMA|OSN.*Cinema|.*Musalsalat|.*Series).*<' "$ar_out" 2>/dev/null || true
 
-            if [ "$ar_rc" -eq 0 ] && [ "$en_rc" -eq 0 ] && [ "$score" -gt "$best_rows" ]; then
-              best_rows="$score"
-              best_platform="$platform"
+            if [ "$platform" = "Android" ] && [ "$ar_rc" -eq 0 ] && [ "$en_rc" -eq 0 ] && [ "$score" -gt 0 ]; then
+              cp "$ar_out" "$GITHUB_WORKSPACE/output/source-build/osn_live_android_ar.channels.xml"
+              cp "$en_out" "$GITHUB_WORKSPACE/output/source-build/osn_live_android_en.channels.xml"
+              cp "$ar_out" "$GITHUB_WORKSPACE/output/source-build/osn_live_ar.channels.xml"
+              cp "$en_out" "$GITHUB_WORKSPACE/output/source-build/osn_live_en.channels.xml"
+            fi
+
+            if [ "$platform" != "Android" ] && [ "$ar_rc" -eq 0 ] && [ "$en_rc" -eq 0 ] && [ "$score" -gt "$best_alt_rows" ]; then
+              best_alt_rows="$score"
+              best_alt_platform="$platform"
+              cp "$ar_out" "$GITHUB_WORKSPACE/output/source-build/osn_live_other_ar.channels.xml"
+              cp "$en_out" "$GITHUB_WORKSPACE/output/source-build/osn_live_other_en.channels.xml"
             fi
           done
 
           cp "$cfg.epgmanager.orig" "$cfg"
-          sed -i "s/platform=Android/platform=${best_platform}/g" "$cfg"
-          echo "OSN selected platform=${best_platform} rows=${best_rows}"
-
-          for lang in ar en; do
-            out="$GITHUB_WORKSPACE/output/source-build/osn_live_${lang}.channels.xml"
-            rm -f "$out"
-            npm run channels:parse -- \
-              --config="$cfg" \
-              --output="$out" \
-              --set="lang:${lang}"
-            rc=$?
-            rows="$(grep -c '<channel ' "$out" 2>/dev/null || true)"
-            if [ "$rc" -ne 0 ] || [ "${rows:-0}" -eq 0 ]; then
-              echo "OSN live catalogue ${lang} unavailable; using checked-in fallback."
-              rm -f "$out"
-            else
-              echo "OSN live catalogue ${lang}: $rows channels"
-              grep -Ei '>(Alfa|Alpha|OSN.*Cinema|.*Musalsalat|.*Series).*<' "$out" 2>/dev/null || true
-            fi
-          done
+          if [ -n "$best_alt_platform" ]; then
+            printf '%s\n' "$best_alt_platform" > "$GITHUB_WORKSPACE/output/source-build/osn_other_platform.txt"
+            echo "OSN Other platform selected=${best_alt_platform} rows=${best_alt_rows}"
+          else
+            rm -f "$GITHUB_WORKSPACE/output/source-build/osn_other_platform.txt"
+            echo "OSN Other platform unavailable; Android remains primary."
+          fi
           exit 0
 
       - name: Refresh live beIN channel catalogue
@@ -234,6 +228,9 @@ jobs:
         if: steps.gate.outputs.run == 'true' && steps.req.outputs.upstream == 'true'
         run: |
           python tools/build_catalogues.py
+          if [ "${{ inputs.source }}" = "osn" ]; then
+            python tools/osn_complete_catalogue.py
+          fi
           if [ "${{ inputs.source }}" = "bein" ]; then
             echo "Verified beIN Kids catalogue rows:"
             grep -Ei 'xmltv_id="(JeemTV\.qa@SD|Baraem\.qa@SD|BeJunior\.qa@SD)"' output/source-build/bein.channels.xml || true
@@ -246,7 +243,7 @@ jobs:
         shell: bash
         run: |
           bash -n tools/refresh_one_source.sh
-          python -m py_compile tools/build_catalogues.py tools/publish_lkg.py tools/source_feed_pack.py tools/validate_48h.py tools/morocco_epg.py tools/aljazeera_source.py tools/starzplay_source.py tools/starzplay_api_source.py tools/stctv_source.py tools/dubaiplus_api_source.py tools/alkass_source.py tools/tunisiatv_source.py tools/tabie_source.py tools/rotana_source.py tools/sport24_source.py tools/elcinema_zero_epg_fallback.py
+          python -m py_compile tools/build_catalogues.py tools/publish_lkg.py tools/source_feed_pack.py tools/validate_48h.py tools/morocco_epg.py tools/aljazeera_source.py tools/starzplay_source.py tools/starzplay_api_source.py tools/stctv_source.py tools/dubaiplus_api_source.py tools/alkass_source.py tools/tunisiatv_source.py tools/tabie_source.py tools/rotana_source.py tools/sport24_source.py tools/elcinema_zero_epg_fallback.py tools/osn_complete_catalogue.py
 
       - name: Refresh ${{ inputs.source }} for 48h
         if: steps.gate.outputs.run == 'true'
