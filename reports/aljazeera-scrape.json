@@ -1,13 +1,13 @@
 {
   "source": "Al Jazeera Network official public schedules",
   "source_url": "https://www.aljazeera.net/video/live",
-  "generated_utc": "2026-10-03T10:37:25.375220+00:00",
+  "generated_utc": "2026-10-03T13:05:00.755793+00:00",
   "timezone_source": "Asia/Qatar",
   "timezone_output": "UTC +0000",
   "window_hours": 48,
   "channels": 4,
   "active_channels": 2,
-  "programmes": 22,
+  "programmes": 30,
   "channel_reports": {
     "AlJazeera.qa@Arabic": {
       "xmltv_id": "AlJazeera.qa@Arabic",
@@ -19,14 +19,14 @@
           "status": 200
         }
       ],
-      "programmes": 11,
+      "programmes": 9,
       "error": "",
       "graphql": {
         "status": 200,
         "url": "https://www.aljazeera.com/graphql?wp-site=aja&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
         "programmes_found": 137
       },
-      "first_start_utc": "2026-10-03T08:00:00+00:00",
+      "first_start_utc": "2026-10-03T11:00:00+00:00",
       "last_stop_utc": "2026-10-04T22:59:59+00:00"
     },
     "AlJazeera2.qa@HD": {
@@ -39,15 +39,15 @@
           "status": 200
         }
       ],
-      "programmes": 11,
+      "programmes": 21,
       "error": "",
       "graphql": {
         "status": 200,
         "url": "https://www.aljazeera.com/graphql?wp-site=aja&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule-aj2%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
         "programmes_found": 76
       },
-      "first_start_utc": "2026-10-02T23:00:00+00:00",
-      "last_stop_utc": "2026-10-04T22:59:59+00:00"
+      "first_start_utc": "2026-10-03T17:00:00+00:00",
+      "last_stop_utc": "2026-10-05T17:00:00+00:00"
     },
     "AlJazeeraMubasher.qa@SD": {
       "xmltv_id": "AlJazeeraMubasher.qa@SD",
