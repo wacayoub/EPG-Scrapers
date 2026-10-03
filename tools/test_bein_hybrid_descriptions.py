@@ -47,6 +47,13 @@ class DescriptionRegression(unittest.TestCase):
         self.assertFalse(mod.is_current_live_match(short, now))
         self.assertFalse(mod.is_current_live_match(replay, now))
 
+    def test_afc_champions_league_two_competition_is_arabic(self):
+        node = programme("Al Wahda vs Kuwait - AFC Champions League Two 2026/27")
+        mod.ensure_arabic_desc_fallback(node, node.get("channel"))
+        desc = mod.text_of(node, "desc")
+        self.assertIn("دوري أبطال آسيا 2", desc)
+        self.assertNotIn(" ضمن دوري أبطال آسيا Two", desc)
+
     def test_news_channel_gets_arabic_news_description(self):
         node = programme("Al Jawla", channel="beINSportsNews.qa@SD")
         self.assertTrue(mod.ensure_arabic_desc_fallback(node, node.get("channel")))
