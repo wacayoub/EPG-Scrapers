@@ -33,7 +33,7 @@ TIME_TOKEN_RE = re.compile(r"(?<!\d)@?\d{1,2}:\d{2}(?!\d)")
 TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
 
 BEIN_SPORTS_NEWS_IDS = {
-    "beINSportsNews.qa@SD",
+    "beinsportsnews.qa@sd",
 }
 
 # Deterministic beIN SPORTS NEWS vocabulary. Unknown news titles fall back to
@@ -48,6 +48,32 @@ SPORTS_NEWS_TITLES = {
     "Three O'Clock bulletin": "نشرة الثالثة",
     "Three O’Clock bulletin": "نشرة الثالثة",
     "All - Sports": "جميع الرياضات",
+    "Al Jawla": "الجولة",
+    "Al Jawla - Live Studio": "الجولة - الاستوديو المباشر",
+    "ATP": "جولة التنس للمحترفين",
+    "ATP Tennis": "جولة التنس للمحترفين",
+    "Ligue 1 Show": "ملخص الدوري الفرنسي",
+    "Asian Games": "دورة الألعاب الآسيوية",
+    "beIN SPORTS NEWS": "أخبار beIN SPORTS",
+}
+
+MATCHUP_RE = re.compile(r"^\s*(.+?)\s+(?:vs\.?|v)\s+(.+?)(?:\s+-\s+(.+))?\s*$", re.I)
+REPLAY_RE = re.compile(r"\b(replay|repeat|highlights?|recap|delayed|rerun|magazine)\b", re.I)
+GENERIC_DESC_RE = re.compile(r"^(?:برنامج رياضي يُعرض على قنوات beIN SPORTS\.?|برنامج يُعرض ضمن باقة beIN باللغة العربية\.?)$", re.I)
+
+COMPETITION_AR = {
+    "UEFA Nations League": "دوري الأمم الأوروبية",
+    "UEFA Champions League": "دوري أبطال أوروبا",
+    "UEFA Europa League": "الدوري الأوروبي",
+    "UEFA Conference League": "دوري المؤتمر الأوروبي",
+    "English Premier League": "الدوري الإنجليزي الممتاز",
+    "Premier League": "الدوري الإنجليزي الممتاز",
+    "LaLiga": "الدوري الإسباني",
+    "La Liga": "الدوري الإسباني",
+    "Serie A": "الدوري الإيطالي",
+    "Bundesliga": "الدوري الألماني",
+    "Ligue 1": "الدوري الفرنسي",
+    "AFC Champions League": "دوري أبطال آسيا",
 }
 
 ARABIC_NATIVE_PACKAGE_IDS = {
@@ -310,12 +336,21 @@ def ensure_arabic_desc(node: ET.Element, tr: Translator) -> tuple[int, int]:
             child.set("lang", "ar")
     return translated, remaining
 
-def ensure_arabic_desc_fallback(node: ET.Element, channel: str) -> bool:
-    if text_of(node, "desc"):
-        return False
+def ensure_arabic_desc_fallback(node: ET.Element, channel: str, tr=None) -> bool:
+    old = text_of(node, "desc")
     title = text_of(node, "title")
     cid = (channel or "").casefold()
-    if "movie" in cid:
+    if cid in BEIN_SPORTS_NEWS_IDS:
+        title_key = re.sub(r"\s+", " ", title).strip().casefold()
+        if "الجولة" in title_key or "al jawla" in title_key:
+            desc = "برنامج رياضي إخباري يستعرض أبرز نتائج المباريات وأحداث الجولة."
+        elif "نشرة" in title_key or "أخبار" in title_key:
+            desc = "نشرة beIN SPORTS NEWS لأبرز الأخبار والتقارير الرياضية."
+        elif "الحصاد" in title_key or "الحصيلة" in title_key:
+            desc = "برنامج beIN SPORTS NEWS يلخص أبرز الأحداث والنتائج الرياضية."
+        else:
+            desc = "برنامج إخباري رياضي من beIN SPORTS NEWS يعرض الأخبار والتقارير الرياضية."
+    elif "movie" in cid:
         desc = "فيلم يُعرض على قنوات beIN Movies."
     elif "series" in cid or "drama" in cid:
         desc = "مسلسل أو برنامج درامي يُعرض على قنوات beIN."
@@ -329,12 +364,79 @@ def ensure_arabic_desc_fallback(node: ET.Element, channel: str) -> bool:
         desc = "برنامج يُعرض ضمن باقة beIN."
     else:
         desc = "برنامج رياضي يُعرض على قنوات beIN SPORTS."
-    if title:
-        # Do not translate or alter the English title; description stays Arabic.
-        desc = desc
-    d = ET.SubElement(node, "desc")
+    # Replace the old empty-content fallback and English text that could not be
+    # translated. Keep real Arabic descriptions untouched.
+    if old and not GENERIC_DESC_RE.match(old) and is_arabic(old):
+        return False
+    m = MATCHUP_RE.match(title)
+    if m and not REPLAY_RE.search(title):
+        team_a, team_b, competition = (x.strip() if x else "" for x in m.groups())
+        if competition:
+            for en, ar in sorted(COMPETITION_AR.items(), key=lambda x: -len(x[0])):
+                competition = re.sub(re.escape(en), ar, competition, flags=re.I)
+            if re.search(r"[A-Za-z]{3,}", competition) and tr is not None:
+                translated = tr.translate_ar(competition)
+                if translated and is_arabic(translated):
+                    competition = translated
+        desc = f"مباراة بين {team_a} و{team_b}"
+        if competition:
+            desc += f" ضمن {competition}"
+        desc += "."
+    if old:
+        d = node.find("desc")
+        if d is None:
+            d = ET.SubElement(node, "desc")
+    else:
+        d = ET.SubElement(node, "desc")
     d.set("lang", "ar")
     d.text = desc
+    return True
+
+
+def xmltv_datetime(value: str):
+    """Parse an XMLTV timestamp, including its optional numeric UTC offset."""
+    match = re.match(r"^(\d{14})(?:\s*([+-]\d{4}))?$", (value or "").strip())
+    if not match:
+        return None
+    stamp, offset = match.groups()
+    try:
+        if offset:
+            return datetime.strptime(stamp + offset, "%Y%m%d%H%M%S%z")
+        return datetime.strptime(stamp, "%Y%m%d%H%M%S").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
+
+def is_current_live_match(node: ET.Element, now=None) -> bool:
+    """Infer live only for a full-length matchup whose scheduled slot is active."""
+    title = text_of(node, "title")
+    if not MATCHUP_RE.match(title) or REPLAY_RE.search(title):
+        return False
+    if re.search(r"\b(pre|post)[ -]?match\b|studio|magazine|highlights?|recap", title, re.I):
+        return False
+    start = xmltv_datetime(node.get("start", ""))
+    stop = xmltv_datetime(node.get("stop", ""))
+    if not start or not stop or stop <= start:
+        return False
+    duration = (stop - start).total_seconds() / 60
+    if duration < 90 or duration > 240:
+        return False
+    now = now or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    return start <= now < stop
+
+
+def add_live_description_marker(node: ET.Element, now=None) -> bool:
+    if not is_current_live_match(node, now):
+        return False
+    desc = node.find("desc")
+    if desc is None or not is_arabic(desc.text or ""):
+        return False
+    if "مباشر" in (desc.text or ""):
+        return False
+    desc.text = "بث مباشر | " + (desc.text or "").strip()
+    desc.set("lang", "ar")
     return True
 
 
@@ -373,6 +475,7 @@ def main() -> int:
         "arabic_description_missing": 0,
         "descriptions_translated_to_ar": 0,
         "description_language_remaining_mismatch": 0,
+        "live_description_markers_added": 0,
         "samples": {},
     }
 
@@ -430,9 +533,11 @@ def main() -> int:
         changed,remaining=ensure_arabic_desc(p,tr)
         stats["descriptions_translated_to_ar"] += changed
         stats["description_language_remaining_mismatch"] += remaining
-        if ensure_arabic_desc_fallback(p,cid):
+        if ensure_arabic_desc_fallback(p,cid,tr):
             stats.setdefault("arabic_description_fallbacks",0)
             stats["arabic_description_fallbacks"] += 1
+        if add_live_description_marker(p):
+            stats["live_description_markers_added"] += 1
 
         title=text_of(p,"title")
         desc=text_of(p,"desc")
