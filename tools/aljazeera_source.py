@@ -12,6 +12,7 @@ individual public schedule is temporarily unavailable:
 - AlJazeera2.qa@HD
 - AlJazeeraMubasher.qa@SD
 - AlJazeeraDocumentary.qa@SD
+- AlJazeera.qa@English
 """
 from __future__ import annotations
 
@@ -56,6 +57,7 @@ CHANNELS = (
     ChannelSpec("AlJazeera2.qa@HD", "Al Jazeera 2", "/video/live/الجزيرة-2", "/schedule-aj2"),
     ChannelSpec("AlJazeeraMubasher.qa@SD", "Al Jazeera Mubasher", "/video/live/الجزيرة-مباشر"),
     ChannelSpec("AlJazeeraDocumentary.qa@SD", "Al Jazeera Documentary", "/video/live/الجزيرة-الوثائقية"),
+    ChannelSpec("AlJazeera.qa@English", "Al Jazeera English", "https://www.aljazeera.com/video/live/", "https://www.aljazeera.com/schedule"),
 )
 
 GRAPHQL_URL = "https://www.aljazeera.com/graphql"
@@ -64,6 +66,7 @@ GRAPHQL_URL = "https://www.aljazeera.com/graphql"
 GRAPHQL_PROFILES = {
     "AlJazeera.qa@Arabic": ("aja", "schedule"),
     "AlJazeera2.qa@HD": ("aja", "schedule-aj2"),
+    "AlJazeera.qa@English": ("aje", "schedule"),
 }
 
 
@@ -111,7 +114,7 @@ def discover_schedule_links(html: str, base_url: str) -> list[str]:
         label = norm_text(" ".join(a.stripped_strings))
         href = urljoin(base_url, str(a.get("href") or ""))
         parsed = urlparse(href)
-        if parsed.netloc and parsed.netloc not in {"www.aljazeera.net", "aljazeera.net", "www.ajnet.me", "ajnet.me"}:
+        if parsed.netloc and parsed.netloc not in {"www.aljazeera.net", "aljazeera.net", "www.ajnet.me", "ajnet.me", "www.aljazeera.com", "aljazeera.com"}:
             continue
         if "schedule" in parsed.path.casefold() or "جدول" in label:
             if href not in out:
@@ -321,6 +324,7 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
         "Al Jazeera 2": "الجزيرة 2",
         "Al Jazeera Mubasher": "الجزيرة مباشر",
         "Al Jazeera Documentary": "الجزيرة الوثائقية",
+        "Al Jazeera English": "الجزيرة الإنجليزية",
     }
     for spec in CHANNELS:
         ch = ET.SubElement(root, "channel", {"id": spec.xmltv_id})
@@ -440,9 +444,10 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
                 "start": fmt_utc(row["start"]),
                 "stop": fmt_utc(row["stop"]),
             })
-            ET.SubElement(p, "title", {"lang": "ar"}).text = row["title"]
+            language = "en" if spec.xmltv_id == "AlJazeera.qa@English" else "ar"
+            ET.SubElement(p, "title", {"lang": language}).text = row["title"]
             if row.get("desc"):
-                ET.SubElement(p, "desc", {"lang": "ar"}).text = row["desc"]
+                ET.SubElement(p, "desc", {"lang": language}).text = row["desc"]
         report["programmes"] = len(kept)
         if kept:
             stats["active_channels"] += 1
