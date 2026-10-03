@@ -1,43 +1,43 @@
 {
-  "generated_utc": "2026-10-03T13:04:06.692348+00:00",
+  "generated_utc": "2026-10-03T13:59:47.217880+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "sport24.xml.gz",
-      "generated_utc": "2026-10-03T13:04:06.692315+00:00",
+      "generated_utc": "2026-10-03T13:59:47.217816+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 4.0,
       "max_gap_minutes_warning": 360,
       "channels": 9,
       "invalid_times": 0,
       "orphan_programmes": 0,
-      "failed_channels": 1,
-      "warning_channels": 8,
-      "status": "FAIL",
+      "failed_channels": 0,
+      "warning_channels": 9,
+      "status": "WARN",
       "rows": [
         {
           "id": "sport24.adsports.1",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.43,
+          "future_hours": 10.5,
           "latest_stop_utc": "2026-10-04T00:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 13
+          "programmes": 12
         },
         {
           "id": "sport24.adsports.2",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.93,
-          "latest_stop_utc": "2026-10-04T00:00:00+00:00",
+          "future_hours": 10.5,
+          "latest_stop_utc": "2026-10-04T00:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 11
+          "programmes": 8
         },
         {
           "id": "sport24.adsports.3",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.93,
+          "future_hours": 10.0,
           "latest_stop_utc": "2026-10-04T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 13
@@ -46,7 +46,7 @@
           "id": "sport24.adsports.4",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.93,
+          "future_hours": 10.0,
           "latest_stop_utc": "2026-10-04T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 13
@@ -55,7 +55,7 @@
           "id": "sport24.dubaisports.1",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.43,
+          "future_hours": 10.5,
           "latest_stop_utc": "2026-10-04T00:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 9
@@ -64,23 +64,25 @@
           "id": "sport24.dubaisports.2",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 13.43,
+          "future_hours": 12.5,
           "latest_stop_utc": "2026-10-04T02:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 11
         },
         {
           "id": "sport24.thmanyah.1",
-          "status": "FAIL",
-          "reason": "NO_FUTURE_EPG",
-          "future_hours": 0.0,
-          "max_gap_minutes": null
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 10.0,
+          "latest_stop_utc": "2026-10-04T00:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 13
         },
         {
           "id": "sport24.thmanyah.2",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.93,
+          "future_hours": 10.0,
           "latest_stop_utc": "2026-10-04T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 13
@@ -89,7 +91,7 @@
           "id": "sport24.thmanyah.3",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.93,
+          "future_hours": 10.0,
           "latest_stop_utc": "2026-10-04T00:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 13
