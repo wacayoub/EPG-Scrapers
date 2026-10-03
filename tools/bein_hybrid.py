@@ -437,7 +437,7 @@ def add_live_description_marker(node: ET.Element, now=None) -> bool:
         return False
     if "مباشر" in (desc.text or ""):
         return False
-    desc.text = "بث مباشر | " + (desc.text or "").strip()
+    desc.text = "Live | " + (desc.text or "").strip()
     desc.set("lang", "ar")
     return True
 
