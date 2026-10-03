@@ -1,216 +1,120 @@
-name: EPG 48h - Daily sequential sources
+name: EPG 48h - Daily source slots
 
 on:
   schedule:
+    # 03:00 elcinema
+    - cron: "0 3 * * *"
+      timezone: "Africa/Casablanca"
+    # 03:30 aljazeera
+    - cron: "30 3 * * *"
+      timezone: "Africa/Casablanca"
+    # 04:00 osn
+    - cron: "0 4 * * *"
+      timezone: "Africa/Casablanca"
+    # 04:30 dubaiplus
+    - cron: "30 4 * * *"
+      timezone: "Africa/Casablanca"
+    # 05:00 starzplay
+    - cron: "0 5 * * *"
+      timezone: "Africa/Casablanca"
+    # 05:30 tunisiatv
+    - cron: "30 5 * * *"
+      timezone: "Africa/Casablanca"
+    # 06:00 stctv
     - cron: "0 6 * * *"
       timezone: "Africa/Casablanca"
+    # 06:30 alkass
+    - cron: "30 6 * * *"
+      timezone: "Africa/Casablanca"
+    # 07:00 shahid
+    - cron: "0 7 * * *"
+      timezone: "Africa/Casablanca"
+    # 07:30 sport24
+    - cron: "30 7 * * *"
+      timezone: "Africa/Casablanca"
+    # 08:00 bein
+    - cron: "0 8 * * *"
+      timezone: "Africa/Casablanca"
+    # 08:30 rotana
+    - cron: "30 8 * * *"
+      timezone: "Africa/Casablanca"
+    # 09:00 morocco
+    - cron: "0 9 * * *"
+      timezone: "Africa/Casablanca"
+    # 09:30 tabie
+    - cron: "30 9 * * *"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
+    inputs:
+      source:
+        description: Source to refresh
+        required: true
+        type: choice
+        default: elcinema
+        options:
+          - elcinema
+          - aljazeera
+          - osn
+          - dubaiplus
+          - starzplay
+          - tunisiatv
+          - stctv
+          - alkass
+          - shahid
+          - sport24
+          - bein
+          - rotana
+          - morocco
+          - tabie
 
 permissions:
   contents: write
 
 concurrency:
-  group: epg-daily-sequential
+  group: epg-slot-${{ github.event.schedule || inputs.source }}
   cancel-in-progress: false
 
 jobs:
-  morocco:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      source: ${{ steps.select.outputs.source }}
+    steps:
+      - name: Select source from scheduled slot
+        id: select
+        env:
+          SLOT: ${{ github.event.schedule }}
+          MANUAL_SOURCE: ${{ inputs.source }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          slots = json.loads('{"0 3 * * *":"elcinema","30 3 * * *":"aljazeera","0 4 * * *":"osn","30 4 * * *":"dubaiplus","0 5 * * *":"starzplay","30 5 * * *":"tunisiatv","0 6 * * *":"stctv","30 6 * * *":"alkass","0 7 * * *":"shahid","30 7 * * *":"sport24","0 8 * * *":"bein","30 8 * * *":"rotana","0 9 * * *":"morocco","30 9 * * *":"tabie"}')
+          source = os.environ.get("MANUAL_SOURCE") or slots.get(os.environ.get("SLOT", ""))
+          if source not in slots.values():
+              raise SystemExit("Unknown scheduled slot or source")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"source={source}\n")
+          print(f"Refreshing {source}; slot={os.environ.get('SLOT', 'manual')}")
+          PY
+
+  refresh:
+    needs: select
     uses: ./.github/workflows/refresh-source-core.yml
     with:
-      source: morocco
+      source: ${{ needs.select.outputs.source }}
       scheduled: false
     secrets: inherit
 
-  check_morocco:
-    needs: morocco
+  verify:
+    needs: [select, refresh]
     uses: ./.github/workflows/verify-source-refresh.yml
     with:
-      source: morocco
-
-  alkass:
-    needs: check_morocco
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: alkass
-      scheduled: false
-    secrets: inherit
-
-  check_alkass:
-    needs: alkass
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: alkass
-
-  tunisiatv:
-    needs: check_alkass
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: tunisiatv
-      scheduled: false
-    secrets: inherit
-
-  check_tunisiatv:
-    needs: tunisiatv
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: tunisiatv
-
-  bein:
-    needs: check_tunisiatv
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: bein
-      scheduled: false
-    secrets: inherit
-
-  check_bein:
-    needs: bein
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: bein
-
-  osn:
-    needs: check_bein
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: osn
-      scheduled: false
-    secrets: inherit
-
-  check_osn:
-    needs: osn
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: osn
-
-  shahid:
-    needs: check_osn
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: shahid
-      scheduled: false
-    secrets: inherit
-
-  check_shahid:
-    needs: shahid
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: shahid
-
-  elcinema:
-    needs: check_shahid
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: elcinema
-      scheduled: false
-    secrets: inherit
-
-  check_elcinema:
-    needs: elcinema
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: elcinema
-
-  rotana:
-    needs: check_elcinema
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: rotana
-      scheduled: false
-    secrets: inherit
-
-  check_rotana:
-    needs: rotana
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: rotana
-
-  sport24:
-    needs: check_rotana
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: sport24
-      scheduled: false
-    secrets: inherit
-
-  check_sport24:
-    needs: sport24
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: sport24
-
-  dubaiplus:
-    needs: check_sport24
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: dubaiplus
-      scheduled: false
-    secrets: inherit
-
-  check_dubaiplus:
-    needs: dubaiplus
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: dubaiplus
-
-  aljazeera:
-    needs: check_dubaiplus
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: aljazeera
-      scheduled: false
-    secrets: inherit
-
-  check_aljazeera:
-    needs: aljazeera
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: aljazeera
-
-  tabie:
-    needs: check_aljazeera
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: tabie
-      scheduled: false
-    secrets: inherit
-
-  check_tabie:
-    needs: tabie
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: tabie
-
-  starzplay:
-    needs: check_tabie
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: starzplay
-      scheduled: false
-    secrets: inherit
-
-  check_starzplay:
-    needs: starzplay
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: starzplay
-
-  stctv:
-    needs: check_starzplay
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: stctv
-      scheduled: false
-    secrets: inherit
-
-  check_stctv:
-    needs: stctv
-    uses: ./.github/workflows/verify-source-refresh.yml
-    with:
-      source: stctv
+      source: ${{ needs.select.outputs.source }}
 
   finalize:
-    needs: check_stctv
+    needs: [select, refresh, verify]
+    if: always() && needs.select.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
