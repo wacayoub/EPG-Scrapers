@@ -488,7 +488,7 @@ def main() -> int:
 
         applied=False
         arabic_native = cid in ARABIC_NATIVE_PACKAGE_IDS
-        sports_news = cid in BEIN_SPORTS_NEWS_IDS
+        sports_news = cid.casefold() in BEIN_SPORTS_NEWS_IDS
         if arabic_native:
             # Pure Arabic package channels retained in the beIN feed keep the
             # authoritative Arabic title from the Arabic beIN guide.
