@@ -80,19 +80,24 @@ T2M={
  "talk show rachid show":"رشيد شو","coran avec laureat":"القرآن مع الفائزين",
  "coran avec laureats":"القرآن مع الفائزين","coran avec lauréat":"القرآن مع الفائزين",
  "coran avec lauréats":"القرآن مع الفائزين","moudawala":"مداولة","lmktoub":"المكتوب",
- "dar nsa":"دار النسا","najm chaabi":"النجم الشعبي"}
+ "dar nsa":"دار النسا","najm chaabi":"النجم الشعبي",
+ "3ayne lkebrite":"عين الكبريت","auto moto":"السيارات والدراجات النارية","auto-moto":"السيارات والدراجات النارية",
+ "ba lahbib":"با الحبيب","chef f daro":"الطاهي في داره",
+ "dna al hayawanat":"دي إن إيه الحيوانات","des histoires et des hommes":"قصص ورجال",
+ "everybody loves touda":"الجميع يحب تودا","ghidae wa siha":"الغذاء والصحة",
+ "grand angle":"زاوية واسعة","kan ya ma kan":"كان يا ما كان",
+ "koulna mgharba":"كلنا مغاربة","les filles de lalla mennana":"بنات لالة منانة",
+ "mabrouk 3lina":"مبروك علينا","nidae":"نداء",
+ "qayd al tahqiq":"قيد التحقيق","telefilm addar al machrouka":"فيلم تلفزيوني: الدار المشروكة",
+ "yid al fellah":"يد الفلاح",
+ "capsules festival international du film de femmes de sale":"كبسولات المهرجان الدولي لفيلم المرأة بسلا"}
 
-# 2M title language policy: keep native French programme brands in French.
-T2M_KEEP_FR={
- "info soir","eco news","econews","auto moto","planete foot","planète foot",
- "ahsane patissier","ahsane pâtissier"
-}
 T2M_FORCE_AR={
  "les interventions des partis politiques":"مداخلات الأحزاب السياسية",
  "interventions des partis politiques":"مداخلات الأحزاب السياسية"
 }
 T2M_MIXED={
- "telefilm chrif moul lbaraka":"Téléfilm شريف مول البركة",
+ "telefilm chrif moul lbaraka":"فيلم تلفزيوني شريف مول البركة",
  "chrif moul lbaraka":"شريف مول البركة",
  "clips soirees chaabi":"سهرات شعبية",
  "clips soiree chaabi":"سهرة شعبية",
@@ -963,35 +968,56 @@ def valid(group,rows):
   fc=defaultdict(int)
   for e in future:fc[e.channel]+=1
   ok=len(future)>=6 and (fc["Arryadia_HD"]>=3 or fc["Arryadia_TNT"]>=3)
- elif group=="2m": ok=c["2M"]>=6
+ elif group=="2m":
+  two_m=[e for e in rr if e.channel=="2M"]
+  latin=[e for e in two_m if re.search(r"[A-Za-zÀ-ÿ]",re.sub(r"(?i)\b2M\b","",e.title or ""))]
+  ok=c["2M"]>=6 and len(latin)<=max(1,int(len(two_m)*0.05))
  elif group=="chada":
   future=sum(1 for e in rr if (e.stop or e.start+timedelta(hours=1))>now and e.start<now+timedelta(days=3))
   ok=future>=3
  else: ok=sum(c.values())>=6 and max(c.values() or [0])>=3
- return ok,"events=%d"%sum(c.values())
+ detail="events=%d"%sum(c.values())
+ if group=="2m": detail+="; untranslated_titles=%d/%d"%(len(latin),len(two_m))
+ return ok,detail
 
-def google_ar(http,text):
- if not clean(text) or ar(text): return clean(text)
+def google_ar(http,text,force=False):
+ # `force` is used for mixed-script programme names. The old early return on
+ # any Arabic character left titles such as "S1 ..." partly untranslated.
+ if not clean(text) or (ar(text) and not force): return clean(text)
+ cache=getattr(http,"_ar_translation_cache",None)
+ if cache is None:
+  cache={}
+  try:setattr(http,"_ar_translation_cache",cache)
+  except Exception:pass
+ key=(bool(force),clean(text))
+ if key in cache:return cache[key]
  try:
-  r=http.get("https://translate.googleapis.com/translate_a/single",params={"client":"gtx","sl":"auto","tl":"ar","dt":"t","q":text}); data=r.json(); y=clean("".join(x[0] for x in data[0] if x and x[0])); return y if ar(y) else clean(text)
- except Exception:return clean(text)
+  r=http.get("https://translate.googleapis.com/translate_a/single",params={"client":"gtx","sl":"auto","tl":"ar","dt":"t","q":text}); data=r.json(); y=clean("".join(x[0] for x in data[0] if x and x[0])); out=y if ar(y) else clean(text)
+ except Exception:out=clean(text)
+ cache[key]=out
+ return out
 
 def tr2m_title(http,title):
  raw=clean(title);n=norm(raw)
- if n in T2M_KEEP_FR:return raw
  if n in T2M_FORCE_AR:return T2M_FORCE_AR[n]
  if n in T2M_MIXED:return T2M_MIXED[n]
  if n in T2M:return T2M[n]
- # Deterministic policy: translate only the programme type, never invent an
- # Arabic title for an unknown proper name/brand.
+ # Translate the programme type and its name, instead of leaving unfamiliar
+ # French/Latin titles in the receiver's guide. Keep known deterministic
+ # mappings above; the provider translation is the fallback for every other
+ # title, including names with an Arabic season/episode prefix.
  for pre,apre in (("serie marocaine","مسلسل مغربي"),("serie turque","مسلسل تركي"),("serie","مسلسل"),("film marocain","فيلم مغربي"),("film","فيلم"),("documentaire","وثائقي"),("rediffusion","إعادة")):
   if n.startswith(pre+" "):
    rest=raw[len(pre):].strip(" :-")
    rn=norm(rest)
-   if rn in T2M_KEEP_FR:mapped=rest
-   else:mapped=T2M_FORCE_AR.get(rn) or T2M.get(rn) or rest
+   mapped=T2M_FORCE_AR.get(rn) or T2M.get(rn) or ""
+   if not mapped:
+    mapped=google_ar(http,rest,force=ar(rest) and bool(re.search(r"[A-Za-z]",rest)))
+   if not ar(mapped):
+    mapped=google_ar(http,rest,force=True)
    return apre+(" : "+mapped if mapped else "")
- return raw
+ translated=google_ar(http,raw,force=ar(raw) and bool(re.search(r"[A-Za-z]",raw)))
+ return translated if ar(translated) else raw
 
 def tr2m_desc(http,desc,category="",title=""):
  # Restore the stable 2M policy: category-aware Arabic descriptions, and only
@@ -1322,6 +1348,9 @@ def scrape_2m(days):
  infer(out)
  out=[ev for ev in out if ev.stop and ev.stop>now-timedelta(hours=2) and ev.start<target and ev.stop>ev.start and ev.stop-ev.start<=timedelta(hours=4)]
  log("2M strict 48h total: %d events; detail_pages=%d; cutoff=%s"%(len(out),len(detail_cache),target.isoformat()))
+ untranslated=[ev for ev in out if re.search(r"[A-Za-zÀ-ÿ]",re.sub(r"(?i)\b2M\b","",ev.title or ""))]
+ log("2M Arabic title coverage: %d/%d; remaining_latin=%d"%(len(out)-len(untranslated),len(out),len(untranslated)))
+ for ev in untranslated[:10]:log("2M untranslated title: %s"%ev.title)
  for ev in out[:20]:
   log("2M MAP %s | %s"%(ev.start.strftime("%m-%d %H:%M"),ev.title))
  return out
