@@ -6,7 +6,7 @@ Primary source: https://www.aljazeera.net/video/live and its official schedule p
 The adapter uses only publicly rendered pages and does not bypass authentication,
 geo controls, DRM, or anti-bot protections.
 
-Four receiver IDs are always retained so EPGManager can map them even when an
+Five receiver IDs are always retained so EPGManager can map them even when an
 individual public schedule is temporarily unavailable:
 - AlJazeera.qa@Arabic
 - AlJazeera2.qa@HD
@@ -114,7 +114,7 @@ def discover_schedule_links(html: str, base_url: str) -> list[str]:
         label = norm_text(" ".join(a.stripped_strings))
         href = urljoin(base_url, str(a.get("href") or ""))
         parsed = urlparse(href)
-        if parsed.netloc and parsed.netloc not in {"www.aljazeera.net", "aljazeera.net", "www.ajnet.me", "ajnet.me", "www.aljazeera.com", "aljazeera.com"}:
+        if parsed.netloc and parsed.netloc not in {"www.aljazeera.net", "aljazeera.net", "www.ajnet.me", "ajnet.me", "www.aljazeera.com", "aljazeera.com", "www.aljazeera.com", "aljazeera.com"}:
             continue
         if "schedule" in parsed.path.casefold() or "جدول" in label:
             if href not in out:
