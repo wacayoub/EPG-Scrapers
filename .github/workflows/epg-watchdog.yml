@@ -2,9 +2,7 @@ name: EPG Daily Watchdog
 
 on:
   schedule:
-    - cron: "37 8 * * *"
-      timezone: "Africa/Casablanca"
-    - cron: "37 9 * * *"
+    - cron: "37 11 * * *"
       timezone: "Africa/Casablanca"
   workflow_dispatch:
 
@@ -135,14 +133,18 @@ jobs:
           active="$(gh run list --repo "$GITHUB_REPOSITORY"             --workflow daily-source-refresh.yml             --limit 20             --json status,event             --jq '[.[] | select((.status == "queued" or .status == "in_progress") and .event == "workflow_dispatch")] | length')"
           echo "active=$active" >> "$GITHUB_OUTPUT"
 
-      - name: Dispatch source recovery
+      - name: Dispatch only stale sources
         if: steps.health.outputs.status == 'stale_sources' && steps.recovery.outputs.active == '0'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
+          STALE_SOURCES: ${{ steps.health.outputs.stale_sources }}
         run: |
-          echo "Stale sources: ${{ steps.health.outputs.stale_sources }}"
-          gh workflow run daily-source-refresh.yml --repo "$GITHUB_REPOSITORY" --ref main
+          IFS=';' read -r -a sources <<< "$STALE_SOURCES"
+          for source in "${sources[@]}"; do
+            [ -n "$source" ] || continue
+            gh workflow run daily-source-refresh.yml --repo "$GITHUB_REPOSITORY" --ref main -f "source=$source"
+          done
 
       - name: Check for MENA rebuild already running
         if: steps.health.outputs.status == 'mena_stale'
