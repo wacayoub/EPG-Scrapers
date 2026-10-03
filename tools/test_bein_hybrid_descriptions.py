@@ -31,7 +31,8 @@ class DescriptionRegression(unittest.TestCase):
         self.assertIn("France", desc)
         self.assertIn("Italy", desc)
         self.assertIn("دوري الأمم الأوروبية", desc)
-        self.assertIn("بث مباشر", desc)
+        self.assertTrue(desc.startswith("Live | "))
+        self.assertNotIn("بث مباشر", desc)
 
     def test_future_match_is_not_marked_live(self):
         node = programme("France vs Italy - UEFA Nations League", "20261003150000 +0000", "20261003180000 +0000")
