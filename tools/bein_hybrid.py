@@ -73,6 +73,8 @@ COMPETITION_AR = {
     "Serie A": "الدوري الإيطالي",
     "Bundesliga": "الدوري الألماني",
     "Ligue 1": "الدوري الفرنسي",
+    "AFC Champions League Two": "دوري أبطال آسيا 2",
+    "AFC Champions League Elite": "دوري أبطال آسيا",
     "AFC Champions League": "دوري أبطال آسيا",
 }
 
