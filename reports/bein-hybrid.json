@@ -1,21 +1,22 @@
 {
-  "generated_utc": "2026-10-03T13:44:04.708794+00:00",
+  "generated_utc": "2026-10-03T17:43:31.969910+00:00",
   "policy": "source_aware_title_ar_or_en_description_ar",
-  "programmes": 2596,
-  "arabic_native_title_kept": 837,
-  "english_title_applied": 1457,
-  "english_title_missing": 226,
-  "sports_news_titles_arabized": 74,
-  "sports_news_titles_still_non_arabic": 2,
-  "title_datetime_tokens_removed": 62,
+  "programmes": 2448,
+  "arabic_native_title_kept": 812,
+  "english_title_applied": 1484,
+  "english_title_missing": 152,
+  "sports_news_titles_arabized": 0,
+  "sports_news_titles_still_non_arabic": 0,
+  "title_datetime_tokens_removed": 90,
   "english_description_used_for_missing_ar": 0,
-  "arabic_description_present": 2596,
+  "arabic_description_present": 2448,
   "arabic_description_missing": 0,
   "descriptions_translated_to_ar": 0,
   "description_language_remaining_mismatch": 5,
+  "live_description_markers_added": 10,
   "samples": {
     "AlJazeeraDocumentary.qa@SD": {
-      "title": "مقابلة خاصة",
+      "title": "في الاقتصاد",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -27,31 +28,31 @@
       "description_has_arabic": true
     },
     "AlkassFour.qa@SD": {
-      "title": "Arabian Gulf Cup",
+      "title": "IHF World Men's Handball Championship",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "AlkassOne.qa@SD": {
-      "title": "Derby Al Kwuait",
+      "title": "The Football Review",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "AlkassSeven.qa@SD": {
-      "title": "Two and a Half",
+      "title": "Qatar Stars League",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "AlkassSix.qa@SD": {
-      "title": "Qatar Camel Festival",
+      "title": "IJF World Tour",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "AlkassThree.qa@SD": {
-      "title": "Derby Al Kwuait",
+      "title": "Derby Tunis",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -63,68 +64,68 @@
       "description_has_arabic": true
     },
     "Baraem.qa@SD": {
-      "title": "Numberblocks S1-4 EP 4 - Three",
+      "title": "E2 | S12 باديز أوف ووتر",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
-      "title_has_arabic": false,
+      "title_has_arabic": true,
       "description_has_arabic": true
     },
     "beIN4K.qa@SD": {
-      "title": "Marseille vs PSG - French Ligue 1 2026/2027",
-      "description": "خسر مرسيليا 38 مباراة أمام باريس سان جيرمان في جميع المسابقات في القرن الحادي والعشرين، وهو ما يزيد بـ 15 مباراة عن أي منافس آخر. فاز مرسيليا بواحدة فقط من آخر 13 مباراة على أرضه في الدوري الفرنسي ضد باريس سان جيرمان، على الرغم من أن هذه كانت آخر مواجهة لهم، ق",
+      "title": "Fulham v Manchester United - English Premier League 2026/2027",
+      "description": "بث مباشر | لم يحقق فولهام أي فوز في آخر 10 مباريات على أرضه في الدوري الإنجليزي الممتاز ضد مانشستر يونايتد منذ فوزه في مباراتين متتاليتين ضدهم في كرافن كوتيدج في عام 2009. خسر مانشستر يونايتد مرة واحدة فقط من آخر 21 مباراة في الدوري الإنجليزي الممتاز ضد فولهام",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINBoxOffice1.qa@SD": {
-      "title": "Ghost Team",
+      "title": "Eiffel",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINBoxOffice2.qa@SD": {
-      "title": "Batwheels - Up in the Air",
+      "title": "Grizzy and the Lemmings - Bear In Troubled Waters",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINGourmet.qa@SD": {
-      "title": "Al Dar Alkabira S2 EP 19",
+      "title": "Asian Spices S1 | E5",
       "description": "برنامج طبخ وترفيه يُعرض على قناة beIN Gourmet.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beindrama": {
-      "title": "Sorgu S1 | E1",
+      "title": "Afkaar Ummi S1 | E4",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinseries2": {
-      "title": "Moment of Truth S1 | E5",
+      "title": "King & Conqueror S1 S1",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsen1": {
-      "title": "KOR vs JPN - Football Men",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Croatia vs England - UEFA Nations League 2026/27",
+      "description": "بث مباشر | مباراة بين Croatia وEngland ضمن دوري الأمم الأوروبية 2026/27.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsen2": {
-      "title": "Wrestling - Asian Games Aichi",
+      "title": "Weightlifting - 77kg Final",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsfr1": {
-      "title": "NFL Extra",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Tunisie vs Botswana - AFCON  Qualifications",
+      "description": "مباراة بين Tunisie وBotswana ضمن تصفيات كأس الأمم الأفريقية.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMENA.beinsportsfr2": {
-      "title": "Trabzonspor vs Galatasaray - Championnat de Turquie",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Boulogne - Levallois vs Nantes",
+      "description": "مباراة بين Boulogne - Levallois وNantes.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -135,7 +136,7 @@
       "description_has_arabic": true
     },
     "beINMENA.beinsportsxtra4": {
-      "title": "Rhythmatic Gymnastics - Artistic Gymnastics",
+      "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -171,31 +172,31 @@
       "description_has_arabic": true
     },
     "beINMovies1Premiere.qa@SD": {
-      "title": "One Life",
+      "title": "Good Fortune",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMovies2Action.qa@SD": {
-      "title": "Johnny English",
+      "title": "The Woman King",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMovies3Drama.qa@SD": {
-      "title": "Up in the Air",
+      "title": "Grown Ups",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINMovies4Family.qa@SD": {
-      "title": "Little Women",
+      "title": "My Girl",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSeries1.qa@SD": {
-      "title": "Shark Tank S17 | E12",
+      "title": "America's Got Talent S21 | E22",
       "description": "مسلسل أو برنامج درامي يُعرض على قنوات beIN.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -207,26 +208,26 @@
       "description_has_arabic": true
     },
     "beINSports1.qa@MENA": {
-      "title": "France vs Italy - UEFA Nations League 2026/27",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Croatia vs England - UEFA Nations League 2026/27",
+      "description": "بث مباشر | مباراة بين Croatia وEngland ضمن دوري الأمم الأوروبية 2026/27.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports2.qa@MENA": {
-      "title": "Chesterfield vs Tranmere - EFL",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "PSG vs Leuven - UEFA Women’s Champions League 2026/2027",
+      "description": "مباراة بين PSG وLeuven ضمن دوري أبطال أوروبا للسيدات 2026/2027.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports3.qa@MENA": {
-      "title": "KOR vs JPN - Football Men",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Lesotho vs Morocco - Africa Cup of Nations ( AFCON ) Qualification 2026/2027",
+      "description": "مباراة بين Lesotho وMorocco ضمن تصفيات كأس الأمم الأفريقية 2026/2027.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports4.qa@MENA": {
-      "title": "JPN vs IRI - Gold",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Germany vs Serbia - UEFA Nations League 2026/27",
+      "description": "مباراة بين Germany وSerbia ضمن دوري الأمم الأوروبية 2026/27.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -237,8 +238,8 @@
       "description_has_arabic": true
     },
     "beINSports5.qa@MENA": {
-      "title": "TPE vs VIE - 9th Place Match",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Hungary vs Georgia - UEFA Nations League 2026/27",
+      "description": "مباراة بين Hungary وGeorgia ضمن دوري الأمم الأوروبية 2026/27.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -249,19 +250,19 @@
       "description_has_arabic": true
     },
     "beINSports7.qa@MENA": {
-      "title": "Alexander Zverev (GER) vs Juncheng Shang (CHN) - ATP 500 China Open Beijing 2026",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
+      "title": "Alex De Minaur (AUS) vs Quentin Halys (FRA) - ATP 500 China Open Beijing 2026",
+      "description": "مباراة بين Alex De Minaur (AUS) وQuentin Halys (FRA) ضمن بطولة الصين المفتوحة للاعبي التنس المحترفين 500 بكين 2026.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports8.qa@MENA": {
-      "title": "Premier Padel - Rotterdam P2",
+      "title": "Main Race Qualifying - F1 Bahrain Grand Prix",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSports9.qa@MENA": {
-      "title": "Ugo Humbert (FRA) vs Jiri Lehecka (CZE) - ATP 500 Kinoshita Group Japan Open Tennis Championships",
+      "title": "Longines Global Champions Tour - Mexico City Jumping",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -297,15 +298,15 @@
       "description_has_arabic": true
     },
     "beINSportsMax6.qa@MENA": {
-      "title": "Thenteen Wa Nos",
+      "title": "Dawri Al Radif",
       "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsNews.qa@SD": {
-      "title": "جميع الرياضات",
-      "description": "برنامج رياضي يُعرض على قنوات beIN SPORTS.",
-      "title_has_arabic": true,
+      "title": "Six O'Clock bulletin",
+      "description": "برنامج إخباري رياضي من beIN SPORTS NEWS يعرض الأخبار والتقارير الرياضية.",
+      "title_has_arabic": false,
       "description_has_arabic": true
     },
     "beINSportsXtra1.qa@SD": {
@@ -321,9 +322,9 @@
       "description_has_arabic": true
     },
     "BeJunior.qa@SD": {
-      "title": "CHOCOLIX S2 S2 | E9",
+      "title": "S1 وولفي",
       "description": "برنامج ترفيهي للأطفال يُعرض على قنوات beIN.",
-      "title_has_arabic": false,
+      "title_has_arabic": true,
       "description_has_arabic": true
     },
     "BloombergTV.us@MiddleEast": {
@@ -339,19 +340,19 @@
       "description_has_arabic": true
     },
     "ClubMTVEurope.uk@SD": {
-      "title": "بين فوغل: ريتيرن تو ذا وايلد (موسم 1، حلقة2)",
+      "title": "لايف بيلو زيرو (موسم 8، حلقة6)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "CNNArabic.ae@SD": {
-      "title": "الأخبار",
+      "title": "تذكرة عودة",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "EuronewsEnglish.fr@SD": {
-      "title": "الأخبار",
+      "title": "نشرة النشرات",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -363,7 +364,7 @@
       "description_has_arabic": true
     },
     "FoodNetworkEMEA.us@SD": {
-      "title": "فيموس هومز آند هايداويز (موسم 1، حلقة2)",
+      "title": "هاوس إن أهاري (موسم 1، حلقة5)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -375,7 +376,7 @@
       "description_has_arabic": true
     },
     "FoxArabia.ae@SD": {
-      "title": "أليكس فيرسس أمريكا (موسم 5، حلقة6)",
+      "title": "100 كوكس (موسم 1، حلقة7)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
@@ -387,37 +388,37 @@
       "description_has_arabic": true
     },
     "HGTVArabia.us@SD": {
-      "title": "نايتسليبر (موسم 1، حلقة4)",
+      "title": "سوليفانز كروسينج (موسم 1، حلقة8)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "JeemTV.qa@SD": {
-      "title": "SCIENCE GUY S2 EP 7 - COMMUNICATION",
+      "title": "E6 | S1 حين كنت بعمرك",
       "description": "برنامج يُعرض ضمن باقة beIN باللغة العربية.",
-      "title_has_arabic": false,
+      "title_has_arabic": true,
       "description_has_arabic": true
     },
     "MTV80s.uk@SD": {
-      "title": "ساوث أمريكاز ويرديست أنيمالز (موسم 1، حلقة2)",
+      "title": "جريدوس - كينج أوف ذا ماونتنز",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "MTV90s.uk@SD": {
-      "title": "برايمال سيرفايفر (موسم 1، حلقة4)",
+      "title": "ذا فوريفر ووك تشاينا (موسم 1، حلقة4)",
       "description": "برنامج يُعرض ضمن باقة beIN.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "StarMoviesMiddleEast.ae@SD": {
-      "title": "ترانسفيوجن",
+      "title": "تراكر (موسم 1)",
       "description": "فيلم يُعرض على قنوات beIN Movies.",
       "title_has_arabic": true,
       "description_has_arabic": true
     }
   },
-  "arabic_description_fallbacks": 2569,
-  "translation_cache_new": 0,
+  "arabic_description_fallbacks": 2421,
+  "translation_cache_new": 12,
   "translation_failures": []
 }
