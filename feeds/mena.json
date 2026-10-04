@@ -1,9 +1,9 @@
 {
   "label": "mena",
   "channels": 513,
-  "programmes": 31368,
-  "generated_utc": "2026-10-04T08:41:28.650967+00:00",
-  "sha256": "a518aa1881eeabdeecf5a6f90f2f64eb0708874607835fad4dabcceb8e0de7c7",
+  "programmes": 31659,
+  "generated_utc": "2026-10-04T09:23:05.072723+00:00",
+  "sha256": "b5a0d197f5a3f730c9368966d603c2b13d8d1375c18eabc174cbab78a0d63277",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -182,7 +182,7 @@
     "Fann.ae@SD": "osn",
     "Fatafeat.ae@SD": "osn",
     "FIFAPlus.uk": "starzplay",
-    "FoodNetworkEMEA.us@SD": "stctv",
+    "FoodNetworkEMEA.us@SD": "bein",
     "FoxActionMoviesMENA.hk@SD": "bein",
     "FoxArabia.ae@SD": "bein",
     "FoxMoviesMiddleEast.us@SD": "bein",
@@ -338,7 +338,7 @@
     "sport24.thmanyah.1": "stctv",
     "sport24.thmanyah.2": "stctv",
     "sport24.thmanyah.3": "stctv",
-    "StarMoviesMiddleEast.ae@SD": "elcinema",
+    "StarMoviesMiddleEast.ae@SD": "bein",
     "starzplay.227083304121": "starzplay",
     "starzplay.227083304215": "starzplay",
     "starzplay.236275240441": "starzplay",
@@ -536,53 +536,47 @@
     "ZeeAlwan.ae@SD": "elcinema"
   },
   "extensions": {
-    "beINSeries1.qa@SD": [
-      "elcinema"
-    ],
-    "CartoonNetworkArabic.ae@SD": [
-      "elcinema"
+    "AlHadath.sa@SD": [
+      "osn"
     ],
     "DubaiTV.ae@SD": [
-      "elcinema"
+      "osn"
     ],
     "LBC.sa@SD": [
       "elcinema"
     ],
     "MBC1.ae@SD": [
-      "elcinema"
+      "osn"
     ],
     "MBC3.ae@SD": [
-      "elcinema"
+      "osn"
     ],
     "MBC4.ae@SD": [
       "elcinema"
     ],
     "MBC5.ae@SD": [
-      "elcinema"
+      "osn"
     ],
     "MBCBollywood.ae@SD": [
       "elcinema"
     ],
     "MBCDrama.ae@SD": [
-      "elcinema"
+      "osn"
     ],
     "MBCIraq.iq@SD": [
-      "elcinema"
+      "osn"
     ],
     "MBCMasr.eg@SD": [
-      "elcinema"
+      "osn"
     ],
     "MBCMasr2.eg@SD": [
-      "elcinema"
+      "osn"
     ],
     "MBCPlusDrama.sa@SD": [
-      "elcinema"
+      "osn"
     ],
     "NationalGeographicAbuDhabi.ae@SD": [
       "stctv"
-    ],
-    "OmanTV.om@SD": [
-      "elcinema"
     ],
     "RotanaCinemaEgypt.eg@SD": [
       "elcinema"
@@ -600,9 +594,6 @@
       "elcinema"
     ],
     "RotanaKhalijia.sa@SD": [
-      "elcinema"
-    ],
-    "RoyaTV.jo@SD": [
       "elcinema"
     ],
     "SharjahTV.ae@SD": [
