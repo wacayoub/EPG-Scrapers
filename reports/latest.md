@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-10-04T13:21:49.752405+00:00
+Generated: 2026-10-04T13:50:05.270758+00:00
 
 Total monitored IDs: **4141**
 
@@ -12,8 +12,8 @@ Total monitored IDs: **4141**
 | DUPLICATE | 227 |
 | DUPLICATE_WINNER | 406 |
 | INVALID_SOURCE | 335 |
-| NO_EPG | 499 |
-| OK | 1161 |
+| NO_EPG | 502 |
+| OK | 1158 |
 | QUARANTINE | 933 |
 
 ## Direct feeds
@@ -24,9 +24,9 @@ Total monitored IDs: **4141**
 | alkass.xml.gz | 8 | 267 | 0 | 0 | 0 | 0 |
 | bein.xml.gz | 68 | 2813 | 0 | 0 | 0 | 1 |
 | dubaiplus.xml.gz | 9 | 402 | 0 | 0 | 0 | 0 |
-| elcinema.xml.gz | 97 | 3090 | 0 | 0 | 0 | 1 |
-| mena.xml.gz | 513 | 31496 | 0 | 0 | 0 | 4 |
-| morocco.xml.gz | 15 | 676 | 0 | 0 | 0 | 0 |
+| elcinema.xml.gz | 97 | 3090 | 0 | 0 | 0 | 3 |
+| mena.xml.gz | 513 | 31493 | 0 | 0 | 0 | 5 |
+| morocco.xml.gz | 15 | 673 | 0 | 0 | 0 | 0 |
 | osn.xml.gz | 101 | 8019 | 0 | 0 | 0 | 0 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
 | rotana.xml.gz | 9 | 264 | 0 | 0 | 0 | 2 |
