@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-04T09:22:15.872020+00:00",
+  "generated_utc": "2026-10-04T13:06:47.139559+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "bein.xml.gz",
-      "generated_utc": "2026-10-04T09:22:15.870143+00:00",
+      "generated_utc": "2026-10-04T13:06:47.137403+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 4.0,
       "max_gap_minutes_warning": 90,
@@ -19,10 +19,10 @@
           "id": "AlJazeeraDocumentary.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.46,
+          "future_hours": 7.72,
           "latest_stop_utc": "2026-10-04T20:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 25
+          "programmes": 18
         },
         {
           "id": "AlkassEight.qa@SD",
@@ -35,107 +35,107 @@
           "id": "AlkassFive.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
+          "future_hours": 7.39,
           "latest_stop_utc": "2026-10-04T20:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 12
+          "programmes": 9
         },
         {
           "id": "AlkassFour.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
+          "future_hours": 7.39,
           "latest_stop_utc": "2026-10-04T20:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 14
+          "programmes": 8
         },
         {
           "id": "AlkassOne.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
-          "latest_stop_utc": "2026-10-04T20:30:00+00:00",
+          "future_hours": 31.39,
+          "latest_stop_utc": "2026-10-05T20:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 14
+          "programmes": 26
         },
         {
           "id": "AlkassSeven.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
-          "latest_stop_utc": "2026-10-04T20:30:00+00:00",
+          "future_hours": 30.89,
+          "latest_stop_utc": "2026-10-05T20:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 12
+          "programmes": 30
         },
         {
           "id": "AlkassSix.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
+          "future_hours": 7.39,
           "latest_stop_utc": "2026-10-04T20:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 11
+          "programmes": 6
         },
         {
           "id": "AlkassThree.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.38,
-          "latest_stop_utc": "2026-10-04T20:45:00+00:00",
+          "future_hours": 29.39,
+          "latest_stop_utc": "2026-10-05T18:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 9
+          "programmes": 32
         },
         {
           "id": "AlkassTwo.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
-          "latest_stop_utc": "2026-10-04T20:30:00+00:00",
+          "future_hours": 31.64,
+          "latest_stop_utc": "2026-10-05T20:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 5
+          "programmes": 21
         },
         {
           "id": "Baraem.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.06,
-          "latest_stop_utc": "2026-10-06T09:26:00+00:00",
+          "future_hours": 48.17,
+          "latest_stop_utc": "2026-10-06T13:17:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 259
+          "programmes": 264
         },
         {
           "id": "beIN4K.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.88,
-          "latest_stop_utc": "2026-10-06T10:15:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 28
+          "programmes": 27
         },
         {
           "id": "beINBoxOffice1.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 34.38,
+          "future_hours": 30.64,
           "latest_stop_utc": "2026-10-05T19:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 19
         },
         {
           "id": "beINBoxOffice2.qa@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.63,
+          "future_hours": 6.89,
           "latest_stop_utc": "2026-10-04T20:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 11
+          "programmes": 8
         },
         {
           "id": "beINGourmet.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -143,8 +143,8 @@
           "id": "beINMENA.beindrama",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-10-06T13:40:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 52
         },
@@ -152,53 +152,53 @@
           "id": "beINMENA.beinseries2",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 57
+          "programmes": 59
         },
         {
           "id": "beINMENA.beinsportsen1",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.13,
-          "latest_stop_utc": "2026-10-06T11:30:00+00:00",
+          "future_hours": 48.64,
+          "latest_stop_utc": "2026-10-06T13:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 44
+          "programmes": 48
         },
         {
           "id": "beINMENA.beinsportsen2",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.39,
+          "latest_stop_utc": "2026-10-06T13:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 28
         },
         {
           "id": "beINMENA.beinsportsfr1",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 33.63,
+          "future_hours": 29.89,
           "latest_stop_utc": "2026-10-05T19:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 20
         },
         {
           "id": "beINMENA.beinsportsfr2",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 34.63,
+          "future_hours": 30.89,
           "latest_stop_utc": "2026-10-05T20:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 18
         },
         {
           "id": "beINMENA.beinsportsxtra3",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -206,8 +206,8 @@
           "id": "beINMENA.beinsportsxtra4",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -215,8 +215,8 @@
           "id": "beINMENA.beinsportsxtra5",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -224,8 +224,8 @@
           "id": "beINMENA.beinsportsxtra6",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -233,8 +233,8 @@
           "id": "beINMENA.beinsportsxtra7",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -242,8 +242,8 @@
           "id": "beINMENA.beinsportsxtra8",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -251,8 +251,8 @@
           "id": "beINMENA.beinsportsxtra9",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -260,8 +260,8 @@
           "id": "beINMovies1Premiere.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.38,
-          "latest_stop_utc": "2026-10-06T10:45:00+00:00",
+          "future_hours": 49.14,
+          "latest_stop_utc": "2026-10-06T14:15:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -269,26 +269,26 @@
           "id": "beINMovies2Action.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.38,
-          "latest_stop_utc": "2026-10-06T09:45:00+00:00",
+          "future_hours": 49.14,
+          "latest_stop_utc": "2026-10-06T14:15:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 26
+          "programmes": 27
         },
         {
           "id": "beINMovies3Drama.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.38,
-          "latest_stop_utc": "2026-10-06T10:45:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 28
+          "programmes": 29
         },
         {
           "id": "beINMovies4Family.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.11,
-          "latest_stop_utc": "2026-10-06T09:29:00+00:00",
+          "future_hours": 49.12,
+          "latest_stop_utc": "2026-10-06T14:14:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 30
         },
@@ -296,8 +296,8 @@
           "id": "beINSeries1.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 50
         },
@@ -305,7 +305,7 @@
           "id": "beINSports.qa@MENA",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 13.13,
+          "future_hours": 9.39,
           "latest_stop_utc": "2026-10-04T22:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 5
@@ -314,26 +314,26 @@
           "id": "beINSports1.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-06T09:30:00+00:00",
+          "future_hours": 48.39,
+          "latest_stop_utc": "2026-10-06T13:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 44
+          "programmes": 54
         },
         {
           "id": "beINSports2.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 48.64,
+          "latest_stop_utc": "2026-10-06T13:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 25
         },
         {
           "id": "beINSports3.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.39,
+          "latest_stop_utc": "2026-10-06T14:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 28
         },
@@ -341,17 +341,17 @@
           "id": "beINSports4.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.35,
-          "latest_stop_utc": "2026-10-06T10:43:00+00:00",
+          "future_hours": 49.64,
+          "latest_stop_utc": "2026-10-06T14:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 35
+          "programmes": 33
         },
         {
           "id": "beINSports4KHDR.qa",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -359,8 +359,8 @@
           "id": "beINSports5.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.38,
-          "latest_stop_utc": "2026-10-06T09:45:00+00:00",
+          "future_hours": 48.64,
+          "latest_stop_utc": "2026-10-06T13:45:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 35
         },
@@ -368,44 +368,44 @@
           "id": "beINSports6.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.13,
-          "latest_stop_utc": "2026-10-06T10:30:00+00:00",
+          "future_hours": 49.39,
+          "latest_stop_utc": "2026-10-06T14:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 28
+          "programmes": 27
         },
         {
           "id": "beINSports7.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 48.39,
+          "latest_stop_utc": "2026-10-06T13:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 26
+          "programmes": 25
         },
         {
           "id": "beINSports8.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.13,
-          "latest_stop_utc": "2026-10-06T10:30:00+00:00",
+          "future_hours": 48.72,
+          "latest_stop_utc": "2026-10-06T13:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 34
+          "programmes": 33
         },
         {
           "id": "beINSports9.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.63,
-          "latest_stop_utc": "2026-10-06T12:00:00+00:00",
+          "future_hours": 51.89,
+          "latest_stop_utc": "2026-10-06T17:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 20
+          "programmes": 19
         },
         {
           "id": "beINSportsMax1.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -413,8 +413,8 @@
           "id": "beINSportsMax2.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -422,8 +422,8 @@
           "id": "beINSportsMax3.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -431,8 +431,8 @@
           "id": "beINSportsMax4.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -440,8 +440,8 @@
           "id": "beINSportsMax5.qa@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -449,26 +449,26 @@
           "id": "beINSportsMax6.qa@MENA",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
-          "latest_stop_utc": "2026-10-04T20:30:00+00:00",
+          "future_hours": 29.39,
+          "latest_stop_utc": "2026-10-05T18:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 14
+          "programmes": 29
         },
         {
           "id": "beINSportsNews.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.39,
+          "latest_stop_utc": "2026-10-06T13:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 79
+          "programmes": 84
         },
         {
           "id": "beINSportsXtra1.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 53
         },
@@ -476,8 +476,8 @@
           "id": "beINSportsXtra2.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.63,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.89,
+          "latest_stop_utc": "2026-10-06T14:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -485,80 +485,80 @@
           "id": "BeJunior.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.11,
-          "latest_stop_utc": "2026-10-06T09:29:00+00:00",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-10-06T13:13:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 275
+          "programmes": 279
         },
         {
           "id": "BloombergTV.us@MiddleEast",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.63,
+          "future_hours": 6.89,
           "latest_stop_utc": "2026-10-04T20:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 16
+          "programmes": 12
         },
         {
           "id": "CBeebiesMiddleEast.uk@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.43,
+          "future_hours": 7.69,
           "latest_stop_utc": "2026-10-04T20:48:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 63
+          "programmes": 45
         },
         {
           "id": "ClubMTVEurope.uk@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 35.21,
+          "future_hours": 31.47,
           "latest_stop_utc": "2026-10-05T20:35:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 49
+          "programmes": 44
         },
         {
           "id": "CNNArabic.ae@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.3,
+          "future_hours": 7.55,
           "latest_stop_utc": "2026-10-04T20:40:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 62
+          "programmes": 45
         },
         {
           "id": "EuronewsEnglish.fr@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.38,
+          "future_hours": 7.64,
           "latest_stop_utc": "2026-10-04T20:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 62
+          "programmes": 46
         },
         {
           "id": "Fatafeat.ae@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.13,
+          "future_hours": 7.39,
           "latest_stop_utc": "2026-10-04T20:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 17
+          "programmes": 11
         },
         {
           "id": "FoodNetworkEMEA.us@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.46,
-          "latest_stop_utc": "2026-10-04T20:50:00+00:00",
+          "future_hours": 31.72,
+          "latest_stop_utc": "2026-10-05T20:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 22
+          "programmes": 60
         },
         {
           "id": "FoxActionMoviesMENA.hk@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.63,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
+          "future_hours": 49.89,
+          "latest_stop_utc": "2026-10-06T15:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -566,17 +566,17 @@
           "id": "FoxArabia.ae@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 10.63,
+          "future_hours": 6.89,
           "latest_stop_utc": "2026-10-04T20:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 14
         },
         {
           "id": "FoxMoviesMiddleEast.us@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.61,
-          "latest_stop_utc": "2026-10-06T10:59:00+00:00",
+          "future_hours": 49.87,
+          "latest_stop_utc": "2026-10-06T14:59:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -584,46 +584,46 @@
           "id": "HGTVArabia.us@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.46,
+          "future_hours": 7.72,
           "latest_stop_utc": "2026-10-04T20:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 20
+          "programmes": 14
         },
         {
           "id": "JeemTV.qa@SD",
           "status": "PASS",
           "reason": "",
           "future_hours": 48.1,
-          "latest_stop_utc": "2026-10-06T09:28:00+00:00",
+          "latest_stop_utc": "2026-10-06T13:13:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 240
+          "programmes": 239
         },
         {
           "id": "MTV80s.uk@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.3,
+          "future_hours": 7.55,
           "latest_stop_utc": "2026-10-04T20:40:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 18
+          "programmes": 13
         },
         {
           "id": "MTV90s.uk@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.46,
+          "future_hours": 7.72,
           "latest_stop_utc": "2026-10-04T20:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 16
+          "programmes": 11
         },
         {
           "id": "StarMoviesMiddleEast.ae@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 11.38,
+          "future_hours": 7.64,
           "latest_stop_utc": "2026-10-04T20:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 10
+          "programmes": 8
         }
       ]
     }
