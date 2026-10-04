@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-10-04T11:26:18.210338+00:00
+Generated: 2026-10-04T12:41:48.546235+00:00
 
 Total monitored IDs: **4141**
 
@@ -25,13 +25,13 @@ Total monitored IDs: **4141**
 | bein.xml.gz | 68 | 2777 | 0 | 0 | 0 | 1 |
 | dubaiplus.xml.gz | 9 | 402 | 0 | 0 | 0 | 0 |
 | elcinema.xml.gz | 97 | 3090 | 0 | 0 | 0 | 1 |
-| mena.xml.gz | 513 | 31503 | 0 | 0 | 0 | 4 |
+| mena.xml.gz | 513 | 31483 | 0 | 0 | 0 | 4 |
 | morocco.xml.gz | 15 | 676 | 0 | 0 | 0 | 0 |
 | osn.xml.gz | 101 | 8019 | 0 | 0 | 0 | 0 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
 | rotana.xml.gz | 9 | 261 | 0 | 0 | 0 | 2 |
 | shahid.xml.gz | 71 | 4392 | 0 | 0 | 0 | 0 |
-| sport24.xml.gz | 9 | 114 | 0 | 0 | 0 | 1 |
+| sport24.xml.gz | 9 | 94 | 0 | 0 | 0 | 1 |
 | starzplay.xml.gz | 117 | 8101 | 0 | 0 | 0 | 0 |
 | stctv.xml.gz | 144 | 8985 | 0 | 0 | 0 | 0 |
 | tabie.xml.gz | 9 | 1171 | 0 | 0 | 0 | 9 |
