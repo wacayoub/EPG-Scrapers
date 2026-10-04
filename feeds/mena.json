@@ -1,9 +1,9 @@
 {
   "label": "mena",
-  "channels": 513,
-  "programmes": 30925,
-  "generated_utc": "2026-10-04T09:59:28.719321+00:00",
-  "sha256": "2b13a96d3930c689315c97bec6942a6e05c323a991a032373bad4e745beca8a4",
+  "channels": 514,
+  "programmes": 31026,
+  "generated_utc": "2026-10-04T10:31:08.939686+00:00",
+  "sha256": "f7a22e1b825941179cf5d1d6926b4f8d3cb3f19fa4e0f1425dd27e3ef80ab556",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -247,7 +247,7 @@
     "MTV90s.uk@SD": "bein",
     "MusicNow.ae@SD": "osn",
     "MyxMiddleEast.ph": "osn",
-    "NationalGeographicAbuDhabi.ae@SD": "stctv",
+    "NationalGeographicAbuDhabi.ae@SD": "starzplay",
     "NationalGeographicMiddleEast.uk@SD": "elcinema",
     "NessmaElJadida.tn@SD": "elcinema",
     "NickelodeonArabia.ae@SD": "osn",
@@ -308,7 +308,7 @@
     "RotanaClip.sa@SD": "rotana",
     "RotanaComedy.sa@SD": "starzplay",
     "RotanaDrama.sa@SD": "starzplay",
-    "RotanaKhalijia.sa@SD": "elcinema",
+    "RotanaKhalijia.sa@SD": "starzplay",
     "RoyaTV.jo@SD": "osn",
     "RT.ru@SD": "osn",
     "RTArabic.ru@SD": "osn",
@@ -330,7 +330,7 @@
     "shahid.977946": "shahid",
     "shahid.983124": "shahid",
     "shahid.992538": "shahid",
-    "SharjahTV.ae@SD": "stctv",
+    "SharjahTV.ae@SD": "starzplay",
     "SkyNewsArabia.ae@SD": "osn",
     "SpacetoonArabic.ae@SD": "starzplay",
     "sport24.adsports.3": "sport24",
@@ -343,11 +343,12 @@
     "starzplay.227083304215": "starzplay",
     "starzplay.236275240441": "starzplay",
     "starzplay.236276264229": "starzplay",
+    "starzplay.236276776192": "starzplay",
     "starzplay.293821992325": "starzplay",
     "starzplay.422146600308": "starzplay",
     "starzplay.459304488311": "starzplay",
     "starzplay.460049959967": "starzplay",
-    "starzplay.460050472021": "stctv",
+    "starzplay.460050472021": "starzplay",
     "starzplay.460050472022": "starzplay",
     "starzplay.460869672233": "starzplay",
     "starzplay.460871719981": "starzplay",
@@ -410,7 +411,7 @@
     "starzplay.770559016379": "starzplay",
     "starzplay.770559528171": "starzplay",
     "starzplay.770735656335": "starzplay",
-    "starzplay.770738728162": "stctv",
+    "starzplay.770738728162": "starzplay",
     "starzplay.775252520426": "starzplay",
     "starzplay.775260200087": "starzplay",
     "starzplay.775600680255": "starzplay",
@@ -539,44 +540,26 @@
     "AbuDhabiSports1.ae@SD": [
       "osn"
     ],
+    "AlArabiyaBusiness.ae@SD": [
+      "starzplay"
+    ],
+    "CartoonNetworkArabic.ae@SD": [
+      "starzplay"
+    ],
+    "CNNInternational.us@MENA": [
+      "starzplay"
+    ],
     "DubaiTV.ae@SD": [
       "osn"
-    ],
-    "LBC.sa@SD": [
-      "elcinema"
     ],
     "MBC3.ae@SD": [
       "elcinema"
     ],
-    "RotanaCinemaEgypt.eg@SD": [
-      "elcinema"
-    ],
-    "RotanaCinemaKSA.sa@SD": [
-      "elcinema"
-    ],
-    "RotanaClassic.sa@SD": [
-      "elcinema"
-    ],
-    "RotanaComedy.sa@SD": [
-      "elcinema"
-    ],
-    "RotanaDrama.sa@SD": [
-      "elcinema"
-    ],
     "RoyaTV.jo@SD": [
-      "elcinema"
+      "starzplay"
     ],
-    "starzplay.460872744016": [
-      "stctv"
-    ],
-    "StarzplaySports1.sa@HD": [
-      "stctv"
-    ],
-    "StarzplaySports2.sa@HD": [
-      "stctv"
-    ],
-    "StarzplaySports3.sa@HD": [
-      "stctv"
+    "SkyNewsArabia.ae@SD": [
+      "starzplay"
     ]
   },
   "routing_policy": "canonical channel -> healthy MAIN -> B1/B2; language/title/description quality gates; backup may extend only after selected source horizon"
