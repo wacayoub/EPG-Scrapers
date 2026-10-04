@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-10-04T13:07:20.542459+00:00
+Generated: 2026-10-04T13:21:49.752405+00:00
 
 Total monitored IDs: **4141**
 
@@ -29,7 +29,7 @@ Total monitored IDs: **4141**
 | morocco.xml.gz | 15 | 676 | 0 | 0 | 0 | 0 |
 | osn.xml.gz | 101 | 8019 | 0 | 0 | 0 | 0 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
-| rotana.xml.gz | 9 | 261 | 0 | 0 | 0 | 2 |
+| rotana.xml.gz | 9 | 264 | 0 | 0 | 0 | 2 |
 | shahid.xml.gz | 71 | 4392 | 0 | 0 | 0 | 0 |
 | sport24.xml.gz | 9 | 94 | 0 | 0 | 0 | 1 |
 | starzplay.xml.gz | 117 | 8101 | 0 | 0 | 0 | 0 |
