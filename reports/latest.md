@@ -1,8 +1,8 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-10-02T13:51:40.156786+00:00
+Generated: 2026-10-04T07:48:32.716478+00:00
 
-Total monitored IDs: **4125**
+Total monitored IDs: **4138**
 
 | Status | IDs |
 |---|---:|
@@ -12,30 +12,30 @@ Total monitored IDs: **4125**
 | DUPLICATE | 227 |
 | DUPLICATE_WINNER | 406 |
 | INVALID_SOURCE | 335 |
-| NO_EPG | 524 |
-| OK | 1120 |
+| NO_EPG | 550 |
+| OK | 1107 |
 | QUARANTINE | 933 |
 
 ## Direct feeds
 
 | Feed | IDs | Programmes | Dup IDs | Dup programmes | Invalid times | Zero EPG |
 |---|---:|---:|---:|---:|---:|---:|
-| aljazeera.xml.gz | 4 | 53 | 0 | 0 | 0 | 2 |
-| alkass.xml.gz | 8 | 284 | 0 | 0 | 0 | 0 |
-| bein.xml.gz | 68 | 2611 | 0 | 0 | 0 | 1 |
-| dubaiplus.xml.gz | 9 | 449 | 0 | 0 | 0 | 0 |
-| elcinema.xml.gz | 103 | 4243 | 0 | 0 | 0 | 4 |
-| mena.xml.gz | 504 | 30066 | 0 | 0 | 0 | 15 |
-| morocco.xml.gz | 15 | 743 | 0 | 0 | 0 | 0 |
-| osn.xml.gz | 90 | 5957 | 0 | 0 | 0 | 11 |
+| aljazeera.xml.gz | 4 | 41 | 0 | 0 | 0 | 2 |
+| alkass.xml.gz | 8 | 278 | 0 | 0 | 0 | 0 |
+| bein.xml.gz | 68 | 2376 | 0 | 0 | 0 | 24 |
+| dubaiplus.xml.gz | 9 | 433 | 0 | 0 | 0 | 0 |
+| elcinema.xml.gz | 97 | 3140 | 0 | 0 | 0 | 0 |
+| mena.xml.gz | 512 | 31282 | 0 | 0 | 0 | 25 |
+| morocco.xml.gz | 15 | 688 | 0 | 0 | 0 | 0 |
+| osn.xml.gz | 101 | 8061 | 0 | 0 | 0 | 0 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
-| rotana.xml.gz | 9 | 250 | 0 | 0 | 0 | 2 |
-| shahid.xml.gz | 71 | 4535 | 0 | 0 | 0 | 0 |
-| sport24.xml.gz | 9 | 106 | 0 | 0 | 0 | 1 |
+| rotana.xml.gz | 9 | 252 | 0 | 0 | 0 | 2 |
+| shahid.xml.gz | 71 | 4425 | 0 | 0 | 0 | 0 |
+| sport24.xml.gz | 9 | 105 | 0 | 0 | 0 | 9 |
 | starzplay.xml.gz | 116 | 7935 | 0 | 0 | 0 | 0 |
-| stctv.xml.gz | 144 | 8693 | 0 | 0 | 0 | 0 |
+| stctv.xml.gz | 144 | 8662 | 0 | 0 | 0 | 0 |
 | tabie.xml.gz | 9 | 1171 | 0 | 0 | 0 | 9 |
-| tunisiatv.xml.gz | 2 | 128 | 0 | 0 | 0 | 0 |
+| tunisiatv.xml.gz | 2 | 113 | 0 | 0 | 0 | 0 |
 | vuplus-test.xml.gz | 330 | 19769 | 0 | 0 | 0 | 326 |
 
 Interactive/filterable page: reports/epg-source-id-monitoring.html
