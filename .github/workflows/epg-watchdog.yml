@@ -38,9 +38,9 @@ jobs:
           now = datetime.now(tz)
           today = now.date()
           sources = [
-              "morocco", "alkass", "tunisiatv", "bein", "osn", "shahid",
-              "elcinema", "rotana", "sport24", "dubaiplus", "aljazeera",
-              "tabie", "starzplay", "stctv",
+              "elcinema", "aljazeera", "osn", "dubaiplus", "starzplay",
+              "tunisiatv", "stctv", "alkass", "shahid", "sport24",
+              "bein", "rotana", "morocco", "tabie",
           ]
 
           stale_sources = []
@@ -63,7 +63,7 @@ jobs:
                       data = json.loads(feed.read_text(encoding="utf-8"))
                       feed_day = local_day(data.get("generated_utc") or data.get("generated"))
                   except Exception:
-                      feed_day = None
+                      pass
 
               if feed_day == today:
                   fresh_sources.append(name)
@@ -75,15 +75,10 @@ jobs:
                   try:
                       data = json.loads(lkg.read_text(encoding="utf-8"))
                       report_day = local_day(data.get("generated_utc"))
-                      decision = (
-                          data.get("sources", {})
-                              .get(name, {})
-                              .get("decision", "")
-                      )
-                      if report_day == today and decision == "KEEP_LKG":
-                          accepted_lkg = True
+                      decision = (data.get("sources", {}).get(name, {}).get("decision", ""))
+                      accepted_lkg = report_day == today and decision == "KEEP_LKG"
                   except Exception:
-                      accepted_lkg = False
+                      pass
 
               if accepted_lkg:
                   lkg_sources.append(name)
@@ -97,7 +92,7 @@ jobs:
                   data = json.loads(mena.read_text(encoding="utf-8"))
                   mena_fresh = local_day(data.get("generated_utc") or data.get("generated")) == today
               except Exception:
-                  mena_fresh = False
+                  pass
 
           if stale_sources:
               status = "stale_sources"
@@ -123,41 +118,30 @@ jobs:
           print("mena_fresh=", mena_fresh)
           PY
 
-      - name: Check for source recovery already running
+      - name: Check whether recovery chain is already running
         if: steps.health.outputs.status == 'stale_sources'
         id: recovery
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          active="$(gh run list --repo "$GITHUB_REPOSITORY"             --workflow daily-source-refresh.yml             --limit 20             --json status,event             --jq '[.[] | select((.status == "queued" or .status == "in_progress") and .event == "workflow_dispatch")] | length')"
+          active="$(gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow daily-epg-chain.yml \
+            --limit 20 \
+            --json status \
+            --jq '[.[] | select(.status == "queued" or .status == "in_progress")] | length')"
           echo "active=$active" >> "$GITHUB_OUTPUT"
 
-      - name: Dispatch only stale sources
+      - name: Start one sequential recovery chain
         if: steps.health.outputs.status == 'stale_sources' && steps.recovery.outputs.active == '0'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          STALE_SOURCES: ${{ steps.health.outputs.stale_sources }}
         run: |
-          IFS=';' read -r -a sources <<< "$STALE_SOURCES"
-          for source in "${sources[@]}"; do
-            [ -n "$source" ] || continue
-            gh workflow run daily-source-refresh.yml --repo "$GITHUB_REPOSITORY" --ref main -f "source=$source"
-          done
+          gh workflow run daily-epg-chain.yml --repo "$GITHUB_REPOSITORY" --ref main
 
-      - name: Check for MENA rebuild already running
+      - name: Rebuild MENA only when source feeds are current
         if: steps.health.outputs.status == 'mena_stale'
-        id: mena
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          active="$(gh run list --repo "$GITHUB_REPOSITORY"             --workflow rebuild-mena-derived.yml             --limit 20             --json status,event             --jq '[.[] | select(.status == "queued" or .status == "in_progress")] | length')"
-          echo "active=$active" >> "$GITHUB_OUTPUT"
-
-      - name: Dispatch MENA-only rebuild
-        if: steps.health.outputs.status == 'mena_stale' && steps.mena.outputs.active == '0'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
