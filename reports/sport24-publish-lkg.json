@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-10-05T15:06:22.296281+00:00",
+  "generated_utc": "2026-10-05T21:49:15.582013+00:00",
   "sources": {
     "sport24": {
       "candidate": "output/final/sport24.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 9,
-        "active_channels": 8,
-        "zero_epg_channels": 1,
-        "programmes": 86,
-        "future_channels": 8,
+        "active_channels": 7,
+        "zero_epg_channels": 2,
+        "programmes": 36,
+        "future_channels": 7,
         "future_ratio": 1.0,
-        "future_horizon_hours": 11.893806367222222,
+        "future_horizon_hours": 5.179004868055555,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 9,
         "active_channels": 8,
         "zero_epg_channels": 1,
-        "programmes": 94,
-        "future_channels": 0,
-        "future_ratio": 0.0,
-        "future_horizon_hours": 0.0,
+        "programmes": 86,
+        "future_channels": 8,
+        "future_ratio": 1.0,
+        "future_horizon_hours": 5.179004066944445,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
