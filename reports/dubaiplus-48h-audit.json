@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-04T09:58:59.553476+00:00",
+  "generated_utc": "2026-10-05T10:43:07.572899+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "dubaiplus.xml.gz",
-      "generated_utc": "2026-10-04T09:58:59.553346+00:00",
+      "generated_utc": "2026-10-05T10:43:07.572806+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 90,
@@ -12,89 +12,89 @@
       "invalid_times": 0,
       "orphan_programmes": 0,
       "failed_channels": 0,
-      "warning_channels": 4,
+      "warning_channels": 3,
       "status": "WARN",
       "rows": [
         {
           "id": "DubaiOne.ae@SD",
-          "status": "WARN",
-          "reason": "INTERNAL_GAP",
-          "future_hours": 49.02,
-          "latest_stop_utc": "2026-10-06T11:00:00+00:00",
-          "max_gap_minutes": 210.0,
-          "programmes": 33
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.28,
+          "latest_stop_utc": "2026-10-07T11:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 34
         },
         {
           "id": "DubaiRacing1.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.02,
-          "latest_stop_utc": "2026-10-06T12:00:00+00:00",
+          "future_hours": 49.28,
+          "latest_stop_utc": "2026-10-07T12:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 19
+          "programmes": 10
         },
         {
           "id": "DubaiRacing2.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.02,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 53.28,
+          "latest_stop_utc": "2026-10-07T16:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 29
+          "programmes": 16
         },
         {
           "id": "DubaiSports1.ae@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 40.52,
+          "future_hours": 15.78,
           "latest_stop_utc": "2026-10-06T02:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 34
+          "programmes": 14
         },
         {
           "id": "DubaiSports2.ae@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 39.77,
+          "future_hours": 15.03,
           "latest_stop_utc": "2026-10-06T01:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 30
+          "programmes": 11
         },
         {
           "id": "DubaiTV.ae@SD",
           "status": "WARN",
           "reason": "SHORT_HORIZON",
-          "future_hours": 40.52,
+          "future_hours": 15.78,
           "latest_stop_utc": "2026-10-06T02:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 52
+          "programmes": 23
         },
         {
           "id": "DubaiZaman.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.02,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.28,
+          "latest_stop_utc": "2026-10-07T11:00:00+00:00",
           "max_gap_minutes": 55.0,
-          "programmes": 77
+          "programmes": 62
         },
         {
           "id": "NoorDubaiTV.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.08,
-          "latest_stop_utc": "2026-10-06T10:04:00+00:00",
+          "future_hours": 48.36,
+          "latest_stop_utc": "2026-10-07T11:05:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 57
+          "programmes": 58
         },
         {
           "id": "SamaDubai.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.02,
-          "latest_stop_utc": "2026-10-06T10:00:00+00:00",
+          "future_hours": 48.28,
+          "latest_stop_utc": "2026-10-07T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 71
+          "programmes": 67
         }
       ]
     }
