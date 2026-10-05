@@ -1,49 +1,6 @@
-name: EPG 48h - Daily source slots
+name: EPG 48h - Manual source refresh
 
 on:
-  schedule:
-    # 03:00 elcinema
-    - cron: "0 3 * * *"
-      timezone: "Africa/Casablanca"
-    # 03:30 aljazeera
-    - cron: "30 3 * * *"
-      timezone: "Africa/Casablanca"
-    # 04:00 osn
-    - cron: "0 4 * * *"
-      timezone: "Africa/Casablanca"
-    # 04:30 dubaiplus
-    - cron: "30 4 * * *"
-      timezone: "Africa/Casablanca"
-    # 05:00 starzplay
-    - cron: "0 5 * * *"
-      timezone: "Africa/Casablanca"
-    # 05:30 tunisiatv
-    - cron: "30 5 * * *"
-      timezone: "Africa/Casablanca"
-    # 06:00 stctv
-    - cron: "0 6 * * *"
-      timezone: "Africa/Casablanca"
-    # 06:30 alkass
-    - cron: "30 6 * * *"
-      timezone: "Africa/Casablanca"
-    # 07:00 shahid
-    - cron: "0 7 * * *"
-      timezone: "Africa/Casablanca"
-    # 07:30 sport24
-    - cron: "30 7 * * *"
-      timezone: "Africa/Casablanca"
-    # 08:00 bein
-    - cron: "0 8 * * *"
-      timezone: "Africa/Casablanca"
-    # 08:30 rotana
-    - cron: "30 8 * * *"
-      timezone: "Africa/Casablanca"
-    # 09:00 morocco
-    - cron: "0 9 * * *"
-      timezone: "Africa/Casablanca"
-    # 09:30 tabie
-    - cron: "30 9 * * *"
-      timezone: "Africa/Casablanca"
   workflow_dispatch:
     inputs:
       source:
@@ -71,99 +28,25 @@ permissions:
   contents: write
 
 concurrency:
-  group: epg-slot-${{ github.event.schedule || inputs.source }}
+  group: epg-manual-source-${{ inputs.source }}
   cancel-in-progress: false
 
 jobs:
-  select:
-    runs-on: ubuntu-latest
-    outputs:
-      source: ${{ steps.select.outputs.source }}
-    steps:
-      - name: Select source from scheduled slot
-        id: select
-        env:
-          SLOT: ${{ github.event.schedule }}
-          MANUAL_SOURCE: ${{ inputs.source }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          slots = json.loads('{"0 3 * * *":"elcinema","30 3 * * *":"aljazeera","0 4 * * *":"osn","30 4 * * *":"dubaiplus","0 5 * * *":"starzplay","30 5 * * *":"tunisiatv","0 6 * * *":"stctv","30 6 * * *":"alkass","0 7 * * *":"shahid","30 7 * * *":"sport24","0 8 * * *":"bein","30 8 * * *":"rotana","0 9 * * *":"morocco","30 9 * * *":"tabie"}')
-          source = os.environ.get("MANUAL_SOURCE") or slots.get(os.environ.get("SLOT", ""))
-          if source not in slots.values():
-              raise SystemExit("Unknown scheduled slot or source")
-          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
-              fh.write(f"source={source}\n")
-          print(f"Refreshing {source}; slot={os.environ.get('SLOT', 'manual')}")
-          PY
-
   refresh:
-    needs: select
     uses: ./.github/workflows/refresh-source-core.yml
     with:
-      source: ${{ needs.select.outputs.source }}
+      source: ${{ inputs.source }}
       scheduled: false
     secrets: inherit
 
   verify:
-    needs: [select, refresh]
+    needs: refresh
+    if: ${{ always() }}
     uses: ./.github/workflows/verify-source-refresh.yml
     with:
-      source: ${{ needs.select.outputs.source }}
+      source: ${{ inputs.source }}
 
   finalize:
-    needs: [select, refresh, verify]
-    if: always() && needs.select.result == 'success'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Build canonical MENA feed
-        run: python tools/build_derived_feeds.py
-
-      - name: Build final monitoring dashboard
-        shell: bash
-        run: |
-          set -euo pipefail
-          shopt -s nullglob
-          feeds=(feeds/*.xml.gz)
-          test "${#feeds[@]}" -gt 0
-          python tools/monitor_feeds.py "${feeds[@]}" \
-            --json reports/latest.json \
-            --md reports/latest.md \
-            --html reports/epg-source-id-monitoring.html \
-            --csv reports/epg-source-id-monitoring.csv \
-            --reports-dir reports
-
-      - name: Publish final merged feed and monitoring
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "EPG Finalizer"
-          git config user.email "actions@users.noreply.github.com"
-          git add feeds/mena.xml.gz feeds/mena.txt feeds/mena.json
-          git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv
-          git add reports/canonical-source-routing.json reports/canonical-source-routing.md
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m "Finalize daily EPG feeds $(TZ=Africa/Casablanca date +%F)"
-          for n in 1 2 3 4 5; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
-              exit 0
-            fi
-            git rebase --abort 2>/dev/null || true
-            git fetch origin main
-            git rebase origin/main
-            sleep $((n * 2))
-          done
-          exit 1
+    needs: [refresh, verify]
+    if: ${{ always() }}
+    uses: ./.github/workflows/rebuild-mena-derived.yml
