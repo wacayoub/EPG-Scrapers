@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: epg-source-${{ inputs.source }}
+  group: epg-source-publish
   cancel-in-progress: false
 
 jobs:
