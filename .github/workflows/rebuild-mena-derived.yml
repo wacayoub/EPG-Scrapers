@@ -3,26 +3,6 @@ name: Rebuild derived MENA feed
 on:
   workflow_call:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/rebuild-mena-derived.yml"
-      - "tools/build_derived_feeds.py"
-      - "tools/monitor_feeds.py"
-      - "feeds/morocco.xml.gz"
-      - "feeds/alkass.xml.gz"
-      - "feeds/tunisiatv.xml.gz"
-      - "feeds/bein.xml.gz"
-      - "feeds/dubaiplus.xml.gz"
-      - "feeds/shahid.xml.gz"
-      - "feeds/aljazeera.xml.gz"
-      - "feeds/rotana.xml.gz"
-      - "feeds/sport24.xml.gz"
-      - "feeds/osn.xml.gz"
-      - "feeds/elcinema.xml.gz"
-      - "feeds/starzplay.xml.gz"
-      - "feeds/stctv.xml.gz"
-      - "feeds/tabie.xml.gz"
 
 permissions:
   contents: write
@@ -53,12 +33,14 @@ jobs:
             python tools/build_derived_feeds.py
             shopt -s nullglob
             feeds=(feeds/*.xml.gz)
+            test "${#feeds[@]}" -gt 0
             python tools/monitor_feeds.py "${feeds[@]}" \
               --json reports/latest.json \
               --md reports/latest.md \
               --html reports/epg-source-id-monitoring.html \
               --csv reports/epg-source-id-monitoring.csv \
               --reports-dir reports
+
             git add feeds/mena.xml.gz feeds/mena.txt feeds/mena.json
             git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv
             git add reports/canonical-source-routing.json reports/canonical-source-routing.md
