@@ -1,9 +1,9 @@
 {
   "label": "mena",
   "channels": 513,
-  "programmes": 31999,
-  "generated_utc": "2026-10-05T10:43:37.735239+00:00",
-  "sha256": "d3043a74ae489a1b5c5f0af7cfb4e4dddd9da38c3c7c66167e18a35fdcc2ce2d",
+  "programmes": 32204,
+  "generated_utc": "2026-10-05T11:18:58.221222+00:00",
+  "sha256": "68abbff968c4b19f5f020b5f36e2dadec56e05344bf7844a19eb953f2a1f0b02",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -536,8 +536,12 @@
     "ZeeAlwan.ae@SD": "elcinema"
   },
   "extensions": {
+    "AlArabiyaBusiness.ae@SD": [
+      "starzplay"
+    ],
     "AlHadath.sa@SD": [
-      "osn"
+      "osn",
+      "starzplay"
     ],
     "beINMovies1Premiere.qa@SD": [
       "elcinema"
@@ -548,14 +552,17 @@
     "beINMovies3Drama.qa@SD": [
       "elcinema"
     ],
+    "CartoonNetworkArabic.ae@SD": [
+      "starzplay"
+    ],
+    "CNNInternational.us@MENA": [
+      "starzplay"
+    ],
     "DubaiTV.ae@SD": [
       "osn"
     ],
     "FoodNetworkEMEA.us@SD": [
       "stctv"
-    ],
-    "LBC.sa@SD": [
-      "elcinema"
     ],
     "MBC1.ae@SD": [
       "osn"
@@ -593,29 +600,11 @@
     "MBCPlusDrama.sa@SD": [
       "osn"
     ],
-    "NationalGeographicAbuDhabi.ae@SD": [
-      "stctv"
+    "RoyaTV.jo@SD": [
+      "starzplay"
     ],
-    "RotanaCinemaEgypt.eg@SD": [
-      "elcinema"
-    ],
-    "RotanaCinemaKSA.sa@SD": [
-      "elcinema"
-    ],
-    "RotanaClassic.sa@SD": [
-      "elcinema"
-    ],
-    "RotanaComedy.sa@SD": [
-      "elcinema"
-    ],
-    "RotanaDrama.sa@SD": [
-      "elcinema"
-    ],
-    "RotanaKhalijia.sa@SD": [
-      "elcinema"
-    ],
-    "starzplay.460050472021": [
-      "stctv"
+    "SkyNewsArabia.ae@SD": [
+      "starzplay"
     ],
     "ZeeAlwan.ae@SD": [
       "stctv"
