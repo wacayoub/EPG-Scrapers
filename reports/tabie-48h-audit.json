@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-04T14:11:06.595113+00:00",
+  "generated_utc": "2026-10-05T17:15:42.224980+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "tabie.xml.gz",
-      "generated_utc": "2026-10-04T14:11:06.595026+00:00",
+      "generated_utc": "2026-10-05T17:15:42.224918+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 24.0,
       "max_gap_minutes_warning": 180,
@@ -54,37 +54,37 @@
           "id": "QatarTelevision.qa@SD",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 9.81,
-          "latest_stop_utc": "2026-10-05T00:00:00+00:00",
-          "max_gap_minutes": 168.9,
-          "programmes": 15
+          "future_hours": 6.74,
+          "latest_stop_utc": "2026-10-06T00:00:00+00:00",
+          "max_gap_minutes": 164.3,
+          "programmes": 8
         },
         {
           "id": "QatarTelevision2.qa@SD",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 9.81,
-          "latest_stop_utc": "2026-10-05T00:00:00+00:00",
-          "max_gap_minutes": 168.9,
-          "programmes": 15
+          "future_hours": 6.74,
+          "latest_stop_utc": "2026-10-06T00:00:00+00:00",
+          "max_gap_minutes": 164.3,
+          "programmes": 8
         },
         {
           "id": "TabieKids.qa",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 9.46,
-          "latest_stop_utc": "2026-10-04T23:39:00+00:00",
-          "max_gap_minutes": 167.9,
-          "programmes": 22
+          "future_hours": 6.65,
+          "latest_stop_utc": "2026-10-05T23:55:00+00:00",
+          "max_gap_minutes": 177.3,
+          "programmes": 12
         },
         {
           "id": "TabieNow.qa",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 9.76,
-          "latest_stop_utc": "2026-10-04T23:57:00+00:00",
-          "max_gap_minutes": 178.9,
-          "programmes": 260
+          "future_hours": 6.69,
+          "latest_stop_utc": "2026-10-05T23:57:00+00:00",
+          "max_gap_minutes": 173.3,
+          "programmes": 136
         }
       ]
     }
