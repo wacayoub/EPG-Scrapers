@@ -1,0 +1,148 @@
+name: EPG 48h - Daily sequential chain
+
+on:
+  schedule:
+    - cron: "7 6 * * *"
+      timezone: "Africa/Casablanca"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config/daily-chain-trigger.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-daily-chain
+  cancel-in-progress: false
+
+jobs:
+  elcinema:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: elcinema
+      scheduled: false
+    secrets: inherit
+
+  aljazeera:
+    needs: elcinema
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: aljazeera
+      scheduled: false
+    secrets: inherit
+
+  osn:
+    needs: aljazeera
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: osn
+      scheduled: false
+    secrets: inherit
+
+  dubaiplus:
+    needs: osn
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: dubaiplus
+      scheduled: false
+    secrets: inherit
+
+  starzplay:
+    needs: dubaiplus
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: starzplay
+      scheduled: false
+    secrets: inherit
+
+  tunisiatv:
+    needs: starzplay
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: tunisiatv
+      scheduled: false
+    secrets: inherit
+
+  stctv:
+    needs: tunisiatv
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: stctv
+      scheduled: false
+    secrets: inherit
+
+  alkass:
+    needs: stctv
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: alkass
+      scheduled: false
+    secrets: inherit
+
+  shahid:
+    needs: alkass
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: shahid
+      scheduled: false
+    secrets: inherit
+
+  sport24:
+    needs: shahid
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: sport24
+      scheduled: false
+    secrets: inherit
+
+  bein:
+    needs: sport24
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: bein
+      scheduled: false
+    secrets: inherit
+
+  rotana:
+    needs: bein
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: rotana
+      scheduled: false
+    secrets: inherit
+
+  morocco:
+    needs: rotana
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: morocco
+      scheduled: false
+    secrets: inherit
+
+  tabie:
+    needs: morocco
+    if: ${{ always() }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: tabie
+      scheduled: false
+    secrets: inherit
+
+  finalize:
+    needs: tabie
+    if: ${{ always() }}
+    uses: ./.github/workflows/rebuild-mena-derived.yml
