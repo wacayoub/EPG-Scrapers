@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-05T21:47:43.632840+00:00",
+  "generated_utc": "2026-10-06T12:21:42.702565+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "alkass.xml.gz",
-      "generated_utc": "2026-10-05T21:47:43.632752+00:00",
+      "generated_utc": "2026-10-06T12:21:42.702505+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 24.0,
       "max_gap_minutes_warning": 240,
@@ -12,80 +12,80 @@
       "invalid_times": 0,
       "orphan_programmes": 0,
       "failed_channels": 0,
-      "warning_channels": 5,
+      "warning_channels": 8,
       "status": "WARN",
       "rows": [
         {
           "id": "AlkassEight.qa@SD",
           "status": "WARN",
-          "reason": "INTERNAL_GAP",
-          "future_hours": 50.2,
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
           "latest_stop_utc": "2026-10-08T00:00:00+00:00",
-          "max_gap_minutes": 252.3,
-          "programmes": 44
+          "max_gap_minutes": 0.0,
+          "programmes": 30
         },
         {
           "id": "AlkassFive.qa@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 49.2,
-          "latest_stop_utc": "2026-10-07T23:00:00+00:00",
-          "max_gap_minutes": 132.3,
-          "programmes": 44
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
+          "latest_stop_utc": "2026-10-08T00:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 25
         },
         {
           "id": "AlkassFour.qa@SD",
           "status": "WARN",
-          "reason": "INTERNAL_GAP",
-          "future_hours": 50.2,
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
           "latest_stop_utc": "2026-10-08T00:00:00+00:00",
-          "max_gap_minutes": 252.3,
-          "programmes": 44
+          "max_gap_minutes": 0.0,
+          "programmes": 30
         },
         {
           "id": "AlkassOne.qa@SD",
           "status": "WARN",
-          "reason": "INTERNAL_GAP",
-          "future_hours": 50.2,
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
           "latest_stop_utc": "2026-10-08T00:00:00+00:00",
-          "max_gap_minutes": 252.3,
-          "programmes": 44
+          "max_gap_minutes": 0.0,
+          "programmes": 30
         },
         {
           "id": "AlkassSeven.qa@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 49.2,
-          "latest_stop_utc": "2026-10-07T23:00:00+00:00",
-          "max_gap_minutes": 132.3,
-          "programmes": 44
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
+          "latest_stop_utc": "2026-10-08T00:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 25
         },
         {
           "id": "AlkassSix.qa@SD",
           "status": "WARN",
-          "reason": "INTERNAL_GAP",
-          "future_hours": 48.2,
-          "latest_stop_utc": "2026-10-07T22:00:00+00:00",
-          "max_gap_minutes": 502.3,
-          "programmes": 33
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
+          "latest_stop_utc": "2026-10-08T00:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 31
         },
         {
           "id": "AlkassThree.qa@SD",
           "status": "WARN",
-          "reason": "INTERNAL_GAP",
-          "future_hours": 48.2,
-          "latest_stop_utc": "2026-10-07T22:00:00+00:00",
-          "max_gap_minutes": 502.3,
-          "programmes": 33
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
+          "latest_stop_utc": "2026-10-08T00:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 31
         },
         {
           "id": "AlkassTwo.qa@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 49.2,
-          "latest_stop_utc": "2026-10-07T23:00:00+00:00",
-          "max_gap_minutes": 132.3,
-          "programmes": 44
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.64,
+          "latest_stop_utc": "2026-10-08T00:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 29
         }
       ]
     }
