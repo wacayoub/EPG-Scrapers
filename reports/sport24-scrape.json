@@ -6,70 +6,10 @@
       "id": "sport24.adsports.1",
       "name": "Abu Dhabi Sports 1",
       "url": "https://www.sport24.rest/channels/adsports/1",
-      "programmes": 4,
-      "status": "OK",
-      "http_status": 200,
-      "html_bytes": 82656,
-      "candidate_events": 19,
-      "parsed_json_blobs": 1,
-      "valid_timeline_events": 19,
-      "used_time_keys": [
-        "dom:data-time[0]"
-      ]
-    },
-    {
-      "id": "sport24.adsports.2",
-      "name": "Abu Dhabi Sports 2",
-      "url": "https://www.sport24.rest/channels/adsports/2",
-      "programmes": 5,
-      "status": "OK",
-      "http_status": 200,
-      "html_bytes": 84999,
-      "candidate_events": 21,
-      "parsed_json_blobs": 1,
-      "valid_timeline_events": 21,
-      "used_time_keys": [
-        "dom:data-time[0]"
-      ]
-    },
-    {
-      "id": "sport24.adsports.3",
-      "name": "Abu Dhabi Sports 3",
-      "url": "https://www.sport24.rest/channels/adsports/3",
       "programmes": 10,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 97389,
-      "candidate_events": 26,
-      "parsed_json_blobs": 1,
-      "valid_timeline_events": 26,
-      "used_time_keys": [
-        "dom:data-time[0]"
-      ]
-    },
-    {
-      "id": "sport24.adsports.4",
-      "name": "Abu Dhabi Sports 4",
-      "url": "https://www.sport24.rest/channels/adsports/4",
-      "programmes": 7,
-      "status": "OK",
-      "http_status": 200,
-      "html_bytes": 103253,
-      "candidate_events": 30,
-      "parsed_json_blobs": 1,
-      "valid_timeline_events": 30,
-      "used_time_keys": [
-        "dom:data-time[0]"
-      ]
-    },
-    {
-      "id": "sport24.dubaisports.1",
-      "name": "Dubai Sports 1",
-      "url": "https://www.sport24.rest/channels/dubaisports/1",
-      "programmes": 2,
-      "status": "OK",
-      "http_status": 200,
-      "html_bytes": 83610,
+      "html_bytes": 81284,
       "candidate_events": 18,
       "parsed_json_blobs": 1,
       "valid_timeline_events": 18,
@@ -78,13 +18,58 @@
       ]
     },
     {
-      "id": "sport24.dubaisports.2",
-      "name": "Dubai Sports 2",
-      "url": "https://www.sport24.rest/channels/dubaisports/2",
-      "programmes": 3,
+      "id": "sport24.adsports.2",
+      "name": "Abu Dhabi Sports 2",
+      "url": "https://www.sport24.rest/channels/adsports/2",
+      "programmes": 10,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 83927,
+      "html_bytes": 82733,
+      "candidate_events": 19,
+      "parsed_json_blobs": 1,
+      "valid_timeline_events": 19,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
+    },
+    {
+      "id": "sport24.adsports.3",
+      "name": "Abu Dhabi Sports 3",
+      "url": "https://www.sport24.rest/channels/adsports/3",
+      "programmes": 24,
+      "status": "OK",
+      "http_status": 200,
+      "html_bytes": 133409,
+      "candidate_events": 52,
+      "parsed_json_blobs": 1,
+      "valid_timeline_events": 52,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
+    },
+    {
+      "id": "sport24.adsports.4",
+      "name": "Abu Dhabi Sports 4",
+      "url": "https://www.sport24.rest/channels/adsports/4",
+      "programmes": 24,
+      "status": "OK",
+      "http_status": 200,
+      "html_bytes": 116167,
+      "candidate_events": 39,
+      "parsed_json_blobs": 1,
+      "valid_timeline_events": 39,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
+    },
+    {
+      "id": "sport24.dubaisports.1",
+      "name": "Dubai Sports 1",
+      "url": "https://www.sport24.rest/channels/dubaisports/1",
+      "programmes": 11,
+      "status": "OK",
+      "http_status": 200,
+      "html_bytes": 82701,
       "candidate_events": 17,
       "parsed_json_blobs": 1,
       "valid_timeline_events": 17,
@@ -93,32 +78,47 @@
       ]
     },
     {
+      "id": "sport24.dubaisports.2",
+      "name": "Dubai Sports 2",
+      "url": "https://www.sport24.rest/channels/dubaisports/2",
+      "programmes": 11,
+      "status": "OK",
+      "http_status": 200,
+      "html_bytes": 87086,
+      "candidate_events": 19,
+      "parsed_json_blobs": 1,
+      "valid_timeline_events": 19,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
+    },
+    {
       "id": "sport24.thmanyah.1",
       "name": "Thmanyah 1",
       "url": "https://www.sport24.rest/channels/thmanyah/1",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 14,
+      "status": "OK",
       "http_status": 200,
-      "html_bytes": 59774,
-      "candidate_events": 0,
+      "html_bytes": 80701,
+      "candidate_events": 15,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": []
+      "valid_timeline_events": 15,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.thmanyah.2",
       "name": "Thmanyah 2",
       "url": "https://www.sport24.rest/channels/thmanyah/2",
-      "programmes": 5,
-      "status": "OK",
+      "programmes": 0,
+      "status": "NO_TIMELINE",
       "http_status": 200,
-      "html_bytes": 66799,
-      "candidate_events": 5,
+      "html_bytes": 59776,
+      "candidate_events": 0,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 5,
-      "used_time_keys": [
-        "dom:data-time[0]"
-      ]
+      "valid_timeline_events": 0,
+      "used_time_keys": []
     },
     {
       "id": "sport24.thmanyah.3",
@@ -127,17 +127,17 @@
       "programmes": 0,
       "status": "NO_TIMELINE",
       "http_status": 200,
-      "html_bytes": 59774,
+      "html_bytes": 59776,
       "candidate_events": 0,
       "parsed_json_blobs": 1,
       "valid_timeline_events": 0,
       "used_time_keys": []
     }
   ],
-  "programmes": 36,
+  "programmes": 104,
   "channels_total": 9,
   "active_channels": 7,
   "zero_epg_channels": 2,
   "timezone_output": "UTC +0000",
-  "generated_utc": "2026-10-05T21:49:15.343292+00:00"
+  "generated_utc": "2026-10-06T12:22:48.891832+00:00"
 }
