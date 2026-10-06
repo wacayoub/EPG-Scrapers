@@ -1,9 +1,9 @@
 {
   "label": "mena",
-  "channels": 516,
-  "programmes": 32904,
-  "generated_utc": "2026-10-05T21:54:17.821544+00:00",
-  "sha256": "8efc9ee640b525dcf6f05eace2e4c889595f15c60f4d0069a55d66b9023bfb82",
+  "channels": 517,
+  "programmes": 31992,
+  "generated_utc": "2026-10-06T12:28:07.207367+00:00",
+  "sha256": "6c7b8b695baeca88313b1b4f307ecb2b02bb3a83e30c0f529eb54e9ee5f04160",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -24,8 +24,8 @@
     "2M": "morocco",
     "2MMonde.ma@SD": "elcinema",
     "AbdulmajeedAbdullah.sa@SD": "shahid",
-    "AbuDhabiSports1.ae@SD": "osn",
-    "AbuDhabiSports2.ae@SD": "stctv",
+    "AbuDhabiSports1.ae@SD": "sport24",
+    "AbuDhabiSports2.ae@SD": "sport24",
     "AbuDhabiTV.ae@SD": "osn",
     "AFLAM.ma": "morocco",
     "Aflam.sa@SD": "shahid",
@@ -168,8 +168,8 @@
     "DubaiRacing1.ae@SD": "dubaiplus",
     "DubaiRacing2.ae@SD": "stctv",
     "DubaiSports1.ae@SD": "sport24",
-    "DubaiSports2.ae@SD": "stctv",
-    "DubaiTV.ae@SD": "dubaiplus",
+    "DubaiSports2.ae@SD": "sport24",
+    "DubaiTV.ae@SD": "osn",
     "DubaiZaman.ae@SD": "elcinema",
     "EchoroukTV.dz@SD": "elcinema",
     "elcinema.1135": "elcinema",
@@ -335,7 +335,7 @@
     "SpacetoonArabic.ae@SD": "starzplay",
     "sport24.adsports.3": "sport24",
     "sport24.adsports.4": "sport24",
-    "sport24.thmanyah.1": "stctv",
+    "sport24.thmanyah.1": "sport24",
     "sport24.thmanyah.2": "stctv",
     "sport24.thmanyah.3": "stctv",
     "StarMoviesMiddleEast.ae@SD": "bein",
@@ -470,6 +470,7 @@
     "stctv.5533ca74ac4a": "stctv",
     "stctv.5ac851c48252": "stctv",
     "stctv.5c3e1fd60f8e": "stctv",
+    "stctv.5e41e47097a5": "stctv",
     "stctv.5fa334c40328": "stctv",
     "stctv.5fa4ccdd74f7": "stctv",
     "stctv.6053e29227f6": "stctv",
@@ -539,28 +540,22 @@
     "ZeeAlwan.ae@SD": "elcinema"
   },
   "extensions": {
-    "beINMovies1Premiere.qa@SD": [
-      "elcinema"
-    ],
-    "beINMovies2Action.qa@SD": [
-      "elcinema"
-    ],
-    "beINMovies3Drama.qa@SD": [
-      "elcinema"
-    ],
-    "beINSeries1.qa@SD": [
-      "elcinema"
-    ],
-    "DubaiTV.ae@SD": [
+    "AbuDhabiSports1.ae@SD": [
       "osn"
+    ],
+    "AbuDhabiSports2.ae@SD": [
+      "stctv"
+    ],
+    "DubaiSports2.ae@SD": [
+      "stctv"
+    ],
+    "Fatafeat.ae@SD": [
+      "stctv"
     ],
     "FoodNetworkEMEA.us@SD": [
       "stctv"
     ],
-    "StarMoviesMiddleEast.ae@SD": [
-      "elcinema"
-    ],
-    "starzplay.460050472021": [
+    "sport24.thmanyah.1": [
       "stctv"
     ]
   },
