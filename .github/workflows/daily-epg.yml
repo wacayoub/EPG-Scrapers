@@ -1,6 +1,12 @@
 name: Manual full EPG refresh (legacy)
 
 on:
+  # GitHub cron is UTC. 06:07 UTC = 07:07 Casablanca while Morocco is UTC+1.
+  # Two slots make the existing Casablanca gate DST/Ramadan-safe: only the slot
+  # that lands during local hour 06 is allowed to run.
+  schedule:
+    - cron: "7 5 * * *"
+    - cron: "7 6 * * *"
   workflow_dispatch:
 
 permissions:
