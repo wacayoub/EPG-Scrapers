@@ -12,24 +12,142 @@
     },
     {
       "url": "https://www.osn.com/en-sa/watch/tv-schedule",
-      "status": 406,
-      "bytes": 0
+      "status": 200,
+      "bytes": 77602
     },
     {
       "url": "https://www.osn.com/ar-sa/watch/tv-schedule",
-      "status": 406,
-      "bytes": 0
+      "status": 200,
+      "bytes": 77100
     }
   ],
-  "scripts_discovered": 1,
+  "scripts_discovered": 22,
   "scripts": [
+    {
+      "url": "https://www.osn.com/_next/static/chunks/055ec52d32037013.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/0d75c89f789ac1a8.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/112f346e31f991df.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/1b2a35b40e221c05.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/247eb132b7f7b574.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/2fa76027aa0d5f58.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/30d38ca155c7b6b1.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/5732029b1c54dfed.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/6783b8d18342081c.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/6f6e35fc220e33a0.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/73324291b87592bf.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/7f27f9630a007744.js",
+      "status": 403,
+      "bytes": 0
+    },
     {
       "url": "https://www.osn.com/_next/static/chunks/87cf1e375968671c.js",
       "status": 403,
       "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/94bde6376cf279be.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/a6dad97d9634a72d.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/c358aceaa4a41bc7.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/c462f7822a1dbf4e.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/d32c8ddb7cb3dcc6.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/e486f43878096201.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/e73dc6b0c53e2356.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/ff1a16fafef87110.js",
+      "status": 403,
+      "bytes": 0
+    },
+    {
+      "url": "https://www.osn.com/_next/static/chunks/turbopack-6f232c1636cf4d69.js",
+      "status": 403,
+      "bytes": 0
     }
   ],
-  "hits": [],
+  "hits": [
+    {
+      "kind": "page",
+      "url": "https://www.osn.com/en-sa/watch/tv-schedule",
+      "candidate_literals": [],
+      "quoted_near_other": [],
+      "matches": {
+        "platform": [
+          "lternate\" hrefLang=\"x-default\" href=\"https://www.osn.com/en-ae/watch/tv-schedule\"/><meta property=\"og:title\" content=\"TV Guide\"/><meta property=\"og:description\" content=\"Your guide to what’s on right now and everything coming up next, live.\"/><meta property=\"og:url\" content=\"https://www.osn.com/en-sa/watch/tv-schedule\"/><meta property=\"og:locale\" content=\"en-sa\"/><meta property=\"og:type\" content=\"website\"/><meta name=\"twitter:card\" content=\"summary_large_image\"/><meta name=\"twitter:title\" content=\"OSN - Middle East&#x27;s Leading Entertainment Platform | OSNtv Saudi Arabia\"/><meta name=\"twitter:description\" content=\"Discover premium entertainment content from the Middle East. Stream movies, TV shows, sports, and exclusive content on OSN.\"/><link rel=\"icon\" href=\"/favicon.ico?favicon.b63d23ad.ico\" sizes=\"256x256\" type=\"image/x-icon\"/><meta name=\"format-detection\" content=\"telephone=no, date=no, email=no, address=no\"/><link rel=\"preload\" href=\"/osn/webapp/stylesheet/fonts/faricynew-rg-webfont.woff2\" as=\"font\" type=\"font/woff2\" crossorigin=\"anonymous\"/><link rel=\"preload\" href=\"/osn/webapp/styl",
+          "ption\\\",\\\"content\\\":\\\"Your guide to what’s on right now and everything coming up next, live.\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"8\\\",{\\\"property\\\":\\\"og:url\\\",\\\"content\\\":\\\"https://www.osn.com/en-sa/watch/tv-schedule\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"9\\\",{\\\"property\\\":\\\"og:locale\\\",\\\"content\\\":\\\"en-sa\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"10\\\",{\\\"property\\\":\\\"og:type\\\",\\\"content\\\":\\\"website\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"11\\\",{\\\"name\\\":\\\"twitter:card\\\",\\\"content\\\":\\\"summary_large_image\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"12\\\",{\\\"name\\\":\\\"twitter:title\\\",\\\"content\\\":\\\"OSN - Middle East's Leading Entertainment Platform | OSNtv Saudi Arabia\\\"}],[\\\"$\\\",\\\"meta\\\",\\\"13\\\",{\\\"name\\\":\\\"twitter:description\\\",\\\"content\\\":\\\"Discover premium entertainment content from the Middle East. Stream movies, TV shows, sports, and exclusive content on OSN.\\\"}],[\\\"$\\\",\\\"link\\\",\\\"14\\\",{\\\"rel\\\":\\\"icon\\\",\\\"href\\\":\\\"/favicon.ico?favicon.b63d23ad.ico\\\",\\\"sizes\\\":\\\"256x256\\\",\\\"type\\\":\\\"image/x-icon\\\"}],[\\\"$\\\",\\\"$L12\\\",\\\"15\\\",{}]]\\n\"])</script><script>self.__next_f.push([1,\"9:null\\n\"])</script><script>self.__next_f.push([1,\"13:I[79520,[\\\"/_next/static/chunks/5732029b1c54dfed.js\\\",\\\"/_nex"
+        ]
+      }
+    }
+  ],
   "candidate_platform_literals": [],
   "official_package_probe": {
     "OSNTV_CONNECT": {
