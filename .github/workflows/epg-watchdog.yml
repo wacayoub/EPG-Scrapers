@@ -1,6 +1,8 @@
 name: EPG Daily Watchdog
 
 on:
+  schedule:
+    - cron: "37 9 * * *"
   workflow_dispatch:
 
 permissions:
