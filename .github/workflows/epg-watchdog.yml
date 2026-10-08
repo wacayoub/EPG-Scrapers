@@ -1,9 +1,6 @@
 name: EPG Daily Watchdog
 
 on:
-  schedule:
-    - cron: "37 11 * * *"
-      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:
