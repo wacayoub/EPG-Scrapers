@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-07T11:56:56.095139+00:00",
+  "generated_utc": "2026-10-08T12:12:04.712506+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "osn.xml.gz",
-      "generated_utc": "2026-10-07T11:56:56.083880+00:00",
+      "generated_utc": "2026-10-08T12:12:04.700828+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 36.0,
       "max_gap_minutes_warning": 90,
@@ -12,42 +12,42 @@
       "invalid_times": 0,
       "orphan_programmes": 0,
       "failed_channels": 0,
-      "warning_channels": 1,
+      "warning_channels": 6,
       "status": "WARN",
       "rows": [
         {
           "id": "AbuDhabiSports1.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 13
+          "programmes": 32
         },
         {
           "id": "AbuDhabiTV.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 61
+          "programmes": 62
         },
         {
           "id": "AlarabiyaPortrait.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
-          "max_gap_minutes": 36.0,
-          "programmes": 81
+          "future_hours": 48.63,
+          "latest_stop_utc": "2026-10-10T12:50:00+00:00",
+          "max_gap_minutes": 38.0,
+          "programmes": 67
         },
         {
           "id": "AlArabyTV.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 62
         },
@@ -55,17 +55,17 @@
           "id": "AlArabyTV2.qa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 61
+          "programmes": 52
         },
         {
           "id": "AlfaSeries.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -73,8 +73,8 @@
           "id": "AlfaSeriesPlus2.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -83,115 +83,115 @@
           "status": "PASS",
           "reason": "",
           "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
-          "max_gap_minutes": 0.0,
+          "latest_stop_utc": "2026-10-10T12:15:00+00:00",
+          "max_gap_minutes": 45.0,
           "programmes": 58
         },
         {
           "id": "AlQuranAlKareemTV.sa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 46
+          "programmes": 47
         },
         {
           "id": "AlraiTV.kw@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.38,
-          "latest_stop_utc": "2026-10-09T12:20:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 85
+          "programmes": 108
         },
         {
           "id": "AlSafwa.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
-          "max_gap_minutes": 4.0,
-          "programmes": 87
+          "future_hours": 48.18,
+          "latest_stop_utc": "2026-10-10T12:23:00+00:00",
+          "max_gap_minutes": 3.0,
+          "programmes": 86
         },
         {
           "id": "AlYawm.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 62
+          "programmes": 61
         },
         {
           "id": "ANC.ph",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 87
+          "programmes": 88
         },
         {
           "id": "AnimalPlanetEurope.uk@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 58
+          "programmes": 57
         },
         {
           "id": "BahrainTV.bh@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.0,
-          "latest_stop_utc": "2026-10-09T11:57:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 132
+          "programmes": 124
         },
         {
           "id": "BBCArabic.uk@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 129
+          "programmes": 121
         },
         {
           "id": "BloombergOriginals.us@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.05,
-          "latest_stop_utc": "2026-10-09T14:00:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-10-10T12:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 70
+          "programmes": 67
         },
         {
           "id": "BloombergTV.us@MiddleEast",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.05,
-          "latest_stop_utc": "2026-10-09T13:00:00+00:00",
+          "future_hours": 49.8,
+          "latest_stop_utc": "2026-10-10T14:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 41
+          "programmes": 50
         },
         {
           "id": "CartoonNetworkArabic.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-09T12:05:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 88
+          "programmes": 86
         },
         {
           "id": "CartoonNetworkMENA.uk@SD",
           "status": "PASS",
           "reason": "",
           "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "latest_stop_utc": "2026-10-10T12:15:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 252
         },
@@ -199,8 +199,8 @@
           "id": "Cinema1.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.03,
-          "latest_stop_utc": "2026-10-09T12:59:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -208,107 +208,107 @@
           "id": "Cinema2.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.03,
-          "latest_stop_utc": "2026-10-09T11:59:00+00:00",
+          "future_hours": 49.55,
+          "latest_stop_utc": "2026-10-10T13:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 26
+          "programmes": 25
         },
         {
           "id": "CineMo.ph",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 28
+          "programmes": 27
         },
         {
           "id": "CNNInternational.us@MENA",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 63
+          "programmes": 65
         },
         {
           "id": "CrimePlusInvestigation.us@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 70
+          "programmes": 69
         },
         {
           "id": "DiscoveryChannelMiddleEastAfrica.us@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.25,
-          "latest_stop_utc": "2026-10-09T12:12:00+00:00",
+          "future_hours": 49.63,
+          "latest_stop_utc": "2026-10-10T13:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 63
+          "programmes": 65
         },
         {
           "id": "DMC.eg@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.05,
-          "latest_stop_utc": "2026-10-09T13:00:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 42
+          "programmes": 40
         },
         {
           "id": "DubaiTV.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 64
+          "programmes": 62
         },
         {
           "id": "Fann.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.0,
-          "latest_stop_utc": "2026-10-09T11:57:00+00:00",
+          "future_hours": 48.28,
+          "latest_stop_utc": "2026-10-10T12:29:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 338
+          "programmes": 346
         },
         {
           "id": "Fatafeat.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.38,
-          "latest_stop_utc": "2026-10-09T12:20:00+00:00",
+          "future_hours": 48.13,
+          "latest_stop_utc": "2026-10-10T12:20:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 66
+          "programmes": 65
         },
         {
           "id": "Gametoon.nl@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.88,
+          "latest_stop_utc": "2026-10-10T13:05:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 71
+          "programmes": 75
         },
         {
           "id": "GINXTV.uk@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 53
+          "programmes": 60
         },
         {
           "id": "GMALifeTV.ph",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 56
         },
@@ -316,8 +316,8 @@
           "id": "GMANewsTV.ph",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 64
         },
@@ -325,134 +325,134 @@
           "id": "GMAPinoyTVMiddleEast.ph",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.88,
-          "latest_stop_utc": "2026-10-09T12:50:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-10-10T12:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 66
+          "programmes": 63
         },
         {
           "id": "History2MiddleEast.us@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.3,
-          "latest_stop_utc": "2026-10-09T12:15:00+00:00",
+          "future_hours": 48.05,
+          "latest_stop_utc": "2026-10-10T12:15:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 72
+          "programmes": 68
         },
         {
           "id": "HistoryMiddleEast.us@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-10-10T12:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 67
+          "programmes": 65
         },
         {
           "id": "InvestigationDiscovery.uk@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 52
+          "programmes": 55
         },
         {
           "id": "KSASports1.sa@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 49.38,
+          "latest_stop_utc": "2026-10-10T13:35:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 96
+          "programmes": 98
         },
         {
           "id": "MBC1.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.05,
-          "latest_stop_utc": "2026-10-09T13:00:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 65
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
+          "max_gap_minutes": 20.0,
+          "programmes": 56
         },
         {
           "id": "MBC3.ae@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 214
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 48.0,
+          "latest_stop_utc": "2026-10-10T12:12:00+00:00",
+          "max_gap_minutes": 19.0,
+          "programmes": 231
         },
         {
           "id": "MBC5.ae@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.45,
-          "latest_stop_utc": "2026-10-09T12:24:00+00:00",
-          "max_gap_minutes": 26.0,
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.83,
+          "latest_stop_utc": "2026-10-10T12:02:00+00:00",
+          "max_gap_minutes": 21.0,
           "programmes": 66
         },
         {
           "id": "MBCDrama.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
-          "max_gap_minutes": 1.0,
-          "programmes": 51
+          "future_hours": 48.47,
+          "latest_stop_utc": "2026-10-10T12:40:00+00:00",
+          "max_gap_minutes": 59.0,
+          "programmes": 50
         },
         {
           "id": "MBCIraq.iq@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
-          "max_gap_minutes": 0.0,
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.97,
+          "latest_stop_utc": "2026-10-10T12:10:00+00:00",
+          "max_gap_minutes": 10.0,
           "programmes": 64
         },
         {
           "id": "MBCMasr.eg@SD",
           "status": "WARN",
           "reason": "INTERNAL_GAP",
-          "future_hours": 49.15,
-          "latest_stop_utc": "2026-10-09T13:06:00+00:00",
-          "max_gap_minutes": 100.0,
+          "future_hours": 48.05,
+          "latest_stop_utc": "2026-10-10T12:15:00+00:00",
+          "max_gap_minutes": 95.0,
           "programmes": 44
         },
         {
           "id": "MBCMasr2.eg@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 49
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.63,
+          "latest_stop_utc": "2026-10-10T11:50:00+00:00",
+          "max_gap_minutes": 45.0,
+          "programmes": 57
         },
         {
           "id": "MBCMood.sa@HD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 60.0,
-          "programmes": 15
+          "programmes": 18
         },
         {
           "id": "MBCPlusDrama.sa@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
-          "max_gap_minutes": 30.0,
-          "programmes": 68
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.45,
+          "latest_stop_utc": "2026-10-10T11:39:00+00:00",
+          "max_gap_minutes": 70.0,
+          "programmes": 65
         },
         {
           "id": "MCMTop.fr@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -460,8 +460,8 @@
           "id": "MoonbugKids.uk@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.07,
-          "latest_stop_utc": "2026-10-09T12:01:00+00:00",
+          "future_hours": 48.28,
+          "latest_stop_utc": "2026-10-10T12:29:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 97
         },
@@ -469,62 +469,62 @@
           "id": "MotorvisionPlus.de@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 50.05,
+          "latest_stop_utc": "2026-10-10T14:15:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 88
+          "programmes": 93
         },
         {
           "id": "MusicNow.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.0,
-          "latest_stop_utc": "2026-10-09T11:57:00+00:00",
+          "future_hours": 48.05,
+          "latest_stop_utc": "2026-10-10T12:15:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 711
+          "programmes": 710
         },
         {
           "id": "MyxMiddleEast.ph",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 63
+          "programmes": 62
         },
         {
           "id": "NickelodeonArabia.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.22,
-          "latest_stop_utc": "2026-10-09T12:10:00+00:00",
+          "future_hours": 48.38,
+          "latest_stop_utc": "2026-10-10T12:35:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 144
+          "programmes": 142
         },
         {
           "id": "NickJrArabia.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-09T12:05:00+00:00",
+          "future_hours": 48.22,
+          "latest_stop_utc": "2026-10-10T12:25:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 166
+          "programmes": 169
         },
         {
           "id": "NicktoonsArabia.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-09T12:05:00+00:00",
+          "future_hours": 48.05,
+          "latest_stop_utc": "2026-10-10T12:15:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 152
+          "programmes": 153
         },
         {
           "id": "OmanTV.om@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.22,
-          "latest_stop_utc": "2026-10-09T12:10:00+00:00",
+          "future_hours": 48.38,
+          "latest_stop_utc": "2026-10-10T12:35:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 77
         },
@@ -532,8 +532,8 @@
           "id": "osn.213",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -541,8 +541,8 @@
           "id": "osn.215",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -550,8 +550,8 @@
           "id": "osn.216",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.05,
-          "latest_stop_utc": "2026-10-09T13:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 26
         },
@@ -559,8 +559,8 @@
           "id": "osn.217",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 58
         },
@@ -568,80 +568,80 @@
           "id": "osn.220",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.05,
-          "latest_stop_utc": "2026-10-09T14:00:00+00:00",
+          "future_hours": 49.8,
+          "latest_stop_utc": "2026-10-10T14:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 27
+          "programmes": 26
         },
         {
           "id": "osn.2501",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 42
+          "programmes": 39
         },
         {
           "id": "osn.5677",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-09T12:05:00+00:00",
+          "future_hours": 48.88,
+          "latest_stop_utc": "2026-10-10T13:05:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 72
+          "programmes": 71
         },
         {
           "id": "osn.9816",
           "status": "PASS",
           "reason": "",
           "future_hours": 48.3,
-          "latest_stop_utc": "2026-10-09T12:15:00+00:00",
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 174
+          "programmes": 172
         },
         {
           "id": "osn.9993",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.05,
-          "latest_stop_utc": "2026-10-09T13:00:00+00:00",
+          "future_hours": 48.38,
+          "latest_stop_utc": "2026-10-10T12:35:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 32
+          "programmes": 47
         },
         {
           "id": "osn.9994",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-09T12:05:00+00:00",
+          "future_hours": 48.22,
+          "latest_stop_utc": "2026-10-10T12:25:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 100
+          "programmes": 86
         },
         {
           "id": "OSNBlippiAndFriends",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.15,
-          "latest_stop_utc": "2026-10-09T12:06:00+00:00",
+          "future_hours": 48.28,
+          "latest_stop_utc": "2026-10-10T12:29:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 112
+          "programmes": 108
         },
         {
           "id": "OSNComedy.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.38,
-          "latest_stop_utc": "2026-10-09T12:20:00+00:00",
+          "future_hours": 48.2,
+          "latest_stop_utc": "2026-10-10T12:24:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 113
+          "programmes": 109
         },
         {
           "id": "OSNCrime.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.22,
-          "latest_stop_utc": "2026-10-09T12:10:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 63
         },
@@ -649,80 +649,80 @@
           "id": "OSNDocumentary.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.13,
-          "latest_stop_utc": "2026-10-09T13:05:00+00:00",
+          "future_hours": 48.47,
+          "latest_stop_utc": "2026-10-10T12:40:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 34
+          "programmes": 38
         },
         {
           "id": "OSNeClutchAccess",
           "status": "PASS",
           "reason": "",
           "future_hours": 48.12,
-          "latest_stop_utc": "2026-10-09T12:04:00+00:00",
+          "latest_stop_utc": "2026-10-10T12:19:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 109
+          "programmes": 108
         },
         {
           "id": "OSNeClutchArabic",
           "status": "PASS",
           "reason": "",
-          "future_hours": 51.3,
-          "latest_stop_utc": "2026-10-09T15:15:00+00:00",
+          "future_hours": 49.58,
+          "latest_stop_utc": "2026-10-10T13:47:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 23
+          "programmes": 21
         },
         {
           "id": "OSNeClutchLIVE",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.2,
-          "latest_stop_utc": "2026-10-09T12:09:00+00:00",
+          "future_hours": 48.1,
+          "latest_stop_utc": "2026-10-10T12:18:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 115
+          "programmes": 113
         },
         {
           "id": "OSNeClutchLIVE2",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.0,
-          "latest_stop_utc": "2026-10-09T12:57:00+00:00",
+          "future_hours": 48.13,
+          "latest_stop_utc": "2026-10-10T12:20:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 87
+          "programmes": 89
         },
         {
           "id": "OSNEsport24",
           "status": "PASS",
           "reason": "",
-          "future_hours": 52.48,
-          "latest_stop_utc": "2026-10-09T16:26:00+00:00",
+          "future_hours": 56.33,
+          "latest_stop_utc": "2026-10-10T20:32:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 7
+          "programmes": 9
         },
         {
           "id": "OSNIQIYI.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 50.72,
+          "latest_stop_utc": "2026-10-10T14:55:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 73
+          "programmes": 82
         },
         {
           "id": "OSNKids.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-09T12:05:00+00:00",
+          "future_hours": 48.12,
+          "latest_stop_utc": "2026-10-10T12:19:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 242
+          "programmes": 240
         },
         {
           "id": "OSNKTVChannel1HD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.4,
-          "latest_stop_utc": "2026-10-09T12:21:00+00:00",
+          "future_hours": 48.15,
+          "latest_stop_utc": "2026-10-10T12:21:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 111
         },
@@ -730,8 +730,8 @@
           "id": "OSNMezze.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.97,
-          "latest_stop_utc": "2026-10-09T12:55:00+00:00",
+          "future_hours": 48.72,
+          "latest_stop_utc": "2026-10-10T12:55:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -739,35 +739,35 @@
           "id": "OSNMoviesAction.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.72,
-          "latest_stop_utc": "2026-10-09T12:40:00+00:00",
+          "future_hours": 48.22,
+          "latest_stop_utc": "2026-10-10T12:25:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 23
+          "programmes": 26
         },
         {
           "id": "OSNMoviesComedy.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.05,
-          "latest_stop_utc": "2026-10-09T13:00:00+00:00",
+          "future_hours": 48.97,
+          "latest_stop_utc": "2026-10-10T13:10:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 29
+          "programmes": 30
         },
         {
           "id": "OSNMoviesFamily.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.22,
-          "latest_stop_utc": "2026-10-09T12:10:00+00:00",
+          "future_hours": 49.22,
+          "latest_stop_utc": "2026-10-10T13:25:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 34
+          "programmes": 36
         },
         {
           "id": "OSNMoviesHollywood.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 50.55,
+          "latest_stop_utc": "2026-10-10T14:45:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 29
         },
@@ -775,8 +775,8 @@
           "id": "OSNMoviesHorror.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.72,
-          "latest_stop_utc": "2026-10-09T13:40:00+00:00",
+          "future_hours": 49.63,
+          "latest_stop_utc": "2026-10-10T13:50:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 27
         },
@@ -785,52 +785,52 @@
           "status": "PASS",
           "reason": "",
           "future_hours": 48.22,
-          "latest_stop_utc": "2026-10-09T12:10:00+00:00",
+          "latest_stop_utc": "2026-10-10T12:25:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 29
+          "programmes": 28
         },
         {
           "id": "OSNOne.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 49.13,
+          "latest_stop_utc": "2026-10-10T13:20:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 58
+          "programmes": 67
         },
         {
           "id": "OSNPadelTV",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.6,
-          "latest_stop_utc": "2026-10-09T12:33:00+00:00",
+          "future_hours": 48.68,
+          "latest_stop_utc": "2026-10-10T12:53:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 89
+          "programmes": 85
         },
         {
           "id": "OSNPopUp.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-10-10T12:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 67
+          "programmes": 68
         },
         {
           "id": "OSNShowcase.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-10-10T12:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 74
+          "programmes": 81
         },
         {
           "id": "OSNShowcaseClassics.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.13,
-          "latest_stop_utc": "2026-10-09T12:05:00+00:00",
+          "future_hours": 48.22,
+          "latest_stop_utc": "2026-10-10T12:25:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 69
         },
@@ -838,8 +838,8 @@
           "id": "OSNSTV1HD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 78
         },
@@ -847,35 +847,35 @@
           "id": "OSNYahala.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.72,
-          "latest_stop_utc": "2026-10-09T12:40:00+00:00",
+          "future_hours": 48.05,
+          "latest_stop_utc": "2026-10-10T12:15:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 66
+          "programmes": 69
         },
         {
           "id": "OSNYahalaAflam.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.3,
-          "latest_stop_utc": "2026-10-09T12:15:00+00:00",
+          "future_hours": 48.72,
+          "latest_stop_utc": "2026-10-10T12:55:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 31
+          "programmes": 30
         },
         {
           "id": "OSNYahalaBilArabi.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.55,
-          "latest_stop_utc": "2026-10-09T12:30:00+00:00",
+          "future_hours": 48.27,
+          "latest_stop_utc": "2026-10-10T12:28:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 61
+          "programmes": 62
         },
         {
           "id": "RFMTV.fr@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.8,
+          "latest_stop_utc": "2026-10-10T13:00:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 51
         },
@@ -883,17 +883,17 @@
           "id": "RoyaTV.jo@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.05,
-          "latest_stop_utc": "2026-10-09T14:00:00+00:00",
+          "future_hours": 49.8,
+          "latest_stop_utc": "2026-10-10T14:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 41
+          "programmes": 36
         },
         {
           "id": "RT.ru@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.05,
-          "latest_stop_utc": "2026-10-09T12:00:00+00:00",
+          "future_hours": 48.3,
+          "latest_stop_utc": "2026-10-10T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 101
         },
@@ -901,28 +901,28 @@
           "id": "RTArabic.ru@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.03,
-          "latest_stop_utc": "2026-10-09T11:59:00+00:00",
+          "future_hours": 48.33,
+          "latest_stop_utc": "2026-10-10T12:32:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 180
+          "programmes": 188
         },
         {
           "id": "SkyNewsArabia.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.03,
-          "latest_stop_utc": "2026-10-09T11:59:00+00:00",
+          "future_hours": 48.78,
+          "latest_stop_utc": "2026-10-10T12:59:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 70
+          "programmes": 73
         },
         {
           "id": "TLCArabia.us@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.02,
-          "latest_stop_utc": "2026-10-09T11:58:00+00:00",
+          "future_hours": 48.55,
+          "latest_stop_utc": "2026-10-10T12:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 69
+          "programmes": 70
         }
       ]
     }
