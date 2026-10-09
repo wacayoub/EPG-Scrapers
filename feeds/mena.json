@@ -1,9 +1,9 @@
 {
   "label": "mena",
   "channels": 516,
-  "programmes": 32971,
-  "generated_utc": "2026-10-08T12:22:12.343497+00:00",
-  "sha256": "2f606cdea3ae2a623bd49e9bc871d777bdaae7dab113efbb0ffa9d7c3cb14a43",
+  "programmes": 32396,
+  "generated_utc": "2026-10-09T13:33:09.323404+00:00",
+  "sha256": "8fc621687da085c46ca59cd1f80124f44039818da33aa6831f96d1cb2263417f",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -24,7 +24,7 @@
     "2M": "morocco",
     "2MMonde.ma@SD": "elcinema",
     "AbdulmajeedAbdullah.sa@SD": "shahid",
-    "AbuDhabiSports1.ae@SD": "osn",
+    "AbuDhabiSports1.ae@SD": "sport24",
     "AbuDhabiSports2.ae@SD": "sport24",
     "AbuDhabiTV.ae@SD": "osn",
     "AFLAM.ma": "morocco",
@@ -92,6 +92,7 @@
     "AsharqDiscovery.sa@SD": "shahid",
     "AsharqDocumentary.sa@SD": "shahid",
     "AsharqNews.sa@SD": "shahid",
+    "Assadisa": "morocco",
     "BabAlHara.sa@SD": "shahid",
     "BahrainTV.bh@SD": "osn",
     "Baraem.qa@SD": "bein",
@@ -241,7 +242,7 @@
     "MotorvisionPlus.de@SD": "osn",
     "MoviesAction.sa@SD": "shahid",
     "MoviesThriller.sa@SD": "shahid",
-    "MTV.lb@SD": "shahid",
+    "MTV.lb@SD": "stctv",
     "MTV80s.uk@SD": "bein",
     "MTV90s.uk@SD": "bein",
     "MusicNow.ae@SD": "osn",
@@ -335,8 +336,8 @@
     "sport24.adsports.3": "sport24",
     "sport24.adsports.4": "sport24",
     "sport24.thmanyah.1": "sport24",
-    "sport24.thmanyah.2": "sport24",
-    "sport24.thmanyah.3": "sport24",
+    "sport24.thmanyah.2": "stctv",
+    "sport24.thmanyah.3": "stctv",
     "StarMoviesMiddleEast.ae@SD": "bein",
     "starzplay.227083304121": "starzplay",
     "starzplay.227083304215": "starzplay",
@@ -379,7 +380,6 @@
     "starzplay.720334376240": "starzplay",
     "starzplay.720335400125": "starzplay",
     "starzplay.720335400130": "starzplay",
-    "starzplay.720335400131": "starzplay",
     "starzplay.725124136205": "starzplay",
     "starzplay.727306280331": "starzplay",
     "starzplay.732523560319": "starzplay",
@@ -536,9 +536,12 @@
     "UTV.iq@SD": "elcinema",
     "Wanasah.ae@SD": "shahid",
     "ZeeAflam.ae@SD": "stctv",
-    "ZeeAlwan.ae@SD": "stctv"
+    "ZeeAlwan.ae@SD": "elcinema"
   },
   "extensions": {
+    "AbuDhabiSports1.ae@SD": [
+      "osn"
+    ],
     "AbuDhabiSports2.ae@SD": [
       "stctv"
     ],
@@ -548,17 +551,11 @@
     "FoodNetworkEMEA.us@SD": [
       "stctv"
     ],
-    "NationalGeographicAbuDhabi.ae@SD": [
-      "stctv"
-    ],
     "sport24.thmanyah.1": [
       "stctv"
     ],
-    "sport24.thmanyah.2": [
-      "stctv"
-    ],
-    "sport24.thmanyah.3": [
-      "stctv"
+    "StarMoviesMiddleEast.ae@SD": [
+      "elcinema"
     ]
   },
   "routing_policy": "canonical channel -> healthy MAIN -> B1/B2; language/title/description quality gates; backup may extend only after selected source horizon"
