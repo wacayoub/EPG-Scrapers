@@ -8,7 +8,7 @@
     {
       "url": "https://www.osn.com/ar-ae/watch/tv-schedule",
       "status": 200,
-      "bytes": 77363
+      "bytes": 78596
     },
     {
       "url": "https://www.osn.com/en-sa/watch/tv-schedule",
@@ -1502,7 +1502,7 @@
       "package": "ALFA",
       "channelCode": "OM1",
       "title": "OSNtv Movies Premiere",
-      "date": "10/08/2026",
+      "date": "10/09/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1511,16 +1511,7 @@
       "package": "ALFA",
       "channelCode": "OM1",
       "title": "OSNtv Movies Premiere",
-      "date": "10/09/2026",
-      "status": 200,
-      "programmes": 0,
-      "parse_error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "package": "ALFA",
-      "channelCode": "OMC",
-      "title": "OSNtv Movies Comedy",
-      "date": "10/08/2026",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1536,9 +1527,9 @@
     },
     {
       "package": "ALFA",
-      "channelCode": "OPR",
-      "title": "OSNtv Movies Hollywood",
-      "date": "10/08/2026",
+      "channelCode": "OMC",
+      "title": "OSNtv Movies Comedy",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1554,9 +1545,9 @@
     },
     {
       "package": "ALFA",
-      "channelCode": "AHD",
-      "title": "OSNtv Movies Action",
-      "date": "10/08/2026",
+      "channelCode": "OPR",
+      "title": "OSNtv Movies Hollywood",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1571,10 +1562,10 @@
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
     },
     {
-      "package": "OSN_PINOY_PLUS_EXTRA",
-      "channelCode": "OM1",
-      "title": "OSNtv Movies Premiere",
-      "date": "10/08/2026",
+      "package": "ALFA",
+      "channelCode": "AHD",
+      "title": "OSNtv Movies Action",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1590,9 +1581,9 @@
     },
     {
       "package": "OSN_PINOY_PLUS_EXTRA",
-      "channelCode": "OMC",
-      "title": "OSNtv Movies Comedy",
-      "date": "10/08/2026",
+      "channelCode": "OM1",
+      "title": "OSNtv Movies Premiere",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1608,9 +1599,9 @@
     },
     {
       "package": "OSN_PINOY_PLUS_EXTRA",
-      "channelCode": "OPR",
-      "title": "OSNtv Movies Hollywood",
-      "date": "10/08/2026",
+      "channelCode": "OMC",
+      "title": "OSNtv Movies Comedy",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1626,9 +1617,9 @@
     },
     {
       "package": "OSN_PINOY_PLUS_EXTRA",
-      "channelCode": "AHD",
-      "title": "OSNtv Movies Action",
-      "date": "10/08/2026",
+      "channelCode": "OPR",
+      "title": "OSNtv Movies Hollywood",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
@@ -1638,6 +1629,15 @@
       "channelCode": "AHD",
       "title": "OSNtv Movies Action",
       "date": "10/09/2026",
+      "status": 200,
+      "programmes": 0,
+      "parse_error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "package": "OSN_PINOY_PLUS_EXTRA",
+      "channelCode": "AHD",
+      "title": "OSNtv Movies Action",
+      "date": "10/10/2026",
       "status": 200,
       "programmes": 0,
       "parse_error": "Expecting value: line 1 column 1 (char 0)"
