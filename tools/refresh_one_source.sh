@@ -331,4 +331,13 @@ if [ -s "output/final/$SOURCE.xml.gz" ]; then
 fi
 
 python tools/publish_lkg.py --source "$SOURCE" --report "reports/$SOURCE-publish-lkg.json" || true
+
+# Receiver-source quality must reflect the exact *published* feed.
+# This is report-only: it never invents programmes or modifies valid XMLTV.
+if [ "$SOURCE" = "elcinema" ] || [ "$SOURCE" = "stctv" ]; then
+  if [ -s "feeds/$SOURCE.xml.gz" ]; then
+    python tools/audit_source_quality.py --input "feeds/$SOURCE.xml.gz" \
+      --source "$SOURCE" --report "reports/$SOURCE-quality.json" || true
+  fi
+fi
 echo "SOURCE_REFRESH_DONE source=$SOURCE hours=$HOURS"
