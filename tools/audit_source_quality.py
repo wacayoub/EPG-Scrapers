@@ -23,7 +23,7 @@ BAD_TITLE = ("program guide", "epg not available", "دليل البرامج غي
 
 
 def parse_time(value):
-    m = re.match(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?", (value or "").strip())
+    m = re.match(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?", (value or "").strip())
     if not m:
         return None
     digits, tz = m.groups()
