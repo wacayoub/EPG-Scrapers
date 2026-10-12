@@ -1,17 +1,19 @@
 {
   "label": "osn",
   "channels": 101,
-  "active_channels": 101,
-  "zero_epg_channels": 0,
-  "zero_epg_ids": [],
+  "active_channels": 100,
+  "zero_epg_channels": 1,
+  "zero_epg_ids": [
+    "osn.9816"
+  ],
   "input_channels": 101,
-  "coverage_pct": 100.0,
-  "programmes": 7789,
+  "coverage_pct": 99.0,
+  "programmes": 7762,
   "rejected_invalid_time": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 488560,
-  "sha256": "007b7500ea8b0cc0ec7785da3dac9b4f56b3ee25e49443df69fe444a13826479",
-  "generated_utc": "2026-10-11T12:58:02.374913+00:00"
+  "size_bytes": 457434,
+  "sha256": "8b701af2eb2f745231e28e4a236f790e27cdebecb202b8494571b4917bded99c",
+  "generated_utc": "2026-10-12T15:28:10.513885+00:00"
 }
