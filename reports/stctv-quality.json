@@ -1,17 +1,17 @@
 {
   "source": "stctv",
-  "generated_utc": "2026-10-11T13:00:43.810685+00:00",
+  "generated_utc": "2026-10-12T15:31:18.526561+00:00",
   "source_file": "stctv.xml.gz",
   "channels": 149,
-  "programmes": 9290,
-  "future_programmes": 9087,
+  "programmes": 9329,
+  "future_programmes": 9141,
   "channels_with_future_epg": 149,
   "channels_without_future_epg": [],
   "channels_with_shorter_than_24h": [],
   "channels_with_internal_gap_over_90min": {},
   "future_programmes_without_description": 0,
-  "future_programmes_with_unavailable_description": 85,
-  "future_programmes_with_placeholder_or_channel_title": 1314,
+  "future_programmes_with_unavailable_description": 86,
+  "future_programmes_with_placeholder_or_channel_title": 1329,
   "suspected_placeholder_channels": [
     {
       "id": "AsharqDocumentary.sa@SD",
@@ -78,10 +78,6 @@
       "count": 49
     },
     {
-      "id": "stctv.bea09674c73f",
-      "count": 49
-    },
-    {
       "id": "stctv.bf3456c5b9b2",
       "count": 49
     },
@@ -114,36 +110,36 @@
       "count": 49
     },
     {
-      "id": "RTArabic.ru@SD",
-      "count": 40
-    },
-    {
-      "id": "stctv.17069d8d4998",
-      "count": 36
-    },
-    {
-      "id": "StarzplaySports3.sa@HD",
-      "count": 21
-    },
-    {
-      "id": "StarzplaySports1.sa@HD",
-      "count": 18
-    },
-    {
-      "id": "StarzplaySports2.sa@HD",
-      "count": 18
+      "id": "stctv.bea09674c73f",
+      "count": 47
     },
     {
       "id": "stctv.cac5e490d765",
-      "count": 16
+      "count": 42
     },
     {
       "id": "stctv.4a2b60976c7f",
-      "count": 15
+      "count": 41
+    },
+    {
+      "id": "stctv.17069d8d4998",
+      "count": 37
+    },
+    {
+      "id": "StarzplaySports1.sa@HD",
+      "count": 20
+    },
+    {
+      "id": "StarzplaySports2.sa@HD",
+      "count": 20
+    },
+    {
+      "id": "StarzplaySports3.sa@HD",
+      "count": 20
     },
     {
       "id": "DubaiSports2.ae@SD",
-      "count": 10
+      "count": 12
     }
   ],
   "invalid_dates": 0,
