@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-12T15:28:31.403310+00:00",
+  "generated_utc": "2026-10-13T14:20:16.597071+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "dubaiplus.xml.gz",
-      "generated_utc": "2026-10-12T15:28:31.403203+00:00",
+      "generated_utc": "2026-10-13T14:20:16.596951+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 90,
@@ -19,82 +19,82 @@
           "id": "DubaiOne.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.52,
-          "latest_stop_utc": "2026-10-14T16:00:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-15T15:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 35
+          "programmes": 33
         },
         {
           "id": "DubaiRacing1.ae@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 50.86,
-          "latest_stop_utc": "2026-10-14T18:20:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 46.16,
+          "latest_stop_utc": "2026-10-15T12:30:00+00:00",
           "max_gap_minutes": 0.0,
           "programmes": 19
         },
         {
           "id": "DubaiRacing2.ae@SD",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 52.02,
-          "latest_stop_utc": "2026-10-14T19:30:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 35.35,
+          "latest_stop_utc": "2026-10-15T01:41:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 24
+          "programmes": 22
         },
         {
           "id": "DubaiSports1.ae@SD",
-          "status": "WARN",
-          "reason": "SHORT_HORIZON",
-          "future_hours": 33.52,
-          "latest_stop_utc": "2026-10-14T01:00:00+00:00",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-15T15:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 17
+          "programmes": 43
         },
         {
           "id": "DubaiSports2.ae@SD",
-          "status": "WARN",
-          "reason": "SHORT_HORIZON",
-          "future_hours": 11.02,
-          "latest_stop_utc": "2026-10-13T02:30:00+00:00",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.33,
+          "latest_stop_utc": "2026-10-15T14:40:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 9
+          "programmes": 29
         },
         {
           "id": "DubaiTV.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.52,
-          "latest_stop_utc": "2026-10-14T16:00:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-15T15:00:00+00:00",
           "max_gap_minutes": 60.0,
-          "programmes": 57
+          "programmes": 58
         },
         {
           "id": "DubaiZaman.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.52,
-          "latest_stop_utc": "2026-10-14T16:00:00+00:00",
-          "max_gap_minutes": 50.0,
-          "programmes": 80
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-15T14:30:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 83
         },
         {
           "id": "NoorDubaiTV.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.52,
-          "latest_stop_utc": "2026-10-14T16:00:00+00:00",
+          "future_hours": 48.75,
+          "latest_stop_utc": "2026-10-15T15:05:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 66
+          "programmes": 65
         },
         {
           "id": "SamaDubai.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.02,
-          "latest_stop_utc": "2026-10-14T15:30:00+00:00",
-          "max_gap_minutes": 0.0,
-          "programmes": 62
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-15T15:00:00+00:00",
+          "max_gap_minutes": 30.0,
+          "programmes": 67
         }
       ]
     }
