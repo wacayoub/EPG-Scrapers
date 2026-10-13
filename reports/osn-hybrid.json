@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-10-12T15:28:08.271346+00:00",
+  "generated_utc": "2026-10-13T14:19:51.779130+00:00",
   "mode": "hybrid",
   "channels": 101,
-  "programmes": 11252,
-  "hybrid_programmes": 5222,
-  "arabic_native_programmes": 6030,
-  "english_title_applied": 5222,
+  "programmes": 8098,
+  "hybrid_programmes": 4995,
+  "arabic_native_programmes": 3103,
+  "english_title_applied": 4995,
   "english_title_missing": 0,
-  "arabic_description_present": 11246,
-  "arabic_description_missing": 6,
-  "non_arabic_description_removed": 6,
+  "arabic_description_present": 7690,
+  "arabic_description_missing": 408,
+  "non_arabic_description_removed": 408,
   "profiles": {
     "AbuDhabiSports1.ae@SD": "arabic_native",
     "AbuDhabiTV.ae@SD": "arabic_native",
@@ -89,34 +89,18 @@
     "RTArabic.ru@SD": "arabic_native",
     "SkyNewsArabia.ae@SD": "arabic_native",
     "TLCArabia.us@SD": "hybrid",
-    "AlfaSeries.ae@SD": "arabic_native",
-    "AlfaSeriesPlus2.ae@SD": "arabic_native",
-    "AlSafwa.ae@SD": "arabic_native",
-    "AlYawm.ae@SD": "arabic_native",
-    "ANC.ph": "arabic_native",
-    "Cinema1.ae@SD": "arabic_native",
-    "Cinema2.ae@SD": "arabic_native",
-    "CineMo.ph": "arabic_native",
-    "Fann.ae@SD": "arabic_native",
-    "GMALifeTV.ph": "arabic_native",
-    "GMANewsTV.ph": "arabic_native",
-    "GMAPinoyTVMiddleEast.ph": "arabic_native",
-    "MusicNow.ae@SD": "arabic_native",
-    "MyxMiddleEast.ph": "arabic_native",
-    "osn.213": "arabic_native",
-    "osn.215": "arabic_native",
-    "osn.216": "arabic_native",
-    "osn.217": "arabic_native",
-    "osn.220": "arabic_native",
     "osn.2501": "arabic_native",
     "osn.9993": "arabic_native",
-    "osn.9994": "arabic_native"
+    "osn.9994": "arabic_native",
+    "Cinema1.ae@SD": "arabic_native",
+    "Cinema2.ae@SD": "arabic_native",
+    "MusicNow.ae@SD": "arabic_native"
   },
   "samples": {
     "AbuDhabiSports1.ae@SD": {
       "profile": "arabic_native",
-      "title": "أديب كوب2026-2027",
-      "description": "أديب كوب 2026-2027",
+      "title": "البرنامج: الرياضة اليوم آسيا",
+      "description": "البرنامج: الرياضة اليوم آسيا 2026-2027",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -129,15 +113,15 @@
     },
     "AlarabiyaPortrait.ae@SD": {
       "profile": "arabic_native",
-      "title": "أخبار العربية",
-      "description": "كن في الطليعة مع آخر الأخبار العاجلة وأهم الأحداث الجارية، بالإضافة إلى معرفة كل ما يدور حولك من أحداث سواء كانت في المنطقة العربية أو حول العالم.",
+      "title": "الذاكرة السياسية",
+      "description": "يكشف اللواء أحمد قرحش النقاشات الداخلية التي دارت بين الضباط الأحرار حول مستقبل النظام وتحديد موعد جديد للانتفاضة وتحولها من حركة سرية إلى ثورة مسلحة.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "AlArabyTV2.qa@SD": {
       "profile": "arabic_native",
-      "title": "تحت الأرض: موسم حار",
-      "description": "تحتكر عائلة الصافي الدمشقية سوق التبغ وتفرض سيطرتها المطلقة عليه، لكن تنقلب الموازين مع ظهور منافس جريء وقوي؛ فتشتعل شرارة معركة خطيرة لم تكن في الحسبان.",
+      "title": "الجار الغريب",
+      "description": "رواية منفصلة كل مرة عن بعض السكان الذين يسكنون بجوار مناطق غريبة مثل المقابر، محطات الكهرباء و غيرها. هل تعودوا على السكن بهذه المناطق أم أن عليهم مواجهة الصعاب لتدبر أمورهم اليومية؟",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -164,22 +148,22 @@
     },
     "AlraiTV.kw@SD": {
       "profile": "arabic_native",
-      "title": "ريختر توك",
-      "description": "يستضيف مقدم البرنامج رواد أعمال ناجحين لتعلم المزيد حول مشاريع أعمالهم",
+      "title": "دي دبليو غلوبال",
+      "description": "يسلط صانع الفيلم الضوء على العولمة وكيف تساهم في إنماء الاقتصاد",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "AnimalPlanetEurope.uk@SD": {
       "profile": "hybrid",
-      "title": "Big Fish Man",
-      "description": "ينطلق جيكوب في مهمة لصيد أضخم سمكة مياه عذبة في الأمازون، باحثًا عن البرك العميقة والبحيرات الهلالية، حيث يكمن الفردوس الذي يأمل أن يظفر فيه بالعملاق المنتظر.",
+      "title": "Little Giants",
+      "description": "يتتبع الفريق فرس النبي \"زهرة الشيطان\" القاتل في موزمبيق. يكاد لا يُرى، يشبه زهرة استوائية ومغطى بخناجر وخطاطيف حادة.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "BahrainTV.bh@SD": {
       "profile": "arabic_native",
-      "title": "اسأل طبيب",
-      "description": "يدعو المضيف المتخصصين الطبيين للحديث عن القضايا الهامة المتعلقة بالصحة وكيفية التعامل مع حالات الطوارئ الطبية.",
+      "title": "حياتي قراري",
+      "description": "يتحدث المذيع عن كيفية تمكن المرء من السيطرة على حياته.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -192,8 +176,8 @@
     },
     "BloombergOriginals.us@SD": {
       "profile": "hybrid",
-      "title": "The Race to Merge AI With Humanoid Robots",
-      "description": "أصبحت الروبوتات الأنويدية التي تستخدم الذكاء الاصطناعي سائدة، لكنه غير موثوق بها بعد.",
+      "title": "WTO's Okonjo-Iweala On Why Globalization Need",
+      "description": "يتحدث المذيع مع صانعي القرار الذين يحددون ملامح مستقبلنا لاستكشاف قصصهم الشخصية.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -206,8 +190,8 @@
     },
     "CartoonNetworkArabic.ae@SD": {
       "profile": "hybrid",
-      "title": "Scooby-Doo and Guess Who?",
-      "description": "سكوبي دو وأصدقاؤه يستقلون يختهم مع صديقتهم شير إلى منطقة البحر الكاريبي.",
+      "title": "What's New Scooby-Doo?",
+      "description": "تتجه المجموعة إلى بلدة بانينغ جانكشن المخيفة للاحتفال بالهالوين مع عمة فيلما.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -220,22 +204,22 @@
     },
     "CNNInternational.us@MENA": {
       "profile": "hybrid",
-      "title": "Midterms 2026: Countdown to Election Night",
-      "description": "هذه الفئة مميزة",
+      "title": "Anderson Cooper 360",
+      "description": "يدعو المذيع أندرسون كوبر الخبراء لمناقشة أهم الأخبار من جميع أنحاء العالم.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "CrimePlusInvestigation.us@SD": {
       "profile": "hybrid",
-      "title": "Homicide Squad: New Orleans",
-      "description": "تنتهي ليلة في نيو أورلينز بجريمة قتل أمام ملهى ليلي، والوحيد الذي يملك دليلًا هو المحقق روب لونغ عن سيارة دفع رباعي تهرب من الموقع. في الوقت نفسه، بينما يحقق المحقق دوني ويليارد في حادثة إطلاق نار مزدوجة، يقوم المشتبه به بإطلاق النار على ال",
+      "title": "Murder By Medic",
+      "description": "يشهد مستشفى في إنديانا تضاعف معدل الوفيات ثلاث مرات خلال عام واحد بفعل الممرض أورفيل لين ميجورز، الذي قد يكون وراء وفاة ما يصل إلى 100 شخص.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "DiscoveryChannelMiddleEastAfrica.us@SD": {
       "profile": "hybrid",
-      "title": "Wheeler Dealers",
-      "description": "يستلم مايك سيارة بورش 924، وهي أول سيارة يُصلحها على الإطلاق في المسلسل. هل سيكون إصلاح تسرب الزيت كافيا لكسب الربح؟",
+      "title": "Blowing Up History",
+      "description": "يضم موقع دفن بعض أعظم ملكات مصر القديمة، ويقوم الخبراء بفحص مقبرة ضخمة تحتوي على مقابر أكثر من تلك الموجودة في وادي الملوك.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -248,22 +232,22 @@
     },
     "DubaiTV.ae@SD": {
       "profile": "arabic_native",
-      "title": "بابا",
-      "description": "يتوفى أحد الأقارب في حادث مروع ويترك ميراثاً للعائلة.",
+      "title": "شطرنج",
+      "description": "يقوم المضيف بدعوة شخصيات مختلفة لمناقشة مجموعة من المواضيع.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "Fatafeat.ae@SD": {
       "profile": "arabic_native",
-      "title": "مع سو أطيب",
-      "description": "برنامج تقدمه سو، يشجع على الحرية في المطبخ، الثقة بالنفس، والجرأة. يستهدف جميع الأجيال والأشخاص المحبين للمرح، ولا يسلط الضوء على الطعام فحسب، بل على القصص المسلية المتعلقة به أيضًا.",
+      "title": "100 لحمة",
+      "description": "برنامج طهي على يركز على وصفات اللحوم، بدءاً من المشويات اليومية ووصولاً إلى الأطباق الرئيسية الفاخرة، حيث يقدم لعشاق اللحوم نصائح ونكهات وتقنيات تحضير مفصلة خطوة بخطوة.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "Gametoon.nl@SD": {
       "profile": "hybrid",
-      "title": "Stream Nation - Doom Eternal",
-      "description": "انضم إلى غايمتون لتجربة ألعاب مميزة مع أشهر اللاعبين في العالم. تقدم سلسلة ستريم نايشن فرصة للتعرف أكثر على ألعاب مثل ريزيدنت إيفيل 2 وسبايدر مان وفورتنايت وأنرافل 2.",
+      "title": "Gametoon",
+      "description": "جيم تون قناة ترفيهية ديناميكية متخصصة في الألعاب والرياضات الإلكترونية، تقدم مزيجًا من تغطية بطولات الرياضات الإلكترونية، وأخبار الألعاب، ومحتوىً متخصصًا في أسلوب الحياة. تتضمن برامجها فعاليات مميزة من ألعاب مثل دوتا 2، وليج أوف ليجندز، وهر",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -277,21 +261,21 @@
     "History2MiddleEast.us@SD": {
       "profile": "hybrid",
       "title": "Ancient Aliens",
-      "description": "يستكشف عالم نظرية رواد الفضاء القدماء جورجيو إيه. تسوكالوس أحدث الاكتشافات العلمية في بعض الأماكن الأكثر قدماً في العالم للعثور على أدلة تشير إلى زيارة الكائنات الفضائية لمصر في العصور القديمة.",
+      "description": "هل تمثل الروبوتات الذكية تهديدًا للبشرية - أم أنها الخطوة التالية في تطور الإنسان؟ عندما يبدأ الإنسان والآلة في الاندماج، هل نحن نحقق قدرًا أعده لنا الكائنات الفضائية منذ آلاف السنين؟",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "HistoryMiddleEast.us@SD": {
       "profile": "hybrid",
-      "title": "Secrets Declassified With David Duchovny",
-      "description": "بعض الصفقات تُعقد لتتصدر العناوين، بينما تُدار أخرى في الظلام. عندما ترغب وكالة الاستخبارات المركزية في التخلص من رئيس الوزراء العراقي، تلجأ إلى طالب قانون يبلغ من العمر 20 عاماً يُدعى صدام حسين.",
+      "title": "American Pickers",
+      "description": "يتابع الموسم 27 كل من مايك وولف وروبي وولف ودانييل كولبي خلال رحلتهم عبر طرق أمريكا، من الساحل إلى الساحل، للكشف عن تحف مخفية وقطع أثرية نادرة وكنوز وطنية.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "InvestigationDiscovery.uk@SD": {
       "profile": "hybrid",
-      "title": "Unmasking A Monster: Aileen Wuornos",
-      "description": "بالتعاون مع حبيبتها السابقة، نصب المحققون فخاً لـ \"وورنوس\"؛ وحين دخلت غرفة الاستجواب طواعيةً، صدمتهم روايتها للأحداث.",
+      "title": "The Murder Tapes",
+      "description": "يغرق أحباء رجل في حزن عميق بعد تعرضه لإطلاق نار خارج منزل أحد أصدقائه في فلوريدا. وتضع المطاردة من أجل تحقيق العدالة روابط الأسرة على المحك وتكشف عن أسرار مروعة.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -311,15 +295,15 @@
     },
     "MBC3.ae@SD": {
       "profile": "arabic_native",
-      "title": "100% ذئب",
-      "description": "عندما ينحرف أول تحول له عن مساره الطبيعي، يتوجب على فريدي لوبين، وهو وريث عائلة مستذئبين كبيرة، أن يعمل جاهدا في أكاديمية هاولنغتون لإثبات أنه ذئب في الأساس.",
+      "title": "سوبرترونز",
+      "description": "عندما تتعرض الأرض لهجوم من وحوش ضخمة، يستدعي كانج تشان الديناصور تي-ريكس وأربعة من فصيلته المنحدرة من 65 مليون سنة مضت، ويخوضون معا معركة ضد الوحوش القوية واحدا تلو الآخر.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "MBC5.ae@SD": {
       "profile": "arabic_native",
-      "title": "حسن ومرقص",
-      "description": "يتعرض بولس لمحاولة اغتيال فتضعه الحكومة ضمن برنامج حماية الشهود وينتحل شخصية الشيخ حسن، بينما تحاول جماعة إرهابية تصفية الشيخ محمود بعد رفضه الانضمام إلى تنظيمهم، فتقرر الحكومة حمايته بانتحاله لشخصية شخص اسمه مرقص، لتتوالى المواقف الكوميدية",
+      "title": "براد وصينية",
+      "description": "برنامج حواري اجتماعي ترفيهي يتناول قضايا المرأة المغربية المعاصرة من خلال نقاش صريح.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -333,21 +317,21 @@
     "MBCIraq.iq@SD": {
       "profile": "arabic_native",
       "title": "عودة خالتي",
-      "description": "يتلقى عبد الله المساعدة من محسن ليصبح سائق سيارة أجرة. يقترح الدكتور وائل أن تخضع داليا للعملية فورا. تتلقى لمار ويارا أخبارا مفرحة تتعلق بمسيرتهما المهنية.",
+      "description": "بعد مرور أسبوعين على مغادرتها الكويت، تستعد حميدة لحفلة زفافها، ولكنها تعاني من الكوابيس بسبب الخوف. تتلقى إيمي اتصالا غامضا من شاهين.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "MBCMasr2.eg@SD": {
       "profile": "arabic_native",
       "title": "قصر النيل",
-      "description": "يخطط عزت مع ممدوح لشراء الأرض التي دفن الذهب بها، بينما تعاني كاميليا الأمرين بعد اكتشافها حقيقة منصور التي أخفاها عنها.",
+      "description": "يسترجع ممدوح تفاصيل مقتل والد كاميليا، بينما يقرر نبيل أن يبيع القصر. أما خالد، فيسعى لمعرفة سر المستثمر الإيطالي الغامض.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "MBCMasr.eg@SD": {
       "profile": "arabic_native",
       "title": "المتر سمير",
-      "description": "يرى سمير في قضية موكله الجديد حكاية مألوفة: والد ممنوع من رؤية طفله. بينما يحاول نادر إظهار يسر حال سمير لرفع النفقة، يسعى سمير لإثبات العكس… أما أنور، فيستمر بسذاجته في إثبات صحة كلام نادر بدون قصد",
+      "description": "بعد أن يفاجأ المتر سمير بحكم نفقة ضخم، يندفع سريعا إلى العمل لمساعدة رجل الأعمال كمال الباز في كسب حضانة ابنه من طليقته. خطته: إثبات إهمالها… شرط ألا يفسد إهمال فريقه الخطة قبل أن تبدأ.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -360,8 +344,8 @@
     },
     "MBCPlusDrama.sa@SD": {
       "profile": "arabic_native",
-      "title": "شجر الحور",
-      "description": "توبخ زوي ميليتيس لأنه أساء معاملة كورينا، فيما يطلب بيتروس من مساعديه التخلص من باراسخوس كي يثأر لموت شقيقه ورفاقه.",
+      "title": "بارينيتي",
+      "description": "قصة معقدة تأسر القلوب تدور حول صديقين مقربين تتشابك حياتهما بطريقة غير متوقعة.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -374,8 +358,8 @@
     },
     "MoonbugKids.uk@SD": {
       "profile": "hybrid",
-      "title": "KiiYii",
-      "description": "استمتعوا بالراحة والأمان مع كييي! سيتعلمون كيفية تنظيف أسنانهم وكيفية الحفاظ على سلامتهم أثناء ركوب الدراجة!",
+      "title": "Digley & Dazey",
+      "description": "إنه يومٌ حافلٌ بالمنافسات ومساعدة الأصدقاء! يتسابق الفريق في مسارٍ مليءٍ بالعقبات وينقذون قطةً صغيرةً لطيفة!",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -389,7 +373,7 @@
     "NickelodeonArabia.ae@SD": {
       "profile": "hybrid",
       "title": "The Patrick Star Show",
-      "description": "تتوجه عائلة ستار إلى منتجعهم المفضل. يذهب الأرنب في مغامرة منتصف النهار إلى عصر منسي.",
+      "description": "في إحدى حلقات برنامج باتريك عن القوارب، يقوم سيسيل بتعليم باتريك كيفية القيادة.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -402,8 +386,8 @@
     },
     "NicktoonsArabia.ae@SD": {
       "profile": "hybrid",
-      "title": "Best and Bester",
-      "description": "بيست وبيستر هما توأمان يتمتعان بشخصية فريدة ومضحكة، ويعيشان في واقع بديل غريب ورائع حيث يمكن أن يكون جارك عبارة عن بنطال ساخط أو يكون صديقك المفضل عبارة عن سحابة عائمة من التجشؤ.",
+      "title": "Hamsters of Hamsterdale",
+      "description": "تبني كلوفر نظام دفاعي معقد ضد وحش البراغيث وتحبس الهامستر عن طريق الخطأ. يعتقد الهامستر أن آلة مزمار القربة الجديدة الخاصة بهاري هي وحش صاخب يهاجم ملكهم.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -417,7 +401,7 @@
     "osn.5677": {
       "profile": "hybrid",
       "title": "Lovecraft Country",
-      "description": "بعد التعافي بشكل غير مفهوم من ليلتهما المرعبة ، ليتي وجورج ينعمان بالرفاهية في محيطهما الجديد بينما يشك الـ أتيكوس في بمضيفيهم في أردهام لودج حيث يكشفون عن خطط غامضة لدور الـ أتيكوس في حفلهم القادم \"أبناء آدم\".",
+      "description": "تواجه خطة ليتي لافتتاح منزل داخلي في الجانب الشمالي من شيكاغو تحديًا لسلسلة من الأعمال العنصرية - وتوقظ الأرواح الخاملة في المنزل. لا يزال أتيكوس مثقلًا بضمير مذنب بينما تضغط عليه زوجة جورج من أجل القصة الكاملة لما حدث في أردهام.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -431,49 +415,49 @@
     "OSNComedy.ae@SD": {
       "profile": "hybrid",
       "title": "Curb Your Enthusiasm",
-      "description": "مع اقتراب الأيام المقدسة اليهودية، تترك تجربة قريبة من الموت، مقترنة بتعليق قدمه والده، لاري يتساءل عما إذا كان هناك المزيد من هويته عما كان يعتقد. في أخبار أفضل، هناك سندويتش يحمل اسمه الآن، لكنه لا يروق له.",
+      "description": "يضع شراء لاري الملابس الداخلية لمدبرة منزله في موقف حرج، بينما يظهر ولع حماه بفيلم باشين أوف كرايست من جديد.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNCrime.ae@SD": {
       "profile": "hybrid",
       "title": "Dexter",
-      "description": "تجعل الحادثة الغريبة لانتحار إمرأة ثرية ذات نفوذ ديكستر يشك بأن طبيبها النفسي هو الذي قتلها، ولكنه ينصدم عندما تتسبب زيارته للمشتبه به بفتح أسرارا مخيفة من ماضيه.",
+      "description": "يترك القاتل آيس تراك أفظع مسرح جريمة يتخيله عقل لديكستر، مما يضطره لمواجهة ذكرى مكبوتة ومروعة من ماضيه. وفي هذه الأثناء، يجب على ريتا توكيل محامي عندما يرفع زوجها السابق دعوى لحضانة أطفالهما.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNDocumentary.ae@SD": {
       "profile": "hybrid",
-      "title": "Ali & Cavett: The Tale Of The Tapes",
-      "description": "فيلم وثائقي عن حياة محمد على والتي تظهر من خلال ظهوره في برنامج ذا ديك كافيت شو. يعرض الفيلم مقابلات جديدة مع ديك كافيت ، القس آل شاربتون ، ولاري ميرشانت ، بالإضافة إلى لقطات أرشيفية من برنامج ذا كافيت شو.",
+      "title": "Savior Complex",
+      "description": "تتعاون أمهات فقدن أطفالهن مع محامي أوغندي لرفع دعوى قضائية ضد رينيه باخ وعيادتها.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNeClutchAccess": {
       "profile": "hybrid",
-      "title": "Split Fiction Gameplay",
-      "description": "ردود فعل الطاقم على عرض مبكر لطريقة لعب سبليت فيكشن.",
+      "title": "EClutch Access",
+      "description": "اي كلاتش اكسيس قناة رياضية إلكترونية سريعة، مصممة لتعزيز تفاعل الجماهير بأكثر من 1300 ساعة من المحتوى المُختار بعناية. تبث القناة أحداثًا مباشرة، وإعادة بث في اليوم التالي، وأعمالًا أصلية حصرية لألعاب من الطراز الأول مثل رانبو سيكس: سييج وس",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNeClutchArabic": {
       "profile": "hybrid",
-      "title": "RLCS Raleigh O6 PO D1",
-      "description": "بداية التغطية باللغة العربية لمباريات التصفيات في بطولة «رالي مينا المفتوحة 6».",
+      "title": "EClutch Live Arabic",
+      "description": "تقدم محتوى ألعاب متميزًا للمشاهدين في منطقة الشرق الأوسط وشمال أفريقيا. ويركز محتواها على توفير تجربة مشاهدة ممتعة وعالية الجودة لكل من اللاعبين المحترفين والهواة، مما يسد الفجوة بين التلفزيون التقليدي والترفيه الرقمي الديناميكي.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNeClutchLIVE": {
       "profile": "hybrid",
-      "title": "Dev Explains How TMNT",
-      "description": "يشرح مطور لعبة «ت م ن ت: تكتيكال تايكداون» النسخة الأقدم والأكثر عمقًا من شخصيات السلاحف.",
+      "title": "EClutch Live 1",
+      "description": "اي كلاتش لايف 1 هي وجهةٌ مثاليةٌ لعشاق الرياضات الإلكترونية التنافسية. وبصفتها القناة الرئيسية للبطولات المباشرة على منصة اي كلاتش تبثّ القناة فعالياتٍ رياضيةً إلكترونيةً رائدةً سنويًا، مثل جولة ستريت فايتر برو تور ومنافسات بلاست رانبو وسيك",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNeClutchLIVE2": {
       "profile": "hybrid",
-      "title": "Assassins Creed Shadows",
-      "description": "ينضم جوردان رامي إلى كورت إندوفينا لمناقشة تقييم لعبة أساسنز كريد شادووز.",
+      "title": "EClutch Live 2",
+      "description": "إي كلاتش لايف 2 هي ثاني أكبر قناة رياضية إلكترونية تعمل على مدار الساعة طوال أيام الأسبوع في مجموعة إي كلاتش، وتقدم أكثر من 600 ساعة من الحركة الحية التي تركز على العاب محبوبة عالميًا مثل فورتنايت وروكيت لييغ",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -486,84 +470,84 @@
     },
     "OSNIQIYI.ae@SD": {
       "profile": "hybrid",
-      "title": "Are You OK?",
-      "description": "تقوم المحكمة بتوظيف غرباء لبناء عالم جديد. يتسلل زو يونتشي إليهم لإنقاذ والده، ولكن يتم كشفه من قبل خبير مالك الأراضي. وبعد عدة مواجهات، يتعاونان معاً.",
+      "title": "My Unicorn Girl",
+      "description": "يكشف وين بينغ الحقيقة لوالدته، التي تتقبل سانغ تيان. وعلى الرغم من انفصالهما، يستمران في علاقة سرية تحت مراقبة الآخرين.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNKids.ae@SD": {
       "profile": "hybrid",
       "title": "Abominable and the Invisible City",
-      "description": "قبل تجارب كرة السلة، يعلم بينغ من نايناي أن هذه السنة هي سنة سيئة له في تقويم الأبراج الصيني - مما يعني حظاً سيئاً.",
+      "description": "إنه عيد رأس السنة الصينية! ومع انشغال يي وجين بعروضهما الخاصة بمهرجان رأس السنة الصينية، ينطلق بينغ وإيفرست المتنكر بشكل جزئي إلى الشوارع المليئة بالاحتفالات، حيث يتناولان الطعام ويستمتعان بكل ما يراهما.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNKTVChannel1HD": {
       "profile": "arabic_native",
-      "title": "موجز الأخبار",
-      "description": "وسلط المضيفون الضوء على آخر وأهم الأخبار الاقتصادية والتطورات والأحداث التي تجري في جميع أنحاء العالم.",
+      "title": "مقتطفات إخبارية",
+      "description": "مجموعة شاملة من آخر الأخبار والمستجدات من جميع أنحاء العالم.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "OSNMezze.ae@SD": {
       "profile": "hybrid",
       "title": "MasterChef USA",
-      "description": "يتمحور تحدي الليلة حول إتقان واحدة من أصعب الحلويات في العالم، الماكرون المحبوب.",
+      "description": "تتحوّل حديقة ماسترشيف إلى موقع شواء مشمس في الهواء الطلق، وتشعر أفضل 6 ثنائيات بضغط التحدي يشتد.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNMoviesAction.ae@SD": {
       "profile": "hybrid",
-      "title": "Blood Work",
-      "description": "لا يزال يتعافى من عملية زراعة قلب، يعود محلل سابق في مكتب التحقيقات الفيدرالي إلى الخدمة عندما تقدم تحاليل دمه أدلة تكشف هوية قاتل متسلسل.",
+      "title": "Love Hurts",
+      "description": "يُسحب وكيل عقارات إلى الحياة التي تركها خلفه بعد أن يظهر شريكه السابق في الجريمة برسالة مشؤومة.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNMoviesComedy.ae@SD": {
       "profile": "hybrid",
-      "title": "Barbarians At The Gate",
-      "description": "يقرر رئيس إحدى شركات التبغ الكبرى شراء الشركة التي يعمل بها، ولكن تندلع حرب مزايدة حيث تقدم الشركات الأخرى عروضها الخاصة.",
+      "title": "Coastal Elites",
+      "description": "كوميديا ساخرة تتناول خمسة شخصيات يتفاعلون مع السياسة والثقافة والجائحة، حيث يواجهون تحدياتهم وينجحون في التغلب عليها بطريقة مضحكة ومرحة.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNMoviesFamily.ae@SD": {
       "profile": "hybrid",
-      "title": "Barbie Dreamtopia Special",
-      "description": "بمساعدة أختها الكبرى باربي، تزور تشيلسي أراضي دريم توبيا حيث تتعلم دروساً قيمة في الحياة.",
+      "title": "The Prince Of Egypt",
+      "description": "يكتشف امير مصري انه من اجل عبري ويكتشف انه مخلص شعبه الذي سيقوده الى الخلاص. رسوم متحركة مع اصوات فل كيلمر، رالف فيان وميشال فايفر.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNMoviesHollywood.ae@SD": {
       "profile": "hybrid",
-      "title": "Vmax: No Straight Line",
-      "description": "يواصل ماركوس \"ماكس\" شتوكل تحطيم أرقام السرعة في سباقات الدراجات الجبلية منذ أكثر من عشرين عامًا. والآن، يواجه التحدي الأكبر على قمةٍ مقفرة في صحراء أتاكاما في تشيلي، محاولًا كسر رقمه القياسي من جديد.",
+      "title": "Kill Bill Vol. 1",
+      "description": "عندما تستيقظ قاتلة مأجورة سابقة من غيبوبة دامت أربع سنوات، تبدأ رحلة انتقام دموية ضد الفريق الذي خانها.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNMoviesHorror.ae@SD": {
       "profile": "hybrid",
-      "title": "The Meg",
-      "description": "عقب نجاته من هجوم سمكة قرش يدعي أن طولها يتجاوز الـ 21 متراً، يتعين على جوناس تيلور التغلب على أسوأ مخاوفه وإنقاذ مجموعة من الأشخاص عالقين في غواصة غارقة",
+      "title": "Amityville: The Awakening",
+      "description": "تنتقل أم عزباء يائسة مع أطفالها الثلاثة إلى المنزل الشهير والمرعب في أميتيفيل، والذي يُعتقد أنه مسكون، في محاولة لاستخدام قواه المظلمة لعلاج ابنها الذي في غيبوبة.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNMoviesPremiere.ae@SD": {
       "profile": "hybrid",
-      "title": "Black Bag",
-      "description": "عندما تشكّ المخابرات في خيانة العميلة الماهرة كاثرين وودهاوس لوطنها، يُختبر زوجها، العميل الأسطوري الآخر، في ولاءه لزوجته وواجبه تجاه وطنه.",
+      "title": "Talk to Me",
+      "description": "عندما تكتشف مجموعة من الأصدقاء كيفية استحضار الأرواح باستخدام يد محنطة، يصبحون مدمنين على الإثارة الجديدة، حتى يزيد المزح عن حده ويُطلق العنان لقوى مرعبة وخارقة للطبيعة",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNOne.ae@SD": {
       "profile": "hybrid",
-      "title": "Twisted Twins",
-      "description": "يحقق رجال الشرطة في أتلانتا في جريمة قتل أم بطريقة وحشية في منزلها الخاص، مما يقودهم إلى مشتبهين غير متوقعين - وهما توأمها المتطابقتين.",
+      "title": "The Curse",
+      "description": "يعيد كل من ويتني ودوجي تقييم خطتهما بعد زيارة أحد المسؤولين التنفيذيين للشبكة. وتذهب عائلة سيجل للعب البولينغ",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNPadelTV": {
       "profile": "hybrid",
-      "title": "BULLPADELSHOW 2025 Day 2, Segment ID: 3",
+      "title": "Padel Time TV",
       "description": "بادل تايم تي في - القناة العالمية الرائدة في رياضة البادل التي تشهد نموًا سريعًا. مقرها في أوروبا وتبث عالميًا، تقدم القناة مباريات مباشرة، وحصص تدريب، ومقابلات مع اللاعبين، وقصصًا من وراء الكواليس من عالم البادل.",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -571,21 +555,21 @@
     "OSNPopUp.ae@SD": {
       "profile": "hybrid",
       "title": "The Proof Is Out There",
-      "description": "هل اكتشف علماء المحيطات شكلاً جديداً من الحياة؟ هل الفيديو الغامض لمخلوق غريب في الثلج هو أفضل تصوير لمخلوق اليتي حتى الآن؟ هل واجهت عائلة في لاس فيغاس مخلوقات فضائية بطول عشرة أقدام في فناء منزلهم الخلفي؟",
+      "description": "هل رأى زوجان في كولورادو بيغفوت من نافذة قطار متحرك؟ هل ما زالت أرواح الجنود تطارد أشهر ساحة معركة في الحرب الأهلية؟ هل قام مزارع أغنام بتصوير لقطات لوحش بحيرة أسطوري في أيسلندا؟",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNShowcase.ae@SD": {
       "profile": "hybrid",
       "title": "The Deuce",
-      "description": "يتنقلان الأخوان فنسنت وفرانكي مارتينو في عالم تايم سكوير الصعب والمتقلب في العام 1971. تتقاطع المسارات بالنسبة إلى فنسنت مع الكثير من الأشخاص في وسط المدينة للتآمر من أجل تحسين وضعه. في مكان آخر، يتم تجنيد طالبة جامعة نيويورك، آبي من أجل شر",
+      "description": "ينتقل فينسنت للعيش في فندق، ويفكر في العرض الذي تلقاه من رئيس العصابة رودي بيبيلو. يحاول بوبي الاستفادة من صلات فينسنت. تلقي كاندي نظرة على صناعة أفلام البورنو ويظهر سي سي لـ لوري فوائد أن يكون لديه قواد.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
     "OSNShowcaseClassics.ae@SD": {
       "profile": "hybrid",
       "title": "The White Lotus",
-      "description": "تنضم هاربر إلى دافني في رحلة على الحدود، تاركان إيثان وكاميرون لوحدهما لبعض الوقت. بعد بقائها بمفردها ليومين كاملين، تطلب تانيا النصيحة من قارئ محلي وتدعو بورتيا لمشاهدة معالم المدينة مع دي غراسوس.",
+      "description": "تقضي تانيا وبورتيا اليوم مع الجذابين كوينتين وجاك. يصاب هاربر بالصدمة من الأدلة المروعة من ليلة خروج إيثان.",
       "title_has_arabic": false,
       "description_has_arabic": true
     },
@@ -599,21 +583,21 @@
     "OSNYahala.ae@SD": {
       "profile": "arabic_native",
       "title": "و بينا ميعاد",
-      "description": "لقد انقطعت السنوات بين يحيى وبين بناته الأربعة، وعلى الرغم من مرور فترة طويلة، يأتي اللقاء الأول بينهم.",
+      "description": "ينوي حسن مصالحة نادية مع طليقها. مراد يعرف حقيقة صاحب السنتر. هل سيطلب من ليلى أن تبتعد أم أنه لن يبدي لها أي اهتمام؟",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "OSNYahalaAflam.ae@SD": {
       "profile": "arabic_native",
-      "title": "كيرة والجن",
-      "description": "يرصد الفيلم حالة الغليان التي كان يموج بها الشارع المصري، وهو الحدث الكبير الذي يوحد مصير أحمد عبد الحي كيرة وعبدالقادر الجن ليشتركا في النضال ضد المحتل اﻹنجليزي.",
+      "title": "فوي! فوي! فوي!",
+      "description": "مستوحى من قصة حقيقية, حسن الذي يواجه تحديات الحياة يكتشف أن هناك فريق كرة قدم للمكفوفين مؤهل للسفر لبطولة كأس العالم في أوروبا, فيقرر التظاهر بأنه مكفوف للسفر مع الفريق للخارج.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "OSNYahalaBilArabi.ae@SD": {
       "profile": "arabic_native",
       "title": "إخوتي",
-      "description": "بينما يتعاون يامان مع نبهات ضد عاكف، تحدث تطورات غير متوقعة.",
+      "description": "الحادثة المؤسفة التي تعرضت لها فاطمة تسببت في صدمة تأثر بها جميع أفراد عائلة إيرين، وبشكل خاص ابنها.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -633,7 +617,7 @@
     },
     "RT.ru@SD": {
       "profile": "hybrid",
-      "title": "Headline News",
+      "title": "Miami America Now LIVE",
       "description": "آخر الأخبار",
       "title_has_arabic": false,
       "description_has_arabic": true
@@ -647,155 +631,22 @@
     },
     "SkyNewsArabia.ae@SD": {
       "profile": "arabic_native",
-      "title": "الأخبار 00:00",
+      "title": "أخبار عاجلة 00:00",
       "description": "أخبار اليوم يقدمها مراسلو سكاي نيوز عربية في الدول العربية والعالم",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
     "TLCArabia.us@SD": {
       "profile": "hybrid",
-      "title": "The Family Chantel",
-      "description": "يحضر بيدرو وعائلة شانتيل جلسة استشارية عائلية.",
+      "title": "7 Little Johnstons",
+      "description": "يحاول ترينت وأمبر ضبط نفقات زفاف ليز وبريس. وتتوتر جلسة قياس البدلات مع رفقاء العريس عندما يتخذ بريس خيارًا مثيرًا للجدل.",
       "title_has_arabic": false,
-      "description_has_arabic": true
-    },
-    "AlfaSeries.ae@SD": {
-      "profile": "arabic_native",
-      "title": "دايماً عامر",
-      "description": "يصل عامر إلى نهاية اللعبة فيما يبدأ فصلاً جديداً في حياته العاطفية. من ناحية أخرى، تجد الطالبة ميّ نفسها في مأزق خطير، فيسارع عامر لإنقاذها.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "AlfaSeriesPlus2.ae@SD": {
-      "profile": "arabic_native",
-      "title": "ريّا وسكينة",
-      "description": "تتدهور أحوال ريّا إذ يلقى القبض عليها وتسجن، فيما يأخذ حسب الله ابنتهما نعيمة لتعيش في الاسكندريّة مع سكينة. وبعد رمور ستّة أشهر، تخرج ريّا من السّجن وتذهب للقاء سكينة، طالبةً منها أن ينتقلا للعيش في مكانٍ آخر.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "AlSafwa.ae@SD": {
-      "profile": "arabic_native",
-      "title": "لا للنفايات",
-      "description": "حلقة تسلط الضوء على طريقة رمي الأشياء وإعادة استعمالها في المطاعم والمحلات.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "AlYawm.ae@SD": {
-      "profile": "arabic_native",
-      "title": "حكايات مجنونة",
-      "description": "قصص مجموعة من الشخصيات المختلفة وتعرضها لمواقف حياتية واجتماعية متفرقة في كل منها عبرة ومغزى إنساني. لكل حلقة موضوعها الجديد مع شخصيات نتابع مصائرها من خلال التفاعل مع هذه القضايا والمشاكل ضمن قالب كوميدي ساخر ليتم التأكيد على طبيعة الإنسان",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "ANC.ph": {
-      "profile": "arabic_native",
-      "title": "هيدستارت",
-      "description": "قناة إخبارية تقدم برامج إخبارية، ووثائقية وحوارية عن الفيليبين والعالم، من أشهر وكالة اخبارية في الفيليبين.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "Cinema1.ae@SD": {
-      "profile": "arabic_native",
-      "title": "أحلى أيام العمر",
-      "description": "يتعرف المحامي ممدوح المنزوّج من حنان، خلال عمله، على نوال التي تسعى للارتباط به، فتبدأ عندها المقابلات بينهما، إلى أن تتهمه بالاعتداء عليها وتختفي من حياته. بعد فترةٍ، تظهر نوال من جديد مدّعيةً أنّها حامل منه. فكيف سيواجه ممدوح الأمر؟",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "Cinema2.ae@SD": {
-      "profile": "arabic_native",
-      "title": "البنات شربات",
-      "description": "ينفصل عبّاس عن زوجته التي أنجبت له ثلاث بنات فيتزوّج من أخرى لتنجب له ولداً، لكن الفتيات يهربن بعد معاناتهنّ من قسوة زوجة والدهنّ، فيودّد إليهن شابّ غير مدركين الصلة العائلية التي تربطهم.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "CineMo.ph": {
-      "profile": "arabic_native",
-      "title": "سينيكوميديا",
-      "description": "قناة سينيمو هي قناة الأفلام الفيليبينية الوحيدة الموجهة نحو الرجل الفيليبيني الناضج، حيث تعرض مجموعة واسعة من أفلام المغامرات المحلية والأجنبية، أفلام الكونغ فو الآسيوية الكوميدية، الأفلام الرومانسية والضاربة.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "Fann.ae@SD": {
-      "profile": "arabic_native",
-      "title": "ساعة ما بشوفك جنبي",
-      "description": "مباشرة من أهم المهرجانات الغنائية العربية، ننقل إليكم بالصوت والصورة أغاني نجومكم الأحب على قلوبكم.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "GMALifeTV.ph": {
-      "profile": "arabic_native",
-      "title": "فارم تو تايبل",
-      "description": "يعطي شيف جونيور مشاهدينا نظرة خاطفة على العملية الرائعة لإعداد الطعام - من قطف وحصاد المكونات الطازجة إلى الطهي وطهي طبق لذيذ.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "GMANewsTV.ph": {
-      "profile": "arabic_native",
-      "title": "دوبول بي تي في",
-      "description": "تقدم نشرات الأخبار والبرامج المختلفة من سوبر راديو دي زي بي بي الأخبار والمعلومات التي تشتد الحاجة إليها لمشاهديها خاصة خلال هذه الأوقات العصيبة.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "GMAPinoyTVMiddleEast.ph": {
-      "profile": "arabic_native",
-      "title": "ماريا كلارا آت إيبارا",
-      "description": "جي أم إيه بينوي تي هي قناة ترفيه على مدار الساعة طوال الأسبوع حيث تتضمن مسلسلات حديثة، كوميدية، حوارية، واقعية، مسلية ومتنوعة فضلاً عن برامج إخبارية من قناة جي أم إيه في الفيليبين. باللغتين الإنكليزية والفيليبينية.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "MusicNow.ae@SD": {
-      "profile": "arabic_native",
-      "title": "ركوة قهوة",
-      "description": "نضع بتصرّفكم مجموعة من الأغاني المصوّرة من أنجح الأعمال التي تلقى رواجاً على الساحة الفنيّة.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "MyxMiddleEast.ph": {
-      "profile": "arabic_native",
-      "title": "أم واي أكس هيتس ديفيرنت",
-      "description": "برنامج خاص من قناة Myx TV",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "osn.213": {
-      "profile": "arabic_native",
-      "title": "MOR Global Radio",
-      "description": "بث إذاعي مباشر من قناة أيه بي أس- سي بي أن الإذاعية في الفلبين. يبثها لكم منسقو أغاني إذاعية مشهورين وستستمعون للكثير من الأغاني المحبوبة من الكلاسيكيات إلى أحدث الأغاني الفلبينية الأصلية.",
-      "title_has_arabic": false,
-      "description_has_arabic": true
-    },
-    "osn.215": {
-      "profile": "arabic_native",
-      "title": "DZMM TeleRadyo",
-      "description": "قناة بث مباشر بالصوت والصورة من قناة أيه بي أس- سي بي أن الإذاعية في الفلبين، تنقل لكم تقارير إخبارية، برامج حوارية وبرامج منوعة، ينقلها ويبثها إليكم عدد من شخصيات البث الإذاعي الفلبينيين المعروفين.",
-      "title_has_arabic": false,
-      "description_has_arabic": true
-    },
-    "osn.216": {
-      "profile": "arabic_native",
-      "title": "شيز ذا وان",
-      "description": "قناة فليبينية تُقدم أفلاماً على مدار الساعة من أشهر مكتبات ستار سينما، ريغال إنترتينمنت و فيفا فيلمز. إنها قناة الأفلام الفلبينية الأشهر في العالم، حيث يتم عرض الأفلام الفلبينية بشكل حصري بعد ستة أشهر من عرضها في السينما.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "osn.217": {
-      "profile": "arabic_native",
-      "title": "ذا آيرون هارت",
-      "description": "قناة تسلية عامة من إيه بي أس-سي بي أن تبث برامج مسلية على مدار الساعة. إنها القناة الفيليبينية الأولى في العالم.",
-      "title_has_arabic": true,
-      "description_has_arabic": true
-    },
-    "osn.220": {
-      "profile": "arabic_native",
-      "title": "كاربول",
-      "description": "كاباتيد تي في 5 هي قناة تسلية، حيث تتضمن مجموعة من البرامج الإخبارية والكوميدية وبرامج تلفزيون الواقع والدراما وغيرها من البرامج المختلفة.",
-      "title_has_arabic": true,
       "description_has_arabic": true
     },
     "osn.2501": {
       "profile": "arabic_native",
-      "title": "دوري نجوم قطر",
-      "description": "يتنافس اثنا عشر فريقًا من أندية الدرجة الأولى ضمن منافسات دوري نجوم قطر، فهي المنافسة المحلية الأولى والأبرز على صعيد دوريات المحترفين في دولة قطر.",
+      "title": "الحكم",
+      "description": "يحلل أصعب قرارات التحكيم، مستخدماً تحليل الخبراء ولقطات المباريات؛ لشرح القرارات التحكمية المثيرة للجدل والقواعد التي تقف وراءها.",
       "title_has_arabic": true,
       "description_has_arabic": true
     },
@@ -812,6 +663,27 @@
       "description": ".دليلك الشامل لتعرف آخر الفعاليات والأحداث الهامة التي تقع داخل سلطنة عمان",
       "title_has_arabic": true,
       "description_has_arabic": true
+    },
+    "Cinema1.ae@SD": {
+      "profile": "arabic_native",
+      "title": "Sorry to Disturb",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
+    },
+    "Cinema2.ae@SD": {
+      "profile": "arabic_native",
+      "title": "The Second Man",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
+    },
+    "MusicNow.ae@SD": {
+      "profile": "arabic_native",
+      "title": "Maa Tebkeesh",
+      "description": "",
+      "title_has_arabic": false,
+      "description_has_arabic": false
     }
   }
 }
