@@ -54,6 +54,7 @@ def analyze(path, source, now):
     by_id = defaultdict(list)
     bad_channels = defaultdict(int)
     future_counts = defaultdict(int)
+    future_titles = defaultdict(set)
     missing_desc = 0
     placeholder_desc = 0
     placeholder_title = 0
@@ -74,6 +75,8 @@ def analyze(path, source, now):
         future_counts[cid] += 1
         by_id[cid].append((start, stop))
         title = next(((x.text or "").strip() for x in p.findall("title") if x.text), "")
+        if title:
+            future_titles[cid].add(norm(title))
         desc = next(((x.text or "").strip() for x in p.findall("desc") if x.text), "")
         if not desc:
             missing_desc += 1
@@ -104,6 +107,10 @@ def analyze(path, source, now):
         if gap > timedelta(minutes=90):
             holes[cid] = int(gap.total_seconds() / 60)
     quality_bad = sorted(bad_channels, key=lambda x: (-bad_channels[x], x))
+    # Low diversity is a *suspicion* only (some genuine thematic guides repeat).
+    # A high placeholder ratio is stronger evidence of artificial schedule rows.
+    repeated = sorted(cid for cid,count in future_counts.items()
+                      if count >= 10 and len(future_titles.get(cid, set())) <= 2)
     result = {
         "source": source,
         "generated_utc": now.isoformat(),
@@ -119,6 +126,8 @@ def analyze(path, source, now):
         "future_programmes_with_unavailable_description": placeholder_desc,
         "future_programmes_with_placeholder_or_channel_title": placeholder_title,
         "suspected_placeholder_channels": [{"id": cid, "count": bad_channels[cid]} for cid in quality_bad],
+        "future_programmes_by_channel": dict(sorted(future_counts.items())),
+        "suspected_repeated_title_channels": repeated,
         "invalid_dates": invalid_dates,
     }
     result["quality_status"] = (
