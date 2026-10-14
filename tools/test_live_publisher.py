@@ -123,6 +123,11 @@ class TestLivePublication(unittest.TestCase):
             meta = json.loads(stats.read_text())
             root = ET.fromstring(gzip.decompress(gz.read_bytes()))
             self.assertEqual(meta["rejected_missing_title"], 1)
+            # The only programme covering now was blank. Future rows do not
+            # mislead Smart Mapping into believing that EPG exists right now.
+            self.assertEqual(meta["currently_on_air_channels"], 0)
+            self.assertEqual(meta["current_coverage_pct"], 0.0)
+            self.assertEqual(meta["currently_uncovered_ids"], ["qa.0"])
             self.assertEqual(meta["programmes"], 1)
             self.assertEqual(len(root.findall("programme")), 1)
             self.assertTrue(all((p.findtext("title") or "").strip()
