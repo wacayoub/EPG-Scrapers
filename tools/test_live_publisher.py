@@ -106,6 +106,51 @@ class TestLivePublication(unittest.TestCase):
             self.assertTrue(any("missing_title_rows" in x for x in outcome["reasons"]))
             self.assertEqual(old.read_bytes(), before)
 
+    def test_elcinema_compares_coverage_instead_of_freezing_cron(self):
+        now = datetime.now(timezone.utc).replace(microsecond=0)
+        def guide(current):
+            tv = ET.Element("tv")
+            for n in range(97):
+                ET.SubElement(tv, "channel", {"id": f"elc.{n}"})
+                if n < current:
+                    start, stop = now - timedelta(minutes=5), now + timedelta(minutes=15)
+                else:
+                    start, stop = now + timedelta(minutes=60), now + timedelta(minutes=80)
+                for a, b in ((start, stop),
+                             (now + timedelta(hours=2), now + timedelta(hours=49))):
+                    p = ET.SubElement(tv, "programme", {
+                        "channel": f"elc.{n}",
+                        "start": a.strftime("%Y%m%d%H%M%S +0000"),
+                        "stop": b.strftime("%Y%m%d%H%M%S +0000"),
+                    })
+                    ET.SubElement(p, "title").text = "برنامج من المصدر"
+            return gzip.compress(ET.tostring(tv, encoding="utf-8"))
+
+        for previous_current, expected_published in ((97, False), (7, True)):
+            with self.subTest(previous_current=previous_current):
+                with tempfile.TemporaryDirectory() as td:
+                    base = Path(td)
+                    (base / "output/final").mkdir(parents=True)
+                    (base / "feeds").mkdir()
+                    candidate = guide(7)
+                    (base / "output/final/elcinema.xml.gz").write_bytes(candidate)
+                    old = base / "feeds/elcinema.xml.gz"
+                    prior = guide(previous_current)
+                    old.write_bytes(prior)
+                    result = subprocess.run(
+                        [sys.executable, str(PUBLISHER), "--source", "elcinema",
+                         "--report", "reports/elcinema-test.json"],
+                        cwd=td, text=True, capture_output=True, timeout=25)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    report = json.loads((base / "reports/elcinema-test.json").read_text())
+                    row = report["sources"]["elcinema"]
+                    self.assertEqual(row["published"], expected_published, row)
+                    if not expected_published:
+                        self.assertIn("current_coverage_regression>25pp", row["reasons"])
+                        self.assertEqual(old.read_bytes(), prior)
+                    else:
+                        self.assertEqual(old.read_bytes(), candidate)
+
     def test_packer_drops_only_blank_titles_without_faking_replacements(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td)
