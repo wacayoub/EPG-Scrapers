@@ -1,27 +1,27 @@
 {
-  "generated_utc": "2026-10-13T14:28:11.358070+00:00",
+  "generated_utc": "2026-10-14T12:06:21.760985+00:00",
   "sources": {
     "bein": {
       "candidate": "output/final/bein.xml.gz",
       "published": true,
       "candidate_stats": {
         "channels": 68,
-        "active_channels": 67,
-        "zero_epg_channels": 1,
-        "programmes": 2598,
-        "future_channels": 67,
+        "active_channels": 66,
+        "zero_epg_channels": 2,
+        "programmes": 2832,
+        "future_channels": 66,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.53017286888889,
+        "future_horizon_hours": 49.89394988666667,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 68,
         "active_channels": 67,
         "zero_epg_channels": 1,
-        "programmes": 2701,
-        "future_channels": 51,
-        "future_ratio": 0.7611940298507462,
-        "future_horizon_hours": 28.03015668722222,
+        "programmes": 2598,
+        "future_channels": 46,
+        "future_ratio": 0.6865671641791045,
+        "future_horizon_hours": 27.893934375555553,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
