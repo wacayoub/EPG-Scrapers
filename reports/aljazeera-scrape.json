@@ -1,13 +1,13 @@
 {
   "source": "Al Jazeera Network official public schedules",
   "source_url": "https://www.aljazeera.net/video/live",
-  "generated_utc": "2026-10-13T14:13:57.238058+00:00",
+  "generated_utc": "2026-10-14T11:53:26.074628+00:00",
   "timezone_source": "Asia/Qatar",
   "timezone_output": "UTC +0000",
   "window_hours": 48,
   "channels": 5,
   "active_channels": 3,
-  "programmes": 143,
+  "programmes": 142,
   "channel_reports": {
     "AlJazeera.qa@Arabic": {
       "xmltv_id": "AlJazeera.qa@Arabic",
@@ -19,15 +19,15 @@
           "status": 200
         }
       ],
-      "programmes": 43,
+      "programmes": 41,
       "error": "",
       "graphql": {
         "status": 200,
         "url": "https://www.aljazeera.com/graphql?wp-site=aja&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
         "programmes_found": 137
       },
-      "first_start_utc": "2026-10-13T11:00:00+00:00",
-      "last_stop_utc": "2026-10-15T15:00:00+00:00"
+      "first_start_utc": "2026-10-14T09:00:00+00:00",
+      "last_stop_utc": "2026-10-16T12:00:00+00:00"
     },
     "AlJazeera2.qa@HD": {
       "xmltv_id": "AlJazeera2.qa@HD",
@@ -46,8 +46,8 @@
         "url": "https://www.aljazeera.com/graphql?wp-site=aja&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule-aj2%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
         "programmes_found": 76
       },
-      "first_start_utc": "2026-10-12T23:00:00+00:00",
-      "last_stop_utc": "2026-10-15T17:00:00+00:00"
+      "first_start_utc": "2026-10-13T23:00:00+00:00",
+      "last_stop_utc": "2026-10-16T17:00:00+00:00"
     },
     "AlJazeeraMubasher.qa@SD": {
       "xmltv_id": "AlJazeeraMubasher.qa@SD",
@@ -93,15 +93,15 @@
           "status": 200
         }
       ],
-      "programmes": 77,
+      "programmes": 78,
       "error": "",
       "graphql": {
         "status": 200,
         "url": "https://www.aljazeera.com/graphql?wp-site=aje&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
         "programmes_found": 296
       },
-      "first_start_utc": "2026-10-13T12:00:00+00:00",
-      "last_stop_utc": "2026-10-15T14:30:00+00:00"
+      "first_start_utc": "2026-10-14T09:30:00+00:00",
+      "last_stop_utc": "2026-10-16T12:00:00+00:00"
     }
   },
   "zero_epg_ids": [
