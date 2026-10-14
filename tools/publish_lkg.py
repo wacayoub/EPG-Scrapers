@@ -87,6 +87,8 @@ def stats(path: Path):
     future_by_channel = {cid: 0 for cid in channels}
     programmes = 0
     invalid = 0
+    missing_title_rows = 0
+    currently_covered = set()
     latest_stop = None
 
     for p in root.findall("programme"):
@@ -97,6 +99,10 @@ def stats(path: Path):
             invalid += 1
             continue
         programmes += 1
+        if not any((t.text or "").strip() for t in p.findall("title")):
+            missing_title_rows += 1
+        if start <= now < stop:
+            currently_covered.add(cid)
         valid_by_channel[cid] = valid_by_channel.get(cid, 0) + 1
         if stop > now:
             future_by_channel[cid] = future_by_channel.get(cid, 0) + 1
@@ -115,7 +121,10 @@ def stats(path: Path):
         "programmes": programmes,
         "future_channels": future_channels,
         "future_ratio": ratio,
+        "current_channels": len(currently_covered),
+        "current_ratio": (len(currently_covered) / active_channels if active_channels else 0.0),
         "future_horizon_hours": max(0.0, horizon),
+        "missing_title_rows": missing_title_rows,
         "invalid_rows": invalid,
     }
 
@@ -136,8 +145,11 @@ def evaluate(key: str, candidate: Path, previous: Path):
         reasons.append(f"future_horizon<{min_horizon:g}h")
     if cur["invalid_rows"] > 0:
         reasons.append(f"invalid_rows={cur['invalid_rows']}")
+    if cur["missing_title_rows"] > 0:
+        reasons.append(f"missing_title_rows={cur['missing_title_rows']}")
 
     old = None
+    recovery_short_horizon = False
     if previous.exists() and previous.stat().st_size:
         try:
             old = stats(previous)
@@ -161,6 +173,21 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["programmes"] >= 20
             )
             planned_scope_rebase = planned_bein_scope_rebase or planned_stctv_scope_rebase
+            # Tabie/QMC sometimes returns the current Qatar day for requested
+            # future dates. A new 8-24h *real* guide is safer than retaining a
+            # fully expired archive, but MUST be labelled as partial coverage.
+            # This exception is never applied if the previous feed still has
+            # a valid future event or the candidate has no programme NOW.
+            recovery_short_horizon = (
+                key == "tabie"
+                and old["future_channels"] == 0
+                and cur["future_channels"] >= 4
+                and cur["current_channels"] >= 4
+                and cur["current_ratio"] >= 0.80
+                and cur["future_horizon_hours"] >= 8
+                and cur["missing_title_rows"] == 0
+                and cur["invalid_rows"] == 0
+            )
             if (
                 not planned_scope_rebase
                 and old["channels"]
@@ -179,6 +206,25 @@ def evaluate(key: str, candidate: Path, previous: Path):
         except Exception as exc:
             old = {"warning": f"previous unreadable: {exc}"}
 
+    if recovery_short_horizon:
+        reasons = [r for r in reasons if not r.startswith("future_horizon<")]
+        cur["partial_recovery_from_expired_lkg"] = True
+        cur["hours_of_recovered_guide"] = round(cur["future_horizon_hours"], 1)
+    # A source that is current only at the end of its 48h horizon is not
+    # usable for Smart Mapping now. Restrict this gate to programme-rich
+    # linear sources; live-news rolling schedules are a separate policy.
+    # ElCinema has genuine multi-hour holes in its official guide.
+    # A fixed threshold at the morning cron slot could freeze publication
+    # forever. Refuse only a *large regression* versus the current LKG;
+    # continuous/48h coverage problems remain explicitly reported by audits.
+    if (key == "elcinema" and old and
+            old.get("current_channels", 0) >= 10 and
+            old.get("current_ratio", 0.0) - cur["current_ratio"] > 0.25):
+        reasons.append("current_coverage_regression>25pp")
+    minimum_now = {"tabie": 0.60, "shahid": 0.60}
+    floor = minimum_now.get(key)
+    if floor is not None and cur["current_ratio"] < floor:
+        reasons.append(f"current_ratio<{floor:.2f}")
     return cur, old, reasons
 
 
