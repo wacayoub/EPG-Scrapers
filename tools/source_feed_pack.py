@@ -122,12 +122,18 @@ def main() -> int:
     max_start = now + timedelta(hours=max(1, args.window_hours))
     programmes = defaultdict(list)
     rejected_time = 0
+    rejected_missing_title = 0
     inferred_stop = 0
 
     raw_by_channel = defaultdict(list)
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
         if cid not in channels:
+            continue
+        # An empty title is not authentic programme information. Keep the
+        # channel catalogue ID but do not publish a phantom programme.
+        if not any((t.text or "").strip() for t in p.findall("title")):
+            rejected_missing_title += 1
             continue
         start = parse_xmltv_dt(p.get("start") or "")
         if not start:
@@ -203,6 +209,7 @@ def main() -> int:
         "coverage_pct": round((len(active_ids) * 100.0 / len(all_ids)), 1) if all_ids else 0.0,
         "programmes": event_count,
         "rejected_invalid_time": rejected_time,
+        "rejected_missing_title": rejected_missing_title,
         "inferred_stop": inferred_stop,
         "window_hours": args.window_hours,
         "timezone_output": "UTC +0000",
