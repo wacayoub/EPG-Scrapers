@@ -70,7 +70,7 @@ class TestLivePublication(unittest.TestCase):
     def test_real_12h_recovery_replaces_completely_expired_feed(self):
         with tempfile.TemporaryDirectory() as td:
             old, before = self.setup_workspace(
-                td, timeline(), timeline(horizon=12, shift=-3*24*60))
+                td, timeline(), timeline(horizon=-60, shift=-3*24*60))
             outcome = self.publish(td)
             self.assertTrue(outcome["published"], outcome)
             self.assertTrue(outcome["candidate_stats"]["partial_recovery_from_expired_lkg"])
@@ -90,7 +90,7 @@ class TestLivePublication(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             old, before = self.setup_workspace(
                 td, timeline(shift=180, horizon=15),
-                timeline(horizon=12, shift=-3*24*60))
+                timeline(horizon=-60, shift=-3*24*60))
             outcome = self.publish(td)
             self.assertFalse(outcome["published"], outcome)
             self.assertTrue(any("current_ratio<" in reason for reason in outcome["reasons"]))
@@ -100,7 +100,7 @@ class TestLivePublication(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             old, before = self.setup_workspace(
                 td, timeline(invalid_titles=1),
-                timeline(horizon=12, shift=-3*24*60))
+                timeline(horizon=-60, shift=-3*24*60))
             outcome = self.publish(td)
             self.assertFalse(outcome["published"])
             self.assertTrue(any("missing_title_rows" in x for x in outcome["reasons"]))
@@ -110,7 +110,7 @@ class TestLivePublication(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td)
             inp = path / "real.xml"
-            inp.write_bytes(timeline(channels=1, live=1, horizon=1, invalid_titles=1))
+            inp.write_bytes(timeline(channels=1, live=1, horizon=0.5, invalid_titles=1))
             gz = path / "published.xml.gz"
             stats = path / "published.json"
             cmd = [
