@@ -167,6 +167,18 @@ def main() -> int:
     all_ids = sorted(channels, key=str.casefold)
     active_ids = sorted((cid for cid in all_ids if programmes.get(cid)), key=str.casefold)
     zero_ids = [cid for cid in all_ids if cid not in set(active_ids)]
+    # Historical/future entries must not masquerade as an EPG programme
+    # available *now*. Expose the current coverage as separate metadata.
+    current_ids = [
+        cid for cid in active_ids
+        if any(
+            (parse_xmltv_dt(p.get("start") or "") or now) <= now <
+            (parse_xmltv_dt(p.get("stop") or "") or now)
+            for p in programmes.get(cid, ())
+        )
+    ]
+    current_id_set = set(current_ids)
+    missing_now_ids = [cid for cid in all_ids if cid not in current_id_set]
 
     out = ET.Element("tv", {
         "generator-info-name": "EPGManager standalone source - %s" % args.label,
@@ -207,6 +219,9 @@ def main() -> int:
         "zero_epg_ids": zero_ids,
         "input_channels": len(channels),
         "coverage_pct": round((len(active_ids) * 100.0 / len(all_ids)), 1) if all_ids else 0.0,
+        "currently_on_air_channels": len(current_ids),
+        "current_coverage_pct": round((100.0 * len(current_ids) / len(all_ids)), 1) if all_ids else 0.0,
+        "currently_uncovered_ids": missing_now_ids,
         "programmes": event_count,
         "rejected_invalid_time": rejected_time,
         "rejected_missing_title": rejected_missing_title,
