@@ -213,7 +213,15 @@ def evaluate(key: str, candidate: Path, previous: Path):
     # A source that is current only at the end of its 48h horizon is not
     # usable for Smart Mapping now. Restrict this gate to programme-rich
     # linear sources; live-news rolling schedules are a separate policy.
-    minimum_now = {"tabie": 0.60, "shahid": 0.60, "elcinema": 0.30}
+    # ElCinema has genuine multi-hour holes in its official guide.
+    # A fixed threshold at the morning cron slot could freeze publication
+    # forever. Refuse only a *large regression* versus the current LKG;
+    # continuous/48h coverage problems remain explicitly reported by audits.
+    if (key == "elcinema" and old and
+            old.get("current_channels", 0) >= 10 and
+            old.get("current_ratio", 0.0) - cur["current_ratio"] > 0.25):
+        reasons.append("current_coverage_regression>25pp")
+    minimum_now = {"tabie": 0.60, "shahid": 0.60}
     floor = minimum_now.get(key)
     if floor is not None and cur["current_ratio"] < floor:
         reasons.append(f"current_ratio<{floor:.2f}")
