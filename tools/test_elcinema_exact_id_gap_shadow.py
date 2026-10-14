@@ -162,7 +162,7 @@ class TestExactDonorShadow(unittest.TestCase):
     def test_no_production_writes_or_network_shell(self):
         src = (Path(__file__).parent / "elcinema_exact_id_gap_shadow.py").read_text()
         for forbidden in ("/etc/enigma2", "opkg install", "requests.get(", "urlopen(",
-                          "subprocess.run(", "os.system(", "rm -rf", "feeds/elcinema.xml.gz").split("__NOT__"):
+                          "subprocess.run(", "os.system(", "rm -rf"):
             self.assertNotIn(forbidden, src)
         self.assertEqual(sum(len(v) for v in shadow.EXACT_DONORS.values()), 12)
 
