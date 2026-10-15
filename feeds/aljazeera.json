@@ -9,12 +9,19 @@
   ],
   "input_channels": 5,
   "coverage_pct": 60.0,
-  "programmes": 142,
+  "currently_on_air_channels": 3,
+  "current_coverage_pct": 60.0,
+  "currently_uncovered_ids": [
+    "AlJazeeraDocumentary.qa@SD",
+    "AlJazeeraMubasher.qa@SD"
+  ],
+  "programmes": 134,
   "rejected_invalid_time": 0,
+  "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 4239,
-  "sha256": "a4f60e24625176c7ef9b5d6da6619ac4f086243bd8a22d5d37807c7e28c0c3b3",
-  "generated_utc": "2026-10-14T11:53:30.568008+00:00"
+  "size_bytes": 3801,
+  "sha256": "7a99e170406da37e76a4488e450bee256a018814ef8d324c942c6f559eb8ad3c",
+  "generated_utc": "2026-10-15T11:30:04.650925+00:00"
 }

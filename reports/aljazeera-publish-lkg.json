@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-14T11:53:30.622521+00:00",
+  "generated_utc": "2026-10-15T11:30:04.734098+00:00",
   "sources": {
     "aljazeera": {
       "candidate": "output/final/aljazeera.xml.gz",
@@ -8,20 +8,26 @@
         "channels": 5,
         "active_channels": 3,
         "zero_epg_channels": 2,
-        "programmes": 142,
+        "programmes": 134,
         "future_channels": 3,
         "future_ratio": 1.0,
-        "future_horizon_hours": 53.10816013694444,
+        "current_channels": 3,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 59.482017975,
+        "missing_title_rows": 0,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 5,
         "active_channels": 3,
         "zero_epg_channels": 2,
-        "programmes": 143,
+        "programmes": 142,
         "future_channels": 3,
         "future_ratio": 1.0,
-        "future_horizon_hours": 29.108159430833332,
+        "current_channels": 3,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 29.4986837275,
+        "missing_title_rows": 0,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
