@@ -62,6 +62,7 @@ jobs:
     if: needs.route.outputs.group == 'sports'
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         source: [bein, sport24, alkass]
     uses: ./.github/workflows/refresh-source-core.yml
