@@ -2,7 +2,8 @@ name: EPG Daily Watchdog
 
 on:
   schedule:
-    - cron: "37 9 * * *"
+    - cron: "15 14 * * *"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:
@@ -117,28 +118,9 @@ jobs:
           print("mena_fresh=", mena_fresh)
           PY
 
-      - name: Check whether recovery chain is already running
-        if: steps.health.outputs.status == 'stale_sources'
-        id: recovery
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          active="$(gh run list --repo "$GITHUB_REPOSITORY" \
-            --workflow daily-epg-chain.yml \
-            --limit 20 \
-            --json status \
-            --jq '[.[] | select(.status == "queued" or .status == "in_progress")] | length')"
-          echo "active=$active" >> "$GITHUB_OUTPUT"
-
-      - name: Start one sequential recovery chain
-        if: steps.health.outputs.status == 'stale_sources' && steps.recovery.outputs.active == '0'
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run daily-epg-chain.yml --repo "$GITHUB_REPOSITORY" --ref main
-
+      # A stale provider is never a reason to restart ALL 14 sources.
+      # The 15:00 local targeted-retry workflow will select only degraded
+      # ElCinema / OSN / beIN / Shahid feeds, and skip an active main chain.
       - name: Rebuild MENA only when source feeds are current
         if: steps.health.outputs.status == 'mena_stale'
         shell: bash
