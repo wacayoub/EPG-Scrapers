@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-14T12:01:55.317965+00:00",
+  "generated_utc": "2026-10-15T11:38:24.148490+00:00",
   "sources": {
     "stctv": {
       "candidate": "output/final/stctv.xml.gz",
@@ -8,20 +8,26 @@
         "channels": 149,
         "active_channels": 149,
         "zero_epg_channels": 0,
-        "programmes": 9379,
+        "programmes": 9215,
         "future_channels": 149,
         "future_ratio": 1.0,
-        "future_horizon_hours": 51.46794733138889,
+        "current_channels": 149,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 50.3599407775,
+        "missing_title_rows": 0,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 149,
         "active_channels": 149,
         "zero_epg_channels": 0,
-        "programmes": 9309,
+        "programmes": 9379,
         "future_channels": 149,
         "future_ratio": 1.0,
-        "future_horizon_hours": 28.467890586666666,
+        "current_channels": 149,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 27.859885264166667,
+        "missing_title_rows": 0,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
