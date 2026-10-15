@@ -1,0 +1,86 @@
+name: EPG evening sports and Morocco - Casablanca
+
+on:
+  schedule:
+    - cron: "30 19 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "30 20 * * *"
+      timezone: "Africa/Casablanca"
+  workflow_dispatch:
+    inputs:
+      group:
+        description: "Refresh just this source group"
+        type: choice
+        required: true
+        options:
+          - sports
+          - morocco
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-evening-casablanca
+  cancel-in-progress: false
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      group: ${{ steps.select.outputs.group }}
+    steps:
+      - name: Select the source group; refuse a delayed overnight duplicate
+        id: select
+        shell: bash
+        env:
+          SCHEDULE_EVENT: ${{ github.event.schedule }}
+          DISPATCH_GROUP: ${{ inputs.group }}
+        run: |
+          set -euo pipefail
+          local_hour="$(TZ=Africa/Casablanca date +%H)"
+          group=""
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            case "$DISPATCH_GROUP" in
+              sports|morocco) group="$DISPATCH_GROUP" ;;
+              *) echo "Invalid group"; exit 2 ;;
+            esac
+          elif [ "$local_hour" -ge 18 ] && [ "$local_hour" -le 23 ]; then
+            case "$SCHEDULE_EVENT" in
+              "30 19 * * *") group="sports" ;;
+              "30 20 * * *") group="morocco" ;;
+              *) echo "Unexpected schedule event"; exit 2 ;;
+            esac
+          else
+            echo "Local evening window missed: hour=$local_hour, skip overnight duplicate"
+          fi
+          echo "group=$group" >> "$GITHUB_OUTPUT"
+          echo "CASABLANCA_EVENING_GROUP=$group"
+
+  sports:
+    needs: route
+    if: needs.route.outputs.group == 'sports'
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        source: [bein, sport24, alkass]
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: ${{ matrix.source }}
+      scheduled: false
+    secrets: inherit
+
+  morocco:
+    needs: route
+    if: needs.route.outputs.group == 'morocco'
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: morocco
+      scheduled: false
+    secrets: inherit
+
+  finalize:
+    needs: [route, sports, morocco]
+    if: always() && needs.route.outputs.group != '' && (needs.sports.result == 'success' || needs.morocco.result == 'success')
+    uses: ./.github/workflows/rebuild-mena-derived.yml
