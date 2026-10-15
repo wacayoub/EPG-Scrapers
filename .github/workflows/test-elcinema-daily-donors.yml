@@ -7,6 +7,7 @@ on:
       - "tools/elcinema_daily_donors.py"
       - "tools/test_elcinema_daily_donors.py"
       - ".github/workflows/elcinema-daily-donors.yml"
+      - ".github/workflows/elcinema-donor-bootstrap.yml"
       - ".github/workflows/daily-epg-chain.yml"
       - ".github/workflows/epg-casablanca-targeted-retry.yml"
       - ".github/workflows/test-elcinema-daily-donors.yml"
@@ -44,6 +45,7 @@ jobs:
           bash /tmp/download-actionlint.bash
           ./actionlint -color \
             .github/workflows/elcinema-daily-donors.yml \
+            .github/workflows/elcinema-donor-bootstrap.yml \
             .github/workflows/daily-epg-chain.yml \
             .github/workflows/epg-casablanca-targeted-retry.yml
       - name: Validate workflow dependencies
@@ -61,6 +63,9 @@ jobs:
           assert 'elcinema_extend' in retry['jobs']['finalize']['needs']
           assert don['concurrency']['group']=='epg-source-publish'
           assert don['permissions']['contents']=='write'
+          boot=yaml.load((w/'elcinema-donor-bootstrap.yml').read_text(),Loader=yaml.BaseLoader)
+          assert boot['jobs']['extend']['uses']=='./.github/workflows/elcinema-daily-donors.yml'
+          assert boot['jobs']['finalize']['needs']=='extend'
           print('DAILY_DONOR_SEQUENCE_VALID')
           PY
       - name: Compare real current-day published feeds without modifications
