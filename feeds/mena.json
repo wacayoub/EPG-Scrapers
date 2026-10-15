@@ -1,9 +1,9 @@
 {
   "label": "mena",
   "channels": 517,
-  "programmes": 31177,
-  "generated_utc": "2026-10-15T11:46:12.717295+00:00",
-  "sha256": "9fe059eb7466370e37f43cf6c988ff785a0da313e4bc187fe5714aa7642f18a6",
+  "programmes": 31221,
+  "generated_utc": "2026-10-15T20:00:04.839723+00:00",
+  "sha256": "eab364b2429c679c2a004480a8383d69b688c133c5326cda80c89bfbaa1c6bb7",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -32,7 +32,7 @@
     "AlAoula": "morocco",
     "AlAoula.ma@MiddleEast": "elcinema",
     "Alarabiya.ae@SD": "shahid",
-    "AlArabiyaBusiness.ae@SD": "shahid",
+    "AlArabiyaBusiness.ae@SD": "starzplay",
     "AlArabiyaEnglish.sa@SD": "shahid",
     "AlarabiyaPortrait.ae@SD": "osn",
     "AlArabiyaPrograms.ae": "shahid",
@@ -182,7 +182,7 @@
     "Fann.ae@SD": "osn",
     "Fatafeat.ae@SD": "osn",
     "FIFAPlus.uk": "starzplay",
-    "FoodNetworkEMEA.us@SD": "bein",
+    "FoodNetworkEMEA.us@SD": "stctv",
     "FoxActionMoviesMENA.hk@SD": "bein",
     "FoxArabia.ae@SD": "bein",
     "FoxMoviesMiddleEast.us@SD": "bein",
@@ -547,9 +547,6 @@
       "stctv"
     ],
     "DubaiSports2.ae@SD": [
-      "stctv"
-    ],
-    "FoodNetworkEMEA.us@SD": [
       "stctv"
     ]
   },
