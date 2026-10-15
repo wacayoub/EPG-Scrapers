@@ -42,6 +42,7 @@ class TestScheduledWorkflows(unittest.TestCase):
             "cron": "0 15 * * *", "timezone": "Africa/Casablanca",
         }])
         self.assertEqual(p["jobs"]["retry"]["with"]["source"], "${{ matrix.source }}")
+        self.assertEqual(p["jobs"]["retry"]["strategy"]["max-parallel"], "1")
         self.assertEqual(p["jobs"]["retry"]["strategy"]["matrix"]["source"],
                          "${{ fromJSON(needs.decide.outputs.retry_sources) }}")
         self.assertEqual(tuple(epg_schedule_policy.TARGETS),
@@ -57,6 +58,7 @@ class TestScheduledWorkflows(unittest.TestCase):
         ])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["matrix"]["source"],
                          ["bein","sport24","alkass"])
+        self.assertEqual(p["jobs"]["sports"]["strategy"]["max-parallel"], "1")
         self.assertEqual(p["jobs"]["morocco"]["with"]["source"], "morocco")
         self.assertIn("hour=$local_hour", (WF / "epg-evening-casablanca.yml").read_text())
 
