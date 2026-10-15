@@ -1,13 +1,18 @@
 {
-  "programmes": 2832,
+  "programmes": 3051,
   "title_policy": "preserve source here; full English titles applied in hybrid pass",
   "titles_changed": 0,
-  "descriptions_translated": 25,
-  "description_total": 25,
-  "remaining_english_descriptions": 0,
+  "descriptions_translated": 17,
+  "description_total": 18,
+  "remaining_english_descriptions": 1,
   "new_cache_entries": 0,
-  "translation_failures": [],
-  "rate_limited": false,
+  "translation_failures": [
+    {
+      "text": "Everton are looking for consecutive Premier League wins over Chelsea for the first time since beating them in March and December 2019 under Marco Silva and Duncan Ferguson respecti",
+      "error": "HTTP 429 after backoff; translation paused for remainder of run"
+    }
+  ],
+  "rate_limited": true,
   "skipped_after_rate_limit": 0,
   "translation_policy": "descriptions only; source text preserved on rate limit/error"
 }

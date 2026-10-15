@@ -1,20 +1,25 @@
 {
   "label": "bein",
   "channels": 68,
-  "active_channels": 66,
-  "zero_epg_channels": 2,
+  "active_channels": 67,
+  "zero_epg_channels": 1,
   "zero_epg_ids": [
-    "AlkassEight.qa@SD",
-    "MTV90s.uk@SD"
+    "AlkassEight.qa@SD"
   ],
   "input_channels": 68,
-  "coverage_pct": 97.1,
-  "programmes": 2832,
+  "coverage_pct": 98.5,
+  "currently_on_air_channels": 67,
+  "current_coverage_pct": 98.5,
+  "currently_uncovered_ids": [
+    "AlkassEight.qa@SD"
+  ],
+  "programmes": 3051,
   "rejected_invalid_time": 0,
+  "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 43836,
-  "sha256": "8a06a6b14b6b7bbe34a720619d9c1341ab2c7a396622f6093ee900094ee3e811",
-  "generated_utc": "2026-10-14T12:06:21.608216+00:00"
+  "size_bytes": 46220,
+  "sha256": "c26d0d90550025a245403cc5b99cbfa8d5b711efdf2e1b807cfbc5df16a06bc0",
+  "generated_utc": "2026-10-15T11:43:34.950766+00:00"
 }
