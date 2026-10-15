@@ -34,6 +34,18 @@ jobs:
         run: |
           python -m py_compile tools/elcinema_daily_donors.py tools/test_elcinema_daily_donors.py
           python -m unittest tools.test_elcinema_daily_donors tools.test_elcinema_exact_id_gap_shadow -v
+      - name: Lint reusable workflow dependencies and expressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash \
+            --output /tmp/download-actionlint.bash
+          bash /tmp/download-actionlint.bash
+          ./actionlint -color \
+            .github/workflows/elcinema-daily-donors.yml \
+            .github/workflows/daily-epg-chain.yml \
+            .github/workflows/epg-casablanca-targeted-retry.yml
       - name: Validate workflow dependencies
         run: |
           python - <<'PY'
