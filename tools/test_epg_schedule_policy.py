@@ -73,8 +73,12 @@ class TestAdaptiveSchedule(unittest.TestCase):
             self.assertTrue(all(r["retry"] for r in got["details"]))
 
     def test_casablanca_summer_and_ramadan_clock_boundaries(self):
-        self.assertEqual(policy.local_date("2026-10-14T23:30:00Z").isoformat(), "2026-10-15")
-        self.assertEqual(policy.local_date("2026-03-01T23:30:00Z").isoformat(), "2026-03-01")
+        # Do not hardcode UTC+1. Runner tzdata may receive rule changes
+        # from IANA while Morocco also suspends DST during Ramadan.
+        for stamp in ("2026-10-14T23:30:00Z", "2026-03-01T23:30:00Z"):
+            instant = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+            expected = instant.astimezone(MA).date()
+            self.assertEqual(policy.local_date(stamp), expected)
         self.assertIsNone(policy.local_date("bad timestamp"))
 
     def test_only_four_explicit_retry_sources(self):
