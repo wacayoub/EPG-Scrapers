@@ -73,7 +73,12 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  finalize:
+  elcinema_extend:
     needs: [decide, retry]
+    if: needs.decide.outputs.retry_count != '0' && needs.retry.result == 'success'
+    uses: ./.github/workflows/elcinema-daily-donors.yml
+
+  finalize:
+    needs: [decide, retry, elcinema_extend]
     if: always() && needs.decide.outputs.retry_count != '0' && needs.retry.result == 'success'
     uses: ./.github/workflows/rebuild-mena-derived.yml
