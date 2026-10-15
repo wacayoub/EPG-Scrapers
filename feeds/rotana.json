@@ -9,12 +9,19 @@
   ],
   "input_channels": 9,
   "coverage_pct": 77.8,
-  "programmes": 272,
+  "currently_on_air_channels": 7,
+  "current_coverage_pct": 77.8,
+  "currently_uncovered_ids": [
+    "AlResalah.sa@SD",
+    "RotanaClip.sa@SD"
+  ],
+  "programmes": 260,
   "rejected_invalid_time": 0,
+  "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 3263,
-  "sha256": "92240dc82804519a9c2103eb750edda1724aa7c442ab986078acec9155db39bb",
-  "generated_utc": "2026-10-14T12:06:47.314101+00:00"
+  "size_bytes": 3258,
+  "sha256": "266f7fb1209e444437e271278204b8b79ff2a6ebff3e2da391584a0437b6599d",
+  "generated_utc": "2026-10-15T11:43:57.765073+00:00"
 }
