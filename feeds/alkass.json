@@ -6,12 +6,16 @@
   "zero_epg_ids": [],
   "input_channels": 8,
   "coverage_pct": 100.0,
-  "programmes": 243,
+  "currently_on_air_channels": 8,
+  "current_coverage_pct": 100.0,
+  "currently_uncovered_ids": [],
+  "programmes": 264,
   "rejected_invalid_time": 0,
+  "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 2709,
-  "sha256": "8016d865018b7890cd716014cdb4746f5593ff0703e098d010e4fd02e645c998",
-  "generated_utc": "2026-10-14T12:02:13.196924+00:00"
+  "size_bytes": 2755,
+  "sha256": "55c3a2ba384677a374ae995d93bb15009bb26cc3b8148aff723600b8d35c2b4a",
+  "generated_utc": "2026-10-15T11:38:47.094956+00:00"
 }
