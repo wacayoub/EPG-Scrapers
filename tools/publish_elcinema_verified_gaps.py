@@ -16,9 +16,13 @@ from pathlib import Path
 import shutil
 import xml.etree.ElementTree as ET
 
-from tools import elcinema_exact_id_gap_shadow as donor
-from tools import validate_48h
-from tools import audit_source_quality
+try:
+    import elcinema_exact_id_gap_shadow as donor
+    import validate_48h
+    import audit_source_quality
+except ModuleNotFoundError:
+    from tools import elcinema_exact_id_gap_shadow as donor
+    from tools import validate_48h, audit_source_quality
 
 ORIGINAL_SHA = {
     "elcinema": "525ed58676eb5528271b856946658d83f8fd88ecd3a86eaeafe612d0db2d7e0a",
