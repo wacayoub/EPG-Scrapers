@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-14T11:58:55.099890+00:00",
+  "generated_utc": "2026-10-15T11:34:20.503913+00:00",
   "sources": {
     "dubaiplus": {
       "candidate": "output/final/dubaiplus.xml.gz",
@@ -8,20 +8,26 @@
         "channels": 9,
         "active_channels": 9,
         "zero_epg_channels": 0,
-        "programmes": 450,
+        "programmes": 445,
         "future_channels": 9,
         "future_ratio": 1.0,
-        "future_horizon_hours": 49.5180269425,
+        "current_channels": 9,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 48.92763700416666,
+        "missing_title_rows": 0,
         "invalid_rows": 0
       },
       "previous_stats": {
         "channels": 9,
         "active_channels": 9,
         "zero_epg_channels": 0,
-        "programmes": 419,
+        "programmes": 450,
         "future_channels": 9,
         "future_ratio": 1.0,
-        "future_horizon_hours": 27.518024182777776,
+        "current_channels": 9,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 25.92763428388889,
+        "missing_title_rows": 0,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
