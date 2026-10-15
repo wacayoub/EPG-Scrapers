@@ -1,17 +1,21 @@
 {
   "label": "starzplay",
-  "channels": 116,
-  "active_channels": 116,
+  "channels": 117,
+  "active_channels": 117,
   "zero_epg_channels": 0,
   "zero_epg_ids": [],
-  "input_channels": 116,
+  "input_channels": 117,
   "coverage_pct": 100.0,
-  "programmes": 8398,
+  "currently_on_air_channels": 117,
+  "current_coverage_pct": 100.0,
+  "currently_uncovered_ids": [],
+  "programmes": 8408,
   "rejected_invalid_time": 0,
+  "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 198641,
-  "sha256": "618c5511219995fe60b32331021b07285619a76c91009bba9aa947c965cb6c53",
-  "generated_utc": "2026-10-14T12:01:02.851837+00:00"
+  "size_bytes": 200396,
+  "sha256": "fa0235b510a6fdeca0124c1b8e2aff0aab77b883afee141184b62b8c1126415c",
+  "generated_utc": "2026-10-15T11:37:31.825810+00:00"
 }
