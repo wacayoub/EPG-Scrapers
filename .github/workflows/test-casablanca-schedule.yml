@@ -36,6 +36,19 @@ jobs:
         run: python -m py_compile tools/epg_schedule_policy.py tools/test_epg_schedule_policy.py tools/test_epg_casablanca_workflows.py
       - name: Verify dates, cron offsets, source filters, guardrails
         run: python -m unittest tools.test_epg_schedule_policy tools.test_epg_casablanca_workflows -v
+      - name: Check GitHub workflow expressions with current actionlint
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash \
+            --output /tmp/download-actionlint.bash
+          bash /tmp/download-actionlint.bash
+          ./actionlint -color \
+            .github/workflows/daily-epg-chain.yml \
+            .github/workflows/epg-watchdog.yml \
+            .github/workflows/epg-casablanca-targeted-retry.yml \
+            .github/workflows/epg-evening-casablanca.yml
       - name: Parse all four GitHub workflow YAML files
         run: |
           python - <<'PY'
