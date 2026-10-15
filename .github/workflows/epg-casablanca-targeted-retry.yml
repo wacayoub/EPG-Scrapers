@@ -64,6 +64,7 @@ jobs:
     if: needs.decide.outputs.retry_count != '0'
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         source: ${{ fromJSON(needs.decide.outputs.retry_sources) }}
     uses: ./.github/workflows/refresh-source-core.yml
