@@ -1,29 +1,38 @@
 {
   "source": "alkass",
-  "generated_utc": "2026-10-16T11:36:25.425547+00:00",
+  "generated_utc": "2026-10-16T21:39:48.398951+00:00",
   "source_file": "alkass.xml.gz",
   "channels": 8,
-  "programmes": 300,
-  "future_programmes": 289,
+  "programmes": 358,
+  "future_programmes": 358,
   "channels_with_future_epg": 8,
   "channels_without_future_epg": [],
   "channels_with_shorter_than_24h": [],
-  "channels_with_internal_gap_over_90min": {},
-  "future_programmes_without_description": 289,
+  "channels_with_internal_gap_over_90min": {
+    "AlkassEight.qa@SD": 140,
+    "AlkassFive.qa@SD": 140,
+    "AlkassFour.qa@SD": 140,
+    "AlkassOne.qa@SD": 140,
+    "AlkassSeven.qa@SD": 140,
+    "AlkassSix.qa@SD": 140,
+    "AlkassThree.qa@SD": 140,
+    "AlkassTwo.qa@SD": 140
+  },
+  "future_programmes_without_description": 358,
   "future_programmes_with_unavailable_description": 0,
   "future_programmes_with_placeholder_or_channel_title": 0,
   "suspected_placeholder_channels": [],
   "future_programmes_by_channel": {
-    "AlkassEight.qa@SD": 40,
-    "AlkassFive.qa@SD": 39,
-    "AlkassFour.qa@SD": 36,
-    "AlkassOne.qa@SD": 38,
-    "AlkassSeven.qa@SD": 39,
-    "AlkassSix.qa@SD": 31,
-    "AlkassThree.qa@SD": 27,
-    "AlkassTwo.qa@SD": 39
+    "AlkassEight.qa@SD": 49,
+    "AlkassFive.qa@SD": 48,
+    "AlkassFour.qa@SD": 43,
+    "AlkassOne.qa@SD": 47,
+    "AlkassSeven.qa@SD": 48,
+    "AlkassSix.qa@SD": 39,
+    "AlkassThree.qa@SD": 35,
+    "AlkassTwo.qa@SD": 49
   },
   "suspected_repeated_title_channels": [],
   "invalid_dates": 0,
-  "quality_status": "PASS"
+  "quality_status": "WARN"
 }
