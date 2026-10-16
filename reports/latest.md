@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-10-15T22:36:22.144075+00:00
+Generated: 2026-10-16T11:42:49.230300+00:00
 
 Total monitored IDs: **4150**
 
@@ -12,30 +12,30 @@ Total monitored IDs: **4150**
 | DUPLICATE | 227 |
 | DUPLICATE_WINNER | 406 |
 | INVALID_SOURCE | 335 |
-| NO_EPG | 571 |
-| OK | 1098 |
+| NO_EPG | 544 |
+| OK | 1125 |
 | QUARANTINE | 933 |
 
 ## Direct feeds
 
 | Feed | IDs | Programmes | Dup IDs | Dup programmes | Invalid times | Zero EPG |
 |---|---:|---:|---:|---:|---:|---:|
-| aljazeera.xml.gz | 5 | 134 | 0 | 0 | 0 | 2 |
-| alkass.xml.gz | 8 | 264 | 0 | 0 | 0 | 0 |
-| bein.xml.gz | 68 | 3051 | 0 | 0 | 0 | 15 |
-| dubaiplus.xml.gz | 9 | 445 | 0 | 0 | 0 | 0 |
-| elcinema.xml.gz | 97 | 4633 | 0 | 0 | 0 | 2 |
-| mena.xml.gz | 517 | 31181 | 0 | 0 | 0 | 35 |
-| morocco.xml.gz | 15 | 621 | 0 | 0 | 0 | 1 |
-| osn.xml.gz | 101 | 6134 | 0 | 0 | 0 | 19 |
+| aljazeera.xml.gz | 5 | 133 | 0 | 0 | 0 | 2 |
+| alkass.xml.gz | 8 | 300 | 0 | 0 | 0 | 0 |
+| bein.xml.gz | 68 | 2689 | 0 | 0 | 0 | 1 |
+| dubaiplus.xml.gz | 9 | 426 | 0 | 0 | 0 | 0 |
+| elcinema.xml.gz | 97 | 4257 | 0 | 0 | 0 | 0 |
+| mena.xml.gz | 517 | 30346 | 0 | 0 | 0 | 25 |
+| morocco.xml.gz | 15 | 621 | 0 | 0 | 0 | 2 |
+| osn.xml.gz | 101 | 6021 | 0 | 0 | 0 | 19 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
-| rotana.xml.gz | 9 | 260 | 0 | 0 | 0 | 2 |
-| shahid.xml.gz | 71 | 4531 | 0 | 0 | 0 | 0 |
-| sport24.xml.gz | 9 | 77 | 0 | 0 | 0 | 3 |
-| starzplay.xml.gz | 117 | 8408 | 0 | 0 | 0 | 0 |
-| stctv.xml.gz | 149 | 9215 | 0 | 0 | 0 | 0 |
+| rotana.xml.gz | 9 | 251 | 0 | 0 | 0 | 2 |
+| shahid.xml.gz | 71 | 4427 | 0 | 0 | 0 | 0 |
+| sport24.xml.gz | 9 | 101 | 0 | 0 | 0 | 1 |
+| starzplay.xml.gz | 117 | 8181 | 0 | 0 | 0 | 0 |
+| stctv.xml.gz | 149 | 9159 | 0 | 0 | 0 | 0 |
 | tabie.xml.gz | 9 | 1131 | 0 | 0 | 0 | 9 |
-| tunisiatv.xml.gz | 2 | 122 | 0 | 0 | 0 | 0 |
+| tunisiatv.xml.gz | 2 | 126 | 0 | 0 | 0 | 0 |
 | vuplus-test.xml.gz | 330 | 19769 | 0 | 0 | 0 | 330 |
 
 Interactive/filterable page: reports/epg-source-id-monitoring.html
