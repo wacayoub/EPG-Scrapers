@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-10-16T11:42:49.230300+00:00
+Generated: 2026-10-16T21:40:08.933179+00:00
 
 Total monitored IDs: **4150**
 
@@ -21,11 +21,11 @@ Total monitored IDs: **4150**
 | Feed | IDs | Programmes | Dup IDs | Dup programmes | Invalid times | Zero EPG |
 |---|---:|---:|---:|---:|---:|---:|
 | aljazeera.xml.gz | 5 | 133 | 0 | 0 | 0 | 2 |
-| alkass.xml.gz | 8 | 300 | 0 | 0 | 0 | 0 |
-| bein.xml.gz | 68 | 2689 | 0 | 0 | 0 | 1 |
+| alkass.xml.gz | 8 | 358 | 0 | 0 | 0 | 0 |
+| bein.xml.gz | 68 | 2944 | 0 | 0 | 0 | 1 |
 | dubaiplus.xml.gz | 9 | 426 | 0 | 0 | 0 | 0 |
 | elcinema.xml.gz | 97 | 4257 | 0 | 0 | 0 | 0 |
-| mena.xml.gz | 517 | 30346 | 0 | 0 | 0 | 25 |
+| mena.xml.gz | 517 | 30557 | 0 | 0 | 0 | 25 |
 | morocco.xml.gz | 15 | 621 | 0 | 0 | 0 | 2 |
 | osn.xml.gz | 101 | 6021 | 0 | 0 | 0 | 19 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
