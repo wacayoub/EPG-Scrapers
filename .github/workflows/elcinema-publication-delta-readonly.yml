@@ -1,8 +1,10 @@
 name: ElCinema post-midnight publication comparison — NO PUBLISH
 on:
   push:
-    branches: [audit/elcinema-post-rollover-delta-20261017]
+    branches: [main, audit/elcinema-post-rollover-delta-20261017]
     paths:
+      - 'feeds/elcinema.json'
+      - 'reports/elcinema-48h-audit.json'
       - 'tools/elcinema_publication_delta_readonly.py'
       - 'tools/test_elcinema_publication_delta_readonly.py'
       - '.github/workflows/elcinema-publication-delta-readonly.yml'
