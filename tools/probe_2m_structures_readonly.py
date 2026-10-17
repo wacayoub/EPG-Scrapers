@@ -72,6 +72,27 @@ def source(url):
             anchor_title_after += 1
     html_text = soup.get_text(" ", strip=True)
     anchors = soup.find_all("a")
+    # Detect alternate machine-readable structures without emitting their data.
+    html_hhmm = len(re.findall(r"(?<!\\d)(?:[01]?\\d|2[0-3])h[0-5]\\d", html, re.I))
+    html_colon = len(re.findall(r"(?<!\\d)(?:[01]?\\d|2[0-3]):[0-5]\\d", html))
+    html_spaced = len(re.findall(r"(?<!\\d)(?:[01]?\\d|2[0-3])\\s*h\\s*[0-5]\\d", html, re.I))
+    scripts = soup.find_all("script")
+    script_type_counts = {}
+    for sc in scripts:
+        t = str(sc.get("type") or "none")
+        if not re.fullmatch(r"[a-zA-Z0-9/+.\\-]{1,60}",t):
+            t = "other"
+        script_type_counts[t] = script_type_counts.get(t,0)+1
+    data_json_count = len(soup.find_all("script",type="application/json"))
+    time_tags = soup.find_all("time")
+    candidate_links=[a for a in anchors if "/tele/" in str(a.get("href") or "") or "/cinema/" in str(a.get("href") or "")]
+    candidate_anchor_ancestor_shapes=[]
+    for a in candidate_links[:3]:
+        row=[]
+        for par in list(a.parents)[:3]:
+            if getattr(par,"name",None):
+                row.append({"tag":par.name,"class_tokens":[t for t in par.get("class",[]) if re.fullmatch(r"[a-zA-Z0-9_-]{1,55}",str(t))][:3]})
+        candidate_anchor_ancestor_shapes.append(row)
     # No source text, titles, dates, programme descriptions or HTML emitted.
     return {"state":"HTML_RECEIVED","bytes":len(raw),
             "telerama_contract_metrics":{
@@ -81,6 +102,15 @@ def source(url):
                 "all_page_hhmm_tokens":len(hhmm.findall(html_text)),
                 "ld_json_scripts":len(soup.find_all("script",type="application/ld+json")),
                 "program_link_hints":sum(1 for a in anchors if "/tele/" in str(a.get("href") or "")),
+                "raw_html_hhmm_hits":html_hhmm,
+                "raw_html_colon_hits":html_colon,
+                "raw_html_spaced_hhmm_hits":html_spaced,
+                "body_text_length":len(html_text),
+                "body_contains_2m":("2m maroc" in html_text.casefold()),
+                "time_tags":len(time_tags),
+                "scripts_by_type":script_type_counts,
+                "app_json_scripts":data_json_count,
+                "program_link_ancestor_shapes":candidate_anchor_ancestor_shapes,
             },
             "h3_count":len(h3s),"anchors":len(soup.find_all("a")),
             "time_nodes":len(soup.find_all(string=re.compile(r"^(?:[01]?\d|2[0-3]):[0-5]\d$"))),
