@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-16T11:35:33.220178+00:00",
+  "generated_utc": "2026-10-17T10:54:43.329089+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "tunisiatv.xml.gz",
-      "generated_utc": "2026-10-16T11:35:33.220119+00:00",
+      "generated_utc": "2026-10-17T10:54:43.329046+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 24.0,
       "max_gap_minutes_warning": 240,
@@ -19,19 +19,19 @@
           "id": "ElWatania1.tn@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.47,
-          "latest_stop_utc": "2026-10-18T12:04:00+00:00",
-          "max_gap_minutes": 1.0,
-          "programmes": 64
+          "future_hours": 48.07,
+          "latest_stop_utc": "2026-10-19T10:59:00+00:00",
+          "max_gap_minutes": 4.0,
+          "programmes": 65
         },
         {
           "id": "ElWatania2.tn@SD",
           "status": "WARN",
           "reason": "INTERNAL_GAP",
-          "future_hours": 48.31,
-          "latest_stop_utc": "2026-10-18T11:54:00+00:00",
+          "future_hours": 48.32,
+          "latest_stop_utc": "2026-10-19T11:14:00+00:00",
           "max_gap_minutes": 361.0,
-          "programmes": 62
+          "programmes": 51
         }
       ]
     }
