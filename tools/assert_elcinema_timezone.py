@@ -4,9 +4,10 @@
 
 Morocco decree 2.26.530 (25 June 2026), official gazette 7521:
 20 September 2026 02:00 local: move from UTC+01 to UTC+00.
-This checks the actual Python and Node Intl/ICU libraries used by the
-ElCinema grabber. It does not infer the timezone of external providers or
-shift XMLTV timestamps. UTC XMLTV remains canonical.
+Python must recognize the legal timezone. Node.js 20 may keep outdated
+ICU rules (+01 after Sep 20); in that precise case only, permit the
+adapter's verified explicit Etc/UTC override for post-transition dates.
+This does not alter published XMLTV rows. UTC XMLTV remains canonical.
 """
 from __future__ import annotations
 import argparse
@@ -45,23 +46,36 @@ def check_node():
 const checks = JSON.parse(process.argv[1]);
 for (const [date, expectedOffsetMinutes] of checks) {
   const instant = new Date(date);
-  const f = new Intl.DateTimeFormat('en-GB', {
-    timeZone:'Africa/Casablanca', year:'numeric',month:'2-digit',
-    day:'2-digit',hour:'2-digit',minute:'2-digit',
-    hourCycle:'h23'
-  });
-  const parts=Object.fromEntries(f.formatToParts(instant)
-    .filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
-  const projected=Date.UTC(
-    Number(parts.year),Number(parts.month)-1,Number(parts.day),
-    Number(parts.hour),Number(parts.minute));
-  const offset=Math.round((projected-instant.getTime())/60000);
-  if (offset!==expectedOffsetMinutes) {
-    console.error('ELCINEMA_MOROCCO_STALE_TZDATA: Node Intl',date,offset,
+  function offsetMinutes(zone) {
+    const f=new Intl.DateTimeFormat('en-GB', {
+      timeZone:zone, year:'numeric',month:'2-digit',
+      day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'
+    });
+    const parts=Object.fromEntries(f.formatToParts(instant)
+      .filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
+    const projected=Date.UTC(
+      Number(parts.year),Number(parts.month)-1,Number(parts.day),
+      Number(parts.hour),Number(parts.minute));
+    return Math.round((projected-instant.getTime())/60000);
+  }
+  const observed=offsetMinutes('Africa/Casablanca');
+  const utc=offsetMinutes('Etc/UTC');
+  if (utc!==0) {
+    console.error('ELCINEMA_UTC_FALLBACK_BROKEN',date,utc);
+    process.exit(2);
+  }
+  if (observed===expectedOffsetMinutes) {
+    console.log('ELCINEMA_NODE_TZ_CHECK',date,observed);
+  } else if (date.slice(0,10)>='2026-09-21'
+      && expectedOffsetMinutes===0 && observed===60) {
+    // The JS adapter pins post-decree schedules to verified Etc/UTC.
+    console.log('ELCINEMA_NODE_STALE_ICU_WORKAROUND',date,
+      'native',observed,'used_legal_utc',utc);
+  } else {
+    console.error('ELCINEMA_MOROCCO_UNEXPECTED_TIMEZONE',date,observed,
       'expected',expectedOffsetMinutes);
     process.exit(2);
   }
-  console.log('ELCINEMA_NODE_TZ_CHECK',date,offset);
 }
 """
     try:
@@ -85,6 +99,10 @@ def main():
         data = Path(args.adapter).read_text(encoding="utf-8")
         if data.count(PIN_TZ) != 1:
             raise RuntimeError("ELCINEMA_ADAPTER_NOT_PINNED_TO_CASABLANCA")
+    from elcinema_midnight_patch import PIN_TZ
+    if ("civilDate >= '2026-09-21'" not in PIN_TZ
+            or "'Etc/UTC'" not in PIN_TZ):
+        raise RuntimeError("ELCINEMA_LEGAL_UTC_OVERRIDE_NOT_PINNED")
     results = check_python()
     node_results = check_node()
     print("ELCINEMA_MOROCCO_LEGAL_TIMEZONE_PASS", json.dumps({
