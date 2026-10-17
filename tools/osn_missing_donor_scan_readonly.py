@@ -84,7 +84,7 @@ def candidates(root, aliases, now):
         start=get_utc(p.get("start"))
         stop=get_utc(p.get("stop"))
         name=(p.findtext("title") or "").strip()
-        if not start or not stop or not (now-timedelta(hours=2)<=stop<=now+timedelta(hours=72)):
+        if not start or not stop or not (now < stop and start < now+timedelta(hours=48)):
             continue
         if not start<stop or stop-start>timedelta(hours=8) or not 2<len(name)<180:
             continue
