@@ -1,9 +1,9 @@
 {
   "label": "mena",
   "channels": 517,
-  "programmes": 30315,
-  "generated_utc": "2026-10-17T20:55:25.332339+00:00",
-  "sha256": "06f5020ab155c7c9391d8383450d631b85caef5d99b29ec629a6489281aac000",
+  "programmes": 30293,
+  "generated_utc": "2026-10-17T21:38:23.560966+00:00",
+  "sha256": "ce82c240756dc4b18407fbfe53be4d269a51ea23e5953454682871e1c1e9a259",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -24,7 +24,7 @@
     "2M": "morocco",
     "2MMonde.ma@SD": "elcinema",
     "AbdulmajeedAbdullah.sa@SD": "shahid",
-    "AbuDhabiSports1.ae@SD": "sport24",
+    "AbuDhabiSports1.ae@SD": "osn",
     "AbuDhabiSports2.ae@SD": "stctv",
     "AbuDhabiTV.ae@SD": "osn",
     "AFLAM.ma": "morocco",
@@ -540,9 +540,6 @@
     "ZeeAlwan.ae@SD": "elcinema"
   },
   "extensions": {
-    "AbuDhabiSports1.ae@SD": [
-      "osn"
-    ],
     "DubaiTV.ae@SD": [
       "elcinema"
     ],
