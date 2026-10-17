@@ -22,7 +22,7 @@ class TestDirect2M(unittest.TestCase):
         self.assertFalse(inspect_xml(feed(channel="2M Monde"),NOW)["channel_name_matches_2m_maroc"])
     def test_no_current_program_not_ready(self):
         r=inspect_xml(feed(start="20261016013000 +0000",stop="20261016023000 +0000"),NOW)
-        self.assertFalse(r["cache_now_and_future_verified"])
+        self.assertFalse(r["xmltv_now_and_future_present"])
     def test_missing_title_does_not_count_current(self):
         r=inspect_xml(feed(name=""),NOW)
         self.assertEqual(r["events_current"],0)
