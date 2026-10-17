@@ -18,16 +18,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  elcinema:
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: elcinema
-      scheduled: false
-    secrets: inherit
-
+  # ElCinema runs independently at 01:20 Africa/Casablanca in
+  # refresh-elcinema.yml; don't rescrape it at 07:15 here.
   aljazeera:
-    needs: elcinema
-    if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: aljazeera
