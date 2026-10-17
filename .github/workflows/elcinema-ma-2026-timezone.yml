@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - tools/elcinema_midnight_patch.py
+      - tools/assert_elcinema_timezone.py
       - tools/test_elcinema_midnight_patch.py
       - .github/workflows/elcinema-ma-2026-timezone.yml
 permissions:
@@ -45,5 +46,7 @@ jobs:
               new Intl.DateTimeFormat('en-GB',{timeZone:z,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(dt));
           }
           JS
+      - name: Assert 2026 legal GMT change on the same runner
+        run: python tools/assert_elcinema_timezone.py
       - name: Regression tests of the actual pinned ElCinema adapter patch
         run: python -m unittest discover -s tools -p test_elcinema_midnight_patch.py -v
