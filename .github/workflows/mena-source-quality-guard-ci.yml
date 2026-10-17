@@ -1,0 +1,62 @@
+name: MENA routing per-ID quality regression (nonpublishing)
+on:
+  push:
+    branches: [fix/mena-reject-flagged-epg-20261017]
+    paths:
+      - 'tools/derived_source_quality_guard.py'
+      - 'tools/build_derived_feeds.py'
+      - 'tools/test_derived_source_quality_guard.py'
+      - '.github/workflows/mena-source-quality-guard-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/derived_source_quality_guard.py'
+      - 'tools/build_derived_feeds.py'
+      - 'tools/test_derived_source_quality_guard.py'
+      - '.github/workflows/mena-source-quality-guard-ci.yml'
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m py_compile tools/derived_source_quality_guard.py tools/build_derived_feeds.py tools/test_derived_source_quality_guard.py
+      - run: python -m unittest discover -s tools -p 'test_derived_source_quality_guard.py' -v
+  nonpublishing-aggregate:
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Rebuild MENA only in ephemeral runner checkout, do not git push
+        run: python tools/build_derived_feeds.py
+      - name: Validate flagged candidates cannot receive green ranking
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('reports/canonical-source-routing.json').read_text())
+          allc=[c for row in r['routing'].values() for c in row['candidates']]
+          unsafe=[(c['source'],c['id']) for c in allc
+                  if c['qualified'] and c['source_evidence']!='NO_PLACEHOLDER_FLAG']
+          assert not unsafe,unsafe[:5]
+          row=r['routing']['AbuDhabiSports2.ae@SD']
+          suspect=[c for c in row['candidates'] if c['source']=='stctv']
+          assert len(suspect)==1,suspect
+          assert suspect[0]['source_evidence']=='SUSPECT_PLACEHOLDER',suspect
+          assert not suspect[0]['qualified'],suspect
+          assert row['selected_source']!='stctv',row
+          print('MENA_EPISODE_FLAG_GUARD_PASS', 'channels',len(r['routing']),
+                'flagged_ranking_blocked',len(unsafe),
+                'ad_sports_2_selected_source',row['selected_source'])
+          PY
