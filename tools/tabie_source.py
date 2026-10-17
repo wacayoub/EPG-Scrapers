@@ -38,6 +38,15 @@ CHANNELS = {
 UNAVAILABLE = {"جدول البرامج غير متاح", "schedule unavailable", "program schedule unavailable"}
 
 
+def belongs_to_requested_day(start: datetime | None, requested_date: str) -> bool:
+    """Tabie sometimes replays today's same JSON for arbitrary requested dates.
+
+    A schedule event must belong to the requested Qatar civil day. Never
+    promote recycled Oct 17 events as coverage for Oct 18 or 19.
+    """
+    return bool(start and start.astimezone(QATAR).date().isoformat() == requested_date)
+
+
 def parse_local(value: str | None):
     if not value:
         return None
@@ -118,6 +127,8 @@ def main() -> int:
         "generated_qatar": now.isoformat(),
         "rejected_long_duration": 0,
         "date_mismatch_rows": 0,
+        "date_mismatch_rows_dropped": 0,
+        "days_with_recycled_provider_response": 0,
         "dates": dates,
         "endpoint": "/Live/GetSchedule",
         "channels": {},
@@ -138,6 +149,7 @@ def main() -> int:
                 continue
 
             day_kept = 0
+            day_mismatches = 0
             for row in rows:
                 if not isinstance(row, dict):
                     continue
@@ -154,8 +166,13 @@ def main() -> int:
                 if stop - start > timedelta(hours=18):
                     report["rejected_long_duration"] += 1
                     continue
-                if start.date().isoformat() != date:
+                if not belongs_to_requested_day(start, date):
+                    # A valid programme with the wrong broadcast date is not
+                    # a "future day" item even if the API repeats it verbatim.
                     report["date_mismatch_rows"] += 1
+                    report["date_mismatch_rows_dropped"] += 1
+                    day_mismatches += 1
+                    continue
 
                 key = (start.isoformat(), stop.isoformat(), title)
                 if key in seen:
@@ -174,7 +191,15 @@ def main() -> int:
                 kept += 1
                 day_kept += 1
                 total += 1
-            per_day[date] = {"status": "OK", "programmes": day_kept, "api_rows": len(rows)}
+            recycled = bool(rows and day_mismatches and day_kept == 0)
+            if recycled:
+                report["days_with_recycled_provider_response"] += 1
+            per_day[date] = {
+                "status": "PROVIDER_WRONG_DATE" if recycled else "OK",
+                "programmes": day_kept,
+                "api_rows": len(rows),
+                "date_mismatch_rows_dropped": day_mismatches,
+            }
 
         report["channels"][xmltv_id] = {
             "channel_id": channel_id,
