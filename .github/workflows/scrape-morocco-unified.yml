@@ -82,12 +82,18 @@ jobs:
           mkdir -p reports
           python tools/validate_48h.py             output/morocco/morocco.xml.gz             --hours 48             --max-gap-minutes 90             --report reports/morocco-48h-audit.json
 
-      - name: Stage unified feed
+      - name: Validate published-cohort quality against staged Morocco XMLTV
+        run: |
+          python tools/audit_source_quality.py --input output/morocco/morocco.xml.gz --source morocco --report reports/morocco-quality.json
+
+      - name: Stage unified feed and corresponding reports
         run: |
           mkdir -p /tmp/morocco-unified
           cp output/morocco/morocco.xml.gz /tmp/morocco-unified/
           cp output/morocco/manifest.json /tmp/morocco-unified/morocco.json
           cp output/morocco/morocco.txt /tmp/morocco-unified/
+          cp reports/morocco-48h-audit.json /tmp/morocco-unified/
+          cp reports/morocco-quality.json /tmp/morocco-unified/
 
       - name: Publish unified Morocco feed
         shell: bash
@@ -103,12 +109,16 @@ jobs:
             cp -f /tmp/morocco-unified/morocco.xml.gz feeds/morocco.xml.gz
             cp -f /tmp/morocco-unified/morocco.json feeds/morocco.json
             cp -f /tmp/morocco-unified/morocco.txt feeds/morocco.txt
+            mkdir -p reports
+            cp -f /tmp/morocco-unified/morocco-48h-audit.json reports/morocco-48h-audit.json
+            cp -f /tmp/morocco-unified/morocco-quality.json reports/morocco-quality.json
 
             # Legacy Morocco fragments are removed only after the unified feed passed validation.
             rm -f feeds/2m.xml.gz feeds/2m.json feeds/2m.txt
             rm -f feeds/chada.xml.gz feeds/chada.json feeds/chada.txt
 
             git add -A feeds
+            git add reports/morocco-48h-audit.json reports/morocco-quality.json
             if git diff --cached --quiet; then
               echo "No Morocco feed changes"
               exit 0
