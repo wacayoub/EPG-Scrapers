@@ -1,21 +1,25 @@
 {
   "label": "elcinema",
   "channels": 97,
-  "active_channels": 97,
-  "zero_epg_channels": 0,
-  "zero_epg_ids": [],
+  "active_channels": 96,
+  "zero_epg_channels": 1,
+  "zero_epg_ids": [
+    "RotanaCinemaEgypt.eg@SD"
+  ],
   "input_channels": 97,
-  "coverage_pct": 100.0,
-  "currently_on_air_channels": 97,
-  "current_coverage_pct": 100.0,
-  "currently_uncovered_ids": [],
-  "programmes": 4062,
+  "coverage_pct": 99.0,
+  "currently_on_air_channels": 96,
+  "current_coverage_pct": 99.0,
+  "currently_uncovered_ids": [
+    "RotanaCinemaEgypt.eg@SD"
+  ],
+  "programmes": 3313,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 1,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 209238,
-  "sha256": "8aa0db82637b9870a4eb2e8bfb47fb2dd79a86ab4f3b8b3e7736b275f6b9cfab",
-  "generated_utc": "2026-10-17T13:21:51.928367+00:00"
+  "size_bytes": 183895,
+  "sha256": "a4d278351c7e1c1c794e04bfcb20a3e013f8eea21f638a10e3194ce7bbb4414a",
+  "generated_utc": "2026-10-17T23:06:02.546119+00:00"
 }
