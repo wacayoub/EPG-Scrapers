@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-17T11:50:07.196209+00:00",
+  "generated_utc": "2026-10-17T12:01:35.532773+00:00",
   "policy": "ElCinema first; local production fallback; EPGShare last resort; official Al-Manar; never replace healthy ElCinema EPG",
   "before_future": {
     "2MMonde.ma@SD": 0,
     "ATV.kw@SD": 0,
-    "AbuDhabiTV.ae@SD": 35,
+    "AbuDhabiTV.ae@SD": 34,
     "BahrainTV.bh@SD": 0,
     "CBCSofra.eg@SD": 0,
     "DiscoveryChannelMiddleEastAfrica.us@SD": 0,
@@ -25,12 +25,12 @@
     "BahrainTV.bh@SD": {
       "source": "stctv:Bahrain TV",
       "programmes_added": 50,
-      "future_programmes": 48
+      "future_programmes": 47
     },
     "CBCSofra.eg@SD": {
       "source": "stctv:CBC Sofra",
       "programmes_added": 50,
-      "future_programmes": 48
+      "future_programmes": 47
     },
     "DiscoveryChannelMiddleEastAfrica.us@SD": {
       "source": "osn:Discovery Channel",
@@ -55,7 +55,7 @@
     "StarMoviesMiddleEast.ae@SD": {
       "source": "stctv:Star Movies",
       "programmes_added": 30,
-      "future_programmes": 29
+      "future_programmes": 28
     },
     "KTV1.kw@SD": {
       "source": "epgshare:AE1:Kuwait.TV.1.HD.ae",
@@ -79,9 +79,9 @@
   "after_future": {
     "2MMonde.ma@SD": 64,
     "ATV.kw@SD": 0,
-    "AbuDhabiTV.ae@SD": 35,
-    "BahrainTV.bh@SD": 48,
-    "CBCSofra.eg@SD": 48,
+    "AbuDhabiTV.ae@SD": 34,
+    "BahrainTV.bh@SD": 47,
+    "CBCSofra.eg@SD": 47,
     "DiscoveryChannelMiddleEastAfrica.us@SD": 61,
     "FoxActionMoviesMENA.hk@SD": 24,
     "KTV1.kw@SD": 116,
@@ -89,7 +89,7 @@
     "NationalGeographicMiddleEast.uk@SD": 60,
     "QatarTelevision.qa@SD": 103,
     "SalamTV.ly@SD": 0,
-    "StarMoviesMiddleEast.ae@SD": 29
+    "StarMoviesMiddleEast.ae@SD": 28
   },
   "resolved": [
     "2MMonde.ma@SD",
