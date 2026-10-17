@@ -49,7 +49,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Assert 2026 legal GMT change on Node.js 20 (production version)
-        run: python tools/assert_elcinema_timezone.py
+      - name: Retrieve the actual iptv-org ElCinema adapter (same ref as production)
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+      - name: Patch and compile the real upstream ElCinema adapter
+        run: |
+          python tools/elcinema_midnight_patch.py --config vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+          node --check vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+      - name: Assert 2026 legal GMT on Node.js 20 with actual upstream adapter
+        run: python tools/assert_elcinema_timezone.py --adapter vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
       - name: Regression tests of the actual pinned ElCinema adapter patch
         run: python -m unittest discover -s tools -p test_elcinema_midnight_patch.py -v
