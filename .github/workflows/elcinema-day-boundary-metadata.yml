@@ -1,0 +1,47 @@
+name: ElCinema live date-boundary metadata probe — no publish
+on:
+  push:
+    branches: [audit/elcinema-provider-day-boundary-20261017]
+    paths:
+      - 'tools/elcinema_day_boundary_probe.js'
+      - '.github/workflows/elcinema-day-boundary-metadata.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify bounded official channel pages are robots permitted
+        run: |
+          python - <<'PY'
+          from urllib import robotparser
+          r=robotparser.RobotFileParser()
+          r.set_url('https://elcinema.com/robots.txt')
+          r.read()
+          for sid in ('1136','1382'):
+              url='https://elcinema.com/tvguide/'+sid+'/'
+              assert r.can_fetch('EPGManager-MetadataProbe/1.0',url),'ROBOTS_DENY_OR_UNAVAILABLE:'+sid
+          PY
+      - name: Install upstream adapter dependencies
+        run: npm ci --no-audit --no-fund
+        working-directory: vendor/iptv-org-epg
+      - name: Run temporary official-day metadata-only probe
+        run: |
+          cp tools/elcinema_day_boundary_probe.js vendor/iptv-org-epg/__elcinema_day_boundary_probe.js
+          cd vendor/iptv-org-epg
+          node __elcinema_day_boundary_probe.js
+      - name: Confirm no public EPG publication
+        run: |
+          git diff --exit-code -- feeds/ reports/
+          echo 'NO_PUBLIC_FEED_CHANGED'
