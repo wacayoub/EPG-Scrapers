@@ -1,0 +1,56 @@
+name: ElCinema post-midnight publication comparison — NO PUBLISH
+on:
+  push:
+    branches: [audit/elcinema-post-rollover-delta-20261017]
+    paths:
+      - 'tools/elcinema_publication_delta_readonly.py'
+      - 'tools/test_elcinema_publication_delta_readonly.py'
+      - '.github/workflows/elcinema-publication-delta-readonly.yml'
+  pull_request:
+    paths:
+      - 'tools/elcinema_publication_delta_readonly.py'
+      - 'tools/test_elcinema_publication_delta_readonly.py'
+      - '.github/workflows/elcinema-publication-delta-readonly.yml'
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m py_compile tools/elcinema_publication_delta_readonly.py tools/test_elcinema_publication_delta_readonly.py
+      - run: python -m unittest discover -s tools -p 'test_elcinema_publication_delta_readonly.py' -v
+  source-delta:
+    needs: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Compare pinned baseline before PR #22 with CURRENT published main (READ ONLY)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          base=5cc5ab3321f537c9b5b6e3efce1920fe568d33a0
+          git show "$base:feeds/elcinema.json" > /tmp/elcinema-before-meta.json
+          git show "$base:reports/elcinema-48h-audit.json" > /tmp/elcinema-before-audit.json
+          git show origin/main:feeds/elcinema.json > /tmp/elcinema-after-meta.json
+          git show origin/main:reports/elcinema-48h-audit.json > /tmp/elcinema-after-audit.json
+          python tools/elcinema_publication_delta_readonly.py \
+            --before-meta /tmp/elcinema-before-meta.json \
+            --before-audit /tmp/elcinema-before-audit.json \
+            --after-meta /tmp/elcinema-after-meta.json \
+            --after-audit /tmp/elcinema-after-audit.json
+          git diff --exit-code -- feeds/ reports/
+          echo ELCINEMA_COMPARISON_NO_FEEDS_CHANGED
