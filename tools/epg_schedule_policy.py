@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Select *only* degraded EPG sources for the 15:00 Casablanca retry.
+"""Select degraded non-ElCinema EPG sources for the 15:00 Casablanca retry.
 
 Pure local metadata logic. A strict 48-hour failure by itself is NOT a reason
 to re-scrape every day, since some official guides naturally have shorter
@@ -15,9 +15,11 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 CASABLANCA = ZoneInfo("Africa/Casablanca")
-TARGETS = ("elcinema", "osn", "bein", "shahid")
+# ElCinema has its sole automatic scraper at 01:20 Casablanca.
+# The 15:00 retry must NEVER request a second ElCinema scrape.
+TARGETS = ("osn", "bein", "shahid")
 MIN_ON_AIR_AT_PUBLICATION = 0.60
-MAX_RETRIES = 4
+MAX_RETRIES = 3
 
 
 def local_date(value):
