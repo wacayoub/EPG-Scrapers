@@ -13,6 +13,10 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from xml.etree import ElementTree as ET
+try:
+    from bein_occasional_policy import is_occasional_bein
+except ModuleNotFoundError:
+    from tools.bein_occasional_policy import is_occasional_bein
 
 BAD_DESC = (
     "دليل البرامج غير متوفر", "جدول البرامج غير متوفر",
@@ -51,6 +55,8 @@ def analyze(path, source, now):
     for ch in root.findall("channel"):
         cid = ch.get("id") or ""
         names[cid] = [(n.text or "").strip() for n in ch.findall("display-name")]
+    occasional = {cid for cid, display in names.items()
+                  if source == 'bein' and is_occasional_bein(cid, display)}
     by_id = defaultdict(list)
     bad_channels = defaultdict(int)
     future_counts = defaultdict(int)
@@ -92,6 +98,8 @@ def analyze(path, source, now):
     end_window = now + timedelta(hours=48)
     holes = {}
     short = []
+    occasional_without_events = []
+    occasional_with_short_or_gap = []
     for cid in names:
         intervals = sorted(by_id.get(cid, []))
         cursor = now
@@ -102,15 +110,22 @@ def analyze(path, source, now):
             if start > cursor:
                 gap = max(gap, min(start, end_window) - min(cursor, end_window))
             cursor = max(cursor, stop)
-        if not intervals or cursor < now + timedelta(hours=24):
-            short.append(cid)
-        if gap > timedelta(minutes=90):
-            holes[cid] = int(gap.total_seconds() / 60)
+        if cid in occasional:
+            if not intervals:
+                occasional_without_events.append(cid)
+            elif cursor < now + timedelta(hours=24) or gap > timedelta(minutes=90):
+                occasional_with_short_or_gap.append(cid)
+        else:
+            if not intervals or cursor < now + timedelta(hours=24):
+                short.append(cid)
+            if gap > timedelta(minutes=90):
+                holes[cid] = int(gap.total_seconds() / 60)
     quality_bad = sorted(bad_channels, key=lambda x: (-bad_channels[x], x))
     # Low diversity is a *suspicion* only (some genuine thematic guides repeat).
     # A high placeholder ratio is stronger evidence of artificial schedule rows.
-    repeated = sorted(cid for cid,count in future_counts.items()
-                      if count >= 10 and len(future_titles.get(cid, set())) <= 2)
+    repeated_all = sorted(cid for cid,count in future_counts.items()
+                          if count >= 10 and len(future_titles.get(cid, set())) <= 2)
+    repeated = [cid for cid in repeated_all if cid not in occasional]
     result = {
         "source": source,
         "generated_utc": now.isoformat(),
@@ -128,6 +143,11 @@ def analyze(path, source, now):
         "suspected_placeholder_channels": [{"id": cid, "count": bad_channels[cid]} for cid in quality_bad],
         "future_programmes_by_channel": dict(sorted(future_counts.items())),
         "suspected_repeated_title_channels": repeated,
+        "occasional_event_channel_ids": sorted(occasional),
+        "occasional_event_channels_without_future_match": sorted(occasional_without_events),
+        "occasional_event_channels_with_short_or_gapped_schedule": sorted(occasional_with_short_or_gap),
+        "occasional_event_channels_with_repeated_titles": sorted(set(repeated_all) & occasional),
+        "occasional_event_channels_are_not_continuous_tv": True,
         "invalid_dates": invalid_dates,
     }
     result["quality_status"] = (
