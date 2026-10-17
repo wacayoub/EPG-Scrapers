@@ -196,6 +196,30 @@ PY
       mv output/source-build/elcinema.fallback.raw.xml output/source-build/elcinema.raw.xml
     fi
 
+    # Request only ElCinema IDs whose authentic 48h guide ends prematurely.
+    # The retry can EXTEND the feed but cannot overwrite a valid first-pass slot.
+    python tools/elcinema_short_horizon_retry.py build \
+      --catalogue output/source-build/elcinema.channels.xml \
+      --fallback-catalogue output/source-build/elcinema_fallback.channels.xml \
+      --raw output/source-build/elcinema.raw.xml \
+      --min-hours 40 --max-ids 45 \
+      --output output/source-build/elcinema.short.channels.xml \
+      --report reports/elcinema-short-retry-selection.json || true
+    if grep -q '<channel ' output/source-build/elcinema.short.channels.xml 2>/dev/null; then
+      grab_upstream elcinema-short "$ROOT/output/source-build/elcinema.short.channels.xml" \
+        "$ROOT/output/source-build/elcinema.short.raw.xml" "1000" || true
+      if has_programmes output/source-build/elcinema.short.raw.xml; then
+        python tools/elcinema_short_horizon_retry.py extend \
+          --primary output/source-build/elcinema.raw.xml \
+          --retry output/source-build/elcinema.short.raw.xml \
+          --output output/source-build/elcinema.extended.raw.xml \
+          --report reports/elcinema-short-retry-result.json || true
+        if [ -s output/source-build/elcinema.extended.raw.xml ]; then
+          mv output/source-build/elcinema.extended.raw.xml output/source-build/elcinema.raw.xml
+        fi
+      fi
+    fi
+
     grab_upstream elcinema-en "$ROOT/output/source-build/elcinema_hybrid_en.channels.xml" "$ROOT/output/source-build/elcinema.hybrid.en.raw.xml" "1000" || true
     if has_programmes output/source-build/elcinema.raw.xml && has_programmes output/source-build/elcinema.hybrid.en.raw.xml; then
       python tools/elcinema_hybrid.py merge --arabic output/source-build/elcinema.raw.xml --english output/source-build/elcinema.hybrid.en.raw.xml --policy config/elcinema-language-policy.json --cache data/elcinema_translation_cache.json --output output/source-build/elcinema.hybrid.raw.xml --report reports/elcinema-hybrid.json || true
