@@ -46,7 +46,10 @@ jobs:
               new Intl.DateTimeFormat('en-GB',{timeZone:z,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(dt));
           }
           JS
-      - name: Assert 2026 legal GMT change on the same runner
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Assert 2026 legal GMT change on Node.js 20 (production version)
         run: python tools/assert_elcinema_timezone.py
       - name: Regression tests of the actual pinned ElCinema adapter patch
         run: python -m unittest discover -s tools -p test_elcinema_midnight_patch.py -v
