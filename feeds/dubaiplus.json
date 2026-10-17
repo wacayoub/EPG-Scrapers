@@ -6,16 +6,18 @@
   "zero_epg_ids": [],
   "input_channels": 9,
   "coverage_pct": 100.0,
-  "currently_on_air_channels": 9,
-  "current_coverage_pct": 100.0,
-  "currently_uncovered_ids": [],
-  "programmes": 426,
+  "currently_on_air_channels": 8,
+  "current_coverage_pct": 88.9,
+  "currently_uncovered_ids": [
+    "DubaiTV.ae@SD"
+  ],
+  "programmes": 423,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 15456,
-  "sha256": "916d8e2bcf530099b54361b985cacd2c1657404f17e1e3b26266f87dd04c24a3",
-  "generated_utc": "2026-10-16T11:32:50.282352+00:00"
+  "size_bytes": 14163,
+  "sha256": "0e42bd234f226b80f9e17b85b5160c40b265e5fb9aead91142f213ee24e433e6",
+  "generated_utc": "2026-10-17T10:51:58.422866+00:00"
 }
