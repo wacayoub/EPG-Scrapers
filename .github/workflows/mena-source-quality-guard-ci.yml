@@ -38,6 +38,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - name: Capture current public routing for one-to-one comparison
+        run: cp reports/canonical-source-routing.json /tmp/mena-routing-public-before.json
       - name: Rebuild MENA only in ephemeral runner checkout, do not git push
         run: python tools/build_derived_feeds.py
       - name: Validate flagged candidates cannot receive green ranking
@@ -59,4 +61,40 @@ jobs:
           print('MENA_EPISODE_FLAG_GUARD_PASS', 'channels',len(r['routing']),
                 'flagged_ranking_blocked',len(unsafe),
                 'ad_sports_2_selected_source',row['selected_source'])
+          PY
+      - name: Show changed MENA owners and avoid empty-feed regressions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path('/tmp/mena-routing-public-before.json').read_text())['routing']
+          new=json.loads(Path('reports/canonical-source-routing.json').read_text())['routing']
+          changed=[]
+          lost=[]
+          for cid, previous in old.items():
+              current=new.get(cid)
+              if current is None:
+                  lost.append(cid)
+                  continue
+              if previous['selected_source'] != current['selected_source']:
+                  changed.append({
+                      'id':cid,
+                      'before':previous['selected_source'],
+                      'after':current['selected_source'],
+                      'reason':current['selection_reason'],
+                      'before_events':next((c['future_programmes'] for c in previous['candidates']
+                          if c['source']==previous['selected_source']),0),
+                      'after_events':next((c['future_programmes'] for c in current['candidates']
+                          if c['source']==current['selected_source']),0)
+                  })
+          assert not lost,('lost canonical IDs',lost[:8])
+          assert len(new)==len(old),(len(old),len(new))
+          print('MENA_ROUTING_DELTA',json.dumps({
+              'channels':len(new),'changed_source_count':len(changed),
+              'changed_first_20':changed[:20],
+              'regressed_to_empty':sum(1 for x in changed
+                  if x['before_events']>0 and x['after_events']==0),
+          },ensure_ascii=False))
+          assert not any(x['before_events']>0 and x['after_events']==0
+                         for x in changed),'Epg programme owners must never regress to empty'
           PY
