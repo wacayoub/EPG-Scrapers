@@ -9,38 +9,13 @@
   "currently_on_air_channels": 97,
   "current_coverage_pct": 100.0,
   "currently_uncovered_ids": [],
-  "programmes": 4257,
+  "programmes": 3677,
   "rejected_invalid_time": 0,
-  "rejected_missing_title": 0,
-  "inferred_stop": 0,
+  "rejected_missing_title": 1,
+  "inferred_stop": 1,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 223148,
-  "sha256": "804da73f3d81bc61d683c7edabf93b94b738d9883f181e0ccca1ddb873d8b443",
-  "generated_utc": "2026-10-16T11:27:28.676150+00:00",
-  "repacked_utc": "2026-10-16T11:42:25.686940+00:00",
-  "original_published_sha256": "0196cd33995cbda529673d4750f77e9a0ef13fce2c6f9bc11d8468e32de94f88",
-  "verified_donor_extensions": {
-    "mode": "daily_after_donor_refresh_exact_id_no_overlap",
-    "donor_sha256": {
-      "shahid": "3fa51d2c6e2d00b69082f17196e773d620828138532ec257c7ff7e4927071791",
-      "dubaiplus": "916d8e2bcf530099b54361b985cacd2c1657404f17e1e3b26266f87dd04c24a3"
-    },
-    "programmes_added_this_pass": 146,
-    "channels_extended": [
-      "DubaiOne.ae@SD",
-      "MBC1.ae@SD",
-      "MBC3.ae@SD",
-      "MBC4.ae@SD",
-      "MBC5.ae@SD",
-      "MBCAction.ae@SD",
-      "MBCBollywood.ae@SD",
-      "MBCDrama.ae@SD",
-      "MBCIraq.iq@SD",
-      "MBCMasr.eg@SD",
-      "MBCMasr2.eg@SD",
-      "MBCPlusDrama.sa@SD"
-    ],
-    "fabricated_programmes": 0
-  }
+  "size_bytes": 199386,
+  "sha256": "1514f0f6112dade922bcbdee0f32e25cc410f075635c7011548bfa7c22466d5f",
+  "generated_utc": "2026-10-17T10:47:23.285868+00:00"
 }
