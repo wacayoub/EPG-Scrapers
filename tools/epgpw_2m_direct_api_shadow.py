@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timedelta, timezone
-import io
 import json
 import re
 from urllib import robotparser, request, error
@@ -80,7 +79,6 @@ def inspect_xml(raw, now):
     bad = 0
     current = 0
     next48 = 0
-    near24 = set()
     anchor = []
     stamps = []
     title_missing = 0
@@ -105,11 +103,7 @@ def inspect_xml(raw, now):
             current += 1
         if stop > now and begin < now + timedelta(hours=48) and title:
             next48 += 1
-        if begin <= now+timedelta(hours=24) and stop >= now and title:
-            near24.add(begin.date().isoformat())
-        if title.casefold().replace(" ", "") == "infos oir".replace(" ", ""):
-            anchor.append(begin.strftime("%Y-%m-%dT%H:%MZ"))
-        elif title.casefold().strip() == "info soir":
+        if title.casefold().strip() == "info soir":
             anchor.append(begin.strftime("%Y-%m-%dT%H:%MZ"))
     stamps.sort()
     return {
@@ -121,7 +115,7 @@ def inspect_xml(raw, now):
         "first_start_utc":stamps[0][0].isoformat() if stamps else None,
         "last_stop_utc":max(b for _,b in stamps).isoformat() if stamps else None,
         "info_soir_start_utc_samples":anchor[:3],
-        "cache_now_and_future_verified":bool(current and next48),
+        "xmltv_now_and_future_present":bool(current and next48),
         "timezone_alignment_verified":False,
         "redistribution_authorized":False,
     }
