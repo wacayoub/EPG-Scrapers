@@ -54,8 +54,34 @@ def source(url):
                             "h3_count":len(parent.find_all("h3")),
                             "anchor_count":len(parent.find_all("a"))})
         rows.append(seq)
-    # No source text stored or emitted.
+    # Structural telemetry: does Telerama's existing `parse_2m` contract
+    # (anchor text containing "21h00" preceded by a title) still hold?
+    anchor_times = 0
+    anchor_title_before = 0
+    anchor_title_after = 0
+    hhmm = re.compile(r"(?<!\\d)([01]?\\d|2[0-3])h([0-5]\\d)(?!\\d)")
+    for anchor in soup.find_all("a"):
+        txt = " ".join(anchor.stripped_strings)
+        match = hhmm.search(txt)
+        if not match:
+            continue
+        anchor_times += 1
+        if len(txt[:match.start()].strip()) >= 2:
+            anchor_title_before += 1
+        if len(txt[match.end():].strip()) >= 2:
+            anchor_title_after += 1
+    html_text = soup.get_text(" ", strip=True)
+    anchors = soup.find_all("a")
+    # No source text, titles, dates, programme descriptions or HTML emitted.
     return {"state":"HTML_RECEIVED","bytes":len(raw),
+            "telerama_contract_metrics":{
+                "anchor_time_hhmm":anchor_times,
+                "anchor_title_before_time":anchor_title_before,
+                "anchor_title_after_time":anchor_title_after,
+                "all_page_hhmm_tokens":len(hhmm.findall(html_text)),
+                "ld_json_scripts":len(soup.find_all("script",type="application/ld+json")),
+                "program_link_hints":sum(1 for a in anchors if "/tele/" in str(a.get("href") or "")),
+            },
             "h3_count":len(h3s),"anchors":len(soup.find_all("a")),
             "time_nodes":len(soup.find_all(string=re.compile(r"^(?:[01]?\d|2[0-3]):[0-5]\d$"))),
             "duration_nodes":len(soup.find_all(string=re.compile(r"^\s*(?:(?:\d{1,2}h)?\d{1,2}min|\d{1,2}h\d{1,2})\s*$"))),
