@@ -11,13 +11,13 @@ import re
 # Full-match ID or official channel display label: avoid accidentally calling
 # regular beIN 1-9, News, Movies, or unrelated AFC channels event-only.
 _PATTERNS = (
-    re.compile(r"^beINSportsMax[1-9][0-9]*\\.qa@MENA$", re.I),
-    re.compile(r"^beINSportsXtra[1-9][0-9]*\\.qa@SD$", re.I),
-    re.compile(r"^beINMENA\\.beinsportsxtra[1-9][0-9]*$", re.I),
-    re.compile(r"^beINSportsAFC[1-9]?[0-9]*(?:\\.qa(?:@MENA|@SD)?)?$", re.I),
-    re.compile(r"^beINMENA\\.beinsportsafc[1-9]?[0-9]*$", re.I),
+    re.compile(r"^beINSportsMax[1-9][0-9]*\.qa@MENA$", re.I),
+    re.compile(r"^beINSportsXtra[1-9][0-9]*\.qa@SD$", re.I),
+    re.compile(r"^beINMENA\.beinsportsxtra[1-9][0-9]*$", re.I),
+    re.compile(r"^beINSportsAFC[1-9]?[0-9]*(?:\.qa(?:@MENA|@SD)?)?$", re.I),
+    re.compile(r"^beINMENA\.beinsportsafc[1-9]?[0-9]*$", re.I),
 )
-_NAME = re.compile(r"^beIN\\s*(?:SPORTS?\\s*)?(?:MAX|XTRA|AFC)(?:\\s*[0-9]+)?$", re.I)
+_NAME = re.compile(r"^beIN\s*(?:SPORTS?\s*)?(?:MAX|XTRA|AFC)(?:\s*[0-9]+)?$", re.I)
 
 
 def is_occasional_bein(cid, names=()):
