@@ -12,6 +12,11 @@ from tools import validate_48h, audit_source_quality
 
 NOW = datetime(2026, 10, 17, 18, 0, tzinfo=timezone.utc)
 
+class FixedDatetime(datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return NOW.astimezone(tz or timezone.utc)
+
 def stamp(dt):
     return dt.strftime("%Y%m%d%H%M%S +0000")
 
@@ -57,8 +62,7 @@ class OccasionalBein(unittest.TestCase):
         self.assertFalse(is_occasional_bein('SomethingElse.afc',('beIN SPORTS AFC 3',)))
 
     def test_no_event_info_not_failure(self):
-        with tempfile.TemporaryDirectory() as d,patch.object(validate_48h,'datetime') as clock:
-            clock.now.return_value=NOW
+        with tempfile.TemporaryDirectory() as d,patch.object(validate_48h,'datetime',FixedDatetime):
             f=feed(d)
             a=validate_48h.audit(f,48,90)
             by={r['id']:r for r in a['rows']}
