@@ -47,9 +47,9 @@ class TestAdaptiveSchedule(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             for name in policy.TARGETS:
                 source(td, name, "2026-10-15T08:00:00Z")
-            source(td, "elcinema", "2026-10-15T08:00:00Z", decision="KEEP_LKG")
+            source(td, "osn", "2026-10-15T08:00:00Z", decision="KEEP_LKG")
             actual = policy.plan(td, self.now)
-            self.assertEqual(actual["targets"], ["elcinema"])
+            self.assertEqual(actual["targets"], ["osn"])
             self.assertEqual(actual["details"][0]["reason"], "TODAY_SOURCE_CANDIDATE_REJECTED")
 
     def test_measured_low_publication_coverage_triggers_not_entire_strict_48h_failure(self):
@@ -72,6 +72,17 @@ class TestAdaptiveSchedule(unittest.TestCase):
             self.assertIn("MAIN_CHAIN_STILL_ACTIVE", got["skip_reason"])
             self.assertTrue(all(r["retry"] for r in got["details"]))
 
+    def test_elcinema_not_selected_for_extra_15h_retry(self):
+        with tempfile.TemporaryDirectory() as td:
+            for name in policy.TARGETS:
+                source(td, name, "2026-10-15T12:00:00Z")
+            # No ElCinema source file at all: do not re-scrape it.
+            self.assertEqual(policy.plan(td, self.now)["targets"], [])
+            # Stale ElCinema source + LKG rejection still cannot requeue it.
+            source(td, "elcinema", "2026-10-14T12:00:00Z", decision="KEEP_LKG")
+            self.assertNotIn("elcinema", policy.plan(td, self.now)["targets"])
+            self.assertEqual(policy.plan(td, self.now)["targets"], [])
+
     def test_casablanca_summer_and_ramadan_clock_boundaries(self):
         # Do not hardcode UTC+1. Runner tzdata may receive rule changes
         # from IANA while Morocco also suspends DST during Ramadan.
@@ -82,8 +93,8 @@ class TestAdaptiveSchedule(unittest.TestCase):
         self.assertIsNone(policy.local_date("bad timestamp"))
 
     def test_only_four_explicit_retry_sources(self):
-        self.assertEqual(policy.TARGETS, ("elcinema", "osn", "bein", "shahid"))
-        self.assertLessEqual(policy.MAX_RETRIES, 4)
+        self.assertEqual(policy.TARGETS, ("osn", "bein", "shahid"))
+        self.assertLessEqual(policy.MAX_RETRIES, 3)
 
 
 if __name__ == "__main__":

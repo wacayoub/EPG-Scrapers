@@ -73,12 +73,9 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  elcinema_extend:
-    needs: [decide, retry]
-    if: needs.decide.outputs.retry_count != '0' && needs.retry.result == 'success'
-    uses: ./.github/workflows/elcinema-daily-donors.yml
-
+  # Only OSN, beIN and Shahid may be retried at 15:00.
+  # ElCinema donor additions are handled by the daily chain, not a second time.
   finalize:
-    needs: [decide, retry, elcinema_extend]
+    needs: [decide, retry]
     if: always() && needs.decide.outputs.retry_count != '0' && needs.retry.result == 'success'
     uses: ./.github/workflows/rebuild-mena-derived.yml
