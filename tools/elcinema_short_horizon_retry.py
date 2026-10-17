@@ -14,7 +14,7 @@ import re
 import xml.etree.ElementTree as ET
 from copy import deepcopy
 
-DATETIME=re.compile(r"^(\d{12}|\d{14})\s*([+-]\d{4}|Z)?")
+DATETIME=re.compile(r"^(\d{14}|\d{12})\s+([+-]\d{4}|Z)$")
 def time_utc(raw):
     m=DATETIME.match((raw or "").strip())
     if not m:
