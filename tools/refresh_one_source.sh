@@ -363,6 +363,15 @@ if [ "$cohort" = "REBUILD" ]; then
     --max-gap-minutes 90 --report "reports/$SOURCE-48h-audit.json" || true
   python tools/audit_source_quality.py --input "feeds/$SOURCE.xml.gz" \
     --source "$SOURCE" --report "reports/$SOURCE-quality.json"
+  if [ "$SOURCE" = "elcinema" ]; then
+    # Exact published-feed SHA pinned, 36h green cutoff per ID.
+    # Short but genuine IDs stay visible for manual review; a channel-name
+    # schedule may never appear as verified EPG. Does not touch XMLTV.
+    python tools/elcinema_per_id_readiness.py \
+      --feed feeds/elcinema.xml.gz \
+      --metadata feeds/elcinema.json \
+      --output reports/elcinema-per-id-readiness.json
+  fi
 elif [ "$cohort" = "KEEP" ]; then
   echo "KEEP_LKG source=$SOURCE: retain previous 48h and quality reports"
 else
