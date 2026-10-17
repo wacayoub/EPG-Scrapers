@@ -47,7 +47,18 @@ NEW = """    const items = parseItems(content, channel, date)
 """
 
 OLD_TZ = "return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', dayjs.tz.guess())"
-PIN_TZ = "return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', 'Africa/Casablanca')"
+# Node.js 20 bundles outdated ICU zone data and still sees Morocco as GMT+1
+# on 17 Oct 2026. Morocco decree 2.26.530 restored permanent GMT on
+# 20 Sep 2026. Explicit UTC is therefore required on fully post-transition
+# days; do not trust Node 20's historical Morocco offset cache.
+# The transition day itself is intentionally left on native IANA handling
+# until the ambiguous repeated 01:00 hour can be resolved separately.
+PIN_TZ = """const civilDate = time.slice(0, 10)
+  // Morocco is UTC+00 permanently after September 20, 2026.
+  // ICU on Node 20 may still incorrectly report UTC+01.
+  const broadcastZone = civilDate >= '2026-09-21'
+    ? 'Etc/UTC' : 'Africa/Casablanca'
+  return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', broadcastZone)"""
 
 def patch(src: str) -> str:
     if not isinstance(src, str) or len(src) > 100000:
@@ -70,6 +81,7 @@ def main():
     if new != raw:
         path.write_text(new, encoding="utf-8")
     print("ELCINEMA_MIDNIGHT_ROLLOVER_PATCH_VERIFIED",
-          "changed=",new != raw, "tz=Africa/Casablanca")
+          "changed=",new != raw,
+          "tz=Morocco legal GMT+0 for 2026-09-21 onward; pre-transition Africa/Casablanca")
 if __name__=="__main__":
     main()
