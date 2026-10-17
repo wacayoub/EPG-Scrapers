@@ -93,6 +93,20 @@ def root_from_bytes(raw: bytes) -> ET.Element:
     return ET.fromstring(raw)
 
 
+def catalogue_future_health(root: ET.Element) -> dict[str, int]:
+    """Every OSN advertised ID is audited, not only a historical fallback list.
+
+    Preserve unavailable entries as diagnostics; do not fabricate schedules
+    or remove receiver mappings when their official provider has no guide.
+    """
+    cids = sorted({
+        (c.get("id") or "").strip()
+        for c in root.findall("channel")
+        if (c.get("id") or "").strip()
+    })
+    return {cid: future_count(root, cid) for cid in cids}
+
+
 def future_count(root: ET.Element, cid: str) -> int:
     now = datetime.now(timezone.utc)
     return sum(
@@ -192,6 +206,7 @@ def main() -> int:
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "policy": "OSN official first; local official fallback; OpenEPG; EPGShare last; never replace healthy OSN EPG",
         "before_future": {cid: future_count(root, cid) for cid in sorted(TRACKED_ZERO_IDS)},
+        "official_catalogue_future_before": catalogue_future_health(root),
         "applied": {},
         "external": {},
         "errors": [],
@@ -232,6 +247,15 @@ def main() -> int:
                 apply_source(root, target, src, source_id, f"epgshare:AE1:{source_id}", report)
 
     report["after_future"] = {cid: future_count(root, cid) for cid in sorted(TRACKED_ZERO_IDS)}
+    full_after = catalogue_future_health(root)
+    full_before = report.pop("official_catalogue_future_before")
+    report["catalogue_id_count"] = len(full_after)
+    report["missing_ids_before"] = sorted(cid for cid, n in full_before.items() if not n)
+    report["missing_ids_after"] = sorted(cid for cid, n in full_after.items() if not n)
+    report["missing_ids_restored"] = sorted(
+        cid for cid in full_before if not full_before[cid] and full_after.get(cid, 0) > 0
+    )
+    # Legacy tracked rows are retained for backwards-compatible debug output.
     report["resolved"] = [cid for cid, n in report["after_future"].items() if n > 0]
     report["unresolved"] = [cid for cid, n in report["after_future"].items() if n == 0]
 
