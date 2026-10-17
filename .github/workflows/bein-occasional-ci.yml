@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Unit test real-event vs idle vs false-guide beIN policies
-        run: python -m unittest tools.test_bein_occasional_policy tools.test_audit_source_quality -v
+        run: PYTHONPATH=tools python -m unittest tools.test_bein_occasional_policy tools.test_audit_source_quality -v
       - name: Inspect actual published beIN feed without modifying it
         run: |
           python - <<'PY'
