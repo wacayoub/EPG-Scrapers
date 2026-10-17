@@ -1,0 +1,23 @@
+name: ElCinema short horizon retry — offline no publish
+on:
+  push:
+    branches: [fix/elcinema-targeted-short-horizon-retry-20261017]
+    paths: ['tools/elcinema_short_horizon_retry.py','tools/test_elcinema_short_horizon_retry.py','tools/refresh_one_source.sh','.github/workflows/elcinema-short-retry-ci.yml']
+  pull_request:
+    paths: ['tools/elcinema_short_horizon_retry.py','tools/test_elcinema_short_horizon_retry.py','tools/refresh_one_source.sh','.github/workflows/elcinema-short-retry-ci.yml']
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: bash -n tools/refresh_one_source.sh
+      - run: python -m py_compile tools/elcinema_short_horizon_retry.py tools/test_elcinema_short_horizon_retry.py
+      - run: python -m unittest discover -s tools -p 'test_elcinema_short_horizon_retry.py' -v
