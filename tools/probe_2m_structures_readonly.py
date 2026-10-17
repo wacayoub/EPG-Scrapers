@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 URLS = {
   "sudinfo": "https://programmestv.sudinfo.be/programme-tv/chaine/2m-maroc/606",
   "telerama": "https://television.telerama.fr/programme-tv-samedi/2m-maroc",
+  "communesmaroc": "https://www.communesmaroc.com/fr/tv-programs/2m?dt=2026-10-17",
 }
 USER_AGENT = "EPGManager-2M-LabProbe/1.0"
 MAX_HTML_BYTES = 1000000
@@ -42,6 +43,14 @@ def source(url):
         return {"state":"HTTP_UNAVAILABLE","error_type":type(ex).__name__}
     soup=BeautifulSoup(html,"lxml")
     h3s=soup.find_all("h3")
+    h6s=soup.find_all("h6")
+    h6_shapes=[]
+    for h in h6s[:4]:
+        seq=[]
+        for el in list(h.parents)[:4]:
+            if getattr(el, "name", None):
+                seq.append({"tag":el.name,"class_tokens":[x for x in el.get("class", []) if re.fullmatch(r"[a-zA-Z0-9_-]{1,55}",x)][:4],"child_tags":[c.name for c in el.find_all(recursive=False)][:6]})
+        h6_shapes.append(seq)
     # Telerama programme cards are anchors (not h3). Probe only structure,
     # never print programme titles or other copyrighted source text.
     anchors=soup.find_all("a")
@@ -131,6 +140,7 @@ def source(url):
                 "program_link_ancestor_shapes":candidate_anchor_ancestor_shapes,
             },
             "h3_count":len(h3s),"anchors":len(anchors),
+            "h6_count":len(h6s),"first_h6_shapes":h6_shapes,
             "timed_anchor_count":len(timed),
             "first_timed_anchor_shapes":timed_shapes,
             "time_nodes":len(soup.find_all(string=re.compile(r"^(?:[01]?\d|2[0-3]):[0-5]\d$"))),
