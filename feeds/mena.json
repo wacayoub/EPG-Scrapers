@@ -1,9 +1,9 @@
 {
   "label": "mena",
   "channels": 517,
-  "programmes": 30241,
-  "generated_utc": "2026-10-17T11:02:02.593883+00:00",
-  "sha256": "421eeb5c8dcc57dc80256dc87093dbb20cdef03f77c00da4555261bdf8c2f40a",
+  "programmes": 30315,
+  "generated_utc": "2026-10-17T20:55:25.332339+00:00",
+  "sha256": "06f5020ab155c7c9391d8383450d631b85caef5d99b29ec629a6489281aac000",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "priority": [
     "morocco",
@@ -168,7 +168,7 @@
     "DubaiRacing1.ae@SD": "dubaiplus",
     "DubaiRacing2.ae@SD": "stctv",
     "DubaiSports1.ae@SD": "sport24",
-    "DubaiSports2.ae@SD": "sport24",
+    "DubaiSports2.ae@SD": "stctv",
     "DubaiTV.ae@SD": "osn",
     "DubaiZaman.ae@SD": "dubaiplus",
     "EchoroukTV.dz@SD": "elcinema",
@@ -182,7 +182,7 @@
     "Fann.ae@SD": "osn",
     "Fatafeat.ae@SD": "osn",
     "FIFAPlus.uk": "starzplay",
-    "FoodNetworkEMEA.us@SD": "bein",
+    "FoodNetworkEMEA.us@SD": "stctv",
     "FoxActionMoviesMENA.hk@SD": "bein",
     "FoxArabia.ae@SD": "bein",
     "FoxMoviesMiddleEast.us@SD": "bein",
@@ -335,10 +335,10 @@
     "SpacetoonArabic.ae@SD": "starzplay",
     "sport24.adsports.3": "sport24",
     "sport24.adsports.4": "sport24",
-    "sport24.thmanyah.1": "sport24",
+    "sport24.thmanyah.1": "stctv",
     "sport24.thmanyah.2": "stctv",
     "sport24.thmanyah.3": "stctv",
-    "StarMoviesMiddleEast.ae@SD": "bein",
+    "StarMoviesMiddleEast.ae@SD": "elcinema",
     "starzplay.227083304121": "starzplay",
     "starzplay.227083304215": "starzplay",
     "starzplay.236275240441": "starzplay",
@@ -543,19 +543,43 @@
     "AbuDhabiSports1.ae@SD": [
       "osn"
     ],
-    "DubaiSports2.ae@SD": [
-      "stctv"
+    "DubaiTV.ae@SD": [
+      "elcinema"
     ],
-    "FoodNetworkEMEA.us@SD": [
-      "stctv"
+    "LBC.sa@SD": [
+      "elcinema"
+    ],
+    "MBCBollywood.ae@SD": [
+      "elcinema"
+    ],
+    "MBCDrama.ae@SD": [
+      "elcinema"
+    ],
+    "OmanTV.om@SD": [
+      "elcinema"
     ],
     "OSNBlippiAndFriends": [
       "stctv"
     ],
-    "sport24.thmanyah.1": [
-      "stctv"
+    "RotanaCinemaEgypt.eg@SD": [
+      "elcinema"
     ],
-    "StarMoviesMiddleEast.ae@SD": [
+    "RotanaCinemaKSA.sa@SD": [
+      "elcinema"
+    ],
+    "RotanaClassic.sa@SD": [
+      "elcinema"
+    ],
+    "RotanaComedy.sa@SD": [
+      "elcinema"
+    ],
+    "RotanaDrama.sa@SD": [
+      "elcinema"
+    ],
+    "RotanaKhalijia.sa@SD": [
+      "elcinema"
+    ],
+    "RoyaTV.jo@SD": [
       "elcinema"
     ]
   },
