@@ -1,0 +1,52 @@
+name: OSN Legacy Alfa Pinoy verified donor research (no publication)
+on:
+  push:
+    branches: [fix/osn-alfa-pinoy-verified-source-20261017]
+    paths:
+      - 'tools/osn_missing_donor_scan_readonly.py'
+      - 'tools/test_osn_missing_donor_scan_readonly.py'
+      - 'tools/probe_alfa_official_shape_readonly.py'
+      - '.github/workflows/osn-legacy-donor-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/osn_missing_donor_scan_readonly.py'
+      - 'tools/test_osn_missing_donor_scan_readonly.py'
+      - 'tools/probe_alfa_official_shape_readonly.py'
+      - '.github/workflows/osn-legacy-donor-ci.yml'
+permissions:
+  contents: read
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m py_compile tools/osn_missing_donor_scan_readonly.py tools/test_osn_missing_donor_scan_readonly.py tools/probe_alfa_official_shape_readonly.py
+      - run: python -m unittest discover -s tools -p 'test_osn_missing_donor_scan_readonly.py' -v
+  published-donor-snapshot:
+    needs: offline-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Check existing public independent sources with exact channel IDs
+        run: python tools/osn_missing_donor_scan_readonly.py --repo .
+  alfa-official-site-structure:
+    needs: offline-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Respect robots and show only structural status, never copy schedules
+        run: python tools/probe_alfa_official_shape_readonly.py
