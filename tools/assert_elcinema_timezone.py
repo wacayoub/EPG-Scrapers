@@ -81,18 +81,20 @@ for (const [date, expectedOffsetMinutes] of checks) {
     # Run the actual injected JavaScript statement with an instrumented
     # dayjs.tz stub to prove post-Sep20 dates choose UTC regardless of ICU.
     from elcinema_midnight_patch import PIN_TZ
-    script += (
-        "\\nconst dayjs={tz:(time,fmt,zone)=>({time,fmt,zone})};"
-        "\\nfunction parseElCinema(time){\\n" + PIN_TZ + "\\n}"
-        "\\nfor (const [t,z] of ["
-        "['2026-09-19 08:00 PM','Africa/Casablanca'],"
-        "['2026-10-17 08:00 PM','Etc/UTC'],"
-        "['2027-04-15 08:00 PM','Etc/UTC']]) {"
-        " const r=parseElCinema(t);"
-        " if(r.zone!==z){console.error('ELCINEMA_ADAPTER_ZONE_WRONG',t,r.zone,z);process.exit(2)}"
-        " console.log('ELCINEMA_REAL_ADAPTER_POLICY_CHECK',t,r.zone);"
-        "}\\n"
-    )
+    script += chr(10) + chr(10).join((
+        "const dayjs={tz:(time,fmt,zone)=>({time,fmt,zone})};",
+        "function parseElCinema(time){",
+        PIN_TZ,
+        "}",
+        "for(const [t,z] of [",
+        " ['2026-09-19 08:00 PM','Africa/Casablanca'],",
+        " ['2026-10-17 08:00 PM','Etc/UTC'],",
+        " ['2027-04-15 08:00 PM','Etc/UTC']]) {",
+        " const r=parseElCinema(t);",
+        " if(r.zone!==z){console.error('ELCINEMA_ADAPTER_ZONE_WRONG',t,r.zone,z);process.exit(2)}",
+        " console.log('ELCINEMA_REAL_ADAPTER_POLICY_CHECK',t,r.zone);",
+        "}",
+    )) + chr(10)
     try:
         run = subprocess.run(
             ["node", "-e", script, json.dumps(CHECKS)],
