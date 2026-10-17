@@ -1,7 +1,7 @@
 name: ElCinema live date-boundary metadata probe — no publish
 on:
   push:
-    branches: [audit/elcinema-provider-day-boundary-20261017]
+    branches: [fix/elcinema-rollover-anchor-previous-day-20261017]
     paths:
       - 'tools/elcinema_day_boundary_probe.js'
       - 'tools/elcinema_midnight_patch.py'
@@ -94,6 +94,21 @@ jobs:
                       corrected+=1
                   assert new_day['time_order_inversions'] <= old_day['time_order_inversions']
           assert corrected>=2,('no verified day-boundary corrections',corrected)
+          # CRITICAL: previous +1-day fix looked green but inserted 24h
+          # gaps everywhere. Date-labelled sections must be contiguous
+          # when an evening-to-morning rollover is seen.
+          for cid,data in after.items():
+              days=data['days']
+              if len(days)<2 or not days[0]['header_found'] or not days[1]['header_found']:
+                  continue
+              from datetime import datetime
+              if not days[0]['latest_stop_utc'] or not days[1]['earliest_start_utc']:
+                  continue
+              prev=datetime.fromisoformat(days[0]['latest_stop_utc'].replace('Z','+00:00'))
+              following=datetime.fromisoformat(days[1]['earliest_start_utc'].replace('Z','+00:00'))
+              gap=(following-prev).total_seconds()/60
+              assert -45<=gap<=180,('A day-boundary 24h gap or overlap remains',cid,gap)
+              print('ELCINEMA_CONTIGUOUS_BOUNDARY',cid,'gap_minutes',gap)
           print('ELCINEMA_CROSS_MIDNIGHT_REPAIR_PASS',json.dumps({
               'channels':len(after),'corrected_date_sections':corrected,
               'all_programme_row_counts_preserved':True,
