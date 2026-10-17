@@ -1,0 +1,57 @@
+name: ElCinema real publication before-after check
+on:
+  push:
+    branches: [main, audit/elcinema-post-midnight-delta-20261017]
+    paths:
+      - 'feeds/elcinema.json'
+      - 'reports/elcinema-48h-audit.json'
+      - 'tools/elcinema_postpublish_delta.py'
+      - 'tools/test_elcinema_postpublish_delta.py'
+      - '.github/workflows/elcinema-postpublish-delta.yml'
+  pull_request:
+    paths:
+      - 'tools/elcinema_postpublish_delta.py'
+      - 'tools/test_elcinema_postpublish_delta.py'
+      - '.github/workflows/elcinema-postpublish-delta.yml'
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m py_compile tools/elcinema_postpublish_delta.py tools/test_elcinema_postpublish_delta.py
+      - run: python -m unittest discover -s tools -p 'test_elcinema_postpublish_delta.py' -v
+  published-compare:
+    needs: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Compare two actual published ElCinema audit revisions
+        run: |
+          set -euo pipefail
+          mapfile -t revs < <(git log -n 2 --format=%H -- reports/elcinema-48h-audit.json)
+          test "${#revs[@]}" -eq 2 || { echo 'No two published revisions yet'; exit 0; }
+          mkdir -p /tmp/elcinema-release-delta
+          git show "${revs[1]}:feeds/elcinema.json" > /tmp/elcinema-release-delta/old-meta.json
+          git show "${revs[1]}:reports/elcinema-48h-audit.json" > /tmp/elcinema-release-delta/old-report.json
+          git show "${revs[0]}:feeds/elcinema.json" > /tmp/elcinema-release-delta/new-meta.json
+          git show "${revs[0]}:reports/elcinema-48h-audit.json" > /tmp/elcinema-release-delta/new-report.json
+          python tools/elcinema_postpublish_delta.py \
+            --old-meta /tmp/elcinema-release-delta/old-meta.json \
+            --old-report /tmp/elcinema-release-delta/old-report.json \
+            --new-meta /tmp/elcinema-release-delta/new-meta.json \
+            --new-report /tmp/elcinema-release-delta/new-report.json
+          echo 'ELCINEMA_COMPARISON_ONLY_NO_FEED_OR_RECEIVER_WRITES'
