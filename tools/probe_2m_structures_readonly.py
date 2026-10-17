@@ -42,6 +42,24 @@ def source(url):
         return {"state":"HTTP_UNAVAILABLE","error_type":type(ex).__name__}
     soup=BeautifulSoup(html,"lxml")
     h3s=soup.find_all("h3")
+    # Telerama programme cards are anchors (not h3). Probe only structure,
+    # never print programme titles or other copyrighted source text.
+    anchors=soup.find_all("a")
+    timed=[]
+    for a in anchors:
+        txt=" ".join(a.stripped_strings)
+        if re.search(r"(?<!\\d)(?:[01]?\\d|2[0-3])[h:][0-5]\\d(?!\\d)",txt):
+            timed.append(a)
+    timed_shapes=[]
+    for el in timed[:4]:
+        timed_shapes.append({
+            "href_path_present":bool(el.get("href")),
+            "class_tokens":[x for x in el.get("class",[]) if re.fullmatch(r"[a-zA-Z0-9_-]{1,55}",x)][:5],
+            "span_count":len(el.find_all("span")),
+            "li_count":len(el.find_all("li")),
+            "time_matches":len(re.findall(r"(?<!\\d)(?:[01]?\\d|2[0-3])[h:][0-5]\\d(?!\\d)", " ".join(el.stripped_strings))),
+            "sibling_tag":getattr(el.parent, "name", None),
+        })
     # Structural labels only, with no programme titles:
     rows=[]
     for el in h3s[:2]:
@@ -112,7 +130,9 @@ def source(url):
                 "app_json_scripts":data_json_count,
                 "program_link_ancestor_shapes":candidate_anchor_ancestor_shapes,
             },
-            "h3_count":len(h3s),"anchors":len(soup.find_all("a")),
+            "h3_count":len(h3s),"anchors":len(anchors),
+            "timed_anchor_count":len(timed),
+            "first_timed_anchor_shapes":timed_shapes,
             "time_nodes":len(soup.find_all(string=re.compile(r"^(?:[01]?\d|2[0-3]):[0-5]\d$"))),
             "duration_nodes":len(soup.find_all(string=re.compile(r"^\s*(?:(?:\d{1,2}h)?\d{1,2}min|\d{1,2}h\d{1,2})\s*$"))),
             "first_heading_ancestor_shapes":rows}
