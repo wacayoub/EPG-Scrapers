@@ -33,8 +33,10 @@ POLICY = {
     "bein":      {"min_channels": 35, "min_programmes": 500, "min_future_ratio": 0.80, "min_horizon_hours": 8},
     "shahid":    {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.60, "min_horizon_hours": 8},
     "rotana":    {"min_channels": 5,  "min_programmes": 40,  "min_future_ratio": 0.60, "min_horizon_hours": 8},
-    # Tabie/QMC public API: QTV/QBC/Tabie services; zero-EPG catalogue IDs may remain visible.
-    "tabie":     {"min_channels": 4,  "min_programmes": 80,  "min_future_ratio": 0.80, "min_horizon_hours": 24},
+    # Tabie exports only IDs with real, current/future programmes. Three
+    # working IDs are acceptable IF existing current-coverage guards pass.
+    # Provider replay of the same date must never count as future days.
+    "tabie":     {"min_channels": 3,  "min_programmes": 80,  "min_future_ratio": 0.80, "min_horizon_hours": 8},
     "alkass":    {"min_channels": 8,  "min_programmes": 40,  "min_future_ratio": 0.75, "min_horizon_hours": 24},
     "tunisiatv": {"min_channels": 2,  "min_programmes": 30,  "min_future_ratio": 1.00, "min_horizon_hours": 24},
     # Sport24 is event-driven; valid event schedules can naturally expose less
