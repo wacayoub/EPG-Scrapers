@@ -326,16 +326,23 @@ PY
     ;;
 esac
 
-if [ -s "output/final/$SOURCE.xml.gz" ]; then
-  python tools/validate_48h.py "output/final/$SOURCE.xml.gz" --hours "$HOURS" --max-gap-minutes 90 --report "reports/$SOURCE-48h-audit.json" || true
-fi
+# The publisher decides whether to accept this candidate or keep the last
+# known good (LKG) publication. NEVER commit reports about rejected bytes.
+python tools/publish_lkg.py --source "$SOURCE" --report "reports/$SOURCE-publish-lkg.json"
 
-python tools/publish_lkg.py --source "$SOURCE" --report "reports/$SOURCE-publish-lkg.json" || true
-
-# Receiver-source quality must reflect the exact *published* feed.
-# This is report-only: it never invents programmes or modifies valid XMLTV.
-if [ -s "feeds/$SOURCE.xml.gz" ]; then
+# Only an accepted, byte-for-byte verified published source may create a
+# new 48h/quality cohort. KEEP_LKG leaves prior reports unchanged.
+cohort="$(python tools/report_cohort_gate.py --source "$SOURCE" \
+  --decision "reports/$SOURCE-publish-lkg.json" --feeds-dir feeds)" || exit 2
+if [ "$cohort" = "REBUILD" ]; then
+  python tools/validate_48h.py "feeds/$SOURCE.xml.gz" --hours "$HOURS" \
+    --max-gap-minutes 90 --report "reports/$SOURCE-48h-audit.json" || true
   python tools/audit_source_quality.py --input "feeds/$SOURCE.xml.gz" \
-    --source "$SOURCE" --report "reports/$SOURCE-quality.json" || true
+    --source "$SOURCE" --report "reports/$SOURCE-quality.json"
+elif [ "$cohort" = "KEEP" ]; then
+  echo "KEEP_LKG source=$SOURCE: retain previous 48h and quality reports"
+else
+  echo "Unsafe publication cohort decision: $cohort" >&2
+  exit 2
 fi
 echo "SOURCE_REFRESH_DONE source=$SOURCE hours=$HOURS"
