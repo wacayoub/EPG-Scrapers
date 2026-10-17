@@ -64,6 +64,39 @@ def fmt(dt: datetime) -> str:
     return dt.strftime("%Y%m%d%H%M%S %z")
 
 
+def retain_live_ids(raw: ET.Element, catalogue: ET.Element, now: datetime, horizon_hours: int = 48):
+    """Keep only stable IDs with authentic, current/future programme events.
+
+    An ID absent from the active guide is excluded from the published Tabie
+    catalogue, but not removed from EPGManager manual/auto receiver mappings.
+    No invented schedules and no rewrite of provider programme timestamps.
+    """
+    now = now.astimezone(QATAR)
+    until = now + timedelta(hours=horizon_hours)
+    qualifying = set()
+    for p in raw.findall("programme"):
+        cid = p.get("channel")
+        try:
+            start = datetime.strptime(p.get("start") or "", "%Y%m%d%H%M%S %z").astimezone(QATAR)
+            stop = datetime.strptime(p.get("stop") or "", "%Y%m%d%H%M%S %z").astimezone(QATAR)
+        except ValueError:
+            continue
+        if cid and start < until and stop > now and stop > start:
+            qualifying.add(cid)
+    all_ids = [c.get("id") for c in raw.findall("channel")]
+    for c in list(raw.findall("channel")):
+        if c.get("id") not in qualifying:
+            raw.remove(c)
+    for p in list(raw.findall("programme")):
+        if p.get("channel") not in qualifying:
+            raw.remove(p)
+    for c in list(catalogue.findall("channel")):
+        if c.get("xmltv_id") not in qualifying:
+            catalogue.remove(c)
+    return {"retained_ids": sorted(qualifying),
+            "excluded_ids": sorted(set(all_ids) - qualifying)}
+
+
 def fetch_day(session: requests.Session, channel_id: int, date: str, retries: int = 3):
     last = None
     for attempt in range(retries):
@@ -210,6 +243,15 @@ def main() -> int:
             "status": "ACTIVE" if kept else "ZERO_EPG",
         }
 
+    # Keep catalogue/report identities stable; only ACTIVE guide IDs belong in
+    # the exported Tabie XMLTV and catalogue. Report every excluded ID.
+    id_filter = retain_live_ids(raw, catalogue, now)
+    report["published_ids"] = id_filter["retained_ids"]
+    report["excluded_no_live_epg_ids"] = id_filter["excluded_ids"]
+    report["publication_policy"] = "active_with_genuine_current_or_future_programmes_only"
+    report["programmes_before_id_filter"] = total
+    total = len(raw.findall("programme"))
+
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     Path(args.catalogue).parent.mkdir(parents=True, exist_ok=True)
     Path(args.report).parent.mkdir(parents=True, exist_ok=True)
@@ -218,7 +260,7 @@ def main() -> int:
     Path(args.output).write_bytes(ET.tostring(raw, encoding="utf-8", xml_declaration=True))
     Path(args.catalogue).write_bytes(ET.tostring(catalogue, encoding="utf-8", xml_declaration=True))
     report["programmes"] = total
-    report["active_channels"] = sum(1 for x in report["channels"].values() if x["programmes"] > 0)
+    report["active_channels"] = len(id_filter["retained_ids"])
     Path(args.report).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({
         "source": "tabie",
