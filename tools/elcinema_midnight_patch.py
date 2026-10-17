@@ -4,8 +4,8 @@
 
 A broadcast grid may begin in the evening and continue after midnight. The
 upstream adapter parses each HH:MM against the section heading date even when
-programme order crosses midnight, which sends the next day's early programmes
-to yesterday. This PATCH is conditional, narrow, pinned and fail-closed.
+programme order crosses midnight, which, depending on section anchoring, can send evening broadcasts
+to the following day. The local date heading denotes when the section ENDS. This PATCH is conditional, narrow, pinned and fail-closed.
 
 Does not touch receiver, provider copyrighted texts or published feeds.
 """
@@ -19,25 +19,33 @@ OLD = """    const items = parseItems(content, channel, date)
       const duration = parseDuration(item)
 """
 NEW = """    const items = parseItems(content, channel, date)
-    // An ElCinema section can run 18:00 through the next day's daytime.
-    // The source clock rolls from late evening back to early morning once
-    // inside a section. Anchor those post-midnight slots to tomorrow,
-    // without changing the source's local clock or fabricating programmes.
-    let broadcastDayOffset = 0
-    let previousLocalStart = null
-    items.forEach(item => {
-      let start = parseStart(item, date.add(broadcastDayOffset, 'day'))
-      if (previousLocalStart && start.isBefore(previousLocalStart)) {
-        const backwardsMinutes = previousLocalStart.diff(start, 'minute')
-        if (previousLocalStart.hour() >= 17 && start.hour() <= 12 &&
-            backwardsMinutes >= 420 && backwardsMinutes <= 1440) {
-          broadcastDayOffset += 1
-          start = parseStart(item, date.add(broadcastDayOffset, 'day'))
-        }
+    // ElCinema's evening-to-morning section is labelled by the DAY IT ENDS.
+    // Example: heading Sunday 18 lists Saturday evening then Sunday morning.
+    // The earlier patch incorrectly moved Sunday morning to Monday, causing
+    // 24-hour gaps in 95/97 channels. Keep morning on the heading date and
+    // assign only the evening BEFORE the clock rollover to yesterday.
+    const localStarts = items.map(item => parseStart(item, date))
+    let rolloverIndex = -1
+    for (let i = 1; i < localStarts.length; i++) {
+      const previous = localStarts[i - 1]
+      const next = localStarts[i]
+      if (previous.isValid() && next.isValid() &&
+          previous.hour() >= 17 && next.hour() <= 12 &&
+          previous.diff(next, 'minute') >= 420 &&
+          previous.diff(next, 'minute') <= 1440) {
+        rolloverIndex = i
+        break
       }
-      previousLocalStart = start
+    }
+    items.forEach((item, index) => {
+      // A section without a clear 23:xx -> 00:xx boundary is ambiguous.
+      // Leave its dates unchanged; never infer a day shift from the title.
+      const broadcastDate = rolloverIndex >= 0 && index < rolloverIndex
+        ? date.subtract(1, 'day') : date
+      const start = parseStart(item, broadcastDate)
       const duration = parseDuration(item)
 """
+
 OLD_TZ = "return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', dayjs.tz.guess())"
 PIN_TZ = "return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', 'Africa/Casablanca')"
 
