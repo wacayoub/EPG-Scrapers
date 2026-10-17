@@ -91,6 +91,14 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Verify legal Morocco GMT on Node and Python before ElCinema grab
+        if: steps.gate.outputs.run == 'true' && inputs.source == 'elcinema'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/assert_elcinema_timezone.py \
+            --adapter vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true' && steps.req.outputs.upstream == 'true'
         working-directory: vendor/iptv-org-epg
