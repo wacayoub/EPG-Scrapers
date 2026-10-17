@@ -11,6 +11,10 @@ import argparse,gzip,json,re
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
+try:
+    from bein_occasional_policy import is_occasional_bein
+except ModuleNotFoundError:
+    from tools.bein_occasional_policy import is_occasional_bein
 
 DT_RE=re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
@@ -71,11 +75,20 @@ def audit(path,hours,max_gap_minutes):
         if b>now-timedelta(hours=2) and a<target+timedelta(hours=12):
             by[cid].append((a,b))
 
-    rows=[]; failures=[]; warnings=[]
+    rows=[]; failures=[]; warnings=[]; informational=[]
+    is_bein_feed = Path(path).name == 'bein.xml.gz'
     gap_limit=timedelta(minutes=prof["gap_warn"])
     for cid in sorted(channels,key=str.casefold):
+        occasional = is_bein_feed and is_occasional_bein(
+            cid, [n.text or '' for n in channels[cid].findall('display-name')]
+        )
         iv=sorted(by[cid])
         if not iv:
+            if occasional:
+                row={"id":cid,"status":"INFO","reason":"OCCASIONAL_NO_EVENT",
+                     "future_hours":0.0,"max_gap_minutes":None,"programmes":0,
+                     "occasional_event_channel":True}
+                rows.append(row); informational.append(row); continue
             if prof.get("allow_zero_epg"):
                 row={"id":cid,"status":"WARN","reason":"ZERO_EPG","future_hours":0.0,"max_gap_minutes":None}
                 rows.append(row); warnings.append(row); continue
@@ -103,16 +116,18 @@ def audit(path,hours,max_gap_minutes):
         if max_gap > gap_limit:
             soft.append("INTERNAL_GAP")
 
-        status="FAIL" if hard else ("WARN" if soft else "PASS")
-        reason="+".join(hard+soft)
+        status="INFO" if occasional else ("FAIL" if hard else ("WARN" if soft else "PASS"))
+        reason="OCCASIONAL_EVENT_SCHEDULE" if occasional else "+".join(hard+soft)
         row={
             "id":cid,"status":status,"reason":reason,
             "future_hours":round(future_hours,2),
             "latest_stop_utc":cursor.isoformat(),
             "max_gap_minutes":round(max_gap.total_seconds()/60.0,1),
             "programmes":len(iv),
+            "occasional_event_channel":bool(occasional),
         }
         rows.append(row)
+        if status=="INFO": informational.append(row)
         if status=="FAIL": failures.append(row)
         elif status=="WARN": warnings.append(row)
 
@@ -134,6 +149,8 @@ def audit(path,hours,max_gap_minutes):
         "orphan_programmes":orphan,
         "failed_channels":len(failures),
         "warning_channels":len(warnings),
+        "informational_channels":len(informational),
+        "occasional_channel_ids":sorted(r['id'] for r in informational),
         "status":status,
         "rows":rows,
     }
