@@ -8,7 +8,7 @@ from epgpw_2m_direct_api_shadow import inspect_xml, inspect_json
 NOW=datetime(2026,10,17,12,0,tzinfo=timezone.utc)
 def feed(start="20261017113000 +0000", stop="20261017123000 +0000",
          channel="2M Maroc",name="Info soir"):
-    return (('<tv><channel id="445700"><display-name>'+channel+'</display-name></channel>'
+    return ('<tv><channel id="445700"><display-name>'+channel+'</display-name></channel>'
              '<programme channel="445700" start="'+start+'" stop="'+stop+'">'
              '<title>'+name+'</title></programme></tv>').encode()
 class TestDirect2M(unittest.TestCase):
