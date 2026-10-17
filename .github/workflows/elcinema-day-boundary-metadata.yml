@@ -6,6 +6,8 @@ on:
       - 'tools/elcinema_day_boundary_probe.js'
       - 'tools/elcinema_midnight_patch.py'
       - 'tools/test_elcinema_midnight_patch.py'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/refresh-elcinema.yml'
       - '.github/workflows/elcinema-day-boundary-metadata.yml'
 permissions:
   contents: read
@@ -51,6 +53,19 @@ jobs:
         run: |
           cd vendor/iptv-org-epg
           TZ=Africa/Casablanca node __elcinema_day_boundary_probe.js | tee /tmp/elcinema-after.log
+      - name: Verify production workflow uses guarded rollover patch
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          core=Path('.github/workflows/refresh-source-core.yml').read_text()
+          refresh=Path('.github/workflows/refresh-elcinema.yml').read_text()
+          assert "python3 tools/elcinema_midnight_patch.py" in core
+          assert "python3 -m unittest discover -s tools -p 'test_elcinema_midnight_patch.py'" in core
+          assert "tools/elcinema_midnight_patch.py" in refresh
+          assert "inputs.source == 'elcinema'" in core
+          assert "old = \"return dayjs.tz(time" not in core
+          print('ELCINEMA_PRODUCTION_PIPELINE_HOOK_PASS')
+          PY
       - name: Verify no programme loss, no backwards clock, no unrelated source changes
         run: |
           python - <<'PY'
@@ -90,3 +105,12 @@ jobs:
         run: |
           git diff --exit-code -- feeds/ reports/
           echo 'NO_PUBLIC_FEED_CHANGED'
+  offline-python-3-14:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: python -m py_compile tools/elcinema_midnight_patch.py tools/test_elcinema_midnight_patch.py
+      - run: python -m unittest discover -s tools -p 'test_elcinema_midnight_patch.py' -v
