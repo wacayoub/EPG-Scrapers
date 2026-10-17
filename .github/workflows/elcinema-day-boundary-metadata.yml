@@ -4,6 +4,8 @@ on:
     branches: [audit/elcinema-provider-day-boundary-20261017]
     paths:
       - 'tools/elcinema_day_boundary_probe.js'
+      - 'tools/elcinema_midnight_patch.py'
+      - 'tools/test_elcinema_midnight_patch.py'
       - '.github/workflows/elcinema-day-boundary-metadata.yml'
 permissions:
   contents: read
@@ -36,11 +38,54 @@ jobs:
       - name: Install upstream adapter dependencies
         run: npm ci --no-audit --no-fund
         working-directory: vendor/iptv-org-epg
-      - name: Run temporary official-day metadata-only probe
+      - name: Baseline source parser metadata — same Casablanca timezone
         run: |
           cp tools/elcinema_day_boundary_probe.js vendor/iptv-org-epg/__elcinema_day_boundary_probe.js
           cd vendor/iptv-org-epg
-          node __elcinema_day_boundary_probe.js
+          TZ=Africa/Casablanca node __elcinema_day_boundary_probe.js | tee /tmp/elcinema-before.log
+      - name: Patch transient upstream parser, never repo main
+        run: |
+          python tools/elcinema_midnight_patch.py --config vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+          python -m unittest discover -s tools -p 'test_elcinema_midnight_patch.py' -v
+      - name: Observe corrected day-boundary metadata only
+        run: |
+          cd vendor/iptv-org-epg
+          TZ=Africa/Casablanca node __elcinema_day_boundary_probe.js | tee /tmp/elcinema-after.log
+      - name: Verify no programme loss, no backwards clock, no unrelated source changes
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          def parse(file):
+              out={}
+              for s in Path(file).read_text().splitlines():
+                  if s.startswith('ELCINEMA_DAY_BOUNDARY_METADATA '):
+                      j=json.loads(s.split(' ',1)[1])
+                      out[j['id']]=j
+              return out
+          before=parse('/tmp/elcinema-before.log')
+          after=parse('/tmp/elcinema-after.log')
+          assert before and before.keys()==after.keys(),(before.keys(),after.keys())
+          corrected=0
+          for cid,ref in before.items():
+              new=after[cid]
+              for old_day,new_day in zip(ref['days'],new['days']):
+                  assert old_day['date']==new_day['date']
+                  assert old_day['source_html_cards']==new_day['source_html_cards']
+                  assert old_day['adapter_items']==new_day['adapter_items']
+                  assert old_day['valid_time_pairs']==new_day['valid_time_pairs']
+                  if old_day['time_order_inversions']>0:
+                      assert new_day['time_order_inversions']==0,(cid,new_day)
+                      corrected+=1
+                  assert new_day['time_order_inversions'] <= old_day['time_order_inversions']
+          assert corrected>=2,('no verified day-boundary corrections',corrected)
+          print('ELCINEMA_CROSS_MIDNIGHT_REPAIR_PASS',json.dumps({
+              'channels':len(after),'corrected_date_sections':corrected,
+              'all_programme_row_counts_preserved':True,
+              'programme_titles_logged':False,
+              'live_feeds_modified':False
+          },sort_keys=True))
+          PY
       - name: Confirm no public EPG publication
         run: |
           git diff --exit-code -- feeds/ reports/
