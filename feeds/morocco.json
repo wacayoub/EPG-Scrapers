@@ -1,25 +1,21 @@
 {
   "label": "morocco",
   "channels": 15,
-  "active_channels": 14,
-  "zero_epg_channels": 1,
-  "zero_epg_ids": [
-    "2M"
-  ],
+  "active_channels": 15,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
   "input_channels": 15,
-  "coverage_pct": 93.3,
-  "currently_on_air_channels": 14,
-  "current_coverage_pct": 93.3,
-  "currently_uncovered_ids": [
-    "2M"
-  ],
-  "programmes": 621,
-  "rejected_invalid_time": 0,
+  "coverage_pct": 100.0,
+  "currently_on_air_channels": 15,
+  "current_coverage_pct": 100.0,
+  "currently_uncovered_ids": [],
+  "programmes": 718,
+  "rejected_invalid_time": 4,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 27645,
-  "sha256": "9611155c81306a24389b744360ab9f901eaa976990e223052d551bc583c2065a",
-  "generated_utc": "2026-10-15T22:35:57.307798+00:00"
+  "size_bytes": 29697,
+  "sha256": "0f7ddf93ff580ba42f85b15bcd2a646a124973ec945f81a2ef5273124fd6e082",
+  "generated_utc": "2026-10-17T11:01:05.905203+00:00"
 }
