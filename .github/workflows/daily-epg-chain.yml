@@ -18,59 +18,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ElCinema 01:20, OSN 01:40, beIN 02:22, Sport24 03:05,
-  # Shahid 03:39, Al Jazeera 04:12, Dubai+ 04:44, STARZPLAY 05:12 and STC 05:55
-  # each have one independent daily GMT+0 trigger. No duplicate at 07:15.
-  # Tunisia TV now starts the remaining sequential chain.
-  tunisiatv:
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: tunisiatv
-      scheduled: false
-    secrets: inherit
-
-  # STC has its sole independent 05:55 GMT+0 daily scraper.
-  # Keep the remaining source chain contiguous without a second STC scrape.
-  alkass:
-    needs: tunisiatv
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: alkass
-      scheduled: false
-    secrets: inherit
-
-  # Sport24 03:05 and Shahid/MBC 03:39 fixed GMT+0 run independently.
-  # Do not rescrape either in this 07:15 chain.
-  # beIN is scheduled independently at 02:22.
-  rotana:
-    needs: alkass
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: rotana
-      scheduled: false
-    secrets: inherit
-
-  morocco:
-    needs: rotana
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: morocco
-      scheduled: false
-    secrets: inherit
-
-  tabie:
-    needs: morocco
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: tabie
-      scheduled: false
-    secrets: inherit
-
+  # All 14 direct sources now have their own daily fixed-GMT+0 scrape.
+  # Do not rescrape any source in this 07:15 orchestration workflow.
+  # Run donor postprocessing after the last source, Tunisia TV at 06:35,
+  # then rebuild the derived MENA guide.
   elcinema_extend:
     needs: tabie
     if: ${{ always() }}
