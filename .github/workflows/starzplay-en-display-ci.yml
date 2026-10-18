@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Install source hybrid runtime dependencies
-        run: python -m pip install --disable-pip-version-check requests
+        run: python -m pip install --disable-pip-version-check requests pyyaml
       - name: Read-only official Arabic/English source name and identity unit tests
         run: |
           python -m py_compile tools/starzplay_hybrid.py tools/test_starzplay_english_display_names.py
