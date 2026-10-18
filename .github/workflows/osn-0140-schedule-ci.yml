@@ -72,15 +72,15 @@ jobs:
           assert 'aljazeera' not in chain['jobs']
           assert 'dubaiplus' not in chain['jobs']
           assert 'starzplay' not in chain['jobs']
-          assert chain['jobs']['tunisiatv'].get('needs') is None
+          assert 'tunisiatv' not in chain['jobs']
           assert 'stctv' not in chain['jobs']
-          assert chain['jobs']['alkass']['needs']=='tunisiatv'
+          assert 'alkass' not in chain['jobs']
           assert set(TARGETS)=={'shahid'} and MAX_RETRIES==1
           assert 'schedule' not in retry['on']
           assert 'workflow_dispatch' in retry['on']
           assert 'shahid' not in chain['jobs']
           assert 'sport24' not in chain['jobs']
-          assert chain['jobs']['rotana']['needs']=='alkass'
+          assert set(chain['jobs'])=={'elcinema_extend','finalize'}
           assert 'matrix.source' in retry['jobs']['retry']['with']['source']
           assert 'osn' not in evening['jobs']['sports']['strategy']['matrix']['source']
           assert evening['jobs']['sports']['strategy']['matrix']['source']==['alkass']
