@@ -31,6 +31,15 @@ jobs:
             git reset --hard origin/main
 
             python tools/build_derived_feeds.py
+            # Fail CLOSED on broken XMLTV/IDs/SHA/routing. Preserve degraded
+            # guides as visible explicit WARN instead of deleting mappings.
+            python tools/mena_readiness_audit.py \
+              --feed feeds/mena.xml.gz \
+              --metadata feeds/mena.json \
+              --routing reports/canonical-source-routing.json \
+              --feed-dir feeds \
+              --report reports/mena-readiness.json \
+              --markdown reports/mena-readiness.md
             shopt -s nullglob
             feeds=(feeds/*.xml.gz)
             test "${#feeds[@]}" -gt 0
@@ -44,6 +53,7 @@ jobs:
             git add feeds/mena.xml.gz feeds/mena.txt feeds/mena.json
             git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv
             git add reports/canonical-source-routing.json reports/canonical-source-routing.md
+            git add reports/mena-readiness.json reports/mena-readiness.md
 
             if git diff --cached --quiet; then
               echo "MENA derived feed already current"
