@@ -6,16 +6,18 @@
   "zero_epg_ids": [],
   "input_channels": 149,
   "coverage_pct": 100.0,
-  "currently_on_air_channels": 149,
-  "current_coverage_pct": 100.0,
-  "currently_uncovered_ids": [],
-  "programmes": 9154,
+  "currently_on_air_channels": 148,
+  "current_coverage_pct": 99.3,
+  "currently_uncovered_ids": [
+    "MBCMood.sa@HD"
+  ],
+  "programmes": 9160,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 318147,
-  "sha256": "ab508a5dc53c4a8506f06f273bac7998203f3ac9790eeb81541b1774f1c2af3c",
-  "generated_utc": "2026-10-17T23:06:36.776699+00:00"
+  "size_bytes": 314518,
+  "sha256": "d5788fd6357c56dc04cb4afb77b7c5f5c7307845c408c8e97135b1b1c9369e91",
+  "generated_utc": "2026-10-18T02:11:06.336682+00:00"
 }
