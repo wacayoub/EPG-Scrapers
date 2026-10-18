@@ -18,19 +18,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ElCinema runs independently at 01:20 fixed GMT+0 in
-  # refresh-elcinema.yml; don't rescrape it at 07:15 here.
-  aljazeera:
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: aljazeera
-      scheduled: false
-    secrets: inherit
-
-  # OSN has its own fixed 01:40 GMT+0; Dubai+ its own fixed 04:44 GMT+0.
-  # Neither source is rescraped in this 07:15 GMT+0 daily chain.
+  # ElCinema (01:20), OSN (01:40), beIN (02:22), Sport24 (03:05),
+  # Shahid (03:39), Al Jazeera (04:12), and Dubai+ (04:44) each use a
+  # separate daily fixed GMT+0 trigger; none is re-scraped at 07:15.
+  # STARZPLAY is the first job of this reduced sequential chain.
   starzplay:
-    needs: aljazeera
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
