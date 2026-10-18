@@ -45,7 +45,7 @@ jobs:
           assert el['jobs']['refresh']['with']['source']=='elcinema'
           assert el['jobs']['refresh']['with']['scheduled']=='false'
           assert 'elcinema' not in seq['jobs']
-          assert seq['jobs']['aljazeera'].get('needs') is None
+          assert 'aljazeera' not in seq['jobs']
           assert 'schedule' not in retry['on']
           assert 'workflow_dispatch' in retry['on']
           assert 'sport24' not in seq['jobs']
