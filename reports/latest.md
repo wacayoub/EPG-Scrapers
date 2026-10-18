@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-10-17T21:38:27.253733+00:00
+Generated: 2026-10-18T10:56:36.319187+00:00
 
 Total monitored IDs: **4150**
 
@@ -12,8 +12,8 @@ Total monitored IDs: **4150**
 | DUPLICATE | 227 |
 | DUPLICATE_WINNER | 406 |
 | INVALID_SOURCE | 335 |
-| NO_EPG | 560 |
-| OK | 1109 |
+| NO_EPG | 556 |
+| OK | 1113 |
 | QUARANTINE | 933 |
 
 ## Direct feeds
@@ -22,18 +22,18 @@ Total monitored IDs: **4150**
 |---|---:|---:|---:|---:|---:|---:|
 | aljazeera.xml.gz | 5 | 100 | 0 | 0 | 0 | 2 |
 | alkass.xml.gz | 8 | 184 | 0 | 0 | 0 | 0 |
-| bein.xml.gz | 68 | 2550 | 0 | 0 | 0 | 12 |
+| bein.xml.gz | 68 | 2842 | 0 | 0 | 0 | 1 |
 | dubaiplus.xml.gz | 9 | 423 | 0 | 0 | 0 | 0 |
-| elcinema.xml.gz | 97 | 4062 | 0 | 0 | 0 | 0 |
-| mena.xml.gz | 517 | 30293 | 0 | 0 | 0 | 31 |
-| morocco.xml.gz | 15 | 696 | 0 | 0 | 0 | 0 |
+| elcinema.xml.gz | 97 | 3308 | 0 | 0 | 0 | 5 |
+| mena.xml.gz | 517 | 31034 | 0 | 0 | 0 | 26 |
+| morocco.xml.gz | 15 | 686 | 0 | 0 | 0 | 0 |
 | osn.xml.gz | 101 | 6320 | 0 | 0 | 0 | 19 |
 | others.xml.gz | 153 | 57599 | 0 | 0 | 0 | 153 |
 | rotana.xml.gz | 9 | 253 | 0 | 0 | 0 | 2 |
 | shahid.xml.gz | 71 | 4180 | 0 | 0 | 0 | 0 |
-| sport24.xml.gz | 9 | 41 | 0 | 0 | 0 | 2 |
-| starzplay.xml.gz | 117 | 8152 | 0 | 0 | 0 | 0 |
-| stctv.xml.gz | 149 | 9118 | 0 | 0 | 0 | 0 |
+| sport24.xml.gz | 9 | 41 | 0 | 0 | 0 | 9 |
+| starzplay.xml.gz | 117 | 8156 | 0 | 0 | 0 | 0 |
+| stctv.xml.gz | 149 | 9108 | 0 | 0 | 0 | 0 |
 | tabie.xml.gz | 9 | 1131 | 0 | 0 | 0 | 9 |
 | tunisiatv.xml.gz | 2 | 116 | 0 | 0 | 0 | 0 |
 | vuplus-test.xml.gz | 330 | 19769 | 0 | 0 | 0 | 330 |
