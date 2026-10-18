@@ -1,6 +1,10 @@
 name: EPG 48h - Al Jazeera
 
 on:
+  # One automatic Al Jazeera source scrape in fixed GMT+0 (no DST shift).
+  schedule:
+    - cron: "12 4 * * *"
+      timezone: "Etc/GMT"
   workflow_dispatch:
 
 permissions:
