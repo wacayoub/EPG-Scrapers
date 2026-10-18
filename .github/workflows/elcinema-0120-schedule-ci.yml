@@ -53,7 +53,9 @@ jobs:
           assert 'dubaiplus' not in chain['jobs']
           assert 'starzplay' not in chain['jobs']
           assert chain['jobs']['tunisiatv'].get('needs') is None
-          for job in ['tunisiatv','stctv',
+          assert 'stctv' not in chain['jobs']
+          assert chain['jobs']['alkass']['needs']=='tunisiatv'
+          for job in ['tunisiatv',
                       'alkass','rotana','morocco',
                       'tabie','elcinema_extend','finalize']:
               assert job in chain['jobs'],job
