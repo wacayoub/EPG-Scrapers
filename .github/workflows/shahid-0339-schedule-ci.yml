@@ -67,14 +67,15 @@ jobs:
           assert chain["on"]["schedule"]==[
               {"cron":"15 7 * * *","timezone":"Africa/Casablanca"}]
           assert "shahid" not in chain["jobs"]
-          assert chain["jobs"]["sport24"]["needs"]=="alkass"
+          assert "sport24" not in chain["jobs"]
+          assert chain["jobs"]["rotana"]["needs"]=="alkass"
           assert "osn" not in chain["jobs"] and "elcinema" not in chain["jobs"]
           assert "bein" not in chain["jobs"]
           assert "schedule" not in retry["on"], "15h scheduled Shahid retry must be disabled"
           assert "workflow_dispatch" in retry["on"]
           assert TARGETS==("shahid",), "Keep manual Shahid-only quality retry"
           assert "matrix.source" in retry["jobs"]["retry"]["with"]["source"]
-          assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["sport24","alkass"]
+          assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
           assert "schedule" not in core["on"] and "schedule" not in manual["on"]
           assert "schedule" not in legacy["on"]
           assert watchdog["on"]["schedule"]==[

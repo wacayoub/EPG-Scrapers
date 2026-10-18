@@ -74,20 +74,11 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  # Shahid/MBC is scheduled once daily at 03:39 Casablanca.
-  # Do not repeat its upstream scrape in the 07:15 chain.
-  sport24:
-    needs: alkass
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: sport24
-      scheduled: false
-    secrets: inherit
-
-  # beIN is scheduled independently at 02:22; no duplicate chain scrape.
+  # Sport24 03:05 and Shahid/MBC 03:39 run independently.
+  # Do not rescrape either in this 07:15 chain.
+  # beIN is scheduled independently at 02:22.
   rotana:
-    needs: sport24
+    needs: alkass
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:

@@ -54,7 +54,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import yaml
-          for name in ("daily-epg-chain.yml", "epg-watchdog.yml", "epg-evening-casablanca.yml", "refresh-shahid.yml"):
+          for name in ("daily-epg-chain.yml", "epg-watchdog.yml", "epg-evening-casablanca.yml", "refresh-shahid.yml", "refresh-sport24.yml"):
               p = Path(".github/workflows") / name
               d = yaml.load(p.read_text(), Loader=yaml.BaseLoader)
               assert "on" in d and "jobs" in d and d["on"]["schedule"]
