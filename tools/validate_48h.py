@@ -17,7 +17,7 @@ try:
 except ModuleNotFoundError:
     from tools.bein_occasional_policy import is_occasional_bein
 
-DT_RE=re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
+DT_RE=re.compile(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?$")
 
 PROFILES={
     "morocco.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":90},
