@@ -24,7 +24,7 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["on"]["schedule"], [{
             "cron": "15 7 * * *", "timezone": "Etc/GMT",
         }])
-        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 7)
+        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 6)
         self.assertNotIn("osn", p["jobs"])
         self.assertNotIn("shahid", p["jobs"])
         self.assertNotIn("sport24", p["jobs"])
@@ -32,6 +32,8 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertNotIn("dubaiplus", p["jobs"])
         self.assertNotIn("aljazeera", p["jobs"])
         self.assertNotIn("starzplay", p["jobs"])
+        self.assertNotIn("stctv", p["jobs"])
+        self.assertEqual(p["jobs"]["alkass"]["needs"], "tunisiatv")
         self.assertIsNone(p["jobs"]["tunisiatv"].get("needs"))
         self.assertIn("epg-daily-chain", p["concurrency"]["group"])
 
@@ -84,6 +86,7 @@ class TestScheduledWorkflows(unittest.TestCase):
                  "refresh-bein.yml", "refresh-sport24.yml",
                  "refresh-shahid.yml", "refresh-dubaiplus.yml",
                  "refresh-aljazeera.yml", "refresh-starzplay.yml",
+                 "refresh-stctv.yml",
                  "daily-epg-chain.yml", "epg-watchdog.yml",
                  "epg-evening-casablanca.yml")
         for name in names:
