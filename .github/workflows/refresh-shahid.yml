@@ -4,7 +4,7 @@ on:
   # Sole Shahid/MBC scheduled scraper, Moroccan local civil time.
   schedule:
     - cron: "39 3 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
 
 permissions:
