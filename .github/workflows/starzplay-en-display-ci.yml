@@ -47,7 +47,11 @@ jobs:
           assert p['profiles']['hybrid']=={'title':'en','subtitle':'en','description':'ar'}
           w=yaml.load(Path('.github/workflows/daily-epg-chain.yml').read_text(),Loader=yaml.BaseLoader)
           assert w['on']['schedule']==[{'cron':'15 7 * * *','timezone':'Etc/GMT'}]
-          assert w['jobs']['starzplay']['with']=={'source':'starzplay','scheduled':'false'}
+          assert 'starzplay' not in w['jobs']
+          assert w['jobs']['tunisiatv'].get('needs') is None
+          scheduled=yaml.load(Path('.github/workflows/refresh-starzplay.yml').read_text(),Loader=yaml.BaseLoader)
+          assert scheduled['on']['schedule']==[{'cron':'12 5 * * *','timezone':'Etc/GMT'}]
+          assert scheduled['jobs']['refresh']['with']=={'source':'starzplay','scheduled':'false'}
           print('EN_DISPLAY_117_AR_PROGRAMME_POLICY_PRESERVED')
           print('STARZPLAY_SCRAPE_GMT0_UNCHANGED_AND_XMLTV_IDS_STABLE')
           PY

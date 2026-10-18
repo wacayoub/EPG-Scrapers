@@ -24,14 +24,15 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["on"]["schedule"], [{
             "cron": "15 7 * * *", "timezone": "Etc/GMT",
         }])
-        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 8)
+        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 7)
         self.assertNotIn("osn", p["jobs"])
         self.assertNotIn("shahid", p["jobs"])
         self.assertNotIn("sport24", p["jobs"])
         self.assertEqual(p["jobs"]["rotana"]["needs"], "alkass")
         self.assertNotIn("dubaiplus", p["jobs"])
         self.assertNotIn("aljazeera", p["jobs"])
-        self.assertIsNone(p["jobs"]["starzplay"].get("needs"))
+        self.assertNotIn("starzplay", p["jobs"])
+        self.assertIsNone(p["jobs"]["tunisiatv"].get("needs"))
         self.assertIn("epg-daily-chain", p["concurrency"]["group"])
 
     def test_1415_watchdog_is_not_full_chain_retry(self):
@@ -75,13 +76,14 @@ class TestScheduledWorkflows(unittest.TestCase):
         chain = load("daily-epg-chain.yml")
         self.assertNotIn("dubaiplus", chain["jobs"])
         self.assertNotIn("aljazeera", chain["jobs"])
-        self.assertIsNone(chain["jobs"]["starzplay"].get("needs"))
+        self.assertNotIn("starzplay", chain["jobs"])
+        self.assertIsNone(chain["jobs"]["tunisiatv"].get("needs"))
 
     def test_all_known_scheduled_workflows_are_fixed_gmt_zero(self):
         names = ("refresh-elcinema.yml", "refresh-osn.yml",
                  "refresh-bein.yml", "refresh-sport24.yml",
                  "refresh-shahid.yml", "refresh-dubaiplus.yml",
-                 "refresh-aljazeera.yml",
+                 "refresh-aljazeera.yml", "refresh-starzplay.yml",
                  "daily-epg-chain.yml", "epg-watchdog.yml",
                  "epg-evening-casablanca.yml")
         for name in names:

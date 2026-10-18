@@ -18,20 +18,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ElCinema (01:20), OSN (01:40), beIN (02:22), Sport24 (03:05),
-  # Shahid (03:39), Al Jazeera (04:12), and Dubai+ (04:44) each use a
-  # separate daily fixed GMT+0 trigger; none is re-scraped at 07:15.
-  # STARZPLAY is the first job of this reduced sequential chain.
-  starzplay:
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: starzplay
-      scheduled: false
-    secrets: inherit
-
+  # ElCinema 01:20, OSN 01:40, beIN 02:22, Sport24 03:05,
+  # Shahid 03:39, Al Jazeera 04:12, Dubai+ 04:44 and STARZPLAY 05:12
+  # each have one independent daily GMT+0 trigger. No duplicate at 07:15.
+  # Tunisia TV now starts the remaining sequential chain.
   tunisiatv:
-    needs: starzplay
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
