@@ -33,8 +33,10 @@ POLICY = {
     "bein":      {"min_channels": 35, "min_programmes": 500, "min_future_ratio": 0.80, "min_horizon_hours": 8},
     "shahid":    {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.60, "min_horizon_hours": 8},
     "rotana":    {"min_channels": 5,  "min_programmes": 40,  "min_future_ratio": 0.60, "min_horizon_hours": 8},
-    # Tabie exports only IDs with real, current/future programmes. Three
-    # working IDs are acceptable IF existing current-coverage guards pass.
+    # Tabie exports only IDs with genuine current/future programmes.
+    # The provider may return ONLY its current date. An expired old LKG
+    # must not forever block 3 valid new channels with a real near-future
+    # first event; a strict future-only recovery gate below handles this.
     # Provider replay of the same date must never count as future days.
     "tabie":     {"min_channels": 3,  "min_programmes": 80,  "min_future_ratio": 0.80, "min_horizon_hours": 8},
     "alkass":    {"min_channels": 8,  "min_programmes": 40,  "min_future_ratio": 0.75, "min_horizon_hours": 24},
@@ -92,6 +94,7 @@ def stats(path: Path):
     missing_title_rows = 0
     currently_covered = set()
     latest_stop = None
+    earliest_future_start = None
 
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
@@ -110,6 +113,8 @@ def stats(path: Path):
             future_by_channel[cid] = future_by_channel.get(cid, 0) + 1
             if latest_stop is None or stop > latest_stop:
                 latest_stop = stop
+            if earliest_future_start is None or start < earliest_future_start:
+                earliest_future_start = start
 
     active_channels = sum(1 for n in valid_by_channel.values() if n > 0)
     future_channels = sum(1 for n in future_by_channel.values() if n > 0)
@@ -126,6 +131,10 @@ def stats(path: Path):
         "current_channels": len(currently_covered),
         "current_ratio": (len(currently_covered) / active_channels if active_channels else 0.0),
         "future_horizon_hours": max(0.0, horizon),
+        "first_future_start_lead_hours": (
+            round(max(0.0,(earliest_future_start-now).total_seconds()/3600.0),2)
+            if earliest_future_start else None
+        ),
         "missing_title_rows": missing_title_rows,
         "invalid_rows": invalid,
     }
@@ -174,22 +183,45 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["future_ratio"] >= 0.99
                 and cur["programmes"] >= 20
             )
-            planned_scope_rebase = planned_bein_scope_rebase or planned_stctv_scope_rebase
             # Tabie/QMC sometimes returns the current Qatar day for requested
             # future dates. A new 8-24h *real* guide is safer than retaining a
             # fully expired archive, but MUST be labelled as partial coverage.
-            # This exception is never applied if the previous feed still has
-            # a valid future event or the candidate has no programme NOW.
+            # Never apply if the old feed has any future events, or the
+            # candidate lacks a verified near-term programme.
+            # Tabie can serve three working IDs while the previous feed
+            # contains nine EMPTY/EXPIRED IDs. Publication must preserve
+            # ONLY actual valid programme-bearing IDs, without allowing
+            # arbitrary empty or distant fake schedules through.
+            # A current_ratio of zero at 00:30 GMT is not necessarily a
+            # source failure if the first authentic programme starts soon.
+            tabie_genuine_ids = {
+                "QatarTelevision.qa@SD", "QatarTelevision2.qa@SD",
+                "QatarQuranTV.qa@SD", "QatarBusinessChannel.qa@SD",
+                "AlkassOne.qa@SD", "AlRayyanTV.qa@SD",
+                "AlRayyanAlQadeem.qa@SD", "TabieNow.qa", "TabieKids.qa"
+            }
+            candidate_tabie_ids = (
+                {c.get("id") for c in load_root(candidate).findall("channel")}
+                if key == "tabie" else set()
+            )
             recovery_short_horizon = (
                 key == "tabie"
                 and old["future_channels"] == 0
-                and cur["future_channels"] >= 4
-                and cur["current_channels"] >= 4
-                and cur["current_ratio"] >= 0.80
+                and 3 <= cur["channels"] <= 9
+                and cur["active_channels"] == cur["channels"]
+                and cur["future_channels"] == cur["channels"]
+                and cur["future_ratio"] >= 0.99
                 and cur["future_horizon_hours"] >= 8
+                and cur["programmes"] >= p["min_programmes"]
+                and cur["first_future_start_lead_hours"] is not None
+                and cur["first_future_start_lead_hours"] <= 6.0
+                and candidate_tabie_ids.issubset(tabie_genuine_ids)
+                and len(candidate_tabie_ids) == cur["channels"]
                 and cur["missing_title_rows"] == 0
                 and cur["invalid_rows"] == 0
             )
+            planned_scope_rebase = (planned_bein_scope_rebase or
+                                    planned_stctv_scope_rebase or recovery_short_horizon)
             if (
                 not planned_scope_rebase
                 and old["channels"]
@@ -225,7 +257,7 @@ def evaluate(key: str, candidate: Path, previous: Path):
         reasons.append("current_coverage_regression>25pp")
     minimum_now = {"tabie": 0.60, "shahid": 0.60}
     floor = minimum_now.get(key)
-    if floor is not None and cur["current_ratio"] < floor:
+    if floor is not None and cur["current_ratio"] < floor and not recovery_short_horizon:
         reasons.append(f"current_ratio<{floor:.2f}")
     return cur, old, reasons
 
