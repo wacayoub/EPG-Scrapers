@@ -75,10 +75,11 @@ jobs:
           assert 'schedule' not in retry['on']
           assert 'workflow_dispatch' in retry['on']
           assert 'shahid' not in chain['jobs']
-          assert chain['jobs']['sport24']['needs']=='alkass'
+          assert 'sport24' not in chain['jobs']
+          assert chain['jobs']['rotana']['needs']=='alkass'
           assert 'matrix.source' in retry['jobs']['retry']['with']['source']
           assert 'osn' not in evening['jobs']['sports']['strategy']['matrix']['source']
-          assert evening['jobs']['sports']['strategy']['matrix']['source']==['sport24','alkass']
+          assert evening['jobs']['sports']['strategy']['matrix']['source']==['alkass']
           for name,doc in [('daily-source-refresh',manual),('refresh-source-core',core),
                            ('daily-epg',legacy),('elcinema-daily-donors',donors)]:
               assert 'schedule' not in doc['on'], name
