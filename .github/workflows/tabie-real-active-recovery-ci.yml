@@ -1,0 +1,48 @@
+name: Tabie QMC genuinely live ID recovery from expired old EPG only
+on:
+  push:
+    branches: [fix/tabie-expired-lkg-genuine-three-active-ids-recovery-20261018]
+    paths:
+      - 'tools/publish_lkg.py'
+      - 'tools/test_tabie_expired_lkg_recovery.py'
+      - '.github/workflows/tabie-real-active-recovery-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/publish_lkg.py'
+      - 'tools/test_tabie_expired_lkg_recovery.py'
+      - '.github/workflows/tabie-real-active-recovery-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: No network or external packages necessary
+        run: python -m py_compile tools/publish_lkg.py tools/test_tabie_expired_lkg_recovery.py
+      - name: Genuine 3 active QMC IDs vs expired old 9 plus negative cases
+        run: python -m unittest tools.test_tabie_expired_lkg_recovery -v
+      - name: Read-only actual rejected source problem evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("reports/tabie-publish-lkg.json").read_text())["sources"]["tabie"]
+          assert p["decision"]=="KEEP_LKG"
+          assert p["previous_stats"]["future_channels"]==0
+          assert p["candidate_stats"]["future_channels"]>=3
+          assert p["candidate_stats"]["current_channels"]==0
+          actual=json.loads(Path("feeds/tabie.json").read_text())
+          assert actual["channels"]==9
+          print("TABIE_REAL_OLD_FEED_STALE",actual["generated_utc"])
+          print("TABIE_NEW_POLICY_STRICT_3_NEAR_FUTURE_ID_RECOVERY_ONLY")
+          print("NO_RECEIVER_CHANGES_OR_FAKE_PROGRAMMES")
+          PY
