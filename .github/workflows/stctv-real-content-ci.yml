@@ -80,15 +80,15 @@ jobs:
           w=Path(".github/workflows")
           stc=yaml.load((w/"refresh-stctv.yml").read_text(),Loader=yaml.BaseLoader)
           chain=yaml.load((w/"daily-epg-chain.yml").read_text(),Loader=yaml.BaseLoader)
-          assert "schedule" not in stc["on"]
+          assert stc["on"]["schedule"]==[{"cron":"55 5 * * *","timezone":"Etc/GMT"}]
           assert "push" not in stc["on"]
           assert "workflow_dispatch" in stc["on"]
           assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
-          assert chain["jobs"]["stctv"]["needs"]=="tunisiatv"
-          assert chain["jobs"]["alkass"]["needs"]=="stctv"
+          assert "stctv" not in chain["jobs"]
+          assert chain["jobs"]["alkass"]["needs"]=="tunisiatv"
           print("STCTV_REAL_149_ID_CONTENT_GUARD",json.dumps(rep["counts"]))
           print("STCTV_ORIGINAL_XMLTV_UNMODIFIED_SHA",digest)
           print("STCTV_SPORTS_1_TO_3_PROTECTED",json.dumps(sports))
-          print("STCTV_GMT0_0715_CHAIN_UNCHANGED_NO_AUTO_PUSH_DUPLICATE")
+          print("STCTV_GMT0_0555_SOLE_CRON_0715_DUPLICATE_REMOVED")
           print("NO_RECEIVER_OR_MAPPINGS_CHANGED")
           PY

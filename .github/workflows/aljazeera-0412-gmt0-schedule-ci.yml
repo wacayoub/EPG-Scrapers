@@ -51,8 +51,8 @@ jobs:
           assert "aljazeera" not in chain["jobs"]
           assert "starzplay" not in chain["jobs"]
           assert chain["jobs"]["tunisiatv"].get("needs") is None
-          assert chain["jobs"]["stctv"]["needs"]=="tunisiatv"
-          assert chain["jobs"]["alkass"]["needs"]=="stctv"
+          assert "stctv" not in chain["jobs"]
+          assert chain["jobs"]["alkass"]["needs"]=="tunisiatv"
           assert chain["jobs"]["rotana"]["needs"]=="alkass"
           assert chain["jobs"]["morocco"]["needs"]=="rotana"
           assert chain["jobs"]["tabie"]["needs"]=="morocco"

@@ -50,6 +50,7 @@ jobs:
               "refresh-dubaiplus.yml":["44 4 * * *"],
               "refresh-aljazeera.yml":["12 4 * * *"],
               "refresh-starzplay.yml":["12 5 * * *"],
+              "refresh-stctv.yml":["55 5 * * *"],
               "daily-epg-chain.yml":["15 7 * * *"],
               "epg-watchdog.yml":["15 14 * * *"],
               "epg-evening-casablanca.yml":["30 19 * * *","30 20 * * *"],
@@ -69,7 +70,8 @@ jobs:
           chain=load("daily-epg-chain.yml")
           assert "starzplay" not in chain["jobs"]
           assert chain["jobs"]["tunisiatv"].get("needs") is None
-          for duplicate in ("elcinema","osn","bein","sport24","shahid","dubaiplus","aljazeera","starzplay"):
+          assert chain["jobs"]["alkass"]["needs"]=="tunisiatv"
+          for duplicate in ("elcinema","osn","bein","sport24","shahid","dubaiplus","aljazeera","starzplay","stctv"):
               assert duplicate not in chain["jobs"], duplicate
           dubai=load("refresh-dubaiplus.yml")
           assert "workflow_dispatch" in dubai["on"] and "push" not in dubai["on"]

@@ -23,7 +23,8 @@ installed EPGManager RC79.1, blocked R80, or private mappings.
 | **04:12 daily** | **Al Jazeera / Al Jazeera English — one source scrape** | **`refresh-aljazeera.yml`** |
 | **04:44 daily** | Dubai+ — one source scrape | `refresh-dubaiplus.yml` |
 | **05:12 daily** | **STARZPLAY — sole daily source scrape** | **`refresh-starzplay.yml`** |
-| **07:15 daily** | Other sequential sources: Tunisia TV → STC → AlKass → Rotana → Morocco → Tabie; then ElCinema donor postprocess and derived MENA rebuild | `daily-epg-chain.yml` |
+| **05:55 daily** | **STC TV — sole daily source scrape** | **`refresh-stctv.yml`** |
+| **07:15 daily** | Other sequential sources: Tunisia TV → AlKass → Rotana → Morocco → Tabie; then ElCinema donor postprocess and derived MENA rebuild | `daily-epg-chain.yml` |
 | **14:15 daily** | Watchdog health checks; may rebuild derived MENA only, does not source-scrape | `epg-watchdog.yml` |
 | **19:30 daily** | AlKass only, extra evening sport guide | `epg-evening-casablanca.yml` |
 | **20:30 daily** | Morocco evening refresh | `epg-evening-casablanca.yml` |
@@ -40,8 +41,8 @@ not an exact guaranteed completion time**.
 - Dubai+ dedicated daily 04:44 is the **sole automatic Dubai+ scraper**.
   Its 07:15 chain job and the old `push` trigger are removed;
   `workflow_dispatch` is preserved.
-- ElCinema, OSN, beIN, Sport24, Shahid, Al Jazeera and STARZPLAY each have
-  their sole dedicated automatic daily cron; no 07:15 duplicates.
+- ElCinema, OSN, beIN, Sport24, Shahid, Al Jazeera, STARZPLAY and STC TV
+  each have their sole dedicated automatic daily cron; no 07:15 duplicates.
 - Al Jazeera's dedicated schedule is `12 4 * * *` at `Etc/GMT`:
   **04:12 fixed GMT+0**, no seasonal shift. Remove its old 07:15
   upstream job; STARZPLAY no longer runs in the morning chain either.
@@ -51,6 +52,11 @@ not an exact guaranteed completion time**.
   and Tunisia TV becomes the first job; all subsequent sources keep their
   dependencies. The former automatic code-change `push` trigger of
   `refresh-starzplay.yml` is removed. Manual `workflow_dispatch` remains.
+- STC TV runs once at **05:55 fixed GMT+0** (`55 5 * * *`,
+  `timezone: "Etc/GMT"`) in `refresh-stctv.yml`. The old STC job was
+  removed from the 07:15 chain, so AlKass follows Tunisia TV directly.
+  No automatic `push` trigger exists; manual dispatch is retained.
+  The full STC catalogue and per-ID quality checks remain unchanged.
 - Sport24 remains removed from evening 19:30: only AlKass is re-scraped.
 - Shahid targeted retry is still **manual only**, with no automatic 15:00.
 - The shared legacy `refresh-source-core.yml` "06:00 scheduled" guard
@@ -76,7 +82,7 @@ Sport24's three exact sports donors remain independent.
 
 ## Acceptance
 
-Regress `gmt0-all-sources-0444-ci.yml` and `starzplay-0512-gmt0-schedule-ci.yml` on both Python 3.13 and 3.14,
+Regress `gmt0-all-sources-0444-ci.yml`, `starzplay-0512-gmt0-schedule-ci.yml` and `stctv-0555-gmt0-schedule-ci.yml` on both Python 3.13 and 3.14,
 in addition to the pre-existing per-source schedule checks. Confirm the
 fixed GMT+0 offset even on winter, summer and Ramadan examples.
 

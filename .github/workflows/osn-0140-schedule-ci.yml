@@ -73,6 +73,8 @@ jobs:
           assert 'dubaiplus' not in chain['jobs']
           assert 'starzplay' not in chain['jobs']
           assert chain['jobs']['tunisiatv'].get('needs') is None
+          assert 'stctv' not in chain['jobs']
+          assert chain['jobs']['alkass']['needs']=='tunisiatv'
           assert set(TARGETS)=={'shahid'} and MAX_RETRIES==1
           assert 'schedule' not in retry['on']
           assert 'workflow_dispatch' in retry['on']
