@@ -3,7 +3,7 @@ name: EPG Daily Watchdog
 on:
   schedule:
     - cron: "15 14 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
 
 permissions:
@@ -34,7 +34,7 @@ jobs:
           from pathlib import Path
           from zoneinfo import ZoneInfo
 
-          tz = ZoneInfo("Africa/Casablanca")
+          tz = ZoneInfo("Etc/GMT")
           now = datetime.now(tz)
           today = now.date()
           sources = [
