@@ -69,9 +69,9 @@ jobs:
           assert chain['on']['schedule']==[
               {'cron':'15 7 * * *','timezone':'Etc/GMT'}]
           assert 'osn' not in chain['jobs'], 'No second 07:15 OSN scrape'
-          assert chain['jobs']['aljazeera'].get('needs') is None
+          assert 'aljazeera' not in chain['jobs']
           assert 'dubaiplus' not in chain['jobs']
-          assert chain['jobs']['starzplay']['needs']=='aljazeera'
+          assert chain['jobs']['starzplay'].get('needs') is None
           assert set(TARGETS)=={'shahid'} and MAX_RETRIES==1
           assert 'schedule' not in retry['on']
           assert 'workflow_dispatch' in retry['on']
