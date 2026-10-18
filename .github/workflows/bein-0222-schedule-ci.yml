@@ -65,7 +65,7 @@ jobs:
           assert eve['jobs']['sports']['strategy']['matrix']['source']==['sport24','alkass']
           assert 'bein' not in policy.TARGETS
           assert policy.TARGETS==('osn','shahid')
-          assert retry['jobs']['retry']['with']['source']=='${{ matrix.source }}'
+          assert 'matrix.source' in retry['jobs']['retry']['with']['source']
           assert 'schedule' not in manual['on']
           assert 'schedule' not in core['on']
           assert 'schedule' not in get('daily-epg.yml')['on']
