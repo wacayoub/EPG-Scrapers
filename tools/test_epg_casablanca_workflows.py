@@ -24,8 +24,10 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["on"]["schedule"], [{
             "cron": "15 7 * * *", "timezone": "Africa/Casablanca",
         }])
-        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 12)
+        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 11)
         self.assertNotIn("osn", p["jobs"])
+        self.assertNotIn("shahid", p["jobs"])
+        self.assertEqual(p["jobs"]["sport24"]["needs"], "alkass")
         self.assertEqual(p["jobs"]["dubaiplus"]["needs"], "aljazeera")
         self.assertIn("epg-daily-chain", p["concurrency"]["group"])
 
@@ -38,11 +40,16 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertNotIn("gh workflow run daily-epg-chain.yml", contents)
         self.assertIn("MENA", contents)
 
-    def test_1500_only_retries_poor_quality_core_sources(self):
+    def test_shahid_retry_is_manual_only_after_0339_schedule(self):
         p = load("epg-casablanca-targeted-retry.yml")
-        self.assertEqual(p["on"]["schedule"], [{
-            "cron": "0 15 * * *", "timezone": "Africa/Casablanca",
+        self.assertNotIn("schedule", p["on"])
+        self.assertIn("workflow_dispatch", p["on"])
+        shahid = load("refresh-shahid.yml")
+        self.assertEqual(shahid["on"]["schedule"], [{
+            "cron": "39 3 * * *", "timezone": "Africa/Casablanca",
         }])
+        self.assertIn("workflow_dispatch", shahid["on"])
+        self.assertNotIn("push", shahid["on"])
         self.assertEqual(p["jobs"]["retry"]["with"]["source"], "${{ matrix.source }}")
         self.assertEqual(p["jobs"]["retry"]["strategy"]["max-parallel"], "1")
         self.assertEqual(p["jobs"]["retry"]["strategy"]["matrix"]["source"],
