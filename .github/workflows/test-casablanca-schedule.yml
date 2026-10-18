@@ -49,16 +49,20 @@ jobs:
             .github/workflows/epg-watchdog.yml \
             .github/workflows/epg-casablanca-targeted-retry.yml \
             .github/workflows/epg-evening-casablanca.yml
-      - name: Parse all four GitHub workflow YAML files
+      - name: Parse Casablanca scheduled workflows and manual-only retry YAML
         run: |
           python - <<'PY'
           from pathlib import Path
           import yaml
-          for name in ("daily-epg-chain.yml", "epg-watchdog.yml", "epg-casablanca-targeted-retry.yml", "epg-evening-casablanca.yml"):
+          for name in ("daily-epg-chain.yml", "epg-watchdog.yml", "epg-evening-casablanca.yml", "refresh-shahid.yml"):
               p = Path(".github/workflows") / name
               d = yaml.load(p.read_text(), Loader=yaml.BaseLoader)
               assert "on" in d and "jobs" in d and d["on"]["schedule"]
               for item in d["on"]["schedule"]:
                   assert item["timezone"] == "Africa/Casablanca"
-              print(name, "VALID")
+              print(name, "SCHEDULE_VALID")
+          retry = yaml.load(Path(".github/workflows/epg-casablanca-targeted-retry.yml").read_text(), Loader=yaml.BaseLoader)
+          assert "schedule" not in retry["on"]
+          assert "workflow_dispatch" in retry["on"]
+          print("SHAHID_1500_RETRY_MANUAL_ONLY")
           PY
