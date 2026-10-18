@@ -1,52 +1,62 @@
-# EPG Scrapers: Casablanca wall-clock schedule (18 October 2026)
+# EPG Scrapers — Morocco / Casablanca source scrape schedule (18 October 2026)
 
-This schedule applies to GitHub public XMLTV fetching and publication, not the
-Vu+ receiver or its local EPGImport / installed EPGManager.
+Scope: **GitHub EPG source fetch and public XMLTV publication only**.
+This does not change the Vu+ receiver, Enigma2 EPGImport schedule, mappings,
+installed EPGManager RC79.1 or the blocked RC80 release.
 
-| Casablanca time | Workflow | Scraping behavior |
+## Source wall-clock schedule (Africa/Casablanca)
+
+| Local clock | Workflow | Behavior |
 | --- | --- | --- |
-| 01:20 daily | `refresh-elcinema.yml` | Only ElCinema source scraper |
-| **01:40 daily** | **`refresh-osn.yml`** | **Only OSN source scraper** |
-| 02:22 daily | `refresh-bein.yml` | Only beIN MENA source scraper |
-| 07:15 daily | `daily-epg-chain.yml` | Sequential Al Jazeera → Dubai+ → STARZPLAY → Tunisia → STC → AlKass → Shahid → Sport24 → Rotana → Morocco → Tabie; followed by ElCinema *donor postprocess* and MENA derived rebuild. No OSN, ElCinema or beIN scraper |
-| 14:15 daily | `epg-watchdog.yml` | Checks freshness; may rebuild derived MENA, never re-scrapes OSN |
-| 15:00 daily | `epg-casablanca-targeted-retry.yml` | Retry **Shahid only** if degraded; never retry OSN, ElCinema or beIN |
-| 19:30 daily | `epg-evening-casablanca.yml` | Sport24 and AlKass only |
-| 20:30 daily | `epg-evening-casablanca.yml` | Morocco only |
+| **01:20 daily** | `refresh-elcinema.yml` | Sole scheduled ElCinema scraper |
+| **01:40 daily** | `refresh-osn.yml` | Sole scheduled OSN scraper |
+| **02:22 daily** | `refresh-bein.yml` | Sole scheduled beIN MENA scraper |
+| **03:39 daily** | **`refresh-shahid.yml`** | **Sole scheduled Shahid / MBC scraper** |
+| 07:15 daily | `daily-epg-chain.yml` | Al Jazeera → Dubai+ → STARZPLAY → Tunisia → STC → AlKass → Sport24 → Rotana → Morocco → Tabie; ElCinema donor *postprocess*, then one derived MENA rebuild. **No ElCinema, OSN, beIN or Shahid scraper** |
+| 14:15 daily | `epg-watchdog.yml` | Freshness/accepted-LKG checks; may rebuild derived MENA only; **does not run source scrapers** |
+| 19:30 daily | `epg-evening-casablanca.yml` | Sport24 and AlKass refreshes |
+| 20:30 daily | `epg-evening-casablanca.yml` | Morocco refresh |
 
-## OSN one-scheduled-trigger policy
+The old `epg-casablanca-targeted-retry.yml` workflow **no longer has
+an automatic 15:00 schedule**. It remains available using `workflow_dispatch`
+for an explicitly requested, degraded **Shahid-only** manual retry. The
+source-specific `refresh-shahid.yml` also retains manual dispatch, but not
+an extra `push` trigger.
 
-- One native timezone-aware GitHub Actions `schedule` trigger at `40 1 * * *`
-  with `timezone: Africa/Casablanca`. It preserves 01:40 local wall-clock
-  through normal Moroccan DST / Ramadan changes; do not hardcode UTC+1.
-- `refresh-osn.yml` delegates to the existing `refresh-source-core.yml`
-  with `source: osn` and `scheduled: false` so the legacy 06:00-only
-  time gate does not reject this dedicated schedule.
-- The OSN job is **absent** from the 07:15 sequential chain. The next
-  `dubaiplus` step now depends directly on `aljazeera`.
-- The 15:00 target policy has `TARGETS = ("shahid",)`; even a missing or
-  rejected OSN LKG cannot cause a second automatic scrape.
-- The OSN workflow has no `push` trigger. Its `workflow_dispatch` remains
-  available for deliberately requested manual execution; this is not a
-  second automatic schedule.
-- Legacy `daily-epg.yml`, `daily-source-refresh.yml`,
-  `elcinema-daily-donors.yml` and `refresh-source-core.yml` have
-  **no schedule** of their own. The watchdog and derived-feed rebuild
-  do not scrape OSN.
-- Provider publisher concurrency (`epg-source-publish`) and source
-  LKG/quality checks remain unchanged. GitHub Actions may start a
-  scheduled job late or serialize it behind the 01:20 ElCinema job:
-  **01:40 is the requested trigger time, not a guaranteed start time**.
+## Single scheduled Shahid refresh at 03:39
 
-## Safety and acceptance
+- Native GitHub Actions timezone-aware schedule:
+  `cron: "39 3 * * *"`, `timezone: "Africa/Casablanca"`.
+  Moroccan civil time is respected during DST/Ramadan changes; **never**
+  hard-code a fixed UTC offset.
+- It calls the existing `refresh-source-core.yml` with
+  `source: shahid` and `scheduled: false` to bypass the shared
+  legacy 06:00 time gate. The core still validates, checks source quality
+  and preserves good last-known EPG (LKG) during failures.
+- The 07:15 sequential chain no longer has a `shahid` job. Sport24
+  now depends directly on AlKass; all other source chains are preserved.
+- The automatic 15:00 targeted retry is removed, not merely filtered.
+  The optional manual retry still applies existing missing/stale/low-NOW
+  coverage safeguards and refuses an active main chain.
+- The legacy `daily-epg.yml`, `daily-source-refresh.yml`,
+  `refresh-source-core.yml` and ElCinema donor utility have no
+  direct scheduled scrape trigger. The watchdog rebuilds derived feeds
+  only and does not re-scrape Shahid.
+- Shared `epg-source-publish` concurrency remains unchanged. GitHub Actions
+  can delay scheduled starts; a delayed 02:22 beIN or 01:40 OSN scrape
+  may serialize the 03:39 Shahid job. **03:39 is the trigger time, not
+  guaranteed publisher completion or execution time.**
 
-The change modifies only the GitHub source automation and its test/docs.
-It does not modify Enigma2, the Vu+ receiver, private mappings, the
-existing RC79.1 plugin, the receiver's EPGImport schedule, the built XMLTV,
-`update.json`, or any installable R80 package.
+## Validation / release safety
 
-Validate the exact workflow YAML using the read-only
-`osn-0140-schedule-ci.yml` regression on Python 3.13 and 3.14 before
-merging. After merge, the first daily OSN execution and its LKG/publication
-result still need observation: an accepted publish, source errors, and
-GitHub scheduling latency cannot be predicted from static tests.
+A read-only CI regression (`shahid-0339-schedule-ci.yml`) audits the
+exact Shahid trigger, all known duplicate routes, the surrounding
+ElCinema/OSN/beIN schedules, Moroccan time boundaries, and existing
+workflow/policy tests on Python 3.13 and 3.14. The source schedule
+becomes effective only after a tested PR merges into `main`.
+
+A successful workflow review does not prove the next *live* 03:39
+source grab will succeed: check its output, LKG acceptance and
+actual GitHub Actions start after activation. No source guides,
+translations, receiver installation or private backup are altered by
+this schedule-only change.

@@ -74,17 +74,10 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  shahid:
-    needs: alkass
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: shahid
-      scheduled: false
-    secrets: inherit
-
+  # Shahid/MBC is scheduled once daily at 03:39 Casablanca.
+  # Do not repeat its upstream scrape in the 07:15 chain.
   sport24:
-    needs: shahid
+    needs: alkass
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
