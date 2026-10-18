@@ -57,7 +57,7 @@ class TestTunisNightAndAlKassRealSchedule(unittest.TestCase):
             f.write_bytes(gzip.compress(raw.read_bytes(),mtime=0))
             rep=audit(f,48,90)
             rows={r["id"]:r for r in rep["rows"]}
-            self.assertEqual(rows["ElWatania2.tn@SD"]["status"],"INFO")
+            self.assertEqual(rows["ElWatania2.tn@SD"]["status"],"INFO",rows["ElWatania2.tn@SD"])
             self.assertEqual(rows["ElWatania2.tn@SD"]["reason"],
                              "OFF_AIR_OVERNIGHT_0000_0600_TUNIS")
             self.assertTrue(rows["ElWatania2.tn@SD"]["verified_regular_off_air"])
