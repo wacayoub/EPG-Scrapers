@@ -4,7 +4,7 @@ on:
   # Sole scheduled beIN upstream scraper: 02:22 Casablanca civil time.
   schedule:
     - cron: "22 2 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
 
 permissions:
