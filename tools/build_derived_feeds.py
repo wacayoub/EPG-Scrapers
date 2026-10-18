@@ -10,16 +10,21 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+try:
+    from tools.mena_source_snapshot import get_source_snapshot
+except ImportError:
+    from mena_source_snapshot import get_source_snapshot
+
 FEEDS = Path("feeds")
 REPORTS = Path("reports")
 POLICY_PATH = Path("config/canonical-channel-policy.json")
 AR = re.compile(r"[\u0600-\u06FF]")
 LATIN = re.compile(r"[A-Za-z]")
-DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
+DT_RE = re.compile(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?$")
 
 DEFAULT_POLICY = {
     "default_source_order": [
-        "morocco","alkass","tunisiatv","aljazeera","dubaiplus","shahid",
+        "morocco","alkass","tabie","tunisiatv","aljazeera","dubaiplus","shahid",
         "rotana","sport24","osn","bein","elcinema","starzplay","stctv"
     ],
     "quality": {
@@ -95,9 +100,28 @@ def source_data(name):
         cid = (ch.get("id") or "").strip()
         if cid:
             channels[cid] = ch
+    # The QMC/Tabie provider can replay a stale programme day. Filter the
+    # *derived* view to genuine current/future programme-bearing Tabie IDs.
+    # Never republish the 9 expired IDs of an obsolete Tabie archive as live.
+    if name == "tabie":
+        now = datetime.now(timezone.utc)
+        horizon = now + timedelta(hours=48)
+        legitimate = set()
+        for p in root.findall("programme"):
+            start, stop = parse_dt(p.get("start")), parse_dt(p.get("stop"))
+            if (start is not None and stop is not None and
+                start < horizon and stop > now and stop > start and
+                any((t.text or "").strip() for t in p.findall("title"))):
+                legitimate.add((p.get("channel") or "").strip())
+        channels = {cid: ch for cid,ch in channels.items()
+                    if cid in legitimate}
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
         if cid in channels:
+            if name == "tabie":
+                stop=parse_dt(p.get("stop"))
+                if stop is None or stop <= datetime.now(timezone.utc):
+                    continue
             programmes[cid].append(p)
     return channels, programmes
 
@@ -359,6 +383,8 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
 if merged_channels:
     write_feed("mena", merged_channels, merged_programmes, {
         "generator": "EPG-Scrapers canonical MENA merged feed",
+        "source_snapshot": get_source_snapshot(FEEDS, PRIORITY),
+        "source_snapshot_policy": "SHA256 pinned exact XMLTV bytes, including missing source markers",
         "priority": PRIORITY,
         "owners": owners,
         "extensions": dict(extensions),
