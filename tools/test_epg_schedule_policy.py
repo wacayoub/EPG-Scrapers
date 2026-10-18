@@ -47,17 +47,17 @@ class TestAdaptiveSchedule(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             for name in policy.TARGETS:
                 source(td, name, "2026-10-15T08:00:00Z")
-            source(td, "osn", "2026-10-15T08:00:00Z", decision="KEEP_LKG")
+            source(td, "shahid", "2026-10-15T08:00:00Z", decision="KEEP_LKG")
             actual = policy.plan(td, self.now)
-            self.assertEqual(actual["targets"], ["osn"])
+            self.assertEqual(actual["targets"], ["shahid"])
             self.assertEqual(actual["details"][0]["reason"], "TODAY_SOURCE_CANDIDATE_REJECTED")
 
     def test_measured_low_publication_coverage_triggers_not_entire_strict_48h_failure(self):
         with tempfile.TemporaryDirectory() as td:
             for name in policy.TARGETS:
                 source(td, name, "2026-10-15T08:00:00Z")
-            source(td, "osn", "2026-10-15T08:00:00Z", onair=45)
-            self.assertEqual(policy.plan(td, self.now)["targets"], ["osn"])
+            source(td, "shahid", "2026-10-15T08:00:00Z", onair=45)
+            self.assertEqual(policy.plan(td, self.now)["targets"], ["shahid"])
 
     def test_invalid_coverage_does_not_force_retry(self):
         with tempfile.TemporaryDirectory() as td:
@@ -102,9 +102,18 @@ class TestAdaptiveSchedule(unittest.TestCase):
             self.assertEqual(policy.local_date(stamp), expected)
         self.assertIsNone(policy.local_date("bad timestamp"))
 
-    def test_only_two_explicit_retry_sources(self):
-        self.assertEqual(policy.TARGETS, ("osn", "shahid"))
-        self.assertLessEqual(policy.MAX_RETRIES, 2)
+    def test_only_shahid_can_retry(self):
+        self.assertEqual(policy.TARGETS, ("shahid",))
+        self.assertEqual(policy.MAX_RETRIES, 1)
+
+    def test_osn_cannot_retry_even_if_missing_stale_or_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            source(td, "shahid", "2026-10-15T12:00:00Z")
+            self.assertEqual(policy.plan(td, self.now)["targets"], [])
+            source(td, "osn", "2026-10-14T12:00:00Z", onair=0,
+                   decision="KEEP_LKG")
+            self.assertNotIn("osn", policy.plan(td, self.now)["targets"])
+            self.assertEqual(policy.plan(td, self.now)["targets"], [])
 
 
 if __name__ == "__main__":
