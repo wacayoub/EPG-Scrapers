@@ -3,7 +3,7 @@ name: EPG 48h - Daily sequential chain
 on:
   schedule:
     - cron: "15 7 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
   push:
     branches: [main]
