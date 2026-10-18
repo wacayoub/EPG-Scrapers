@@ -50,10 +50,8 @@
     "yas tv",
     "yass tv"
   ],
-  "notes": "Channel display names use English when STARZPLAY exposes an English label. National Geographic Abu Dhabi is the explicit full-Arabic exception: Arabic display-name and forced Arabic translation for any English title/subtitle/description returned by STARZPLAY. International/foreign channels otherwise use English title/subtitle plus Arabic description; Arabic-native channels keep Arabic programme metadata.",
-  "arabic_display_name_ids": [
-    "NationalGeographicAbuDhabi.ae@SD"
-  ],
+  "notes": "All channel display names are English using the authoritative STARZPLAY en catalogue matched by exact provider channel identity; immutable XMLTV IDs stay unchanged. National Geographic Abu Dhabi remains the explicit Arabic-only PROGRAMME title/subtitle/description exception, but its channel display name is English. Other international channels retain English programme titles plus authentic Arabic descriptions; Arabic-native programme content stays Arabic. Missing official descriptions are not fabricated.",
+  "arabic_display_name_ids": [],
   "force_arabic_content_ids": [
     "NationalGeographicAbuDhabi.ae@SD"
   ]
