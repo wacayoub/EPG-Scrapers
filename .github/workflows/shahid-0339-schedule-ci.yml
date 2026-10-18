@@ -60,12 +60,12 @@ jobs:
           evening=load("epg-evening-casablanca.yml")
           watchdog=load("epg-watchdog.yml")
           assert shahid["on"]["schedule"]==[
-              {"cron":"39 3 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"39 3 * * *","timezone":"Etc/GMT"}]
           assert shahid["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
           assert shahid["jobs"]["refresh"]["with"]=={"source":"shahid","scheduled":"false"}
           assert "workflow_dispatch" in shahid["on"] and "push" not in shahid["on"]
           assert chain["on"]["schedule"]==[
-              {"cron":"15 7 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"15 7 * * *","timezone":"Etc/GMT"}]
           assert "shahid" not in chain["jobs"]
           assert "sport24" not in chain["jobs"]
           assert chain["jobs"]["rotana"]["needs"]=="alkass"
@@ -79,13 +79,13 @@ jobs:
           assert "schedule" not in core["on"] and "schedule" not in manual["on"]
           assert "schedule" not in legacy["on"]
           assert watchdog["on"]["schedule"]==[
-              {"cron":"15 14 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"15 14 * * *","timezone":"Etc/GMT"}]
           assert load("refresh-elcinema.yml")["on"]["schedule"]==[
-              {"cron":"20 1 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"20 1 * * *","timezone":"Etc/GMT"}]
           assert load("refresh-osn.yml")["on"]["schedule"]==[
-              {"cron":"40 1 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"40 1 * * *","timezone":"Etc/GMT"}]
           assert load("refresh-bein.yml")["on"]["schedule"]==[
-              {"cron":"22 2 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"22 2 * * *","timezone":"Etc/GMT"}]
           for name in ("daily-epg-chain.yml","refresh-shahid.yml",
                        "epg-evening-casablanca.yml","epg-watchdog.yml"):
               for job in load(name)["jobs"].values():
@@ -94,7 +94,7 @@ jobs:
                       assert "shahid" not in (matrix.get("source") or []),name
                   if isinstance(job,dict) and "with" in job:
                       assert job["with"].get("source")!="shahid" or name=="refresh-shahid.yml",name
-          tz=ZoneInfo("Africa/Casablanca")
+          tz=ZoneInfo("Etc/GMT")
           for date in [(2026,10,19),(2026,12,2),(2027,2,15),(2027,4,18)]:
               local=datetime(*date,3,39,tzinfo=tz)
               back=local.astimezone(timezone.utc).astimezone(tz)
