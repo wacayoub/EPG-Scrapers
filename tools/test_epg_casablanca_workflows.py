@@ -24,7 +24,9 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["on"]["schedule"], [{
             "cron": "15 7 * * *", "timezone": "Africa/Casablanca",
         }])
-        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 14)
+        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 12)
+        self.assertNotIn("osn", p["jobs"])
+        self.assertEqual(p["jobs"]["dubaiplus"]["needs"], "aljazeera")
         self.assertIn("epg-daily-chain", p["concurrency"]["group"])
 
     def test_1415_watchdog_is_not_full_chain_retry(self):
@@ -46,7 +48,7 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["jobs"]["retry"]["strategy"]["matrix"]["source"],
                          "${{ fromJSON(needs.decide.outputs.retry_sources) }}")
         self.assertEqual(tuple(epg_schedule_policy.TARGETS),
-                         ("elcinema","osn","bein","shahid"))
+                         ("shahid",))
         self.assertIn("--active-chain", (WF / "epg-casablanca-targeted-retry.yml").read_text())
         self.assertIn("if ! gh run list", (WF / "epg-casablanca-targeted-retry.yml").read_text())
 
@@ -57,7 +59,7 @@ class TestScheduledWorkflows(unittest.TestCase):
             {"cron": "30 20 * * *", "timezone": "Africa/Casablanca"},
         ])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["matrix"]["source"],
-                         ["bein","sport24","alkass"])
+                         ["sport24","alkass"])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["max-parallel"], "1")
         self.assertEqual(p["jobs"]["morocco"]["with"]["source"], "morocco")
         self.assertIn("hour=$local_hour", (WF / "epg-evening-casablanca.yml").read_text())
