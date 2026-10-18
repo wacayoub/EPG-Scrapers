@@ -85,7 +85,7 @@ jobs:
           assert "workflow_dispatch" in stc["on"]
           assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
           assert "stctv" not in chain["jobs"]
-          assert chain["jobs"]["alkass"]["needs"]=="tunisiatv"
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
           print("STCTV_REAL_149_ID_CONTENT_GUARD",json.dumps(rep["counts"]))
           print("STCTV_ORIGINAL_XMLTV_UNMODIFIED_SHA",digest)
           print("STCTV_SPORTS_1_TO_3_PROTECTED",json.dumps(sports))
