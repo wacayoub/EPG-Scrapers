@@ -15,18 +15,21 @@ installed EPGManager RC79.1, blocked R80, or private mappings.
 
 | Fixed GMT+0 trigger | Action | Workflow |
 | --- | --- | --- |
+| **00:30 daily** | **Tabie/QMC — sole source scrape; only genuinely active IDs** | **`refresh-tabie.yml`** |
 | **01:20 daily** | ElCinema — one source scrape | `refresh-elcinema.yml` |
 | **01:40 daily** | OSN — one source scrape | `refresh-osn.yml` |
 | **02:22 daily** | beIN MENA — one source scrape | `refresh-bein.yml` |
 | **03:05 daily** | Sport24 — one source scrape | `refresh-sport24.yml` |
 | **03:39 daily** | Shahid/MBC — one source scrape | `refresh-shahid.yml` |
+| **03:50 daily** | **Rotana — sole source scrape** | **`refresh-rotana.yml`** |
 | **04:12 daily** | **Al Jazeera / Al Jazeera English — one source scrape** | **`refresh-aljazeera.yml`** |
 | **04:44 daily** | Dubai+ — one source scrape | `refresh-dubaiplus.yml` |
 | **05:12 daily** | **STARZPLAY — sole daily source scrape** | **`refresh-starzplay.yml`** |
 | **05:55 daily** | **STC TV — sole daily source scrape** | **`refresh-stctv.yml`** |
-| **07:15 daily** | Other sequential sources: Tunisia TV → AlKass → Rotana → Morocco → Tabie; then ElCinema donor postprocess and derived MENA rebuild | `daily-epg-chain.yml` |
+| **06:30 daily** | **AlKass — sole automatic source scrape** | **`refresh-alkass.yml`** |
+| **06:35 daily** | **Tunisia TV — sole automatic source scrape** | **`refresh-tunisiatv.yml`** |
+| **07:15 daily** | ElCinema authentic donor postprocessing and derived MENA rebuilding **only; no source scrapers** | `daily-epg-chain.yml` |
 | **14:15 daily** | Watchdog health checks; may rebuild derived MENA only, does not source-scrape | `epg-watchdog.yml` |
-| **19:30 daily** | AlKass only, extra evening sport guide | `epg-evening-casablanca.yml` |
 | **20:30 daily** | Morocco evening refresh | `epg-evening-casablanca.yml` |
 
 All automatic `schedule` entries above specify exactly
@@ -41,8 +44,8 @@ not an exact guaranteed completion time**.
 - Dubai+ dedicated daily 04:44 is the **sole automatic Dubai+ scraper**.
   Its 07:15 chain job and the old `push` trigger are removed;
   `workflow_dispatch` is preserved.
-- ElCinema, OSN, beIN, Sport24, Shahid, Al Jazeera, STARZPLAY and STC TV
-  each have their sole dedicated automatic daily cron; no 07:15 duplicates.
+- All **14 direct source families** have their sole dedicated automatic daily
+  clock; no 07:15 source duplicates.
 - Al Jazeera's dedicated schedule is `12 4 * * *` at `Etc/GMT`:
   **04:12 fixed GMT+0**, no seasonal shift. Remove its old 07:15
   upstream job; STARZPLAY no longer runs in the morning chain either.
@@ -57,7 +60,19 @@ not an exact guaranteed completion time**.
   removed from the 07:15 chain, so AlKass follows Tunisia TV directly.
   No automatic `push` trigger exists; manual dispatch is retained.
   The full STC catalogue and per-ID quality checks remain unchanged.
-- Sport24 remains removed from evening 19:30: only AlKass is re-scraped.
+- AlKass **06:30**, Tunisia TV **06:35**, Rotana **03:50** and Tabie **00:30**
+  are the only automatic scrapes of each respective source. All four
+  use `Etc/GMT`, retain explicit manual `workflow_dispatch`, remove
+  `push` triggers and leave the 07:15 chain. The derived-only 07:15
+  orchestration preserves ElCinema genuine donor postprocessing and
+  MENA rebuilding.
+- No automatic 19:30 AlKass refresh remains; `workflow_dispatch
+  group=sports` remains an explicitly manual exception. The
+  **20:30 Morocco** cron is preserved.
+- STC / STARZPLAY / beIN / Morocco guide identity and XMLTV mappings
+  are unchanged. This schedule change cannot fabricate missing
+  Rotana Clip / Al Resalah programmes, fill genuine AlKass short
+  guide horizon or Tabie QMC stale-provider dates.
 - Shahid targeted retry is still **manual only**, with no automatic 15:00.
 - The shared legacy `refresh-source-core.yml` "06:00 scheduled" guard
   has also been moved to fixed GMT+0. Normal dedicated source workflows
@@ -82,7 +97,7 @@ Sport24's three exact sports donors remain independent.
 
 ## Acceptance
 
-Regress `gmt0-all-sources-0444-ci.yml`, `starzplay-0512-gmt0-schedule-ci.yml` and `stctv-0555-gmt0-schedule-ci.yml` on both Python 3.13 and 3.14,
+Regress `gmt0-all-sources-0444-ci.yml` and `four-sources-fixed-gmt0-ci.yml` on both Python 3.13 and 3.14,
 in addition to the pre-existing per-source schedule checks. Confirm the
 fixed GMT+0 offset even on winter, summer and Ramadan examples.
 
