@@ -303,9 +303,11 @@ PY
     ;;
 
   stctv)
-    # STC is deliberately isolated: it can be slow without delaying any other source.
-    # STC is intentionally limited to the three STARZPLAY Sports channels.
-    # This keeps the daily job fast and prevents the former ~25 minute 144-channel scrape.
+    # Keep the COMPLETE STC catalogue: current public provider exposes 149
+    # channels (including STARZPLAY Sports 1-3), not just three sports IDs.
+    # The adapter uses batch-per-UTC-day endpoints (~5 HTTP requests) and
+    # preserves original STC rows. Per-ID content quality is audited AFTER
+    # the accepted published bytes are SHA-pinned below.
     python tools/stctv_source.py --output output/source-build/stctv.raw.xml --report reports/stctv-scrape.json --id-index feeds/mena.txt --window-hours "$HOURS" --delay 0.2 --max-channels 0 --profile all || true
     [ -s output/source-build/stctv.raw.xml ] || empty_xml output/source-build/stctv.raw.xml
     pack_source stctv output/source-build/stctv.raw.xml "" || true
@@ -403,6 +405,16 @@ if [ "$cohort" = "REBUILD" ]; then
       --feed feeds/elcinema.xml.gz \
       --metadata feeds/elcinema.json \
       --output reports/elcinema-per-id-readiness.json
+  fi
+  if [ "$SOURCE" = "stctv" ]; then
+    # The 48h time audit alone cannot distinguish true programmes from
+    # upstream channel-name loops. SHA-verified exact IDs stay published,
+    # but suspicious / repetitive rows are REVIEW, never Best Match green.
+    # Receiver mappings and STC Sports 1-3 identity remain unchanged.
+    python tools/stctv_per_id_readiness.py \
+      --feed feeds/stctv.xml.gz \
+      --metadata feeds/stctv.json \
+      --output reports/stctv-per-id-readiness.json
   fi
 elif [ "$cohort" = "KEEP" ]; then
   echo "KEEP_LKG source=$SOURCE: retain previous 48h and quality reports"
