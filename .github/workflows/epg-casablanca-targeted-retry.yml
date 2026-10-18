@@ -1,9 +1,8 @@
-name: EPG 15h targeted retry - Casablanca
+name: EPG targeted Shahid retry - manual only
 
 on:
-  schedule:
-    - cron: "0 15 * * *"
-      timezone: "Africa/Casablanca"
+  # Shahid runs automatically at 03:39; never schedule a second 15:00 scrape.
+  # Intentional manual dispatch remains available when source data is degraded.
   workflow_dispatch:
 
 permissions:
