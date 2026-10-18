@@ -73,8 +73,9 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  # Only OSN and Shahid may be retried at 15:00.
-  # ElCinema donor additions are handled by the daily chain, not a second time.
+  # Only Shahid may be retried at 15:00.
+  # OSN (01:40), ElCinema (01:20), and beIN (02:22) run once daily.
+  # Their individual scrapers cannot be selected by this retry policy.
   finalize:
     needs: [decide, retry]
     if: always() && needs.decide.outputs.retry_count != '0' && needs.retry.result == 'success'
