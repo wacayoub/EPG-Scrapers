@@ -23,7 +23,6 @@ jobs:
   # Run donor postprocessing after the last source, Tunisia TV at 06:35,
   # then rebuild the derived MENA guide.
   elcinema_extend:
-    needs: tabie
     if: ${{ always() }}
     uses: ./.github/workflows/elcinema-daily-donors.yml
 
