@@ -1,49 +1,52 @@
-# Casablanca EPG scraping schedule (October 2026)
+# EPG Scrapers: Casablanca wall-clock schedule (18 October 2026)
 
-Scope: public GitHub source fetch / publication only. The Vu+ Zero 4K
-installation, RC79.1 mappings, EPG cache, settings, and 21:30 receiver-side
-EPGImport are **not** modified by these workflows.
+This schedule applies to GitHub public XMLTV fetching and publication, not the
+Vu+ receiver or its local EPGImport / installed EPGManager.
 
-## Wall-clock schedule (IANA Africa/Casablanca)
-
-| Clock time | Workflow | Behavior |
+| Casablanca time | Workflow | Scraping behavior |
 | --- | --- | --- |
-| 07:15 | daily-epg-chain.yml | All 14 providers in sequence, then one derived MENA rebuild |
-| 14:15 | epg-watchdog.yml | Check source ages / accepted LKG and rebuild MENA if sources are fresh but derived guide is old. **No full-chain retry.** |
-| 15:00 | epg-casablanca-targeted-retry.yml | Retry ElCinema/OSN/beIN/Shahid **only** if source not generated today, LKG candidate rejected today, or less than 60% of active IDs had a genuine current programme at publication. Limit 4. Do not use strict 48h FAIL by itself. Skip if main chain is still active or GitHub API unavailable; late scheduled start after 19:00 skips. Rebuild MENA once only after successful actual retries. |
-| 19:30 | epg-evening-casablanca.yml | Recheck beIN, Sport24 and AlKass sports/event sources only, then one derived rebuild |
-| 20:30 | epg-evening-casablanca.yml | Recheck Morocco (especially Arryadia evening match changes), then one derived rebuild |
+| 01:20 daily | `refresh-elcinema.yml` | Only ElCinema source scraper |
+| **01:40 daily** | **`refresh-osn.yml`** | **Only OSN source scraper** |
+| 02:22 daily | `refresh-bein.yml` | Only beIN MENA source scraper |
+| 07:15 daily | `daily-epg-chain.yml` | Sequential Al Jazeera → Dubai+ → STARZPLAY → Tunisia → STC → AlKass → Shahid → Sport24 → Rotana → Morocco → Tabie; followed by ElCinema *donor postprocess* and MENA derived rebuild. No OSN, ElCinema or beIN scraper |
+| 14:15 daily | `epg-watchdog.yml` | Checks freshness; may rebuild derived MENA, never re-scrapes OSN |
+| 15:00 daily | `epg-casablanca-targeted-retry.yml` | Retry **Shahid only** if degraded; never retry OSN, ElCinema or beIN |
+| 19:30 daily | `epg-evening-casablanca.yml` | Sport24 and AlKass only |
+| 20:30 daily | `epg-evening-casablanca.yml` | Morocco only |
 
-Schedules now use GitHub Actions' supported native timezone field
-("Africa/Casablanca") instead of assuming UTC+1, so Moroccan Ramadan
-time changes do not change the requested *local* hour.
+## OSN one-scheduled-trigger policy
 
-## Important limits and protections
+- One native timezone-aware GitHub Actions `schedule` trigger at `40 1 * * *`
+  with `timezone: Africa/Casablanca`. It preserves 01:40 local wall-clock
+  through normal Moroccan DST / Ramadan changes; do not hardcode UTC+1.
+- `refresh-osn.yml` delegates to the existing `refresh-source-core.yml`
+  with `source: osn` and `scheduled: false` so the legacy 06:00-only
+  time gate does not reject this dedicated schedule.
+- The OSN job is **absent** from the 07:15 sequential chain. The next
+  `dubaiplus` step now depends directly on `aljazeera`.
+- The 15:00 target policy has `TARGETS = ("shahid",)`; even a missing or
+  rejected OSN LKG cannot cause a second automatic scrape.
+- The OSN workflow has no `push` trigger. Its `workflow_dispatch` remains
+  available for deliberately requested manual execution; this is not a
+  second automatic schedule.
+- Legacy `daily-epg.yml`, `daily-source-refresh.yml`,
+  `elcinema-daily-donors.yml` and `refresh-source-core.yml` have
+  **no schedule** of their own. The watchdog and derived-feed rebuild
+  do not scrape OSN.
+- Provider publisher concurrency (`epg-source-publish`) and source
+  LKG/quality checks remain unchanged. GitHub Actions may start a
+  scheduled job late or serialize it behind the 01:20 ElCinema job:
+  **01:40 is the requested trigger time, not a guaranteed start time**.
 
-- GitHub Actions scheduled jobs can run **much later** than the specified cron.
-  On 15 Oct 2026 the previous 06:07 UTC full-chain job actually started
-  at 11:20:40 UTC, and the 09:37 UTC watchdog began at 14:21:55 UTC.
-  Scheduled times are goals, not verified start-time guarantees.
-- The core provider publisher retains its original epg-source-publish
-  concurrency lock, provider-specific LKG freshness/regression checks, and
-  no-invented-programmes policy.
-- Any late evening scheduled event arriving outside 18:00–23:59 local skips
-  instead of unexpectedly scraping the following morning.
-- Running a manual dispatch is still supported and bypasses the evening
-  scheduled-time gate, but not source publishing protections.
-- Tabie/QMC provider returning the wrong day is an upstream issue; repeatedly
-  scraping it at 15:00 does not repair dates. It remains on the main chain with
-  LKG fallback until a real programme schedule is available.
-- The user's *receiver-local* 21:30 EPG import is not configured from GitHub
-  and must be treated as a separate device-side action. No SSH/VuLink, opkg,
-  Enigma2 restart, or public upload of a private receiver backup occurs here.
-- This change **does not** complete RC80 GUI/runtime or rollback testing.
+## Safety and acceptance
 
-## Validation
+The change modifies only the GitHub source automation and its test/docs.
+It does not modify Enigma2, the Vu+ receiver, private mappings, the
+existing RC79.1 plugin, the receiver's EPGImport schedule, the built XMLTV,
+`update.json`, or any installable R80 package.
 
-Before release, both Python 3.13 and 3.14 ran the metadata decision and YAML
-tests, and current actionlint verified the four GitHub workflow definitions.
-A public repository schedule becomes active when merged to the default branch.
-After activation, inspect at least a full local day of workflow runs, their
-actual created_at and started_at, the candidate publisher decisions and
-freshness on feeds/*.json, plus MENA derived build status.
+Validate the exact workflow YAML using the read-only
+`osn-0140-schedule-ci.yml` regression on Python 3.13 and 3.14 before
+merging. After merge, the first daily OSN execution and its LKG/publication
+result still need observation: an accepted publish, source errors, and
+GitHub scheduling latency cannot be predicted from static tests.
