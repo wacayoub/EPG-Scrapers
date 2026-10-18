@@ -32,7 +32,7 @@ def read_xml(path: Path) -> ET.Element:
 
 def parse_xmltv_dt(value: str):
     value = (value or "").strip()
-    m = re.match(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?", value)
+    m = re.match(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?$", value)
     if not m:
         return None
     digits = m.group(1)

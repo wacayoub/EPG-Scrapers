@@ -11,12 +11,13 @@ import argparse,gzip,json,re
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from zoneinfo import ZoneInfo
 try:
     from bein_occasional_policy import is_occasional_bein
 except ModuleNotFoundError:
     from tools.bein_occasional_policy import is_occasional_bein
 
-DT_RE=re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
+DT_RE=re.compile(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?$")
 
 PROFILES={
     "morocco.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":90},
@@ -55,6 +56,40 @@ def profile_for(path,hours,max_gap_minutes):
     p.setdefault("min_hours",min(8.0,float(hours)))
     p.setdefault("gap_warn",int(max_gap_minutes))
     return p
+
+def wataniya2_verified_night_offair(merged, now, limit):
+    """Explain, but do not fill, Tunisia Watania 2's official 00-06 blackout.
+
+    Tunisia TV's published Watania 2 day schedule shows actual events from
+    about 06:00 through 23:59 Africa/Tunis. Only when ALL >limit holes match
+    that midnight boundary may the 6-hour interval be informational rather
+    than an unexplained programme-loss warning. Any unrelated hole is WARN.
+    """
+    if not merged:
+        return False
+    zone=ZoneInfo("Africa/Tunis")
+    expected=[]
+    if merged[0][0] - now > limit:
+        local_now=now.astimezone(zone)
+        local_first=merged[0][0].astimezone(zone)
+        expected.append(
+            0 <= local_now.hour < 6 and local_first.hour == 6 and
+            local_first.minute <= 10 and local_first.date()==local_now.date()
+        )
+    for (_,end),(start,_) in zip(merged,merged[1:]):
+        if start-end <= limit:
+            continue
+        e=end.astimezone(zone)
+        a=start.astimezone(zone)
+        span=start-end
+        expected.append(
+            e.hour==23 and e.minute>=50 and
+            a.hour==6 and a.minute<=10 and
+            a.date()==(e+timedelta(days=1)).date() and
+            timedelta(hours=5,minutes=50)<=span<=timedelta(hours=6,minutes=30)
+        )
+    return bool(expected) and all(expected)
+
 
 def audit(path,hours,max_gap_minutes):
     r=root(path); now=datetime.now(timezone.utc)
@@ -116,8 +151,17 @@ def audit(path,hours,max_gap_minutes):
         if max_gap > gap_limit:
             soft.append("INTERNAL_GAP")
 
-        status="INFO" if occasional else ("FAIL" if hard else ("WARN" if soft else "PASS"))
-        reason="OCCASIONAL_EVENT_SCHEDULE" if occasional else "+".join(hard+soft)
+        confirmed_watania2_night_offair = (
+            Path(path).name=="tunisiatv.xml.gz"
+            and cid=="ElWatania2.tn@SD"
+            and not hard and soft==["INTERNAL_GAP"]
+            and wataniya2_verified_night_offair(merged,now,gap_limit)
+        )
+        status=("INFO" if occasional or confirmed_watania2_night_offair
+                else ("FAIL" if hard else ("WARN" if soft else "PASS")))
+        reason=("OCCASIONAL_EVENT_SCHEDULE" if occasional
+                else "OFF_AIR_OVERNIGHT_0000_0600_TUNIS" if confirmed_watania2_night_offair
+                else "+".join(hard+soft))
         row={
             "id":cid,"status":status,"reason":reason,
             "future_hours":round(future_hours,2),
@@ -125,6 +169,7 @@ def audit(path,hours,max_gap_minutes):
             "max_gap_minutes":round(max_gap.total_seconds()/60.0,1),
             "programmes":len(iv),
             "occasional_event_channel":bool(occasional),
+            "verified_regular_off_air":bool(confirmed_watania2_night_offair),
         }
         rows.append(row)
         if status=="INFO": informational.append(row)
