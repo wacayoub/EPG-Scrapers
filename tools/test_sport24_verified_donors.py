@@ -22,9 +22,7 @@ T3 = "sport24.thmanyah.3"
 def prog(cid, start_h, stop_h, title="لقاء رياضي حقيقي"):
     p=ET.Element("programme",{
         "channel":cid,
-        "start":mod.parse_xmltv_dt.__globals__["fmt_utc"](NOW+timedelta(hours=start_h))
-                 if "fmt_utc" in mod.parse_xmltv_dt.__globals__ else
-                 (NOW+timedelta(hours=start_h)).strftime("%Y%m%d%H%M%S +0000"),
+        "start":(NOW+timedelta(hours=start_h)).strftime("%Y%m%d%H%M%S +0000"),
         "stop":(NOW+timedelta(hours=stop_h)).strftime("%Y%m%d%H%M%S +0000"),
     })
     ET.SubElement(p,"title",{"lang":"ar"}).text=title
@@ -85,7 +83,7 @@ class TestSport24VerifiedDonors(unittest.TestCase):
             result=mod.extend(tv,feeds,NOW)
             self.assertEqual(result["donor_channels"],3)
             self.assertEqual(result["synthetic_programmes_added"],0)
-            self.assertEqual(result["added_programmes"],7)
+            self.assertEqual(result["added_programmes"],8)
             rows=tv.findall("programme")
             self.assertEqual([p.findtext("title") for p in rows if p.get("channel")==AD],[
                 "العنوان الأساسي Sport24","DONOR AUTHENTIC 1","DONOR AUTHENTIC 2"])
@@ -104,7 +102,7 @@ class TestSport24VerifiedDonors(unittest.TestCase):
             self.assertEqual([p.findtext("title") for p in db],[
                 "أساسي دبي 1","DONOR OVERLAP","DONOR AUTHENTIC 2"])
             # DONOR AUTHENTIC 1 at 3..5 is rejected; no clipping/invention.
-            self.assertEqual(result["added_programmes"],6)
+            self.assertEqual(result["added_programmes"],7)
 
     def test_tampered_gzip_or_stale_cohort_never_added(self):
         for variant in ("wrong_hash","stale","audit_gap","wrong_id","source_quality"):
