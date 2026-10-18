@@ -50,13 +50,8 @@ jobs:
           assert j["jobs"]["refresh"]["with"]=={"source":"aljazeera","scheduled":"false"}
           assert "aljazeera" not in chain["jobs"]
           assert "starzplay" not in chain["jobs"]
-          assert chain["jobs"]["tunisiatv"].get("needs") is None
-          assert "stctv" not in chain["jobs"]
-          assert chain["jobs"]["alkass"]["needs"]=="tunisiatv"
-          assert chain["jobs"]["rotana"]["needs"]=="alkass"
-          assert chain["jobs"]["morocco"]["needs"]=="rotana"
-          assert chain["jobs"]["tabie"]["needs"]=="morocco"
-          assert chain["jobs"]["elcinema_extend"]["needs"]=="tabie"
+          assert chain["jobs"]["elcinema_extend"].get("needs") is None
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
           assert chain["jobs"]["finalize"]["needs"]=="elcinema_extend"
           assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
           for other,cron in [
