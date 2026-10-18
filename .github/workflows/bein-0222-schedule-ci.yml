@@ -64,7 +64,8 @@ jobs:
           assert 'morocco' in chain['jobs'] and 'shahid' in chain['jobs']
           assert eve['jobs']['sports']['strategy']['matrix']['source']==['sport24','alkass']
           assert 'bein' not in policy.TARGETS
-          assert policy.TARGETS==('osn','shahid')
+          assert policy.TARGETS==('shahid',)
+          assert 'osn' not in chain['jobs']
           assert 'matrix.source' in retry['jobs']['retry']['with']['source']
           assert 'schedule' not in manual['on']
           assert 'schedule' not in core['on']
