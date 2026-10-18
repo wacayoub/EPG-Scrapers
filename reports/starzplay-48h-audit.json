@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-17T10:54:23.437367+00:00",
+  "generated_utc": "2026-10-18T09:50:23.683500+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "starzplay.xml.gz",
-      "generated_utc": "2026-10-17T10:54:23.435281+00:00",
+      "generated_utc": "2026-10-18T09:50:23.678987+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 8.0,
       "max_gap_minutes_warning": 90,
@@ -12,1061 +12,1180 @@
       "invalid_times": 0,
       "orphan_programmes": 0,
       "failed_channels": 0,
-      "warning_channels": 1,
+      "warning_channels": 6,
+      "informational_channels": 0,
+      "occasional_channel_ids": [],
       "status": "WARN",
       "rows": [
         {
           "id": "AbuDhabiSports1.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 52.83,
+          "latest_stop_utc": "2026-10-20T14:40:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 41
+          "programmes": 28,
+          "occasional_event_channel": false
         },
         {
           "id": "AbuDhabiSports2.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 56.16,
+          "latest_stop_utc": "2026-10-20T18:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 36
+          "programmes": 32,
+          "occasional_event_channel": false
         },
         {
           "id": "NationalGeographicAbuDhabi.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 67
+          "programmes": 67,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.227083304121",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 44
+          "programmes": 47,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.227083304215",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 41
+          "programmes": 46,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.236275240441",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 48
+          "programmes": 20,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.236276264229",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 43
+          "programmes": 43,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.236276776192",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.44,
-          "latest_stop_utc": "2026-10-19T11:21:00+00:00",
+          "future_hours": 48.18,
+          "latest_stop_utc": "2026-10-20T10:01:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 107
+          "programmes": 107,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.293821992325",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 45
+          "programmes": 23,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.419604520351",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 64
+          "programmes": 66,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.422146600308",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.34,
-          "latest_stop_utc": "2026-10-19T11:15:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 33
+          "programmes": 59,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.459304488311",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.31,
-          "latest_stop_utc": "2026-10-19T11:13:00+00:00",
+          "future_hours": 48.38,
+          "latest_stop_utc": "2026-10-20T10:13:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 66
+          "programmes": 65,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460049959967",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 52
+          "programmes": 52,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460050472021",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 77
+          "programmes": 76,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460050472022",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.59,
-          "latest_stop_utc": "2026-10-19T12:30:00+00:00",
+          "future_hours": 50.66,
+          "latest_stop_utc": "2026-10-20T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 13
+          "programmes": 14,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460869672233",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.24,
+          "latest_stop_utc": "2026-10-20T10:05:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 69
+          "programmes": 74,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460869672258",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.18,
-          "latest_stop_utc": "2026-10-19T11:05:00+00:00",
+          "future_hours": 49.24,
+          "latest_stop_utc": "2026-10-20T11:05:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 79
+          "programmes": 82,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460871719977",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460871719981",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 88
+          "programmes": 73,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460872232189",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 44,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.460872744016",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.462076456406",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 49
+          "programmes": 49,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.462129704245",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 50.16,
+          "latest_stop_utc": "2026-10-20T12:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 18
+          "programmes": 18,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.475882024092",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 30
+          "programmes": 31,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.479687208265",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 30
+          "programmes": 30,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.487766568234",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 29
+          "programmes": 30,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.491982376315",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.497912359959",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 40
+          "programmes": 43,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.515470888131",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.524255784372",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.59,
-          "latest_stop_utc": "2026-10-19T12:30:00+00:00",
+          "future_hours": 50.66,
+          "latest_stop_utc": "2026-10-20T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 74
+          "programmes": 36,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.524611624145",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 127
+          "programmes": 131,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.527810088109",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.529556008087",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.534335528385",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.26,
-          "latest_stop_utc": "2026-10-19T11:10:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.99,
+          "latest_stop_utc": "2026-10-20T09:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 142
+          "programmes": 141,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.546513448261",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.546516520035",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 60
+          "programmes": 59,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.551191592244",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.559865896371",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.01,
-          "latest_stop_utc": "2026-10-19T10:55:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 55
+          "programmes": 55,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.587754024122",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.610710056409",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.83,
-          "latest_stop_utc": "2026-10-19T11:44:00+00:00",
+          "future_hours": 49.64,
+          "latest_stop_utc": "2026-10-20T11:29:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 37
+          "programmes": 36,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.658209319988",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 50.16,
+          "latest_stop_utc": "2026-10-20T12:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 18
+          "programmes": 18,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.666427944412",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 96
+          "programmes": 96,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.689693224333",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.08,
-          "latest_stop_utc": "2026-10-19T10:59:00+00:00",
+          "future_hours": 48.04,
+          "latest_stop_utc": "2026-10-20T09:53:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 216
+          "programmes": 229,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.705949224430",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 49
+          "programmes": 48,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.705949224431",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 53
+          "programmes": 50,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.719537704271",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.14,
-          "latest_stop_utc": "2026-10-19T11:03:00+00:00",
+          "future_hours": 48.13,
+          "latest_stop_utc": "2026-10-20T09:58:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 417
+          "programmes": 429,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.719544360177",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.01,
+          "latest_stop_utc": "2026-10-20T09:51:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 459
+          "programmes": 435,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.720334376239",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 79
+          "programmes": 85,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.720334376240",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 66
+          "programmes": 63,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.720335400125",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.34,
-          "latest_stop_utc": "2026-10-19T11:15:00+00:00",
+          "future_hours": 49.91,
+          "latest_stop_utc": "2026-10-20T11:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 38
+          "programmes": 23,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.720335400130",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.99,
+          "latest_stop_utc": "2026-10-20T09:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 211
+          "programmes": 246,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.720335400131",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.720335400133",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 69
+          "programmes": 67,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.725124136205",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.38,
-          "latest_stop_utc": "2026-10-19T11:17:00+00:00",
+          "future_hours": 48.43,
+          "latest_stop_utc": "2026-10-20T10:16:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 117
+          "programmes": 117,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.727306280331",
-          "status": "WARN",
-          "reason": "SHORT_HORIZON",
-          "future_hours": 47.99,
-          "latest_stop_utc": "2026-10-19T10:54:00+00:00",
+          "status": "PASS",
+          "reason": "",
+          "future_hours": 48.03,
+          "latest_stop_utc": "2026-10-20T09:52:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 313
+          "programmes": 305,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.732523560319",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.34,
-          "latest_stop_utc": "2026-10-19T11:15:00+00:00",
+          "future_hours": 48.19,
+          "latest_stop_utc": "2026-10-20T10:02:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 174
+          "programmes": 181,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.743718440268",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 44
+          "programmes": 54,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.743721512232",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.49,
-          "latest_stop_utc": "2026-10-19T11:24:00+00:00",
+          "future_hours": 48.96,
+          "latest_stop_utc": "2026-10-20T10:48:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 25
+          "programmes": 23,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.744863272432",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 56
+          "programmes": 76,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.744863784271",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.59,
-          "latest_stop_utc": "2026-10-19T13:30:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 20
+          "programmes": 19,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.744863784272",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 79
+          "programmes": 87,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.744867368010",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 56
+          "programmes": 79,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.744867368011",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.59,
-          "latest_stop_utc": "2026-10-19T12:30:00+00:00",
+          "future_hours": 50.66,
+          "latest_stop_utc": "2026-10-20T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 22
+          "programmes": 20,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.744867368012",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 50.16,
+          "latest_stop_utc": "2026-10-20T12:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 52
+          "programmes": 56,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.751015464026",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.88,
-          "latest_stop_utc": "2026-10-19T11:47:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 26
+          "programmes": 23,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.752644648261",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 45
+          "programmes": 42,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.752644648263",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 55
+          "programmes": 56,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.755362856441",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 45
+          "programmes": 44,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.755364392036",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 41
+          "programmes": 44,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.755370536327",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 46
+          "programmes": 49,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.758277672165",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 87
+          "programmes": 87,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.764535847985",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 49.91,
+          "latest_stop_utc": "2026-10-20T11:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 14
+          "programmes": 13,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.769623592381",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 71
+          "programmes": 57,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.769623592382",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.59,
-          "latest_stop_utc": "2026-10-19T13:30:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 52
+          "programmes": 60,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.769623592383",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 75
+          "programmes": 80,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.769623592384",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 20
+          "programmes": 20,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.769627175953",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.59,
-          "latest_stop_utc": "2026-10-19T12:30:00+00:00",
+          "future_hours": 49.66,
+          "latest_stop_utc": "2026-10-20T11:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 23
+          "programmes": 22,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.769627175955",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.98,
+          "latest_stop_utc": "2026-10-20T09:49:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 116
+          "programmes": 115,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.769872424315",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.84,
-          "latest_stop_utc": "2026-10-19T11:45:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 38
+          "programmes": 36,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770556968172",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 17
+          "programmes": 19,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770556968231",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 74
+          "programmes": 66,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770557480315",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 86
+          "programmes": 85,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770557992240",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.84,
-          "latest_stop_utc": "2026-10-19T11:45:00+00:00",
+          "future_hours": 49.41,
+          "latest_stop_utc": "2026-10-20T11:15:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 54
+          "programmes": 62,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770559016285",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 57,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770559016375",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.68,
-          "latest_stop_utc": "2026-10-19T11:35:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.99,
+          "latest_stop_utc": "2026-10-20T09:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 83
+          "programmes": 85,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770559016378",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 125
+          "programmes": 128,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770559016379",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.26,
-          "latest_stop_utc": "2026-10-19T12:10:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 30
+          "programmes": 27,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770559528171",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 19,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770735656335",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 73
+          "programmes": 71,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.770738728162",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.64,
+          "latest_stop_utc": "2026-10-20T10:29:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 94
+          "programmes": 94,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.775252520426",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.09,
-          "latest_stop_utc": "2026-10-19T13:00:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 45
+          "programmes": 46,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.775260200087",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 99
+          "programmes": 97,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.775600680255",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 51,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.777986600371",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.68,
-          "latest_stop_utc": "2026-10-19T11:35:00+00:00",
+          "future_hours": 48.83,
+          "latest_stop_utc": "2026-10-20T10:40:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 51
+          "programmes": 47,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.777986600373",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 49
+          "programmes": 49,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.777988648235",
           "status": "PASS",
           "reason": "",
-          "future_hours": 50.09,
-          "latest_stop_utc": "2026-10-19T13:00:00+00:00",
+          "future_hours": 50.16,
+          "latest_stop_utc": "2026-10-20T12:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 22
+          "programmes": 26,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.777994280349",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.99,
+          "latest_stop_utc": "2026-10-20T09:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 44
+          "programmes": 47,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.777994280350",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.18,
-          "latest_stop_utc": "2026-10-19T11:05:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 40
+          "programmes": 37,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.777994792182",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.76,
-          "latest_stop_utc": "2026-10-19T11:40:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 28
+          "programmes": 32,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.777994792183",
-          "status": "PASS",
-          "reason": "",
-          "future_hours": 48.06,
-          "latest_stop_utc": "2026-10-19T10:58:00+00:00",
+          "status": "WARN",
+          "reason": "SHORT_HORIZON",
+          "future_hours": 47.99,
+          "latest_stop_utc": "2026-10-20T09:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 113
+          "programmes": 115,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.779016232322",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 49.16,
+          "latest_stop_utc": "2026-10-20T11:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 25
+          "programmes": 26,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.779016232323",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.66,
+          "latest_stop_utc": "2026-10-20T10:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 37
+          "programmes": 37,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.779018792381",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 26
+          "programmes": 27,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.779019304384",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 26
+          "programmes": 28,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.780808744214",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 49.91,
+          "latest_stop_utc": "2026-10-20T11:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 32
+          "programmes": 25,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.780811816096",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.18,
-          "latest_stop_utc": "2026-10-19T11:05:00+00:00",
+          "future_hours": 49.91,
+          "latest_stop_utc": "2026-10-20T11:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 33
+          "programmes": 36,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.780814888237",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.34,
-          "latest_stop_utc": "2026-10-19T11:15:00+00:00",
+          "future_hours": 48.08,
+          "latest_stop_utc": "2026-10-20T09:55:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 112
+          "programmes": 86,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.788725288003",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.93,
-          "latest_stop_utc": "2026-10-19T11:50:00+00:00",
+          "future_hours": 49.99,
+          "latest_stop_utc": "2026-10-20T11:50:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 21
+          "programmes": 24,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.789990440241",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.06,
-          "latest_stop_utc": "2026-10-19T10:58:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 250
+          "programmes": 272,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.789990440242",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.08,
-          "latest_stop_utc": "2026-10-19T10:59:00+00:00",
+          "future_hours": 48.11,
+          "latest_stop_utc": "2026-10-20T09:57:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 211
+          "programmes": 211,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.812961831972",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 50.66,
+          "latest_stop_utc": "2026-10-20T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 66
+          "programmes": 73,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.818304040261",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.09,
-          "latest_stop_utc": "2026-10-19T12:00:00+00:00",
+          "future_hours": 48.91,
+          "latest_stop_utc": "2026-10-20T10:45:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 46
+          "programmes": 45,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.818306088440",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.59,
-          "latest_stop_utc": "2026-10-19T11:30:00+00:00",
+          "future_hours": 49.66,
+          "latest_stop_utc": "2026-10-20T11:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 62
+          "programmes": 63,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.818309672031",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 36
+          "programmes": 35,
+          "occasional_event_channel": false
         },
         {
           "id": "starzplay.823389224149",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.23,
-          "latest_stop_utc": "2026-10-19T11:08:00+00:00",
+          "future_hours": 50.66,
+          "latest_stop_utc": "2026-10-20T12:30:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 109
+          "programmes": 95,
+          "occasional_event_channel": false
         },
         {
           "id": "StarzplaySports3.sa@HD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 48.09,
-          "latest_stop_utc": "2026-10-19T11:00:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 42
+          "programmes": 47,
+          "occasional_event_channel": false
         },
         {
           "id": "ZeeAflam.ae@SD",
           "status": "PASS",
           "reason": "",
-          "future_hours": 49.84,
-          "latest_stop_utc": "2026-10-19T12:45:00+00:00",
+          "future_hours": 48.16,
+          "latest_stop_utc": "2026-10-20T10:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 20
+          "programmes": 19,
+          "occasional_event_channel": false
         }
       ]
     }
