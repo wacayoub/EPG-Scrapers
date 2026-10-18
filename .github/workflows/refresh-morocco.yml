@@ -1,17 +1,12 @@
 name: EPG 48h - Morocco
 
-# manual refresh trigger 2026-09-27T18:06Z
-
 on:
+  # Sole automatic Morocco source scrape: 07:07 fixed GMT+0, no DST.
+  # Never re-scrape Morocco automatically on implementation commits.
+  schedule:
+    - cron: "7 7 * * *"
+      timezone: "Etc/GMT"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "tools/morocco_epg.py"
-      - "tools/refresh_one_source.sh"
-      - "tools/publish_lkg.py"
-      - ".github/workflows/refresh-source-core.yml"
-      - ".github/workflows/refresh-morocco.yml"
 
 permissions:
   contents: write

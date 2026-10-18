@@ -109,8 +109,7 @@ class TestScheduledWorkflows(unittest.TestCase):
                  "refresh-aljazeera.yml", "refresh-starzplay.yml",
                  "refresh-stctv.yml", "refresh-alkass.yml",
                  "refresh-tunisiatv.yml", "refresh-rotana.yml", "refresh-tabie.yml",
-                 "daily-epg-chain.yml", "epg-watchdog.yml",
-                 "epg-evening-casablanca.yml")
+                 "refresh-morocco.yml", "daily-epg-chain.yml", "epg-watchdog.yml")
         for name in names:
             with self.subTest(workflow=name):
                 p=load(name)
@@ -118,16 +117,20 @@ class TestScheduledWorkflows(unittest.TestCase):
                 for entry in p["on"]["schedule"]:
                     self.assertEqual(entry["timezone"], "Etc/GMT")
 
-    def test_evening_sports_and_morocco_are_independent(self):
+    def test_manual_legacy_group_sports_and_morocco_are_independent(self):
         p = load("epg-evening-casablanca.yml")
-        self.assertEqual(p["on"]["schedule"], [
-            {"cron": "30 20 * * *", "timezone": "Etc/GMT"},
-        ])
+        self.assertNotIn("schedule",p["on"])
+        self.assertIn("workflow_dispatch",p["on"])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["matrix"]["source"],
                          ["alkass"])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["max-parallel"], "1")
         self.assertEqual(p["jobs"]["morocco"]["with"]["source"], "morocco")
-        self.assertIn("hour=$local_hour", (WF / "epg-evening-casablanca.yml").read_text())
+        self.assertIn("DISPATCH_GROUP", (WF / "epg-evening-casablanca.yml").read_text())
+        morocco=load("refresh-morocco.yml")
+        self.assertEqual(morocco["on"]["schedule"], [{"cron":"7 7 * * *","timezone":"Etc/GMT"}])
+        self.assertIn("workflow_dispatch",morocco["on"])
+        self.assertNotIn("push",morocco["on"])
+        self.assertNotIn("morocco",load("daily-epg-chain.yml")["jobs"])
 
     def test_no_receiver_install_or_unbounded_recursion(self):
         names = ("daily-epg-chain.yml", "epg-watchdog.yml",

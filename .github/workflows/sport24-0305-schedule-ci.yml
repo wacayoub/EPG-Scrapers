@@ -62,8 +62,10 @@ jobs:
           assert set(chain["jobs"])=={"elcinema_extend","finalize"}
           assert chain["on"]["schedule"]==[
               {"cron":"15 7 * * *","timezone":"Etc/GMT"}]
-          assert evening["on"]["schedule"]==[
-              {"cron":"30 20 * * *","timezone":"Etc/GMT"}]
+          assert "schedule" not in evening["on"]
+          assert "workflow_dispatch" in evening["on"]
+          morocco=load("refresh-morocco.yml")
+          assert morocco["on"]["schedule"]==[{"cron":"7 7 * * *","timezone":"Etc/GMT"}]
           assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
           assert "matrix.source" in str(evening["jobs"]["sports"]["with"]["source"]),repr(evening["jobs"]["sports"]["with"]["source"])
           assert evening["jobs"]["morocco"]["with"]["source"]=="morocco"

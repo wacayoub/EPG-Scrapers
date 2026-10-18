@@ -28,9 +28,9 @@ installed EPGManager RC79.1, blocked R80, or private mappings.
 | **05:55 daily** | **STC TV — sole daily source scrape** | **`refresh-stctv.yml`** |
 | **06:30 daily** | **AlKass — sole automatic source scrape** | **`refresh-alkass.yml`** |
 | **06:35 daily** | **Tunisia TV — sole automatic source scrape** | **`refresh-tunisiatv.yml`** |
+| **07:07 daily** | **Morocco — sole automatic source scrape** | **`refresh-morocco.yml`** |
 | **07:15 daily** | ElCinema authentic donor postprocessing and derived MENA rebuilding **only; no source scrapers** | `daily-epg-chain.yml` |
 | **14:15 daily** | Watchdog health checks; may rebuild derived MENA only, does not source-scrape | `epg-watchdog.yml` |
-| **20:30 daily** | Morocco evening refresh | `epg-evening-casablanca.yml` |
 
 All automatic `schedule` entries above specify exactly
 `timezone: "Etc/GMT"`. A `cron: "44 4 * * *"` with `Etc/GMT`
@@ -45,7 +45,9 @@ not an exact guaranteed completion time**.
   Its 07:15 chain job and the old `push` trigger are removed;
   `workflow_dispatch` is preserved.
 - All **14 direct source families** have their sole dedicated automatic daily
-  clock; no 07:15 source duplicates.
+  clock, including Morocco **07:07 GMT+0**; no 07:15 source duplicates.
+  Morocco’s previous 20:30 cron and code-change push trigger are removed.
+  The historical evening Morocco/AlKass workflow remains **manual only**.
 - Al Jazeera's dedicated schedule is `12 4 * * *` at `Etc/GMT`:
   **04:12 fixed GMT+0**, no seasonal shift. Remove its old 07:15
   upstream job; STARZPLAY no longer runs in the morning chain either.
@@ -68,7 +70,7 @@ not an exact guaranteed completion time**.
   MENA rebuilding.
 - No automatic 19:30 AlKass refresh remains; `workflow_dispatch
   group=sports` remains an explicitly manual exception. The
-  **20:30 Morocco** cron is preserved.
+  **20:30 Morocco** cron is removed in favor of Morocco **07:07**.
 - STC / STARZPLAY / beIN / Morocco guide identity and XMLTV mappings
   are unchanged. This schedule change cannot fabricate missing
   Rotana Clip / Al Resalah programmes, fill genuine AlKass short
