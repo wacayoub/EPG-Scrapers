@@ -90,6 +90,11 @@ def listing_map(entry):
 def text(x):
     return str(x or "").strip()
 
+def native_ar(value):
+    # Provider objects/lists are not descriptions; never stringify them.
+    return value.strip() if isinstance(value,str) and has_ar(value) else ""
+
+
 def arabic_localized(mapping):
     """Return only authentic Arabic provider metadata, never translations.
 
@@ -100,8 +105,8 @@ def arabic_localized(mapping):
     for lang,value in mapping.items():
         key=str(lang).lower().replace("_","-")
         if key == "ar" or key.startswith("ar-"):
-            candidate=text(value)
-            if has_ar(candidate): return candidate
+            candidate=native_ar(value)
+            if candidate: return candidate
     return ""
 
 
@@ -123,13 +128,13 @@ def ar_desc(en_li, ar_li):
             if candidate: return candidate
         for field in ("description","shortDescription","longDescription",
                       "summary","synopsis","overview"):
-            candidate=text(p.get(field))
-            if has_ar(candidate): return candidate
+            candidate=native_ar(p.get(field))
+            if candidate: return candidate
         candidate=arabic_localized(li.get("descriptionLocalized"))
         if candidate: return candidate
         for field in ("description","shortDescription","summary"):
-            candidate=text(li.get(field))
-            if has_ar(candidate): return candidate
+            candidate=native_ar(li.get(field))
+            if candidate: return candidate
     return ""
 
 def title_en(li):
@@ -143,10 +148,8 @@ def title_ar(en_li, ar_li):
         for candidate in (p.get("title"),li.get("originalTitle"),p.get("originalTitle")):
             v=text(candidate)
             if has_ar(v): return v
-        loc=p.get("titleLocalized") or p.get("localizedTitle") or {}
-        if isinstance(loc,dict):
-            v=text(loc.get("ar"))
-            if has_ar(v): return v
+        v=arabic_localized(p.get("titleLocalized") or p.get("localizedTitle"))
+        if v: return v
     return title_en(en_li)
 
 def fmt(ms):
