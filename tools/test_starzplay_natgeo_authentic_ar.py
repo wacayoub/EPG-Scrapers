@@ -71,7 +71,7 @@ class TestSTARZPLAYAuthenticatedArabic(unittest.TestCase):
         self.assertEqual(nat.findtext("title"),"تربية الحيوانات")
         self.assertEqual(nat.find("title").get("lang"),"ar")
         self.assertEqual(nat.findall("desc"),[])
-        self.assertEqual(stats["forced_arabic_description_missing_at_source"],1)
+        self.assertEqual(stats["forced_arabic_description_missing_in_output"],1)
         self.assertEqual(stats["forced_arabic_description_untranslated"],0)
         self.assertEqual(stats["arabic_description_missing"],1)
         self.assertEqual(stats["forced_arabic_title_language_review"],0)
@@ -86,7 +86,7 @@ class TestSTARZPLAYAuthenticatedArabic(unittest.TestCase):
         self.assertEqual(nat.findall("desc"),[])
         self.assertEqual(stats["forced_arabic_title_language_review"],1)
         self.assertEqual(stats["forced_arabic_description_untranslated"],1)
-        self.assertEqual(stats["forced_arabic_description_missing_at_source"],1)
+        self.assertEqual(stats["forced_arabic_description_missing_in_output"],1)
         self.assertIn("Growing up Animal",stats["forced_arabic_translation_failures"])
 
     def test_real_translated_provider_title_and_desc_kept(self):
@@ -103,7 +103,7 @@ class TestSTARZPLAYAuthenticatedArabic(unittest.TestCase):
         self.assertEqual(nat.findtext("desc"),"وصف عربي حقيقي")
         self.assertEqual(nat.find("desc").get("lang"),"ar")
         self.assertEqual(stats["forced_arabic_description_untranslated"],0)
-        self.assertEqual(stats["forced_arabic_description_missing_at_source"],0)
+        self.assertEqual(stats["forced_arabic_description_missing_in_output"],0)
         self.assertEqual(stats["forced_arabic_title_language_review"],0)
 
     def test_sports_hybrid_remains_en_title_and_ar_real_desc(self):
