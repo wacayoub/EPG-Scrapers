@@ -214,7 +214,7 @@ def main() -> int:
         "forced_arabic_source_titles": [],
         "forced_arabic_translation_failures": [],
         "forced_arabic_description_untranslated": 0,
-        "forced_arabic_description_missing_at_source": 0,
+        "forced_arabic_description_missing_in_output": 0,
         "forced_arabic_title_language_review": 0,
         "forced_arabic_samples": [],
         "profiles": {},
@@ -275,7 +275,7 @@ def main() -> int:
                 # Record a missing description honestly: NEVER synthesize a
                 # generic Nat Geo AD blurb or a fake documentary title.
                 if not text_of(node, "desc"):
-                    stats["forced_arabic_description_missing_at_source"] += 1
+                    stats["forced_arabic_description_missing_in_output"] += 1
                 if len(stats["forced_arabic_samples"]) < 24:
                     stats["forced_arabic_samples"].append({
                         "source_title": source_title,
