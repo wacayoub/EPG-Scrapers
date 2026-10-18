@@ -183,13 +183,11 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["future_ratio"] >= 0.99
                 and cur["programmes"] >= 20
             )
-            planned_scope_rebase = (planned_bein_scope_rebase or
-                                    planned_stctv_scope_rebase or recovery_short_horizon)
             # Tabie/QMC sometimes returns the current Qatar day for requested
             # future dates. A new 8-24h *real* guide is safer than retaining a
             # fully expired archive, but MUST be labelled as partial coverage.
-            # This exception is never applied if the previous feed still has
-            # a valid future event or the candidate has no programme NOW.
+            # Never apply if the old feed has any future events, or the
+            # candidate lacks a verified near-term programme.
             # Tabie can serve three working IDs while the previous feed
             # contains nine EMPTY/EXPIRED IDs. Publication must preserve
             # ONLY actual valid programme-bearing IDs, without allowing
@@ -222,6 +220,8 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["missing_title_rows"] == 0
                 and cur["invalid_rows"] == 0
             )
+            planned_scope_rebase = (planned_bein_scope_rebase or
+                                    planned_stctv_scope_rebase or recovery_short_horizon)
             if (
                 not planned_scope_rebase
                 and old["channels"]
