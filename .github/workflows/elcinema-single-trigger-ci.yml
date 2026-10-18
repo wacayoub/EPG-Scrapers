@@ -46,7 +46,9 @@ jobs:
           assert el['jobs']['refresh']['with']['scheduled']=='false'
           assert 'elcinema' not in seq['jobs']
           assert seq['jobs']['aljazeera'].get('needs') is None
-          assert retry['on']['schedule']==[{'cron':'0 15 * * *','timezone':'Africa/Casablanca'}]
+          assert 'schedule' not in retry['on']
+          assert 'workflow_dispatch' in retry['on']
+          assert seq['jobs']['sport24']['needs']=='alkass'
           assert 'elcinema_extend' not in retry['jobs']
           assert retry['jobs']['finalize']['needs']==['decide','retry']
           assert 'schedule' not in manual['on']
