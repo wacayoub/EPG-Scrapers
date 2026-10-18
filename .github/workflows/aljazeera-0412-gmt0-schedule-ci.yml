@@ -49,8 +49,8 @@ jobs:
           assert j["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
           assert j["jobs"]["refresh"]["with"]=={"source":"aljazeera","scheduled":"false"}
           assert "aljazeera" not in chain["jobs"]
-          assert chain["jobs"]["starzplay"].get("needs") is None
-          assert chain["jobs"]["tunisiatv"]["needs"]=="starzplay"
+          assert "starzplay" not in chain["jobs"]
+          assert chain["jobs"]["tunisiatv"].get("needs") is None
           assert chain["jobs"]["stctv"]["needs"]=="tunisiatv"
           assert chain["jobs"]["alkass"]["needs"]=="stctv"
           assert chain["jobs"]["rotana"]["needs"]=="alkass"
