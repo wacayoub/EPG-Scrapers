@@ -59,7 +59,7 @@ jobs:
           assert chain["jobs"]["elcinema_extend"].get("needs") is None
           assert chain["jobs"]["finalize"]["needs"]=="elcinema_extend"
           evening=load("epg-evening-casablanca.yml")
-          assert evening["on"]["schedule"]==[{"cron":"30 20 * * *","timezone":"Etc/GMT"}]
+          assert "schedule" not in evening["on"]
           assert "workflow_dispatch" in evening["on"]
           assert "sports" in evening["on"]["workflow_dispatch"]["inputs"]["group"]["options"]
           assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
@@ -80,7 +80,7 @@ jobs:
               "refresh-tunisiatv.yml":["35 6 * * *"],
               "daily-epg-chain.yml":["15 7 * * *"],
               "epg-watchdog.yml":["15 14 * * *"],
-              "epg-evening-casablanca.yml":["30 20 * * *"],
+              "refresh-morocco.yml":["7 7 * * *"],
           }
           actual={}
           for path in sorted(WF.glob("*.yml")):
