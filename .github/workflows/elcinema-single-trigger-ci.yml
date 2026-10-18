@@ -55,7 +55,8 @@ jobs:
           assert seq['jobs']['elcinema_extend']['uses']=='./.github/workflows/elcinema-daily-donors.yml'
           # Prevent reintroduction of a second auto ElCinema scrape at 15:00.
           from tools.epg_schedule_policy import TARGETS
-          assert 'elcinema' not in TARGETS and set(TARGETS)=={'osn','shahid'}
+          assert not {'elcinema','osn','bein'}.intersection(TARGETS)
+          assert set(TARGETS)=={'shahid'}
           print('ELCINEMA_AUTOMATIC_SCRAPES_PER_DAY: 1')
           print('ELCINEMA_SCHEDULE: 01:20 Africa/Casablanca')
           print('ELCINEMA_15H_RETRY: DISABLED')

@@ -119,8 +119,8 @@ jobs:
           PY
 
       # A stale provider is never a reason to restart ALL 14 sources.
-      # The 15:00 local targeted-retry workflow will select only degraded
-      # ElCinema / OSN / beIN / Shahid feeds, and skip an active main chain.
+      # The 15:00 local targeted retry selects degraded Shahid only.
+      # ElCinema/OSN/beIN use their dedicated single daily schedules.
       - name: Rebuild MENA only when source feeds are current
         if: steps.health.outputs.status == 'mena_stale'
         shell: bash

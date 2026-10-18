@@ -1,11 +1,11 @@
 name: EPG 48h - OSN
 
 on:
+  # Sole scheduled OSN scraper: 01:40 local Casablanca, DST/Ramadan aware.
+  schedule:
+    - cron: "40 1 * * *"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "config/osn-refresh-trigger.txt"
 
 permissions:
   contents: write
