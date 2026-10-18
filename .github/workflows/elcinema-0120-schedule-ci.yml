@@ -49,17 +49,15 @@ jobs:
           assert 'osn' not in chain['jobs']
           assert 'shahid' not in chain['jobs']
           assert 'sport24' not in chain['jobs']
-          assert chain['jobs']['rotana']['needs']=='alkass'
+          assert set(chain['jobs'])=={'elcinema_extend','finalize'}
           assert 'dubaiplus' not in chain['jobs']
           assert 'starzplay' not in chain['jobs']
-          assert chain['jobs']['tunisiatv'].get('needs') is None
+          assert 'tunisiatv' not in chain['jobs']
           assert 'stctv' not in chain['jobs']
-          assert chain['jobs']['alkass']['needs']=='tunisiatv'
-          for job in ['tunisiatv',
-                      'alkass','rotana','morocco',
-                      'tabie','elcinema_extend','finalize']:
+          assert 'alkass' not in chain['jobs']
+          for job in ['elcinema_extend','finalize']:
               assert job in chain['jobs'],job
-          assert chain['jobs']['elcinema_extend']['needs']=='tabie'
+          assert chain['jobs']['elcinema_extend'].get('needs') is None
           assert 'Fixed GMT+0 06:00 gate' in [x['name'] for x in core['jobs']['refresh']['steps']]
 
           local=ZoneInfo('Etc/GMT')
