@@ -9,15 +9,17 @@ No generated titles, translations, guessed times or fuzzy channel matches.
 """
 from __future__ import annotations
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
 try:
     from tools.sport24_verified_donors import audited_donor, valid_window, overlap, timestamp
+    from tools.source_feed_pack import parse_xmltv_dt
 except ModuleNotFoundError:
     from sport24_verified_donors import audited_donor, valid_window, overlap, timestamp
+    from source_feed_pack import parse_xmltv_dt
 
 DUBAI_TV_ID = "DubaiTV.ae@SD"
 OSN_SOURCE = "osn"
@@ -44,11 +46,19 @@ def extend(root, feed_dir, now):
     for p in root.findall("programme"):
         if p.get("channel") != DUBAI_TV_ID:
             continue
-        iv = valid_window(p, now)
-        if iv is None:
+        start = parse_xmltv_dt(p.get("start"))
+        stop = parse_xmltv_dt(p.get("stop"))
+        if (not start or not stop or stop <= start or
+                stop - start > timedelta(hours=24) or
+                not any((t.text or "").strip() for t in p.findall("title"))):
             report["status"] = "INVALID_DUBAIPLUS_PRIMARY_PROGRAMME"
             return report
-        primary.append(iv)
+        # Old published XMLTV may contain past broadcasts. They are authentic
+        # records, never damaged rows; leave them intact and exclude from
+        # the future interval overlap test.
+        iv = valid_window(p, now)
+        if iv:
+            primary.append(iv)
     if not primary:
         report["status"] = "PRIMARY_DUBAIPLUS_CHANNEL_EMPTY_MANUAL_REVIEW"
         return report
