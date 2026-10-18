@@ -363,6 +363,15 @@ if [ "$cohort" = "REBUILD" ]; then
     --max-gap-minutes 90 --report "reports/$SOURCE-48h-audit.json" || true
   python tools/audit_source_quality.py --input "feeds/$SOURCE.xml.gz" \
     --source "$SOURCE" --report "reports/$SOURCE-quality.json"
+  if [ "$SOURCE" = "osn" ]; then
+    # Publish a truthful exact-ID readiness index only for an accepted feed.
+    # No 0-EPG OSN ID may be marked as a verified Best Match. Preserve all
+    # catalogue IDs for manual correction; never create fake programme slots.
+    python tools/osn_per_id_health.py \
+      --feed feeds/osn.xml.gz \
+      --metadata feeds/osn.json \
+      --output reports/osn-per-id-health.json
+  fi
   if [ "$SOURCE" = "elcinema" ]; then
     # Exact published-feed SHA pinned, 36h green cutoff per ID.
     # Short but genuine IDs stay visible for manual review; a channel-name
