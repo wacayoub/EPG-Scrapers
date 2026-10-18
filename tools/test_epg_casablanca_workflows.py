@@ -24,10 +24,11 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["on"]["schedule"], [{
             "cron": "15 7 * * *", "timezone": "Africa/Casablanca",
         }])
-        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 11)
+        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 10)
         self.assertNotIn("osn", p["jobs"])
         self.assertNotIn("shahid", p["jobs"])
-        self.assertEqual(p["jobs"]["sport24"]["needs"], "alkass")
+        self.assertNotIn("sport24", p["jobs"])
+        self.assertEqual(p["jobs"]["rotana"]["needs"], "alkass")
         self.assertEqual(p["jobs"]["dubaiplus"]["needs"], "aljazeera")
         self.assertIn("epg-daily-chain", p["concurrency"]["group"])
 
@@ -66,7 +67,7 @@ class TestScheduledWorkflows(unittest.TestCase):
             {"cron": "30 20 * * *", "timezone": "Africa/Casablanca"},
         ])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["matrix"]["source"],
-                         ["sport24","alkass"])
+                         ["alkass"])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["max-parallel"], "1")
         self.assertEqual(p["jobs"]["morocco"]["with"]["source"], "morocco")
         self.assertIn("hour=$local_hour", (WF / "epg-evening-casablanca.yml").read_text())
