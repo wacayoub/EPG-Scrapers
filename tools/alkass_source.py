@@ -89,7 +89,12 @@ def main()->int:
         cc=ET.SubElement(cat,"channel",{"site":"alkass.net","site_id":name.split()[-1],"lang":"ar","xmltv_id":cid})
         cc.text=name
 
-    report={"generated_qatar":now.isoformat(),"channels":{},"programmes":0}
+    report={"generated_qatar":now.isoformat(),"channels":{},"programmes":0,
+            "provider_date_options":["today","tomorrow"],
+            "provider_official_schedule_days":2,
+            "third_day_not_published_by_official_guide":True,
+            "synthetic_programmes_added":0,
+            "last_programme_stop_is_inferred_if_no_next_start":True}
     for cid,name in CHANNELS:
         rows=(day0.get(cid) or [])+(day1.get(cid) or [])
         rows.sort(key=lambda x:x["start"])
@@ -116,7 +121,18 @@ def main()->int:
             })
             ET.SubElement(p,"title",{"lang":lang_for(x["title"])}).text=x["title"]
             kept+=1; report["programmes"]+=1
-        report["channels"][cid]={"name":name,"programmes":kept,"today":len(day0.get(cid) or []),"tomorrow":len(day1.get(cid) or [])}
+        verified_last_start = max((x["start"] for x in ded),default=None)
+        report["channels"][cid]={
+            "name":name,"programmes":kept,
+            "today":len(day0.get(cid) or []),
+            "tomorrow":len(day1.get(cid) or []),
+            "last_verified_start_qatar":verified_last_start.isoformat() if verified_last_start else None,
+            "native_last_start_horizon_hours":(
+                round(max(0.0,(verified_last_start-now).total_seconds()/3600.0),2)
+                if verified_last_start else 0.0
+            ),
+            "provider_third_day_unknown":True,
+        }
 
     Path("output/source-build").mkdir(parents=True,exist_ok=True)
     Path("reports").mkdir(exist_ok=True)
