@@ -57,7 +57,7 @@ jobs:
                       'tabie','elcinema_extend','finalize']:
               assert job in chain['jobs'],job
           assert chain['jobs']['elcinema_extend']['needs']=='tabie'
-          assert 'Casablanca 06:00 gate' in [x['name'] for x in core['jobs']['refresh']['steps']]
+          assert 'Fixed GMT+0 06:00 gate' in [x['name'] for x in core['jobs']['refresh']['steps']]
 
           local=ZoneInfo('Etc/GMT')
           for d in [(2026,10,18),(2026,11,1),(2027,4,15)]:
