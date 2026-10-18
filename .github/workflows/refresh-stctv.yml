@@ -1,13 +1,9 @@
 name: EPG 48h - STC TV
 
 on:
+  # STC remains in the 07:15 GMT+0 sequential source chain.
+  # Do not scrape again automatically whenever implementation code changes.
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'tools/stctv_source.py'
-      - 'tools/refresh_one_source.sh'
-      - '.github/workflows/refresh-stctv.yml'
 
 permissions:
   contents: write
