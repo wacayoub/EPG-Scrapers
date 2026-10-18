@@ -66,7 +66,7 @@ jobs:
               {"cron":"30 19 * * *","timezone":"Africa/Casablanca"},
               {"cron":"30 20 * * *","timezone":"Africa/Casablanca"}]
           assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
-          assert evening["jobs"]["sports"]["with"]["source"]=="${{ matrix.source }}"
+          assert "matrix.source" in str(evening["jobs"]["sports"]["with"]["source"]),repr(evening["jobs"]["sports"]["with"]["source"])
           assert evening["jobs"]["morocco"]["with"]["source"]=="morocco"
           assert "schedule" not in retry["on"] and "workflow_dispatch" in retry["on"]
           for name,obj in [
