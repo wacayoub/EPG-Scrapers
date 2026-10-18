@@ -61,11 +61,14 @@ jobs:
           assert 'push' not in bein['on']
           assert 'bein' not in chain['jobs']
           assert chain['jobs']['rotana']['needs']=='sport24'
-          assert 'morocco' in chain['jobs'] and 'shahid' in chain['jobs']
+          assert 'morocco' in chain['jobs'] and 'shahid' not in chain['jobs']
           assert eve['jobs']['sports']['strategy']['matrix']['source']==['sport24','alkass']
           assert 'bein' not in policy.TARGETS
           assert policy.TARGETS==('shahid',)
           assert 'osn' not in chain['jobs']
+          assert chain['jobs']['sport24']['needs']=='alkass'
+          assert 'schedule' not in retry['on']
+          assert get('refresh-shahid.yml')['on']['schedule']==[{'cron':'39 3 * * *','timezone':'Africa/Casablanca'}]
           assert 'matrix.source' in retry['jobs']['retry']['with']['source']
           assert 'schedule' not in manual['on']
           assert 'schedule' not in core['on']
