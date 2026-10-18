@@ -1,85 +1,75 @@
-# EPG Scrapers — Morocco / Casablanca source scrape schedule (18 October 2026)
+# EPG-Scrapers — All source schedules on fixed GMT+0 (18 October 2026)
 
-Scope: **GitHub EPG source fetch and public XMLTV publication only**.
-This does not change the Vu+ receiver, Enigma2 EPGImport schedule, mappings,
-installed EPGManager RC79.1 or the blocked RC80 release.
+**Definition:** User explicitly requests **GMT+0 fixed clock**, not
+`Africa/Casablanca` civil wall-clock. For scheduling, **GMT+0 equals
+UTC+0**. The GitHub Actions native IANA timezone is now `Etc/GMT`
+(fixed +00:00, no Moroccan/Ramadan/DST shifting). At present
+(18 October 2026), Casablanca local civil time is GMT+1, so a
+04:44 GMT+0 trigger appears as 05:44 in Casablanca.
 
-## Source wall-clock schedule (Africa/Casablanca)
+This is a **GitHub source scraper schedule only**. It does not change
+Vu+ / Enigma2 / EPGImport receiver scheduling, local receiver timezone,
+installed EPGManager RC79.1, blocked R80, or private mappings.
 
-| Local clock | Workflow | Behavior |
+## The effective automatic schedule
+
+| Fixed GMT+0 trigger | Action | Workflow |
 | --- | --- | --- |
-| **01:20 daily** | `refresh-elcinema.yml` | Sole scheduled ElCinema scraper |
-| **01:40 daily** | `refresh-osn.yml` | Sole scheduled OSN scraper |
-| **02:22 daily** | `refresh-bein.yml` | Sole scheduled beIN MENA scraper |
-| **03:05 daily** | **`refresh-sport24.yml`** | **Sole scheduled Sport24 scraper** |
-| **03:39 daily** | **`refresh-shahid.yml`** | **Sole scheduled Shahid / MBC scraper** |
-| 07:15 daily | `daily-epg-chain.yml` | Al Jazeera → Dubai+ → STARZPLAY → Tunisia → STC → AlKass → Rotana → Morocco → Tabie; ElCinema donor *postprocess*, then one derived MENA rebuild. **No ElCinema, OSN, beIN, Sport24 or Shahid scraper** |
-| 14:15 daily | `epg-watchdog.yml` | Freshness/accepted-LKG checks; may rebuild derived MENA only; **does not run source scrapers** |
-| 19:30 daily | `epg-evening-casablanca.yml` | AlKass refresh only; no Sport24 retry |
-| 20:30 daily | `epg-evening-casablanca.yml` | Morocco refresh |
+| **01:20 daily** | ElCinema — one source scrape | `refresh-elcinema.yml` |
+| **01:40 daily** | OSN — one source scrape | `refresh-osn.yml` |
+| **02:22 daily** | beIN MENA — one source scrape | `refresh-bein.yml` |
+| **03:05 daily** | Sport24 — one source scrape | `refresh-sport24.yml` |
+| **03:39 daily** | Shahid/MBC — one source scrape | `refresh-shahid.yml` |
+| **04:44 daily** | Dubai+ — one source scrape | `refresh-dubaiplus.yml` |
+| **07:15 daily** | Other sequential sources: AlJazeera → STARZPLAY → Tunisia TV → STC → AlKass → Rotana → Morocco → Tabie; then ElCinema donor postprocess and derived MENA rebuild | `daily-epg-chain.yml` |
+| **14:15 daily** | Watchdog health checks; may rebuild derived MENA only, does not source-scrape | `epg-watchdog.yml` |
+| **19:30 daily** | AlKass only, extra evening sport guide | `epg-evening-casablanca.yml` |
+| **20:30 daily** | Morocco evening refresh | `epg-evening-casablanca.yml` |
 
-The old `epg-casablanca-targeted-retry.yml` workflow **no longer has
-an automatic 15:00 schedule**. It remains available using `workflow_dispatch`
-for an explicitly requested, degraded **Shahid-only** manual retry. The
-source-specific `refresh-shahid.yml` also retains manual dispatch, but not
-an extra `push` trigger.
+All automatic `schedule` entries above specify exactly
+`timezone: "Etc/GMT"`. A `cron: "44 4 * * *"` with `Etc/GMT`
+always targets 04:44 GMT+0, including when Morocco changes legal UTC offset.
+Execution on GitHub may be delayed by queueing or shared
+`epg-source-publish` concurrency. **Cron time is a trigger target,
+not an exact guaranteed completion time**.
 
-## Single scheduled Shahid refresh at 03:39
+## Duplicate source protections
 
-- Native GitHub Actions timezone-aware schedule:
-  `cron: "39 3 * * *"`, `timezone: "Africa/Casablanca"`.
-  Moroccan civil time is respected during DST/Ramadan changes; **never**
-  hard-code a fixed UTC offset.
-- It calls the existing `refresh-source-core.yml` with
-  `source: shahid` and `scheduled: false` to bypass the shared
-  legacy 06:00 time gate. The core still validates, checks source quality
-  and preserves good last-known EPG (LKG) during failures.
-- The 07:15 sequential chain contains neither Shahid nor Sport24.
-  Rotana now depends directly on AlKass; all other source chains are preserved.
-- The automatic 15:00 targeted retry is removed, not merely filtered.
-  The optional manual retry still applies existing missing/stale/low-NOW
-  coverage safeguards and refuses an active main chain.
-- The legacy `daily-epg.yml`, `daily-source-refresh.yml`,
-  `refresh-source-core.yml` and ElCinema donor utility have no
-  direct scheduled scrape trigger. The watchdog rebuilds derived feeds
-  only and does not re-scrape Shahid.
-- Shared `epg-source-publish` concurrency remains unchanged. GitHub Actions
-  can delay scheduled starts; a delayed 02:22 beIN or 01:40 OSN scrape
-  may serialize the 03:05 Sport24 or 03:39 Shahid jobs. The listed times
-  are **trigger times, not guaranteed start/completion times**.
+- Dubai+ dedicated daily 04:44 is the **sole automatic Dubai+ scraper**.
+  Remove the 07:15 `dubaiplus` chain job; STARZPLAY now depends directly
+  on AlJazeera. Remove the former Dubai+ `push` trigger for
+  `config/dubaiplus-refresh-trigger.txt`; keep `workflow_dispatch`.
+- ElCinema, OSN, beIN, Sport24 and Shahid each retain the previously
+  configured sole dedicated automatic daily cron; no 07:15 duplicates.
+- Sport24 remains removed from evening 19:30: only AlKass is re-scraped.
+- Shahid targeted retry is still **manual only**, with no automatic 15:00.
+- The shared legacy `refresh-source-core.yml` "06:00 scheduled" guard
+  has also been moved to fixed GMT+0. Normal dedicated source workflows
+  pass `scheduled: false` and keep publisher integrity checks.
+- Other `workflow_dispatch` and explicitly configured `push` triggers
+  are on-demand/event-based, **not** additional daily clock schedules.
+  No source item is manufactured by schedule changes.
 
-## Validation / release safety
+## Dubai+ EPG quality and caveats
 
-A read-only CI regression (`shahid-0339-schedule-ci.yml`) audits the
-exact Shahid trigger, all known duplicate routes, the surrounding
-ElCinema/OSN/beIN schedules, Moroccan time boundaries, and existing
-workflow/policy tests on Python 3.13 and 3.14. The source schedule
-becomes effective only after a tested PR merges into `main`.
+At last audited publication (2026-10-17 10:51 UTC/GMT), 9/9 Dubai+
+channels carried guides with 423 programmes and a ~48h horizon.
+Dubai One has a genuine 185-minute internal gap, Dubai TV 120 minutes,
+and Dubai Zaman 180 minutes. **350 of 413 future programmes lacked
+authentic descriptions**. The separate Dubai+ quality PR adds support
+for native ar-AE provider-localized synopsis fields but does not invent
+any missing descriptions or fill unrelated channel gaps.
 
-A successful workflow review does not prove the next *live* 03:39
-source grab will succeed: check its output, LKG acceptance and
-actual GitHub Actions start after activation. No source guides,
-translations, receiver installation or private backup are altered by
-this schedule-only change.
+Only DubaiTV.ae@SD may be complemented by the strict exact-ID OSN
+48h PASS genuine donor, preserving all Dubai+ primary programmes.
+Sport24's three exact sports donors remain independent.
 
-## Sport24 sole scheduled daily scrape at 03:05
+## Acceptance
 
-- Native GitHub Actions `schedule` uses `cron: "5 3 * * *"`, with
-  `timezone: "Africa/Casablanca"` for Moroccan civil time throughout DST
-  and Ramadan. Do not hardcode a UTC offset.
-- `refresh-sport24.yml` calls the existing shared publisher using
-  `source: sport24`, `scheduled: false`; manual dispatch remains available.
-- Sport24 was removed from the 07:15 chain; Rotana now follows AlKass.
-- The 19:30 sports workflow still refreshes AlKass, but its source matrix
-  excludes Sport24. No other automatic Sport24 refresh is configured.
-- **Coverage warning:** the direct Sport24 guide has historically provided
-  only about 3–5 hours of future programmes. Changing its refresh cadence
-  to once at 03:05 may leave native-only Sport24 channels without EPG later
-  in the day. Genuine exact-channel OSN/Dubai+ supplementation currently
-  covers just three Sport24 IDs, and is conditional on verified donor health.
-  Zero-EPG Thmanyah 1/3 remain unchanged; no synthetic schedules permitted.
-- Source LKG protection and signed receiver settings are unchanged. This
-  does not schedule a Vu+ EPGImport run or install EPGManager R80.
-- A read-only source-schedule regression (`sport24-0305-schedule-ci.yml`)
-  must pass on Python 3.13 and 3.14 before the change is merged. Observe
-  the next real 03:05 scraping run afterward to establish actual EPG updates.
+Regress `gmt0-all-sources-0444-ci.yml` on both Python 3.13 and 3.14,
+in addition to the pre-existing per-source schedule checks. Confirm the
+fixed GMT+0 offset even on winter, summer and Ramadan examples.
+
+**After merge**, first 04:44 GMT+0 Dubai+ source run is not yet proof
+of health until actual publication/LKG/guide audit is observed. Nothing
+in this change installs or edits anything on the receiver.
