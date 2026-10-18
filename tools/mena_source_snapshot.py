@@ -37,3 +37,14 @@ def get_source_snapshot(feed_dir, source_names):
             raise ValueError(f"SOURCE_MANIFEST_SHA_OR_SIZE_MISMATCH:{name}")
         out[name]=digest
     return out
+
+def needs_rebuild(snapshot, derived_metadata):
+    """Rebuild when any actual compressed upstream source has changed.
+
+    A MENA feed generated yesterday may remain correct today if no upstream
+    feed changed, but must be rebuilt today even if unrelated sources are stale
+    when some other genuine source has published different bytes.
+    """
+    return not isinstance(derived_metadata,dict) or (
+        derived_metadata.get("source_snapshot")!=snapshot
+    )
