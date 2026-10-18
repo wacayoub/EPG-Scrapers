@@ -109,8 +109,7 @@ class TestScheduledWorkflows(unittest.TestCase):
                  "refresh-aljazeera.yml", "refresh-starzplay.yml",
                  "refresh-stctv.yml", "refresh-alkass.yml",
                  "refresh-tunisiatv.yml", "refresh-rotana.yml", "refresh-tabie.yml",
-                 "daily-epg-chain.yml", "epg-watchdog.yml",
-                 "epg-evening-casablanca.yml")
+                 "refresh-morocco.yml", "daily-epg-chain.yml", "epg-watchdog.yml")
         for name in names:
             with self.subTest(workflow=name):
                 p=load(name)
