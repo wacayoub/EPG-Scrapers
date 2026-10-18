@@ -52,14 +52,15 @@ def make(root,primary_extra=False):
             ET.SubElement(tv,"channel",{"id":cid})
             tv.append(prog(cid,1,3,"DONOR OVERLAP"))
             tv.append(prog(cid,3,5,"DONOR AUTHENTIC 1"))
-            tv.append(prog(cid,5,30,"DONOR AUTHENTIC 2"))
+            tv.append(prog(cid,5,25,"DONOR AUTHENTIC 2"))
+            tv.append(prog(cid,25,45,"DONOR AUTHENTIC 3"))
         buf=gzip.compress(ET.tostring(tv,encoding="utf-8"),mtime=0)
         (feeds/(name+".xml.gz")).write_bytes(buf)
         (feeds/(name+".json")).write_text(json.dumps({
            "label":name,"generated_utc":generated.isoformat(),
            "sha256":hashlib.sha256(buf).hexdigest(),
            "size_bytes":len(buf),
-           "channels":len(ids),"programmes":len(ids)*3
+           "channels":len(ids),"programmes":len(ids)*4
         }))
         (reports/(name+"-48h-audit.json")).write_text(json.dumps({
            "generated_utc":generated.isoformat(),
@@ -83,10 +84,10 @@ class TestSport24VerifiedDonors(unittest.TestCase):
             result=mod.extend(tv,feeds,NOW)
             self.assertEqual(result["donor_channels"],3)
             self.assertEqual(result["synthetic_programmes_added"],0)
-            self.assertEqual(result["added_programmes"],8)
+            self.assertEqual(result["added_programmes"],11)
             rows=tv.findall("programme")
             self.assertEqual([p.findtext("title") for p in rows if p.get("channel")==AD],[
-                "العنوان الأساسي Sport24","DONOR AUTHENTIC 1","DONOR AUTHENTIC 2"])
+                "العنوان الأساسي Sport24","DONOR AUTHENTIC 1","DONOR AUTHENTIC 2", "DONOR AUTHENTIC 3"])
             self.assertEqual(len([p for p in rows if p.get("channel")==T1]),1)
             self.assertEqual(len([p for p in rows if p.get("channel")==T3]),0)
             self.assertTrue(all(p.find("desc") is not None for p in rows))
@@ -100,9 +101,9 @@ class TestSport24VerifiedDonors(unittest.TestCase):
             result=mod.extend(tv,feeds,NOW)
             db=[p for p in tv.findall("programme") if p.get("channel")==DB1]
             self.assertEqual([p.findtext("title") for p in db],[
-                "أساسي دبي 1","DONOR OVERLAP","DONOR AUTHENTIC 2"])
+                "أساسي دبي 1","DONOR OVERLAP","DONOR AUTHENTIC 2","DONOR AUTHENTIC 3"])
             # DONOR AUTHENTIC 1 at 3..5 is rejected; no clipping/invention.
-            self.assertEqual(result["added_programmes"],7)
+            self.assertEqual(result["added_programmes"],10)
 
     def test_tampered_gzip_or_stale_cohort_never_added(self):
         for variant in ("wrong_hash","stale","audit_gap","wrong_id","source_quality"):
