@@ -264,6 +264,18 @@ PY
   sport24)
     python tools/sport24_source.py --output output/source-build/sport24.raw.xml --report reports/sport24-scrape.json --window-hours "$HOURS" || true
     [ -s output/source-build/sport24.raw.xml ] || empty_xml output/source-build/sport24.raw.xml
+    # Sport24 exposes only ~4h of genuine forward EPG. For THREE
+    # exact-identity channels only, fill non-overlapping future gaps using
+    # already published, SHA-verified official OSN/Dubai+ 48h guides.
+    # Never replace a Sport24 programme or invent EPG for Thmanyah 1/3.
+    if python tools/sport24_verified_donors.py \
+        --input output/source-build/sport24.raw.xml \
+        --output output/source-build/sport24.verified.raw.xml \
+        --feed-dir feeds \
+        --report reports/sport24-donors.json; then
+      [ -s output/source-build/sport24.verified.raw.xml ] && \
+          mv output/source-build/sport24.verified.raw.xml output/source-build/sport24.raw.xml
+    fi
     pack_source sport24 output/source-build/sport24.raw.xml "" || true
     ;;
 
