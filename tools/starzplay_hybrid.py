@@ -213,6 +213,9 @@ def main() -> int:
         "translations_cached": 0,
         "forced_arabic_source_titles": [],
         "forced_arabic_translation_failures": [],
+        "forced_arabic_description_untranslated": 0,
+        "forced_arabic_description_missing_at_source": 0,
+        "forced_arabic_title_language_review": 0,
         "forced_arabic_samples": [],
         "profiles": {},
         "samples": {},
@@ -258,29 +261,43 @@ def main() -> int:
                                 child.text = raw
                                 if raw not in stats["forced_arabic_translation_failures"]:
                                     stats["forced_arabic_translation_failures"].append(raw)
-                            elif tag == "desc":
-                                child.text = "برنامج وثائقي على ناشيونال جيوغرافيك أبوظبي."
+                            elif tag in ("desc", "sub-title"):
+                                # A description/subtitle that the upstream
+                                # supplies only in English MUST NOT be replaced
+                                # with a generic Arabic filler. No trustworthy
+                                # Arabic translation exists for this row.
+                                node.remove(child)
+                                if tag == "desc":
+                                    stats["forced_arabic_description_untranslated"] += 1
                             else:
                                 child.text = raw
-                if not text_of(node, "title"):
-                    title = ET.Element("title", {"lang": "ar"})
-                    title.text = "برنامج وثائقي"
-                    node.insert(0, title)
-                if not text_of(node, "desc") or not is_ar(text_of(node, "desc")):
-                    for child in list(node.findall("desc")):
-                        node.remove(child)
-                    desc = ET.Element("desc", {"lang": "ar"})
-                    desc.text = "برنامج وثائقي على ناشيونال جيوغرافيك أبوظبي."
-                    node.append(desc)
+                # The source may legitimately omit a programme description.
+                # Record a missing description honestly: NEVER synthesize a
+                # generic Nat Geo AD blurb or a fake documentary title.
+                if not text_of(node, "desc"):
+                    stats["forced_arabic_description_missing_at_source"] += 1
                 if len(stats["forced_arabic_samples"]) < 24:
                     stats["forced_arabic_samples"].append({
                         "source_title": source_title,
                         "title": text_of(node, "title"),
                         "description": text_of(node, "desc")[:240],
                     })
-            ensure_lang(node, "title", "ar")
-            ensure_lang(node, "sub-title", "ar")
-            ensure_lang(node, "desc", "ar")
+            if cid in force_arabic_content_ids:
+                # If both authenticated translation providers fail, keep the
+                # provider's exact real title but label EN honestly and flag
+                # a manual editorial review. Do not mislabel English as Arabic.
+                for tag in ("title", "sub-title", "desc"):
+                    for child in node.findall(tag):
+                        val = (child.text or "").strip()
+                        if not val:
+                            continue
+                        child.set("lang", "ar" if is_ar(val) else "en")
+                        if tag == "title" and not is_ar(val):
+                            stats["forced_arabic_title_language_review"] += 1
+            else:
+                ensure_lang(node, "title", "ar")
+                ensure_lang(node, "sub-title", "ar")
+                ensure_lang(node, "desc", "ar")
 
         for child in list(node.findall("desc")):
             txt = (child.text or "").strip()
