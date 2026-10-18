@@ -51,6 +51,23 @@ jobs:
           assert set(m['zero_epg_ids'])<=set(r['missing_ids'])
           assert not [x for x in r['ids'] if x['status']=='NO_EPG' and x['best_match_green_allowed']]
           assert all(x['manual_mapping_visible'] for x in r['ids'])
+          # Detail REVIEW rows against the pinned published OSN feed.
+          # Reporting only: never synthesize guide rows or modify mappings.
+          review=[x for x in r['ids'] if x['status']=='REVIEW']
+          assert len(review)==r['counts']['REVIEW']
+          assert all(not x['best_match_green_allowed'] for x in review)
+          assert all(x['manual_mapping_visible'] for x in review)
+          for x in sorted(review,key=lambda row:row['xmltv_id'].casefold()):
+              print('OSN_REVIEW_PER_ID',json.dumps({
+                  'id':x['xmltv_id'],
+                  'reason':x['reason'],
+                  'future_programmes':x['future_programmes'],
+                  'continuous_future_hours':x['continuous_future_hours'],
+                  'currently_on_air':x['currently_on_air'],
+                  'suspected_placeholder_future':x['suspected_placeholder_future'],
+                  'green_allowed':x['best_match_green_allowed'],
+                  'source_sha256':r['source_sha256'],
+              },ensure_ascii=False,sort_keys=True))
           print('OSN_REAL_SOURCE_PER_ID_PASS',r['catalogue_channels'],r['counts'])
           print('OSN_ZERO_GUIDES_NOT_GREEN',len(r['missing_ids']))
           PY
