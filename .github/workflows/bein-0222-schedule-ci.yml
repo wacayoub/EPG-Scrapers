@@ -54,7 +54,7 @@ jobs:
           core=get('refresh-source-core.yml')
           policy=__import__('tools.epg_schedule_policy',fromlist=['TARGETS'])
           assert bein['on']['schedule']==[{
-              'cron':'22 2 * * *','timezone':'Africa/Casablanca'}]
+              'cron':'22 2 * * *','timezone':'Etc/GMT'}]
           assert bein['jobs']['refresh']['with']=={'source':'bein','scheduled':'false'}
           assert bein['jobs']['refresh']['uses']=='./.github/workflows/refresh-source-core.yml'
           assert 'workflow_dispatch' in bein['on']
@@ -68,14 +68,14 @@ jobs:
           assert 'osn' not in chain['jobs']
           assert 'sport24' not in chain['jobs']
           assert 'schedule' not in retry['on']
-          assert get('refresh-shahid.yml')['on']['schedule']==[{'cron':'39 3 * * *','timezone':'Africa/Casablanca'}]
+          assert get('refresh-shahid.yml')['on']['schedule']==[{'cron':'39 3 * * *','timezone':'Etc/GMT'}]
           assert 'matrix.source' in retry['jobs']['retry']['with']['source']
           assert 'schedule' not in manual['on']
           assert 'schedule' not in core['on']
           assert 'schedule' not in get('daily-epg.yml')['on']
           assert get('refresh-elcinema.yml')['on']['schedule']==[{
-              'cron':'20 1 * * *','timezone':'Africa/Casablanca'}]
-          tz=ZoneInfo('Africa/Casablanca')
+              'cron':'20 1 * * *','timezone':'Etc/GMT'}]
+          tz=ZoneInfo('Etc/GMT')
           for date in [(2026,10,18),(2026,12,3),(2027,4,15)]:
               local=datetime(*date,2,22,tzinfo=tz)
               utc=local.astimezone(timezone.utc)
