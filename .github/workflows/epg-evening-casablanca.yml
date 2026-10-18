@@ -57,7 +57,8 @@ jobs:
           echo "group=$group" >> "$GITHUB_OUTPUT"
           echo "CASABLANCA_EVENING_GROUP=$group"
 
-  # beIN is excluded: its only scheduled scrape is 02:22 Casablanca.
+  # Sport24 runs automatically only at 03:05 Casablanca; the 19:30 sports
+  # event remains AlKass-only. beIN stays at 02:22.
   sports:
     needs: route
     if: needs.route.outputs.group == 'sports'
@@ -65,7 +66,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        source: [sport24, alkass]
+        source: [alkass]
     uses: ./.github/workflows/refresh-source-core.yml
     with:
       source: ${{ matrix.source }}
