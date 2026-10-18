@@ -24,17 +24,21 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["on"]["schedule"], [{
             "cron": "15 7 * * *", "timezone": "Etc/GMT",
         }])
-        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 6)
+        self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 1)
         self.assertNotIn("osn", p["jobs"])
         self.assertNotIn("shahid", p["jobs"])
         self.assertNotIn("sport24", p["jobs"])
-        self.assertEqual(p["jobs"]["rotana"]["needs"], "alkass")
+        self.assertNotIn("rotana", p["jobs"])
+        self.assertNotIn("alkass", p["jobs"])
+        self.assertNotIn("tabie", p["jobs"])
+        self.assertNotIn("tunisiatv", p["jobs"])
+        self.assertEqual(p["jobs"]["finalize"]["needs"], "elcinema_extend")
         self.assertNotIn("dubaiplus", p["jobs"])
         self.assertNotIn("aljazeera", p["jobs"])
         self.assertNotIn("starzplay", p["jobs"])
         self.assertNotIn("stctv", p["jobs"])
-        self.assertEqual(p["jobs"]["alkass"]["needs"], "tunisiatv")
-        self.assertIsNone(p["jobs"]["tunisiatv"].get("needs"))
+        self.assertEqual(p["jobs"]["elcinema_extend"]["uses"], "./.github/workflows/elcinema-daily-donors.yml")
+        self.assertIsNone(p["jobs"]["elcinema_extend"].get("needs"))
         self.assertIn("epg-daily-chain", p["concurrency"]["group"])
 
     def test_1415_watchdog_is_not_full_chain_retry(self):
@@ -79,14 +83,32 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertNotIn("dubaiplus", chain["jobs"])
         self.assertNotIn("aljazeera", chain["jobs"])
         self.assertNotIn("starzplay", chain["jobs"])
-        self.assertIsNone(chain["jobs"]["tunisiatv"].get("needs"))
+        self.assertNotIn("tunisiatv", chain["jobs"])
+        self.assertEqual(set(chain["jobs"]), {"elcinema_extend","finalize"})
+
+    def test_four_remaining_sources_daily_once_and_manual_preserved(self):
+        slots = (("tabie","30 0 * * *"),("rotana","50 3 * * *"),
+                 ("alkass","30 6 * * *"),("tunisiatv","35 6 * * *"))
+        for source,cron in slots:
+            with self.subTest(source=source):
+                p=load(f"refresh-{source}.yml")
+                self.assertEqual(p["on"]["schedule"], [
+                    {"cron":cron,"timezone":"Etc/GMT"}])
+                self.assertIn("workflow_dispatch",p["on"])
+                self.assertNotIn("push",p["on"])
+                self.assertEqual(p["jobs"]["refresh"]["with"], {
+                    "source":source,"scheduled":"false"})
+                self.assertNotIn(source,load("daily-epg-chain.yml")["jobs"])
+        self.assertNotIn("30 19 * * *",
+                         (WF/"epg-evening-casablanca.yml").read_text().split("  workflow_dispatch:")[0])
 
     def test_all_known_scheduled_workflows_are_fixed_gmt_zero(self):
         names = ("refresh-elcinema.yml", "refresh-osn.yml",
                  "refresh-bein.yml", "refresh-sport24.yml",
                  "refresh-shahid.yml", "refresh-dubaiplus.yml",
                  "refresh-aljazeera.yml", "refresh-starzplay.yml",
-                 "refresh-stctv.yml",
+                 "refresh-stctv.yml", "refresh-alkass.yml",
+                 "refresh-tunisiatv.yml", "refresh-rotana.yml", "refresh-tabie.yml",
                  "daily-epg-chain.yml", "epg-watchdog.yml",
                  "epg-evening-casablanca.yml")
         for name in names:
@@ -99,7 +121,6 @@ class TestScheduledWorkflows(unittest.TestCase):
     def test_evening_sports_and_morocco_are_independent(self):
         p = load("epg-evening-casablanca.yml")
         self.assertEqual(p["on"]["schedule"], [
-            {"cron": "30 19 * * *", "timezone": "Etc/GMT"},
             {"cron": "30 20 * * *", "timezone": "Etc/GMT"},
         ])
         self.assertEqual(p["jobs"]["sports"]["strategy"]["matrix"]["source"],
