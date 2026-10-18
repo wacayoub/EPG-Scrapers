@@ -99,17 +99,9 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  bein:
-    needs: sport24
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: bein
-      scheduled: false
-    secrets: inherit
-
+  # beIN is scheduled independently at 02:22; no duplicate chain scrape.
   rotana:
-    needs: bein
+    needs: sport24
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:

@@ -83,6 +83,16 @@ class TestAdaptiveSchedule(unittest.TestCase):
             self.assertNotIn("elcinema", policy.plan(td, self.now)["targets"])
             self.assertEqual(policy.plan(td, self.now)["targets"], [])
 
+    def test_bein_stale_or_rejected_never_gets_second_15h_scrape(self):
+        with tempfile.TemporaryDirectory() as td:
+            for name in policy.TARGETS:
+                source(td, name, "2026-10-15T12:00:00Z")
+            # Missing/stale/rejected beIN is not eligible for the 15h retry.
+            self.assertEqual(policy.plan(td, self.now)["targets"], [])
+            source(td, "bein", "2026-10-14T12:00:00Z", decision="KEEP_LKG")
+            self.assertNotIn("bein", policy.plan(td, self.now)["targets"])
+            self.assertEqual(policy.plan(td, self.now)["targets"], [])
+
     def test_casablanca_summer_and_ramadan_clock_boundaries(self):
         # Do not hardcode UTC+1. Runner tzdata may receive rule changes
         # from IANA while Morocco also suspends DST during Ramadan.
@@ -92,9 +102,9 @@ class TestAdaptiveSchedule(unittest.TestCase):
             self.assertEqual(policy.local_date(stamp), expected)
         self.assertIsNone(policy.local_date("bad timestamp"))
 
-    def test_only_four_explicit_retry_sources(self):
-        self.assertEqual(policy.TARGETS, ("osn", "bein", "shahid"))
-        self.assertLessEqual(policy.MAX_RETRIES, 3)
+    def test_only_two_explicit_retry_sources(self):
+        self.assertEqual(policy.TARGETS, ("osn", "shahid"))
+        self.assertLessEqual(policy.MAX_RETRIES, 2)
 
 
 if __name__ == "__main__":

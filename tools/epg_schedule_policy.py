@@ -15,11 +15,11 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 CASABLANCA = ZoneInfo("Africa/Casablanca")
-# ElCinema has its sole automatic scraper at 01:20 Casablanca.
-# The 15:00 retry must NEVER request a second ElCinema scrape.
-TARGETS = ("osn", "bein", "shahid")
+# ElCinema runs at 01:20 and beIN at 02:22 Casablanca daily.
+# The 15:00 retry must NEVER duplicate either automatic scrape.
+TARGETS = ("osn", "shahid")
 MIN_ON_AIR_AT_PUBLICATION = 0.60
-MAX_RETRIES = 3
+MAX_RETRIES = 2
 
 
 def local_date(value):

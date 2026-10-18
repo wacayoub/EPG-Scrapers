@@ -73,7 +73,7 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  # Only OSN, beIN and Shahid may be retried at 15:00.
+  # Only OSN and Shahid may be retried at 15:00.
   # ElCinema donor additions are handled by the daily chain, not a second time.
   finalize:
     needs: [decide, retry]
