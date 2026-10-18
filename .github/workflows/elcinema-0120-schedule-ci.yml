@@ -46,7 +46,9 @@ jobs:
           ]
           assert 'elcinema' not in chain['jobs'], '07:15 should not run a second ElCinema scraper'
           assert chain['jobs']['aljazeera'].get('needs') is None
-          for job in ['osn','dubaiplus','starzplay','tunisiatv','stctv',
+          assert 'osn' not in chain['jobs']
+          assert chain['jobs']['dubaiplus']['needs']=='aljazeera'
+          for job in ['dubaiplus','starzplay','tunisiatv','stctv',
                       'alkass','shahid','sport24','rotana','morocco',
                       'tabie','elcinema_extend','finalize']:
               assert job in chain['jobs'],job
