@@ -1,11 +1,11 @@
 name: EPG 48h - TunisiaTV
 
 on:
+  # Only automatic source scrape: fixed GMT+0, independent of Morocco DST.
+  schedule:
+    - cron: "35 6 * * *"
+      timezone: "Etc/GMT"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "config/tunisiatv-refresh-trigger.txt"
 
 permissions:
   contents: write
