@@ -60,8 +60,8 @@ jobs:
           assert 'workflow_dispatch' in bein['on']
           assert 'push' not in bein['on']
           assert 'bein' not in chain['jobs']
-          assert chain['jobs']['rotana']['needs']=='alkass'
-          assert 'morocco' in chain['jobs'] and 'shahid' not in chain['jobs']
+          assert set(chain['jobs'])=={'elcinema_extend','finalize'}
+          assert 'morocco' not in chain['jobs'] and 'shahid' not in chain['jobs']
           assert eve['jobs']['sports']['strategy']['matrix']['source']==['alkass']
           assert 'bein' not in policy.TARGETS
           assert policy.TARGETS==('shahid',)

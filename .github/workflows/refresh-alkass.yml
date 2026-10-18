@@ -1,11 +1,11 @@
 name: EPG 48h - Al Kass
 
 on:
+  # Only automatic source scrape: fixed GMT+0, independent of Morocco DST.
+  schedule:
+    - cron: "30 6 * * *"
+      timezone: "Etc/GMT"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "config/alkass-refresh-trigger.txt"
 
 permissions:
   contents: write

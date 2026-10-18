@@ -52,17 +52,9 @@ jobs:
           assert play["jobs"]["refresh"]["with"]=={"source":"starzplay","scheduled":"false"}
           assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
           assert "starzplay" not in chain["jobs"]
-          assert chain["jobs"]["tunisiatv"].get("needs") is None
-          assert "stctv" not in chain["jobs"]
-          assert chain["jobs"]["alkass"]["needs"]=="tunisiatv"
-          assert chain["jobs"]["rotana"]["needs"]=="alkass"
-          assert chain["jobs"]["morocco"]["needs"]=="rotana"
-          assert chain["jobs"]["tabie"]["needs"]=="morocco"
-          assert chain["jobs"]["elcinema_extend"]["needs"]=="tabie"
+          assert chain["jobs"]["elcinema_extend"].get("needs") is None
           assert chain["jobs"]["finalize"]["needs"]=="elcinema_extend"
-          assert set(chain["jobs"])=={
-             "tunisiatv","alkass","rotana","morocco",
-             "tabie","elcinema_extend","finalize"}
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
           for name,cron in [
               ("refresh-elcinema.yml","20 1 * * *"),
               ("refresh-osn.yml","40 1 * * *"),

@@ -51,9 +51,13 @@ jobs:
               "refresh-aljazeera.yml":["12 4 * * *"],
               "refresh-starzplay.yml":["12 5 * * *"],
               "refresh-stctv.yml":["55 5 * * *"],
+              "refresh-alkass.yml":["30 6 * * *"],
+              "refresh-tunisiatv.yml":["35 6 * * *"],
+              "refresh-rotana.yml":["50 3 * * *"],
+              "refresh-tabie.yml":["30 0 * * *"],
               "daily-epg-chain.yml":["15 7 * * *"],
               "epg-watchdog.yml":["15 14 * * *"],
-              "epg-evening-casablanca.yml":["30 19 * * *","30 20 * * *"],
+              "epg-evening-casablanca.yml":["30 20 * * *"],
           }
           actual={}
           for path in sorted(W.glob("*.yml")):
@@ -69,9 +73,9 @@ jobs:
           assert actual==expected,("Unexpected/duplicate/unconverted GMT+0 schedules",actual,expected)
           chain=load("daily-epg-chain.yml")
           assert "starzplay" not in chain["jobs"]
-          assert chain["jobs"]["tunisiatv"].get("needs") is None
-          assert chain["jobs"]["alkass"]["needs"]=="tunisiatv"
-          for duplicate in ("elcinema","osn","bein","sport24","shahid","dubaiplus","aljazeera","starzplay","stctv"):
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
+          assert chain["jobs"]["finalize"]["needs"]=="elcinema_extend"
+          for duplicate in ("elcinema","osn","bein","sport24","shahid","dubaiplus","aljazeera","starzplay","stctv","alkass","tunisiatv","rotana","tabie"):
               assert duplicate not in chain["jobs"], duplicate
           dubai=load("refresh-dubaiplus.yml")
           assert "workflow_dispatch" in dubai["on"] and "push" not in dubai["on"]

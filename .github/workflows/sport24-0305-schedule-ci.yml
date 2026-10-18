@@ -59,11 +59,10 @@ jobs:
           assert sport["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
           assert sport["jobs"]["refresh"]["with"]=={"source":"sport24","scheduled":"false"}
           assert "sport24" not in chain["jobs"]
-          assert chain["jobs"]["rotana"]["needs"]=="alkass"
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
           assert chain["on"]["schedule"]==[
               {"cron":"15 7 * * *","timezone":"Etc/GMT"}]
           assert evening["on"]["schedule"]==[
-              {"cron":"30 19 * * *","timezone":"Etc/GMT"},
               {"cron":"30 20 * * *","timezone":"Etc/GMT"}]
           assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
           assert "matrix.source" in str(evening["jobs"]["sports"]["with"]["source"]),repr(evening["jobs"]["sports"]["with"]["source"])

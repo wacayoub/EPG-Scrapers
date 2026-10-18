@@ -68,7 +68,7 @@ jobs:
               {"cron":"15 7 * * *","timezone":"Etc/GMT"}]
           assert "shahid" not in chain["jobs"]
           assert "sport24" not in chain["jobs"]
-          assert chain["jobs"]["rotana"]["needs"]=="alkass"
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
           assert "osn" not in chain["jobs"] and "elcinema" not in chain["jobs"]
           assert "bein" not in chain["jobs"]
           assert "schedule" not in retry["on"], "15h scheduled Shahid retry must be disabled"
