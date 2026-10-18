@@ -111,7 +111,7 @@ def source_data(name):
             start, stop = parse_dt(p.get("start")), parse_dt(p.get("stop"))
             if (start is not None and stop is not None and
                 start < horizon and stop > now and stop > start and
-                any((t.text or "").strip() for t in p.findall("title")):
+                any((t.text or "").strip() for t in p.findall("title"))):
                 legitimate.add((p.get("channel") or "").strip())
         channels = {cid: ch for cid,ch in channels.items()
                     if cid in legitimate}
