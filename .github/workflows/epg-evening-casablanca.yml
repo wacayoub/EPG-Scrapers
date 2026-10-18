@@ -3,9 +3,9 @@ name: EPG evening sports and Morocco - Casablanca
 on:
   schedule:
     - cron: "30 19 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
     - cron: "30 20 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
     inputs:
       group:
@@ -38,7 +38,7 @@ jobs:
           DISPATCH_GROUP: ${{ inputs.group }}
         run: |
           set -euo pipefail
-          local_hour="$(TZ=Africa/Casablanca date +%H)"
+          local_hour="$(TZ=Etc/GMT date +%H)"
           group=""
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
             case "$DISPATCH_GROUP" in
