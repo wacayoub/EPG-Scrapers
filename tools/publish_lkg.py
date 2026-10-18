@@ -58,7 +58,7 @@ POLICY = {
     # not a catastrophic regression from the historical 144-channel LKG.
     "stctv":     {"min_channels": 3, "min_programmes": 20, "min_future_ratio": 1.00, "min_horizon_hours": 8},
 }
-DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
+DT_RE = re.compile(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?$")
 
 
 def parse_dt(value: str | None):
