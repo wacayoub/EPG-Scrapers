@@ -69,6 +69,66 @@ def is_ar(text: str) -> bool:
     return bool(AR.search(text or ""))
 
 
+def starzplay_provider_id(node: ET.Element | None) -> str:
+    """Actual immutable STARZPLAY provider channel ID from XMLTV metadata."""
+    if node is None:
+        return ""
+    return next(((link.text or "").strip() for link in node.findall("url")
+                 if link.get("system") == "starzplay-id" and (link.text or "").strip()), "")
+
+
+def english_display_names(channels: dict[str, ET.Element],
+                          en_channels: dict[str, ET.Element]) -> dict:
+    """Replace *display-name* only; never alter XMLTV channel/programme IDs.
+
+    The independent AR/EN catalogue builders sometimes assign different
+    canonical XMLTV IDs to the SAME STARZPLAY numeric channel ID. Join by the
+    provider ID only if it is unique on each side, never by fuzzy text.
+    """
+    by_provider = {}
+    ambiguous = set()
+    for en in en_channels.values():
+        provider = starzplay_provider_id(en)
+        if not provider:
+            continue
+        if provider in by_provider:
+            ambiguous.add(provider)
+        else:
+            by_provider[provider] = en
+
+    ar_providers = [starzplay_provider_id(ch) for ch in channels.values()]
+    ar_duplicates = {provider for provider in ar_providers
+                     if provider and ar_providers.count(provider) > 1}
+    stats = {"applied": 0, "missing": 0, "by_provider_id": 0,
+             "missing_ids": [], "by_provider_id_ids": [],
+             "ambiguous_provider_ids": sorted(ambiguous | ar_duplicates)}
+    for cid, node in channels.items():
+        provider = starzplay_provider_id(node)
+        chosen = en_channels.get(cid)
+        if (chosen is not None and provider and starzplay_provider_id(chosen)
+                and provider != starzplay_provider_id(chosen)):
+            chosen = None
+        matched_by_provider = False
+        if chosen is None and provider and provider not in ambiguous | ar_duplicates:
+            chosen = by_provider.get(provider)
+            matched_by_provider = chosen is not None
+        # IMPORTANT: do not accept channel_name()'s fallback to XMLTV ID,
+        # and do not mark Arabic text from an "en" source as an English label.
+        official = text_of(chosen, "display-name") if chosen is not None else ""
+        if official and not is_ar(official):
+            for old in list(node.findall("display-name")):
+                node.remove(old)
+            ET.SubElement(node, "display-name", {"lang": "en"}).text = official
+            stats["applied"] += 1
+            if matched_by_provider:
+                stats["by_provider_id"] += 1
+                stats["by_provider_id_ids"].append(cid)
+        else:
+            stats["missing"] += 1
+            stats["missing_ids"].append(cid)
+    return stats
+
+
 def translate_ar(text: str, cache: dict[str, str]) -> str:
     raw = (text or "").strip()
     if not raw or is_ar(raw):
@@ -141,26 +201,16 @@ def main() -> int:
     force_arabic_content_ids = set(policy.get("force_arabic_content_ids", []))
     translation_cache: dict[str, str] = {}
 
-    # IDs stay stable for existing EPGManager mappings. Only the human-readable
-    # channel label is switched to the English STARZPLAY catalogue. The one
-    # explicit exception is National Geographic Abu Dhabi, which stays 100% AR.
-    english_channel_names_applied = 0
-    english_channel_names_missing = 0
-    for cid, node in channels.items():
-        if cid in arabic_display_name_ids:
-            ensure_lang(node, "display-name", "ar")
-            continue
-        en_node = en_channels.get(cid)
-        en_name = channel_name(en_node)
-        if en_node is not None and en_name:
-            for old in list(node.findall("display-name")):
-                node.remove(old)
-            dn = ET.Element("display-name", {"lang": "en"})
-            dn.text = en_name
-            node.insert(0, dn)
-            english_channel_names_applied += 1
-        else:
-            english_channel_names_missing += 1
+    # Display names should be English for ALL channels. NatGeo Abu Dhabi's
+    # 100% Arabic rule applies to PROGRAMME metadata only, not channel labels.
+    # Keep the provider's original Arabic display text for legacy profile
+    # classification on the eight channels previously unlinked in the EN feed:
+    # this request must not change actual programme titles/descriptions.
+    previous_ar_names = {cid: channel_name(node) for cid, node in channels.items()}
+    name_result = english_display_names(channels, en_channels)
+    english_channel_names_applied = name_result["applied"]
+    english_channel_names_missing = name_result["missing"]
+    official_name_by_provider_ids = set(name_result["by_provider_id_ids"])
     ar_tokens = [norm(x) for x in policy.get("arabic_native_name_tokens", [])]
     hy_tokens = [norm(x) for x in policy.get("hybrid_name_tokens", [])]
     default_profile = policy.get("default_profile", "arabic_native")
@@ -174,7 +224,8 @@ def main() -> int:
         # display-name. The English page is the reliable signal for international
         # channel brands such as National Geographic, CNN, Cartoon Network, Zee
         # and STARZPLAY thematic channels.
-        name_ar = norm(channel_name(channels.get(cid)))
+        name_ar = norm(previous_ar_names[cid] if cid in official_name_by_provider_ids
+                       else channel_name(channels.get(cid)))
         name_en = norm(channel_name(en_channels.get(cid)))
         names = " | ".join(x for x in (name_ar, name_en) if x)
         if any(tok and tok in names for tok in ar_tokens):
@@ -208,6 +259,10 @@ def main() -> int:
         "arabic_description_missing": 0,
         "english_channel_names_applied": english_channel_names_applied,
         "english_channel_names_missing": english_channel_names_missing,
+        "english_channel_names_linked_by_provider_id": name_result["by_provider_id"],
+        "english_channel_names_linked_by_provider_ids": name_result["by_provider_id_ids"],
+        "english_channel_names_unresolved_ids": name_result["missing_ids"],
+        "english_channel_names_ambiguous_provider_ids": name_result["ambiguous_provider_ids"],
         "arabic_display_name_ids": sorted(arabic_display_name_ids),
         "force_arabic_content_ids": sorted(force_arabic_content_ids),
         "translations_cached": 0,
