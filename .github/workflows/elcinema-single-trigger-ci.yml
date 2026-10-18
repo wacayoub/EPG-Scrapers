@@ -48,7 +48,8 @@ jobs:
           assert seq['jobs']['aljazeera'].get('needs') is None
           assert 'schedule' not in retry['on']
           assert 'workflow_dispatch' in retry['on']
-          assert seq['jobs']['sport24']['needs']=='alkass'
+          assert 'sport24' not in seq['jobs']
+          assert seq['jobs']['rotana']['needs']=='alkass'
           assert 'elcinema_extend' not in retry['jobs']
           assert retry['jobs']['finalize']['needs']==['decide','retry']
           assert 'schedule' not in manual['on']
