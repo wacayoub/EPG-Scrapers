@@ -118,8 +118,21 @@ def audited_donor(feed_dir, source, channel, now):
             iv = valid_window(p, now)
             if iv:
                 rows.append((iv[0], iv[1], p))
-        return sorted(rows, key=lambda x: (x[0], x[1])), (
-            "DONOR_VERIFIED" if rows else "DONOR_NO_VALID_FUTURE")
+        rows.sort(key=lambda x: (x[0], x[1]))
+        # Require the *actual hashed XML*, not merely a reported PASS, to
+        # provide at least 12h continuous future EPG (<=90min gaps).
+        cursor = now
+        for start, end, _ in rows:
+            if end <= cursor:
+                continue
+            if start - cursor > timedelta(minutes=90):
+                return [], "DONOR_REAL_XML_LARGE_GAP"
+            cursor = max(cursor, end)
+            if cursor >= now + timedelta(hours=12):
+                break
+        if cursor < now + timedelta(hours=12):
+            return [], "DONOR_REAL_XML_SHORT_HORIZON"
+        return rows, "DONOR_VERIFIED"
     except (OSError, ValueError, TypeError, KeyError, EOFError, ET.ParseError, gzip.BadGzipFile):
         return [], "DONOR_UNAVAILABLE_OR_INVALID"
 
@@ -158,8 +171,6 @@ def extend(root, feed_dir, now):
             report["channels"].append(item)
             continue
         occupied = list(primary)
-        seen = {(start, end, (p.findtext("title") or "").strip().casefold())
-                for start, end, p in authentic}
         for start, end, p in authentic:
             # Only fill holes: never replace/overlap a Sport24 programme or
             # another donor row. No guessed clipping or fabricated coverage.
