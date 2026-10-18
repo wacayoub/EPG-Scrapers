@@ -244,7 +244,12 @@ def parse_graphql_schedule(payload: object, default_day: date) -> list[dict]:
                         stamp = int(raw_stamp)
                         if stamp > 10_000_000_000:
                             stamp //= 1000
-                        day = datetime.fromtimestamp(stamp, tz=timezone.utc).astimezone(DOHA).date()
+                        # showTimeslot from this official GraphQL operation
+                        # is UTC (not Doha local). Decode startDate to the
+                        # SAME clock before combining the UTC time-of-day:
+                        # converting the date to Doha first can shift late
+                        # 23:xx UTC shows onto the wrong broadcast day.
+                        day = datetime.fromtimestamp(stamp, tz=timezone.utc).date()
                     except (OverflowError, OSError, ValueError):
                         pass
                 hh, mm = map(int, clock.split(":"))
@@ -367,13 +372,13 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
         except Exception as exc:
             report["error"] = f"live:{exc}"
 
-        if not candidates:
-            suffixes = []
-            if "Mubasher" in spec.display_name:
-                suffixes = ["/schedule-ajm", "/schedule-mubasher"]
-            elif "Documentary" in spec.display_name:
-                suffixes = ["/schedule-ajd", "/schedule-documentary"]
-            candidates.extend(urljoin(BASE, s) for s in suffixes)
+        # Mubasher and Documentary expose official LIVE pages, but those
+        # pages currently carry no schedule link or supported GraphQL
+        # profile. Do NOT probe guessed /schedule-ajm or /schedule-ajd
+        # endpoints (which return 404), and especially do not turn live
+        # broadcast metadata into fabricated programme times.
+        if not candidates and spec.xmltv_id not in GRAPHQL_PROFILES:
+            report["guide_status"] = "NO_VERIFIED_OFFICIAL_SCHEDULE_ENDPOINT"
 
         all_rows: list[dict] = []
         graph_rows: list[dict] = []
@@ -437,8 +442,17 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
 
         kept.sort(key=lambda x: x["start"])
         for idx, row in enumerate(kept):
+            # The GraphQL API supplies a real duration. The previous code
+            # overwrote it with the NEXT start unconditionally, producing
+            # false programmes that lasted many hours, and hiding gaps.
+            # Only clamp a documented broadcast overlap; never extend.
             if idx + 1 < len(kept) and kept[idx + 1]["start"] > row["start"]:
-                row["stop"] = kept[idx + 1]["start"]
+                if row["stop"] > kept[idx + 1]["start"]:
+                    row["stop"] = kept[idx + 1]["start"]
+            if row["stop"] <= row["start"]:
+                report["invalid_interval_rejected"] = (
+                    report.get("invalid_interval_rejected", 0) + 1)
+                continue
             p = ET.SubElement(root, "programme", {
                 "channel": spec.xmltv_id,
                 "start": fmt_utc(row["start"]),
@@ -448,12 +462,16 @@ def build_source(hours: int, timeout: int) -> tuple[ET.Element, dict]:
             ET.SubElement(p, "title", {"lang": language}).text = row["title"]
             if row.get("desc"):
                 ET.SubElement(p, "desc", {"lang": language}).text = row["desc"]
-        report["programmes"] = len(kept)
-        if kept:
+        accepted = [p for p in root.findall("programme")
+                    if p.get("channel") == spec.xmltv_id]
+        report["programmes"] = len(accepted)
+        if accepted:
             stats["active_channels"] += 1
-            stats["programmes"] += len(kept)
+            stats["programmes"] += len(accepted)
             report["first_start_utc"] = kept[0]["start"].astimezone(timezone.utc).isoformat()
-            report["last_stop_utc"] = kept[-1]["stop"].astimezone(timezone.utc).isoformat()
+            report["last_stop_utc"] = max(
+                row["stop"] for row in kept if row["stop"] > row["start"]
+            ).astimezone(timezone.utc).isoformat()
 
     stats["zero_epg_ids"] = [
         cid for cid, row in stats["channel_reports"].items() if not row["programmes"]
