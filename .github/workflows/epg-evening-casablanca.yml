@@ -1,14 +1,13 @@
-name: EPG evening sports and Morocco - Casablanca
+name: EPG on-demand individual Morocco or AlKass refresh
 
+# The only AUTOMATIC Morocco source refresh is refresh-morocco.yml
+# at 07:07 fixed GMT+0; AlKass is at 06:30 fixed GMT+0.
+# This workflow is an explicitly manual exception, never a second cron.
 on:
-  # Morocco only 20:30 GMT+0; AlKass sole 06:30 GMT+0 is elsewhere.
-  schedule:
-    - cron: "30 20 * * *"
-      timezone: "Etc/GMT"
   workflow_dispatch:
     inputs:
       group:
-        description: "Refresh just this source group"
+        description: "Manually refresh just this source group"
         type: choice
         required: true
         options:
@@ -29,35 +28,19 @@ jobs:
     outputs:
       group: ${{ steps.select.outputs.group }}
     steps:
-      - name: Select the source group; refuse a delayed overnight duplicate
+      - name: Select explicit manual source group
         id: select
         shell: bash
         env:
-          SCHEDULE_EVENT: ${{ github.event.schedule }}
           DISPATCH_GROUP: ${{ inputs.group }}
         run: |
           set -euo pipefail
-          local_hour="$(TZ=Etc/GMT date +%H)"
-          group=""
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
-            case "$DISPATCH_GROUP" in
-              sports|morocco) group="$DISPATCH_GROUP" ;;
-              *) echo "Invalid group"; exit 2 ;;
-            esac
-          elif [ "$local_hour" -ge 18 ] && [ "$local_hour" -le 23 ]; then
-            case "$SCHEDULE_EVENT" in
-              "30 19 * * *") echo "Old 19:30 AlKass schedule disabled"; exit 2 ;;
-              "30 20 * * *") group="morocco" ;;
-              *) echo "Unexpected schedule event"; exit 2 ;;
-            esac
-          else
-            echo "Local evening window missed: hour=$local_hour, skip overnight duplicate"
-          fi
+          case "$DISPATCH_GROUP" in
+            sports|morocco) group="$DISPATCH_GROUP" ;;
+            *) echo "Invalid manual group"; exit 2 ;;
+          esac
           echo "group=$group" >> "$GITHUB_OUTPUT"
-          echo "CASABLANCA_EVENING_GROUP=$group"
 
-  # Sports remains MANUAL only via workflow_dispatch group=sports.
-  # AlKass has its sole automatic source scrape 06:30 GMT+0.
   sports:
     needs: route
     if: needs.route.outputs.group == 'sports'
