@@ -38,7 +38,7 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install PyYAML
         run: python -m pip install --disable-pip-version-check pyyaml
-      - name: Regression suite: shared Casablanca schedule and safe manual retry policy
+      - name: "Regression suite: shared GMT+0 schedule and safe manual retry policy"
         run: python -m unittest tools.test_epg_schedule_policy tools.test_epg_casablanca_workflows -v
       - name: Verify single daily Shahid at 03:39, no 07:15 or 15:00 duplicate
         run: |
