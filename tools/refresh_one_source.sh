@@ -258,6 +258,19 @@ PY
   rotana)
     python tools/rotana_source.py --output output/source-build/rotana.raw.xml --report reports/rotana-scrape.json --window-hours "$HOURS" || true
     [ -s output/source-build/rotana.raw.xml ] || empty_xml output/source-build/rotana.raw.xml
+    # Only when the official Rotana programme list is empty for a matching
+    # channel: borrow authentic STC programme rows if that exact STC ID is
+    # SHA-pinned, recent, content VERIFIED, and has a confirmed identity.
+    # Rotana's seven genuine guides always win; Clip may remain empty when
+    # its STC counterpart only contains repeating generic live programming.
+    if python tools/rotana_verified_stc_fallback.py \
+        --input output/source-build/rotana.raw.xml \
+        --output output/source-build/rotana.verified.raw.xml \
+        --feed-dir feeds \
+        --report reports/rotana-stc-fallback.json; then
+      [ -s output/source-build/rotana.verified.raw.xml ] && \
+          mv output/source-build/rotana.verified.raw.xml output/source-build/rotana.raw.xml
+    fi
     pack_source rotana output/source-build/rotana.raw.xml "" || true
     ;;
 
