@@ -59,7 +59,7 @@ jobs:
               d = yaml.load(p.read_text(), Loader=yaml.BaseLoader)
               assert "on" in d and "jobs" in d and d["on"]["schedule"]
               for item in d["on"]["schedule"]:
-                  assert item["timezone"] == "Africa/Casablanca"
+                  assert item["timezone"] == "Etc/GMT"
               print(name, "SCHEDULE_VALID")
           retry = yaml.load(Path(".github/workflows/epg-casablanca-targeted-retry.yml").read_text(), Loader=yaml.BaseLoader)
           assert "schedule" not in retry["on"]
