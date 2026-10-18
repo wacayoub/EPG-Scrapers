@@ -54,17 +54,17 @@ jobs:
           watchdog=load("epg-watchdog.yml")
           donors=load("elcinema-daily-donors.yml")
           assert sport["on"]["schedule"]==[
-              {"cron":"5 3 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"5 3 * * *","timezone":"Etc/GMT"}]
           assert "workflow_dispatch" in sport["on"] and "push" not in sport["on"]
           assert sport["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
           assert sport["jobs"]["refresh"]["with"]=={"source":"sport24","scheduled":"false"}
           assert "sport24" not in chain["jobs"]
           assert chain["jobs"]["rotana"]["needs"]=="alkass"
           assert chain["on"]["schedule"]==[
-              {"cron":"15 7 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"15 7 * * *","timezone":"Etc/GMT"}]
           assert evening["on"]["schedule"]==[
-              {"cron":"30 19 * * *","timezone":"Africa/Casablanca"},
-              {"cron":"30 20 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"30 19 * * *","timezone":"Etc/GMT"},
+              {"cron":"30 20 * * *","timezone":"Etc/GMT"}]
           assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
           assert "matrix.source" in str(evening["jobs"]["sports"]["with"]["source"]),repr(evening["jobs"]["sports"]["with"]["source"])
           assert evening["jobs"]["morocco"]["with"]["source"]=="morocco"
@@ -74,15 +74,15 @@ jobs:
              ("elcinema-daily-donors.yml",donors),("refresh-source-core.yml",core)]:
              assert "schedule" not in obj["on"],name
           assert watchdog["on"]["schedule"]==[
-              {"cron":"15 14 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"15 14 * * *","timezone":"Etc/GMT"}]
           assert load("refresh-elcinema.yml")["on"]["schedule"]==[
-              {"cron":"20 1 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"20 1 * * *","timezone":"Etc/GMT"}]
           assert load("refresh-osn.yml")["on"]["schedule"]==[
-              {"cron":"40 1 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"40 1 * * *","timezone":"Etc/GMT"}]
           assert load("refresh-bein.yml")["on"]["schedule"]==[
-              {"cron":"22 2 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"22 2 * * *","timezone":"Etc/GMT"}]
           assert load("refresh-shahid.yml")["on"]["schedule"]==[
-              {"cron":"39 3 * * *","timezone":"Africa/Casablanca"}]
+              {"cron":"39 3 * * *","timezone":"Etc/GMT"}]
           for name,obj in [
               ("daily-epg-chain.yml",chain),
               ("epg-evening-casablanca.yml",evening),
@@ -92,7 +92,7 @@ jobs:
                   assert (job.get("with") or {}).get("source")!="sport24",name
                   sources=(((job.get("strategy") or {}).get("matrix") or {}).get("source") or [])
                   assert "sport24" not in sources,name
-          tz=ZoneInfo("Africa/Casablanca")
+          tz=ZoneInfo("Etc/GMT")
           for date in [(2026,10,19),(2026,12,1),(2027,2,18),(2027,4,18)]:
               local=datetime(*date,3,5,tzinfo=tz)
               rt=local.astimezone(timezone.utc).astimezone(tz)

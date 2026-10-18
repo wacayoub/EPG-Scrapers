@@ -4,7 +4,7 @@ on:
   # Sole scheduled OSN scraper: 01:40 local Casablanca, DST/Ramadan aware.
   schedule:
     - cron: "40 1 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
 
 permissions:

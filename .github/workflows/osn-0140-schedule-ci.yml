@@ -61,16 +61,17 @@ jobs:
           legacy=read('daily-epg.yml')
           donors=read('elcinema-daily-donors.yml')
           assert osn['on']['schedule']==[
-              {'cron':'40 1 * * *', 'timezone':'Africa/Casablanca'}]
+              {'cron':'40 1 * * *', 'timezone':'Etc/GMT'}]
           assert 'workflow_dispatch' in osn['on']
           assert 'push' not in osn['on'], 'Remove former extra OSN push trigger'
           assert osn['jobs']['refresh']['uses']=='./.github/workflows/refresh-source-core.yml'
           assert osn['jobs']['refresh']['with']=={'source':'osn','scheduled':'false'}
           assert chain['on']['schedule']==[
-              {'cron':'15 7 * * *','timezone':'Africa/Casablanca'}]
+              {'cron':'15 7 * * *','timezone':'Etc/GMT'}]
           assert 'osn' not in chain['jobs'], 'No second 07:15 OSN scrape'
           assert chain['jobs']['aljazeera'].get('needs') is None
-          assert chain['jobs']['dubaiplus']['needs']=='aljazeera'
+          assert 'dubaiplus' not in chain['jobs']
+          assert chain['jobs']['starzplay']['needs']=='aljazeera'
           assert set(TARGETS)=={'shahid'} and MAX_RETRIES==1
           assert 'schedule' not in retry['on']
           assert 'workflow_dispatch' in retry['on']
@@ -85,10 +86,10 @@ jobs:
               assert 'schedule' not in doc['on'], name
           assert watchdog['jobs']['verify']['steps']
           assert read('refresh-elcinema.yml')['on']['schedule']==[
-              {'cron':'20 1 * * *','timezone':'Africa/Casablanca'}]
+              {'cron':'20 1 * * *','timezone':'Etc/GMT'}]
           assert read('refresh-bein.yml')['on']['schedule']==[
-              {'cron':'22 2 * * *','timezone':'Africa/Casablanca'}]
-          tz=ZoneInfo('Africa/Casablanca')
+              {'cron':'22 2 * * *','timezone':'Etc/GMT'}]
+          tz=ZoneInfo('Etc/GMT')
           for date in [(2026,10,19),(2027,2,20),(2027,4,20),(2027,7,15)]:
               local=datetime(*date,1,40,tzinfo=tz)
               roundtrip=local.astimezone(timezone.utc).astimezone(tz)

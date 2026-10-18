@@ -35,14 +35,14 @@ jobs:
           core=read('.github/workflows/refresh-source-core.yml')
 
           assert e['on']['schedule']==[
-            {'cron':'20 1 * * *','timezone':'Africa/Casablanca'}
+            {'cron':'20 1 * * *','timezone':'Etc/GMT'}
           ],e['on']
           assert 'workflow_dispatch' in e['on']
           assert 'push' not in e['on'], 'Extra unscheduled push triggers not wanted'
           assert e['jobs']['refresh']['uses']=='./.github/workflows/refresh-source-core.yml'
           assert e['jobs']['refresh']['with']=={'source':'elcinema','scheduled':'false'}
           assert chain['on']['schedule']==[
-            {'cron':'15 7 * * *','timezone':'Africa/Casablanca'}
+            {'cron':'15 7 * * *','timezone':'Etc/GMT'}
           ]
           assert 'elcinema' not in chain['jobs'], '07:15 should not run a second ElCinema scraper'
           assert chain['jobs']['aljazeera'].get('needs') is None
@@ -50,15 +50,16 @@ jobs:
           assert 'shahid' not in chain['jobs']
           assert 'sport24' not in chain['jobs']
           assert chain['jobs']['rotana']['needs']=='alkass'
-          assert chain['jobs']['dubaiplus']['needs']=='aljazeera'
-          for job in ['dubaiplus','starzplay','tunisiatv','stctv',
+          assert 'dubaiplus' not in chain['jobs']
+          assert chain['jobs']['starzplay']['needs']=='aljazeera'
+          for job in ['starzplay','tunisiatv','stctv',
                       'alkass','rotana','morocco',
                       'tabie','elcinema_extend','finalize']:
               assert job in chain['jobs'],job
           assert chain['jobs']['elcinema_extend']['needs']=='tabie'
-          assert 'Casablanca 06:00 gate' in [x['name'] for x in core['jobs']['refresh']['steps']]
+          assert 'Fixed GMT+0 06:00 gate' in [x['name'] for x in core['jobs']['refresh']['steps']]
 
-          local=ZoneInfo('Africa/Casablanca')
+          local=ZoneInfo('Etc/GMT')
           for d in [(2026,10,18),(2026,11,1),(2027,4,15)]:
               when=datetime(*d,1,20,tzinfo=local)
               utc=when.astimezone(timezone.utc)

@@ -3,7 +3,7 @@ name: EPG 48h - Daily sequential chain
 on:
   schedule:
     - cron: "15 7 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
   push:
     branches: [main]
@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ElCinema runs independently at 01:20 Africa/Casablanca in
+  # ElCinema runs independently at 01:20 fixed GMT+0 in
   # refresh-elcinema.yml; don't rescrape it at 07:15 here.
   aljazeera:
     uses: ./.github/workflows/refresh-source-core.yml
@@ -27,19 +27,10 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  # OSN has its own daily 01:40 Casablanca scrape (refresh-osn.yml).
-  # Never scrape OSN a second time in the 07:15 chain.
-  dubaiplus:
-    needs: aljazeera
-    if: ${{ always() }}
-    uses: ./.github/workflows/refresh-source-core.yml
-    with:
-      source: dubaiplus
-      scheduled: false
-    secrets: inherit
-
+  # OSN has its own fixed 01:40 GMT+0; Dubai+ its own fixed 04:44 GMT+0.
+  # Neither source is rescraped in this 07:15 GMT+0 daily chain.
   starzplay:
-    needs: dubaiplus
+    needs: aljazeera
     if: ${{ always() }}
     uses: ./.github/workflows/refresh-source-core.yml
     with:
@@ -74,7 +65,7 @@ jobs:
       scheduled: false
     secrets: inherit
 
-  # Sport24 03:05 and Shahid/MBC 03:39 run independently.
+  # Sport24 03:05 and Shahid/MBC 03:39 fixed GMT+0 run independently.
   # Do not rescrape either in this 07:15 chain.
   # beIN is scheduled independently at 02:22.
   rotana:

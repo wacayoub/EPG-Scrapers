@@ -40,7 +40,7 @@ jobs:
           manual=config('daily-source-refresh.yml')
           legacy=config('daily-epg.yml')
           ext=config('elcinema-daily-donors.yml')
-          assert el['on']['schedule']==[{'cron':'20 1 * * *','timezone':'Africa/Casablanca'}]
+          assert el['on']['schedule']==[{'cron':'20 1 * * *','timezone':'Etc/GMT'}]
           assert 'push' not in el['on']
           assert el['jobs']['refresh']['with']['source']=='elcinema'
           assert el['jobs']['refresh']['with']['scheduled']=='false'
@@ -61,7 +61,7 @@ jobs:
           assert not {'elcinema','osn','bein'}.intersection(TARGETS)
           assert set(TARGETS)=={'shahid'}
           print('ELCINEMA_AUTOMATIC_SCRAPES_PER_DAY: 1')
-          print('ELCINEMA_SCHEDULE: 01:20 Africa/Casablanca')
+          print('ELCINEMA_SCHEDULE: 01:20 Etc/GMT')
           print('ELCINEMA_15H_RETRY: DISABLED')
           print('ELCINEMA_07H15: donor postprocess only, no scrape')
           PY
