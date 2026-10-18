@@ -4,7 +4,7 @@ on:
   # Run at 01:20 Moroccan local wall-clock time, including future tz changes.
   schedule:
     - cron: "20 1 * * *"
-      timezone: "Africa/Casablanca"
+      timezone: "Etc/GMT"
   workflow_dispatch:
 
 permissions:
