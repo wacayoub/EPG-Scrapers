@@ -55,9 +55,9 @@ jobs:
               "refresh-tunisiatv.yml":["35 6 * * *"],
               "refresh-rotana.yml":["50 3 * * *"],
               "refresh-tabie.yml":["30 0 * * *"],
+              "refresh-morocco.yml":["7 7 * * *"],
               "daily-epg-chain.yml":["15 7 * * *"],
               "epg-watchdog.yml":["15 14 * * *"],
-              "epg-evening-casablanca.yml":["30 20 * * *"],
           }
           actual={}
           for path in sorted(W.glob("*.yml")):
@@ -83,12 +83,17 @@ jobs:
           evening=load("epg-evening-casablanca.yml")
           assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
           assert evening["jobs"]["morocco"]["with"]["source"]=="morocco"
+          assert "schedule" not in evening["on"]
+          assert "workflow_dispatch" in evening["on"]
+          morocco=load("refresh-morocco.yml")
+          assert morocco["on"]["schedule"]==[{"cron":"7 7 * * *","timezone":"Etc/GMT"}]
+          assert "workflow_dispatch" in morocco["on"] and "push" not in morocco["on"]
           assert "schedule" not in load("epg-casablanca-targeted-retry.yml")["on"]
           assert "workflow_dispatch" in load("epg-casablanca-targeted-retry.yml")["on"]
           assert "Fixed GMT+0 06:00 gate" in [
               x.get("name") for x in load("refresh-source-core.yml")["jobs"]["refresh"]["steps"]]
           assert "TZ=Etc/GMT date +%H" in (W/"refresh-source-core.yml").read_text()
-          assert "TZ=Etc/GMT date +%H" in (W/"epg-evening-casablanca.yml").read_text()
+          assert "schedule" not in evening["on"]
           tz=ZoneInfo("Etc/GMT")
           cas=ZoneInfo("Africa/Casablanca")
           for (year,month,day) in [
