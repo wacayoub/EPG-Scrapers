@@ -282,6 +282,17 @@ PY
   dubaiplus)
     python tools/dubaiplus_api_source.py --output output/source-build/dubaiplus.raw.xml --report reports/dubaiplus-scrape.json --hours "$HOURS" || true
     [ -s output/source-build/dubaiplus.raw.xml ] || empty_xml output/source-build/dubaiplus.raw.xml
+    # Do not replace Dubai+ native schedules. Only Dubai TV's real programme
+    # gaps may use an exact-identity, audited, SHA-verified OSN 48h guide.
+    # Missing authentic descriptions and the other source gaps stay visible.
+    if python tools/dubaiplus_verified_osn_gap.py \
+        --input output/source-build/dubaiplus.raw.xml \
+        --output output/source-build/dubaiplus.verified.raw.xml \
+        --feed-dir feeds \
+        --report reports/dubaiplus-osn-gaps.json; then
+      [ -s output/source-build/dubaiplus.verified.raw.xml ] && \
+          mv output/source-build/dubaiplus.verified.raw.xml output/source-build/dubaiplus.raw.xml
+    fi
     pack_source dubaiplus output/source-build/dubaiplus.raw.xml "" || true
     ;;
 
