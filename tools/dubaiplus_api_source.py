@@ -90,17 +90,46 @@ def listing_map(entry):
 def text(x):
     return str(x or "").strip()
 
+def arabic_localized(mapping):
+    """Return only authentic Arabic provider metadata, never translations.
+
+    Dubai+ may use ar, ar-AE or ar_AE locale keys. Ignore non-Arabic
+    localizations even when the API returns language=en-US.
+    """
+    if not isinstance(mapping,dict): return ""
+    for lang,value in mapping.items():
+        key=str(lang).lower().replace("_","-")
+        if key == "ar" or key.startswith("ar-"):
+            candidate=text(value)
+            if has_ar(candidate): return candidate
+    return ""
+
+
 def ar_desc(en_li, ar_li):
+    """Prefer provider's native Arabic description, including short synopsis.
+
+    Existing descriptionLocalized(ar) takes priority. Other genuine fields
+    are accepted only when they contain Arabic script; never translate an
+    English text, invent a blurb, or duplicate the programme title as desc.
+    """
     for li in (ar_li,en_li):
         if not isinstance(li,dict): continue
         p=li.get("program") or {}
-        loc=p.get("descriptionLocalized") or {}
-        if isinstance(loc,dict):
-            v=text(loc.get("ar"))
-            if has_ar(v): return v
-        for candidate in (p.get("description"), li.get("description")):
-            v=text(candidate)
-            if has_ar(v): return v
+        if not isinstance(p,dict): p={}
+        for field in ("descriptionLocalized","shortDescriptionLocalized",
+                      "longDescriptionLocalized","summaryLocalized",
+                      "synopsisLocalized"):
+            candidate=arabic_localized(p.get(field))
+            if candidate: return candidate
+        for field in ("description","shortDescription","longDescription",
+                      "summary","synopsis","overview"):
+            candidate=text(p.get(field))
+            if has_ar(candidate): return candidate
+        candidate=arabic_localized(li.get("descriptionLocalized"))
+        if candidate: return candidate
+        for field in ("description","shortDescription","summary"):
+            candidate=text(li.get(field))
+            if has_ar(candidate): return candidate
     return ""
 
 def title_en(li):
