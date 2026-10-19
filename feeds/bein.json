@@ -1,25 +1,31 @@
 {
   "label": "bein",
   "channels": 68,
-  "active_channels": 67,
-  "zero_epg_channels": 1,
+  "active_channels": 64,
+  "zero_epg_channels": 4,
   "zero_epg_ids": [
-    "AlkassEight.qa@SD"
+    "AlkassEight.qa@SD",
+    "CNNArabic.ae@SD",
+    "EuronewsEnglish.fr@SD",
+    "FoodNetworkEMEA.us@SD"
   ],
   "input_channels": 68,
-  "coverage_pct": 98.5,
-  "currently_on_air_channels": 67,
-  "current_coverage_pct": 98.5,
+  "coverage_pct": 94.1,
+  "currently_on_air_channels": 64,
+  "current_coverage_pct": 94.1,
   "currently_uncovered_ids": [
-    "AlkassEight.qa@SD"
+    "AlkassEight.qa@SD",
+    "CNNArabic.ae@SD",
+    "EuronewsEnglish.fr@SD",
+    "FoodNetworkEMEA.us@SD"
   ],
-  "programmes": 2842,
+  "programmes": 2599,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 42166,
-  "sha256": "5d37cd4ca30c564373835ead3743f3c63ce7c974bc52627dc176b56525cddc8b",
-  "generated_utc": "2026-10-18T06:06:55.041146+00:00"
+  "size_bytes": 39000,
+  "sha256": "0e7c980f4e3540d97ba6b1d2076cea136b30b422adab580b61d3d6bfef88eddb",
+  "generated_utc": "2026-10-19T07:55:02.038757+00:00"
 }
