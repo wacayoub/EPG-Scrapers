@@ -1,22 +1,21 @@
 {
   "label": "tabie",
-  "channels": 9,
-  "active_channels": 5,
-  "zero_epg_channels": 4,
-  "zero_epg_ids": [
-    "AlkassOne.qa@SD",
-    "AlRayyanAlQadeem.qa@SD",
-    "AlRayyanTV.qa@SD",
-    "QatarQuranTV.qa@SD"
-  ],
-  "input_channels": 9,
-  "coverage_pct": 55.6,
-  "programmes": 1131,
-  "rejected_invalid_time": 158,
+  "channels": 4,
+  "active_channels": 4,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
+  "input_channels": 4,
+  "coverage_pct": 100.0,
+  "currently_on_air_channels": 4,
+  "current_coverage_pct": 100.0,
+  "currently_uncovered_ids": [],
+  "programmes": 859,
+  "rejected_invalid_time": 0,
+  "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 14158,
-  "sha256": "16612f1a2698715a871cebaf17ff3919c8d6630154838d5aea4899e6e7b88acf",
-  "generated_utc": "2026-10-05T21:53:55.550352+00:00"
+  "size_bytes": 13208,
+  "sha256": "49f59bc8e33af9c9ff3575f467c73eb661ed2223f2bdfc21824435c3194307ef",
+  "generated_utc": "2026-10-19T05:03:46.225533+00:00"
 }
