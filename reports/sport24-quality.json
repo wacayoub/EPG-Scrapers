@@ -1,17 +1,16 @@
 {
   "source": "sport24",
-  "generated_utc": "2026-10-17T20:54:48.562075+00:00",
+  "generated_utc": "2026-10-19T08:40:13.488131+00:00",
   "source_file": "sport24.xml.gz",
   "channels": 9,
-  "programmes": 41,
-  "future_programmes": 28,
+  "programmes": 118,
+  "future_programmes": 107,
   "channels_with_future_epg": 7,
   "channels_without_future_epg": [
-    "sport24.thmanyah.1",
+    "sport24.thmanyah.2",
     "sport24.thmanyah.3"
   ],
   "channels_with_shorter_than_24h": [
-    "sport24.adsports.1",
     "sport24.adsports.2",
     "sport24.adsports.3",
     "sport24.adsports.4",
@@ -21,21 +20,28 @@
     "sport24.thmanyah.2",
     "sport24.thmanyah.3"
   ],
-  "channels_with_internal_gap_over_90min": {},
+  "channels_with_internal_gap_over_90min": {
+    "sport24.adsports.1": 880
+  },
   "future_programmes_without_description": 0,
   "future_programmes_with_unavailable_description": 0,
   "future_programmes_with_placeholder_or_channel_title": 0,
   "suspected_placeholder_channels": [],
   "future_programmes_by_channel": {
-    "sport24.adsports.1": 5,
-    "sport24.adsports.2": 2,
-    "sport24.adsports.3": 4,
-    "sport24.adsports.4": 7,
-    "sport24.dubaisports.1": 4,
-    "sport24.dubaisports.2": 2,
-    "sport24.thmanyah.2": 4
+    "sport24.adsports.1": 16,
+    "sport24.adsports.2": 17,
+    "sport24.adsports.3": 15,
+    "sport24.adsports.4": 18,
+    "sport24.dubaisports.1": 14,
+    "sport24.dubaisports.2": 12,
+    "sport24.thmanyah.1": 15
   },
   "suspected_repeated_title_channels": [],
+  "occasional_event_channel_ids": [],
+  "occasional_event_channels_without_future_match": [],
+  "occasional_event_channels_with_short_or_gapped_schedule": [],
+  "occasional_event_channels_with_repeated_titles": [],
+  "occasional_event_channels_are_not_continuous_tv": true,
   "invalid_dates": 0,
   "quality_status": "WARN"
 }
