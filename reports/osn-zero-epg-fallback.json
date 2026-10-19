@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-17T10:51:29.472332+00:00",
+  "generated_utc": "2026-10-19T06:52:18.784719+00:00",
   "policy": "OSN official first; local official fallback; OpenEPG; EPGShare last; never replace healthy OSN EPG",
   "before_future": {
     "CineMo.ph": 0,
@@ -15,14 +15,14 @@
     "osn.216": 0,
     "osn.217": 0,
     "osn.2501": 58,
-    "osn.9993": 45,
-    "osn.9994": 111
+    "osn.9993": 37,
+    "osn.9994": 102
   },
   "applied": {},
   "external": {
     "openepg": {
       "status": 200,
-      "bytes": 786955,
+      "bytes": 953210,
       "url": "https://www.open-epg.com/files/saudiarabia5.xml"
     }
   },
@@ -41,9 +41,53 @@
     "osn.216": 0,
     "osn.217": 0,
     "osn.2501": 58,
-    "osn.9993": 45,
-    "osn.9994": 111
+    "osn.9993": 37,
+    "osn.9994": 102
   },
+  "catalogue_id_count": 101,
+  "missing_ids_before": [
+    "ANC.ph",
+    "AlSafwa.ae@SD",
+    "AlYawm.ae@SD",
+    "AlfaSeries.ae@SD",
+    "AlfaSeriesPlus2.ae@SD",
+    "CineMo.ph",
+    "Cinema1.ae@SD",
+    "Cinema2.ae@SD",
+    "Fann.ae@SD",
+    "GMALifeTV.ph",
+    "GMANewsTV.ph",
+    "GMAPinoyTVMiddleEast.ph",
+    "MusicNow.ae@SD",
+    "MyxMiddleEast.ph",
+    "osn.213",
+    "osn.215",
+    "osn.216",
+    "osn.217",
+    "osn.220"
+  ],
+  "missing_ids_after": [
+    "ANC.ph",
+    "AlSafwa.ae@SD",
+    "AlYawm.ae@SD",
+    "AlfaSeries.ae@SD",
+    "AlfaSeriesPlus2.ae@SD",
+    "CineMo.ph",
+    "Cinema1.ae@SD",
+    "Cinema2.ae@SD",
+    "Fann.ae@SD",
+    "GMALifeTV.ph",
+    "GMANewsTV.ph",
+    "GMAPinoyTVMiddleEast.ph",
+    "MusicNow.ae@SD",
+    "MyxMiddleEast.ph",
+    "osn.213",
+    "osn.215",
+    "osn.216",
+    "osn.217",
+    "osn.220"
+  ],
+  "missing_ids_restored": [],
   "resolved": [
     "osn.2501",
     "osn.9993",
