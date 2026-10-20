@@ -1,10 +1,10 @@
 {
-  "generated_utc": "2026-10-19T05:03:46.383866+00:00",
+  "generated_utc": "2026-10-20T05:06:23.330904+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "tabie.xml.gz",
-      "generated_utc": "2026-10-19T05:03:46.383630+00:00",
+      "generated_utc": "2026-10-20T05:06:23.330689+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 24.0,
       "max_gap_minutes_warning": 180,
@@ -21,10 +21,10 @@
           "id": "QatarTelevision.qa@SD",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 15.94,
-          "latest_stop_utc": "2026-10-19T21:00:00+00:00",
+          "future_hours": 15.89,
+          "latest_stop_utc": "2026-10-20T21:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 30,
+          "programmes": 26,
           "occasional_event_channel": false,
           "verified_regular_off_air": false
         },
@@ -32,10 +32,10 @@
           "id": "QatarTelevision2.qa@SD",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 15.94,
-          "latest_stop_utc": "2026-10-19T21:00:00+00:00",
+          "future_hours": 15.89,
+          "latest_stop_utc": "2026-10-20T21:00:00+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 30,
+          "programmes": 26,
           "occasional_event_channel": false,
           "verified_regular_off_air": false
         },
@@ -43,10 +43,10 @@
           "id": "TabieKids.qa",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 15.81,
-          "latest_stop_utc": "2026-10-19T20:52:32+00:00",
+          "future_hours": 15.59,
+          "latest_stop_utc": "2026-10-20T20:41:34+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 59,
+          "programmes": 60,
           "occasional_event_channel": false,
           "verified_regular_off_air": false
         },
@@ -54,10 +54,10 @@
           "id": "TabieNow.qa",
           "status": "FAIL",
           "reason": "TOO_SHORT",
-          "future_hours": 15.9,
-          "latest_stop_utc": "2026-10-19T20:57:50+00:00",
+          "future_hours": 15.86,
+          "latest_stop_utc": "2026-10-20T20:57:50+00:00",
           "max_gap_minutes": 0.0,
-          "programmes": 740,
+          "programmes": 739,
           "occasional_event_channel": false,
           "verified_regular_off_air": false
         }

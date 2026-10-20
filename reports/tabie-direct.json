@@ -1,38 +1,38 @@
 {
-  "generated_qatar": "2026-10-19T08:03:36.668901+03:00",
+  "generated_qatar": "2026-10-20T08:06:13.645287+03:00",
   "rejected_long_duration": 6,
-  "date_mismatch_rows": 1716,
-  "date_mismatch_rows_dropped": 1716,
+  "date_mismatch_rows": 1702,
+  "date_mismatch_rows_dropped": 1702,
   "days_with_recycled_provider_response": 8,
   "dates": [
-    "2026-10-19",
     "2026-10-20",
-    "2026-10-21"
+    "2026-10-21",
+    "2026-10-22"
   ],
   "endpoint": "/Live/GetSchedule",
   "channels": {
     "QatarTelevision.qa@SD": {
       "channel_id": 23,
       "name": "Qatar TV",
-      "programmes": 30,
+      "programmes": 26,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 30,
-          "api_rows": 30,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
-          "status": "PROVIDER_WRONG_DATE",
-          "programmes": 0,
-          "api_rows": 30,
-          "date_mismatch_rows_dropped": 30
+          "status": "OK",
+          "programmes": 26,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 30,
-          "date_mismatch_rows_dropped": 30
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-10-22": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
         }
       },
       "errors": [],
@@ -41,25 +41,25 @@
     "QatarTelevision2.qa@SD": {
       "channel_id": 22,
       "name": "Qatar TV 2",
-      "programmes": 30,
+      "programmes": 26,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 30,
-          "api_rows": 30,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
-          "status": "PROVIDER_WRONG_DATE",
-          "programmes": 0,
-          "api_rows": 30,
-          "date_mismatch_rows_dropped": 30
+          "status": "OK",
+          "programmes": 26,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 30,
-          "date_mismatch_rows_dropped": 30
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-10-22": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
         }
       },
       "errors": [],
@@ -70,12 +70,6 @@
       "name": "Qatar TV Quran",
       "programmes": 0,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
           "status": "OK",
           "programmes": 0,
@@ -83,6 +77,12 @@
           "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-10-22": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1,
@@ -97,12 +97,6 @@
       "name": "QBC",
       "programmes": 0,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
           "status": "OK",
           "programmes": 0,
@@ -110,6 +104,12 @@
           "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-10-22": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1,
@@ -124,12 +124,6 @@
       "name": "Alkass One",
       "programmes": 0,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
           "status": "OK",
           "programmes": 0,
@@ -137,6 +131,12 @@
           "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-10-22": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1,
@@ -151,12 +151,6 @@
       "name": "Al Rayyan TV",
       "programmes": 0,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
           "status": "OK",
           "programmes": 0,
@@ -164,6 +158,12 @@
           "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-10-22": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1,
@@ -178,12 +178,6 @@
       "name": "Al Rayyan Al Qadeem",
       "programmes": 0,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
           "status": "OK",
           "programmes": 0,
@@ -191,6 +185,12 @@
           "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-10-22": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1,
@@ -203,21 +203,21 @@
     "TabieNow.qa": {
       "channel_id": 34,
       "name": "Tabie Now",
-      "programmes": 740,
+      "programmes": 739,
       "days": {
-        "2026-10-19": {
+        "2026-10-20": {
           "status": "OK",
-          "programmes": 740,
-          "api_rows": 741,
+          "programmes": 739,
+          "api_rows": 740,
           "date_mismatch_rows_dropped": 0
         },
-        "2026-10-20": {
+        "2026-10-21": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
           "api_rows": 740,
           "date_mismatch_rows_dropped": 739
         },
-        "2026-10-21": {
+        "2026-10-22": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
           "api_rows": 740,
@@ -230,25 +230,25 @@
     "TabieKids.qa": {
       "channel_id": 35,
       "name": "Tabie Kids",
-      "programmes": 59,
+      "programmes": 60,
       "days": {
-        "2026-10-19": {
-          "status": "OK",
-          "programmes": 59,
-          "api_rows": 60,
-          "date_mismatch_rows_dropped": 0
-        },
         "2026-10-20": {
-          "status": "PROVIDER_WRONG_DATE",
-          "programmes": 0,
-          "api_rows": 60,
-          "date_mismatch_rows_dropped": 59
+          "status": "OK",
+          "programmes": 60,
+          "api_rows": 61,
+          "date_mismatch_rows_dropped": 0
         },
         "2026-10-21": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 60,
-          "date_mismatch_rows_dropped": 59
+          "api_rows": 61,
+          "date_mismatch_rows_dropped": 60
+        },
+        "2026-10-22": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 61,
+          "date_mismatch_rows_dropped": 60
         }
       },
       "errors": [],
@@ -269,7 +269,7 @@
     "QatarQuranTV.qa@SD"
   ],
   "publication_policy": "active_with_genuine_current_or_future_programmes_only",
-  "programmes_before_id_filter": 859,
-  "programmes": 859,
+  "programmes_before_id_filter": 851,
+  "programmes": 851,
   "active_channels": 4
 }
