@@ -1,51 +1,21 @@
 {
   "label": "elcinema",
   "channels": 97,
-  "active_channels": 96,
-  "zero_epg_channels": 1,
-  "zero_epg_ids": [
-    "RotanaCinemaEgypt.eg@SD"
-  ],
+  "active_channels": 97,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
   "input_channels": 97,
-  "coverage_pct": 99.0,
-  "currently_on_air_channels": 95,
-  "current_coverage_pct": 97.9,
-  "currently_uncovered_ids": [
-    "AbuDhabiTV.ae@SD",
-    "RotanaCinemaEgypt.eg@SD"
-  ],
-  "programmes": 3981,
+  "coverage_pct": 100.0,
+  "currently_on_air_channels": 97,
+  "current_coverage_pct": 100.0,
+  "currently_uncovered_ids": [],
+  "programmes": 4411,
   "rejected_invalid_time": 0,
-  "rejected_missing_title": 3,
-  "inferred_stop": 0,
+  "rejected_missing_title": 1,
+  "inferred_stop": 1,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 199777,
-  "sha256": "aa3837f1f0e63c7621285541cb186a01be8449a56b5e20e813831506ceed39b3",
-  "generated_utc": "2026-10-19T06:29:50.496198+00:00",
-  "repacked_utc": "2026-10-19T14:41:54.812205+00:00",
-  "original_published_sha256": "a6ced34623b6fff9265ccc1da0a4cea96a4802b627a4f488780859b86e585ea8",
-  "verified_donor_extensions": {
-    "mode": "daily_after_donor_refresh_exact_id_no_overlap",
-    "donor_sha256": {
-      "shahid": "4b969de9e3c4d6a0b12fe63edc878ce9ba2adeb1e4474655875251e58bd7b99d",
-      "dubaiplus": "e3686e22e62b520721caac74e41376a583f440ea3249e922d34e9caae0a483de"
-    },
-    "programmes_added_this_pass": 101,
-    "channels_extended": [
-      "DubaiOne.ae@SD",
-      "MBC1.ae@SD",
-      "MBC3.ae@SD",
-      "MBC4.ae@SD",
-      "MBC5.ae@SD",
-      "MBCAction.ae@SD",
-      "MBCBollywood.ae@SD",
-      "MBCDrama.ae@SD",
-      "MBCIraq.iq@SD",
-      "MBCMasr.eg@SD",
-      "MBCMasr2.eg@SD",
-      "MBCPlusDrama.sa@SD"
-    ],
-    "fabricated_programmes": 0
-  }
+  "size_bytes": 209469,
+  "sha256": "ff2130985eda08367d546bb6eaa80fa52ec6aacc2a4ad3dab89299b7014e5ed4",
+  "generated_utc": "2026-10-20T06:13:38.572033+00:00"
 }
