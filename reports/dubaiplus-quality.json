@@ -1,30 +1,28 @@
 {
   "source": "dubaiplus",
-  "generated_utc": "2026-10-19T10:16:34.766957+00:00",
+  "generated_utc": "2026-10-20T09:37:33.045213+00:00",
   "source_file": "dubaiplus.xml.gz",
   "channels": 9,
-  "programmes": 385,
-  "future_programmes": 378,
+  "programmes": 441,
+  "future_programmes": 431,
   "channels_with_future_epg": 9,
   "channels_without_future_epg": [],
-  "channels_with_shorter_than_24h": [
-    "DubaiSports2.ae@SD"
-  ],
+  "channels_with_shorter_than_24h": [],
   "channels_with_internal_gap_over_90min": {},
-  "future_programmes_without_description": 320,
+  "future_programmes_without_description": 375,
   "future_programmes_with_unavailable_description": 0,
   "future_programmes_with_placeholder_or_channel_title": 0,
   "suspected_placeholder_channels": [],
   "future_programmes_by_channel": {
-    "DubaiOne.ae@SD": 34,
-    "DubaiRacing1.ae@SD": 27,
-    "DubaiRacing2.ae@SD": 29,
-    "DubaiSports1.ae@SD": 22,
-    "DubaiSports2.ae@SD": 14,
-    "DubaiTV.ae@SD": 55,
-    "DubaiZaman.ae@SD": 70,
-    "NoorDubaiTV.ae@SD": 64,
-    "SamaDubai.ae@SD": 63
+    "DubaiOne.ae@SD": 33,
+    "DubaiRacing1.ae@SD": 26,
+    "DubaiRacing2.ae@SD": 32,
+    "DubaiSports1.ae@SD": 43,
+    "DubaiSports2.ae@SD": 33,
+    "DubaiTV.ae@SD": 62,
+    "DubaiZaman.ae@SD": 73,
+    "NoorDubaiTV.ae@SD": 61,
+    "SamaDubai.ae@SD": 68
   },
   "suspected_repeated_title_channels": [],
   "occasional_event_channel_ids": [],
@@ -33,5 +31,5 @@
   "occasional_event_channels_with_repeated_titles": [],
   "occasional_event_channels_are_not_continuous_tv": true,
   "invalid_dates": 0,
-  "quality_status": "WARN"
+  "quality_status": "PASS"
 }
