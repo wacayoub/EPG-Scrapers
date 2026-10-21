@@ -6,16 +6,18 @@
   "zero_epg_ids": [],
   "input_channels": 2,
   "coverage_pct": 100.0,
-  "currently_on_air_channels": 2,
-  "current_coverage_pct": 100.0,
-  "currently_uncovered_ids": [],
-  "programmes": 113,
+  "currently_on_air_channels": 1,
+  "current_coverage_pct": 50.0,
+  "currently_uncovered_ids": [
+    "ElWatania1.tn@SD"
+  ],
+  "programmes": 116,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 4041,
-  "sha256": "f791ed818d779424c6d1584747bd29d708c7f068a4c431f253552312308f0610",
-  "generated_utc": "2026-10-20T12:04:54.570801+00:00"
+  "size_bytes": 4759,
+  "sha256": "7b5cf07ef6358a2ed8dbefafe39256f8892d98900ebc42a812fd11bd454b5b53",
+  "generated_utc": "2026-10-21T12:19:26.087408+00:00"
 }
