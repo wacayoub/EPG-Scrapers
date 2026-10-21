@@ -1,32 +1,25 @@
 {
   "label": "bein",
   "channels": 68,
-  "active_channels": 64,
-  "zero_epg_channels": 4,
+  "active_channels": 67,
+  "zero_epg_channels": 1,
   "zero_epg_ids": [
-    "AlkassEight.qa@SD",
-    "ClubMTVEurope.uk@SD",
-    "HGTVArabia.us@SD",
-    "StarMoviesMiddleEast.ae@SD"
+    "AlkassEight.qa@SD"
   ],
   "input_channels": 68,
-  "coverage_pct": 94.1,
-  "currently_on_air_channels": 63,
-  "current_coverage_pct": 92.6,
+  "coverage_pct": 98.5,
+  "currently_on_air_channels": 67,
+  "current_coverage_pct": 98.5,
   "currently_uncovered_ids": [
-    "AlkassEight.qa@SD",
-    "beINBoxOffice2.qa@SD",
-    "ClubMTVEurope.uk@SD",
-    "HGTVArabia.us@SD",
-    "StarMoviesMiddleEast.ae@SD"
+    "AlkassEight.qa@SD"
   ],
-  "programmes": 2701,
+  "programmes": 2873,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 43058,
-  "sha256": "aab1162b96c4fc6520a837f729ed0ec498a7f5ca8b8edf4b4f8a30aadb9f469c",
-  "generated_utc": "2026-10-20T07:42:01.938345+00:00"
+  "size_bytes": 45584,
+  "sha256": "dc6b7196b8548b42b3625baa660764ac2ab82ece2d11a1ad9a2e032da19ee414",
+  "generated_utc": "2026-10-21T07:46:10.983831+00:00"
 }
