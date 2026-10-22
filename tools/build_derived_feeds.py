@@ -9,6 +9,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from derived_source_quality_guard import source_flags, classify, choose
 
 try:
     from tools.mena_source_snapshot import get_source_snapshot
@@ -285,6 +286,8 @@ for group in POLICY.get("alias_groups", []):
         member_to_canonical[(member["source"], member["id"])] = canonical
 
 sources = {name: source_data(name) for name in PRIORITY if (FEEDS / f"{name}.xml.gz").exists()}
+# Public reporting is read-only. A missing or out-of-cohort quality report is UNKNOWN.
+source_quality_flags = {name: source_flags(name, FEEDS, REPORTS) for name in sources}
 groups = defaultdict(list)
 for src in PRIORITY:
     if src not in sources:
@@ -319,16 +322,12 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
         c["profile"] = profile
         c["language_fit_pct"] = language_fit(profile, c["metrics"])
         c["score"] = quality_score(profile, c["metrics"])
-        c["qualified"] = qualified(profile, c["metrics"])
+        c["source_evidence"] = classify(source_quality_flags.get(c["source"]), c["id"])
+        c["qualified"] = (qualified(profile, c["metrics"]) and
+                          c["source_evidence"] == "NO_PLACEHOLDER_FLAG")
 
     pref_index = {s: i for i, s in enumerate(prefs)}
-    good = [c for c in candidates if c["qualified"]]
-    if good:
-        selected = sorted(good, key=lambda c: (pref_index.get(c["source"], 999), -c["score"]))[0]
-        selection_reason = "preferred_healthy_source"
-    else:
-        selected = sorted(candidates, key=lambda c: (-c["score"], pref_index.get(c["source"], 999)))[0]
-        selection_reason = "degraded_best_available"
+    selected, selection_reason = choose(candidates, pref_index)
 
     ordered = sorted(candidates, key=lambda c: (pref_index.get(c["source"], 999), -c["score"]))
     roles = {}
@@ -372,6 +371,7 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
                 "id": c["id"],
                 "name": c["name"],
                 "qualified": c["qualified"],
+                "source_evidence": c["source_evidence"],
                 "score": c["score"],
                 "language_fit_pct": c["language_fit_pct"],
                 **c["metrics"],
@@ -388,7 +388,7 @@ if merged_channels:
         "priority": PRIORITY,
         "owners": owners,
         "extensions": dict(extensions),
-        "routing_policy": "canonical channel -> healthy MAIN -> B1/B2; language/title/description quality gates; backup may extend only after selected source horizon",
+        "routing_policy": "canonical channel -> verified non-placeholder source -> preferred healthy MAIN/B1/B2; flagged/unknown sources are review-only; unflagged backup may extend horizon",
     })
 
 REPORTS.mkdir(parents=True, exist_ok=True)
