@@ -1,28 +1,28 @@
 {
   "schema": 1,
   "source": "mena",
-  "checked_utc": "2026-10-21T12:57:16.723049+00:00",
-  "source_generated_utc": "2026-10-21T12:57:16.214302+00:00",
+  "checked_utc": "2026-10-22T12:59:41.779116+00:00",
+  "source_generated_utc": "2026-10-22T12:59:41.315488+00:00",
   "status": "READY_WITH_WARNINGS",
   "structural_errors": [],
   "warnings": [
     "MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES"
   ],
-  "channels": 516,
-  "programmes": 31791,
+  "channels": 514,
+  "programmes": 31475,
   "orphan_programmes": 0,
   "exact_duplicate_programmes": 0,
   "invalid_programme_times": 0,
   "source_manifest_sha256_match": true,
   "verified_source_count": 14,
-  "mena_sha256": "ef5a63774a82a21ddf99eda52307a515e28a3dbb9e7bd37d5377f775e6db387a",
+  "mena_sha256": "cb8ad6dd10d023b31ea0f239e3b26520a9a6a15820d1fce5838989e350c7eaea",
   "selected_statuses": {
-    "QUALIFIED_AT_BUILD": 405,
-    "DEGRADED_WITH_EPG": 89,
+    "DEGRADED_WITH_EPG": 97,
+    "QUALIFIED_AT_BUILD": 395,
     "NO_FUTURE_EPG": 22
   },
   "selected_roles": {
-    "MAIN": 261,
+    "MAIN": 259,
     "B1": 251,
     "B2": 4
   },
@@ -30,7 +30,7 @@
     "morocco": 14,
     "elcinema": 56,
     "shahid": 65,
-    "sport24": 8,
+    "sport24": 7,
     "osn": 91,
     "aljazeera": 4,
     "bein": 65,
@@ -39,10 +39,10 @@
     "dubaiplus": 4,
     "stctv": 96,
     "tunisiatv": 2,
-    "starzplay": 105,
+    "starzplay": 104,
     "tabie": 3
   },
-  "router_duplicate_groups": 87,
+  "router_duplicate_groups": 88,
   "router_backup_selected": 255,
   "quality_policy": {
     "no_future_epg_is_never_green": true,
@@ -58,14 +58,14 @@
       "xmltv_id": "2M",
       "owner": "morocco",
       "selected_role": "MAIN",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 42,
-      "selected_source_reported_future_programmes": 42,
+      "actual_programmes": 4,
+      "actual_future_programmes": 1,
+      "selected_source_reported_future_programmes": 1,
       "candidate_sources": [
         "morocco"
       ]
@@ -79,9 +79,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 47,
-      "actual_future_programmes": 35,
-      "selected_source_reported_future_programmes": 35,
+      "actual_programmes": 46,
+      "actual_future_programmes": 33,
+      "selected_source_reported_future_programmes": 33,
       "candidate_sources": [
         "elcinema"
       ]
@@ -111,9 +111,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 26,
-      "actual_future_programmes": 21,
-      "selected_source_reported_future_programmes": 21,
+      "actual_programmes": 25,
+      "actual_future_programmes": 19,
+      "selected_source_reported_future_programmes": 19,
       "candidate_sources": [
         "sport24",
         "starzplay",
@@ -149,8 +149,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 64,
-      "actual_future_programmes": 53,
-      "selected_source_reported_future_programmes": 47,
+      "actual_future_programmes": 54,
+      "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
         "starzplay",
         "osn",
@@ -167,9 +167,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 18,
-      "actual_future_programmes": 17,
-      "selected_source_reported_future_programmes": 17,
+      "actual_programmes": 10,
+      "actual_future_programmes": 9,
+      "selected_source_reported_future_programmes": 9,
       "candidate_sources": [
         "morocco"
       ]
@@ -183,9 +183,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 30,
-      "actual_future_programmes": 26,
-      "selected_source_reported_future_programmes": 26,
+      "actual_programmes": 18,
+      "actual_future_programmes": 15,
+      "selected_source_reported_future_programmes": 15,
       "candidate_sources": [
         "shahid"
       ]
@@ -199,25 +199,26 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 83,
-      "actual_future_programmes": 80,
-      "selected_source_reported_future_programmes": 80,
+      "actual_programmes": 53,
+      "actual_future_programmes": 51,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
-        "morocco"
+        "morocco",
+        "stctv"
       ]
     },
     {
       "xmltv_id": "AlAoula.ma@MiddleEast",
       "owner": "elcinema",
       "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 79,
-      "actual_future_programmes": 65,
-      "selected_source_reported_future_programmes": 65,
+      "actual_programmes": 77,
+      "actual_future_programmes": 64,
+      "selected_source_reported_future_programmes": 64,
       "candidate_sources": [
         "elcinema"
       ]
@@ -231,9 +232,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 105,
-      "actual_future_programmes": 93,
-      "selected_source_reported_future_programmes": 89,
+      "actual_programmes": 117,
+      "actual_future_programmes": 103,
+      "selected_source_reported_future_programmes": 100,
       "candidate_sources": [
         "shahid",
         "stctv"
@@ -248,9 +249,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 29,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
+      "actual_programmes": 15,
+      "actual_future_programmes": 9,
+      "selected_source_reported_future_programmes": 9,
       "candidate_sources": [
         "shahid",
         "starzplay",
@@ -282,9 +283,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 82,
-      "actual_future_programmes": 69,
-      "selected_source_reported_future_programmes": 69,
+      "actual_programmes": 71,
+      "actual_future_programmes": 58,
+      "selected_source_reported_future_programmes": 58,
       "candidate_sources": [
         "osn"
       ]
@@ -314,9 +315,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 52,
-      "selected_source_reported_future_programmes": 52,
+      "actual_programmes": 58,
+      "actual_future_programmes": 49,
+      "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
         "osn"
       ]
@@ -330,9 +331,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 52,
-      "selected_source_reported_future_programmes": 52,
+      "actual_programmes": 55,
+      "actual_future_programmes": 46,
+      "selected_source_reported_future_programmes": 46,
       "candidate_sources": [
         "osn",
         "elcinema"
@@ -347,9 +348,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 56,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 47,
+      "actual_programmes": 57,
+      "actual_future_programmes": 48,
+      "selected_source_reported_future_programmes": 48,
       "candidate_sources": [
         "elcinema"
       ]
@@ -411,9 +412,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 68,
-      "actual_future_programmes": 61,
-      "selected_source_reported_future_programmes": 60,
+      "actual_programmes": 83,
+      "actual_future_programmes": 76,
+      "selected_source_reported_future_programmes": 75,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -430,9 +431,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 13,
-      "actual_future_programmes": 5,
-      "selected_source_reported_future_programmes": 5,
+      "actual_programmes": 44,
+      "actual_future_programmes": 36,
+      "selected_source_reported_future_programmes": 36,
       "candidate_sources": [
         "elcinema"
       ]
@@ -446,9 +447,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 59,
-      "actual_future_programmes": 49,
-      "selected_source_reported_future_programmes": 49,
+      "actual_programmes": 57,
+      "actual_future_programmes": 48,
+      "selected_source_reported_future_programmes": 48,
       "candidate_sources": [
         "elcinema"
       ]
@@ -462,7 +463,7 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 59,
+      "actual_programmes": 58,
       "actual_future_programmes": 47,
       "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
@@ -478,9 +479,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 41,
-      "actual_future_programmes": 36,
-      "selected_source_reported_future_programmes": 36,
+      "actual_programmes": 43,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "aljazeera"
       ]
@@ -559,9 +560,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 39,
-      "selected_source_reported_future_programmes": 39,
+      "actual_programmes": 47,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "elcinema"
       ]
@@ -575,9 +576,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 43,
-      "actual_future_programmes": 37,
-      "selected_source_reported_future_programmes": 37,
+      "actual_programmes": 41,
+      "actual_future_programmes": 35,
+      "selected_source_reported_future_programmes": 35,
       "candidate_sources": [
         "elcinema"
       ]
@@ -591,9 +592,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 42,
-      "actual_future_programmes": 39,
-      "selected_source_reported_future_programmes": 39,
+      "actual_programmes": 44,
+      "actual_future_programmes": 41,
+      "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
         "alkass",
         "bein"
@@ -608,9 +609,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 16,
-      "actual_future_programmes": 8,
-      "selected_source_reported_future_programmes": 8,
+      "actual_programmes": 11,
+      "actual_future_programmes": 5,
+      "selected_source_reported_future_programmes": 5,
       "candidate_sources": [
         "alkass",
         "bein"
@@ -625,9 +626,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 17,
-      "actual_future_programmes": 11,
-      "selected_source_reported_future_programmes": 11,
+      "actual_programmes": 10,
+      "actual_future_programmes": 4,
+      "selected_source_reported_future_programmes": 4,
       "candidate_sources": [
         "alkass",
         "bein"
@@ -635,57 +636,6 @@
     },
     {
       "xmltv_id": "AlkassOne.qa@SD",
-      "owner": "bein",
-      "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 17,
-      "actual_future_programmes": 9,
-      "selected_source_reported_future_programmes": 9,
-      "candidate_sources": [
-        "alkass",
-        "bein"
-      ]
-    },
-    {
-      "xmltv_id": "AlkassSeven.qa@SD",
-      "owner": "bein",
-      "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 14,
-      "actual_future_programmes": 7,
-      "selected_source_reported_future_programmes": 7,
-      "candidate_sources": [
-        "alkass",
-        "bein"
-      ]
-    },
-    {
-      "xmltv_id": "AlkassSix.qa@SD",
-      "owner": "bein",
-      "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 17,
-      "actual_future_programmes": 11,
-      "selected_source_reported_future_programmes": 11,
-      "candidate_sources": [
-        "alkass",
-        "bein"
-      ]
-    },
-    {
-      "xmltv_id": "AlkassThree.qa@SD",
       "owner": "bein",
       "selected_role": "B1",
       "selection_reason": "preferred_healthy_source",
@@ -702,6 +652,57 @@
       ]
     },
     {
+      "xmltv_id": "AlkassSeven.qa@SD",
+      "owner": "bein",
+      "selected_role": "B1",
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
+      "manual_mapping_visible": true,
+      "actual_programmes": 11,
+      "actual_future_programmes": 4,
+      "selected_source_reported_future_programmes": 4,
+      "candidate_sources": [
+        "alkass",
+        "bein"
+      ]
+    },
+    {
+      "xmltv_id": "AlkassSix.qa@SD",
+      "owner": "bein",
+      "selected_role": "B1",
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
+      "manual_mapping_visible": true,
+      "actual_programmes": 10,
+      "actual_future_programmes": 4,
+      "selected_source_reported_future_programmes": 4,
+      "candidate_sources": [
+        "alkass",
+        "bein"
+      ]
+    },
+    {
+      "xmltv_id": "AlkassThree.qa@SD",
+      "owner": "bein",
+      "selected_role": "B1",
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
+      "manual_mapping_visible": true,
+      "actual_programmes": 16,
+      "actual_future_programmes": 9,
+      "selected_source_reported_future_programmes": 9,
+      "candidate_sources": [
+        "alkass",
+        "bein"
+      ]
+    },
+    {
       "xmltv_id": "AlkassTwo.qa@SD",
       "owner": "bein",
       "selected_role": "B1",
@@ -710,9 +711,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 13,
-      "actual_future_programmes": 6,
-      "selected_source_reported_future_programmes": 6,
+      "actual_programmes": 19,
+      "actual_future_programmes": 9,
+      "selected_source_reported_future_programmes": 9,
       "candidate_sources": [
         "alkass",
         "bein"
@@ -743,9 +744,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 88,
-      "actual_future_programmes": 85,
-      "selected_source_reported_future_programmes": 85,
+      "actual_programmes": 47,
+      "actual_future_programmes": 44,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "morocco"
       ]
@@ -759,9 +760,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 42,
-      "actual_future_programmes": 34,
-      "selected_source_reported_future_programmes": 34,
+      "actual_programmes": 44,
+      "actual_future_programmes": 36,
+      "selected_source_reported_future_programmes": 36,
       "candidate_sources": [
         "elcinema"
       ]
@@ -770,14 +771,14 @@
       "xmltv_id": "AlNahar.eg@SD",
       "owner": "elcinema",
       "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 16,
-      "actual_future_programmes": 4,
-      "selected_source_reported_future_programmes": 4,
+      "actual_programmes": 52,
+      "actual_future_programmes": 42,
+      "selected_source_reported_future_programmes": 42,
       "candidate_sources": [
         "elcinema"
       ]
@@ -824,9 +825,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 104,
-      "actual_future_programmes": 86,
-      "selected_source_reported_future_programmes": 86,
+      "actual_programmes": 103,
+      "actual_future_programmes": 87,
+      "selected_source_reported_future_programmes": 87,
       "candidate_sources": [
         "osn"
       ]
@@ -840,9 +841,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 14,
-      "actual_future_programmes": 6,
-      "selected_source_reported_future_programmes": 6,
+      "actual_programmes": 50,
+      "actual_future_programmes": 42,
+      "selected_source_reported_future_programmes": 42,
       "candidate_sources": [
         "elcinema"
       ]
@@ -872,9 +873,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 57,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 47,
+      "actual_programmes": 58,
+      "actual_future_programmes": 48,
+      "selected_source_reported_future_programmes": 48,
       "candidate_sources": [
         "elcinema"
       ]
@@ -899,14 +900,14 @@
       "xmltv_id": "AlSaudiya.sa@SD",
       "owner": "elcinema",
       "selected_role": "B2",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 70,
-      "actual_future_programmes": 59,
-      "selected_source_reported_future_programmes": 59,
+      "actual_programmes": 69,
+      "actual_future_programmes": 58,
+      "selected_source_reported_future_programmes": 58,
       "candidate_sources": [
         "shahid",
         "elcinema"
@@ -937,9 +938,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 63,
-      "actual_future_programmes": 50,
-      "selected_source_reported_future_programmes": 50,
+      "actual_programmes": 56,
+      "actual_future_programmes": 44,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "elcinema"
       ]
@@ -964,14 +965,14 @@
       "xmltv_id": "Alsumaria.iq@SD",
       "owner": "elcinema",
       "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 37,
-      "selected_source_reported_future_programmes": 37,
+      "actual_programmes": 50,
+      "actual_future_programmes": 41,
+      "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
         "elcinema"
       ]
@@ -1033,9 +1034,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 47,
-      "actual_future_programmes": 41,
-      "selected_source_reported_future_programmes": 41,
+      "actual_programmes": 46,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "elcinema"
       ]
@@ -1065,7 +1066,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 59,
+      "actual_programmes": 58,
       "actual_future_programmes": 49,
       "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
@@ -1081,9 +1082,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 41,
-      "actual_future_programmes": 38,
-      "selected_source_reported_future_programmes": 38,
+      "actual_programmes": 23,
+      "actual_future_programmes": 20,
+      "selected_source_reported_future_programmes": 20,
       "candidate_sources": [
         "morocco"
       ]
@@ -1177,9 +1178,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 100,
-      "actual_future_programmes": 88,
-      "selected_source_reported_future_programmes": 88,
+      "actual_programmes": 103,
+      "actual_future_programmes": 90,
+      "selected_source_reported_future_programmes": 90,
       "candidate_sources": [
         "shahid"
       ]
@@ -1193,9 +1194,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 63,
-      "actual_future_programmes": 55,
-      "selected_source_reported_future_programmes": 53,
+      "actual_programmes": 64,
+      "actual_future_programmes": 57,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "shahid",
         "stctv"
@@ -1210,9 +1211,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 104,
-      "actual_future_programmes": 94,
-      "selected_source_reported_future_programmes": 94,
+      "actual_programmes": 111,
+      "actual_future_programmes": 102,
+      "selected_source_reported_future_programmes": 102,
       "candidate_sources": [
         "shahid"
       ]
@@ -1226,9 +1227,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 54,
-      "selected_source_reported_future_programmes": 54,
+      "actual_programmes": 36,
+      "actual_future_programmes": 29,
+      "selected_source_reported_future_programmes": 29,
       "candidate_sources": [
         "shahid"
       ]
@@ -1242,9 +1243,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 120,
-      "actual_future_programmes": 99,
-      "selected_source_reported_future_programmes": 95,
+      "actual_programmes": 177,
+      "actual_future_programmes": 130,
+      "selected_source_reported_future_programmes": 127,
       "candidate_sources": [
         "osn",
         "elcinema",
@@ -1260,9 +1261,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 256,
-      "actual_future_programmes": 206,
-      "selected_source_reported_future_programmes": 206,
+      "actual_programmes": 246,
+      "actual_future_programmes": 197,
+      "selected_source_reported_future_programmes": 197,
       "candidate_sources": [
         "bein"
       ]
@@ -1276,9 +1277,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 128,
-      "actual_future_programmes": 106,
-      "selected_source_reported_future_programmes": 106,
+      "actual_programmes": 126,
+      "actual_future_programmes": 104,
+      "selected_source_reported_future_programmes": 104,
       "candidate_sources": [
         "osn"
       ]
@@ -1292,9 +1293,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 25,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
+      "actual_programmes": 19,
+      "actual_future_programmes": 16,
+      "selected_source_reported_future_programmes": 16,
       "candidate_sources": [
         "bein"
       ]
@@ -1340,7 +1341,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 52,
+      "actual_programmes": 51,
       "actual_future_programmes": 43,
       "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
@@ -1357,8 +1358,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 51,
-      "actual_future_programmes": 44,
-      "selected_source_reported_future_programmes": 44,
+      "actual_future_programmes": 43,
+      "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
         "bein"
       ]
@@ -1372,9 +1373,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 52,
-      "actual_future_programmes": 44,
-      "selected_source_reported_future_programmes": 44,
+      "actual_programmes": 51,
+      "actual_future_programmes": 43,
+      "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
         "bein"
       ]
@@ -1388,9 +1389,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 51,
-      "selected_source_reported_future_programmes": 51,
+      "actual_programmes": 63,
+      "actual_future_programmes": 54,
+      "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
         "bein"
       ]
@@ -1404,9 +1405,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 38,
-      "actual_future_programmes": 34,
-      "selected_source_reported_future_programmes": 34,
+      "actual_programmes": 47,
+      "actual_future_programmes": 43,
+      "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
         "bein"
       ]
@@ -1420,9 +1421,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 31,
-      "actual_future_programmes": 27,
-      "selected_source_reported_future_programmes": 27,
+      "actual_programmes": 35,
+      "actual_future_programmes": 30,
+      "selected_source_reported_future_programmes": 30,
       "candidate_sources": [
         "bein"
       ]
@@ -1436,7 +1437,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 30,
+      "actual_programmes": 29,
       "actual_future_programmes": 25,
       "selected_source_reported_future_programmes": 25,
       "candidate_sources": [
@@ -1453,8 +1454,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 26,
-      "actual_future_programmes": 22,
-      "selected_source_reported_future_programmes": 22,
+      "actual_future_programmes": 19,
+      "selected_source_reported_future_programmes": 19,
       "candidate_sources": [
         "bein"
       ]
@@ -1468,9 +1469,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 53,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 51,
+      "actual_future_programmes": 44,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "bein"
       ]
@@ -1484,7 +1485,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 45,
+      "actual_programmes": 51,
       "actual_future_programmes": 44,
       "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
@@ -1549,8 +1550,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 51,
-      "actual_future_programmes": 44,
-      "selected_source_reported_future_programmes": 44,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "bein"
       ]
@@ -1564,9 +1565,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 54,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 47,
+      "actual_programmes": 55,
+      "actual_future_programmes": 48,
+      "selected_source_reported_future_programmes": 48,
       "candidate_sources": [
         "bein"
       ]
@@ -1580,9 +1581,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 29,
-      "actual_future_programmes": 25,
-      "selected_source_reported_future_programmes": 25,
+      "actual_programmes": 27,
+      "actual_future_programmes": 22,
+      "selected_source_reported_future_programmes": 22,
       "candidate_sources": [
         "bein",
         "elcinema"
@@ -1597,9 +1598,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 27,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
+      "actual_programmes": 28,
+      "actual_future_programmes": 24,
+      "selected_source_reported_future_programmes": 24,
       "candidate_sources": [
         "bein",
         "elcinema"
@@ -1615,8 +1616,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 28,
-      "actual_future_programmes": 25,
-      "selected_source_reported_future_programmes": 25,
+      "actual_future_programmes": 24,
+      "selected_source_reported_future_programmes": 24,
       "candidate_sources": [
         "bein",
         "elcinema"
@@ -1647,9 +1648,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 67,
-      "actual_future_programmes": 58,
-      "selected_source_reported_future_programmes": 58,
+      "actual_programmes": 68,
+      "actual_future_programmes": 59,
+      "selected_source_reported_future_programmes": 59,
       "candidate_sources": [
         "bein",
         "elcinema"
@@ -1664,9 +1665,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 60,
-      "actual_future_programmes": 50,
-      "selected_source_reported_future_programmes": 50,
+      "actual_programmes": 62,
+      "actual_future_programmes": 53,
+      "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
         "elcinema"
       ]
@@ -1680,9 +1681,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 28,
-      "actual_future_programmes": 25,
-      "selected_source_reported_future_programmes": 25,
+      "actual_programmes": 24,
+      "actual_future_programmes": 20,
+      "selected_source_reported_future_programmes": 20,
       "candidate_sources": [
         "bein"
       ]
@@ -1696,9 +1697,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 59,
-      "actual_future_programmes": 51,
-      "selected_source_reported_future_programmes": 51,
+      "actual_programmes": 46,
+      "actual_future_programmes": 37,
+      "selected_source_reported_future_programmes": 37,
       "candidate_sources": [
         "bein"
       ]
@@ -1744,9 +1745,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 35,
-      "actual_future_programmes": 31,
-      "selected_source_reported_future_programmes": 31,
+      "actual_programmes": 26,
+      "actual_future_programmes": 22,
+      "selected_source_reported_future_programmes": 22,
       "candidate_sources": [
         "bein"
       ]
@@ -1776,9 +1777,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 37,
-      "actual_future_programmes": 32,
-      "selected_source_reported_future_programmes": 32,
+      "actual_programmes": 30,
+      "actual_future_programmes": 24,
+      "selected_source_reported_future_programmes": 24,
       "candidate_sources": [
         "bein"
       ]
@@ -1792,31 +1793,15 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 29,
-      "actual_future_programmes": 25,
-      "selected_source_reported_future_programmes": 25,
+      "actual_programmes": 25,
+      "actual_future_programmes": 21,
+      "selected_source_reported_future_programmes": 21,
       "candidate_sources": [
         "bein"
       ]
     },
     {
       "xmltv_id": "beINSports7.qa@MENA",
-      "owner": "bein",
-      "selected_role": "MAIN",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 26,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
-      "candidate_sources": [
-        "bein"
-      ]
-    },
-    {
-      "xmltv_id": "beINSports8.qa@MENA",
       "owner": "bein",
       "selected_role": "MAIN",
       "selection_reason": "preferred_healthy_source",
@@ -1832,6 +1817,22 @@
       ]
     },
     {
+      "xmltv_id": "beINSports8.qa@MENA",
+      "owner": "bein",
+      "selected_role": "MAIN",
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
+      "manual_mapping_visible": true,
+      "actual_programmes": 32,
+      "actual_future_programmes": 28,
+      "selected_source_reported_future_programmes": 28,
+      "candidate_sources": [
+        "bein"
+      ]
+    },
+    {
       "xmltv_id": "beINSports9.qa@MENA",
       "owner": "bein",
       "selected_role": "MAIN",
@@ -1840,9 +1841,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 28,
-      "actual_future_programmes": 24,
-      "selected_source_reported_future_programmes": 24,
+      "actual_programmes": 33,
+      "actual_future_programmes": 29,
+      "selected_source_reported_future_programmes": 29,
       "candidate_sources": [
         "bein"
       ]
@@ -1936,9 +1937,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 13,
-      "actual_future_programmes": 6,
-      "selected_source_reported_future_programmes": 6,
+      "actual_programmes": 18,
+      "actual_future_programmes": 10,
+      "selected_source_reported_future_programmes": 10,
       "candidate_sources": [
         "bein"
       ]
@@ -1952,9 +1953,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 53,
-      "selected_source_reported_future_programmes": 53,
+      "actual_programmes": 83,
+      "actual_future_programmes": 76,
+      "selected_source_reported_future_programmes": 76,
       "candidate_sources": [
         "bein"
       ]
@@ -1968,9 +1969,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 53,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 50,
+      "actual_future_programmes": 43,
+      "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
         "bein"
       ]
@@ -1984,9 +1985,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 53,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 47,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "bein"
       ]
@@ -2000,7 +2001,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 278,
+      "actual_programmes": 279,
       "actual_future_programmes": 236,
       "selected_source_reported_future_programmes": 236,
       "candidate_sources": [
@@ -2032,9 +2033,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 69,
-      "actual_future_programmes": 59,
-      "selected_source_reported_future_programmes": 59,
+      "actual_programmes": 71,
+      "actual_future_programmes": 57,
+      "selected_source_reported_future_programmes": 57,
       "candidate_sources": [
         "osn"
       ]
@@ -2048,9 +2049,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 41,
-      "actual_future_programmes": 36,
-      "selected_source_reported_future_programmes": 36,
+      "actual_programmes": 48,
+      "actual_future_programmes": 43,
+      "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
         "osn",
         "bein"
@@ -2065,9 +2066,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 92,
-      "actual_future_programmes": 80,
-      "selected_source_reported_future_programmes": 74,
+      "actual_programmes": 89,
+      "actual_future_programmes": 77,
+      "selected_source_reported_future_programmes": 71,
       "candidate_sources": [
         "osn",
         "starzplay",
@@ -2084,9 +2085,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 253,
-      "actual_future_programmes": 213,
-      "selected_source_reported_future_programmes": 213,
+      "actual_programmes": 256,
+      "actual_future_programmes": 216,
+      "selected_source_reported_future_programmes": 216,
       "candidate_sources": [
         "osn"
       ]
@@ -2100,9 +2101,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 36,
-      "actual_future_programmes": 31,
-      "selected_source_reported_future_programmes": 31,
+      "actual_programmes": 34,
+      "actual_future_programmes": 29,
+      "selected_source_reported_future_programmes": 29,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2148,7 +2149,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 48,
+      "actual_programmes": 49,
       "actual_future_programmes": 26,
       "selected_source_reported_future_programmes": 26,
       "candidate_sources": [
@@ -2164,9 +2165,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 23,
-      "actual_future_programmes": 20,
-      "selected_source_reported_future_programmes": 20,
+      "actual_programmes": 43,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "morocco"
       ]
@@ -2244,9 +2245,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 20,
-      "actual_future_programmes": 11,
-      "selected_source_reported_future_programmes": 11,
+      "actual_programmes": 19,
+      "actual_future_programmes": 10,
+      "selected_source_reported_future_programmes": 10,
       "candidate_sources": [
         "bein"
       ]
@@ -2260,7 +2261,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 87,
+      "actual_programmes": 89,
       "actual_future_programmes": 42,
       "selected_source_reported_future_programmes": 42,
       "candidate_sources": [
@@ -2276,9 +2277,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 69,
-      "actual_future_programmes": 58,
-      "selected_source_reported_future_programmes": 53,
+      "actual_programmes": 70,
+      "actual_future_programmes": 59,
+      "selected_source_reported_future_programmes": 52,
       "candidate_sources": [
         "osn",
         "starzplay",
@@ -2310,9 +2311,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 49,
-      "actual_future_programmes": 42,
-      "selected_source_reported_future_programmes": 42,
+      "actual_programmes": 50,
+      "actual_future_programmes": 43,
+      "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2326,9 +2327,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 66,
-      "actual_future_programmes": 56,
-      "selected_source_reported_future_programmes": 56,
+      "actual_programmes": 64,
+      "actual_future_programmes": 54,
+      "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
         "osn",
         "elcinema"
@@ -2343,9 +2344,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 45,
-      "actual_future_programmes": 37,
-      "selected_source_reported_future_programmes": 34,
+      "actual_programmes": 44,
+      "actual_future_programmes": 36,
+      "selected_source_reported_future_programmes": 32,
       "candidate_sources": [
         "osn",
         "elcinema",
@@ -2372,14 +2373,14 @@
       "xmltv_id": "DubaiOne.ae@SD",
       "owner": "elcinema",
       "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 35,
-      "actual_future_programmes": 30,
-      "selected_source_reported_future_programmes": 30,
+      "actual_programmes": 40,
+      "actual_future_programmes": 35,
+      "selected_source_reported_future_programmes": 35,
       "candidate_sources": [
         "dubaiplus",
         "elcinema"
@@ -2394,9 +2395,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 26,
-      "actual_future_programmes": 24,
-      "selected_source_reported_future_programmes": 24,
+      "actual_programmes": 23,
+      "actual_future_programmes": 19,
+      "selected_source_reported_future_programmes": 19,
       "candidate_sources": [
         "dubaiplus"
       ]
@@ -2410,9 +2411,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 45,
-      "actual_future_programmes": 42,
-      "selected_source_reported_future_programmes": 42,
+      "actual_programmes": 48,
+      "actual_future_programmes": 46,
+      "selected_source_reported_future_programmes": 46,
       "candidate_sources": [
         "dubaiplus",
         "stctv"
@@ -2428,8 +2429,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 27,
-      "actual_future_programmes": 19,
-      "selected_source_reported_future_programmes": 19,
+      "actual_future_programmes": 21,
+      "selected_source_reported_future_programmes": 21,
       "candidate_sources": [
         "dubaiplus",
         "sport24"
@@ -2444,9 +2445,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 34,
-      "actual_future_programmes": 30,
-      "selected_source_reported_future_programmes": 12,
+      "actual_programmes": 40,
+      "actual_future_programmes": 37,
+      "selected_source_reported_future_programmes": 13,
       "candidate_sources": [
         "dubaiplus",
         "sport24",
@@ -2462,9 +2463,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 72,
-      "actual_future_programmes": 61,
-      "selected_source_reported_future_programmes": 54,
+      "actual_programmes": 70,
+      "actual_future_programmes": 60,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "dubaiplus",
         "osn",
@@ -2481,9 +2482,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 79,
-      "actual_future_programmes": 74,
-      "selected_source_reported_future_programmes": 74,
+      "actual_programmes": 80,
+      "actual_future_programmes": 72,
+      "selected_source_reported_future_programmes": 72,
       "candidate_sources": [
         "dubaiplus",
         "elcinema"
@@ -2498,9 +2499,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 53,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 51,
+      "actual_future_programmes": 44,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2514,9 +2515,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 63,
-      "actual_future_programmes": 52,
-      "selected_source_reported_future_programmes": 52,
+      "actual_programmes": 65,
+      "actual_future_programmes": 54,
+      "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2530,9 +2531,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 37,
-      "selected_source_reported_future_programmes": 37,
+      "actual_programmes": 45,
+      "actual_future_programmes": 35,
+      "selected_source_reported_future_programmes": 35,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2546,9 +2547,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 65,
-      "actual_future_programmes": 62,
-      "selected_source_reported_future_programmes": 62,
+      "actual_programmes": 70,
+      "actual_future_programmes": 66,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "tunisiatv"
       ]
@@ -2562,9 +2563,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 51,
-      "actual_future_programmes": 48,
-      "selected_source_reported_future_programmes": 48,
+      "actual_programmes": 53,
+      "actual_future_programmes": 50,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "tunisiatv"
       ]
@@ -2578,9 +2579,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 42,
-      "actual_future_programmes": 34,
-      "selected_source_reported_future_programmes": 34,
+      "actual_programmes": 44,
+      "actual_future_programmes": 36,
+      "selected_source_reported_future_programmes": 36,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2594,7 +2595,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 76,
+      "actual_programmes": 77,
       "actual_future_programmes": 35,
       "selected_source_reported_future_programmes": 35,
       "candidate_sources": [
@@ -2610,9 +2611,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 790,
+      "actual_programmes": 789,
       "actual_future_programmes": 693,
-      "selected_source_reported_future_programmes": 693,
+      "selected_source_reported_future_programmes": 694,
       "candidate_sources": [
         "shahid"
       ]
@@ -2661,8 +2662,8 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 32,
-      "actual_future_programmes": 28,
-      "selected_source_reported_future_programmes": 28,
+      "actual_future_programmes": 30,
+      "selected_source_reported_future_programmes": 30,
       "candidate_sources": [
         "shahid",
         "starzplay"
@@ -2677,9 +2678,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 82,
-      "actual_future_programmes": 72,
-      "selected_source_reported_future_programmes": 13,
+      "actual_programmes": 77,
+      "actual_future_programmes": 67,
+      "selected_source_reported_future_programmes": 11,
       "candidate_sources": [
         "bein",
         "stctv"
@@ -2695,8 +2696,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 26,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
+      "actual_future_programmes": 22,
+      "selected_source_reported_future_programmes": 22,
       "candidate_sources": [
         "bein",
         "elcinema"
@@ -2711,9 +2712,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 19,
-      "actual_future_programmes": 9,
-      "selected_source_reported_future_programmes": 9,
+      "actual_programmes": 22,
+      "actual_future_programmes": 13,
+      "selected_source_reported_future_programmes": 13,
       "candidate_sources": [
         "bein"
       ]
@@ -2743,9 +2744,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 59,
-      "actual_future_programmes": 48,
-      "selected_source_reported_future_programmes": 48,
+      "actual_programmes": 60,
+      "actual_future_programmes": 49,
+      "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2759,7 +2760,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 73,
+      "actual_programmes": 72,
       "actual_future_programmes": 61,
       "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
@@ -2775,9 +2776,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 51,
-      "actual_future_programmes": 42,
-      "selected_source_reported_future_programmes": 42,
+      "actual_programmes": 59,
+      "actual_future_programmes": 50,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "osn"
       ]
@@ -2855,7 +2856,7 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 58,
+      "actual_programmes": 57,
       "actual_future_programmes": 47,
       "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
@@ -2871,9 +2872,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 21,
-      "actual_future_programmes": 10,
-      "selected_source_reported_future_programmes": 10,
+      "actual_programmes": 24,
+      "actual_future_programmes": 13,
+      "selected_source_reported_future_programmes": 13,
       "candidate_sources": [
         "bein"
       ]
@@ -2887,9 +2888,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 76,
-      "actual_future_programmes": 65,
-      "selected_source_reported_future_programmes": 65,
+      "actual_programmes": 72,
+      "actual_future_programmes": 59,
+      "selected_source_reported_future_programmes": 59,
       "candidate_sources": [
         "osn"
       ]
@@ -2903,9 +2904,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 67,
-      "actual_future_programmes": 56,
-      "selected_source_reported_future_programmes": 56,
+      "actual_programmes": 65,
+      "actual_future_programmes": 54,
+      "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
         "osn"
       ]
@@ -2919,9 +2920,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 51,
-      "actual_future_programmes": 43,
-      "selected_source_reported_future_programmes": 43,
+      "actual_programmes": 48,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "elcinema"
       ]
@@ -2967,9 +2968,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 223,
-      "actual_future_programmes": 191,
-      "selected_source_reported_future_programmes": 191,
+      "actual_programmes": 218,
+      "actual_future_programmes": 186,
+      "selected_source_reported_future_programmes": 186,
       "candidate_sources": [
         "bein"
       ]
@@ -2983,9 +2984,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 69,
-      "actual_future_programmes": 59,
-      "selected_source_reported_future_programmes": 59,
+      "actual_programmes": 67,
+      "actual_future_programmes": 57,
+      "selected_source_reported_future_programmes": 57,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3015,9 +3016,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 48,
-      "actual_future_programmes": 37,
-      "selected_source_reported_future_programmes": 37,
+      "actual_programmes": 41,
+      "actual_future_programmes": 28,
+      "selected_source_reported_future_programmes": 28,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3047,9 +3048,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 41,
-      "selected_source_reported_future_programmes": 41,
+      "actual_programmes": 42,
+      "actual_future_programmes": 38,
+      "selected_source_reported_future_programmes": 38,
       "candidate_sources": [
         "rotana",
         "starzplay",
@@ -3066,9 +3067,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 52,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 53,
+      "actual_future_programmes": 45,
+      "selected_source_reported_future_programmes": 45,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3098,9 +3099,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 53,
-      "selected_source_reported_future_programmes": 53,
+      "actual_programmes": 62,
+      "actual_future_programmes": 55,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "shahid"
       ]
@@ -3115,8 +3116,8 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 57,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_future_programmes": 47,
+      "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3130,9 +3131,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 67,
-      "actual_future_programmes": 54,
-      "selected_source_reported_future_programmes": 54,
+      "actual_programmes": 70,
+      "actual_future_programmes": 57,
+      "selected_source_reported_future_programmes": 57,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3146,9 +3147,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 83,
-      "actual_future_programmes": 76,
-      "selected_source_reported_future_programmes": 72,
+      "actual_programmes": 74,
+      "actual_future_programmes": 67,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3182,8 +3183,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 74,
-      "actual_future_programmes": 66,
-      "selected_source_reported_future_programmes": 66,
+      "actual_future_programmes": 67,
+      "selected_source_reported_future_programmes": 67,
       "candidate_sources": [
         "shahid"
       ]
@@ -3198,8 +3199,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 52,
-      "actual_future_programmes": 48,
-      "selected_source_reported_future_programmes": 47,
+      "actual_future_programmes": 47,
+      "selected_source_reported_future_programmes": 45,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3215,9 +3216,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 242,
-      "actual_future_programmes": 211,
-      "selected_source_reported_future_programmes": 195,
+      "actual_programmes": 250,
+      "actual_future_programmes": 219,
+      "selected_source_reported_future_programmes": 202,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3250,9 +3251,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 97,
-      "actual_future_programmes": 88,
-      "selected_source_reported_future_programmes": 86,
+      "actual_programmes": 92,
+      "actual_future_programmes": 83,
+      "selected_source_reported_future_programmes": 81,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3268,9 +3269,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 93,
-      "actual_future_programmes": 85,
-      "selected_source_reported_future_programmes": 85,
+      "actual_programmes": 96,
+      "actual_future_programmes": 88,
+      "selected_source_reported_future_programmes": 88,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3286,9 +3287,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 87,
-      "actual_future_programmes": 78,
-      "selected_source_reported_future_programmes": 75,
+      "actual_programmes": 91,
+      "actual_future_programmes": 81,
+      "selected_source_reported_future_programmes": 78,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3304,9 +3305,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 65,
-      "actual_future_programmes": 57,
-      "selected_source_reported_future_programmes": 55,
+      "actual_programmes": 61,
+      "actual_future_programmes": 53,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3322,9 +3323,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 81,
-      "actual_future_programmes": 75,
-      "selected_source_reported_future_programmes": 73,
+      "actual_programmes": 80,
+      "actual_future_programmes": 74,
+      "selected_source_reported_future_programmes": 72,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3342,8 +3343,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 78,
-      "actual_future_programmes": 72,
-      "selected_source_reported_future_programmes": 72,
+      "actual_future_programmes": 71,
+      "selected_source_reported_future_programmes": 71,
       "candidate_sources": [
         "shahid"
       ]
@@ -3373,9 +3374,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 85,
-      "actual_future_programmes": 78,
-      "selected_source_reported_future_programmes": 78,
+      "actual_programmes": 89,
+      "actual_future_programmes": 82,
+      "selected_source_reported_future_programmes": 82,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3391,9 +3392,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 70,
-      "actual_future_programmes": 65,
-      "selected_source_reported_future_programmes": 63,
+      "actual_programmes": 76,
+      "actual_future_programmes": 67,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3410,7 +3411,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 93,
+      "actual_programmes": 94,
       "actual_future_programmes": 84,
       "selected_source_reported_future_programmes": 81,
       "candidate_sources": [
@@ -3429,9 +3430,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 54,
-      "actual_future_programmes": 39,
-      "selected_source_reported_future_programmes": 39,
+      "actual_programmes": 53,
+      "actual_future_programmes": 38,
+      "selected_source_reported_future_programmes": 38,
       "candidate_sources": [
         "shahid",
         "elcinema"
@@ -3446,9 +3447,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 60,
-      "actual_future_programmes": 55,
-      "selected_source_reported_future_programmes": 55,
+      "actual_programmes": 66,
+      "actual_future_programmes": 62,
+      "selected_source_reported_future_programmes": 62,
       "candidate_sources": [
         "shahid"
       ]
@@ -3462,9 +3463,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 44,
-      "actual_future_programmes": 39,
-      "selected_source_reported_future_programmes": 37,
+      "actual_programmes": 47,
+      "actual_future_programmes": 42,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3480,9 +3481,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 12,
-      "actual_future_programmes": 10,
-      "selected_source_reported_future_programmes": 6,
+      "actual_programmes": 18,
+      "actual_future_programmes": 16,
+      "selected_source_reported_future_programmes": 14,
       "candidate_sources": [
         "osn",
         "stctv"
@@ -3497,9 +3498,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 93,
-      "actual_future_programmes": 84,
-      "selected_source_reported_future_programmes": 84,
+      "actual_programmes": 86,
+      "actual_future_programmes": 75,
+      "selected_source_reported_future_programmes": 75,
       "candidate_sources": [
         "shahid"
       ]
@@ -3513,8 +3514,8 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 71,
-      "actual_future_programmes": 63,
+      "actual_programmes": 70,
+      "actual_future_programmes": 62,
       "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "shahid",
@@ -3548,9 +3549,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 48,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 47,
+      "actual_future_programmes": 45,
+      "selected_source_reported_future_programmes": 45,
       "candidate_sources": [
         "morocco"
       ]
@@ -3564,9 +3565,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 47,
-      "actual_future_programmes": 44,
-      "selected_source_reported_future_programmes": 44,
+      "actual_programmes": 43,
+      "actual_future_programmes": 40,
+      "selected_source_reported_future_programmes": 40,
       "candidate_sources": [
         "morocco"
       ]
@@ -3612,9 +3613,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 96,
-      "actual_future_programmes": 79,
-      "selected_source_reported_future_programmes": 79,
+      "actual_programmes": 97,
+      "actual_future_programmes": 80,
+      "selected_source_reported_future_programmes": 80,
       "candidate_sources": [
         "osn"
       ]
@@ -3628,9 +3629,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 87,
-      "actual_future_programmes": 74,
-      "selected_source_reported_future_programmes": 74,
+      "actual_programmes": 98,
+      "actual_future_programmes": 83,
+      "selected_source_reported_future_programmes": 83,
       "candidate_sources": [
         "osn"
       ]
@@ -3645,8 +3646,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 19,
-      "actual_future_programmes": 15,
-      "selected_source_reported_future_programmes": 15,
+      "actual_future_programmes": 16,
+      "selected_source_reported_future_programmes": 16,
       "candidate_sources": [
         "shahid"
       ]
@@ -3676,9 +3677,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 23,
-      "actual_future_programmes": 21,
-      "selected_source_reported_future_programmes": 21,
+      "actual_programmes": 22,
+      "actual_future_programmes": 20,
+      "selected_source_reported_future_programmes": 20,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3694,7 +3695,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 19,
+      "actual_programmes": 20,
       "actual_future_programmes": 11,
       "selected_source_reported_future_programmes": 11,
       "candidate_sources": [
@@ -3710,9 +3711,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 21,
-      "actual_future_programmes": 12,
-      "selected_source_reported_future_programmes": 12,
+      "actual_programmes": 20,
+      "actual_future_programmes": 10,
+      "selected_source_reported_future_programmes": 10,
       "candidate_sources": [
         "bein"
       ]
@@ -3758,9 +3759,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 71,
-      "actual_future_programmes": 64,
-      "selected_source_reported_future_programmes": 63,
+      "actual_programmes": 73,
+      "actual_future_programmes": 67,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "starzplay",
         "elcinema",
@@ -3776,9 +3777,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 43,
-      "actual_future_programmes": 31,
-      "selected_source_reported_future_programmes": 31,
+      "actual_programmes": 40,
+      "actual_future_programmes": 29,
+      "selected_source_reported_future_programmes": 29,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3808,9 +3809,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 139,
-      "actual_future_programmes": 115,
-      "selected_source_reported_future_programmes": 115,
+      "actual_programmes": 138,
+      "actual_future_programmes": 114,
+      "selected_source_reported_future_programmes": 114,
       "candidate_sources": [
         "osn"
       ]
@@ -3840,9 +3841,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 153,
-      "actual_future_programmes": 127,
-      "selected_source_reported_future_programmes": 127,
+      "actual_programmes": 155,
+      "actual_future_programmes": 128,
+      "selected_source_reported_future_programmes": 128,
       "candidate_sources": [
         "osn"
       ]
@@ -3872,9 +3873,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 41,
-      "actual_future_programmes": 33,
-      "selected_source_reported_future_programmes": 33,
+      "actual_programmes": 44,
+      "actual_future_programmes": 36,
+      "selected_source_reported_future_programmes": 36,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3888,9 +3889,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 60,
-      "actual_future_programmes": 56,
-      "selected_source_reported_future_programmes": 56,
+      "actual_programmes": 63,
+      "actual_future_programmes": 58,
+      "selected_source_reported_future_programmes": 58,
       "candidate_sources": [
         "dubaiplus"
       ]
@@ -3904,9 +3905,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 77,
-      "actual_future_programmes": 63,
-      "selected_source_reported_future_programmes": 59,
+      "actual_programmes": 79,
+      "actual_future_programmes": 64,
+      "selected_source_reported_future_programmes": 60,
       "candidate_sources": [
         "osn",
         "elcinema",
@@ -3933,14 +3934,14 @@
       "xmltv_id": "OnE.eg@SD",
       "owner": "elcinema",
       "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 41,
-      "actual_future_programmes": 33,
-      "selected_source_reported_future_programmes": 33,
+      "actual_programmes": 38,
+      "actual_future_programmes": 32,
+      "selected_source_reported_future_programmes": 32,
       "candidate_sources": [
         "elcinema"
       ]
@@ -4034,9 +4035,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 39,
-      "actual_future_programmes": 32,
-      "selected_source_reported_future_programmes": 32,
+      "actual_programmes": 47,
+      "actual_future_programmes": 38,
+      "selected_source_reported_future_programmes": 38,
       "candidate_sources": [
         "osn"
       ]
@@ -4050,9 +4051,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 80,
-      "actual_future_programmes": 69,
-      "selected_source_reported_future_programmes": 69,
+      "actual_programmes": 81,
+      "actual_future_programmes": 70,
+      "selected_source_reported_future_programmes": 70,
       "candidate_sources": [
         "osn"
       ]
@@ -4066,9 +4067,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 156,
-      "actual_future_programmes": 128,
-      "selected_source_reported_future_programmes": 128,
+      "actual_programmes": 154,
+      "actual_future_programmes": 126,
+      "selected_source_reported_future_programmes": 126,
       "candidate_sources": [
         "osn"
       ]
@@ -4082,9 +4083,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 29,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
+      "actual_programmes": 37,
+      "actual_future_programmes": 30,
+      "selected_source_reported_future_programmes": 30,
       "candidate_sources": [
         "osn"
       ]
@@ -4098,9 +4099,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 87,
-      "actual_future_programmes": 73,
-      "selected_source_reported_future_programmes": 73,
+      "actual_programmes": 80,
+      "actual_future_programmes": 66,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "osn"
       ]
@@ -4114,9 +4115,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 120,
-      "actual_future_programmes": 102,
-      "selected_source_reported_future_programmes": 93,
+      "actual_programmes": 117,
+      "actual_future_programmes": 98,
+      "selected_source_reported_future_programmes": 90,
       "candidate_sources": [
         "osn",
         "stctv"
@@ -4131,9 +4132,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 115,
-      "actual_future_programmes": 95,
-      "selected_source_reported_future_programmes": 95,
+      "actual_programmes": 113,
+      "actual_future_programmes": 93,
+      "selected_source_reported_future_programmes": 93,
       "candidate_sources": [
         "osn"
       ]
@@ -4147,9 +4148,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 64,
-      "actual_future_programmes": 54,
-      "selected_source_reported_future_programmes": 54,
+      "actual_programmes": 63,
+      "actual_future_programmes": 53,
+      "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
         "osn"
       ]
@@ -4163,9 +4164,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 39,
-      "actual_future_programmes": 33,
-      "selected_source_reported_future_programmes": 33,
+      "actual_programmes": 42,
+      "actual_future_programmes": 35,
+      "selected_source_reported_future_programmes": 35,
       "candidate_sources": [
         "osn"
       ]
@@ -4180,8 +4181,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 178,
-      "actual_future_programmes": 148,
-      "selected_source_reported_future_programmes": 148,
+      "actual_future_programmes": 146,
+      "selected_source_reported_future_programmes": 146,
       "candidate_sources": [
         "osn"
       ]
@@ -4211,9 +4212,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 171,
-      "actual_future_programmes": 144,
-      "selected_source_reported_future_programmes": 144,
+      "actual_programmes": 159,
+      "actual_future_programmes": 131,
+      "selected_source_reported_future_programmes": 131,
       "candidate_sources": [
         "osn"
       ]
@@ -4227,9 +4228,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 172,
-      "actual_future_programmes": 144,
-      "selected_source_reported_future_programmes": 144,
+      "actual_programmes": 170,
+      "actual_future_programmes": 140,
+      "selected_source_reported_future_programmes": 140,
       "candidate_sources": [
         "osn"
       ]
@@ -4259,9 +4260,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 74,
-      "actual_future_programmes": 61,
-      "selected_source_reported_future_programmes": 61,
+      "actual_programmes": 75,
+      "actual_future_programmes": 62,
+      "selected_source_reported_future_programmes": 62,
       "candidate_sources": [
         "osn"
       ]
@@ -4275,9 +4276,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 231,
-      "actual_future_programmes": 191,
-      "selected_source_reported_future_programmes": 191,
+      "actual_programmes": 214,
+      "actual_future_programmes": 175,
+      "selected_source_reported_future_programmes": 175,
       "candidate_sources": [
         "osn"
       ]
@@ -4291,9 +4292,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 117,
-      "actual_future_programmes": 101,
-      "selected_source_reported_future_programmes": 101,
+      "actual_programmes": 111,
+      "actual_future_programmes": 95,
+      "selected_source_reported_future_programmes": 95,
       "candidate_sources": [
         "osn"
       ]
@@ -4307,9 +4308,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 68,
-      "actual_future_programmes": 57,
-      "selected_source_reported_future_programmes": 57,
+      "actual_programmes": 70,
+      "actual_future_programmes": 59,
+      "selected_source_reported_future_programmes": 59,
       "candidate_sources": [
         "osn"
       ]
@@ -4323,9 +4324,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 25,
-      "actual_future_programmes": 21,
-      "selected_source_reported_future_programmes": 21,
+      "actual_programmes": 26,
+      "actual_future_programmes": 22,
+      "selected_source_reported_future_programmes": 22,
       "candidate_sources": [
         "osn"
       ]
@@ -4339,9 +4340,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 29,
-      "actual_future_programmes": 24,
-      "selected_source_reported_future_programmes": 24,
+      "actual_programmes": 30,
+      "actual_future_programmes": 25,
+      "selected_source_reported_future_programmes": 25,
       "candidate_sources": [
         "osn"
       ]
@@ -4355,47 +4356,15 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 34,
-      "actual_future_programmes": 29,
-      "selected_source_reported_future_programmes": 29,
+      "actual_programmes": 35,
+      "actual_future_programmes": 30,
+      "selected_source_reported_future_programmes": 30,
       "candidate_sources": [
         "osn"
       ]
     },
     {
       "xmltv_id": "OSNMoviesHollywood.ae@SD",
-      "owner": "osn",
-      "selected_role": "MAIN",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 27,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
-      "candidate_sources": [
-        "osn"
-      ]
-    },
-    {
-      "xmltv_id": "OSNMoviesHorror.ae@SD",
-      "owner": "osn",
-      "selected_role": "MAIN",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 31,
-      "actual_future_programmes": 26,
-      "selected_source_reported_future_programmes": 26,
-      "candidate_sources": [
-        "osn"
-      ]
-    },
-    {
-      "xmltv_id": "OSNMoviesPremiere.ae@SD",
       "owner": "osn",
       "selected_role": "MAIN",
       "selection_reason": "preferred_healthy_source",
@@ -4411,6 +4380,38 @@
       ]
     },
     {
+      "xmltv_id": "OSNMoviesHorror.ae@SD",
+      "owner": "osn",
+      "selected_role": "MAIN",
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
+      "manual_mapping_visible": true,
+      "actual_programmes": 31,
+      "actual_future_programmes": 25,
+      "selected_source_reported_future_programmes": 25,
+      "candidate_sources": [
+        "osn"
+      ]
+    },
+    {
+      "xmltv_id": "OSNMoviesPremiere.ae@SD",
+      "owner": "osn",
+      "selected_role": "MAIN",
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
+      "manual_mapping_visible": true,
+      "actual_programmes": 26,
+      "actual_future_programmes": 22,
+      "selected_source_reported_future_programmes": 22,
+      "candidate_sources": [
+        "osn"
+      ]
+    },
+    {
       "xmltv_id": "OSNOne.ae@SD",
       "owner": "osn",
       "selected_role": "MAIN",
@@ -4419,9 +4420,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 77,
-      "actual_future_programmes": 60,
-      "selected_source_reported_future_programmes": 60,
+      "actual_programmes": 74,
+      "actual_future_programmes": 59,
+      "selected_source_reported_future_programmes": 59,
       "candidate_sources": [
         "osn"
       ]
@@ -4436,8 +4437,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 87,
-      "actual_future_programmes": 70,
-      "selected_source_reported_future_programmes": 70,
+      "actual_future_programmes": 73,
+      "selected_source_reported_future_programmes": 73,
       "candidate_sources": [
         "osn"
       ]
@@ -4467,9 +4468,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 75,
-      "actual_future_programmes": 62,
-      "selected_source_reported_future_programmes": 62,
+      "actual_programmes": 82,
+      "actual_future_programmes": 68,
+      "selected_source_reported_future_programmes": 68,
       "candidate_sources": [
         "osn"
       ]
@@ -4483,9 +4484,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 67,
-      "actual_future_programmes": 57,
-      "selected_source_reported_future_programmes": 57,
+      "actual_programmes": 61,
+      "actual_future_programmes": 50,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "osn"
       ]
@@ -4499,9 +4500,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 76,
-      "actual_future_programmes": 64,
-      "selected_source_reported_future_programmes": 64,
+      "actual_programmes": 77,
+      "actual_future_programmes": 65,
+      "selected_source_reported_future_programmes": 65,
       "candidate_sources": [
         "osn"
       ]
@@ -4531,9 +4532,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 32,
-      "actual_future_programmes": 25,
-      "selected_source_reported_future_programmes": 25,
+      "actual_programmes": 29,
+      "actual_future_programmes": 24,
+      "selected_source_reported_future_programmes": 24,
       "candidate_sources": [
         "osn"
       ]
@@ -4547,9 +4548,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 60,
-      "actual_future_programmes": 50,
-      "selected_source_reported_future_programmes": 50,
+      "actual_programmes": 62,
+      "actual_future_programmes": 52,
+      "selected_source_reported_future_programmes": 52,
       "candidate_sources": [
         "osn"
       ]
@@ -4579,9 +4580,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 85,
-      "actual_future_programmes": 74,
-      "selected_source_reported_future_programmes": 74,
+      "actual_programmes": 84,
+      "actual_future_programmes": 70,
+      "selected_source_reported_future_programmes": 70,
       "candidate_sources": [
         "tabie",
         "elcinema"
@@ -4596,9 +4597,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 16,
-      "actual_future_programmes": 16,
-      "selected_source_reported_future_programmes": 16,
+      "actual_programmes": 17,
+      "actual_future_programmes": 17,
+      "selected_source_reported_future_programmes": 17,
       "candidate_sources": [
         "tabie"
       ]
@@ -4660,7 +4661,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 29,
+      "actual_programmes": 28,
       "actual_future_programmes": 26,
       "selected_source_reported_future_programmes": 26,
       "candidate_sources": [
@@ -4698,9 +4699,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 39,
-      "actual_future_programmes": 36,
-      "selected_source_reported_future_programmes": 35,
+      "actual_programmes": 37,
+      "actual_future_programmes": 35,
+      "selected_source_reported_future_programmes": 34,
       "candidate_sources": [
         "rotana",
         "starzplay",
@@ -4733,9 +4734,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 26,
-      "actual_future_programmes": 24,
-      "selected_source_reported_future_programmes": 24,
+      "actual_programmes": 23,
+      "actual_future_programmes": 21,
+      "selected_source_reported_future_programmes": 21,
       "candidate_sources": [
         "rotana",
         "starzplay",
@@ -4752,7 +4753,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 45,
+      "actual_programmes": 44,
       "actual_future_programmes": 41,
       "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
@@ -4771,9 +4772,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 58,
-      "actual_future_programmes": 51,
-      "selected_source_reported_future_programmes": 51,
+      "actual_programmes": 55,
+      "actual_future_programmes": 50,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "rotana",
         "starzplay",
@@ -4790,9 +4791,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 42,
-      "actual_future_programmes": 36,
-      "selected_source_reported_future_programmes": 34,
+      "actual_programmes": 38,
+      "actual_future_programmes": 32,
+      "selected_source_reported_future_programmes": 30,
       "candidate_sources": [
         "osn",
         "starzplay",
@@ -4825,9 +4826,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 185,
-      "actual_future_programmes": 159,
-      "selected_source_reported_future_programmes": 152,
+      "actual_programmes": 191,
+      "actual_future_programmes": 164,
+      "selected_source_reported_future_programmes": 156,
       "candidate_sources": [
         "osn",
         "stctv"
@@ -4842,9 +4843,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 13,
-      "actual_future_programmes": 6,
-      "selected_source_reported_future_programmes": 6,
+      "actual_programmes": 43,
+      "actual_future_programmes": 37,
+      "selected_source_reported_future_programmes": 37,
       "candidate_sources": [
         "elcinema"
       ]
@@ -4858,9 +4859,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 10,
-      "actual_future_programmes": 5,
-      "selected_source_reported_future_programmes": 5,
+      "actual_programmes": 42,
+      "actual_future_programmes": 36,
+      "selected_source_reported_future_programmes": 36,
       "candidate_sources": [
         "elcinema"
       ]
@@ -4891,8 +4892,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 79,
-      "actual_future_programmes": 73,
-      "selected_source_reported_future_programmes": 72,
+      "actual_future_programmes": 72,
+      "selected_source_reported_future_programmes": 71,
       "candidate_sources": [
         "dubaiplus",
         "elcinema",
@@ -4924,9 +4925,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 54,
-      "actual_future_programmes": 45,
-      "selected_source_reported_future_programmes": 45,
+      "actual_programmes": 52,
+      "actual_future_programmes": 44,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "shahid",
         "elcinema"
@@ -4957,9 +4958,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 155,
-      "actual_future_programmes": 131,
-      "selected_source_reported_future_programmes": 131,
+      "actual_programmes": 144,
+      "actual_future_programmes": 137,
+      "selected_source_reported_future_programmes": 137,
       "candidate_sources": [
         "shahid"
       ]
@@ -4989,9 +4990,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 114,
-      "actual_future_programmes": 100,
-      "selected_source_reported_future_programmes": 100,
+      "actual_programmes": 117,
+      "actual_future_programmes": 103,
+      "selected_source_reported_future_programmes": 103,
       "candidate_sources": [
         "shahid"
       ]
@@ -5000,14 +5001,14 @@
       "xmltv_id": "shahid.49923781913188",
       "owner": "shahid",
       "selected_role": "B1",
-      "selection_reason": "degraded_best_available",
-      "status": "DEGRADED_WITH_EPG",
-      "qualified_when_built": false,
-      "best_match_green_allowed": false,
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 31,
-      "actual_future_programmes": 22,
-      "selected_source_reported_future_programmes": 22,
+      "actual_programmes": 17,
+      "actual_future_programmes": 14,
+      "selected_source_reported_future_programmes": 14,
       "candidate_sources": [
         "shahid"
       ]
@@ -5037,9 +5038,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 111,
-      "actual_future_programmes": 97,
-      "selected_source_reported_future_programmes": 97,
+      "actual_programmes": 103,
+      "actual_future_programmes": 90,
+      "selected_source_reported_future_programmes": 90,
       "candidate_sources": [
         "shahid"
       ]
@@ -5054,8 +5055,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 76,
-      "actual_future_programmes": 68,
-      "selected_source_reported_future_programmes": 68,
+      "actual_future_programmes": 67,
+      "selected_source_reported_future_programmes": 67,
       "candidate_sources": [
         "shahid"
       ]
@@ -5069,9 +5070,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 99,
-      "actual_future_programmes": 89,
-      "selected_source_reported_future_programmes": 89,
+      "actual_programmes": 96,
+      "actual_future_programmes": 84,
+      "selected_source_reported_future_programmes": 84,
       "candidate_sources": [
         "shahid"
       ]
@@ -5085,9 +5086,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 65,
-      "actual_future_programmes": 57,
-      "selected_source_reported_future_programmes": 57,
+      "actual_programmes": 72,
+      "actual_future_programmes": 65,
+      "selected_source_reported_future_programmes": 65,
       "candidate_sources": [
         "shahid"
       ]
@@ -5101,7 +5102,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 38,
+      "actual_programmes": 39,
       "actual_future_programmes": 34,
       "selected_source_reported_future_programmes": 34,
       "candidate_sources": [
@@ -5117,9 +5118,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 37,
-      "selected_source_reported_future_programmes": 37,
+      "actual_programmes": 79,
+      "actual_future_programmes": 70,
+      "selected_source_reported_future_programmes": 70,
       "candidate_sources": [
         "shahid"
       ]
@@ -5133,9 +5134,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 79,
-      "actual_future_programmes": 72,
-      "selected_source_reported_future_programmes": 72,
+      "actual_programmes": 82,
+      "actual_future_programmes": 75,
+      "selected_source_reported_future_programmes": 75,
       "candidate_sources": [
         "starzplay",
         "elcinema",
@@ -5152,8 +5153,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 77,
-      "actual_future_programmes": 66,
-      "selected_source_reported_future_programmes": 62,
+      "actual_future_programmes": 65,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "osn",
         "starzplay",
@@ -5169,9 +5170,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 112,
-      "actual_future_programmes": 102,
-      "selected_source_reported_future_programmes": 101,
+      "actual_programmes": 87,
+      "actual_future_programmes": 77,
+      "selected_source_reported_future_programmes": 76,
       "candidate_sources": [
         "shahid",
         "starzplay",
@@ -5187,9 +5188,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 16,
-      "actual_future_programmes": 11,
-      "selected_source_reported_future_programmes": 11,
+      "actual_programmes": 18,
+      "actual_future_programmes": 12,
+      "selected_source_reported_future_programmes": 12,
       "candidate_sources": [
         "sport24"
       ]
@@ -5203,7 +5204,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 14,
+      "actual_programmes": 18,
       "actual_future_programmes": 10,
       "selected_source_reported_future_programmes": 10,
       "candidate_sources": [
@@ -5212,23 +5213,6 @@
     },
     {
       "xmltv_id": "sport24.thmanyah.1",
-      "owner": "sport24",
-      "selected_role": "MAIN",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 53,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 12,
-      "candidate_sources": [
-        "sport24",
-        "stctv"
-      ]
-    },
-    {
-      "xmltv_id": "sport24.thmanyah.2",
       "owner": "stctv",
       "selected_role": "B1",
       "selection_reason": "preferred_healthy_source",
@@ -5245,7 +5229,7 @@
       ]
     },
     {
-      "xmltv_id": "sport24.thmanyah.3",
+      "xmltv_id": "sport24.thmanyah.2",
       "owner": "sport24",
       "selected_role": "MAIN",
       "selection_reason": "preferred_healthy_source",
@@ -5253,9 +5237,26 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
+      "actual_programmes": 52,
+      "actual_future_programmes": 46,
+      "selected_source_reported_future_programmes": 11,
+      "candidate_sources": [
+        "sport24",
+        "stctv"
+      ]
+    },
+    {
+      "xmltv_id": "sport24.thmanyah.3",
+      "owner": "stctv",
+      "selected_role": "B1",
+      "selection_reason": "preferred_healthy_source",
+      "status": "QUALIFIED_AT_BUILD",
+      "qualified_when_built": true,
+      "best_match_green_allowed": true,
+      "manual_mapping_visible": true,
       "actual_programmes": 50,
-      "actual_future_programmes": 44,
-      "selected_source_reported_future_programmes": 9,
+      "actual_future_programmes": 47,
+      "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
         "sport24",
         "stctv"
@@ -5270,8 +5271,8 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 18,
-      "actual_future_programmes": 13,
+      "actual_programmes": 19,
+      "actual_future_programmes": 14,
       "selected_source_reported_future_programmes": 5,
       "candidate_sources": [
         "bein",
@@ -5287,9 +5288,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 51,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 47,
+      "actual_programmes": 47,
+      "actual_future_programmes": 43,
+      "selected_source_reported_future_programmes": 43,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5303,9 +5304,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 42,
-      "selected_source_reported_future_programmes": 42,
+      "actual_programmes": 48,
+      "actual_future_programmes": 46,
+      "selected_source_reported_future_programmes": 46,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5319,9 +5320,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 62,
-      "actual_future_programmes": 62,
-      "selected_source_reported_future_programmes": 62,
+      "actual_programmes": 59,
+      "actual_future_programmes": 58,
+      "selected_source_reported_future_programmes": 58,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5336,8 +5337,8 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 42,
-      "actual_future_programmes": 33,
-      "selected_source_reported_future_programmes": 33,
+      "actual_future_programmes": 34,
+      "selected_source_reported_future_programmes": 34,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5351,9 +5352,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 60,
-      "actual_future_programmes": 54,
-      "selected_source_reported_future_programmes": 54,
+      "actual_programmes": 64,
+      "actual_future_programmes": 64,
+      "selected_source_reported_future_programmes": 64,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5367,9 +5368,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 22,
-      "actual_future_programmes": 20,
-      "selected_source_reported_future_programmes": 20,
+      "actual_programmes": 34,
+      "actual_future_programmes": 28,
+      "selected_source_reported_future_programmes": 28,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5383,9 +5384,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 64,
-      "actual_future_programmes": 57,
-      "selected_source_reported_future_programmes": 57,
+      "actual_programmes": 61,
+      "actual_future_programmes": 55,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5399,9 +5400,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 53,
-      "actual_future_programmes": 49,
-      "selected_source_reported_future_programmes": 49,
+      "actual_programmes": 58,
+      "actual_future_programmes": 55,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5415,9 +5416,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 80,
-      "actual_future_programmes": 72,
-      "selected_source_reported_future_programmes": 70,
+      "actual_programmes": 81,
+      "actual_future_programmes": 73,
+      "selected_source_reported_future_programmes": 72,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -5449,9 +5450,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 80,
-      "actual_future_programmes": 72,
-      "selected_source_reported_future_programmes": 72,
+      "actual_programmes": 78,
+      "actual_future_programmes": 70,
+      "selected_source_reported_future_programmes": 70,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5465,9 +5466,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 73,
-      "actual_future_programmes": 69,
-      "selected_source_reported_future_programmes": 69,
+      "actual_programmes": 88,
+      "actual_future_programmes": 84,
+      "selected_source_reported_future_programmes": 84,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5481,9 +5482,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 51,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 54,
+      "actual_future_programmes": 49,
+      "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5546,7 +5547,7 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 31,
+      "actual_programmes": 30,
       "actual_future_programmes": 28,
       "selected_source_reported_future_programmes": 28,
       "candidate_sources": [
@@ -5562,9 +5563,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 31,
-      "actual_future_programmes": 28,
-      "selected_source_reported_future_programmes": 28,
+      "actual_programmes": 29,
+      "actual_future_programmes": 26,
+      "selected_source_reported_future_programmes": 26,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5626,31 +5627,15 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 136,
-      "actual_future_programmes": 123,
-      "selected_source_reported_future_programmes": 123,
+      "actual_programmes": 135,
+      "actual_future_programmes": 122,
+      "selected_source_reported_future_programmes": 122,
       "candidate_sources": [
         "starzplay"
       ]
     },
     {
       "xmltv_id": "starzplay.527810088109",
-      "owner": "starzplay",
-      "selected_role": "MAIN",
-      "selection_reason": "degraded_best_available",
-      "status": "DEGRADED_WITH_EPG",
-      "qualified_when_built": false,
-      "best_match_green_allowed": false,
-      "manual_mapping_visible": true,
-      "actual_programmes": 51,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 47,
-      "candidate_sources": [
-        "starzplay"
-      ]
-    },
-    {
-      "xmltv_id": "starzplay.529556008087",
       "owner": "starzplay",
       "selected_role": "MAIN",
       "selection_reason": "degraded_best_available",
@@ -5674,9 +5659,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 143,
-      "actual_future_programmes": 129,
-      "selected_source_reported_future_programmes": 129,
+      "actual_programmes": 142,
+      "actual_future_programmes": 128,
+      "selected_source_reported_future_programmes": 128,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5690,7 +5675,7 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 52,
+      "actual_programmes": 51,
       "actual_future_programmes": 47,
       "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
@@ -5706,7 +5691,7 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
+      "actual_programmes": 59,
       "actual_future_programmes": 54,
       "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
@@ -5738,9 +5723,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 50,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 47,
+      "actual_programmes": 40,
+      "actual_future_programmes": 37,
+      "selected_source_reported_future_programmes": 37,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -5787,9 +5772,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 96,
-      "actual_future_programmes": 86,
-      "selected_source_reported_future_programmes": 86,
+      "actual_programmes": 92,
+      "actual_future_programmes": 83,
+      "selected_source_reported_future_programmes": 83,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5803,9 +5788,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 229,
-      "actual_future_programmes": 206,
-      "selected_source_reported_future_programmes": 206,
+      "actual_programmes": 212,
+      "actual_future_programmes": 189,
+      "selected_source_reported_future_programmes": 189,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5819,9 +5804,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 413,
-      "actual_future_programmes": 371,
-      "selected_source_reported_future_programmes": 371,
+      "actual_programmes": 419,
+      "actual_future_programmes": 379,
+      "selected_source_reported_future_programmes": 379,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5835,9 +5820,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 439,
-      "actual_future_programmes": 397,
-      "selected_source_reported_future_programmes": 397,
+      "actual_programmes": 451,
+      "actual_future_programmes": 407,
+      "selected_source_reported_future_programmes": 407,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5852,8 +5837,8 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 73,
-      "actual_future_programmes": 64,
-      "selected_source_reported_future_programmes": 64,
+      "actual_future_programmes": 65,
+      "selected_source_reported_future_programmes": 65,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5867,9 +5852,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 69,
-      "actual_future_programmes": 62,
-      "selected_source_reported_future_programmes": 62,
+      "actual_programmes": 67,
+      "actual_future_programmes": 61,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5883,9 +5868,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 37,
-      "actual_future_programmes": 32,
-      "selected_source_reported_future_programmes": 32,
+      "actual_programmes": 40,
+      "actual_future_programmes": 36,
+      "selected_source_reported_future_programmes": 36,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5899,9 +5884,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 238,
-      "actual_future_programmes": 213,
-      "selected_source_reported_future_programmes": 213,
+      "actual_programmes": 224,
+      "actual_future_programmes": 196,
+      "selected_source_reported_future_programmes": 196,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5915,7 +5900,7 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 52,
+      "actual_programmes": 51,
       "actual_future_programmes": 47,
       "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
@@ -5931,7 +5916,7 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 116,
+      "actual_programmes": 117,
       "actual_future_programmes": 105,
       "selected_source_reported_future_programmes": 105,
       "candidate_sources": [
@@ -5947,9 +5932,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 308,
-      "actual_future_programmes": 277,
-      "selected_source_reported_future_programmes": 277,
+      "actual_programmes": 306,
+      "actual_future_programmes": 276,
+      "selected_source_reported_future_programmes": 276,
       "candidate_sources": [
         "starzplay"
       ]
@@ -5979,9 +5964,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 63,
-      "actual_future_programmes": 57,
-      "selected_source_reported_future_programmes": 57,
+      "actual_programmes": 58,
+      "actual_future_programmes": 53,
+      "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6011,9 +5996,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 94,
-      "actual_future_programmes": 85,
-      "selected_source_reported_future_programmes": 85,
+      "actual_programmes": 85,
+      "actual_future_programmes": 77,
+      "selected_source_reported_future_programmes": 77,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6043,9 +6028,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 88,
-      "actual_future_programmes": 80,
-      "selected_source_reported_future_programmes": 80,
+      "actual_programmes": 91,
+      "actual_future_programmes": 83,
+      "selected_source_reported_future_programmes": 83,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6059,9 +6044,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 91,
-      "actual_future_programmes": 83,
-      "selected_source_reported_future_programmes": 83,
+      "actual_programmes": 76,
+      "actual_future_programmes": 69,
+      "selected_source_reported_future_programmes": 69,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6091,9 +6076,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 58,
-      "selected_source_reported_future_programmes": 58,
+      "actual_programmes": 54,
+      "actual_future_programmes": 51,
+      "selected_source_reported_future_programmes": 51,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6107,9 +6092,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 26,
-      "actual_future_programmes": 24,
-      "selected_source_reported_future_programmes": 24,
+      "actual_programmes": 21,
+      "actual_future_programmes": 19,
+      "selected_source_reported_future_programmes": 19,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6124,8 +6109,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 45,
-      "actual_future_programmes": 41,
-      "selected_source_reported_future_programmes": 41,
+      "actual_future_programmes": 42,
+      "selected_source_reported_future_programmes": 42,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6171,9 +6156,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 16,
-      "actual_future_programmes": 15,
-      "selected_source_reported_future_programmes": 15,
+      "actual_programmes": 14,
+      "actual_future_programmes": 13,
+      "selected_source_reported_future_programmes": 13,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6187,7 +6172,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 88,
+      "actual_programmes": 87,
       "actual_future_programmes": 78,
       "selected_source_reported_future_programmes": 78,
       "candidate_sources": [
@@ -6203,9 +6188,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 102,
-      "actual_future_programmes": 92,
-      "selected_source_reported_future_programmes": 92,
+      "actual_programmes": 101,
+      "actual_future_programmes": 91,
+      "selected_source_reported_future_programmes": 91,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6219,9 +6204,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 89,
-      "actual_future_programmes": 81,
-      "selected_source_reported_future_programmes": 81,
+      "actual_programmes": 87,
+      "actual_future_programmes": 79,
+      "selected_source_reported_future_programmes": 79,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6235,7 +6220,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 20,
+      "actual_programmes": 19,
       "actual_future_programmes": 18,
       "selected_source_reported_future_programmes": 18,
       "candidate_sources": [
@@ -6294,14 +6279,14 @@
       "xmltv_id": "starzplay.770556968172",
       "owner": "starzplay",
       "selected_role": "MAIN",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 21,
-      "actual_future_programmes": 19,
-      "selected_source_reported_future_programmes": 19,
+      "actual_programmes": 19,
+      "actual_future_programmes": 17,
+      "selected_source_reported_future_programmes": 17,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6315,7 +6300,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 86,
+      "actual_programmes": 85,
       "actual_future_programmes": 77,
       "selected_source_reported_future_programmes": 77,
       "candidate_sources": [
@@ -6347,9 +6332,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 73,
-      "actual_future_programmes": 67,
-      "selected_source_reported_future_programmes": 67,
+      "actual_programmes": 72,
+      "actual_future_programmes": 66,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6363,9 +6348,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 32,
-      "actual_future_programmes": 29,
-      "selected_source_reported_future_programmes": 29,
+      "actual_programmes": 30,
+      "actual_future_programmes": 27,
+      "selected_source_reported_future_programmes": 27,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6374,14 +6359,14 @@
       "xmltv_id": "starzplay.770559528171",
       "owner": "starzplay",
       "selected_role": "MAIN",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 23,
-      "actual_future_programmes": 21,
-      "selected_source_reported_future_programmes": 21,
+      "actual_programmes": 20,
+      "actual_future_programmes": 18,
+      "selected_source_reported_future_programmes": 18,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6395,9 +6380,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 73,
-      "actual_future_programmes": 67,
-      "selected_source_reported_future_programmes": 67,
+      "actual_programmes": 76,
+      "actual_future_programmes": 71,
+      "selected_source_reported_future_programmes": 71,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6411,7 +6396,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 102,
+      "actual_programmes": 101,
       "actual_future_programmes": 93,
       "selected_source_reported_future_programmes": 93,
       "candidate_sources": [
@@ -6428,7 +6413,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
+      "actual_programmes": 45,
       "actual_future_programmes": 42,
       "selected_source_reported_future_programmes": 42,
       "candidate_sources": [
@@ -6444,9 +6429,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 97,
-      "actual_future_programmes": 88,
-      "selected_source_reported_future_programmes": 88,
+      "actual_programmes": 95,
+      "actual_future_programmes": 86,
+      "selected_source_reported_future_programmes": 86,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6476,9 +6461,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 40,
-      "selected_source_reported_future_programmes": 40,
+      "actual_programmes": 47,
+      "actual_future_programmes": 41,
+      "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6508,9 +6493,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 24,
-      "actual_future_programmes": 23,
-      "selected_source_reported_future_programmes": 23,
+      "actual_programmes": 19,
+      "actual_future_programmes": 18,
+      "selected_source_reported_future_programmes": 18,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6524,9 +6509,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 58,
-      "actual_future_programmes": 51,
-      "selected_source_reported_future_programmes": 51,
+      "actual_programmes": 57,
+      "actual_future_programmes": 50,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6540,9 +6525,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 40,
-      "actual_future_programmes": 36,
-      "selected_source_reported_future_programmes": 36,
+      "actual_programmes": 37,
+      "actual_future_programmes": 32,
+      "selected_source_reported_future_programmes": 32,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6572,9 +6557,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 118,
-      "actual_future_programmes": 107,
-      "selected_source_reported_future_programmes": 107,
+      "actual_programmes": 117,
+      "actual_future_programmes": 104,
+      "selected_source_reported_future_programmes": 104,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6589,8 +6574,8 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 56,
-      "actual_future_programmes": 51,
-      "selected_source_reported_future_programmes": 51,
+      "actual_future_programmes": 50,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6604,9 +6589,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 52,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_programmes": 55,
+      "actual_future_programmes": 49,
+      "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6620,9 +6605,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 74,
-      "actual_future_programmes": 66,
-      "selected_source_reported_future_programmes": 66,
+      "actual_programmes": 69,
+      "actual_future_programmes": 61,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6652,9 +6637,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 277,
-      "actual_future_programmes": 243,
-      "selected_source_reported_future_programmes": 243,
+      "actual_programmes": 254,
+      "actual_future_programmes": 221,
+      "selected_source_reported_future_programmes": 221,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6668,9 +6653,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 214,
-      "actual_future_programmes": 195,
-      "selected_source_reported_future_programmes": 195,
+      "actual_programmes": 197,
+      "actual_future_programmes": 178,
+      "selected_source_reported_future_programmes": 178,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6684,9 +6669,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 76,
-      "actual_future_programmes": 72,
-      "selected_source_reported_future_programmes": 72,
+      "actual_programmes": 73,
+      "actual_future_programmes": 70,
+      "selected_source_reported_future_programmes": 70,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6732,7 +6717,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 35,
+      "actual_programmes": 34,
       "actual_future_programmes": 32,
       "selected_source_reported_future_programmes": 32,
       "candidate_sources": [
@@ -6748,9 +6733,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 114,
-      "actual_future_programmes": 103,
-      "selected_source_reported_future_programmes": 103,
+      "actual_programmes": 83,
+      "actual_future_programmes": 72,
+      "selected_source_reported_future_programmes": 72,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6765,8 +6750,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 51,
-      "actual_future_programmes": 46,
-      "selected_source_reported_future_programmes": 46,
+      "actual_future_programmes": 47,
+      "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -6781,7 +6766,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 48,
+      "actual_programmes": 51,
       "actual_future_programmes": 45,
       "selected_source_reported_future_programmes": 45,
       "candidate_sources": [
@@ -6798,9 +6783,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 49,
-      "actual_future_programmes": 48,
-      "selected_source_reported_future_programmes": 48,
+      "actual_programmes": 51,
+      "actual_future_programmes": 46,
+      "selected_source_reported_future_programmes": 46,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -6831,9 +6816,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 91,
-      "actual_future_programmes": 85,
-      "selected_source_reported_future_programmes": 85,
+      "actual_programmes": 92,
+      "actual_future_programmes": 86,
+      "selected_source_reported_future_programmes": 86,
       "candidate_sources": [
         "stctv"
       ]
@@ -6847,7 +6832,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 256,
+      "actual_programmes": 255,
       "actual_future_programmes": 237,
       "selected_source_reported_future_programmes": 237,
       "candidate_sources": [
@@ -6895,9 +6880,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 66,
-      "actual_future_programmes": 62,
-      "selected_source_reported_future_programmes": 62,
+      "actual_programmes": 64,
+      "actual_future_programmes": 60,
+      "selected_source_reported_future_programmes": 60,
       "candidate_sources": [
         "stctv"
       ]
@@ -6911,9 +6896,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 44,
-      "selected_source_reported_future_programmes": 44,
+      "actual_programmes": 50,
+      "actual_future_programmes": 47,
+      "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
         "stctv"
       ]
@@ -6927,9 +6912,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 60,
-      "actual_future_programmes": 54,
-      "selected_source_reported_future_programmes": 54,
+      "actual_programmes": 57,
+      "actual_future_programmes": 51,
+      "selected_source_reported_future_programmes": 51,
       "candidate_sources": [
         "stctv"
       ]
@@ -7007,9 +6992,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 206,
-      "actual_future_programmes": 192,
-      "selected_source_reported_future_programmes": 192,
+      "actual_programmes": 200,
+      "actual_future_programmes": 187,
+      "selected_source_reported_future_programmes": 187,
       "candidate_sources": [
         "stctv"
       ]
@@ -7023,9 +7008,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 242,
-      "actual_future_programmes": 219,
-      "selected_source_reported_future_programmes": 219,
+      "actual_programmes": 216,
+      "actual_future_programmes": 193,
+      "selected_source_reported_future_programmes": 193,
       "candidate_sources": [
         "stctv"
       ]
@@ -7039,9 +7024,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 77,
-      "actual_future_programmes": 70,
-      "selected_source_reported_future_programmes": 70,
+      "actual_programmes": 67,
+      "actual_future_programmes": 61,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "stctv"
       ]
@@ -7055,9 +7040,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 32,
-      "actual_future_programmes": 30,
-      "selected_source_reported_future_programmes": 30,
+      "actual_programmes": 31,
+      "actual_future_programmes": 29,
+      "selected_source_reported_future_programmes": 29,
       "candidate_sources": [
         "stctv"
       ]
@@ -7071,9 +7056,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 85,
-      "actual_future_programmes": 75,
-      "selected_source_reported_future_programmes": 75,
+      "actual_programmes": 81,
+      "actual_future_programmes": 72,
+      "selected_source_reported_future_programmes": 72,
       "candidate_sources": [
         "stctv"
       ]
@@ -7103,9 +7088,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 68,
-      "actual_future_programmes": 64,
-      "selected_source_reported_future_programmes": 64,
+      "actual_programmes": 69,
+      "actual_future_programmes": 65,
+      "selected_source_reported_future_programmes": 65,
       "candidate_sources": [
         "stctv"
       ]
@@ -7135,9 +7120,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 41,
-      "actual_future_programmes": 39,
-      "selected_source_reported_future_programmes": 39,
+      "actual_programmes": 42,
+      "actual_future_programmes": 38,
+      "selected_source_reported_future_programmes": 38,
       "candidate_sources": [
         "stctv"
       ]
@@ -7167,9 +7152,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 79,
-      "actual_future_programmes": 70,
-      "selected_source_reported_future_programmes": 70,
+      "actual_programmes": 68,
+      "actual_future_programmes": 59,
+      "selected_source_reported_future_programmes": 59,
       "candidate_sources": [
         "stctv"
       ]
@@ -7199,9 +7184,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 125,
-      "actual_future_programmes": 116,
-      "selected_source_reported_future_programmes": 116,
+      "actual_programmes": 120,
+      "actual_future_programmes": 111,
+      "selected_source_reported_future_programmes": 111,
       "candidate_sources": [
         "stctv"
       ]
@@ -7263,9 +7248,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 31,
-      "actual_future_programmes": 29,
-      "selected_source_reported_future_programmes": 29,
+      "actual_programmes": 32,
+      "actual_future_programmes": 30,
+      "selected_source_reported_future_programmes": 30,
       "candidate_sources": [
         "stctv"
       ]
@@ -7327,9 +7312,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 168,
-      "actual_future_programmes": 156,
-      "selected_source_reported_future_programmes": 156,
+      "actual_programmes": 149,
+      "actual_future_programmes": 137,
+      "selected_source_reported_future_programmes": 137,
       "candidate_sources": [
         "stctv"
       ]
@@ -7343,9 +7328,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 59,
-      "actual_future_programmes": 55,
-      "selected_source_reported_future_programmes": 55,
+      "actual_programmes": 54,
+      "actual_future_programmes": 50,
+      "selected_source_reported_future_programmes": 50,
       "candidate_sources": [
         "stctv"
       ]
@@ -7359,9 +7344,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 30,
-      "actual_future_programmes": 28,
-      "selected_source_reported_future_programmes": 28,
+      "actual_programmes": 29,
+      "actual_future_programmes": 27,
+      "selected_source_reported_future_programmes": 27,
       "candidate_sources": [
         "stctv"
       ]
@@ -7375,9 +7360,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 33,
-      "actual_future_programmes": 31,
-      "selected_source_reported_future_programmes": 31,
+      "actual_programmes": 39,
+      "actual_future_programmes": 37,
+      "selected_source_reported_future_programmes": 37,
       "candidate_sources": [
         "stctv"
       ]
@@ -7391,9 +7376,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 81,
-      "actual_future_programmes": 77,
-      "selected_source_reported_future_programmes": 77,
+      "actual_programmes": 100,
+      "actual_future_programmes": 96,
+      "selected_source_reported_future_programmes": 96,
       "candidate_sources": [
         "stctv"
       ]
@@ -7407,9 +7392,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 115,
-      "actual_future_programmes": 108,
-      "selected_source_reported_future_programmes": 108,
+      "actual_programmes": 114,
+      "actual_future_programmes": 106,
+      "selected_source_reported_future_programmes": 106,
       "candidate_sources": [
         "stctv"
       ]
@@ -7455,9 +7440,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 43,
-      "actual_future_programmes": 40,
-      "selected_source_reported_future_programmes": 40,
+      "actual_programmes": 46,
+      "actual_future_programmes": 44,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "stctv"
       ]
@@ -7503,9 +7488,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 40,
-      "actual_future_programmes": 38,
-      "selected_source_reported_future_programmes": 38,
+      "actual_programmes": 44,
+      "actual_future_programmes": 41,
+      "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
         "stctv"
       ]
@@ -7519,9 +7504,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 67,
-      "actual_future_programmes": 63,
-      "selected_source_reported_future_programmes": 63,
+      "actual_programmes": 65,
+      "actual_future_programmes": 61,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "stctv"
       ]
@@ -7583,7 +7568,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 57,
+      "actual_programmes": 56,
       "actual_future_programmes": 53,
       "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
@@ -7599,9 +7584,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 61,
-      "actual_future_programmes": 56,
-      "selected_source_reported_future_programmes": 56,
+      "actual_programmes": 60,
+      "actual_future_programmes": 55,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "stctv"
       ]
@@ -7647,9 +7632,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 54,
-      "actual_future_programmes": 51,
-      "selected_source_reported_future_programmes": 51,
+      "actual_programmes": 56,
+      "actual_future_programmes": 53,
+      "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
         "stctv"
       ]
@@ -7775,9 +7760,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 96,
-      "actual_future_programmes": 87,
-      "selected_source_reported_future_programmes": 87,
+      "actual_programmes": 92,
+      "actual_future_programmes": 83,
+      "selected_source_reported_future_programmes": 83,
       "candidate_sources": [
         "stctv"
       ]
@@ -7791,9 +7776,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 70,
-      "actual_future_programmes": 65,
-      "selected_source_reported_future_programmes": 65,
+      "actual_programmes": 46,
+      "actual_future_programmes": 41,
+      "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
         "stctv"
       ]
@@ -7839,9 +7824,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 233,
-      "actual_future_programmes": 216,
-      "selected_source_reported_future_programmes": 216,
+      "actual_programmes": 213,
+      "actual_future_programmes": 197,
+      "selected_source_reported_future_programmes": 197,
       "candidate_sources": [
         "stctv"
       ]
@@ -7871,9 +7856,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 54,
-      "actual_future_programmes": 50,
-      "selected_source_reported_future_programmes": 50,
+      "actual_programmes": 58,
+      "actual_future_programmes": 54,
+      "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
         "stctv"
       ]
@@ -7919,7 +7904,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 65,
+      "actual_programmes": 64,
       "actual_future_programmes": 61,
       "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
@@ -8023,22 +8008,6 @@
       ]
     },
     {
-      "xmltv_id": "stctv.d5923d76595b",
-      "owner": "stctv",
-      "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
-      "manual_mapping_visible": true,
-      "actual_programmes": 50,
-      "actual_future_programmes": 47,
-      "selected_source_reported_future_programmes": 47,
-      "candidate_sources": [
-        "stctv"
-      ]
-    },
-    {
       "xmltv_id": "stctv.dcc6e95bd54f",
       "owner": "stctv",
       "selected_role": "B1",
@@ -8063,9 +8032,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 66,
-      "actual_future_programmes": 62,
-      "selected_source_reported_future_programmes": 62,
+      "actual_programmes": 65,
+      "actual_future_programmes": 61,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "stctv"
       ]
@@ -8127,9 +8096,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 30,
-      "actual_future_programmes": 28,
-      "selected_source_reported_future_programmes": 28,
+      "actual_programmes": 29,
+      "actual_future_programmes": 27,
+      "selected_source_reported_future_programmes": 27,
       "candidate_sources": [
         "stctv"
       ]
@@ -8143,9 +8112,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 64,
-      "actual_future_programmes": 61,
-      "selected_source_reported_future_programmes": 61,
+      "actual_programmes": 61,
+      "actual_future_programmes": 59,
+      "selected_source_reported_future_programmes": 59,
       "candidate_sources": [
         "stctv"
       ]
@@ -8207,7 +8176,7 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 65,
+      "actual_programmes": 64,
       "actual_future_programmes": 60,
       "selected_source_reported_future_programmes": 60,
       "candidate_sources": [
@@ -8223,9 +8192,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 46,
-      "actual_future_programmes": 44,
-      "selected_source_reported_future_programmes": 44,
+      "actual_programmes": 49,
+      "actual_future_programmes": 47,
+      "selected_source_reported_future_programmes": 47,
       "candidate_sources": [
         "stctv"
       ]
@@ -8303,9 +8272,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 367,
-      "actual_future_programmes": 367,
-      "selected_source_reported_future_programmes": 367,
+      "actual_programmes": 364,
+      "actual_future_programmes": 364,
+      "selected_source_reported_future_programmes": 364,
       "candidate_sources": [
         "tabie"
       ]
@@ -8319,9 +8288,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 60,
-      "actual_future_programmes": 55,
-      "selected_source_reported_future_programmes": 55,
+      "actual_programmes": 32,
+      "actual_future_programmes": 27,
+      "selected_source_reported_future_programmes": 27,
       "candidate_sources": [
         "morocco"
       ]
@@ -8351,9 +8320,9 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 15,
-      "actual_future_programmes": 6,
-      "selected_source_reported_future_programmes": 6,
+      "actual_programmes": 51,
+      "actual_future_programmes": 42,
+      "selected_source_reported_future_programmes": 42,
       "candidate_sources": [
         "elcinema"
       ]
@@ -8367,9 +8336,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 68,
-      "actual_future_programmes": 56,
-      "selected_source_reported_future_programmes": 56,
+      "actual_programmes": 69,
+      "actual_future_programmes": 57,
+      "selected_source_reported_future_programmes": 57,
       "candidate_sources": [
         "shahid",
         "elcinema"
@@ -8385,8 +8354,8 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 68,
-      "actual_future_programmes": 56,
-      "selected_source_reported_future_programmes": 56,
+      "actual_future_programmes": 57,
+      "selected_source_reported_future_programmes": 57,
       "candidate_sources": [
         "osn"
       ]
@@ -8432,9 +8401,9 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 28,
-      "actual_future_programmes": 26,
-      "selected_source_reported_future_programmes": 26,
+      "actual_programmes": 24,
+      "actual_future_programmes": 22,
+      "selected_source_reported_future_programmes": 22,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -8444,14 +8413,14 @@
       "xmltv_id": "ZeeAlwan.ae@SD",
       "owner": "elcinema",
       "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "selection_reason": "degraded_best_available",
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 51,
-      "actual_future_programmes": 43,
-      "selected_source_reported_future_programmes": 43,
+      "actual_programmes": 52,
+      "actual_future_programmes": 44,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "elcinema"
       ]
