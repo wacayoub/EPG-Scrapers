@@ -1,13 +1,18 @@
 {
-  "programmes": 2873,
+  "programmes": 2834,
   "title_policy": "preserve source here; full English titles applied in hybrid pass",
   "titles_changed": 0,
-  "descriptions_translated": 25,
-  "description_total": 25,
-  "remaining_english_descriptions": 0,
+  "descriptions_translated": 9,
+  "description_total": 19,
+  "remaining_english_descriptions": 10,
   "new_cache_entries": 0,
-  "translation_failures": [],
-  "rate_limited": false,
-  "skipped_after_rate_limit": 0,
+  "translation_failures": [
+    {
+      "text": "Chelsea’s João Pedro has been involved in more goals than any other player in the Premier League this season, registering at least two goal involvements in four of his five appeara",
+      "error": "HTTP 429 after backoff; translation paused for remainder of run"
+    }
+  ],
+  "rate_limited": true,
+  "skipped_after_rate_limit": 9,
   "translation_policy": "descriptions only; source text preserved on rate limit/error"
 }
