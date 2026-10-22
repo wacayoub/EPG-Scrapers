@@ -1,9 +1,9 @@
 {
   "source": "sport24",
-  "generated_utc": "2026-10-21T08:24:52.335707+00:00",
+  "generated_utc": "2026-10-22T08:27:22.251287+00:00",
   "mode": "primary_sport24_then_exact_verified_donor_nonoverlap",
   "donor_guards": "matching source gzip SHA256, complete cohort, 48h PASS exact ID, genuine titles, native dates",
-  "added_programmes": 19,
+  "added_programmes": 23,
   "donor_channels": 3,
   "synthetic_programmes_added": 0,
   "channels": [
@@ -11,7 +11,7 @@
       "sport24_id": "sport24.adsports.1",
       "donor_source": "osn",
       "donor_xmltv_id": "AbuDhabiSports1.ae@SD",
-      "added": 6,
+      "added": 7,
       "overlap_skipped": 11,
       "status": "VERIFIED_DONOR_APPLIED"
     },
@@ -19,16 +19,16 @@
       "sport24_id": "sport24.dubaisports.1",
       "donor_source": "dubaiplus",
       "donor_xmltv_id": "DubaiSports1.ae@SD",
-      "added": 9,
-      "overlap_skipped": 18,
+      "added": 11,
+      "overlap_skipped": 16,
       "status": "VERIFIED_DONOR_APPLIED"
     },
     {
       "sport24_id": "sport24.dubaisports.2",
       "donor_source": "dubaiplus",
       "donor_xmltv_id": "DubaiSports2.ae@SD",
-      "added": 4,
-      "overlap_skipped": 13,
+      "added": 5,
+      "overlap_skipped": 12,
       "status": "VERIFIED_DONOR_APPLIED"
     }
   ]
