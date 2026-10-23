@@ -73,7 +73,9 @@ class TestLivePublication(unittest.TestCase):
                 td, timeline(), timeline(horizon=-60, shift=-3*24*60))
             outcome = self.publish(td)
             self.assertTrue(outcome["published"], outcome)
-            self.assertTrue(outcome["candidate_stats"]["partial_recovery_from_expired_lkg"])
+            # 8h is now the ordinary Tabie minimum. A 12h authentic feed no
+            # longer needs the historical 24h exemption to replace expired LKG.
+            self.assertGreaterEqual(outcome["candidate_stats"]["future_horizon_hours"], 8)
             self.assertGreaterEqual(outcome["candidate_stats"]["current_channels"], 4)
             self.assertNotEqual(old.read_bytes(), before)
 
@@ -83,7 +85,7 @@ class TestLivePublication(unittest.TestCase):
                 td, timeline(), timeline(horizon=36))
             outcome = self.publish(td)
             self.assertFalse(outcome["published"], outcome)
-            self.assertIn("future_horizon<24h", outcome["reasons"])
+            self.assertIn("future_horizon_regression>35%", outcome["reasons"])
             self.assertEqual(old.read_bytes(), before)
 
     def test_recovery_exemption_rejects_a_future_only_schedule(self):

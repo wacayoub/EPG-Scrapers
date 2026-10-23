@@ -15,6 +15,10 @@ import requests
 from bs4 import BeautifulSoup
 from lxml import html as LH
 from zoneinfo import ZoneInfo
+try:
+ from tools.programme_authenticity import generated_placeholder
+except ImportError:
+ from programme_authenticity import generated_placeholder
 try: import cloudscraper
 except Exception: cloudscraper=None
 
@@ -142,12 +146,17 @@ def xdt(d): return d.strftime("%Y%m%d%H%M%S %z")
 class Http:
  def __init__(self):
   self.s=(cloudscraper.create_scraper() if cloudscraper else requests.Session()); self.s.headers.update({"User-Agent":UA,"Accept-Language":"ar,fr;q=.9,en;q=.7"})
+  self.deadline=time.monotonic()+90
  def get(self,url,**kw):
   last=None
   for n in range(3):
+   remaining=self.deadline-time.monotonic()
+   if remaining<=0:raise TimeoutError("Provider HTTP budget exhausted; keep genuine partial/LKG rows")
    try:
-    r=self.s.get(url,timeout=18,**kw); r.raise_for_status(); return r
-   except Exception as e: last=e; time.sleep(.7*(n+1))
+    r=self.s.get(url,timeout=min(18,remaining),**kw); r.raise_for_status(); return r
+   except Exception as e:
+    last=e
+    if n<2:time.sleep(min(.7*(n+1),max(0,self.deadline-time.monotonic())))
   raise last
 
 @dataclass
@@ -788,141 +797,20 @@ def _arryadia_add_botola(rows,fixtures):
  return out
 
 def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
- # Priority for gaps:
- #   1) current official SNRT event
- #   2) Botola fixture calendar injected by _arryadia_add_botola()
- #   3) exact event already published in the previous LKG feed
- #   4) proven recurring programme at the same clock (seen >=2 times)
- #   5) generic Arryadia Programme filler
- # This prevents a temporary blank SNRT page from erasing known programmes.
- history=list(history or [])
- now=datetime.now(TZ)
- start=now.replace(minute=0,second=0,microsecond=0)
- end=now+timedelta(hours=max(1,hours))
- out=list(rows)
-
- def overlaps(items,s,e):
-  return any(x.stop and x.stop>s and x.start<e for x in items)
-
- retained=0;repeated=0;generic=0
- for cid in ARR_IDS:
-  official=sorted(
-   [e for e in rows if e.channel==cid and e.stop and e.stop>start and e.start<end],
-   key=lambda e:e.start
-  )
-  occupied=list(official)
-
-  # Keep exact future programmes from the previous published feed if the
-  # refreshed SNRT page temporarily stopped exposing them.
-  old_exact=sorted(
-   [e for e in history if e.channel==cid and e.stop and e.stop>start and e.start<end and not _arryadia_is_generic(e)],
-   key=lambda e:e.start
-  )
-  for e in old_exact:
-   if overlaps(occupied,e.start,e.stop):continue
-   out.append(Event(cid,e.start,e.title,e.desc,e.stop,e.tl,e.dl,"arryadia-lkg"))
-   occupied.append(e);retained+=1
-
-  # SMART recurrence model.
-  # Only official SNRT observations are allowed to teach the model. Previous
-  # generated EPG rows (LKG/repeat/auto/external fixtures) are never evidence,
-  # otherwise one bad inference could reinforce itself on later refreshes.
-  samples=[
-   e for e in (list(rows)+history)
-   if e.channel==cid and e.stop and e.stop>e.start and
-      (e.source.startswith("arryadia-snrt") or e.source=="arryadia-history") and
-      _arryadia_repeat_safe(e)
-  ]
-  buckets=defaultdict(list)
-  for e in samples:
-   minute=e.start.hour*60+e.start.minute
-   slot=int(round(minute/30.0))*30
-   if slot>=24*60:slot=0
-   key=(norm(e.title),slot)
-   if key[0]:buckets[key].append(e)
-
-  templates=[]
-  smart_rejected=0
-  smart_added=0
-  for key,evs in buckets.items():
-   # De-duplicate HD/TNT/parser duplicates on the same broadcast day.
-   per_day={}
-   for e in sorted(evs,key=lambda x:x.start):
-    d=e.start.date()
-    prev=per_day.get(d)
-    if prev is None or len(e.desc or "")>len(prev.desc or ""):per_day[d]=e
-   evs=list(per_day.values())
-   dates={e.start.date() for e in evs}
-   if len(dates)<2:
-    smart_rejected+=1;continue
-
-   ev=max(evs,key=lambda x:x.start)
-   valid_durations=[e.stop-e.start for e in evs if e.stop and timedelta(0)<e.stop-e.start<=timedelta(hours=4)]
-   if not valid_durations:
-    smart_rejected+=1;continue
-   valid_durations.sort()
-   dur=valid_durations[len(valid_durations)//2]
-
-   mins=sorted(e.start.hour*60+e.start.minute for e in evs)
-   median_min=mins[len(mins)//2]
-   deviations=[abs(m-median_min) for m in mins]
-   jitter=sorted(deviations)[len(deviations)//2] if deviations else 0
-
-   observations=len(dates)
-   if observations>=5:base=.93
-   elif observations==4:base=.86
-   elif observations==3:base=.78
-   else:base=.64
-   if jitter<=10:base+=.04
-   elif jitter<=30:base+=.02
-   elif jitter>45:base-=.10
-   base=max(0.0,min(1.0,base))
-
-   slot=key[1];hh=(slot//60)%24;mm=slot%60
-   weekdays={e.start.weekday() for e in evs}
-   templates.append((key[0],hh,mm,ev,dur,observations,base,weekdays))
-
-  day=start.date()
-  while day<=end.date():
-   for nt,hh,mm,ev,dur,observations,base,weekdays in templates:
-    confidence=base
-    # A programme seen on the same weekday in the seven-day SNRT archive gets
-    # a small boost, useful for weekly magazines without making one sighting
-    # sufficient by itself.
-    if day.weekday() in weekdays:confidence=min(1.0,confidence+.05)
-    if confidence<.76:
-     smart_rejected+=1;continue
-    ts=morocco_wall_clock(day,dtime(hh,mm));te=ts+dur
-    if ts<start or ts>=end or te<=ts:continue
-    if overlaps(occupied,ts,te):continue
-    out.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-smart"))
-    occupied.append(Event(cid,ts,ev.title,ev.desc,te,ev.tl,ev.dl,"arryadia-smart"))
-    repeated+=1;smart_added+=1
-   day+=timedelta(days=1)
-  log("Arryadia smart cid=%s templates=%d accepted=%d rejected=%d"%(cid,len(templates),smart_added,smart_rejected))
-
-  # Fill only what remains completely unknown.
-  occupied=sorted(occupied,key=lambda e:e.start)
-  cursor=start;gaps=[]
-  for e in occupied:
-   es=max(start,e.start);ee=min(end,e.stop)
-   if es>cursor:gaps.append((cursor,es))
-   if ee>cursor:cursor=ee
-  if cursor<end:gaps.append((cursor,end))
-  for gs,ge in gaps:
-   cur=gs
-   while cur<ge:
-    stop=min(ge,cur+timedelta(hours=slot_hours))
-    if stop<=cur:break
-    out.append(Event(
-     cid,cur,"Arryadia Programme",
-     "برامج قناة الرياضية. يتم تحديث هذا الموعد تلقائياً عند توفر الجدول الرسمي.",
-     stop,"fr","ar","arryadia-auto"
-    ))
-    generic+=1;cur=stop
-
- log("Arryadia fill retained_lkg=%d recurring=%d generic=%d"%(retained,repeated,generic))
+ # Retain exact dated events only. Past recurrence and a football calendar
+ # cannot establish a future broadcast, and gaps must remain honest gaps.
+ now=datetime.now(TZ);end=now+timedelta(hours=max(1,hours))
+ out=[e for e in rows if not _arryadia_is_generic(e) and not generated_placeholder(e.title)]
+ for e in sorted(history or [],key=lambda e:e.start):
+  if (e.channel not in ARR_IDS or not e.stop or e.stop<=now or
+      e.stop<=e.start or e.start>=end or _arryadia_is_generic(e) or
+      generated_placeholder(e.title)):
+   continue
+  if any(x.channel==e.channel and x.stop and x.stop>e.start and x.start<e.stop for x in out):
+   continue
+  out.append(Event(e.channel,e.start,e.title,e.desc,e.stop,e.tl,e.dl,"arryadia-lkg"))
  return out
+
 
 def infer(rows):
  by=defaultdict(list)
@@ -970,7 +858,15 @@ def valid(group,rows):
   ok=len(future)>=6 and (fc["Arryadia_HD"]>=3 or fc["Arryadia_TNT"]>=3)
  elif group=="2m":
   two_m=[e for e in rr if e.channel=="2M"]
-  latin=[e for e in two_m if re.search(r"[A-Za-zÀ-ÿ]",re.sub(r"(?i)\b2M\b","",e.title or ""))]
+  ordered=sorted(two_m,key=lambda e:e.start)
+  french=set()
+  for i,e in enumerate(ordered):
+   if norm(e.title)=="info soir":french.add(id(e))
+   elif (norm(e.title) in ("meteo","bulletin meteo") and i and
+         norm(ordered[i-1].title)=="info soir" and
+         timedelta(0)<=e.start-ordered[i-1].start<=timedelta(hours=2)):
+    french.add(id(e))
+  latin=[e for e in two_m if id(e) not in french and re.search(r"[A-Za-zÀ-ÿ]",re.sub(r"(?i)\b2M\b","",e.title or ""))]
   ok=c["2M"]>=6 and len(latin)<=max(1,int(len(two_m)*0.05))
  elif group=="chada":
   future=sum(1 for e in rr if (e.stop or e.start+timedelta(hours=1))>now and e.start<now+timedelta(days=3))
@@ -999,6 +895,8 @@ def google_ar(http,text,force=False):
 
 def tr2m_title(http,title):
  raw=clean(title);n=norm(raw)
+ # Genuine French-language news must keep its on-air French title.
+ if n=="info soir":return raw
  if n in T2M_FORCE_AR:return T2M_FORCE_AR[n]
  if n in T2M_MIXED:return T2M_MIXED[n]
  if n in T2M:return T2M[n]
@@ -1554,13 +1452,7 @@ def scrape_snrt(days):
    e.desc=rich;e.dl=lang(rich,"ar");cross_desc+=1
  log("SNRT cross-channel official descriptions applied=%d bank=%d"%(cross_desc,len(desc_bank)))
 
- start=datetime.now(TZ).replace(hour=0,minute=0,second=0,microsecond=0)
- for i in range(days*8):
-  out.append(Event(
-   "AFLAM.ma",start+timedelta(hours=3*i),"برامج قناة السابعة AFLAM",
-   "أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية",
-   start+timedelta(hours=3*(i+1)),"ar","ar","snrt"
-  ))
+ # An unavailable AFLAM schedule remains empty. Never generate a timetable.
  infer(out)
  # Never publish a blank SNRT description.
  for e in out:
@@ -1826,20 +1718,11 @@ def scrape_arryadia(days,history=None,history_path=None):
  current=[e for e in out if e.stop and e.stop>now-timedelta(hours=2) and e.start<limit and e.stop>e.start]
  future=[e for e in current if e.stop>now]
  log("Arryadia SNRT future=%d current_window=%d"%(len(future),len(current)))
- # When SNRT has not yet published the TV grid, preserve Botola matches from
- # the fixture calendar instead of showing a generic two-hour block.
- # Morocco senior home matches are a dedicated TNT-only fallback.
- nt_fixtures=_sofascore_morocco_home_fixtures(h,hours=72)
- current=_arryadia_add_morocco_tnt(current,nt_fixtures)
-
- fixtures=_sofascore_botola_fixtures(h,hours=48)
- if not fixtures:
-  log("Botola SofaScore unavailable/empty; trying LiveScore CDN fallback")
-  fixtures=_livescore_botola_fixtures(h,hours=48)
- current=_arryadia_add_botola(current,fixtures)
+ # A football fixture is not evidence that this exact TV service broadcasts it.
+ # Only the broadcaster grid and exact still-future LKG events may fill gaps.
  filled=_arryadia_fill(current,hours=48,slot_hours=2,history=combined_history)
  auto_count=sum(1 for e in filled if e.source=="arryadia-auto")
- log("Arryadia auto filler=%d total=%d"%(auto_count,len(filled)))
+ log("Arryadia generated filler=%d genuine dated events=%d"%(auto_count,len(filled)))
  return filled
 
 def to_xml(rows,path):
@@ -1848,16 +1731,42 @@ def to_xml(rows,path):
  # discarded here and reported in logs.
  valid_rows=[];dropped=0
  for e in rows:
+  if generated_placeholder(e.title) or e.source in ("arryadia-auto","arryadia-smart","arryadia-repeat"):
+   dropped+=1
+   continue
   if not e.start or not e.stop or e.stop<=e.start:
    dropped+=1
    continue
   valid_rows.append(e)
  if dropped: log("Morocco XML safety gate dropped %d invalid rows"%dropped)
  root=ET.Element("tv",{"generator-info-name":"EPGManager Morocco Cloud rc23"});counts=defaultdict(int)
- for cid in sorted({e.channel for e in valid_rows}):ch=ET.SubElement(root,"channel",{"id":cid});ET.SubElement(ch,"display-name").text=CHANNELS.get(cid,cid)
+ for cid in sorted(set(CHANNELS)|{e.channel for e in valid_rows}):ch=ET.SubElement(root,"channel",{"id":cid});ET.SubElement(ch,"display-name").text=CHANNELS.get(cid,cid)
  for e in sorted(valid_rows,key=lambda e:(e.start,e.channel,e.title)):
   p=ET.SubElement(root,"programme",{"start":xdt(e.start),"stop":xdt(e.stop),"channel":e.channel});ET.SubElement(p,"title",{"lang":e.tl or lang(e.title)}).text=e.title;ET.SubElement(p,"desc",{"lang":e.dl or lang(e.desc)}).text=e.desc or e.title;counts[e.channel]+=1
  ET.indent(root,space="  ");ET.ElementTree(root).write(path,encoding="utf-8",xml_declaration=True);return dict(counts)
+
+def select_groups(results,old,now=None):
+ """Isolate provider failures; retain exact future LKG per channel, never shift dates."""
+ now=now or datetime.now(TZ)
+ def usable(e):
+  return (e.start and e.stop and e.stop>e.start and e.stop>now and
+          e.start<now+timedelta(days=3) and not generated_placeholder(e.title) and
+          e.source not in ("arryadia-auto","arryadia-smart","arryadia-repeat"))
+ final=[];status={}
+ for g in ("snrt","arryadia","2m","chada","medi1"):
+  fresh=[e for e in results.get(g,[]) if e.channel in GROUPS[g] and usable(e)]
+  ok,detail=valid(g,fresh)
+  rows=list(fresh);kept=0
+  for e in sorted(old,key=lambda e:e.start):
+   if e.channel not in GROUPS[g] or not usable(e):continue
+   if any(x.channel==e.channel and x.start<e.stop and x.stop>e.start for x in rows):continue
+   rows.append(e);kept+=1
+  mode=("fresh" if ok else "degraded-fresh") if fresh else ("last-known-good" if rows else "missing")
+  status[g]={"mode":mode,"events":len(rows),"retained_exact_lkg":kept,"detail":detail,"qualified":ok}
+  log("%s: %s (%s); exact LKG=%d"%(g,mode,detail,kept))
+  final+=rows
+ return final,status
+
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument("--output-dir",default="output");ap.add_argument("--previous",default="");ap.add_argument("--days",type=int,default=7);ap.add_argument("--arryadia-history",default="data/arryadia-history.json");ap.add_argument("--scheduled",action="store_true");a=ap.parse_args();now=datetime.now(TZ)
@@ -1868,20 +1777,9 @@ def main():
   for f in as_completed(fs):
    try:results[fs[f]]=f.result()
    except Exception as e:log("%s crashed: %s"%(fs[f],e));results[fs[f]]=[]
- final=[];status={}
- for g in ("snrt","arryadia","2m","chada","medi1"):
-  rr=results.get(g,[]);ok,detail=valid(g,rr);mode="fresh"
-  if not ok:
-   rr=[e for e in old if e.channel in GROUPS[g]];ok,od=valid(g,rr);mode="last-known-good";detail+="; fallback="+od
-  if g=="chada" and not ok:
-   # Chada is optional. A stale/empty grid must not block Morocco or inject
-   # obsolete programmes into the published feed.
-   status[g]={"mode":"optional-missing","events":0,"detail":detail}
-   log("chada: no valid future schedule; omitted")
-   continue
-  if not ok:
-   log("FATAL %s invalid and no Last Known Good (%s)"%(g,detail));return 2
-  final+=rr;status[g]={"mode":mode,"events":len(rr),"detail":detail};log("%s: %s (%s)"%(g,mode,detail))
+ final,status=select_groups(results,old)
+ if not final:
+  log("No genuine future programmes; retain the published feed");return 2
  seen=set();merged=[]
  for e in sorted(final,key=lambda e:(e.channel,e.start,e.title.casefold())):
   k=(e.channel,xdt(e.start),e.title.casefold())
@@ -1889,6 +1787,6 @@ def main():
  infer(merged);xml=outdir/"morocco.xml";counts=to_xml(merged,xml);raw=xml.read_bytes();gz=outdir/"morocco.xml.gz"
  with gzip.GzipFile(filename="morocco.xml",mode="wb",fileobj=gz.open("wb"),compresslevel=9,mtime=0) as f:f.write(raw)
  (outdir/"morocco.txt").write_text("\n".join("%s | %s | %d programmes"%(cid,CHANNELS.get(cid,cid),counts.get(cid,0)) for cid in sorted(CHANNELS))+"\n",encoding="utf-8")
- manifest={"version":now.strftime("%Y%m%d-%H%M%S"),"generated":now.isoformat(),"timezone":"Africa/Casablanca","url":"morocco.xml.gz","sha256":hashlib.sha256(gz.read_bytes()).hexdigest(),"size":gz.stat().st_size,"channels":len(counts),"programmes":sum(counts.values()),"channel_counts":counts,"sources":status}
+ manifest={"version":now.strftime("%Y%m%d-%H%M%S"),"generated":now.isoformat(),"timezone":"Africa/Casablanca","url":"morocco.xml.gz","sha256":hashlib.sha256(gz.read_bytes()).hexdigest(),"size":gz.stat().st_size,"channels":len(CHANNELS),"programmes":sum(counts.values()),"channel_counts":counts,"sources":status}
  (outdir/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2,sort_keys=True)+"\n",encoding="utf-8");log("PASS: %d channels / %d programmes / %.1f KiB"%(manifest["channels"],manifest["programmes"],manifest["size"]/1024));return 0
 if __name__=="__main__":raise SystemExit(main())

@@ -8,7 +8,9 @@ Production XMLTV scrapers for MENA channels.
 - `bein`: beIN MENA
 - `osn`: OSN
 - `sport24`: sports fallback/auxiliary source
-- `starzplay`: STARZPLAY Live public schedule metadata, hybrid AR/EN when accessible\n- `aljazeera`: Al Jazeera Network official Arabic schedules for Al Jazeera, Al Jazeera 2, Mubasher and Documentary
+- `starzplay`: STARZPLAY Live public schedule metadata, hybrid AR/EN when accessible
+- `aljazeera`: Al Jazeera Network official Arabic schedules
+- `alkass`, `tabie`, `tunisiatv`, `dubaiplus`, `shahid`, `rotana`, `stctv`
 
 ### Hybrid language policy
 For STARZPLAY international/foreign channels, EPGManager keeps the English programme title/subtitle and the Arabic description. Arabic-native channels keep Arabic title/subtitle/description. STARZPLAY is published only after normal feed validation and last-known-good checks; blocked or empty fetches never overwrite a healthy feed.
@@ -26,7 +28,37 @@ Validation includes:
 - per-channel zero-EPG and future-zero monitoring
 
 ## Schedule
-GitHub Actions runs once per day at **06:00 Africa/Casablanca**. Because GitHub cron is UTC, the workflow runs at 05:00 UTC during Morocco UTC+1 periods and contains a timezone guard so publication only happens at local 06:00. It can also be run manually.
+All automatic source schedules use **fixed GMT+0** (`timezone: Etc/GMT`), once daily.
+There is no seasonal or Ramadan shift. Times below are requested start times,
+not publication deadlines: GitHub may delay a scheduled workflow.
+
+| Source | GMT+0 |
+|---|---|
+| Tabie | 00:30 |
+| ElCinema | 01:20 |
+| OSN | 01:40 |
+| beIN | 02:22 |
+| Sport24 | 03:05 |
+| Shahid | 03:39 |
+| Rotana | 03:50 |
+| Al Jazeera | 04:12 |
+| Dubai Plus | 04:44 |
+| STARZPLAY | 05:12 |
+| STC | 05:55 |
+| AlKass | 06:30 |
+| Tunisia TV | 06:35 |
+| Morocco | 07:07 |
+
+The 07:15 orchestration extends ElCinema from verified donors and rebuilds MENA;
+it does not scrape the 14 sources again. The 14:15 watchdog measures the actual
+remaining published EPG, including retained LKG bytes. Manual dispatch remains available.
+
+Receiver imports must follow **actual publication**, not just the requested cron.
+On 23 October the MENA rebuild completed at 12:39 GMT+0; a 10:00 import therefore
+could not include every source's new publication. 13:15 would cover that observed
+day with a margin, but is not a guarantee against future GitHub delays. Check source
+SHA/generation/remaining guide before calling a cycle up to date. Never purge real
+receiver EPG because a provider is late.
 
 ## Outputs
 - `feeds/<source>.xml.gz`
@@ -36,9 +68,14 @@ GitHub Actions runs once per day at **06:00 Africa/Casablanca**. Because GitHub 
 The repository is designed so EPGManager/Vu+ can consume each source independently.
 
 
-## STARZPLAY hold
+## Guide quality
 
-STARZPLAY is temporarily excluded from the daily sequential refresh while its catalogue/EPG coverage is being reworked. The last-known-good feed is preserved, but it is not treated as an active production source until re-enabled.
+STARZPLAY is active on its own 05:12 GMT+0 workflow. A successful Actions run or a
+MAIN/B1/B2 role does not certify guide quality. Review `reports/mena-readiness.json`
+and `<source>-current-health.json`: expired IDs stay visible but never green;
+placeholder suspicions remain explicit, and generated Arryadia/AFLAM filler is
+excluded from new derived publications. A degraded genuine exact-ID backup may
+extend a shorter guide without falsely turning the result green.
 
 ## Multinational language policy
 

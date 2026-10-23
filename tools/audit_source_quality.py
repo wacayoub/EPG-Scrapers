@@ -15,8 +15,10 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 try:
     from bein_occasional_policy import is_occasional_bein
+    from programme_authenticity import generated_placeholder
 except ModuleNotFoundError:
     from tools.bein_occasional_policy import is_occasional_bein
+    from tools.programme_authenticity import generated_placeholder
 
 BAD_DESC = (
     "دليل البرامج غير متوفر", "جدول البرامج غير متوفر",
@@ -89,7 +91,7 @@ def analyze(path, source, now):
         if any(t in desc.casefold() for t in BAD_DESC):
             placeholder_desc += 1
             bad_channels[cid] += 1
-        if any(t in title.casefold() for t in BAD_TITLE) or (
+        if generated_placeholder(title) or any(t in title.casefold() for t in BAD_TITLE) or (
             len(norm(title)) >= 7 and norm(title) in
             {norm(n) for n in names.get(cid, []) if len(norm(n)) >= 7}
         ):
