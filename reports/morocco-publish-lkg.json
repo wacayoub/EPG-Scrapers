@@ -1,13 +1,39 @@
 {
-  "generated_utc": "2026-10-23T12:35:10.661885+00:00",
+  "generated_utc": "2026-10-23T18:35:07.136823+00:00",
   "sources": {
     "morocco": {
-      "candidate": "output/final/morocco.xml.gz",
-      "published": false,
-      "decision": "KEEP_LKG",
-      "reasons": [
-        "candidate_missing"
-      ]
+      "candidate": "output\\final\\morocco.xml.gz",
+      "published": true,
+      "candidate_stats": {
+        "channels": 15,
+        "active_channels": 6,
+        "zero_epg_channels": 9,
+        "programmes": 353,
+        "future_channels": 6,
+        "future_ratio": 1.0,
+        "current_channels": 6,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 48.66468228833334,
+        "first_future_start_lead_hours": 0.0,
+        "missing_title_rows": 0,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 14,
+        "active_channels": 14,
+        "zero_epg_channels": 0,
+        "programmes": 416,
+        "future_channels": 8,
+        "future_ratio": 0.5714285714285714,
+        "current_channels": 8,
+        "current_ratio": 0.5714285714285714,
+        "future_horizon_hours": 18.91467849611111,
+        "first_future_start_lead_hours": 0.0,
+        "missing_title_rows": 0,
+        "invalid_rows": 0
+      },
+      "decision": "PUBLISH",
+      "reasons": []
     }
   }
 }
