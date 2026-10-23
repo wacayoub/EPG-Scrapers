@@ -1,8 +1,8 @@
 # TXT ID duplicate audit
 
-TXT IDs scanned: **439**
-Certain cross-source duplicate groups: **44**
-Review pairs: **41**
+TXT IDs scanned: **443**
+Certain cross-source duplicate groups: **45**
+Review pairs: **39**
 
 ## Certain duplicate groups
 
@@ -17,7 +17,7 @@ Review pairs: **41**
 | alfamusic | osn:MusicNow.ae@SD (Alfa Music HD) ; others:Alfa Music HD.sa (Alfa Music HD.sa) |
 | alfaseries | osn:AlfaSeries.ae@SD (Alfa Series HD) ; others:Alfa Series HD.sa (Alfa Series HD.sa) |
 | alfaseriesplus2 | osn:AlfaSeriesPlus2.ae@SD (Alfa Series +2 HD) ; others:Alfa Series +2 HD.sa (Alfa Series +2 HD.sa) |
-| alkassone | bein:AlkassOne.qa@SD (Alkass One) ; others:Al Kass One.sa (Al Kass One.sa) |
+| alkassone | bein:AlkassOne.qa@SD (33) ; osn:osn.2501 (Al Kass One) ; others:Al Kass One.sa (Al Kass One.sa) |
 | blippiandfriends | osn:OSNBlippiAndFriends (Blippi and Friends) ; others:Blippi And Friends.sa (Blippi And Friends.sa) |
 | bloomberg | bein:BloombergTV.us@MiddleEast (Bloomberg) ; osn:BloombergTV.us@MiddleEast (Bloomberg) |
 | cartoonnetworkarabic | osn:CartoonNetworkArabic.ae@SD (CN Arabia) ; elcinema:CartoonNetworkArabic.ae@SD (نتورك بالعربية) |
@@ -30,6 +30,7 @@ Review pairs: **41**
 | foodnetwork | bein:FoodNetworkEMEA.us@SD (Food Network) ; others:Food Network.sa (Food Network.sa) |
 | hgtv | bein:HGTVArabia.us@SD (HGTV Arabia) ; others:HGTV.sa (HGTV.sa) |
 | ktv1 | osn:OSNKTVChannel1HD (KTV Channel 1 HD) ; others:KTV Channel 1 HD.sa (KTV Channel 1 HD.sa) |
+| omansport | osn:osn.9993 (Oman TV Sport) ; others:Oman Sport.sa (Oman Sport.sa) |
 | omantv | osn:OmanTV.om@SD (Oman TV) ; elcinema:AmmanTV.jo@SD (عَمان) ; elcinema:OmanTV.om@SD (عمان) |
 | osntvcrime | osn:OSNCrime.ae@SD (OSNtv Crime) ; others:OSNtv Crime.sa (OSNtv Crime.sa) |
 | osntvdocumentary | osn:OSNDocumentary.ae@SD (OSNtv Documentary) ; others:OSNtv Documentary.sa (OSNtv Documentary.sa) |
@@ -37,7 +38,7 @@ Review pairs: **41**
 | osntvmoviescomedy | osn:OSNMoviesComedy.ae@SD (OSNtv Movies Comedy) ; others:OSNtv Movies Comedy.sa (OSNtv Movies Comedy.sa) |
 | osntvmoviesfamily | osn:OSNMoviesFamily.ae@SD (OSNtv Movies Family) ; others:OSNtv Movies Family.sa (OSNtv Movies Family.sa) |
 | osntvmovieshorror | osn:OSNMoviesHorror.ae@SD (OSNtv Movies Horror) ; others:OSNtv Movies Horror.sa (OSNtv Movies Horror.sa) |
-| osntvnow | osn:OSNNow.ae@SD (OSNtv Now) ; others:OSNtv Now.sa (OSNtv Now.sa) |
+| osntvnow | osn:osn.5677 (OSNtv Now) ; others:OSNtv Now.sa (OSNtv Now.sa) |
 | osntvone | osn:OSNOne.ae@SD (OSNtv One) ; others:OSNtv One.sa (OSNtv One.sa) |
 | osntvpopup | osn:OSNPopUp.ae@SD (OSNtv Pop Up) ; others:OSNtv Pop Up.sa (OSNtv Pop Up.sa) |
 | osntvshowcaseclassics | osn:OSNShowcaseClassics.ae@SD (OSNtv Showcase Classics) ; others:OSNtv Showcase Classics.sa (OSNtv Showcase Classics.sa) |
@@ -63,7 +64,6 @@ Review pairs: **41**
 | 1.00 | bein:beINSeries1.qa@SD — beINSERIES1 | elcinema:beINSeries1.qa@SD — بي إن سيريس |
 | 1.00 | bein:FoxActionMoviesMENA.hk@SD — Fox Action Movies MENA | elcinema:FoxActionMoviesMENA.hk@SD — ستار أكشن |
 | 1.00 | bein:StarMoviesMiddleEast.ae@SD — Star Movies Middle East | elcinema:StarMoviesMiddleEast.ae@SD — ستار موفيز |
-| 1.00 | bein:StarWorldMiddleEast.ae@SD — Star World Middle East | elcinema:StarWorldMiddleEast.ae@SD — ستار ورلد |
 | 1.00 | osn:AbuDhabiTV.ae@SD — Abu Dhabi TV HD | elcinema:AbuDhabiTV.ae@SD — أبو ظبي |
 | 1.00 | osn:AlArabyTV2.qa@SD — Al Araby 2 | elcinema:AlArabyTV2.qa@SD — التلفزيون العربي 2 |
 | 1.00 | osn:BahrainTV.bh@SD — Bahrain TV | elcinema:BahrainTV.bh@SD — البحرين |
@@ -89,7 +89,6 @@ Review pairs: **41**
 | 0.95 | bein:AlJazeeraDocumentary.qa@SD — Al Jazeera Documentary | others:Aljazeera-Documentary-1.qa — Aljazeera-Documentary-1.qa |
 | 0.92 | osn:OSNeClutchLIVE — eClutch LIVE | others:eClutch LIVE 2.sa — eClutch LIVE 2.sa |
 | 0.92 | osn:OSNeClutchLIVE2 — eClutch LIVE 2 | others:eClutch LIVE.sa — eClutch LIVE.sa |
-| 0.91 | osn:OSNPopUp2.ae@SD — OSNtv Pop Up 2 | others:OSNtv Pop Up.sa — OSNtv Pop Up.sa |
 | 0.90 | osn:AlArabyTV.qa@SD — Al Araby TV | elcinema:AlArabyTV2.qa@SD — التلفزيون العربي 2 |
 | 0.90 | elcinema:AlMasriyah.eg@SD — المصرية | others:Al Masriya.sa — Al Masriya.sa |
 | 0.89 | bein:BeJunior.qa@SD — beJunior | others:beJUNIOR-1.qa — beJUNIOR-1.qa |
