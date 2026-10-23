@@ -24,7 +24,10 @@ FEEDS.mkdir(parents=True, exist_ok=True)
 REPORTS.mkdir(parents=True, exist_ok=True)
 
 POLICY = {
-    "morocco":   {"min_channels": 5,  "min_programmes": 50,  "min_future_ratio": 0.70, "min_horizon_hours": 8},
+    # A SNRT outage must not freeze genuine 2M/Chada/Medi1 publications.
+    # Three real programme-bearing services, full catalogue retention and
+    # explicit current-health warnings replace synthetic Arryadia coverage.
+    "morocco":   {"min_channels": 3,  "min_programmes": 50,  "min_future_ratio": 0.70, "min_horizon_hours": 8},
     "elcinema":  {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.70, "min_horizon_hours": 8},
     "osn":       {"min_channels": 20, "min_programmes": 100, "min_future_ratio": 0.80, "min_horizon_hours": 8},
     # beIN's official package intentionally retains some catalogue IDs whose
@@ -220,6 +223,12 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["missing_title_rows"] == 0
                 and cur["invalid_rows"] == 0
             )
+            # Do not replace a still-useful Tabie guide by a much shorter
+            # current-day replay. Recovery exemption is for expired LKG only.
+            if (key == "tabie" and old["future_channels"] > 0 and
+                    cur["future_horizon_hours"] + 4 < old["future_horizon_hours"] and
+                    cur["future_horizon_hours"] < old["future_horizon_hours"] * 0.65):
+                reasons.append("future_horizon_regression>35%")
             planned_scope_rebase = (planned_bein_scope_rebase or
                                     planned_stctv_scope_rebase or recovery_short_horizon)
             if (

@@ -20,9 +20,11 @@ import xml.etree.ElementTree as ET
 try:
     from tools.mena_source_snapshot import get_source_snapshot
     from tools.source_feed_pack import parse_xmltv_dt
+    from tools.programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
 except ImportError:
     from mena_source_snapshot import get_source_snapshot
     from source_feed_pack import parse_xmltv_dt
+    from programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
 
 
 def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
@@ -78,6 +80,7 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
     programme_counts = Counter()
     future_counts = Counter()
     invalid_ids = Counter()
+    editorial_ids = Counter()
     seen_events = set()
     duplicated_events = 0
     orphan_programmes = 0
@@ -94,6 +97,10 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
             continue
         if stop > now:
             future_counts[cid] += 1
+            title_text = next(((x.text or "").strip() for x in p.findall("title") if x.text), "")
+            if generated_placeholder(title_text) or (
+                    strict_arabic_channel(cid) and not arabic_title(title_text)):
+                editorial_ids[cid] += 1
         title = tuple((x.text or "").strip() for x in p.findall("title"))
         identity = (cid, p.get("start"), p.get("stop"), title)
         if identity in seen_events:
@@ -120,7 +127,11 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
             chosen_item = chosen[0]
         if owners.get(cid) != selected.get("selected_source"):
             structural_errors.append("OWNER_SELECTED_SOURCE_MISMATCH:" + cid)
-        qualified_when_built = bool(chosen_item.get("qualified"))
+        qualified_when_built = bool(
+            chosen_item.get("qualified")
+            and not chosen_item.get("suspected_placeholder")
+            and selected.get("extensions_qualified", True)
+            and not editorial_ids[cid])
         has_future = future_counts[cid] > 0
         if not has_future:
             status = "NO_FUTURE_EPG"
@@ -141,6 +152,8 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
             "manual_mapping_visible": True,
             "actual_programmes": programme_counts[cid],
             "actual_future_programmes": future_counts[cid],
+            "editorial_review_programmes": editorial_ids[cid],
+            "suspected_placeholder": bool(chosen_item.get("suspected_placeholder")),
             "selected_source_reported_future_programmes":
                 chosen_item.get("future_programmes", 0),
             "candidate_sources": [c.get("source") for c in candidates],
@@ -197,7 +210,7 @@ def render_markdown(report):
         f"Published GMT+0: {report['source_generated_utc']}",
         f"**Status:** {report['status']}",
         "",
-        f"**{report['channels']} logical IDs · {report['programmes']} genuine source programme records · "
+        f"**{report['channels']} logical IDs · {report['programmes']} source programme records · "
         f"{report['verified_source_count']} source fingerprints checked**",
         "",
         "| Route quality | Channels |",

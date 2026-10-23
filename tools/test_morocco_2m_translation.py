@@ -69,7 +69,7 @@ class TwoMTranslationTests(unittest.TestCase):
         now=m.datetime.now(m.TZ)
         rows=[m.Event('2M',now+timedelta(minutes=i+1),'عنوان عربي',stop=now+timedelta(hours=1)) for i in range(6)]
         self.assertTrue(m.valid('2m',rows)[0])
-        rows[0].title='Auto-moto'; rows[1].title='Info soir'
+        rows[0].title='Auto-moto'; rows[1].title='Untranslated unknown show'
         self.assertFalse(m.valid('2m',rows)[0])
 
 if __name__=='__main__': unittest.main(verbosity=2)

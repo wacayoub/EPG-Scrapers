@@ -12,8 +12,12 @@ import xml.etree.ElementTree as ET
 
 try:
     from tools.mena_source_snapshot import get_source_snapshot
+    from tools.audit_source_quality import analyze as analyze_quality
+    from tools.programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
 except ImportError:
     from mena_source_snapshot import get_source_snapshot
+    from audit_source_quality import analyze as analyze_quality
+    from programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
 
 FEEDS = Path("feeds")
 REPORTS = Path("reports")
@@ -50,6 +54,8 @@ def load_policy():
 
 POLICY = load_policy()
 PRIORITY = POLICY["default_source_order"]
+BUILD_NOW = datetime.now(timezone.utc)
+SOURCE_QUALITY = {}
 
 
 def read_root(path: Path):
@@ -94,6 +100,12 @@ def source_data(name):
     if not path.exists():
         return {}, defaultdict(list)
     root = read_root(path)
+    # Recompute against the exact input bytes; never trust a stale quality JSON
+    # from a rejected publication or a different feed SHA.
+    quality = analyze_quality(path, name, BUILD_NOW)
+    SOURCE_QUALITY[name] = {
+        item["id"] for item in quality.get("suspected_placeholder_channels", [])
+    }
     channels = {}
     programmes = defaultdict(list)
     for ch in root.findall("channel"):
@@ -118,6 +130,13 @@ def source_data(name):
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
         if cid in channels:
+            # Preserve the channel/catalogue identity, but exclude explicitly
+            # invented rows from the derived feed, including old LKG fillers.
+            if generated_placeholder(text_of(p, "title")):
+                continue
+            canonical = member_to_canonical.get((name, cid), cid)
+            if strict_arabic_channel(canonical) and not arabic_title(text_of(p, "title")):
+                continue
             if name == "tabie":
                 stop=parse_dt(p.get("stop"))
                 if stop is None or stop <= datetime.now(timezone.utc):
@@ -168,6 +187,8 @@ def family_rule(cid, name):
 
 
 def profile_for(cid, name, explicit=None):
+    if strict_arabic_channel(cid):
+        return "arabic_strict"
     if explicit:
         return explicit
     low = f"{cid} {name}".casefold()
@@ -200,7 +221,13 @@ def quality_score(profile, m):
 def qualified(profile, m):
     q = POLICY["quality"]
     return (
-        m["future_programmes"] >= q["min_future_programmes"]
+        not m.get("suspected_placeholder", False)
+        and not m.get("editorial_language_review", False)
+        and (profile != "arabic_strict" or (
+            m["arabic_title_pct"] == 100.0
+            and m["arabic_desc_pct"] == 100.0
+            and m["description_pct"] == 100.0))
+        and m["future_programmes"] >= q["min_future_programmes"]
         and m["future_hours"] >= q["min_future_hours"]
         and m["description_pct"] >= q["min_description_pct"]
         and language_fit(profile, m) >= q["min_language_fit_pct"]
@@ -219,13 +246,17 @@ def preferred_sources(cid, name, explicit=None):
 
 
 def latest_stop(rows):
-    stops = [(p.get("stop") or "").strip() for p in rows if (p.get("stop") or "").strip()]
-    return max(stops) if stops else ""
+    stops = [parse_dt(p.get("stop")) for p in rows]
+    return max((x for x in stops if x is not None), default=None)
 
 
 def program_copy(p, cid):
     out = clone(p)
     out.set("channel", cid)
+    for key in ("start", "stop"):
+        stamp = parse_dt(out.get(key))
+        if stamp is not None:
+            out.set(key, stamp.strftime("%Y%m%d%H%M%S +0000"))
     return out
 
 
@@ -316,6 +347,21 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
 
     for c in candidates:
         c["metrics"] = metrics(c["rows"])
+        c["metrics"]["suspected_placeholder"] = c["id"] in SOURCE_QUALITY.get(c["source"], set())
+        c["metrics"]["editorial_language_review"] = False
+        if canonical == "2M":
+            previous = None
+            for p in sorted(c["rows"], key=lambda p: parse_dt(p.get("start"))):
+                title = text_of(p, "title")
+                low = title.casefold().strip()
+                french = low == "info soir" or (
+                    low in ("météo", "meteo", "bulletin météo", "bulletin meteo")
+                    and previous is not None and text_of(previous, "title").casefold() == "info soir"
+                    and timedelta(0) <= parse_dt(p.get("start")) - parse_dt(previous.get("start")) <= timedelta(hours=2))
+                if (parse_dt(p.get("stop")) > BUILD_NOW and not french and
+                        re.search(r"[A-Za-zÀ-ÿ]", re.sub(r"(?i)\b2M\b", "", title))):
+                    c["metrics"]["editorial_language_review"] = True
+                previous = p
         c["profile"] = profile
         c["language_fit_pct"] = language_fit(profile, c["metrics"])
         c["score"] = quality_score(profile, c["metrics"])
@@ -327,7 +373,10 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
         selected = sorted(good, key=lambda c: (pref_index.get(c["source"], 999), -c["score"]))[0]
         selection_reason = "preferred_healthy_source"
     else:
-        selected = sorted(candidates, key=lambda c: (-c["score"], pref_index.get(c["source"], 999)))[0]
+        selected = sorted(candidates, key=lambda c: (
+            c["metrics"]["future_programmes"] == 0,
+            c["metrics"]["suspected_placeholder"],
+            -c["score"], pref_index.get(c["source"], 999)))[0]
         selection_reason = "degraded_best_available"
 
     ordered = sorted(candidates, key=lambda c: (pref_index.get(c["source"], 999), -c["score"]))
@@ -346,14 +395,20 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
 
     cutoff = latest_stop(merged_programmes[canonical])
     used_extensions = []
+    extensions_qualified = True
     for c in ordered:
-        if c is selected or not c["qualified"] or not cutoff:
+        # A genuine same-identity guide with missing descriptions remains useful
+        # as an explicitly degraded tail after the preferred guide expires.
+        if (c is selected or c["metrics"]["suspected_placeholder"]
+                or not c["metrics"]["future_programmes"] or not cutoff):
             continue
-        tail = [p for p in c["rows"] if (p.get("start") or "").strip() >= cutoff]
+        tail = [p for p in c["rows"] if parse_dt(p.get("start")) is not None
+                and parse_dt(p.get("start")) >= cutoff]
         if not tail:
             continue
         merged_programmes[canonical].extend(program_copy(p, canonical) for p in tail)
         used_extensions.append(c["source"])
+        extensions_qualified = extensions_qualified and c["qualified"]
         cutoff = latest_stop(merged_programmes[canonical])
     if used_extensions:
         extensions[canonical] = used_extensions
@@ -365,6 +420,7 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
         "selected_role": roles.get((selected["source"], selected["id"]), "MAIN"),
         "selection_reason": selection_reason,
         "extensions": used_extensions,
+        "extensions_qualified": extensions_qualified,
         "candidates": [
             {
                 "role": roles.get((c["source"], c["id"]), ""),

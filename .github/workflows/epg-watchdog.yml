@@ -23,6 +23,9 @@ jobs:
           ref: main
           fetch-depth: 1
 
+      - name: Measure real remaining EPG, independent of LKG attempt date
+        run: python tools/source_health_snapshot.py --output output/watchdog-current-health.json
+
       - name: Verify today's source feeds and LKG state
         id: health
         shell: bash
@@ -122,9 +125,14 @@ jobs:
               status="healthy_lkg"
           else:
               status="healthy"
+          current_health=json.loads(Path("output/watchdog-current-health.json").read_text())
+          degraded_guides=[r["source"] for r in current_health if r["status"]!="AVAILABLE"]
+          if degraded_guides and status in ("healthy", "healthy_lkg"):
+              status="degraded_source_guides"
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
               fh.write(f"status={status}\n")
+              fh.write("degraded_guides=" + ";".join(degraded_guides) + "\n")
               fh.write("stale_sources=" + ";".join(stale_sources) + "\n")
               fh.write("lkg_sources=" + ";".join(lkg_sources) + "\n")
               fh.write("fresh_sources=" + ";".join(fresh_sources) + "\n")
@@ -162,6 +170,7 @@ jobs:
           {
             echo "## EPG watchdog"
             echo "- Status: ${{ steps.health.outputs.status }}"
+            echo "- Published guides requiring review now: ${{ steps.health.outputs.degraded_guides }}"
             echo "- Fresh sources: ${{ steps.health.outputs.fresh_sources }}"
             echo "- LKG accepted today: ${{ steps.health.outputs.lkg_sources }}"
             echo "- Stale sources: ${{ steps.health.outputs.stale_sources }}"

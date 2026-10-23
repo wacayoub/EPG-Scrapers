@@ -15,14 +15,16 @@ from tools.test_elcinema_exact_id_gap_shadow import pack
 class TestDailyElCinemaDonors(unittest.TestCase):
     def setUp(self):
         self.now = datetime.now(timezone.utc).replace(second=0, microsecond=0)
-        self.old = donor.EXACT_DONORS
-        donor.EXACT_DONORS = {
+        # Patch the module actually used by prepare(), regardless of import
+        # style (tools.* versus script-level imports in a discovery run).
+        self.old = integration.donor.EXACT_DONORS
+        integration.donor.EXACT_DONORS = {
             "shahid": ("MBC1.ae@SD",),
             "dubaiplus": ("DubaiOne.ae@SD",),
         }
 
     def tearDown(self):
-        donor.EXACT_DONORS = self.old
+        integration.donor.EXACT_DONORS = self.old
 
     def fixture(self, root):
         root = Path(root)

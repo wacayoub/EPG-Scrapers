@@ -436,3 +436,14 @@ else
   exit 2
 fi
 echo "SOURCE_REFRESH_DONE source=$SOURCE hours=$HOURS"
+
+# Current-health is intentionally a fresh observation of the accepted bytes,
+# even on KEEP_LKG; it does not relabel old quality reports as new publication.
+python tools/source_health_snapshot.py --source "$SOURCE" \
+  --output "reports/$SOURCE-current-health.json" || exit 2
+if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+  printf '\n### Published source health (%s, GMT+0)\n\n' "$SOURCE" >> "$GITHUB_STEP_SUMMARY"
+  printf 'Scrape success and published guide availability are separate.\n\n```json\n' >> "$GITHUB_STEP_SUMMARY"
+  cat "reports/$SOURCE-current-health.json" >> "$GITHUB_STEP_SUMMARY"
+  printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
+fi
