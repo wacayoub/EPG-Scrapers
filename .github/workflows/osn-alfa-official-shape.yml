@@ -1,0 +1,25 @@
+name: OSN Alfa official guide metadata — read-only
+on:
+  push:
+    branches: [fix/osn-legacy-19-targeted-probe-20261017]
+    paths:
+      - 'tools/osn_alfa_official_guide_shape.py'
+      - '.github/workflows/osn-alfa-official-shape.yml'
+  pull_request:
+    paths:
+      - 'tools/osn_alfa_official_guide_shape.py'
+      - '.github/workflows/osn-alfa-official-shape.yml'
+permissions:
+  contents: read
+jobs:
+  alfa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m py_compile tools/osn_alfa_official_guide_shape.py
+      - name: Robots-aware official Alfa website HTML metadata only
+        run: python tools/osn_alfa_official_guide_shape.py
