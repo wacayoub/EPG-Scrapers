@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-22T10:05:23.285521+00:00",
+  "generated_utc": "2026-10-23T09:59:07.407179+00:00",
   "language": "ar",
   "country": "AE",
   "countries": [
@@ -16,8 +16,95 @@
   "country_stats": [
     {
       "country": "AE",
-      "raw_channel_rows": 155,
-      "raw_event_rows": 11007,
+      "raw_channel_rows": 158,
+      "raw_event_rows": 11113,
+      "category_slugs": [
+        "featured",
+        "news",
+        "sports",
+        "live-tv",
+        "entertainment",
+        "kids",
+        "southasian",
+        "JH*",
+        "movies",
+        "lifestyle",
+        "religious"
+      ],
+      "category_stats": [
+        {
+          "slug": "featured",
+          "pages": 1,
+          "channels_seen": 20,
+          "events_seen": 1513
+        },
+        {
+          "slug": "news",
+          "pages": 1,
+          "channels_seen": 14,
+          "events_seen": 1348
+        },
+        {
+          "slug": "sports",
+          "pages": 1,
+          "channels_seen": 17,
+          "events_seen": 857
+        },
+        {
+          "slug": "live-tv",
+          "pages": 1,
+          "channels_seen": 10,
+          "events_seen": 702
+        },
+        {
+          "slug": "entertainment",
+          "pages": 1,
+          "channels_seen": 28,
+          "events_seen": 1566
+        },
+        {
+          "slug": "kids",
+          "pages": 1,
+          "channels_seen": 9,
+          "events_seen": 1335
+        },
+        {
+          "slug": "southasian",
+          "pages": 1,
+          "channels_seen": 34,
+          "events_seen": 1881
+        },
+        {
+          "slug": "JH*",
+          "pages": 1,
+          "channels_seen": 10,
+          "events_seen": 489
+        },
+        {
+          "slug": "movies",
+          "pages": 1,
+          "channels_seen": 6,
+          "events_seen": 151
+        },
+        {
+          "slug": "lifestyle",
+          "pages": 1,
+          "channels_seen": 8,
+          "events_seen": 1204
+        },
+        {
+          "slug": "religious",
+          "pages": 1,
+          "channels_seen": 2,
+          "events_seen": 67
+        }
+      ],
+      "errors": []
+    },
+    {
+      "country": "SA",
+      "raw_channel_rows": 158,
+      "raw_event_rows": 10868,
       "category_slugs": [
         "featured",
         "news",
@@ -36,148 +123,61 @@
           "slug": "featured",
           "pages": 1,
           "channels_seen": 19,
-          "events_seen": 1455
-        },
-        {
-          "slug": "news",
-          "pages": 1,
-          "channels_seen": 14,
-          "events_seen": 1367
-        },
-        {
-          "slug": "sports",
-          "pages": 1,
-          "channels_seen": 16,
-          "events_seen": 721
-        },
-        {
-          "slug": "live-tv",
-          "pages": 1,
-          "channels_seen": 9,
-          "events_seen": 611
-        },
-        {
-          "slug": "entertainment",
-          "pages": 1,
-          "channels_seen": 28,
-          "events_seen": 1617
-        },
-        {
-          "slug": "kids",
-          "pages": 1,
-          "channels_seen": 9,
-          "events_seen": 1343
-        },
-        {
-          "slug": "southasian",
-          "pages": 1,
-          "channels_seen": 34,
-          "events_seen": 1973
-        },
-        {
-          "slug": "JH*",
-          "pages": 1,
-          "channels_seen": 10,
-          "events_seen": 519
-        },
-        {
-          "slug": "movies",
-          "pages": 1,
-          "channels_seen": 6,
-          "events_seen": 154
-        },
-        {
-          "slug": "lifestyle",
-          "pages": 1,
-          "channels_seen": 8,
-          "events_seen": 1180
-        },
-        {
-          "slug": "religious",
-          "pages": 1,
-          "channels_seen": 2,
-          "events_seen": 67
-        }
-      ],
-      "errors": []
-    },
-    {
-      "country": "SA",
-      "raw_channel_rows": 155,
-      "raw_event_rows": 10744,
-      "category_slugs": [
-        "featured",
-        "news",
-        "sports",
-        "live-tv",
-        "entertainment",
-        "kids",
-        "southasian",
-        "JH*",
-        "movies",
-        "lifestyle",
-        "religious"
-      ],
-      "category_stats": [
-        {
-          "slug": "featured",
-          "pages": 1,
-          "channels_seen": 18,
-          "events_seen": 1264
+          "events_seen": 1331
         },
         {
           "slug": "news",
           "pages": 1,
           "channels_seen": 16,
-          "events_seen": 1486
+          "events_seen": 1467
         },
         {
           "slug": "sports",
           "pages": 1,
-          "channels_seen": 16,
-          "events_seen": 721
+          "channels_seen": 17,
+          "events_seen": 857
         },
         {
           "slug": "live-tv",
           "pages": 1,
-          "channels_seen": 9,
-          "events_seen": 611
+          "channels_seen": 10,
+          "events_seen": 702
         },
         {
           "slug": "entertainment",
           "pages": 1,
           "channels_seen": 28,
-          "events_seen": 1617
+          "events_seen": 1566
         },
         {
           "slug": "kids",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1152
+          "events_seen": 1153
         },
         {
           "slug": "southasian",
           "pages": 1,
           "channels_seen": 34,
-          "events_seen": 1973
+          "events_seen": 1881
         },
         {
           "slug": "JH*",
           "pages": 1,
           "channels_seen": 10,
-          "events_seen": 519
+          "events_seen": 489
         },
         {
           "slug": "movies",
           "pages": 1,
           "channels_seen": 6,
-          "events_seen": 154
+          "events_seen": 151
         },
         {
           "slug": "lifestyle",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1180
+          "events_seen": 1204
         },
         {
           "slug": "religious",
@@ -190,8 +190,8 @@
     },
     {
       "country": "KW",
-      "raw_channel_rows": 155,
-      "raw_event_rows": 10744,
+      "raw_channel_rows": 158,
+      "raw_event_rows": 10868,
       "category_slugs": [
         "featured",
         "news",
@@ -209,62 +209,62 @@
         {
           "slug": "featured",
           "pages": 1,
-          "channels_seen": 18,
-          "events_seen": 1264
+          "channels_seen": 19,
+          "events_seen": 1331
         },
         {
           "slug": "news",
           "pages": 1,
           "channels_seen": 16,
-          "events_seen": 1486
+          "events_seen": 1467
         },
         {
           "slug": "sports",
           "pages": 1,
-          "channels_seen": 16,
-          "events_seen": 721
+          "channels_seen": 17,
+          "events_seen": 857
         },
         {
           "slug": "live-tv",
           "pages": 1,
-          "channels_seen": 9,
-          "events_seen": 611
+          "channels_seen": 10,
+          "events_seen": 702
         },
         {
           "slug": "entertainment",
           "pages": 1,
           "channels_seen": 28,
-          "events_seen": 1617
+          "events_seen": 1566
         },
         {
           "slug": "kids",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1152
+          "events_seen": 1153
         },
         {
           "slug": "southasian",
           "pages": 1,
           "channels_seen": 34,
-          "events_seen": 1973
+          "events_seen": 1881
         },
         {
           "slug": "JH*",
           "pages": 1,
           "channels_seen": 10,
-          "events_seen": 519
+          "events_seen": 489
         },
         {
           "slug": "movies",
           "pages": 1,
           "channels_seen": 6,
-          "events_seen": 154
+          "events_seen": 151
         },
         {
           "slug": "lifestyle",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1180
+          "events_seen": 1204
         },
         {
           "slug": "religious",
@@ -277,8 +277,8 @@
     },
     {
       "country": "QA",
-      "raw_channel_rows": 155,
-      "raw_event_rows": 10744,
+      "raw_channel_rows": 158,
+      "raw_event_rows": 10868,
       "category_slugs": [
         "featured",
         "news",
@@ -296,62 +296,62 @@
         {
           "slug": "featured",
           "pages": 1,
-          "channels_seen": 18,
-          "events_seen": 1264
+          "channels_seen": 19,
+          "events_seen": 1331
         },
         {
           "slug": "news",
           "pages": 1,
           "channels_seen": 16,
-          "events_seen": 1486
+          "events_seen": 1467
         },
         {
           "slug": "sports",
           "pages": 1,
-          "channels_seen": 16,
-          "events_seen": 721
+          "channels_seen": 17,
+          "events_seen": 857
         },
         {
           "slug": "live-tv",
           "pages": 1,
-          "channels_seen": 9,
-          "events_seen": 611
+          "channels_seen": 10,
+          "events_seen": 702
         },
         {
           "slug": "entertainment",
           "pages": 1,
           "channels_seen": 28,
-          "events_seen": 1617
+          "events_seen": 1566
         },
         {
           "slug": "kids",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1152
+          "events_seen": 1153
         },
         {
           "slug": "southasian",
           "pages": 1,
           "channels_seen": 34,
-          "events_seen": 1973
+          "events_seen": 1881
         },
         {
           "slug": "JH*",
           "pages": 1,
           "channels_seen": 10,
-          "events_seen": 519
+          "events_seen": 489
         },
         {
           "slug": "movies",
           "pages": 1,
           "channels_seen": 6,
-          "events_seen": 154
+          "events_seen": 151
         },
         {
           "slug": "lifestyle",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1180
+          "events_seen": 1204
         },
         {
           "slug": "religious",
@@ -364,8 +364,8 @@
     },
     {
       "country": "BH",
-      "raw_channel_rows": 155,
-      "raw_event_rows": 10744,
+      "raw_channel_rows": 158,
+      "raw_event_rows": 10868,
       "category_slugs": [
         "featured",
         "news",
@@ -383,62 +383,62 @@
         {
           "slug": "featured",
           "pages": 1,
-          "channels_seen": 18,
-          "events_seen": 1264
+          "channels_seen": 19,
+          "events_seen": 1331
         },
         {
           "slug": "news",
           "pages": 1,
           "channels_seen": 16,
-          "events_seen": 1486
+          "events_seen": 1467
         },
         {
           "slug": "sports",
           "pages": 1,
-          "channels_seen": 16,
-          "events_seen": 721
+          "channels_seen": 17,
+          "events_seen": 857
         },
         {
           "slug": "live-tv",
           "pages": 1,
-          "channels_seen": 9,
-          "events_seen": 611
+          "channels_seen": 10,
+          "events_seen": 702
         },
         {
           "slug": "entertainment",
           "pages": 1,
           "channels_seen": 28,
-          "events_seen": 1617
+          "events_seen": 1566
         },
         {
           "slug": "kids",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1152
+          "events_seen": 1153
         },
         {
           "slug": "southasian",
           "pages": 1,
           "channels_seen": 34,
-          "events_seen": 1973
+          "events_seen": 1881
         },
         {
           "slug": "JH*",
           "pages": 1,
           "channels_seen": 10,
-          "events_seen": 519
+          "events_seen": 489
         },
         {
           "slug": "movies",
           "pages": 1,
           "channels_seen": 6,
-          "events_seen": 154
+          "events_seen": 151
         },
         {
           "slug": "lifestyle",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1180
+          "events_seen": 1204
         },
         {
           "slug": "religious",
@@ -451,8 +451,8 @@
     },
     {
       "country": "OM",
-      "raw_channel_rows": 155,
-      "raw_event_rows": 10744,
+      "raw_channel_rows": 158,
+      "raw_event_rows": 10868,
       "category_slugs": [
         "featured",
         "news",
@@ -470,62 +470,62 @@
         {
           "slug": "featured",
           "pages": 1,
-          "channels_seen": 18,
-          "events_seen": 1264
+          "channels_seen": 19,
+          "events_seen": 1331
         },
         {
           "slug": "news",
           "pages": 1,
           "channels_seen": 16,
-          "events_seen": 1486
+          "events_seen": 1467
         },
         {
           "slug": "sports",
           "pages": 1,
-          "channels_seen": 16,
-          "events_seen": 721
+          "channels_seen": 17,
+          "events_seen": 857
         },
         {
           "slug": "live-tv",
           "pages": 1,
-          "channels_seen": 9,
-          "events_seen": 611
+          "channels_seen": 10,
+          "events_seen": 702
         },
         {
           "slug": "entertainment",
           "pages": 1,
           "channels_seen": 28,
-          "events_seen": 1617
+          "events_seen": 1566
         },
         {
           "slug": "kids",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1152
+          "events_seen": 1153
         },
         {
           "slug": "southasian",
           "pages": 1,
           "channels_seen": 34,
-          "events_seen": 1973
+          "events_seen": 1881
         },
         {
           "slug": "JH*",
           "pages": 1,
           "channels_seen": 10,
-          "events_seen": 519
+          "events_seen": 489
         },
         {
           "slug": "movies",
           "pages": 1,
           "channels_seen": 6,
-          "events_seen": 154
+          "events_seen": 151
         },
         {
           "slug": "lifestyle",
           "pages": 1,
           "channels_seen": 8,
-          "events_seen": 1180
+          "events_seen": 1204
         },
         {
           "slug": "religious",
@@ -538,8 +538,8 @@
     }
   ],
   "errors": [],
-  "channels": 115,
-  "programmes": 8119,
+  "channels": 116,
+  "programmes": 8123,
   "zero_epg_channels": 0,
   "zero_epg_ids": [],
   "channel_catalogue": [
@@ -1109,6 +1109,11 @@
       "source_id": "823389224149"
     },
     {
+      "id": "starzplay.823913000413",
+      "name": "أبوظبي الرياضية",
+      "source_id": "823913000413"
+    },
+    {
       "id": "StarzplaySports3.sa@HD",
       "name": "STARZPLAY Sports 3",
       "source_id": "311102504197"
@@ -1119,7 +1124,7 @@
       "source_id": "558369320039"
     }
   ],
-  "raw_channel_rows": 930,
-  "raw_event_rows": 64727,
+  "raw_channel_rows": 948,
+  "raw_event_rows": 65453,
   "status": "PASS"
 }
