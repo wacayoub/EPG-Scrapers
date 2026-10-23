@@ -1,6 +1,6 @@
 # Unmapped Arab fallback analysis
 
-Production channel IDs: **613**  
+Production channel IDs: **730**  
 Active fallback rows analyzed: **616**  
 Exact IDs already present: **222**  
 Name collisions requiring review: **1**  
