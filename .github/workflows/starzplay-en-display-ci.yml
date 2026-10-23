@@ -48,7 +48,8 @@ jobs:
           w=yaml.load(Path('.github/workflows/daily-epg-chain.yml').read_text(),Loader=yaml.BaseLoader)
           assert w['on']['schedule']==[{'cron':'15 7 * * *','timezone':'Etc/GMT'}]
           assert 'starzplay' not in w['jobs']
-          assert w['jobs']['tunisiatv'].get('needs') is None
+          assert set(w['jobs'])=={'elcinema_extend','finalize'}
+          assert w['jobs']['finalize']['needs']=='elcinema_extend'
           scheduled=yaml.load(Path('.github/workflows/refresh-starzplay.yml').read_text(),Loader=yaml.BaseLoader)
           assert scheduled['on']['schedule']==[{'cron':'12 5 * * *','timezone':'Etc/GMT'}]
           assert scheduled['jobs']['refresh']['with']=={'source':'starzplay','scheduled':'false'}

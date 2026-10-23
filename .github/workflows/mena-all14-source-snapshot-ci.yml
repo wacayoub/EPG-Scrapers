@@ -51,7 +51,8 @@ jobs:
           assert len(snapshot)==14
           assert all(isinstance(value,str) and len(value)==64 for value in snapshot.values())
           meta=json.loads(Path("feeds/mena.json").read_text())
-          assert needs_rebuild(snapshot,meta), "Last published MENA must be rebuilt with the newly incorporated metadata and Tabie policy"
+          assert meta.get("source_snapshot")==snapshot, "Published MENA must consume the exact current source bytes"
+          assert not needs_rebuild(snapshot,meta), "An unchanged source snapshot must not request endless rebuilds"
           wf=yaml.load(Path(".github/workflows/epg-watchdog.yml").read_text(),Loader=yaml.BaseLoader)
           assert wf["on"]["schedule"]==[{"cron":"15 14 * * *","timezone":"Etc/GMT"}]
           step=next(x for x in wf["jobs"]["verify"]["steps"] if "Rebuild MENA" in x.get("name",""))
@@ -61,6 +62,6 @@ jobs:
           assert "get_source_snapshot" in script
           assert "gh workflow run rebuild-mena-derived.yml" in script
           print("14_SHA_PINNED_SOURCE_FEEDS_VERIFIED")
-          print("MENA_REBUILD_DUE_TO_NEW_INPUTS_BUT_NO_NEW_SOURCE_SCRAPE")
+          print("MENA_SNAPSHOT_VERIFIED_NO_UNNECESSARY_REBUILD_OR_SCRAPE")
           print("WATCHDOG_REBUILDS_ON_SOURCE_CHANGE_INDEPENDENT_OF_TABIE_STALENESS")
           PY

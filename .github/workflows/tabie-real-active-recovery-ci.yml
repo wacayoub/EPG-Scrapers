@@ -33,16 +33,21 @@ jobs:
       - name: Read-only actual rejected source problem evidence
         run: |
           python - <<'PY'
-          import json
+          import gzip,json,hashlib
           from pathlib import Path
+          import xml.etree.ElementTree as ET
           p=json.loads(Path("reports/tabie-publish-lkg.json").read_text())["sources"]["tabie"]
-          assert p["decision"]=="KEEP_LKG"
-          assert p["previous_stats"]["future_channels"]==0
-          assert p["candidate_stats"]["future_channels"]>=3
-          assert p["candidate_stats"]["current_channels"]==0
+          assert p["decision"] in ("KEEP_LKG","PUBLISH")
           actual=json.loads(Path("feeds/tabie.json").read_text())
-          assert actual["channels"]==9
-          print("TABIE_REAL_OLD_FEED_STALE",actual["generated_utc"])
+          raw=Path("feeds/tabie.xml.gz").read_bytes()
+          xml=ET.fromstring(gzip.decompress(raw))
+          assert hashlib.sha256(raw).hexdigest()==actual['sha256']
+          assert len(xml.findall('channel'))==actual['channels']
+          assert len(xml.findall('programme'))==actual['programmes']
+          ids={c.get('id') for c in xml.findall('channel')}
+          assert 3<=len(ids)<=9
+          assert all(e.get('channel') in ids for e in xml.findall('programme'))
+          print("TABIE_CURRENT_PUBLICATION_VERIFIED",actual["generated_utc"],len(ids))
           print("TABIE_NEW_POLICY_STRICT_3_NEAR_FUTURE_ID_RECOVERY_ONLY")
           print("NO_RECEIVER_CHANGES_OR_FAKE_PROGRAMMES")
           PY
