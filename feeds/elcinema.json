@@ -14,13 +14,38 @@
     "KTV1.kw@SD",
     "QatarTelevision.qa@SD"
   ],
-  "programmes": 4021,
+  "programmes": 4345,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 1,
   "inferred_stop": 1,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 200319,
-  "sha256": "cf689a9d31e538854cd00d67e45d83861962895cf8b9a0072f81909db9617b55",
-  "generated_utc": "2026-10-24T06:07:20.248256+00:00"
+  "size_bytes": 221786,
+  "sha256": "5c535cafd0c394c719b604ab99650a26dddc487d9fa339b446ff7e59fae2e305",
+  "generated_utc": "2026-10-24T06:07:20.248256+00:00",
+  "repacked_utc": "2026-10-24T12:01:08.839593+00:00",
+  "original_published_sha256": "cf689a9d31e538854cd00d67e45d83861962895cf8b9a0072f81909db9617b55",
+  "verified_donor_extensions": {
+    "mode": "daily_after_donor_refresh_exact_id_no_overlap",
+    "donor_sha256": {
+      "shahid": "04cfbe2e697dc0b5ec201e1fbe58d5b25cae80d97885a791e543ca6711d139a8",
+      "dubaiplus": "590df60deffc75333eb06a3073e101c29fa9debddcb956c7c2cbd0e92ac047c1"
+    },
+    "programmes_added_this_pass": 324,
+    "channels_extended": [
+      "DubaiOne.ae@SD",
+      "MBC1.ae@SD",
+      "MBC3.ae@SD",
+      "MBC4.ae@SD",
+      "MBC5.ae@SD",
+      "MBCAction.ae@SD",
+      "MBCBollywood.ae@SD",
+      "MBCDrama.ae@SD",
+      "MBCIraq.iq@SD",
+      "MBCMasr.eg@SD",
+      "MBCMasr2.eg@SD",
+      "MBCPlusDrama.sa@SD"
+    ],
+    "fabricated_programmes": 0
+  }
 }
