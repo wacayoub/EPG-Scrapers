@@ -1,25 +1,25 @@
 {
   "label": "mena",
   "channels": 516,
-  "programmes": 30778,
-  "generated_utc": "2026-10-23T18:36:51.199394+00:00",
-  "sha256": "b29d936b9dd7f5657c0ba9c9dc263dd01215bf1f73dcff44ba1d57b4c16d04e8",
+  "programmes": 30522,
+  "generated_utc": "2026-10-24T12:01:32.947740+00:00",
+  "sha256": "ffb82d00a6bca443ab074bb06e19a4116fe9bee15552bdb7f0dd8389cbc58336",
   "generator": "EPG-Scrapers canonical MENA merged feed",
   "source_snapshot": {
-    "morocco": "f55fa8ee427286a0fe340512376c492524c333a7406263ad11a55aee3e38f821",
-    "alkass": "2df993641d2bcd3f6c65e1b3cdd74a5336da7fe29d58ac381bc71cae53652df5",
-    "tabie": "5b3e6874174fe210470af4cd6ed7000ee8099c3022d6b23a1ca5a8f977e1042f",
-    "tunisiatv": "99071d7c3e755d7bdaf2e6c733c7e753398f348bef584c54e2489f6b48974cea",
-    "aljazeera": "8b75ea80d3456ea4be93713097eb35284ce9ab8b1c9d4873fe68b217972850c3",
-    "dubaiplus": "52653963049196310edbc5c678fd14c8fa90160c0d27f1f9ae5f0334512962e7",
-    "shahid": "438d901133515dafe5a22bf6c28e92cfd55cf9ce79fc0bc5a024355a6b7ab11a",
-    "rotana": "6c80b22c519ae4e597afbcd74f712d7b8c51a43bd1e9bb85ddbab6f5c19e100b",
-    "sport24": "9ed18af78315fffc7afe0c150f0a0276a157465f5c62811467707873fea5464a",
-    "osn": "949f9fc1677253cbcadeddb38150d67e9c5f0b85db21c8e220658cda34927358",
-    "bein": "76c002dbd194bf8e5d09a6b5a9c7666988598b1b539ed56c7b10fbfde0932a2f",
-    "elcinema": "13f5eaa2246ae7ed4a2b04a13cd50230ccbc1f52af351db5327afaf0560155e1",
-    "starzplay": "7d31f0e4e8dbf4f740abcf3a84f622dacfc6b0a4628ef527a35070f0cd633a6b",
-    "stctv": "1ae781482586ccd6412ead9008b205aa14a896b38c03a452ef90748d8b4fff68"
+    "morocco": "ad3917561861695b2b2f05d85560fcd64285a24fa30a52cd1938cf992ce2ee62",
+    "alkass": "90c21cc9e2f4f01393a17cabe9c29eb3f9584852e99f5729979791622b34b78f",
+    "tabie": "01d7b977ccbbede97e53bb0b336c7ef2dd343c42dd327538f134ff79e03d276c",
+    "tunisiatv": "a46306a00b4f54b0933a2772b24716ec1deed23907b2eb8f35266ed0e7302fc8",
+    "aljazeera": "3cef9cb7fd508cfa19af27969fb3d364683971c7b952ec6432834d8a9b3a41c7",
+    "dubaiplus": "590df60deffc75333eb06a3073e101c29fa9debddcb956c7c2cbd0e92ac047c1",
+    "shahid": "04cfbe2e697dc0b5ec201e1fbe58d5b25cae80d97885a791e543ca6711d139a8",
+    "rotana": "e2f76ab04fcf17f217d35dd6c2e4eddd409889249f0dba7e5d6bf30779f1fb1a",
+    "sport24": "43bcf9f17a12c070427f1968b2e34bb4656cf48f293369d06b0995d9ab70bc81",
+    "osn": "6551787847b6ea1fb640efc8acaadcceab25f87756a990eab61b9cb690682ac9",
+    "bein": "95da9fec3c8f5e8aae47e330b31c779f4f193c618790675bd5428568e4966cb4",
+    "elcinema": "5c535cafd0c394c719b604ab99650a26dddc487d9fa339b446ff7e59fae2e305",
+    "starzplay": "85c7e8c9fbb732403bafe9bbefd2574e0c5f130ef0e95083ea90f6c1a504a5d8",
+    "stctv": "837a347cad45c145c737cab3bac80900470566fb0a5ddba37d2b3906aa5528d0"
   },
   "source_snapshot_policy": "SHA256 pinned exact XMLTV bytes, including missing source markers",
   "priority": [
@@ -43,7 +43,7 @@
     "2MMonde.ma@SD": "elcinema",
     "AbdulmajeedAbdullah.sa@SD": "shahid",
     "AbuDhabiSports1.ae@SD": "sport24",
-    "AbuDhabiSports2.ae@SD": "starzplay",
+    "AbuDhabiSports2.ae@SD": "sport24",
     "AbuDhabiTV.ae@SD": "osn",
     "AFLAM.ma": "morocco",
     "Aflam.sa@SD": "shahid",
@@ -77,7 +77,7 @@
     "AlkassOne.qa@SD": "bein",
     "AlkassSeven.qa@SD": "bein",
     "AlkassSix.qa@SD": "bein",
-    "AlkassThree.qa@SD": "alkass",
+    "AlkassThree.qa@SD": "bein",
     "AlkassTwo.qa@SD": "bein",
     "AlkhuzamaRadio.sa@SD": "shahid",
     "AlMaghribiya": "morocco",
@@ -200,7 +200,7 @@
     "Fann.ae@SD": "osn",
     "Fatafeat.ae@SD": "osn",
     "FIFAPlus.uk": "starzplay",
-    "FoodNetworkEMEA.us@SD": "stctv",
+    "FoodNetworkEMEA.us@SD": "bein",
     "FoxActionMoviesMENA.hk@SD": "bein",
     "FoxArabia.ae@SD": "bein",
     "FoxMoviesMiddleEast.us@SD": "bein",
@@ -316,7 +316,7 @@
     "OSNYahalaAflam.ae@SD": "osn",
     "OSNYahalaBilArabi.ae@SD": "osn",
     "PanoramaFM.sa@SD": "shahid",
-    "QatarTelevision.qa@SD": "elcinema",
+    "QatarTelevision.qa@SD": "tabie",
     "QatarTelevision2.qa@SD": "tabie",
     "RabehSaqer.sa@HD": "shahid",
     "RashidAlMajed.sa@SD": "shahid",
@@ -355,9 +355,9 @@
     "sport24.adsports.3": "sport24",
     "sport24.adsports.4": "sport24",
     "sport24.thmanyah.1": "stctv",
-    "sport24.thmanyah.2": "stctv",
-    "sport24.thmanyah.3": "stctv",
-    "StarMoviesMiddleEast.ae@SD": "elcinema",
+    "sport24.thmanyah.2": "sport24",
+    "sport24.thmanyah.3": "sport24",
+    "StarMoviesMiddleEast.ae@SD": "bein",
     "starzplay.227083304121": "starzplay",
     "starzplay.227083304215": "starzplay",
     "starzplay.236275240441": "starzplay",
@@ -450,9 +450,9 @@
     "starzplay.818309672031": "starzplay",
     "starzplay.823389224149": "starzplay",
     "starzplay.823913000413": "starzplay",
-    "StarzplaySports1.sa@HD": "stctv",
-    "StarzplaySports2.sa@HD": "stctv",
-    "StarzplaySports3.sa@HD": "stctv",
+    "StarzplaySports1.sa@HD": "starzplay",
+    "StarzplaySports2.sa@HD": "starzplay",
+    "StarzplaySports3.sa@HD": "starzplay",
     "stctv.05dc964253e8": "stctv",
     "stctv.06f91cf724a1": "stctv",
     "stctv.07da3417d2d8": "stctv",
@@ -557,16 +557,23 @@
     "ZeeAlwan.ae@SD": "elcinema"
   },
   "extensions": {
+    "AbuDhabiSports1.ae@SD": [
+      "starzplay"
+    ],
+    "AbuDhabiSports2.ae@SD": [
+      "starzplay"
+    ],
     "AbuDhabiTV.ae@SD": [
-      "starzplay",
+      "starzplay"
+    ],
+    "AlAoula": [
       "stctv"
     ],
     "Alarabiya.ae@SD": [
       "stctv"
     ],
     "AlArabiyaBusiness.ae@SD": [
-      "starzplay",
-      "stctv"
+      "starzplay"
     ],
     "AlHadath.sa@SD": [
       "starzplay"
@@ -586,15 +593,18 @@
     "AlkassSix.qa@SD": [
       "alkass"
     ],
+    "AlkassThree.qa@SD": [
+      "alkass"
+    ],
     "AlkassTwo.qa@SD": [
       "alkass"
     ],
     "CartoonNetworkArabic.ae@SD": [
-      "starzplay"
-    ],
-    "CNNInternational.us@MENA": [
       "starzplay",
       "stctv"
+    ],
+    "CNNInternational.us@MENA": [
+      "starzplay"
     ],
     "DubaiSports1.ae@SD": [
       "dubaiplus"
@@ -603,16 +613,12 @@
       "dubaiplus"
     ],
     "DubaiTV.ae@SD": [
-      "dubaiplus",
-      "stctv"
+      "dubaiplus"
     ],
     "Fatafeat.ae@SD": [
       "stctv"
     ],
-    "LBC.sa@SD": [
-      "stctv"
-    ],
-    "MBC1.ae@SD": [
+    "FoodNetworkEMEA.us@SD": [
       "stctv"
     ],
     "MBC2.ae@SD": [
@@ -639,22 +645,16 @@
     "MBCMasr2.eg@SD": [
       "stctv"
     ],
+    "MBCMax.ae@SD": [
+      "stctv"
+    ],
     "MBCPlusDrama.sa@SD": [
       "stctv"
     ],
+    "OmanTV.om@SD": [
+      "stctv"
+    ],
     "OSNBlippiAndFriends": [
-      "stctv"
-    ],
-    "RotanaCinemaEgypt.eg@SD": [
-      "stctv"
-    ],
-    "RotanaClassic.sa@SD": [
-      "stctv"
-    ],
-    "RotanaDrama.sa@SD": [
-      "stctv"
-    ],
-    "RotanaKhalijia.sa@SD": [
       "stctv"
     ],
     "RoyaTV.jo@SD": [
@@ -663,21 +663,23 @@
     "RTArabic.ru@SD": [
       "stctv"
     ],
-    "SamaDubai.ae@SD": [
-      "stctv"
-    ],
     "SkyNewsArabia.ae@SD": [
-      "starzplay",
-      "stctv"
+      "starzplay"
     ],
     "SpacetoonArabic.ae@SD": [
       "stctv"
     ],
-    "starzplay.460050472021": [
+    "sport24.thmanyah.2": [
       "stctv"
     ],
-    "starzplay.460872744016": [
+    "sport24.thmanyah.3": [
       "stctv"
+    ],
+    "StarMoviesMiddleEast.ae@SD": [
+      "elcinema"
+    ],
+    "ThikrayatTV.sa@SD": [
+      "shahid"
     ]
   },
   "routing_policy": "canonical channel -> healthy MAIN -> B1/B2; language/title/description quality gates; backup may extend only after selected source horizon"
