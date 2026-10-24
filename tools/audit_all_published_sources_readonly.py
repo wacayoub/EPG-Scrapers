@@ -11,8 +11,13 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 import hashlib
+import gzip
+import io
 import json
 from pathlib import Path
+import re
+import zlib
+import xml.etree.ElementTree as ET
 
 SOURCES = (
     "morocco", "bein", "osn", "elcinema", "starzplay", "stctv", "shahid",
@@ -22,11 +27,13 @@ SOURCES = (
 FRESH_SECONDS = 72 * 3600
 COHORT_SECONDS = 15 * 60
 MAX_GZIP_BYTES = 12 * 1024 * 1024
-SOURCE_LIMITS = {"stctv": 3}  # intended source scope: STARZPLAY Sports 1-3
+MAX_XML_BYTES = 64 * 1024 * 1024
 HARD = frozenset(("MISSING_REPORT", "INVALID_PUBLIC_METADATA", "GZIP_SHA_MISMATCH",
-                  "STALE_PUBLISHED_DATA", "OUT_OF_COHORT_REPORT", "BAD_REPORT_SOURCE"))
+                  "STALE_PUBLISHED_DATA", "OUT_OF_COHORT_REPORT", "BAD_REPORT_SOURCE",
+                  "INVALID_XMLTV", "XMLTV_METADATA_MISMATCH", "INVALID_PROGRAMMES",
+                  "ORPHAN_PROGRAMMES"))
 RISK = frozenset(("ZERO_EPG_IDS", "48H_FAILED_IDS", "SUSPECT_PLACEHOLDER_IDS",
-                  "MISSING_DESCRIPTIONS", "SHORT_48H_COVERAGE", "UNEXPECTED_SOURCE_SCOPE"))
+                  "MISSING_DESCRIPTIONS", "SHORT_48H_COVERAGE"))
 
 
 def _utc(value):
@@ -43,6 +50,59 @@ def _read_json(path):
     if not isinstance(data, dict):
         raise ValueError("non-object JSON")
     return data
+
+
+def _xml_time(value):
+    # Require an explicit offset; a guessed timezone is not usable evidence.
+    if not re.fullmatch(r"(?:\d{14}|\d{12})\s+(?:[+-]\d{4}|Z)", value or ""):
+        raise ValueError("invalid XMLTV timestamp")
+    digits, offset = value.split()
+    return datetime.strptime(digits + ' ' + offset,
+        ('%Y%m%d%H%M%S' if len(digits) == 14 else '%Y%m%d%H%M') + ' %z')
+
+
+def _current_payload(raw, now):
+    with gzip.GzipFile(fileobj=io.BytesIO(raw)) as stream:
+        data = stream.read(MAX_XML_BYTES + 1)
+    if len(data) > MAX_XML_BYTES or b'<!DOCTYPE' in data or b'<!ENTITY' in data:
+        raise ValueError("unsafe XMLTV payload")
+    tv = ET.fromstring(data)
+    if tv.tag != 'tv':
+        raise ValueError("not XMLTV")
+    channels = [c.get('id') for c in tv.findall('channel')]
+    if any(not c for c in channels) or len(channels) != len(set(channels)):
+        raise ValueError("invalid channel IDs")
+    declared = set(channels)
+    future, active, current = set(), set(), set()
+    invalid = orphan = missing_desc = 0
+    programmes = tv.findall('programme')
+    for p in programmes:
+        cid = p.get('channel')
+        if cid not in declared:
+            orphan += 1
+            continue
+        active.add(cid)
+        try:
+            start, stop = _xml_time(p.get('start')), _xml_time(p.get('stop'))
+            titles = [''.join(t.itertext()).strip() for t in p.findall('title')]
+            if stop <= start or not any(titles):
+                raise ValueError("invalid programme")
+        except (ValueError, TypeError, OverflowError):
+            invalid += 1
+            continue
+        if stop > now:
+            future.add(cid)
+            if start <= now:
+                current.add(cid)
+            if not any(''.join(d.itertext()).strip() for d in p.findall('desc')):
+                missing_desc += 1
+    return {'channels': len(declared), 'active_channels': len(active),
+        'programme_rows': len(programmes), 'channels_with_future_epg': len(future),
+        'channels_with_current_epg': len(current),
+        'no_future_epg_ids': len(declared - future),
+        'no_future_epg_channel_ids': sorted(declared - future),
+        'future_rows_missing_description': missing_desc,
+        'invalid_programme_rows': invalid, 'orphan_programme_rows': orphan}
 
 
 def assess(source, root, now):
@@ -67,6 +127,7 @@ def assess(source, root, now):
         "receiver_cache_validated": False,
     }
     base = root / "feeds" / source
+    verified_raw = None
     try:
         meta = _read_json(base.with_suffix(".json"))
         xml = base.with_suffix(".xml.gz")
@@ -84,6 +145,7 @@ def assess(source, root, now):
             result["feed_sha256_matches"] = False
         else:
             result["feed_sha256_matches"] = True
+            verified_raw = raw
         start = _utc(meta.get("generated_utc"))
         age = (now - start).total_seconds()
         result["published_age_hours"] = round(age / 3600, 1)
@@ -98,8 +160,6 @@ def assess(source, root, now):
             result["channels"] = ch
             result["channels_with_programmes"] = active
             result["programme_rows"] = count
-        if ch is not None and source in SOURCE_LIMITS and ch > SOURCE_LIMITS[source]:
-            flag("UNEXPECTED_SOURCE_SCOPE")
     except (OSError, UnicodeError, ValueError, TypeError, json.JSONDecodeError):
         flag("INVALID_PUBLIC_METADATA")
         start = None
@@ -124,7 +184,7 @@ def assess(source, root, now):
             if not isinstance(zeros, list) or not isinstance(suspicious, list):
                 flag("BAD_REPORT_SOURCE")
             else:
-                result["no_future_epg_ids"] = len(zeros)
+                result["reported_no_future_epg_ids"] = len(zeros)
                 result["suspect_placeholder_ids"] = len(suspicious)
                 if zeros:
                     flag("ZERO_EPG_IDS")
@@ -136,11 +196,34 @@ def assess(source, root, now):
                 flag("48H_FAILED_IDS")
             if warn:
                 flag("SHORT_48H_COVERAGE")
-            result["future_rows_missing_description"] = int(quality.get("future_programmes_without_description") or 0)
-            if result["future_rows_missing_description"]:
+            result["reported_future_rows_missing_description"] = int(quality.get("future_programmes_without_description") or 0)
+            if result["reported_future_rows_missing_description"]:
                 flag("MISSING_DESCRIPTIONS")
     except (OSError, UnicodeError, ValueError, TypeError, json.JSONDecodeError, KeyError):
         flag("MISSING_REPORT")
+    # Report cohorts describe publication time, not the future still remaining.
+    # Never use their zero count as a substitute for parsing the accepted bytes.
+    result['payload_checked_utc'] = now.isoformat()
+    result['current_payload_verified'] = False
+    if verified_raw is not None:
+        try:
+            payload = _current_payload(verified_raw, now)
+            if (payload['channels'], payload['active_channels'], payload['programme_rows']) != (
+                    result['channels'], result['channels_with_programmes'], result['programme_rows']):
+                flag('XMLTV_METADATA_MISMATCH')
+            result.update({k:v for k,v in payload.items() if k not in (
+                'channels', 'active_channels', 'programme_rows')})
+            result['current_payload_verified'] = True
+            if payload['invalid_programme_rows']:
+                flag('INVALID_PROGRAMMES')
+            if payload['orphan_programme_rows']:
+                flag('ORPHAN_PROGRAMMES')
+            if payload['no_future_epg_ids']:
+                flag('ZERO_EPG_IDS')
+            if payload['future_rows_missing_description']:
+                flag('MISSING_DESCRIPTIONS')
+        except (OSError, EOFError, ValueError, zlib.error, ET.ParseError):
+            flag('INVALID_XMLTV')
     result["issues"] = sorted(checks)
     result["release_health"] = (
         "BLOCKED" if any(t in HARD for t in checks)

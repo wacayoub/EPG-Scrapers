@@ -1,7 +1,7 @@
 name: EPG 48h - OSN
 
 on:
-  # Sole scheduled OSN scraper: 01:40 local Casablanca, DST/Ramadan aware.
+  # Sole scheduled OSN scraper: 01:40 fixed GMT+0 (UTC).
   schedule:
     - cron: "40 1 * * *"
       timezone: "Etc/GMT"

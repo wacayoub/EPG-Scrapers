@@ -1,0 +1,745 @@
+{
+  "source_commit": "233ce53601121d95b0dd06710769b392b6883204",
+  "scope": "Immutable published main snapshot checked locally; no receiver changes and no feed publication",
+  "payload_checked_utc": "2026-10-24T07:07:01.168499+00:00",
+  "health_checked_utc": "2026-10-24T07:11:20.907926+00:00",
+  "all_14_gzip_hashes_match": true,
+  "all_14_metadata_counts_match": true,
+  "invalid_times": 0,
+  "empty_titles": 0,
+  "sources": [
+    {
+      "source": "morocco",
+      "generated_utc": "2026-10-23T18:32:34.893143+00:00",
+      "sha256": "f55fa8ee427286a0fe340512376c492524c333a7406263ad11a55aee3e38f821",
+      "channels": 15,
+      "channels_with_current": 5,
+      "channels_with_future": 5,
+      "no_future_ids": [
+        "AFLAM.ma",
+        "AlMaghribiya",
+        "Arrabiaa",
+        "Arryadia_HD",
+        "Arryadia_HD1",
+        "Arryadia_HD2",
+        "Arryadia_HD3",
+        "Arryadia_TNT",
+        "Chada TV",
+        "Tamazight"
+      ],
+      "programmes": 353,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "alkass",
+      "generated_utc": "2026-10-23T11:58:19.623730+00:00",
+      "sha256": "2df993641d2bcd3f6c65e1b3cdd74a5336da7fe29d58ac381bc71cae53652df5",
+      "channels": 8,
+      "channels_with_current": 8,
+      "channels_with_future": 8,
+      "no_future_ids": [],
+      "programmes": 243,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "tabie",
+      "generated_utc": "2026-10-24T04:53:24.649432+00:00",
+      "sha256": "01d7b977ccbbede97e53bb0b336c7ef2dd343c42dd327538f134ff79e03d276c",
+      "channels": 4,
+      "channels_with_current": 4,
+      "channels_with_future": 4,
+      "no_future_ids": [],
+      "programmes": 875,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "tunisiatv",
+      "generated_utc": "2026-10-23T12:02:05.984863+00:00",
+      "sha256": "99071d7c3e755d7bdaf2e6c733c7e753398f348bef584c54e2489f6b48974cea",
+      "channels": 2,
+      "channels_with_current": 2,
+      "channels_with_future": 2,
+      "no_future_ids": [],
+      "programmes": 124,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "aljazeera",
+      "generated_utc": "2026-10-23T09:19:42.930215+00:00",
+      "sha256": "8b75ea80d3456ea4be93713097eb35284ce9ab8b1c9d4873fe68b217972850c3",
+      "channels": 5,
+      "channels_with_current": 3,
+      "channels_with_future": 3,
+      "no_future_ids": [
+        "AlJazeeraDocumentary.qa@SD",
+        "AlJazeeraMubasher.qa@SD"
+      ],
+      "programmes": 132,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "dubaiplus",
+      "generated_utc": "2026-10-23T09:33:47.979108+00:00",
+      "sha256": "52653963049196310edbc5c678fd14c8fa90160c0d27f1f9ae5f0334512962e7",
+      "channels": 9,
+      "channels_with_current": 9,
+      "channels_with_future": 9,
+      "no_future_ids": [],
+      "programmes": 455,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "shahid",
+      "generated_utc": "2026-10-23T08:50:11.877668+00:00",
+      "sha256": "438d901133515dafe5a22bf6c28e92cfd55cf9ce79fc0bc5a024355a6b7ab11a",
+      "channels": 71,
+      "channels_with_current": 70,
+      "channels_with_future": 71,
+      "no_future_ids": [],
+      "programmes": 4493,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "rotana",
+      "generated_utc": "2026-10-23T08:52:11.113331+00:00",
+      "sha256": "6c80b22c519ae4e597afbcd74f712d7b8c51a43bd1e9bb85ddbab6f5c19e100b",
+      "channels": 9,
+      "channels_with_current": 7,
+      "channels_with_future": 7,
+      "no_future_ids": [
+        "AlResalah.sa@SD",
+        "RotanaClip.sa@SD"
+      ],
+      "programmes": 254,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "sport24",
+      "generated_utc": "2026-10-23T08:23:43.876823+00:00",
+      "sha256": "9ed18af78315fffc7afe0c150f0a0276a157465f5c62811467707873fea5464a",
+      "channels": 9,
+      "channels_with_current": 2,
+      "channels_with_future": 3,
+      "no_future_ids": [
+        "sport24.adsports.2",
+        "sport24.adsports.3",
+        "sport24.adsports.4",
+        "sport24.thmanyah.1",
+        "sport24.thmanyah.2",
+        "sport24.thmanyah.3"
+      ],
+      "programmes": 100,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "osn",
+      "generated_utc": "2026-10-24T06:30:51.924005+00:00",
+      "sha256": "6551787847b6ea1fb640efc8acaadcceab25f87756a990eab61b9cb690682ac9",
+      "channels": 101,
+      "channels_with_current": 81,
+      "channels_with_future": 82,
+      "no_future_ids": [
+        "AlfaSeries.ae@SD",
+        "AlfaSeriesPlus2.ae@SD",
+        "AlSafwa.ae@SD",
+        "AlYawm.ae@SD",
+        "ANC.ph",
+        "Cinema1.ae@SD",
+        "Cinema2.ae@SD",
+        "CineMo.ph",
+        "Fann.ae@SD",
+        "GMALifeTV.ph",
+        "GMANewsTV.ph",
+        "GMAPinoyTVMiddleEast.ph",
+        "MusicNow.ae@SD",
+        "MyxMiddleEast.ph",
+        "osn.213",
+        "osn.215",
+        "osn.216",
+        "osn.217",
+        "osn.220"
+      ],
+      "programmes": 6500,
+      "suspected_placeholder_channels_at_report": [
+        {
+          "id": "OSNPopUp.ae@SD",
+          "count": 49
+        },
+        {
+          "id": "OSNeClutchAccess",
+          "count": 7
+        },
+        {
+          "id": "OSNeClutchLIVE2",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "source": "bein",
+      "generated_utc": "2026-10-23T07:39:17.283186+00:00",
+      "sha256": "76c002dbd194bf8e5d09a6b5a9c7666988598b1b539ed56c7b10fbfde0932a2f",
+      "channels": 68,
+      "channels_with_current": 42,
+      "channels_with_future": 42,
+      "no_future_ids": [
+        "AlJazeeraDocumentary.qa@SD",
+        "AlkassEight.qa@SD",
+        "AlkassFive.qa@SD",
+        "AlkassFour.qa@SD",
+        "AlkassOne.qa@SD",
+        "AlkassSeven.qa@SD",
+        "AlkassSix.qa@SD",
+        "AlkassThree.qa@SD",
+        "AlkassTwo.qa@SD",
+        "beINBoxOffice1.qa@SD",
+        "beINBoxOffice2.qa@SD",
+        "beINMENA.beinsportsfr1",
+        "beINMENA.beinsportsfr2",
+        "beINSportsMax6.qa@MENA",
+        "BloombergTV.us@MiddleEast",
+        "CBeebiesMiddleEast.uk@SD",
+        "ClubMTVEurope.uk@SD",
+        "CNNArabic.ae@SD",
+        "EuronewsEnglish.fr@SD",
+        "Fatafeat.ae@SD",
+        "FoodNetworkEMEA.us@SD",
+        "FoxArabia.ae@SD",
+        "HGTVArabia.us@SD",
+        "MTV80s.uk@SD",
+        "MTV90s.uk@SD",
+        "StarMoviesMiddleEast.ae@SD"
+      ],
+      "programmes": 2755,
+      "suspected_placeholder_channels_at_report": []
+    },
+    {
+      "source": "elcinema",
+      "generated_utc": "2026-10-24T06:07:20.248256+00:00",
+      "sha256": "cf689a9d31e538854cd00d67e45d83861962895cf8b9a0072f81909db9617b55",
+      "channels": 97,
+      "channels_with_current": 95,
+      "channels_with_future": 95,
+      "no_future_ids": [
+        "KTV1.kw@SD",
+        "QatarTelevision.qa@SD"
+      ],
+      "programmes": 4021,
+      "suspected_placeholder_channels_at_report": [
+        {
+          "id": "BahrainTV.bh@SD",
+          "count": 29
+        }
+      ]
+    },
+    {
+      "source": "starzplay",
+      "generated_utc": "2026-10-23T10:02:31.007955+00:00",
+      "sha256": "7d31f0e4e8dbf4f740abcf3a84f622dacfc6b0a4628ef527a35070f0cd633a6b",
+      "channels": 116,
+      "channels_with_current": 116,
+      "channels_with_future": 116,
+      "no_future_ids": [],
+      "programmes": 8063,
+      "suspected_placeholder_channels_at_report": [
+        {
+          "id": "starzplay.725124136205",
+          "count": 112
+        },
+        {
+          "id": "starzplay.823913000413",
+          "count": 49
+        },
+        {
+          "id": "starzplay.515470888131",
+          "count": 48
+        },
+        {
+          "id": "starzplay.527810088109",
+          "count": 48
+        },
+        {
+          "id": "StarzplaySports3.sa@HD",
+          "count": 38
+        },
+        {
+          "id": "starzplay.705949224430",
+          "count": 38
+        },
+        {
+          "id": "starzplay.705949224431",
+          "count": 38
+        }
+      ]
+    },
+    {
+      "source": "stctv",
+      "generated_utc": "2026-10-23T10:34:24.779199+00:00",
+      "sha256": "1ae781482586ccd6412ead9008b205aa14a896b38c03a452ef90748d8b4fff68",
+      "channels": 149,
+      "channels_with_current": 149,
+      "channels_with_future": 149,
+      "no_future_ids": [],
+      "programmes": 8990,
+      "suspected_placeholder_channels_at_report": [
+        {
+          "id": "AsharqDocumentary.sa@SD",
+          "count": 49
+        },
+        {
+          "id": "BahrainTV.bh@SD",
+          "count": 49
+        },
+        {
+          "id": "DMC.eg@SD",
+          "count": 49
+        },
+        {
+          "id": "SharjahTV.ae@SD",
+          "count": 49
+        },
+        {
+          "id": "starzplay.460050472022",
+          "count": 49
+        },
+        {
+          "id": "starzplay.770738728162",
+          "count": 49
+        },
+        {
+          "id": "stctv.0c7f54b591ee",
+          "count": 49
+        },
+        {
+          "id": "stctv.0e0a2a4c571f",
+          "count": 49
+        },
+        {
+          "id": "stctv.101231b7a2a1",
+          "count": 49
+        },
+        {
+          "id": "stctv.2c2c50b4e15b",
+          "count": 49
+        },
+        {
+          "id": "stctv.4667a521021a",
+          "count": 49
+        },
+        {
+          "id": "stctv.62271af08509",
+          "count": 49
+        },
+        {
+          "id": "stctv.7b72e3bc5436",
+          "count": 49
+        },
+        {
+          "id": "stctv.7d9deabe3500",
+          "count": 49
+        },
+        {
+          "id": "stctv.899b0d26dbea",
+          "count": 49
+        },
+        {
+          "id": "stctv.a60e07fa6b41",
+          "count": 49
+        },
+        {
+          "id": "stctv.bb90021b8c50",
+          "count": 49
+        },
+        {
+          "id": "stctv.bea09674c73f",
+          "count": 49
+        },
+        {
+          "id": "stctv.bf3456c5b9b2",
+          "count": 49
+        },
+        {
+          "id": "stctv.cb251a15e222",
+          "count": 49
+        },
+        {
+          "id": "stctv.d2c88738ab47",
+          "count": 49
+        },
+        {
+          "id": "stctv.d2ded9de3b1b",
+          "count": 49
+        },
+        {
+          "id": "stctv.de47c15b885a",
+          "count": 49
+        },
+        {
+          "id": "stctv.def1ba405daf",
+          "count": 49
+        },
+        {
+          "id": "stctv.ea722d790a94",
+          "count": 49
+        },
+        {
+          "id": "stctv.d00f70313676",
+          "count": 45
+        },
+        {
+          "id": "StarzplaySports1.sa@HD",
+          "count": 39
+        },
+        {
+          "id": "StarzplaySports2.sa@HD",
+          "count": 39
+        },
+        {
+          "id": "StarzplaySports3.sa@HD",
+          "count": 39
+        },
+        {
+          "id": "stctv.cac5e490d765",
+          "count": 39
+        },
+        {
+          "id": "stctv.4a2b60976c7f",
+          "count": 38
+        },
+        {
+          "id": "stctv.7330f6f4d9a9",
+          "count": 38
+        },
+        {
+          "id": "stctv.b084adc695a1",
+          "count": 38
+        },
+        {
+          "id": "OmanTV.om@SD",
+          "count": 37
+        },
+        {
+          "id": "stctv.2afc9787e13e",
+          "count": 37
+        },
+        {
+          "id": "stctv.17069d8d4998",
+          "count": 36
+        },
+        {
+          "id": "DubaiSports2.ae@SD",
+          "count": 31
+        }
+      ]
+    }
+  ],
+  "health_count_corrections": [
+    {
+      "source": "morocco",
+      "reported_no_future_epg_ids": 9,
+      "no_future_epg_ids": 10,
+      "current_payload_verified": true
+    },
+    {
+      "source": "bein",
+      "reported_no_future_epg_ids": 1,
+      "no_future_epg_ids": 26,
+      "current_payload_verified": true
+    },
+    {
+      "source": "osn",
+      "reported_no_future_epg_ids": 19,
+      "no_future_epg_ids": 19,
+      "current_payload_verified": true
+    },
+    {
+      "source": "elcinema",
+      "reported_no_future_epg_ids": 2,
+      "no_future_epg_ids": 2,
+      "current_payload_verified": true
+    },
+    {
+      "source": "starzplay",
+      "reported_no_future_epg_ids": 0,
+      "no_future_epg_ids": 0,
+      "current_payload_verified": true
+    },
+    {
+      "source": "stctv",
+      "reported_no_future_epg_ids": 0,
+      "no_future_epg_ids": 0,
+      "current_payload_verified": true
+    },
+    {
+      "source": "shahid",
+      "reported_no_future_epg_ids": 0,
+      "no_future_epg_ids": 0,
+      "current_payload_verified": true
+    },
+    {
+      "source": "dubaiplus",
+      "reported_no_future_epg_ids": 0,
+      "no_future_epg_ids": 0,
+      "current_payload_verified": true
+    },
+    {
+      "source": "sport24",
+      "reported_no_future_epg_ids": 4,
+      "no_future_epg_ids": 6,
+      "current_payload_verified": true
+    },
+    {
+      "source": "rotana",
+      "reported_no_future_epg_ids": 2,
+      "no_future_epg_ids": 2,
+      "current_payload_verified": true
+    },
+    {
+      "source": "aljazeera",
+      "reported_no_future_epg_ids": 2,
+      "no_future_epg_ids": 2,
+      "current_payload_verified": true
+    },
+    {
+      "source": "alkass",
+      "reported_no_future_epg_ids": 0,
+      "no_future_epg_ids": 0,
+      "current_payload_verified": true
+    },
+    {
+      "source": "tabie",
+      "reported_no_future_epg_ids": 0,
+      "no_future_epg_ids": 0,
+      "current_payload_verified": true
+    },
+    {
+      "source": "tunisiatv",
+      "reported_no_future_epg_ids": 0,
+      "no_future_epg_ids": 0,
+      "current_payload_verified": true
+    }
+  ],
+  "published_mena": {
+    "channels": 516,
+    "programmes": 30778,
+    "channels_with_future_at_check": 463,
+    "source_snapshot_outdated": [
+      "tabie",
+      "osn",
+      "elcinema"
+    ],
+    "readiness_structural_error": "MENA_SOURCE_SNAPSHOT_OUTDATED"
+  },
+  "local_rebuild": {
+    "source_snapshot_commit": "233ce53601121d95b0dd06710769b392b6883204",
+    "scope": "Local reconstruction from actual immutable published source bytes; no publication",
+    "source_sha_count": 14,
+    "source_sha_all_match": true,
+    "channels": 516,
+    "programmes": 31526,
+    "statuses": {
+      "DEGRADED_WITH_EPG": 138,
+      "QUALIFIED_AT_BUILD": 329,
+      "NO_FUTURE_EPG": 49
+    },
+    "structural_errors": [],
+    "original_feed_hashes_unchanged": true,
+    "published_feeds_modified": false,
+    "receiver_changed": false
+  },
+  "live_morocco": {
+    "started_utc": "2026-10-24T07:08:38.594737+00:00",
+    "programme_rows": 329,
+    "catalogue_ids": 15,
+    "ids_with_future_rows": 5,
+    "counts_by_id": {
+      "2M": 64,
+      "AlAoula": 77,
+      "Assadisa": 104,
+      "MEDI1TV_AR.ma": 45,
+      "MEDI1TV_MAGHREB.ma": 39
+    },
+    "groups": {
+      "2m": {
+        "detail": "events=64; untranslated_titles=9/64",
+        "events": 64,
+        "mode": "degraded-fresh",
+        "qualified": false,
+        "retained_exact_lkg": 0
+      },
+      "arryadia": {
+        "detail": "events=0",
+        "events": 0,
+        "mode": "missing",
+        "qualified": false,
+        "retained_exact_lkg": 0
+      },
+      "chada": {
+        "detail": "events=0",
+        "events": 0,
+        "mode": "missing",
+        "qualified": false,
+        "retained_exact_lkg": 0
+      },
+      "medi1": {
+        "detail": "events=84",
+        "events": 84,
+        "mode": "fresh",
+        "qualified": true,
+        "retained_exact_lkg": 0
+      },
+      "snrt": {
+        "detail": "events=181",
+        "events": 181,
+        "mode": "degraded-fresh",
+        "qualified": false,
+        "retained_exact_lkg": 0
+      }
+    },
+    "published": false
+  },
+  "latest_source_workflows_in_sample": [
+    {
+      "id": 40070198255,
+      "name": "EPG 48h - OSN",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-24T06:26:11Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/40070198255"
+    },
+    {
+      "id": 40068190024,
+      "name": "EPG 48h - ElCinema",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-24T05:56:03Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/40068190024"
+    },
+    {
+      "id": 40064087187,
+      "name": "EPG 48h - Tabie QMC",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-24T04:52:58Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/40064087187"
+    },
+    {
+      "id": 39954293009,
+      "name": "EPG 48h - Morocco",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T12:34:05Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39954293009"
+    },
+    {
+      "id": 39950293435,
+      "name": "EPG 48h - TunisiaTV",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T12:01:50Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39950293435"
+    },
+    {
+      "id": 39949829387,
+      "name": "EPG 48h - Al Kass",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T11:58:03Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39949829387"
+    },
+    {
+      "id": 39940006352,
+      "name": "EPG 48h - STC TV",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T10:33:57Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39940006352"
+    },
+    {
+      "id": 39935785269,
+      "name": "EPG 48h - STARZPLAY",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T09:58:53Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39935785269"
+    },
+    {
+      "id": 39932741838,
+      "name": "EPG 48h - Dubai Plus",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T09:33:34Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39932741838"
+    },
+    {
+      "id": 39931022556,
+      "name": "EPG 48h - Al Jazeera",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T09:19:28Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39931022556"
+    },
+    {
+      "id": 39927667051,
+      "name": "EPG 48h - Rotana",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T08:51:45Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39927667051"
+    },
+    {
+      "id": 39927400216,
+      "name": "EPG 48h - Shahid MBC",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T08:49:33Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39927400216"
+    },
+    {
+      "id": 39924267494,
+      "name": "EPG 48h - Sport24",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T08:23:13Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39924267494"
+    },
+    {
+      "id": 39918861350,
+      "name": "EPG 48h - beIN MENA",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-23T07:36:12Z",
+      "html_url": "https://github.com/wacayoub/EPG-Scrapers/actions/runs/39918861350"
+    }
+  ],
+  "offline_tests": {
+    "python": "3.13.2",
+    "baseline_tests": 190,
+    "corrected_tests": 204,
+    "result": "PASS"
+  },
+  "github_ci": "Pending PR CI; do not infer a live workflow_run deployment test",
+  "receiver_changed": false,
+  "published_feeds_modified": false,
+  "remaining": [
+    "19 OSN Legacy/Other IDs have no future programmes",
+    "Several Morocco and external guides remain unavailable",
+    "Nine 2M titles remain untranslated in the live candidate",
+    "Placeholder heuristics require provider verification; not proof of fabricated data",
+    "New completion trigger must be qualified after merge/default-branch deployment; no production run claimed"
+  ]
+}
