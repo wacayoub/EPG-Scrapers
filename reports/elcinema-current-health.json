@@ -1,0 +1,28 @@
+[
+  {
+    "source": "elcinema",
+    "checked_utc": "2026-10-24T06:07:20.878394+00:00",
+    "feed_sha256": "cf689a9d31e538854cd00d67e45d83861962895cf8b9a0072f81909db9617b55",
+    "status": "DEGRADED",
+    "last_attempt_kept_lkg": false,
+    "channels": 97,
+    "channels_with_future_epg": 95,
+    "channels_without_future_epg": [
+      "KTV1.kw@SD",
+      "QatarTelevision.qa@SD"
+    ],
+    "suspected_placeholder_channels": [
+      {
+        "id": "BahrainTV.bh@SD",
+        "count": 29
+      }
+    ],
+    "remaining_max_hours": 50.88,
+    "channels_with_less_than_24h": [
+      "KTV1.kw@SD",
+      "MBC3.ae@SD",
+      "QatarTelevision.qa@SD"
+    ],
+    "action_success_does_not_certify_guide_quality": true
+  }
+]

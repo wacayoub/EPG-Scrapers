@@ -1,46 +1,26 @@
 {
   "label": "elcinema",
   "channels": 97,
-  "active_channels": 97,
-  "zero_epg_channels": 0,
-  "zero_epg_ids": [],
+  "active_channels": 96,
+  "zero_epg_channels": 1,
+  "zero_epg_ids": [
+    "QatarTelevision.qa@SD"
+  ],
   "input_channels": 97,
-  "coverage_pct": 100.0,
-  "currently_on_air_channels": 97,
-  "current_coverage_pct": 100.0,
-  "currently_uncovered_ids": [],
-  "programmes": 4758,
+  "coverage_pct": 99.0,
+  "currently_on_air_channels": 95,
+  "current_coverage_pct": 97.9,
+  "currently_uncovered_ids": [
+    "KTV1.kw@SD",
+    "QatarTelevision.qa@SD"
+  ],
+  "programmes": 4021,
   "rejected_invalid_time": 0,
-  "rejected_missing_title": 0,
-  "inferred_stop": 0,
+  "rejected_missing_title": 1,
+  "inferred_stop": 1,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 226076,
-  "sha256": "13f5eaa2246ae7ed4a2b04a13cd50230ccbc1f52af351db5327afaf0560155e1",
-  "generated_utc": "2026-10-23T06:12:36.080518+00:00",
-  "repacked_utc": "2026-10-23T12:38:34.939123+00:00",
-  "original_published_sha256": "2aa049099b58a8558477e9b46da4203b74ab777d27a1f1653f7110c7b55621ad",
-  "verified_donor_extensions": {
-    "mode": "daily_after_donor_refresh_exact_id_no_overlap",
-    "donor_sha256": {
-      "shahid": "438d901133515dafe5a22bf6c28e92cfd55cf9ce79fc0bc5a024355a6b7ab11a",
-      "dubaiplus": "52653963049196310edbc5c678fd14c8fa90160c0d27f1f9ae5f0334512962e7"
-    },
-    "programmes_added_this_pass": 325,
-    "channels_extended": [
-      "DubaiOne.ae@SD",
-      "MBC1.ae@SD",
-      "MBC3.ae@SD",
-      "MBC4.ae@SD",
-      "MBC5.ae@SD",
-      "MBCAction.ae@SD",
-      "MBCBollywood.ae@SD",
-      "MBCDrama.ae@SD",
-      "MBCIraq.iq@SD",
-      "MBCMasr.eg@SD",
-      "MBCMasr2.eg@SD",
-      "MBCPlusDrama.sa@SD"
-    ],
-    "fabricated_programmes": 0
-  }
+  "size_bytes": 200319,
+  "sha256": "cf689a9d31e538854cd00d67e45d83861962895cf8b9a0072f81909db9617b55",
+  "generated_utc": "2026-10-24T06:07:20.248256+00:00"
 }
