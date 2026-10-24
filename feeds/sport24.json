@@ -1,31 +1,27 @@
 {
   "label": "sport24",
   "channels": 9,
-  "active_channels": 5,
-  "zero_epg_channels": 4,
+  "active_channels": 7,
+  "zero_epg_channels": 2,
   "zero_epg_ids": [
-    "sport24.adsports.2",
-    "sport24.thmanyah.1",
-    "sport24.thmanyah.2",
-    "sport24.thmanyah.3"
+    "sport24.adsports.4",
+    "sport24.thmanyah.1"
   ],
   "input_channels": 9,
-  "coverage_pct": 55.6,
-  "currently_on_air_channels": 5,
-  "current_coverage_pct": 55.6,
+  "coverage_pct": 77.8,
+  "currently_on_air_channels": 7,
+  "current_coverage_pct": 77.8,
   "currently_uncovered_ids": [
-    "sport24.adsports.2",
-    "sport24.thmanyah.1",
-    "sport24.thmanyah.2",
-    "sport24.thmanyah.3"
+    "sport24.adsports.4",
+    "sport24.thmanyah.1"
   ],
-  "programmes": 100,
+  "programmes": 159,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 4066,
-  "sha256": "9ed18af78315fffc7afe0c150f0a0276a157465f5c62811467707873fea5464a",
-  "generated_utc": "2026-10-23T08:23:43.876823+00:00"
+  "size_bytes": 5526,
+  "sha256": "43bcf9f17a12c070427f1968b2e34bb4656cf48f293369d06b0995d9ab70bc81",
+  "generated_utc": "2026-10-24T07:59:28.779764+00:00"
 }
