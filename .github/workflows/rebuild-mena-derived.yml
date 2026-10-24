@@ -3,6 +3,26 @@ name: Rebuild derived MENA feed
 on:
   workflow_call:
   workflow_dispatch:
+  workflow_run:
+    # Source-bot pushes do not trigger another workflow with GITHUB_TOKEN.
+    # Refresh MENA after accepted source publications, including late crons.
+    workflows:
+      - EPG 48h - Morocco
+      - EPG 48h - beIN MENA
+      - EPG 48h - OSN
+      - EPG 48h - ElCinema
+      - EPG 48h - STARZPLAY
+      - EPG 48h - STC TV
+      - EPG 48h - Shahid MBC
+      - EPG 48h - Dubai Plus
+      - EPG 48h - Sport24
+      - EPG 48h - Rotana
+      - EPG 48h - Al Jazeera
+      - EPG 48h - Al Kass
+      - EPG 48h - Tabie QMC
+      - EPG 48h - TunisiaTV
+    branches: [main]
+    types: [completed]
 
 permissions:
   contents: write
@@ -13,11 +33,13 @@ concurrency:
 
 jobs:
   rebuild:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
       - name: Rebuild from latest source feeds
         shell: bash
@@ -29,6 +51,20 @@ jobs:
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
+
+            if [ "${{ github.event_name }}" = "workflow_run" ]; then
+              # Repeated/no-change successful refreshes need no extra commit.
+              if python tools/mena_rebuild_required.py --root .; then
+                :
+              else
+                status=$?
+                if [ "$status" -eq 10 ]; then
+                  echo "MENA already incorporates all accepted source bytes"
+                  exit 0
+                fi
+                exit "$status"
+              fi
+            fi
 
             python tools/build_derived_feeds.py
             # Fail CLOSED on broken XMLTV/IDs/SHA/routing. Preserve degraded
