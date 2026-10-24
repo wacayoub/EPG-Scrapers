@@ -77,6 +77,18 @@ class WorkflowContract(unittest.TestCase):
         self.assertIn('mena_rebuild_required.py',commands)
         self.assertNotIn('refresh_one_source.sh',commands)
 
+    def test_ci_diagnoses_published_data_then_strictly_qualifies_candidate(self):
+        workflow=yaml.safe_load((REPO/'.github/workflows/mena-517-readiness-ci.yml').read_text())
+        scripts=[s.get('run','') for s in workflow['jobs']['verify']['steps']]
+        baseline=next(i for i,s in enumerate(scripts) if 'PUBLISHED_MENA_BASELINE_STATUS' in s)
+        rebuild=next(i for i,s in enumerate(scripts) if s.strip()=='python tools/build_derived_feeds.py')
+        strict=next(i for i,s in enumerate(scripts) if "assert p['structural_errors']==[]" in s)
+        self.assertLess(baseline,rebuild);self.assertLess(rebuild,strict)
+        self.assertIn("errors-{'MENA_SOURCE_SNAPSHOT_OUTDATED'}",scripts[baseline])
+        self.assertIn("assert p['source_manifest_sha256_match']",scripts[strict])
+        self.assertEqual(workflow['permissions']['contents'],'read')
+        self.assertNotRegex('\n'.join(scripts),r'(?m)^\s*git\s+push\b')
+
 
 if __name__=='__main__':
     unittest.main()

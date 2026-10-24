@@ -50,11 +50,19 @@ change. GitHub schedule start delays remain observable operational constraints.
   rows, so no Chada programme was published in this candidate. No dates were
   shifted and no replacement broadcasts were invented. Nine 2M titles remain
   untranslated; the group remains explicitly degraded.
-- Workstation Python 3.13.2: 190 baseline tests and 203 corrected tests PASS.
+- Workstation Python 3.13.2: 190 baseline tests and 204 corrected tests PASS.
   New tests cover publication-pass/future-expiry divergence, UTC offsets,
   malformed/oversized payloads, identity/count drift, stale derived snapshots,
   failed source integrity and all 14 completion trigger names/default-branch
   restrictions. GitHub Python 3.13/3.14 CI is recorded in the PR separately.
+
+The first PR CI run reproduced the known published-snapshot failure. Candidate
+CI now diagnoses that baseline separately (only snapshot lag may be a warning;
+every other structural defect blocks), reconstructs the derived candidate in
+the disposable read-only-permission checkout, then requires all original strict
+structural/SHA/catalogue assertions to pass. The real production release gate
+still rejects every structural error before any commit/push. The baseline,
+candidate and production-order CI scripts also executed locally and passed.
 
 ## Scope and remaining work
 
