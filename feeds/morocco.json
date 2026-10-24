@@ -1,8 +1,8 @@
 {
   "label": "morocco",
   "channels": 15,
-  "active_channels": 6,
-  "zero_epg_channels": 9,
+  "active_channels": 5,
+  "zero_epg_channels": 10,
   "zero_epg_ids": [
     "AFLAM.ma",
     "AlMaghribiya",
@@ -12,12 +12,13 @@
     "Arryadia_HD2",
     "Arryadia_HD3",
     "Arryadia_TNT",
+    "Chada TV",
     "Tamazight"
   ],
   "input_channels": 15,
-  "coverage_pct": 40.0,
-  "currently_on_air_channels": 6,
-  "current_coverage_pct": 40.0,
+  "coverage_pct": 33.3,
+  "currently_on_air_channels": 5,
+  "current_coverage_pct": 33.3,
   "currently_uncovered_ids": [
     "AFLAM.ma",
     "AlMaghribiya",
@@ -27,54 +28,16 @@
     "Arryadia_HD2",
     "Arryadia_HD3",
     "Arryadia_TNT",
+    "Chada TV",
     "Tamazight"
   ],
-  "programmes": 353,
+  "programmes": 267,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 10072,
-  "sha256": "f55fa8ee427286a0fe340512376c492524c333a7406263ad11a55aee3e38f821",
-  "generated_utc": "2026-10-23T18:32:34.893143+00:00",
-  "conditioned_utc": "2026-10-23T18:35:06.825592+00:00",
-  "group_readiness": {
-    "2m": {
-      "detail": "events=68; untranslated_titles=12/68",
-      "events": 68,
-      "mode": "degraded-fresh",
-      "qualified": false,
-      "retained_exact_lkg": 0
-    },
-    "arryadia": {
-      "detail": "events=0",
-      "events": 0,
-      "mode": "missing",
-      "qualified": false,
-      "retained_exact_lkg": 0
-    },
-    "chada": {
-      "detail": "events=12",
-      "events": 12,
-      "mode": "fresh",
-      "qualified": true,
-      "retained_exact_lkg": 0
-    },
-    "medi1": {
-      "detail": "events=100",
-      "events": 100,
-      "mode": "fresh",
-      "qualified": true,
-      "retained_exact_lkg": 0
-    },
-    "snrt": {
-      "detail": "events=226",
-      "events": 226,
-      "mode": "degraded-fresh",
-      "qualified": false,
-      "retained_exact_lkg": 0
-    }
-  },
-  "publication_method": "Owner-authorized real PC scrape, merged production pack/publisher, exact SHA"
+  "size_bytes": 9796,
+  "sha256": "ad3917561861695b2b2f05d85560fcd64285a24fa30a52cd1938cf992ce2ee62",
+  "generated_utc": "2026-10-24T11:58:14.144577+00:00"
 }
