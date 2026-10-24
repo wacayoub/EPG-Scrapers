@@ -1,0 +1,69 @@
+[
+  {
+    "source": "osn",
+    "checked_utc": "2026-10-24T06:30:53.196621+00:00",
+    "feed_sha256": "6551787847b6ea1fb640efc8acaadcceab25f87756a990eab61b9cb690682ac9",
+    "status": "DEGRADED",
+    "last_attempt_kept_lkg": false,
+    "channels": 101,
+    "channels_with_future_epg": 82,
+    "channels_without_future_epg": [
+      "AlfaSeries.ae@SD",
+      "AlfaSeriesPlus2.ae@SD",
+      "AlSafwa.ae@SD",
+      "AlYawm.ae@SD",
+      "ANC.ph",
+      "Cinema1.ae@SD",
+      "Cinema2.ae@SD",
+      "CineMo.ph",
+      "Fann.ae@SD",
+      "GMALifeTV.ph",
+      "GMANewsTV.ph",
+      "GMAPinoyTVMiddleEast.ph",
+      "MusicNow.ae@SD",
+      "MyxMiddleEast.ph",
+      "osn.213",
+      "osn.215",
+      "osn.216",
+      "osn.217",
+      "osn.220"
+    ],
+    "suspected_placeholder_channels": [
+      {
+        "id": "OSNPopUp.ae@SD",
+        "count": 49
+      },
+      {
+        "id": "OSNeClutchAccess",
+        "count": 7
+      },
+      {
+        "id": "OSNeClutchLIVE2",
+        "count": 7
+      }
+    ],
+    "remaining_max_hours": 65.49,
+    "channels_with_less_than_24h": [
+      "ANC.ph",
+      "AlSafwa.ae@SD",
+      "AlYawm.ae@SD",
+      "AlfaSeries.ae@SD",
+      "AlfaSeriesPlus2.ae@SD",
+      "CineMo.ph",
+      "Cinema1.ae@SD",
+      "Cinema2.ae@SD",
+      "Fann.ae@SD",
+      "GMALifeTV.ph",
+      "GMANewsTV.ph",
+      "GMAPinoyTVMiddleEast.ph",
+      "MusicNow.ae@SD",
+      "MyxMiddleEast.ph",
+      "osn.213",
+      "osn.215",
+      "osn.216",
+      "osn.217",
+      "osn.220"
+    ],
+    "action_success_does_not_certify_guide_quality": true
+  }
+]
