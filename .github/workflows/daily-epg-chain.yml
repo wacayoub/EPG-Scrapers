@@ -1,4 +1,4 @@
-name: EPG 48h - Daily sequential chain
+name: EPG 48h - Daily source postprocessing
 
 on:
   schedule:
@@ -18,15 +18,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # All 14 direct sources now have their own daily fixed-GMT+0 scrape.
-  # Do not rescrape any source in this 07:15 orchestration workflow.
-  # Run donor postprocessing after the last source, Tunisia TV at 06:35,
-  # then rebuild the derived MENA guide.
+  # Source-engine only. Final MENA/receiver assembly belongs exclusively to
+  # wacayoub/EPGManager.
   elcinema_extend:
     if: ${{ always() }}
     uses: ./.github/workflows/elcinema-daily-donors.yml
-
-  finalize:
-    needs: elcinema_extend
-    if: ${{ always() }}
-    uses: ./.github/workflows/rebuild-mena-derived.yml
