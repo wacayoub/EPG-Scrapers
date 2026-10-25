@@ -1,7 +1,7 @@
 name: EPG 48h - ElCinema
 
 on:
-  # Run at 01:20 Moroccan local wall-clock time, including future tz changes.
+  # Run at 01:20 fixed GMT+0 (UTC), with no seasonal shift.
   schedule:
     - cron: "20 1 * * *"
       timezone: "Etc/GMT"

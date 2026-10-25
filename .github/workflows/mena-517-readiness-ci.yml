@@ -32,7 +32,27 @@ jobs:
         run: |
           python -m py_compile tools/mena_readiness_audit.py tools/test_mena_readiness_audit.py
           python -m unittest tools.test_mena_readiness_audit -v
-      - name: Audit currently PUBLISHED 517 channel MENA XMLTV without changing data
+      - name: Diagnose published baseline before candidate reconstruction
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.mena_readiness_audit import audit
+          p=audit('feeds/mena.xml.gz','feeds/mena.json',
+                  'reports/canonical-source-routing.json','feeds')
+          Path('/tmp/mena-published-baseline.json').write_text(json.dumps(p))
+          errors=set(p['structural_errors'])
+          # A source can publish between daily derived rebuilds. Keep that
+          # production defect visible, then test the proposed rebuild below.
+          # Every other structural defect still blocks candidate qualification.
+          assert not (errors-{'MENA_SOURCE_SNAPSHOT_OUTDATED'}), errors
+          if errors:
+              print('::warning::Published MENA source snapshot is outdated; not production-qualified')
+          print('PUBLISHED_MENA_BASELINE_STATUS',p['status'],sorted(errors))
+          PY
+      - name: Reconstruct candidate in disposable checkout without publishing
+        run: python tools/build_derived_feeds.py
+      - name: Require reconstructed MENA to pass every structural release gate
         run: |
           python tools/mena_readiness_audit.py \
             --feed feeds/mena.xml.gz \
@@ -69,7 +89,7 @@ jobs:
           for x in p['ids']:
               if x['status']=='NO_FUTURE_EPG':
                   assert not x['best_match_green_allowed'] and x['manual_mapping_visible']
-          print('MENA_14_SHA_PINNED_PUBLISHED_SOURCE_AUDITED')
+          print('MENA_CANDIDATE_14_SHA_PINNED_SOURCES_AUDITED_NOT_PUBLISHED')
           print('MENA_PRESERVES_PUBLISHED_CHANNEL_CATALOGUE',p['channels'])
           print('MENA_QUALITY_WARNINGS_EXPLICIT',p['selected_statuses'])
           print('NO_VU_PLUS_CHANGES_NO_MAPPING_RENAMES_NO_SYNTHETIC_EPG')
