@@ -1,10 +1,10 @@
 {
   "source": "aljazeera",
-  "generated_utc": "2026-10-24T08:51:44.614430+00:00",
+  "generated_utc": "2026-10-25T09:07:59.292820+00:00",
   "source_file": "aljazeera.xml.gz",
   "channels": 5,
-  "programmes": 100,
-  "future_programmes": 95,
+  "programmes": 138,
+  "future_programmes": 133,
   "channels_with_future_epg": 3,
   "channels_without_future_epg": [
     "AlJazeeraDocumentary.qa@SD",
@@ -15,18 +15,16 @@
     "AlJazeeraMubasher.qa@SD"
   ],
   "channels_with_internal_gap_over_90min": {},
-  "future_programmes_without_description": 2,
+  "future_programmes_without_description": 3,
   "future_programmes_with_unavailable_description": 0,
   "future_programmes_with_placeholder_or_channel_title": 0,
   "suspected_placeholder_channels": [],
   "future_programmes_by_channel": {
-    "AlJazeera.qa@Arabic": 11,
-    "AlJazeera.qa@English": 73,
-    "AlJazeera2.qa@HD": 11
+    "AlJazeera.qa@Arabic": 38,
+    "AlJazeera.qa@English": 72,
+    "AlJazeera2.qa@HD": 23
   },
-  "suspected_repeated_title_channels": [
-    "AlJazeera.qa@Arabic"
-  ],
+  "suspected_repeated_title_channels": [],
   "occasional_event_channel_ids": [],
   "occasional_event_channels_without_future_match": [],
   "occasional_event_channels_with_short_or_gapped_schedule": [],
