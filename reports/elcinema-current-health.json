@@ -1,27 +1,51 @@
 [
   {
     "source": "elcinema",
-    "checked_utc": "2026-10-24T06:07:20.878394+00:00",
-    "feed_sha256": "cf689a9d31e538854cd00d67e45d83861962895cf8b9a0072f81909db9617b55",
+    "checked_utc": "2026-10-25T06:35:12.734917+00:00",
+    "feed_sha256": "1ce9c40f8404f559e2be6c6800c36adaa3da5160a15b7c3f69ef90b12b78951f",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 97,
-    "channels_with_future_epg": 95,
+    "channels_with_future_epg": 96,
     "channels_without_future_epg": [
-      "KTV1.kw@SD",
-      "QatarTelevision.qa@SD"
+      "MBCAction.ae@SD"
     ],
     "suspected_placeholder_channels": [
       {
         "id": "BahrainTV.bh@SD",
-        "count": 29
+        "count": 28
       }
     ],
-    "remaining_max_hours": 50.88,
+    "remaining_max_hours": 50.41,
     "channels_with_less_than_24h": [
-      "KTV1.kw@SD",
-      "MBC3.ae@SD",
-      "QatarTelevision.qa@SD"
+      "AbuDhabiTV.ae@SD",
+      "AlAoula.ma@MiddleEast",
+      "AlIraqia.iq@SD",
+      "AlNaharDrama.eg@SD",
+      "Althania.sy@SD",
+      "AmmanTV.jo@SD",
+      "CBC.eg@SD",
+      "CBCDrama.eg@SD",
+      "DMC.eg@SD",
+      "DMCDrama.eg@SD",
+      "DijlahTV.iq@SD",
+      "DubaiOne.ae@SD",
+      "DubaiZaman.ae@SD",
+      "FujairahTV.ae@SD",
+      "HadhramautTV.ye@SD",
+      "JordanTV.jo@SD",
+      "MBC2.ae@SD",
+      "MBCAction.ae@SD",
+      "MBCMax.ae@SD",
+      "MTV.lb@SD",
+      "Masah.sa@SD",
+      "OnDrama.eg@SD",
+      "OnE.eg@SD",
+      "SamaDubai.ae@SD",
+      "ThikrayatTV.sa@SD",
+      "beINMovies1Premiere.qa@SD",
+      "beINMovies2Action.qa@SD",
+      "beINMovies3Drama.qa@SD"
     ],
     "action_success_does_not_certify_guide_quality": true
   }
