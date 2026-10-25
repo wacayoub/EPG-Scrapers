@@ -49,9 +49,7 @@ not publication deadlines: GitHub may delay a scheduled workflow.
 | Tunisia TV | 06:35 |
 | Morocco | 07:07 |
 
-The 07:15 orchestration extends ElCinema from verified donors and rebuilds MENA;
-it does not scrape the 14 sources again. The 14:15 watchdog measures the actual
-remaining published EPG, including retained LKG bytes. Manual dispatch remains available.
+The 07:15 orchestration may extend ElCinema from verified donors, but this repository no longer builds or publishes a receiver-wide MENA aggregate. `wacayoub/EPGManager` is the only owner of final merge, canonical receiver IDs, premium/MENA split, global LKG and Vu+ publication. Manual source refresh remains available.
 
 Receiver imports must follow **actual publication**, not just the requested cron.
 On 23 October the MENA rebuild completed at 12:39 GMT+0; a 10:00 import therefore
@@ -65,14 +63,13 @@ receiver EPG because a provider is late.
 - `reports/latest.json`
 - `reports/latest.md`
 
-The repository is designed so EPGManager/Vu+ can consume each source independently.
+The repository is the source engine. It publishes only validated per-source feeds for EPGManager consumption. It must not publish a final receiver MENA aggregate or own receiver canonical IDs.
 
 
 ## Guide quality
 
 STARZPLAY is active on its own 05:12 GMT+0 workflow. A successful Actions run or a
-MAIN/B1/B2 role does not certify guide quality. Review `reports/mena-readiness.json`
-and `<source>-current-health.json`: expired IDs stay visible but never green;
+MAIN/B1/B2 role does not certify guide quality. Review `<source>-current-health.json` and the source-specific quality reports: expired IDs stay visible but never green;
 placeholder suspicions remain explicit, and generated Arryadia/AFLAM filler is
 excluded from new derived publications. A degraded genuine exact-ID backup may
 extend a shorter guide without falsely turning the result green.
