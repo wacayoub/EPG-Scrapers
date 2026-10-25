@@ -45,8 +45,3 @@ jobs:
     uses: ./.github/workflows/verify-source-refresh.yml
     with:
       source: ${{ inputs.source }}
-
-  finalize:
-    needs: [refresh, verify]
-    if: ${{ always() }}
-    uses: ./.github/workflows/rebuild-mena-derived.yml
