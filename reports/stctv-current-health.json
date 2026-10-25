@@ -1,38 +1,14 @@
 [
   {
     "source": "stctv",
-    "checked_utc": "2026-10-24T09:52:10.429339+00:00",
-    "feed_sha256": "837a347cad45c145c737cab3bac80900470566fb0a5ddba37d2b3906aa5528d0",
+    "checked_utc": "2026-10-25T10:12:19.623842+00:00",
+    "feed_sha256": "d48293dbebac23cffa5180be9d70872e768c597c984f40ca3f73f78566b56050",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 149,
     "channels_with_future_epg": 149,
     "channels_without_future_epg": [],
     "suspected_placeholder_channels": [
-      {
-        "id": "AsharqDocumentary.sa@SD",
-        "count": 49
-      },
-      {
-        "id": "BahrainTV.bh@SD",
-        "count": 49
-      },
-      {
-        "id": "DMC.eg@SD",
-        "count": 49
-      },
-      {
-        "id": "SharjahTV.ae@SD",
-        "count": 49
-      },
-      {
-        "id": "starzplay.460050472022",
-        "count": 49
-      },
-      {
-        "id": "starzplay.770738728162",
-        "count": 49
-      },
       {
         "id": "stctv.0c7f54b591ee",
         "count": 49
@@ -50,11 +26,23 @@
         "count": 49
       },
       {
+        "id": "stctv.418e0c3ebd37",
+        "count": 49
+      },
+      {
         "id": "stctv.4667a521021a",
         "count": 49
       },
       {
+        "id": "stctv.5c1d3c48394c",
+        "count": 49
+      },
+      {
         "id": "stctv.62271af08509",
+        "count": 49
+      },
+      {
+        "id": "stctv.6cfe414fd9e7",
         "count": 49
       },
       {
@@ -71,6 +59,14 @@
       },
       {
         "id": "stctv.a60e07fa6b41",
+        "count": 49
+      },
+      {
+        "id": "stctv.b4231b533784",
+        "count": 49
+      },
+      {
+        "id": "stctv.ba787b76bc1d",
         "count": 49
       },
       {
@@ -110,39 +106,59 @@
         "count": 49
       },
       {
+        "id": "stctv.f93d95207bd4",
+        "count": 49
+      },
+      {
         "id": "stctv.d00f70313676",
-        "count": 45
-      },
-      {
-        "id": "stctv.17069d8d4998",
-        "count": 37
-      },
-      {
-        "id": "DubaiSports2.ae@SD",
-        "count": 36
+        "count": 44
       },
       {
         "id": "StarzplaySports3.sa@HD",
-        "count": 14
+        "count": 39
       },
       {
         "id": "stctv.cac5e490d765",
-        "count": 13
+        "count": 38
       },
       {
         "id": "StarzplaySports1.sa@HD",
-        "count": 12
+        "count": 37
       },
       {
         "id": "StarzplaySports2.sa@HD",
-        "count": 12
+        "count": 37
+      },
+      {
+        "id": "stctv.17069d8d4998",
+        "count": 36
       },
       {
         "id": "stctv.4a2b60976c7f",
-        "count": 11
+        "count": 36
+      },
+      {
+        "id": "stctv.7330f6f4d9a9",
+        "count": 14
+      },
+      {
+        "id": "stctv.b084adc695a1",
+        "count": 14
+      },
+      {
+        "id": "stctv.2afc9787e13e",
+        "count": 13
+      },
+      {
+        "id": "stctv.52cf8589e379",
+        "count": 13
+      },
+      {
+        "id": "stctv.24ada1ed8f25",
+        "count": 8
       }
     ],
-    "remaining_max_hours": 49.63,
+    "remaining_max_hours": 53.79,
     "channels_with_less_than_24h": [],
     "action_success_does_not_certify_guide_quality": true
   }
