@@ -1,0 +1,40 @@
+name: 2M EPG.pw live XMLTV/API assessment — nonpublishing
+on:
+  push:
+    branches: [feature/2m-epgpw-api-shadow-20261017]
+    paths:
+      - tools/epgpw_2m_direct_api_shadow.py
+      - tools/test_epgpw_2m_direct_api_shadow.py
+      - .github/workflows/2m-epgpw-api-shadow.yml
+  pull_request:
+    paths:
+      - tools/epgpw_2m_direct_api_shadow.py
+      - tools/test_epgpw_2m_direct_api_shadow.py
+      - .github/workflows/2m-epgpw-api-shadow.yml
+permissions:
+  contents: read
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m py_compile tools/epgpw_2m_direct_api_shadow.py tools/test_epgpw_2m_direct_api_shadow.py
+      - run: python -m unittest discover -s tools -p 'test_epgpw_2m_direct_api_shadow.py' -v
+  metadata-only-live:
+    needs: offline-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: One-time publicly linked 2M XMLTV and JSON structural check, no guide output
+        run: python tools/epgpw_2m_direct_api_shadow.py --live
