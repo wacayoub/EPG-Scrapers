@@ -1,51 +1,36 @@
 [
   {
     "source": "elcinema",
-    "checked_utc": "2026-10-25T06:35:12.734917+00:00",
-    "feed_sha256": "1ce9c40f8404f559e2be6c6800c36adaa3da5160a15b7c3f69ef90b12b78951f",
+    "checked_utc": "2026-10-26T06:27:21.431314+00:00",
+    "feed_sha256": "4ca4ec0bed4176ca09311e94410d28abea7f993a610d47c36037df4e82e7890e",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 97,
     "channels_with_future_epg": 96,
     "channels_without_future_epg": [
-      "MBCAction.ae@SD"
+      "DubaiOne.ae@SD"
     ],
-    "suspected_placeholder_channels": [
-      {
-        "id": "BahrainTV.bh@SD",
-        "count": 28
-      }
-    ],
-    "remaining_max_hours": 50.41,
+    "suspected_placeholder_channels": [],
+    "remaining_max_hours": 50.13,
     "channels_with_less_than_24h": [
-      "AbuDhabiTV.ae@SD",
-      "AlAoula.ma@MiddleEast",
-      "AlIraqia.iq@SD",
-      "AlNaharDrama.eg@SD",
-      "Althania.sy@SD",
-      "AmmanTV.jo@SD",
-      "CBC.eg@SD",
-      "CBCDrama.eg@SD",
-      "DMC.eg@SD",
-      "DMCDrama.eg@SD",
-      "DijlahTV.iq@SD",
+      "AlJadeed.lb@SD",
+      "AlKaheraWalNas.eg@SD",
+      "AlKaheraWalNas2.eg@SD",
+      "AlSharqiyaMinKabla.ae@SD",
+      "Alsumaria.iq@SD",
+      "DiscoveryChannelMiddleEastAfrica.us@SD",
       "DubaiOne.ae@SD",
-      "DubaiZaman.ae@SD",
-      "FujairahTV.ae@SD",
-      "HadhramautTV.ye@SD",
-      "JordanTV.jo@SD",
-      "MBC2.ae@SD",
-      "MBCAction.ae@SD",
-      "MBCMax.ae@SD",
+      "ElMehwarChannel.eg@SD",
+      "LanaTV.lb@SD",
       "MTV.lb@SD",
-      "Masah.sa@SD",
-      "OnDrama.eg@SD",
-      "OnE.eg@SD",
-      "SamaDubai.ae@SD",
-      "ThikrayatTV.sa@SD",
-      "beINMovies1Premiere.qa@SD",
-      "beINMovies2Action.qa@SD",
-      "beINMovies3Drama.qa@SD"
+      "NileDrama.eg@SD",
+      "SharjahTV.ae@SD",
+      "UTV.iq@SD",
+      "ZeeAlwan.ae@SD",
+      "beINDrama1.qa@SD",
+      "beINSeries1.qa@SD",
+      "beINSeries2.qa@SD",
+      "iFilmArabic.ir@SD"
     ],
     "action_success_does_not_certify_guide_quality": true
   }
