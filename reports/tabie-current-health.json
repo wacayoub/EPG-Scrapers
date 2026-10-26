@@ -1,20 +1,15 @@
 [
   {
     "source": "tabie",
-    "checked_utc": "2026-10-25T05:04:16.450182+00:00",
-    "feed_sha256": "01d7b977ccbbede97e53bb0b336c7ef2dd343c42dd327538f134ff79e03d276c",
-    "status": "NO_FUTURE_EPG",
-    "last_attempt_kept_lkg": true,
+    "checked_utc": "2026-10-26T05:07:46.274413+00:00",
+    "feed_sha256": "c5701ee0033acaa4a45edccf4b8b725328ede8f61e713a41037adc3f0478ee6e",
+    "status": "AVAILABLE",
+    "last_attempt_kept_lkg": false,
     "channels": 4,
-    "channels_with_future_epg": 0,
-    "channels_without_future_epg": [
-      "QatarTelevision.qa@SD",
-      "QatarTelevision2.qa@SD",
-      "TabieKids.qa",
-      "TabieNow.qa"
-    ],
+    "channels_with_future_epg": 4,
+    "channels_without_future_epg": [],
     "suspected_placeholder_channels": [],
-    "remaining_max_hours": 0,
+    "remaining_max_hours": 15.87,
     "channels_with_less_than_24h": [
       "QatarTelevision.qa@SD",
       "QatarTelevision2.qa@SD",
