@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-25T06:53:44.604943+00:00",
+  "generated_utc": "2026-10-26T07:00:14.098026+00:00",
   "policy": "OSN official first; local official fallback; OpenEPG; EPGShare last; never replace healthy OSN EPG",
   "before_future": {
     "CineMo.ph": 0,
@@ -14,15 +14,15 @@
     "SaudiThaqafiyaTV.sa@SD": 0,
     "osn.216": 0,
     "osn.217": 0,
-    "osn.2501": 59,
-    "osn.9993": 47,
-    "osn.9994": 109
+    "osn.2501": 58,
+    "osn.9993": 42,
+    "osn.9994": 101
   },
   "applied": {},
   "external": {
     "openepg": {
       "status": 200,
-      "bytes": 948326,
+      "bytes": 921758,
       "url": "https://www.open-epg.com/files/saudiarabia5.xml"
     }
   },
@@ -40,9 +40,9 @@
     "SaudiThaqafiyaTV.sa@SD": 0,
     "osn.216": 0,
     "osn.217": 0,
-    "osn.2501": 59,
-    "osn.9993": 47,
-    "osn.9994": 109
+    "osn.2501": 58,
+    "osn.9993": 42,
+    "osn.9994": 101
   },
   "catalogue_id_count": 101,
   "missing_ids_before": [
