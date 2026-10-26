@@ -1,10 +1,11 @@
 {
   "label": "morocco",
   "channels": 15,
-  "active_channels": 5,
-  "zero_epg_channels": 10,
+  "active_channels": 4,
+  "zero_epg_channels": 11,
   "zero_epg_ids": [
     "AFLAM.ma",
+    "AlAoula",
     "AlMaghribiya",
     "Arrabiaa",
     "Arryadia_HD",
@@ -12,15 +13,16 @@
     "Arryadia_HD2",
     "Arryadia_HD3",
     "Arryadia_TNT",
-    "Chada TV",
+    "Assadisa",
     "Tamazight"
   ],
   "input_channels": 15,
-  "coverage_pct": 33.3,
-  "currently_on_air_channels": 5,
-  "current_coverage_pct": 33.3,
+  "coverage_pct": 26.7,
+  "currently_on_air_channels": 4,
+  "current_coverage_pct": 26.7,
   "currently_uncovered_ids": [
     "AFLAM.ma",
+    "AlAoula",
     "AlMaghribiya",
     "Arrabiaa",
     "Arryadia_HD",
@@ -28,16 +30,16 @@
     "Arryadia_HD2",
     "Arryadia_HD3",
     "Arryadia_TNT",
-    "Chada TV",
+    "Assadisa",
     "Tamazight"
   ],
-  "programmes": 133,
+  "programmes": 217,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 5838,
-  "sha256": "10aab22f0910256e1f73d83ea9a17a4ba39f38630114a7e7b21a4e3486a1138d",
-  "generated_utc": "2026-10-25T12:31:17.488108+00:00"
+  "size_bytes": 5820,
+  "sha256": "1228d1a1b15b753e966af666bf85967fc72653d389be53681b3d7eac2a34ae4b",
+  "generated_utc": "2026-10-26T14:08:40.303983+00:00"
 }
