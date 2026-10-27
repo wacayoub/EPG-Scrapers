@@ -6,13 +6,13 @@
       "id": "sport24.adsports.1",
       "name": "Abu Dhabi Sports 1",
       "url": "https://www.sport24.rest/channels/adsports/1",
-      "programmes": 17,
+      "programmes": 23,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 90366,
-      "candidate_events": 25,
+      "html_bytes": 92602,
+      "candidate_events": 27,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 25,
+      "valid_timeline_events": 27,
       "used_time_keys": [
         "dom:data-time[0]"
       ]
@@ -21,13 +21,13 @@
       "id": "sport24.adsports.2",
       "name": "Abu Dhabi Sports 2",
       "url": "https://www.sport24.rest/channels/adsports/2",
-      "programmes": 21,
+      "programmes": 17,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 91708,
-      "candidate_events": 26,
+      "html_bytes": 84597,
+      "candidate_events": 20,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 26,
+      "valid_timeline_events": 20,
       "used_time_keys": [
         "dom:data-time[0]"
       ]
@@ -36,13 +36,13 @@
       "id": "sport24.adsports.3",
       "name": "Abu Dhabi Sports 3",
       "url": "https://www.sport24.rest/channels/adsports/3",
-      "programmes": 14,
+      "programmes": 19,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 85633,
-      "candidate_events": 19,
+      "html_bytes": 92113,
+      "candidate_events": 23,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 19,
+      "valid_timeline_events": 23,
       "used_time_keys": [
         "dom:data-time[0]"
       ]
@@ -51,13 +51,13 @@
       "id": "sport24.adsports.4",
       "name": "Abu Dhabi Sports 4",
       "url": "https://www.sport24.rest/channels/adsports/4",
-      "programmes": 14,
+      "programmes": 21,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 88479,
-      "candidate_events": 21,
+      "html_bytes": 97143,
+      "candidate_events": 26,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 21,
+      "valid_timeline_events": 26,
       "used_time_keys": [
         "dom:data-time[0]"
       ]
@@ -66,13 +66,13 @@
       "id": "sport24.dubaisports.1",
       "name": "Dubai Sports 1",
       "url": "https://www.sport24.rest/channels/dubaisports/1",
-      "programmes": 16,
+      "programmes": 15,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 87929,
-      "candidate_events": 21,
+      "html_bytes": 86414,
+      "candidate_events": 20,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 21,
+      "valid_timeline_events": 20,
       "used_time_keys": [
         "dom:data-time[0]"
       ]
@@ -81,10 +81,10 @@
       "id": "sport24.dubaisports.2",
       "name": "Dubai Sports 2",
       "url": "https://www.sport24.rest/channels/dubaisports/2",
-      "programmes": 14,
+      "programmes": 13,
       "status": "OK",
       "http_status": 200,
-      "html_bytes": 85983,
+      "html_bytes": 85014,
       "candidate_events": 18,
       "parsed_json_blobs": 1,
       "valid_timeline_events": 18,
@@ -96,29 +96,29 @@
       "id": "sport24.thmanyah.1",
       "name": "Thmanyah 1",
       "url": "https://www.sport24.rest/channels/thmanyah/1",
-      "programmes": 18,
-      "status": "OK",
+      "programmes": 0,
+      "status": "NO_TIMELINE",
       "http_status": 200,
-      "html_bytes": 84682,
-      "candidate_events": 18,
+      "html_bytes": 59776,
+      "candidate_events": 0,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 18,
-      "used_time_keys": [
-        "dom:data-time[0]"
-      ]
+      "valid_timeline_events": 0,
+      "used_time_keys": []
     },
     {
       "id": "sport24.thmanyah.2",
       "name": "Thmanyah 2",
       "url": "https://www.sport24.rest/channels/thmanyah/2",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 17,
+      "status": "OK",
       "http_status": 200,
-      "html_bytes": 59774,
-      "candidate_events": 0,
+      "html_bytes": 83405,
+      "candidate_events": 17,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": []
+      "valid_timeline_events": 17,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.thmanyah.3",
@@ -127,17 +127,17 @@
       "programmes": 0,
       "status": "NO_TIMELINE",
       "http_status": 200,
-      "html_bytes": 59774,
+      "html_bytes": 59776,
       "candidate_events": 0,
       "parsed_json_blobs": 1,
       "valid_timeline_events": 0,
       "used_time_keys": []
     }
   ],
-  "programmes": 114,
+  "programmes": 125,
   "channels_total": 9,
   "active_channels": 7,
   "zero_epg_channels": 2,
   "timezone_output": "UTC +0000",
-  "generated_utc": "2026-10-26T08:42:22.213314+00:00"
+  "generated_utc": "2026-10-27T08:48:46.357469+00:00"
 }
