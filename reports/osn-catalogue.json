@@ -4,11 +4,11 @@
   "other_platform_value": "Legacy",
   "arabic": {
     "lang": "ar",
-    "total_union": 101,
+    "total_union": 100,
     "static": 80,
     "android": {
       "input": "output/source-build/osn_live_android_ar.channels.xml",
-      "channels": 79,
+      "channels": 78,
       "names": [
         "Bloomberg",
         "OSNtv One",
@@ -66,7 +66,6 @@
         "RT English",
         "Bahrain TV",
         "Al Rai TV",
-        "AD Sports 1 HD",
         "DMC HD",
         "BBC World",
         "MBC Iraq",
@@ -93,7 +92,7 @@
     },
     "other": {
       "input": "output/source-build/osn_live_other_ar.channels.xml",
-      "channels": 95,
+      "channels": 94,
       "names": [
         "Bloomberg",
         "GMA Pinoy TV",
@@ -169,7 +168,6 @@
         "eClutch Arabic",
         "RT English",
         "Bahrain TV",
-        "AD Sports 1 HD",
         "DMC HD",
         "BBC World",
         "MBC Iraq",
@@ -193,7 +191,6 @@
       ]
     },
     "other_canonical_ids": [
-      "AbuDhabiSports1.ae@SD",
       "AbuDhabiTV.ae@SD",
       "AlarabiyaPortrait.ae@SD",
       "AlArabyTV.qa@SD",
@@ -291,17 +288,17 @@
     ],
     "ownership": {
       "android": 6,
-      "other": 95,
+      "other": 94,
       "fallback-index": 0
     }
   },
   "english": {
     "lang": "en",
-    "total_union": 101,
+    "total_union": 100,
     "static": 80,
     "android": {
       "input": "output/source-build/osn_live_android_en.channels.xml",
-      "channels": 79,
+      "channels": 78,
       "names": [
         "Bloomberg",
         "OSNtv One",
@@ -359,7 +356,6 @@
         "RT English",
         "Bahrain TV",
         "Al Rai TV",
-        "AD Sports 1 HD",
         "DMC HD",
         "BBC World",
         "MBC Iraq",
@@ -386,7 +382,7 @@
     },
     "other": {
       "input": "output/source-build/osn_live_other_en.channels.xml",
-      "channels": 95,
+      "channels": 94,
       "names": [
         "Bloomberg",
         "GMA Pinoy TV",
@@ -462,7 +458,6 @@
         "eClutch Arabic",
         "RT English",
         "Bahrain TV",
-        "AD Sports 1 HD",
         "DMC HD",
         "BBC World",
         "MBC Iraq",
@@ -486,7 +481,6 @@
       ]
     },
     "other_canonical_ids": [
-      "AbuDhabiSports1.ae@SD",
       "AbuDhabiTV.ae@SD",
       "AlarabiyaPortrait.ae@SD",
       "AlArabyTV.qa@SD",
@@ -584,7 +578,7 @@
     ],
     "ownership": {
       "android": 6,
-      "other": 95,
+      "other": 94,
       "fallback-index": 0
     }
   }

@@ -1,12 +1,12 @@
 [
   {
     "source": "osn",
-    "checked_utc": "2026-10-26T07:00:20.370296+00:00",
-    "feed_sha256": "b076522f89d2b543a0c3e50f7734de5697bcccd9b89c16adce1123b3fdd69a0e",
+    "checked_utc": "2026-10-27T06:53:47.350380+00:00",
+    "feed_sha256": "3ec96a593f8374b6778f989a3cc7bf7aa2a06b608717a75ddaf6de7f349badc2",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
-    "channels": 101,
-    "channels_with_future_epg": 82,
+    "channels": 100,
+    "channels_with_future_epg": 81,
     "channels_without_future_epg": [
       "AlfaSeries.ae@SD",
       "AlfaSeriesPlus2.ae@SD",
@@ -32,21 +32,9 @@
       {
         "id": "OSNPopUp.ae@SD",
         "count": 49
-      },
-      {
-        "id": "OSNeClutchAccess",
-        "count": 49
-      },
-      {
-        "id": "OSNeClutchLIVE2",
-        "count": 49
-      },
-      {
-        "id": "MBCMood.sa@HD",
-        "count": 8
       }
     ],
-    "remaining_max_hours": 55.61,
+    "remaining_max_hours": 51.2,
     "channels_with_less_than_24h": [
       "ANC.ph",
       "AlSafwa.ae@SD",
@@ -60,6 +48,7 @@
       "GMALifeTV.ph",
       "GMANewsTV.ph",
       "GMAPinoyTVMiddleEast.ph",
+      "MBCMood.sa@HD",
       "MusicNow.ae@SD",
       "MyxMiddleEast.ph",
       "osn.213",
