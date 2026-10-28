@@ -1,8 +1,8 @@
 [
   {
     "source": "stctv",
-    "checked_utc": "2026-10-27T11:06:25.811757+00:00",
-    "feed_sha256": "77b8aa70f9fbea33a9f2f45225fee39ae04dfa922d894db2623a833a436bb9b8",
+    "checked_utc": "2026-10-28T11:41:35.456340+00:00",
+    "feed_sha256": "71398f392c71f89ec89ef85237e0cda750c6d31915d8f20f5240cbb66508cd39",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 149,
@@ -131,18 +131,34 @@
       },
       {
         "id": "StarzplaySports1.sa@HD",
-        "count": 13
+        "count": 15
       },
       {
         "id": "StarzplaySports2.sa@HD",
-        "count": 13
+        "count": 15
+      },
+      {
+        "id": "stctv.7330f6f4d9a9",
+        "count": 15
+      },
+      {
+        "id": "stctv.2afc9787e13e",
+        "count": 14
+      },
+      {
+        "id": "stctv.52cf8589e379",
+        "count": 14
+      },
+      {
+        "id": "stctv.b084adc695a1",
+        "count": 14
       },
       {
         "id": "stctv.24ada1ed8f25",
         "count": 8
       }
     ],
-    "remaining_max_hours": 52.89,
+    "remaining_max_hours": 52.31,
     "channels_with_less_than_24h": [],
     "action_success_does_not_certify_guide_quality": true
   }
