@@ -1,27 +1,25 @@
 {
   "label": "sport24",
   "channels": 9,
-  "active_channels": 7,
-  "zero_epg_channels": 2,
+  "active_channels": 8,
+  "zero_epg_channels": 1,
   "zero_epg_ids": [
-    "sport24.thmanyah.1",
-    "sport24.thmanyah.3"
+    "sport24.thmanyah.2"
   ],
   "input_channels": 9,
-  "coverage_pct": 77.8,
-  "currently_on_air_channels": 7,
-  "current_coverage_pct": 77.8,
+  "coverage_pct": 88.9,
+  "currently_on_air_channels": 8,
+  "current_coverage_pct": 88.9,
   "currently_uncovered_ids": [
-    "sport24.thmanyah.1",
-    "sport24.thmanyah.3"
+    "sport24.thmanyah.2"
   ],
-  "programmes": 129,
+  "programmes": 133,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 5010,
-  "sha256": "d6909ba5964d5678513ca96290f81cdeecd18ffd13e3f999c9e33aacb8b51903",
-  "generated_utc": "2026-10-27T08:48:46.474556+00:00"
+  "size_bytes": 4465,
+  "sha256": "7ffaa4c06782bbede1eaee97c495f3a6a5d34e675abd9182b56641f41fbbe90c",
+  "generated_utc": "2026-10-28T09:28:59.718953+00:00"
 }
