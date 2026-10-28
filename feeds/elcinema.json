@@ -1,25 +1,48 @@
 {
   "label": "elcinema",
   "channels": 97,
-  "active_channels": 96,
-  "zero_epg_channels": 1,
-  "zero_epg_ids": [
-    "DubaiOne.ae@SD"
-  ],
+  "active_channels": 97,
+  "zero_epg_channels": 0,
+  "zero_epg_ids": [],
   "input_channels": 97,
-  "coverage_pct": 99.0,
+  "coverage_pct": 100.0,
   "currently_on_air_channels": 96,
   "current_coverage_pct": 99.0,
   "currently_uncovered_ids": [
     "DubaiOne.ae@SD"
   ],
-  "programmes": 4473,
+  "programmes": 4659,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 215964,
-  "sha256": "1962518c7e1c35ac702472736c637f13b96fe01f14041db8f6642ccc6d9fa680",
-  "generated_utc": "2026-10-28T07:01:59.269971+00:00"
+  "size_bytes": 228858,
+  "sha256": "dad5a5865e3d6342e605ef438e9f7be96bc2f741d8919602fae658f7860b1f0f",
+  "generated_utc": "2026-10-28T07:01:59.269971+00:00",
+  "repacked_utc": "2026-10-28T14:01:48.833010+00:00",
+  "original_published_sha256": "1962518c7e1c35ac702472736c637f13b96fe01f14041db8f6642ccc6d9fa680",
+  "verified_donor_extensions": {
+    "mode": "daily_after_donor_refresh_exact_id_no_overlap",
+    "donor_sha256": {
+      "shahid": "73367e884abf1eb5918135d4baa90a4b368f50093db6ed343c965520400bc919",
+      "dubaiplus": "1342c8f73ee559a08ec9c821ff2329e2d29e2e007c6b70e531caea3b1a002a58"
+    },
+    "programmes_added_this_pass": 186,
+    "channels_extended": [
+      "DubaiOne.ae@SD",
+      "MBC1.ae@SD",
+      "MBC3.ae@SD",
+      "MBC4.ae@SD",
+      "MBC5.ae@SD",
+      "MBCAction.ae@SD",
+      "MBCBollywood.ae@SD",
+      "MBCDrama.ae@SD",
+      "MBCIraq.iq@SD",
+      "MBCMasr.eg@SD",
+      "MBCMasr2.eg@SD",
+      "MBCPlusDrama.sa@SD"
+    ],
+    "fabricated_programmes": 0
+  }
 }
