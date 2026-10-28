@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-27T06:53:42.095897+00:00",
+  "generated_utc": "2026-10-28T07:26:35.308486+00:00",
   "policy": "OSN official first; local official fallback; OpenEPG; EPGShare last; never replace healthy OSN EPG",
   "before_future": {
     "CineMo.ph": 0,
@@ -15,14 +15,14 @@
     "osn.216": 0,
     "osn.217": 0,
     "osn.2501": 58,
-    "osn.9993": 43,
-    "osn.9994": 106
+    "osn.9993": 56,
+    "osn.9994": 107
   },
   "applied": {},
   "external": {
     "openepg": {
       "status": 200,
-      "bytes": 948296,
+      "bytes": 966418,
       "url": "https://www.open-epg.com/files/saudiarabia5.xml"
     }
   },
@@ -41,8 +41,8 @@
     "osn.216": 0,
     "osn.217": 0,
     "osn.2501": 58,
-    "osn.9993": 43,
-    "osn.9994": 106
+    "osn.9993": 56,
+    "osn.9994": 107
   },
   "catalogue_id_count": 100,
   "missing_ids_before": [
