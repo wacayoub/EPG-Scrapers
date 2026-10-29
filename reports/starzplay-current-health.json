@@ -1,17 +1,17 @@
 [
   {
     "source": "starzplay",
-    "checked_utc": "2026-10-28T11:18:58.826992+00:00",
-    "feed_sha256": "e62a7dc81800755f5450b242db36a3638b3ce5bd4b32aa77b4d93339ad1eda4a",
+    "checked_utc": "2026-10-29T11:31:19.974495+00:00",
+    "feed_sha256": "7dbaa9ee83a5ae72c16a73c27e9438c4f94289e2733ae9015b555a86597c7c14",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
-    "channels": 122,
-    "channels_with_future_epg": 122,
+    "channels": 121,
+    "channels_with_future_epg": 121,
     "channels_without_future_epg": [],
     "suspected_placeholder_channels": [
       {
         "id": "starzplay.725124136205",
-        "count": 112
+        "count": 110
       },
       {
         "id": "starzplay.515470888131",
@@ -23,7 +23,7 @@
       },
       {
         "id": "StarzplaySports3.sa@HD",
-        "count": 16
+        "count": 15
       },
       {
         "id": "starzplay.705949224430",
@@ -34,7 +34,7 @@
         "count": 15
       }
     ],
-    "remaining_max_hours": 58.68,
+    "remaining_max_hours": 53.48,
     "channels_with_less_than_24h": [],
     "action_success_does_not_certify_guide_quality": true
   }
