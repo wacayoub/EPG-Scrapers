@@ -1,17 +1,19 @@
 [
   {
     "source": "sport24",
-    "checked_utc": "2026-10-28T09:28:59.943247+00:00",
-    "feed_sha256": "7ffaa4c06782bbede1eaee97c495f3a6a5d34e675abd9182b56641f41fbbe90c",
+    "checked_utc": "2026-10-29T09:41:17.831165+00:00",
+    "feed_sha256": "76cc4c1b8b453da7baf880dbaf424da313e0d8dbe767e3c748dbefef91fe0a20",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 9,
-    "channels_with_future_epg": 8,
+    "channels_with_future_epg": 6,
     "channels_without_future_epg": [
-      "sport24.thmanyah.2"
+      "sport24.thmanyah.1",
+      "sport24.thmanyah.2",
+      "sport24.thmanyah.3"
     ],
     "suspected_placeholder_channels": [],
-    "remaining_max_hours": 33.02,
+    "remaining_max_hours": 32.81,
     "channels_with_less_than_24h": [
       "sport24.adsports.1",
       "sport24.adsports.2",
