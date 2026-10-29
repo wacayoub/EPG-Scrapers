@@ -1,15 +1,15 @@
 [
   {
     "source": "tunisiatv",
-    "checked_utc": "2026-10-28T13:29:07.170191+00:00",
+    "checked_utc": "2026-10-29T13:42:46.635904+00:00",
     "feed_sha256": "9c3918e48a50ac7e0bde5e69136fd7207b4e65c63549b6066dca7f1035e39a24",
-    "status": "AVAILABLE",
-    "last_attempt_kept_lkg": false,
+    "status": "DEGRADED",
+    "last_attempt_kept_lkg": true,
     "channels": 2,
     "channels_with_future_epg": 2,
     "channels_without_future_epg": [],
     "suspected_placeholder_channels": [],
-    "remaining_max_hours": 49.16,
+    "remaining_max_hours": 24.94,
     "channels_with_less_than_24h": [],
     "action_success_does_not_certify_guide_quality": true
   }
