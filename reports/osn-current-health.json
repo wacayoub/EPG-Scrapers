@@ -1,8 +1,8 @@
 [
   {
     "source": "osn",
-    "checked_utc": "2026-10-28T07:26:40.080044+00:00",
-    "feed_sha256": "76e48e2b9cd093daa295c752e02132aa35c46f9d8af9223b35d3400b4fcf3a33",
+    "checked_utc": "2026-10-29T07:43:23.372266+00:00",
+    "feed_sha256": "158221562f31ebefebe3f9dfa6893d15f662cee1cfe0bd45360454881bd0284e",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 100,
@@ -32,9 +32,13 @@
       {
         "id": "OSNPopUp.ae@SD",
         "count": 49
+      },
+      {
+        "id": "MBCMood.sa@HD",
+        "count": 8
       }
     ],
-    "remaining_max_hours": 56.07,
+    "remaining_max_hours": 50.29,
     "channels_with_less_than_24h": [
       "ANC.ph",
       "AlSafwa.ae@SD",
