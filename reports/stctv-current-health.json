@@ -1,14 +1,18 @@
 [
   {
     "source": "stctv",
-    "checked_utc": "2026-10-29T11:49:38.131418+00:00",
-    "feed_sha256": "011a4fe168f1dad521d17c7fee4026dd188aa3f95d52a597da9dc5336de626e4",
+    "checked_utc": "2026-10-30T11:42:13.600561+00:00",
+    "feed_sha256": "36e4ee76b12f36c5a9f36eecf88cc00b1bf16c839685430bedea88da6459772e",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 149,
     "channels_with_future_epg": 149,
     "channels_without_future_epg": [],
     "suspected_placeholder_channels": [
+      {
+        "id": "stctv.07c7055a52f7",
+        "count": 49
+      },
       {
         "id": "stctv.0c7f54b591ee",
         "count": 49
@@ -19,10 +23,6 @@
       },
       {
         "id": "stctv.101231b7a2a1",
-        "count": 49
-      },
-      {
-        "id": "stctv.2c2c50b4e15b",
         "count": 49
       },
       {
@@ -110,39 +110,67 @@
         "count": 49
       },
       {
+        "id": "stctv.2c2c50b4e15b",
+        "count": 48
+      },
+      {
         "id": "stctv.d00f70313676",
         "count": 45
+      },
+      {
+        "id": "stctv.4a2b60976c7f",
+        "count": 39
       },
       {
         "id": "stctv.cac5e490d765",
         "count": 39
       },
       {
-        "id": "stctv.4a2b60976c7f",
-        "count": 37
-      },
-      {
         "id": "stctv.17069d8d4998",
-        "count": 36
-      },
-      {
-        "id": "StarzplaySports1.sa@HD",
-        "count": 15
-      },
-      {
-        "id": "StarzplaySports2.sa@HD",
-        "count": 15
-      },
-      {
-        "id": "StarzplaySports3.sa@HD",
-        "count": 15
+        "count": 38
       },
       {
         "id": "stctv.24ada1ed8f25",
-        "count": 8
+        "count": 32
+      },
+      {
+        "id": "stctv.0a828e3dde5b",
+        "count": 14
+      },
+      {
+        "id": "stctv.da1800b7d1a5",
+        "count": 14
+      },
+      {
+        "id": "stctv.f66fa0609c7a",
+        "count": 14
+      },
+      {
+        "id": "stctv.70023aa3b12d",
+        "count": 13
+      },
+      {
+        "id": "stctv.7fe70309b622",
+        "count": 13
+      },
+      {
+        "id": "stctv.4abfec2e37e5",
+        "count": 12
+      },
+      {
+        "id": "stctv.06f91cf724a1",
+        "count": 11
+      },
+      {
+        "id": "stctv.a9217e5bdb7a",
+        "count": 11
+      },
+      {
+        "id": "stctv.4d2c78abde9e",
+        "count": 6
       }
     ],
-    "remaining_max_hours": 52.17,
+    "remaining_max_hours": 52.3,
     "channels_with_less_than_24h": [],
     "action_success_does_not_certify_guide_quality": true
   }
