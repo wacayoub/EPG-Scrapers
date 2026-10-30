@@ -1,19 +1,19 @@
 {
-  "generated_utc": "2026-10-29T13:42:46.581532+00:00",
+  "generated_utc": "2026-10-30T13:28:58.841691+00:00",
   "sources": {
     "tunisiatv": {
       "candidate": "output/final/tunisiatv.xml.gz",
-      "published": false,
+      "published": true,
       "candidate_stats": {
         "channels": 2,
         "active_channels": 2,
         "zero_epg_channels": 0,
-        "programmes": 33,
+        "programmes": 131,
         "future_channels": 2,
         "future_ratio": 1.0,
-        "current_channels": 1,
-        "current_ratio": 0.5,
-        "future_horizon_hours": 48.6037272825,
+        "current_channels": 2,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 48.83365473,
         "first_future_start_lead_hours": 0.0,
         "missing_title_rows": 0,
         "invalid_rows": 0
@@ -27,15 +27,13 @@
         "future_ratio": 1.0,
         "current_channels": 2,
         "current_ratio": 1.0,
-        "future_horizon_hours": 24.93705999722222,
+        "future_horizon_hours": 1.1669870602777779,
         "first_future_start_lead_hours": 0.0,
         "missing_title_rows": 0,
         "invalid_rows": 0
       },
-      "decision": "KEEP_LKG",
-      "reasons": [
-        "programme_regression>65%"
-      ]
+      "decision": "PUBLISH",
+      "reasons": []
     }
   }
 }

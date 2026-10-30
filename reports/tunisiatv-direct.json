@@ -1,48 +1,48 @@
 {
-  "generated_tunis": "2026-10-29T14:40:42.918474+01:00",
+  "generated_tunis": "2026-10-30T14:28:56.242487+01:00",
   "channels": {
     "ElWatania1.tn@SD": {
       "name": "الوطنية 1",
-      "programmes": 35,
+      "programmes": 99,
       "days": {
-        "2026-10-29": {
-          "url": "https://tunisiatv.tn/ar/programme/4/69c58aac8d6cac7a55cd2e09/%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%201",
-          "programmes": 35,
+        "2026-10-30": {
+          "url": "https://tunisiatv.tn/ar/programme/5/69c58aac8d6cac7a55cd2e09/%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%201",
+          "programmes": 33,
           "status": "OK"
         },
-        "2026-10-30": {
-          "programmes": 0,
-          "status": "ERROR",
-          "error": "HTTPSConnectionPool(host='tunisiatv.tn', port=443): Read timed out. (read timeout=30)"
-        },
         "2026-10-31": {
-          "programmes": 0,
-          "status": "ERROR",
-          "error": "Response ended prematurely"
+          "url": "https://tunisiatv.tn/ar/programme/6/69c58aac8d6cac7a55cd2e09/%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%201",
+          "programmes": 33,
+          "status": "OK"
+        },
+        "2026-11-01": {
+          "url": "https://tunisiatv.tn/ar/programme/7/69c58aac8d6cac7a55cd2e09/%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%201",
+          "programmes": 33,
+          "status": "OK"
         }
       }
     },
     "ElWatania2.tn@SD": {
       "name": "الوطنية 2",
-      "programmes": 26,
+      "programmes": 81,
       "days": {
-        "2026-10-29": {
-          "programmes": 0,
-          "status": "ERROR",
-          "error": "HTTPSConnectionPool(host='tunisiatv.tn', port=443): Read timed out. (read timeout=30)"
-        },
         "2026-10-30": {
-          "programmes": 0,
-          "status": "ERROR",
-          "error": "HTTPSConnectionPool(host='tunisiatv.tn', port=443): Read timed out. (read timeout=30)"
+          "url": "https://tunisiatv.tn/ar/programme/5/69c593d18d6cac7a55cd575c/%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%202",
+          "programmes": 27,
+          "status": "OK"
         },
         "2026-10-31": {
           "url": "https://tunisiatv.tn/ar/programme/6/69c593d18d6cac7a55cd575c/%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%202",
-          "programmes": 26,
+          "programmes": 27,
+          "status": "OK"
+        },
+        "2026-11-01": {
+          "url": "https://tunisiatv.tn/ar/programme/7/69c593d18d6cac7a55cd575c/%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9%202",
+          "programmes": 27,
           "status": "OK"
         }
       }
     }
   },
-  "programmes": 61
+  "programmes": 180
 }
