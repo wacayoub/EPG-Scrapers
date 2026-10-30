@@ -1,8 +1,8 @@
 [
   {
     "source": "osn",
-    "checked_utc": "2026-10-29T07:43:23.372266+00:00",
-    "feed_sha256": "158221562f31ebefebe3f9dfa6893d15f662cee1cfe0bd45360454881bd0284e",
+    "checked_utc": "2026-10-30T07:50:14.975337+00:00",
+    "feed_sha256": "8ed6051fc31c0da59d84c23293cea12cf955a4689ac795ce86144e1e0f4c3749",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 100,
@@ -34,11 +34,19 @@
         "count": 49
       },
       {
-        "id": "MBCMood.sa@HD",
+        "id": "OSNBlippiAndFriends",
+        "count": 8
+      },
+      {
+        "id": "OSNeClutchAccess",
+        "count": 8
+      },
+      {
+        "id": "RTArabic.ru@SD",
         "count": 8
       }
     ],
-    "remaining_max_hours": 50.29,
+    "remaining_max_hours": 53.8,
     "channels_with_less_than_24h": [
       "ANC.ph",
       "AlSafwa.ae@SD",
