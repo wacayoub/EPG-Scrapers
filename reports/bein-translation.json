@@ -1,13 +1,18 @@
 {
-  "programmes": 2717,
+  "programmes": 2617,
   "title_policy": "preserve source here; full English titles applied in hybrid pass",
   "titles_changed": 0,
   "descriptions_translated": 20,
-  "description_total": 20,
-  "remaining_english_descriptions": 0,
+  "description_total": 24,
+  "remaining_english_descriptions": 4,
   "new_cache_entries": 0,
-  "translation_failures": [],
-  "rate_limited": false,
-  "skipped_after_rate_limit": 0,
+  "translation_failures": [
+    {
+      "text": "Chelsea have won just two of their last 17 Premier League matches against Manchester United, though they were both at Stamford Bridge in 2023-24 and 2024-25. Man Utd won both Premi",
+      "error": "HTTP 429 after backoff; translation paused for remainder of run"
+    }
+  ],
+  "rate_limited": true,
+  "skipped_after_rate_limit": 3,
   "translation_policy": "descriptions only; source text preserved on rate limit/error"
 }
