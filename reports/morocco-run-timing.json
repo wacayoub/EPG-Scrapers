@@ -1,0 +1,9 @@
+{
+  "event": "schedule",
+  "observed_utc": "2026-10-31T13:33:49.541343+00:00",
+  "daily_target": "07:07 GMT+0",
+  "scheduled_for_utc": "2026-10-31T07:07:00+00:00",
+  "observed_delay_seconds": 23210,
+  "delayed": true,
+  "note": "Observed at job setup; includes trigger, queue and setup delay. Manual retries are not scheduled runs."
+}
