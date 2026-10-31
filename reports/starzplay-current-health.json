@@ -1,8 +1,8 @@
 [
   {
     "source": "starzplay",
-    "checked_utc": "2026-10-30T11:22:43.908352+00:00",
-    "feed_sha256": "d8f3d57e5f1bdf2ba67faf7aa60b5138dc7208b9bc879b199f463e2aef0747ba",
+    "checked_utc": "2026-10-31T10:57:15.502221+00:00",
+    "feed_sha256": "1cb96e438d55d0885801bc52e1d2e83cd27bd7aa1c38a8490b5a10c7197196ea",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 121,
@@ -11,7 +11,7 @@
     "suspected_placeholder_channels": [
       {
         "id": "starzplay.725124136205",
-        "count": 80
+        "count": 75
       },
       {
         "id": "starzplay.515470888131",
@@ -22,7 +22,7 @@
         "count": 49
       }
     ],
-    "remaining_max_hours": 60.12,
+    "remaining_max_hours": 51.05,
     "channels_with_less_than_24h": [],
     "action_success_does_not_certify_guide_quality": true
   }
