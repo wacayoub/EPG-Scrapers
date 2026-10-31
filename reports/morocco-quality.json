@@ -1,35 +1,29 @@
 {
   "source": "morocco",
-  "generated_utc": "2026-10-30T14:00:18.688511+00:00",
+  "generated_utc": "2026-10-31T12:33:22.473787+00:00",
   "source_file": "morocco.xml.gz",
   "channels": 15,
-  "programmes": 211,
-  "future_programmes": 211,
-  "channels_with_future_epg": 4,
+  "programmes": 407,
+  "future_programmes": 407,
+  "channels_with_future_epg": 7,
   "channels_without_future_epg": [
     "AFLAM.ma",
-    "AlAoula",
     "AlMaghribiya",
-    "Arrabiaa",
     "Arryadia_HD",
     "Arryadia_HD1",
     "Arryadia_HD2",
     "Arryadia_HD3",
     "Arryadia_TNT",
-    "Assadisa",
     "Tamazight"
   ],
   "channels_with_shorter_than_24h": [
     "AFLAM.ma",
-    "AlAoula",
     "AlMaghribiya",
-    "Arrabiaa",
     "Arryadia_HD",
     "Arryadia_HD1",
     "Arryadia_HD2",
     "Arryadia_HD3",
     "Arryadia_TNT",
-    "Assadisa",
     "Tamazight"
   ],
   "channels_with_internal_gap_over_90min": {
@@ -41,10 +35,13 @@
   "future_programmes_with_placeholder_or_channel_title": 0,
   "suspected_placeholder_channels": [],
   "future_programmes_by_channel": {
-    "2M": 79,
-    "Chada TV": 43,
-    "MEDI1TV_AR.ma": 49,
-    "MEDI1TV_MAGHREB.ma": 40
+    "2M": 76,
+    "AlAoula": 73,
+    "Arrabiaa": 36,
+    "Assadisa": 103,
+    "Chada TV": 45,
+    "MEDI1TV_AR.ma": 39,
+    "MEDI1TV_MAGHREB.ma": 35
   },
   "suspected_repeated_title_channels": [],
   "occasional_event_channel_ids": [],

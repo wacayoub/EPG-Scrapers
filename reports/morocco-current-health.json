@@ -1,38 +1,32 @@
 [
   {
     "source": "morocco",
-    "checked_utc": "2026-10-30T14:00:18.739872+00:00",
-    "feed_sha256": "771a6e9fd8e03d71110fb95d5a598dbaaa8435f805d3dbeb5b93a0b79e86c65e",
+    "checked_utc": "2026-10-31T12:33:22.537676+00:00",
+    "feed_sha256": "0cbc58554f003ecd766e7ce09e292f00f113efd2f6d62a9aa7b0cedfd58ad8a8",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 15,
-    "channels_with_future_epg": 4,
+    "channels_with_future_epg": 7,
     "channels_without_future_epg": [
       "AFLAM.ma",
-      "AlAoula",
       "AlMaghribiya",
-      "Arrabiaa",
       "Arryadia_HD",
       "Arryadia_HD1",
       "Arryadia_HD2",
       "Arryadia_HD3",
       "Arryadia_TNT",
-      "Assadisa",
       "Tamazight"
     ],
     "suspected_placeholder_channels": [],
-    "remaining_max_hours": 48.58,
+    "remaining_max_hours": 48.44,
     "channels_with_less_than_24h": [
       "AFLAM.ma",
-      "AlAoula",
       "AlMaghribiya",
-      "Arrabiaa",
       "Arryadia_HD",
       "Arryadia_HD1",
       "Arryadia_HD2",
       "Arryadia_HD3",
       "Arryadia_TNT",
-      "Assadisa",
       "Tamazight"
     ],
     "action_success_does_not_certify_guide_quality": true
