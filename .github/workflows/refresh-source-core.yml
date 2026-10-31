@@ -15,7 +15,9 @@ permissions:
   contents: write
 
 concurrency:
-  group: epg-source-publish
+  # Morocco must not wait behind unrelated source downloads. Same-source runs
+  # still serialize; publication uses source-scoped commits and bounded rebase.
+  group: ${{ inputs.source == 'morocco' && 'epg-morocco-source-publish' || 'epg-source-publish' }}
   cancel-in-progress: false
 
 jobs:
@@ -84,6 +86,12 @@ jobs:
       - name: Install Python dependencies
         if: steps.gate.outputs.run == 'true'
         run: python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+
+      - name: Record Morocco schedule delay
+        if: steps.gate.outputs.run == 'true' && inputs.source == 'morocco'
+        env:
+          TRIGGER_EVENT: ${{ github.event_name }}
+        run: python tools/morocco_run_timing.py --event "$TRIGGER_EVENT" --output reports/morocco-run-timing.json
 
       - name: Set up Node.js
         if: steps.gate.outputs.run == 'true' && steps.req.outputs.upstream == 'true'
@@ -300,12 +308,12 @@ jobs:
           git commit -m "EPG $SOURCE 48h refresh $(TZ=Africa/Casablanca date +%F)"
 
           for n in 1 2 3 4 5; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            if git -c rebase.autoStash=true pull --rebase origin main && git push origin HEAD:main; then
               exit 0
             fi
             git rebase --abort 2>/dev/null || true
             git fetch origin main
-            git rebase origin/main
+            git -c rebase.autoStash=true rebase origin/main
             sleep $((n * 2))
           done
           echo "Could not publish $SOURCE after retries" >&2

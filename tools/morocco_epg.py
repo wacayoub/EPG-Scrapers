@@ -5,6 +5,9 @@ Runs on GitHub Actions. The Vu+ only downloads morocco.xml.gz.
 """
 from __future__ import annotations
 import argparse,gzip,hashlib,html,json,re,time,unicodedata
+import threading
+from email.utils import parsedate_to_datetime
+from urllib.parse import urlsplit
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from dataclasses import dataclass
@@ -36,6 +39,25 @@ def morocco_localize(naive):
 def morocco_wall_clock(day, tm):
     return morocco_localize(datetime.combine(day,tm))
 UA="Mozilla/5.0 EPGManagerCloud/8.2.2-rc23"
+_SNRT_HTTP_SLOTS=threading.BoundedSemaphore(2)
+
+def _is_snrt_url(url):
+ host=(urlsplit(url).hostname or "").lower()
+ return host=="snrt.ma" or host.endswith(".snrt.ma")
+
+def _snrt_retry_delay(response,attempt):
+ """Respect Retry-After without letting one provider consume the whole job."""
+ raw=(getattr(response,"headers",{}) or {}).get("Retry-After","")
+ try:
+  delay=float(raw)
+ except (TypeError,ValueError):
+  try:
+   stamp=parsedate_to_datetime(raw)
+   if stamp.tzinfo is None:stamp=stamp.replace(tzinfo=timezone.utc)
+   delay=(stamp-datetime.now(timezone.utc)).total_seconds()
+  except (TypeError,ValueError,OverflowError):delay=3*(2**attempt)
+ if not (0<=delay< float("inf")):delay=3*(2**attempt)
+ return max(1.0,delay)
 CHANNELS={
  "AlAoula":"Al Aoula","Arrabiaa":"Attaqafia / Arrabiaa","AlMaghribiya":"Al Maghribia",
  "Assadisa":"Assadissa","Tamazight":"Tamazight","AFLAM.ma":"Aflam TV",
@@ -148,15 +170,39 @@ class Http:
   self.s=(cloudscraper.create_scraper() if cloudscraper else requests.Session()); self.s.headers.update({"User-Agent":UA,"Accept-Language":"ar,fr;q=.9,en;q=.7"})
   self.deadline=time.monotonic()+90
  def get(self,url,**kw):
-  last=None
+  last=None;snrt=_is_snrt_url(url)
   for n in range(3):
    remaining=self.deadline-time.monotonic()
    if remaining<=0:raise TimeoutError("Provider HTTP budget exhausted; keep genuine partial/LKG rows")
+   r=None
    try:
-    r=self.s.get(url,timeout=min(18,remaining),**kw); r.raise_for_status(); return r
+    if snrt:
+     if not _SNRT_HTTP_SLOTS.acquire(timeout=remaining):raise TimeoutError("SNRT request capacity budget exhausted")
+     try:
+      remaining=self.deadline-time.monotonic()
+      if remaining<=0:raise TimeoutError("SNRT provider HTTP budget exhausted")
+      r=self.s.get(url,timeout=min(18,remaining),**kw)
+     finally:_SNRT_HTTP_SLOTS.release()
+    else:r=self.s.get(url,timeout=min(18,remaining),**kw)
+    r.raise_for_status(); return r
    except Exception as e:
     last=e
-    if n<2:time.sleep(min(.7*(n+1),max(0,self.deadline-time.monotonic())))
+    response=getattr(e,"response",None)
+    if response is None:response=r
+    status=getattr(response,"status_code",None)
+    delay=_snrt_retry_delay(response,n) if snrt else .7*(n+1)
+    if response is not None:
+     try:response.close()
+     except Exception:pass
+    if snrt and status is not None and status not in (408,429,500,502,503,504):raise
+    # A long Retry-After is a reason to defer this provider, not to retry
+    # earlier than requested or hold the workflow for an unbounded interval.
+    if snrt and delay>20:raise
+    if n<2:
+     remaining=self.deadline-time.monotonic()
+     if remaining<=0:raise TimeoutError("Provider HTTP budget exhausted; keep genuine partial/LKG rows") from e
+     if snrt:log("SNRT temporary HTTP failure status=%s attempt=%d/3 retry_in=%.1fs"%(status,n+1,min(delay,remaining)))
+     time.sleep(min(delay,remaining))
   raise last
 
 @dataclass
@@ -1426,7 +1472,7 @@ def scrape_snrt(days):
   return rows
 
  out=[]
- with ThreadPoolExecutor(max_workers=5) as ex:
+ with ThreadPoolExecutor(max_workers=2) as ex:
   fs={ex.submit(one,c,u):c for c,u in SNRT.items()}
   for f in as_completed(fs):
    try:out+=f.result()
@@ -1652,7 +1698,7 @@ def _parse_arryadia_flat(soup):
  return out
 
 def scrape_arryadia(days,history=None,history_path=None):
- h=Http();parsed=[];flat=[]
+ h=Http();parsed=[];flat=[];soup=None
  try:
   r=h.get("https://www.snrt.ma/ar/node/4070",
           params={"_":int(time.time())},
@@ -1675,7 +1721,7 @@ def scrape_arryadia(days,history=None,history_path=None):
   try:
    shown=0
    trx=re.compile(r"^\s*[0-2]?\d\s*[Hh:]\s*[0-5]\d\s*$")
-   for tn in soup.find_all(string=True):
+   for tn in (soup.find_all(string=True) if soup is not None else []):
     if not trx.match(clean(tn)):continue
     chain=[];cur=getattr(tn,"parent",None)
     for _ in range(6):
