@@ -1,23 +1,20 @@
 [
   {
     "source": "sport24",
-    "checked_utc": "2026-10-30T09:47:31.411979+00:00",
-    "feed_sha256": "ac891125c7dedada3403e0f4d6312b66d7857860a7bef05462250e37e598099e",
-    "status": "DEGRADED",
+    "checked_utc": "2026-10-31T09:27:17.343556+00:00",
+    "feed_sha256": "b8a1fa47cf4b0d3945f187250e0cd824cc3d0fa73a957bd13bb83600173d1e3e",
+    "status": "AVAILABLE",
     "last_attempt_kept_lkg": false,
     "channels": 9,
-    "channels_with_future_epg": 8,
-    "channels_without_future_epg": [
-      "sport24.thmanyah.3"
-    ],
+    "channels_with_future_epg": 9,
+    "channels_without_future_epg": [],
     "suspected_placeholder_channels": [],
-    "remaining_max_hours": 32.71,
+    "remaining_max_hours": 26.55,
     "channels_with_less_than_24h": [
       "sport24.adsports.1",
       "sport24.adsports.2",
       "sport24.adsports.3",
       "sport24.adsports.4",
-      "sport24.dubaisports.2",
       "sport24.thmanyah.1",
       "sport24.thmanyah.2",
       "sport24.thmanyah.3"
