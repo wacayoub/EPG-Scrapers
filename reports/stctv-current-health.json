@@ -1,8 +1,8 @@
 [
   {
     "source": "stctv",
-    "checked_utc": "2026-10-30T11:42:13.600561+00:00",
-    "feed_sha256": "36e4ee76b12f36c5a9f36eecf88cc00b1bf16c839685430bedea88da6459772e",
+    "checked_utc": "2026-10-31T11:16:57.327325+00:00",
+    "feed_sha256": "a9039d59798a943c0ad35ab6f609c528176b2930d26eadb196deb6f50b645963",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 149,
@@ -23,6 +23,10 @@
       },
       {
         "id": "stctv.101231b7a2a1",
+        "count": 49
+      },
+      {
+        "id": "stctv.2c2c50b4e15b",
         "count": 49
       },
       {
@@ -110,31 +114,55 @@
         "count": 49
       },
       {
-        "id": "stctv.2c2c50b4e15b",
-        "count": 48
-      },
-      {
         "id": "stctv.d00f70313676",
-        "count": 45
-      },
-      {
-        "id": "stctv.4a2b60976c7f",
-        "count": 39
-      },
-      {
-        "id": "stctv.cac5e490d765",
-        "count": 39
+        "count": 44
       },
       {
         "id": "stctv.17069d8d4998",
-        "count": 38
+        "count": 36
       },
       {
-        "id": "stctv.24ada1ed8f25",
-        "count": 32
+        "id": "stctv.06f91cf724a1",
+        "count": 35
+      },
+      {
+        "id": "stctv.7330f6f4d9a9",
+        "count": 16
       },
       {
         "id": "stctv.0a828e3dde5b",
+        "count": 15
+      },
+      {
+        "id": "stctv.4d2c78abde9e",
+        "count": 15
+      },
+      {
+        "id": "stctv.52cf8589e379",
+        "count": 15
+      },
+      {
+        "id": "stctv.5533ca74ac4a",
+        "count": 15
+      },
+      {
+        "id": "stctv.70023aa3b12d",
+        "count": 15
+      },
+      {
+        "id": "stctv.a9217e5bdb7a",
+        "count": 15
+      },
+      {
+        "id": "stctv.b084adc695a1",
+        "count": 15
+      },
+      {
+        "id": "stctv.f66fa0609c7a",
+        "count": 15
+      },
+      {
+        "id": "stctv.4abfec2e37e5",
         "count": 14
       },
       {
@@ -142,35 +170,11 @@
         "count": 14
       },
       {
-        "id": "stctv.f66fa0609c7a",
-        "count": 14
-      },
-      {
-        "id": "stctv.70023aa3b12d",
-        "count": 13
-      },
-      {
         "id": "stctv.7fe70309b622",
         "count": 13
-      },
-      {
-        "id": "stctv.4abfec2e37e5",
-        "count": 12
-      },
-      {
-        "id": "stctv.06f91cf724a1",
-        "count": 11
-      },
-      {
-        "id": "stctv.a9217e5bdb7a",
-        "count": 11
-      },
-      {
-        "id": "stctv.4d2c78abde9e",
-        "count": 6
       }
     ],
-    "remaining_max_hours": 52.3,
+    "remaining_max_hours": 52.72,
     "channels_with_less_than_24h": [],
     "action_success_does_not_certify_guide_quality": true
   }
