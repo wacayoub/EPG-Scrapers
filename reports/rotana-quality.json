@@ -1,10 +1,10 @@
 {
   "source": "rotana",
-  "generated_utc": "2026-10-30T10:29:21.635956+00:00",
+  "generated_utc": "2026-10-31T09:58:48.757642+00:00",
   "source_file": "rotana.xml.gz",
   "channels": 9,
-  "programmes": 214,
-  "future_programmes": 208,
+  "programmes": 246,
+  "future_programmes": 238,
   "channels_with_future_epg": 7,
   "channels_without_future_epg": [
     "AlResalah.sa@SD",
@@ -14,22 +14,19 @@
     "AlResalah.sa@SD",
     "RotanaClip.sa@SD"
   ],
-  "channels_with_internal_gap_over_90min": {
-    "RotanaDrama.sa@SD": 750,
-    "RotanaKhalijia.sa@SD": 690
-  },
-  "future_programmes_without_description": 208,
+  "channels_with_internal_gap_over_90min": {},
+  "future_programmes_without_description": 238,
   "future_programmes_with_unavailable_description": 0,
   "future_programmes_with_placeholder_or_channel_title": 0,
   "suspected_placeholder_channels": [],
   "future_programmes_by_channel": {
-    "LBC.sa@SD": 32,
-    "RotanaCinemaEgypt.eg@SD": 24,
+    "LBC.sa@SD": 36,
+    "RotanaCinemaEgypt.eg@SD": 25,
     "RotanaCinemaKSA.sa@SD": 25,
-    "RotanaClassic.sa@SD": 33,
-    "RotanaComedy.sa@SD": 22,
-    "RotanaDrama.sa@SD": 36,
-    "RotanaKhalijia.sa@SD": 36
+    "RotanaClassic.sa@SD": 35,
+    "RotanaComedy.sa@SD": 24,
+    "RotanaDrama.sa@SD": 49,
+    "RotanaKhalijia.sa@SD": 44
   },
   "suspected_repeated_title_channels": [],
   "occasional_event_channel_ids": [],
