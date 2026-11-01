@@ -1,8 +1,8 @@
 [
   {
     "source": "osn",
-    "checked_utc": "2026-10-31T07:33:59.995950+00:00",
-    "feed_sha256": "2988707e052804fd8fd2d0a44ff638ec69a0280f81f9b6aa4c1b03e67635ca00",
+    "checked_utc": "2026-11-01T08:10:48.204005+00:00",
+    "feed_sha256": "3b82e72f08b31cc16025ffe8166407becbee1722d482cbb1d495018e1cbd8a23",
     "status": "DEGRADED",
     "last_attempt_kept_lkg": false,
     "channels": 100,
@@ -30,15 +30,19 @@
     ],
     "suspected_placeholder_channels": [
       {
+        "id": "OSNBlippiAndFriends",
+        "count": 49
+      },
+      {
         "id": "OSNPopUp.ae@SD",
         "count": 49
       },
       {
-        "id": "OSNBlippiAndFriends",
-        "count": 32
+        "id": "Gametoon.nl@SD",
+        "count": 9
       }
     ],
-    "remaining_max_hours": 64.43,
+    "remaining_max_hours": 52.47,
     "channels_with_less_than_24h": [
       "ANC.ph",
       "AlSafwa.ae@SD",
