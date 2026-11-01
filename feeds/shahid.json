@@ -6,16 +6,18 @@
   "zero_epg_ids": [],
   "input_channels": 71,
   "coverage_pct": 100.0,
-  "currently_on_air_channels": 71,
-  "current_coverage_pct": 100.0,
-  "currently_uncovered_ids": [],
-  "programmes": 4187,
+  "currently_on_air_channels": 70,
+  "current_coverage_pct": 98.6,
+  "currently_uncovered_ids": [
+    "shahid.49923781913188"
+  ],
+  "programmes": 4374,
   "rejected_invalid_time": 0,
-  "rejected_missing_title": 37,
+  "rejected_missing_title": 41,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 173974,
-  "sha256": "db59fc6ed7aaacd8c3d0071c5baca3ead62b0cb1fa65ee516dbc0bad5a6a1d81",
-  "generated_utc": "2026-10-31T09:56:42.245408+00:00"
+  "size_bytes": 160749,
+  "sha256": "b319aabefa75302b45a23c7f012dfe9af9fdb2a0b542a6986da8df933469e59c",
+  "generated_utc": "2026-11-01T10:48:10.200863+00:00"
 }
