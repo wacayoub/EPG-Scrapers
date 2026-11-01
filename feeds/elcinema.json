@@ -1,13 +1,10 @@
 {
   "label": "elcinema",
   "channels": 97,
-  "active_channels": 87,
-  "zero_epg_channels": 10,
+  "active_channels": 90,
+  "zero_epg_channels": 7,
   "zero_epg_ids": [
-    "DubaiOne.ae@SD",
     "LBC.sa@SD",
-    "MBC3.ae@SD",
-    "MBCAction.ae@SD",
     "RotanaCinemaEgypt.eg@SD",
     "RotanaCinemaKSA.sa@SD",
     "RotanaClassic.sa@SD",
@@ -16,14 +13,12 @@
     "RotanaKhalijia.sa@SD"
   ],
   "input_channels": 97,
-  "coverage_pct": 89.7,
-  "currently_on_air_channels": 87,
-  "current_coverage_pct": 89.7,
+  "coverage_pct": 92.8,
+  "currently_on_air_channels": 89,
+  "current_coverage_pct": 91.8,
   "currently_uncovered_ids": [
-    "DubaiOne.ae@SD",
     "LBC.sa@SD",
-    "MBC3.ae@SD",
-    "MBCAction.ae@SD",
+    "Masah.sa@SD",
     "RotanaCinemaEgypt.eg@SD",
     "RotanaCinemaKSA.sa@SD",
     "RotanaClassic.sa@SD",
@@ -31,13 +26,38 @@
     "RotanaDrama.sa@SD",
     "RotanaKhalijia.sa@SD"
   ],
-  "programmes": 2853,
+  "programmes": 3550,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 1,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 153862,
-  "sha256": "287eebe5126e12c3096406178342c7f758171375e57aeb50b8447af0eb00234d",
-  "generated_utc": "2026-11-01T07:46:29.209076+00:00"
+  "size_bytes": 188540,
+  "sha256": "cdf62446dbbe18b4c61a9a3eb5fe830daf7a2dfeff214258008d3642d0f8d32d",
+  "generated_utc": "2026-11-01T07:46:29.209076+00:00",
+  "repacked_utc": "2026-11-01T14:17:31.640771+00:00",
+  "original_published_sha256": "287eebe5126e12c3096406178342c7f758171375e57aeb50b8447af0eb00234d",
+  "verified_donor_extensions": {
+    "mode": "daily_after_donor_refresh_exact_id_no_overlap",
+    "donor_sha256": {
+      "shahid": "b319aabefa75302b45a23c7f012dfe9af9fdb2a0b542a6986da8df933469e59c",
+      "dubaiplus": "aaed3875ef52d5ccb26d478c808fdf594f6604369f2b2334ef7fdce0b563e716"
+    },
+    "programmes_added_this_pass": 697,
+    "channels_extended": [
+      "DubaiOne.ae@SD",
+      "MBC1.ae@SD",
+      "MBC3.ae@SD",
+      "MBC4.ae@SD",
+      "MBC5.ae@SD",
+      "MBCAction.ae@SD",
+      "MBCBollywood.ae@SD",
+      "MBCDrama.ae@SD",
+      "MBCIraq.iq@SD",
+      "MBCMasr.eg@SD",
+      "MBCMasr2.eg@SD",
+      "MBCPlusDrama.sa@SD"
+    ],
+    "fabricated_programmes": 0
+  }
 }
