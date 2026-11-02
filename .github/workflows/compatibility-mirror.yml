@@ -1,0 +1,50 @@
+name: Mirror verified EPGManager publications for legacy URLs
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/compatibility-mirror.yml']
+permissions:
+  contents: write
+concurrency:
+  group: legacy-publication-mirror
+  cancel-in-progress: false
+jobs:
+  mirror:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: legacy
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: wacayoub/EPGManager
+          ref: main
+          path: unified
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install pyyaml
+      - name: Validate and copy exact publications
+        run: python unified/tools/sync_legacy_publications.py --source unified --destination legacy
+      - name: Publish compatibility bytes only
+        working-directory: legacy
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'EPG Compatibility Mirror'
+          git config user.email 'actions@users.noreply.github.com'
+          git add feeds reports
+          if git diff --cached --quiet; then
+            echo 'Compatibility URLs already current'
+            exit 0
+          fi
+          git commit -m 'Mirror verified EPGManager publications'
+          git push origin HEAD:main
