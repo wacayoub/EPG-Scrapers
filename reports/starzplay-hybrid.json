@@ -1,14 +1,14 @@
 {
-  "generated_utc": "2026-11-01T11:48:26.251842+00:00",
-  "channels": 118,
-  "programmes": 8441,
-  "hybrid_programmes": 732,
-  "arabic_native_programmes": 7709,
-  "english_title_applied": 732,
+  "generated_utc": "2026-11-02T13:27:17.949703+00:00",
+  "channels": 120,
+  "programmes": 8908,
+  "hybrid_programmes": 883,
+  "arabic_native_programmes": 8025,
+  "english_title_applied": 883,
   "english_title_missing": 0,
-  "arabic_description_present": 5267,
-  "arabic_description_missing": 3174,
-  "english_channel_names_applied": 118,
+  "arabic_description_present": 5644,
+  "arabic_description_missing": 3264,
+  "english_channel_names_applied": 120,
   "english_channel_names_missing": 0,
   "english_channel_names_linked_by_provider_id": 8,
   "english_channel_names_linked_by_provider_ids": [
@@ -27,154 +27,45 @@
   "force_arabic_content_ids": [
     "NationalGeographicAbuDhabi.ae@SD"
   ],
-  "translations_cached": 63,
+  "translations_cached": 60,
   "forced_arabic_source_titles": [
-    "Ice Road Rescue",
-    "Secrets Of The Penguins",
-    "Mara: Rebirth",
-    "Lawless Island",
-    "Life Below Zero: Port Protection Alaska",
-    "Savage Kingdom: Clash of Clans Compilations",
-    "Growing up Animal",
-    "Secrets of the Zoo",
-    "Predator in Paradise: Jaws & Claws",
-    "OceanXplorers",
-    "Trials of The Wild",
-    "Ocean Wreck Investigation",
-    "World War II: Secrets From Above",
-    "Science of Stupid",
-    "Air Crash Investigation",
-    "National Parks: USA",
     "Equator's Wild Secrets",
+    "Lawless Island",
     "Europe From Above",
+    "Predator in Paradise: Jaws & Claws",
     "Predator v Prey",
-    "Life Below Zero: First Alaskans",
-    "Drain The Oceans",
-    "Trials of the Wild",
     "Weird But True",
+    "Drain The Oceans",
     "Dr. Oakley, Yukon Vet",
+    "Trials of the Wild",
     "Inside Melbourne Airport",
+    "Trials of The Wild",
     "Construction Fails",
     "Lost Ships of WWII",
+    "Air Crash Investigation",
+    "National Parks: USA",
     "Gathering Storm",
     "Lost Treasures Of Egypt",
     "Disaster Autopsy",
     "Close Encounters of the Wild Kind",
     "The Rise and Fall Of The Maya",
-    "Toronto Airport Uncovered"
+    "Toronto Airport Uncovered",
+    "Brain Games",
+    "Lost Beasts Unearthed",
+    "Ancient China From Above",
+    "Europe from Above",
+    "Border Protection Spain",
+    "Colosseum",
+    "Made in a Day",
+    "Wild Mediterranean",
+    "World Eats Bread",
+    "India From Above"
   ],
-  "forced_arabic_translation_failures": [
-    "OceanXplorers"
-  ],
+  "forced_arabic_translation_failures": [],
   "forced_arabic_description_untranslated": 0,
   "forced_arabic_description_missing_in_output": 0,
-  "forced_arabic_title_language_review": 3,
+  "forced_arabic_title_language_review": 0,
   "forced_arabic_samples": [
-    {
-      "source_title": "Ice Road Rescue",
-      "title": "إنقاذ الطريق الجليدي",
-      "description": "إنقاذ الطريق الجليدي 9"
-    },
-    {
-      "source_title": "Secrets Of The Penguins",
-      "title": "أسرار طيور البطريق",
-      "description": "أسرار طيور البطريق 1"
-    },
-    {
-      "source_title": "Mara: Rebirth",
-      "title": "مارا: ولادة جديدة",
-      "description": "مارا: ولادة جديدة 1"
-    },
-    {
-      "source_title": "Lawless Island",
-      "title": "جزيرة بلا قانون",
-      "description": "جزيرة الفوضى 3"
-    },
-    {
-      "source_title": "Life Below Zero: Port Protection Alaska",
-      "title": "الحياة تحت الصفر: حماية الموانئ في ألاسكا",
-      "description": "الحياة تحت الصفر: حماية الموانئ في ألاسكا 7"
-    },
-    {
-      "source_title": "Savage Kingdom: Clash of Clans Compilations",
-      "title": "المملكة المتوحشة: مجموعات صراع العشائر",
-      "description": "المملكة المتوحشة: مجموعات صراع العشائر"
-    },
-    {
-      "source_title": "Growing up Animal",
-      "title": "نشأة الحيوان",
-      "description": "نمو الحيوان 1"
-    },
-    {
-      "source_title": "Ice Road Rescue",
-      "title": "إنقاذ الطريق الجليدي",
-      "description": "إنقاذ الطريق الجليدي 9"
-    },
-    {
-      "source_title": "Secrets of the Zoo",
-      "title": "أسرار حديقة الحيوان",
-      "description": "أسرار حديقة الحيوان 2"
-    },
-    {
-      "source_title": "Predator in Paradise: Jaws & Claws",
-      "title": "المفترس في الجنة: الفكين والمخالب",
-      "description": "المفترس في الجنة: الفكين والمخالب"
-    },
-    {
-      "source_title": "OceanXplorers",
-      "title": "OceanXplorers",
-      "description": "مستكشفو المحيطات 1"
-    },
-    {
-      "source_title": "Trials of The Wild",
-      "title": "محاكمات البرية",
-      "description": "محاكمات البرية 1"
-    },
-    {
-      "source_title": "Ocean Wreck Investigation",
-      "title": "التحقيق في حطام المحيط",
-      "description": "التحقيق في حطام المحيط 1"
-    },
-    {
-      "source_title": "World War II: Secrets From Above",
-      "title": "الحرب العالمية الثانية: أسرار من الأعلى",
-      "description": "الحرب العالمية الثانية: أسرار من فوق 1"
-    },
-    {
-      "source_title": "Science of Stupid",
-      "title": "علم الغباء",
-      "description": "علم الغباء 3"
-    },
-    {
-      "source_title": "Predator in Paradise: Jaws & Claws",
-      "title": "المفترس في الجنة: الفكين والمخالب",
-      "description": "المفترس في الجنة: الفكين والمخالب"
-    },
-    {
-      "source_title": "OceanXplorers",
-      "title": "OceanXplorers",
-      "description": "مستكشفو المحيطات 1"
-    },
-    {
-      "source_title": "Ocean Wreck Investigation",
-      "title": "التحقيق في حطام المحيط",
-      "description": "التحقيق في حطام المحيط 1"
-    },
-    {
-      "source_title": "World War II: Secrets From Above",
-      "title": "الحرب العالمية الثانية: أسرار من الأعلى",
-      "description": "الحرب العالمية الثانية: أسرار من فوق 1"
-    },
-    {
-      "source_title": "Air Crash Investigation",
-      "title": "تحقيقات الكوارث الجوية",
-      "description": "تحقيقات الكوارث الجوية 24"
-    },
-    {
-      "source_title": "National Parks: USA",
-      "title": "الحدائق الوطنية: الولايات المتحدة الأمريكية",
-      "description": "المتنزهات الوطنية: الولايات المتحدة الأمريكية 1"
-    },
     {
       "source_title": "Equator's Wild Secrets",
       "title": "أسرار خط الاستواء البرية",
@@ -189,6 +80,111 @@
       "source_title": "Europe From Above",
       "title": "أوروبا من فوق",
       "description": "أوروبا من فوق 1"
+    },
+    {
+      "source_title": "Predator in Paradise: Jaws & Claws",
+      "title": "المفترس في الجنة: الفكين والمخالب",
+      "description": "المفترس في الجنة: الفكين والمخالب"
+    },
+    {
+      "source_title": "Predator v Prey",
+      "title": "المفترس ضد الفريسة",
+      "description": "المفترس ضد الفريسة 1"
+    },
+    {
+      "source_title": "Weird But True",
+      "title": "غريب لكن صحيح",
+      "description": "غريب لكنه حقيقي 1"
+    },
+    {
+      "source_title": "Weird But True",
+      "title": "غريب لكن صحيح",
+      "description": "غريب لكنه حقيقي 1"
+    },
+    {
+      "source_title": "Drain The Oceans",
+      "title": "استنزاف المحيطات",
+      "description": "استنزاف المحيطات 3"
+    },
+    {
+      "source_title": "Dr. Oakley, Yukon Vet",
+      "title": "دكتور أوكلي، طبيب بيطري في يوكون",
+      "description": "الدكتور أوكلي، يوكون الطبيب البيطري 12"
+    },
+    {
+      "source_title": "Trials of the Wild",
+      "title": "محاكمات البرية",
+      "description": "محاكمات البرية 1"
+    },
+    {
+      "source_title": "Inside Melbourne Airport",
+      "title": "داخل مطار ملبورن",
+      "description": "داخل مطار ملبورن 1"
+    },
+    {
+      "source_title": "Trials of The Wild",
+      "title": "محاكمات البرية",
+      "description": "محاكمات البرية 1"
+    },
+    {
+      "source_title": "Construction Fails",
+      "title": "فشل البناء",
+      "description": "فشل البناء 2"
+    },
+    {
+      "source_title": "Lost Ships of WWII",
+      "title": "السفن المفقودة في الحرب العالمية الثانية",
+      "description": "السفن المفقودة في الحرب العالمية الثانية 1"
+    },
+    {
+      "source_title": "Weird But True",
+      "title": "غريب لكن صحيح",
+      "description": "غريب لكنه حقيقي 1"
+    },
+    {
+      "source_title": "Dr. Oakley, Yukon Vet",
+      "title": "دكتور أوكلي، طبيب بيطري في يوكون",
+      "description": "الدكتور أوكلي، يوكون الطبيب البيطري 12"
+    },
+    {
+      "source_title": "Inside Melbourne Airport",
+      "title": "داخل مطار ملبورن",
+      "description": "داخل مطار ملبورن 1"
+    },
+    {
+      "source_title": "Construction Fails",
+      "title": "فشل البناء",
+      "description": "فشل البناء 2"
+    },
+    {
+      "source_title": "Lost Ships of WWII",
+      "title": "السفن المفقودة في الحرب العالمية الثانية",
+      "description": "السفن المفقودة في الحرب العالمية الثانية 1"
+    },
+    {
+      "source_title": "Air Crash Investigation",
+      "title": "تحقيقات الكوارث الجوية",
+      "description": "تحقيقات الكوارث الجوية 24"
+    },
+    {
+      "source_title": "National Parks: USA",
+      "title": "الحدائق الوطنية: الولايات المتحدة الأمريكية",
+      "description": "المتنزهات الوطنية: الولايات المتحدة الأمريكية 1"
+    },
+    {
+      "source_title": "Gathering Storm",
+      "title": "تجمع العاصفة",
+      "description": "تجمع العاصفة 1"
+    },
+    {
+      "source_title": "Lost Treasures Of Egypt",
+      "title": "كنوز مصر المفقودة",
+      "description": "كنوز مصر المفقودة 4"
+    },
+    {
+      "source_title": "Disaster Autopsy",
+      "title": "تشريح جثة الكارثة",
+      "description": "تشريح جثث الكوارث 1"
     }
   ],
   "profiles": {
@@ -292,6 +288,8 @@
     "starzplay.779016232323": "arabic_native",
     "starzplay.779018792381": "arabic_native",
     "starzplay.779019304384": "arabic_native",
+    "starzplay.780808744214": "hybrid",
+    "starzplay.780811816096": "hybrid",
     "starzplay.780814888237": "hybrid",
     "starzplay.788725288003": "arabic_native",
     "starzplay.789990440241": "arabic_native",
@@ -314,7 +312,7 @@
   "samples": {
     "AbuDhabiSports1.ae@SD": {
       "profile": "arabic_native",
-      "title": "ADNOC League 2026-2027 Mini Matches",
+      "title": "Inside City (AR) 2026-2027",
       "description": ""
     },
     "AbuDhabiSports2.ae@SD": {
@@ -324,53 +322,53 @@
     },
     "NationalGeographicAbuDhabi.ae@SD": {
       "profile": "arabic_native",
-      "title": "إنقاذ الطريق الجليدي",
-      "description": "إنقاذ الطريق الجليدي 9"
+      "title": "أسرار خط الاستواء البرية",
+      "description": "أسرار خط الاستواء البرية"
     },
     "starzplay.227083304121": {
       "profile": "arabic_native",
-      "title": "مونديال السيارات الرياضية",
-      "description": "تابعوا آخر سباقات مونديال السيارات الرياضية."
+      "title": "العربي × الذيد - دوري الدرجة الأولى الإماراتي",
+      "description": "لا تفوتوا أفضل وأقوى مباريات دوري الدرجة الأولى الإماراتي."
     },
     "starzplay.227083304215": {
       "profile": "arabic_native",
-      "title": "بطولة جمال الخيل العربية",
-      "description": "تابعوا بطولة جمال الخيل العربية."
+      "title": "أمواج",
+      "description": "ابقوا على تواصل مع برنامج أمواج."
     },
     "starzplay.236275240441": {
       "profile": "arabic_native",
-      "title": "تي٢٠ كريكت - مباشر",
-      "description": "‫‫نظرة شاملة ومفصلة على بطولة الكريكيت توينتي، حيث تتنافس فرق كريكيت محترفة من جميع أنحاء العالم للفوز.‬‬"
+      "title": "ون-داي إنترناشونال كريكيت",
+      "description": "‫‫تغطية شاملة وموسعة لمباريات الكريكيت التي تستمر ليوم واحد، والتي تتنافس ضمنها فرق دولية مختلفة من جميع أنحاء العالم.‬‬"
     },
     "starzplay.236276264229": {
       "profile": "arabic_native",
-      "title": "Asia Cup 2025: Pakistan vs. India - Asian Blockbusters",
-      "description": ""
+      "title": "آي سي سي وومنز تي٢٠ ورلد كب هايلايتس",
+      "description": "‫‫مجموعة من أهم وأبرز لقطات مباريات بطولة كأس العالم للكريكت للسيدات تي٢٠ التابعة للمجلس الدولي للكريكت، حيث تتنافس المنتخبات الوطنية النسائية لرفع الكأس المرموق.‬‬"
     },
     "starzplay.293821992325": {
       "profile": "arabic_native",
-      "title": "Sydney Sixers vs. Hobart Hurricanes - Women's Big Bash League Cricket - LIVE",
+      "title": "Melbourne Stars vs. Perth Scorchers - Women's Big Bash League Cricket - LIVE",
       "description": ""
     },
     "starzplay.419604520351": {
       "profile": "arabic_native",
-      "title": "استوديو الحدث",
-      "description": "ساعة إخبارية كاملة تعرض أهم الأخبار السياسية والاقتصادية والرياضية."
+      "title": "أخبار الحدث",
+      "description": "كُن في طليعة متابعي أهم القصص، الأخبار العاجلة، والشؤون الراهنة وكل ما ينبغي معرفته في المنطقة العربية وحول العالم."
     },
     "starzplay.422146600308": {
       "profile": "arabic_native",
-      "title": "بي جي إيه تور",
-      "description": "‫م2026 ، ح162 : ‫يعرض فريق التقديم اللحظات الأكثر إثارة في بطولة بي جي إيه تور، بما في ذلك اللقطات البارزة والنهاية المثيرة لأفضل لاعبي الغولف والبطولات الكبرى طوال الموسم.‬‬"
+      "title": "ليديز يورو تور غولف",
+      "description": "‫‫تتنافس لاعبات غولف محترفات في أفضل ملاعب الجولف في أوروبا، حيث يظهرن مهاراتهن واستراتيجيتهن ومواهبهن في البطولات المرموقة.‬‬"
     },
     "starzplay.460049959967": {
       "profile": "arabic_native",
-      "title": "صباح الخير يا عرب",
-      "description": "‫م2026 ، ح190 : ‫ينضم لفريق التقديم خبراء في مختلف المجالات، ويقدمون معا مجموعة من آخر الأخبار والتطورات من عالم الترفيه والرياضة والشؤون الجارية.‬‬"
+      "title": "أهلا بالستات",
+      "description": "‫م2026 ، ح184 : ‫يعرض فريق التقديم فقرات يلقي من خلالها الضوء على مختلف المواضيع التي تتعلق بالصحة والأسرة والطبخ، وعدد من الشؤون الأخرى المختلفة التي تهم المرأة.‬‬"
     },
     "starzplay.460050472021": {
       "profile": "arabic_native",
-      "title": "زمن أول",
-      "description": "‫‫يقوم صانع الأفلام بتسليط الضوء على أحداث الماضي وإبراز أهم معالم التاريخ السعودي، وكيف قد تغير المجتمع عبر مرور الزمن.‬‬"
+      "title": "الشارع السعودي",
+      "description": "‫‫يتحدث المضيف عن ثلة من المواضيع التي تخص كل مواطن سعودي، كما يرصد نبض البلاد بأعين سكانها المحليين، وذلك بهدف الإتيان بمقترحات حديثة.‬‬"
     },
     "starzplay.460050472022": {
       "profile": "arabic_native",
@@ -379,13 +377,13 @@
     },
     "starzplay.460869672233": {
       "profile": "arabic_native",
-      "title": "قصر الباشا",
-      "description": "‫‫يعمل زوج معا على تحويل قصر الباشا إلى واحد من أفخم الفنادق في الصويرة، إلى أن يدخل أحد ما حياتهما ليغير كل شيء.‬‬"
+      "title": "قيسارية أوفلا",
+      "description": "‫‫تواجه مجموعة من التجار في سوق تقليدي محلي، والذي يقع في مدينة أغادير في المغرب، مواقف مضحكة مع بعضهم البعض ومع زبائنهم كذلك.‬‬"
     },
     "starzplay.460869672258": {
       "profile": "arabic_native",
-      "title": "معا أصدقاء",
-      "description": "‫‫تدعو المضيفة العديد من الأطفال للخوض في محادثات عن مواهبهم وإنجازاتهم وخططهم المستقبلية وعرض مواهبهم.‬‬"
+      "title": "لغة وأدب وفن",
+      "description": "‫‫تتحدث شخصيات بارزة عن عدة فعاليات ثقافية المقامة في إمارة الشارقة، وتسلط الضوء على مواهب إماراتية وعربية.‬‬"
     },
     "starzplay.460871719977": {
       "profile": "arabic_native",
@@ -394,13 +392,13 @@
     },
     "starzplay.460871719981": {
       "profile": "arabic_native",
-      "title": "البوصلة",
-      "description": "‫‫يقوم المضيف بتسليط الضوء على آخر الأخبار والتطورات والسمتجدات الاقتصادية والمالية مني جميع أنحاء العالم العربي.‬‬"
+      "title": "مسار السوق",
+      "description": "‫‫تقوم مجموعة من المحللين بتسليط الضوء على آخر الأخبار والتطورات التي تتعلق بالسوق المالية في العالم العربي.‬‬"
     },
     "starzplay.460872232189": {
       "profile": "arabic_native",
-      "title": "الحدث",
-      "description": "‫‫يلتقي المضيف بمجموعة من الشخصيات اللبنانية المعروفة والسياسيين العرب والصحفيين لمناقشة القضايا الإقليمية والعالمية التي تؤثر على لبنان.‬‬"
+      "title": "الطبيب الرومانسي",
+      "description": "‫م1 ، ح24 : ‬"
     },
     "starzplay.460872744016": {
       "profile": "arabic_native",
@@ -419,12 +417,12 @@
     },
     "starzplay.475882024092": {
       "profile": "arabic_native",
-      "title": "Ultimate 80s Collection!",
+      "title": "80s Happy Hour!",
       "description": ""
     },
     "starzplay.487766568234": {
       "profile": "arabic_native",
-      "title": "Fist Pumping Rock Hits!",
+      "title": "Rock Domination!",
       "description": ""
     },
     "starzplay.491982376315": {
@@ -434,8 +432,8 @@
     },
     "starzplay.497912359959": {
       "profile": "arabic_native",
-      "title": "كرفان بلس",
-      "description": "‫‫يدعو فريق التقديم مختلف الشخصيات لمناقشة أهم الأخبار والمستجدات والمواضيع الاجتماعية التي تهم الشباب الأردني، ويسلط الضوء على بعض من أشهر البرامج التلفزيونية والأفلام والموسيقى.‬‬"
+      "title": "بخمس أرواح",
+      "description": "‫‫‫يكتشف شمس أنه ابن وريث رجل ذي نفوذ كبير، ولكن لكي يتمكن من الحصول على ثروة والده، يجب عليه أن يفي بالشرط الوحيد الذي قام والده بوضعه.‬‬‬"
     },
     "starzplay.515470888131": {
       "profile": "arabic_native",
@@ -449,8 +447,8 @@
     },
     "starzplay.524611624145": {
       "profile": "hybrid",
-      "title": "3 PM News",
-      "description": "‫‫يعرض فريق التقديم آخر المستجدات والتطورات الاجتماعية والاقتصادية والسياسية التي تتصدر العناوين الرئيسية في الأخبار.‬‬"
+      "title": "Evening News",
+      "description": "‫‫يعرض فريق التقديم آخر المستجدات حول أهم الأخبار الوطنية والدولية والتطورات والشؤون الجارية في مختلف قطاعات المجتمع.‬‬"
     },
     "starzplay.527810088109": {
       "profile": "arabic_native",
@@ -459,17 +457,17 @@
     },
     "starzplay.534335528385": {
       "profile": "arabic_native",
-      "title": "Kartoon Channel!",
+      "title": "Kidaverse Roblox Rumble",
       "description": ""
     },
     "starzplay.546513448261": {
       "profile": "arabic_native",
-      "title": "Concerto Café",
+      "title": "Star Videos",
       "description": ""
     },
     "starzplay.546516520035": {
       "profile": "arabic_native",
-      "title": "Cute Pet Guide",
+      "title": "Scruffts",
       "description": ""
     },
     "starzplay.551191592244": {
@@ -479,7 +477,7 @@
     },
     "starzplay.559865896371": {
       "profile": "arabic_native",
-      "title": "Qoloub Ananiah S1",
+      "title": "Makanak fel Qalb Hwa Alqalb Kolo S8",
       "description": ""
     },
     "starzplay.587754024122": {
@@ -489,7 +487,7 @@
     },
     "starzplay.610710056409": {
       "profile": "arabic_native",
-      "title": "Brazil v Chile | Round of 16 | 2014 FIFA World Cup Brazil™ | Full Match Replay",
+      "title": "Portugal v USA | Group E | FIFA Women's World Cup Australia & New Zealand 2023™ | Full Match Replay",
       "description": ""
     },
     "starzplay.658209319988": {
@@ -499,42 +497,42 @@
     },
     "starzplay.666427944412": {
       "profile": "arabic_native",
-      "title": "Faces of Africa",
+      "title": "Asia Today",
       "description": ""
     },
     "starzplay.689693224333": {
       "profile": "arabic_native",
-      "title": "New Looney Tunes - Lifestyles of the Wealthy and Obnoxious/The Starship Mentalprise",
+      "title": "Bugs Bunny Builders - Snow Cap",
       "description": ""
     },
     "starzplay.705949224430": {
       "profile": "hybrid",
-      "title": "Udinese X Roma  - Serie A",
-      "description": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
+      "title": "Round 10 - Serie A Preview Show Magazine",
+      "description": "لا تفوتوا أهم تحليلات المباريات مع الخبراء الفنيين والمحللين الرياضيين، بالإضافة إلى معرفة آراء اللاعبين والمدربين... وأهم الأخبار الكروية وأروع الأهداف خلال الموسم."
     },
     "starzplay.705949224431": {
       "profile": "hybrid",
-      "title": "Milan X Inter Milan - Serie A",
+      "title": "Juventus X Napoli - Serie A",
       "description": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
     },
     "starzplay.719537704271": {
       "profile": "arabic_native",
-      "title": "Ad Break",
+      "title": "Music from the Murals: Dunhuang Musical Instruments Ep.2",
       "description": ""
     },
     "starzplay.719544360177": {
       "profile": "arabic_native",
-      "title": "Ad Break",
+      "title": "Crunch and Munch in Macao Ep.1",
       "description": ""
     },
     "starzplay.720334376239": {
       "profile": "arabic_native",
-      "title": "Al-Ghurbal",
+      "title": "Al-Tawareed",
       "description": ""
     },
     "starzplay.720334376240": {
       "profile": "arabic_native",
-      "title": "Sheikh Zayed Festival",
+      "title": "Kayd Al-Hareem",
       "description": ""
     },
     "starzplay.720335400125": {
@@ -544,17 +542,17 @@
     },
     "starzplay.720335400130": {
       "profile": "arabic_native",
-      "title": "Miera and George. Big Questions S1",
+      "title": "OOMKA & ME",
       "description": ""
     },
     "starzplay.720335400131": {
       "profile": "arabic_native",
-      "title": "Generic Program 706",
+      "title": "Generic Program 732",
       "description": ""
     },
     "starzplay.720335400133": {
       "profile": "arabic_native",
-      "title": "Zahra Cast",
+      "title": "News Bulletin",
       "description": ""
     },
     "starzplay.725124136205": {
@@ -564,88 +562,88 @@
     },
     "starzplay.727306280331": {
       "profile": "arabic_native",
-      "title": "بوسنو!",
-      "description": "‫م1 ، ح17 : ‫تخوض كرة حمراء صغيرة مغامرة ممتعة وشيقة عبر جهاز سحري، لتنشر الفن والموسيقى وتخلق تجارب ساحرة تأسر الخيال.‬‬"
+      "title": "ذا ليون غارد",
+      "description": "‫م2 ، ح16 : ‫يقوم الشبل الصغير كيون بتشكيل فريق مع أصدقائه، وذلك من أجل تخطي العقبات العديدة ومحاربة القوى الشريرة بهدف حماية أراضيهم.‬‬"
     },
     "starzplay.732523560319": {
       "profile": "arabic_native",
-      "title": "باو باترول",
-      "description": "‫م7 ، ح19 : ‫مجموعة بطولية من ستة جراء يقودها صبي يبلغ من العمر عشرة أعوام يدعى رايدر، والذي يتمتع بخبرة كبيرة في مجال التكنولوجيا ويحاول جاهدا حماية مجتمع أدفنتشر باي.‬‬"
+      "title": "ستاك إن ذا ميدل",
+      "description": "‫م1 ، ح10 : ‫تبتكر الصبية المراهقة هارلي دياز طرقا مبتكرة لتتميز في منزل عائلتها المزدحم، حيث تعيش مع والديها وإخوتها الستة.‬‬"
     },
     "starzplay.743718440268": {
       "profile": "arabic_native",
-      "title": "كان بانيغا كوربيراتي",
-      "description": "‫م18 ، ح59 : ‫يشق محمد شعيب من دلهي، يليه روهيت كومار من بوني بماهاراشترا، طريقه إلى المقعد الساخن ويجيب على سلسلة من الأسئلة الصعبة للفوز بالجائزة النقدية.‬‬"
+      "title": "تيم فيفر أون ذا كابيل شارما شو",
+      "description": "‫م1 ، ح285 : ‫يحين وقت الضحك مع كابيل شارما ورفاقه، إذ يزور راجيف خانديوال وغوهار خان محلة كابيل شارما وهو نجم السينما الهندية المحبوب للترويج لفيلمهم القادم فيفر.‬‬"
     },
     "starzplay.743721512232": {
       "profile": "arabic_native",
-      "title": "غهاروندا",
-      "description": "‫‫يقرر سوديب وتشايا الزواج من بعضهما. يشتريان منزلا بصعوبة كبيرة، لكنهما يفزعان عندما يهرب المقاول المحتال ومعه أموالهما.‬‬"
+      "title": "بهول بهولايا ٢",
+      "description": "‫‫يقرر روهان مساعدة ريت بعد تعرضها لحادث، مما يقوده إلى قصر عائلتها الذي تسكنه روح تسعى بشتى الطرق للانتقام.‬‬"
     },
     "starzplay.744863272432": {
       "profile": "arabic_native",
-      "title": "لفيابا",
-      "description": "‫‫يحلم الثنائي الشاب باني وغوراف بالزواج. لإتمام هذا الزواج، يطلب منهما والد باني تبديل هاتفيهما لاختبار علاقتهما.‬‬"
+      "title": "تو جوليت جات دي",
+      "description": "‫م1 ، ح350 : ‫تلتقي الفتاة الطموحة هير بالشاب المميز نواب، مما يشعل شرارة لقصة حب غير متوقعة. في خضم تحديات رحلتهما، تتكتشف حكاية حب متشابكة تنطوي على الخداع والاضطراب العاطفي.‬‬"
     },
     "starzplay.744863784271": {
       "profile": "hybrid",
-      "title": "Lucifer",
-      "description": "‫‫عندما يموت زعيم حزب حاكم، ينشأ صراع على السلطة لتولي منصبه. يقوم ابنه بالتبني ستيفن الغامض باتخاذ خطوة ومواجهة تحديات في جميع ميادين الحياة.‬‬"
+      "title": "Aniyathi Pravu",
+      "description": "‫‫تقع فتاة في حب شاب، ويرغبان بالزواج، وترفض عائلة كل منهما، فيهرب الحبيبان لكي يتزوجا، ثم يقرران الحصول على موافقة عائلتيهما أولا، لكن القدر لديه خطط أخرى.‬‬"
     },
     "starzplay.744863784272": {
       "profile": "arabic_native",
-      "title": "ديهوالي",
-      "description": "‫‫محقق شرطة يدعى فيكرام يذهب إلى مصح عقلي لأداء مهمة معينة، وهي أن يصادق أحد نزلاء المصح ويدعى آرون. آرون متهم بقتل حبيبته، وتحكم عليه المحكمة بالإعدام شنقا، لذا يفقد عقله، ويحاول فيكرام كشف الحقيقة.‬‬"
+      "title": "أوه همنافا توم دينا ساث ميرا",
+      "description": "‫م1 ، ح181 : ‫يتقاطع طريق رجل أعمال متحفظ، يتجنب الدخول في علاقات عاطفية، مع فنانة تطاردها ذكريات ماض مرير، مما يجعل احتمال نشوء علاقة عاطفية بينهما أمرا معلقا في مهب الريح.‬‬"
     },
     "starzplay.744867368010": {
       "profile": "arabic_native",
-      "title": "تو هاي ري ديل مين",
-      "description": "‫م1 ، ح134 : ‫ظنا منها أنه تميمة حظها، ترتبط فريندا بسانجاي، رغم أن قلبه ملك لديفيا، وخلال إقامتها في منزله للاهتمام به وبشؤونه، تتجرع مرارة التضحية في صمت، وهي تترقب بصيص أمل لعله يحمل إليها الحب يوما.‬‬"
+      "title": "لاكشمي نيفس",
+      "description": "‫م1 ، ح1 : ‫تتخلى لاكشمي عن جذورها الثرية لتبني حياة قائمة على الإيثار مع شرينيواس. بعد مرور عقود، يعمل الزوجان بلا كلل لتأمين منزلهما الخاص وتمويل حفل زفاف فاخر لابنتهما.‬‬"
     },
     "starzplay.744867368011": {
       "profile": "hybrid",
-      "title": "Nayam Vyakthamakkunnu",
+      "title": "Agnidevan",
       "description": ""
     },
     "starzplay.744867368012": {
       "profile": "hybrid",
-      "title": "People's Parliament Your Voice Matters In BB",
-      "description": "‫م8 ، ح4 : ‬"
+      "title": "Nna Thaan Case Kodu",
+      "description": "‫‫يشرع لص سابق في مهمة خطيرة لتحقيق العدالة بعد أن يورطه أحد أعضاء المجلس التشريعي المؤثرين بتهمة زورا، مما يختبر تصميمه وإرادته.‬‬"
     },
     "starzplay.751015464026": {
       "profile": "arabic_native",
-      "title": "Third-Place Playoff: Canada vs. United States - 2026 World Rugby Pacific Nations Cup",
+      "title": "Fiji vs. Scotland - Nations Championship 2026",
       "description": ""
     },
     "starzplay.752644648261": {
       "profile": "arabic_native",
-      "title": "Izzat",
-      "description": ""
+      "title": "لاغان لاغي",
+      "description": "‫‫هل كان مجرد حلم عابر، أم نذيرا بما سيقع؟ حين يستبد الخوف ويغدو ملموسا كالحقيقة وتبدأ الحدود بين الحلم والواقع في التلاشي، ويبقى التساؤل حول ماهية الشيء الذي يتربص في الجانب الآخر.‬‬"
     },
     "starzplay.752644648263": {
       "profile": "arabic_native",
-      "title": "نشتر",
-      "description": "‫م1 ، ح26 : ‫يعتاد شاه داوود، وهو الوريث المغرور لعائلة نافذة، على نيل كل ما يريد، لكن ثقته تتزعزع عندما يلتقي ببريرة إعجاز، وهي طالبة جامعية قوية الإرادة ترفض الخضوع لمكانته.‬‬"
+      "title": "Banno",
+      "description": "‫م1 ، ح19 : ‬"
     },
     "starzplay.755362856441": {
       "profile": "arabic_native",
-      "title": "لعبة السعادة",
-      "description": "‫م1 ، ح15 : ‫تنطلق عائلتان في رحلة للبحث عن كنز بعد أن تحصلا على خريطة كنز سحرية، وتتعلمان من خلالها مختلف الدروس الحياتية.‬‬"
+      "title": "نيران العشق",
+      "description": "‫م1 ، ح46 : ‫بعد وفاة محبوبها، تجبر شابة على الزواج من عمه الثري، مما يقلب حياتها رأسا على عقب. لكن، تأخذ الأمور منحى آخر عندما يحدث ما لم يكن بالحسبان في يوم زفافها.‬‬"
     },
     "starzplay.755364392036": {
       "profile": "arabic_native",
-      "title": "الكنز",
-      "description": "‫‫يقرر حسن العودة من أوروبا إلى منزله في مدينة الأقصر، حيث يعثر على ملاحظات صوتية مسجلة من والده الذي احتفظ ببعض الكنوز لفترة طويلة.‬‬"
+      "title": "النويلاتي",
+      "description": "‫م1 ، ح25 : ‫بعد خروجه من السجن، يعود غواص للبحث عن الكنز المفقود والانتقام من الاشخاص الذين دمروا حياته وخانوه، مما يقلب الأمور رأسا على عقب ويقود للعديد من المواقف غير المتوقعة.‬‬"
     },
     "starzplay.755370536327": {
       "profile": "arabic_native",
-      "title": "بخمس أرواح",
-      "description": "‫م1 ، ح30 : ‫‫يكتشف شمس أنه ابن وريث رجل ذي نفوذ كبير، ولكن لكي يتمكن من الحصول على ثروة والده، يجب عليه أن يفي بالشرط الوحيد الذي قام والده بوضعه.‬‬‬"
+      "title": "في الصورة",
+      "description": "‫م1 ، ح9 : ‫يدعو المضيف مجموعة من الشخصيات العربية البارزة للحديث عن عدد من القضايا الاجتماعية التي تواجه الشباب في المجتمع السعودي.‬‬"
     },
     "starzplay.758277672165": {
       "profile": "arabic_native",
-      "title": "سنداي مورننغ وذ تريفور فيليبس",
-      "description": "‫‫يجري تريفور فيليبس مقابلات مع مجموعة من الضيوف البارزين فيما يتعلق ببعض أهم القصص الإخبارية للأسبوع الحالي.‬‬"
+      "title": "سكاي نيوز توداي وذ جين سيكر",
+      "description": "‫‫تقدم جاين سيكر ملخصا لجميع الأخبار الرئيسية في وقت الغداء، مع تحليلات من مراسلي سكاي نيوز في جميع أنحاء المملكة المتحدة وحول العالم.‬‬"
     },
     "starzplay.764535847985": {
       "profile": "arabic_native",
@@ -654,33 +652,33 @@
     },
     "starzplay.769623592381": {
       "profile": "arabic_native",
-      "title": "فيلم",
-      "description": ""
+      "title": "كودومباشري شارادا",
+      "description": "‫‫تنجح أم عزباء في تجاوز عقبات ماضيها وقيود مجتمعها، لترفع شأن بناتها الثلاث الصغيرات وتوفر لهن حياة كريمة.‬‬"
     },
     "starzplay.769623592382": {
       "profile": "arabic_native",
-      "title": "ذا غريت إنديان كتشن",
-      "description": "‫‫تحاول امرأة أن تنسجم مع القالب التقليدي الذي وضعه المجتمع للمرأة المتزوجة بعد زواجها، لكن في مرحلة ما من رحلتها هذه، تشعر أن هذه ليست الحياة التي تريدها.‬‬"
+      "title": "إينا سولا بوغيراي",
+      "description": "‫م1 ، ح67 : ‬"
     },
     "starzplay.769623592383": {
       "profile": "arabic_native",
       "title": "تاريني",
-      "description": "‫م1 ، ح423 : ‫تعيش تاريني حياة مزدوجة للثأر لوالدتها، في حين تتصارع مع الحقائق القاسية التي تختبرعزيمتها كونها ابنة بارة وضابطة سرية جريئة في الوقت ذاته.‬‬"
+      "description": "‫م1 ، ح424 : ‫تعيش تاريني حياة مزدوجة للثأر لوالدتها، في حين تتصارع مع الحقائق القاسية التي تختبرعزيمتها كونها ابنة بارة وضابطة سرية جريئة في الوقت ذاته.‬‬"
     },
     "starzplay.769623592384": {
       "profile": "arabic_native",
-      "title": "أ فلاينغ جات",
-      "description": "‫‫يخاف الشاب الهادئ أمان من المرتفعات، ثم يكتشف قواه الخارقة عندما يضطر لمواجهة الشرير راكا الذي أرسله أحد رجال الصناعة لتدمير البشرية.‬‬"
+      "title": "آكشن ريبلاي",
+      "description": "‫‫يحاول فتى إحياء علاقة والديه الزوجية المتهالكة عن طريق العودة إلى سبعينات القرن الماضي، حين كانت علاقتهما العاطفية في أوج عطائها، لكن يبدو أن الأمر أكثر تعقيدا مما كان يتوقع في البداية.‬‬"
     },
     "starzplay.769627175953": {
       "profile": "arabic_native",
-      "title": "ماتير مانوش",
-      "description": "‫‫تقع بايل في حب رجل بعد تعرضها لحادث. مع ذلك، تتبدل الأحوال عندما يرفض والدها علاقة الحب القائمة بينهما.‬‬"
+      "title": "برانر شاي بريو",
+      "description": "‫‫تتحول حياة زوجين إلى دمار عندما تتزوج تشايتي، وهي امرأة شريرة، من أحد أفراد عائلتهما وتسبب الفوضى بينهم.‬‬"
     },
     "starzplay.769627175955": {
       "profile": "arabic_native",
-      "title": "هاستينابور كي فير",
-      "description": "‫م1 ، ح129 : ‫يتحد خمسة أشقاء نبلاء في شجاعة وصلاح لمحاربة قوى الطموح والظلم القاسية التي تهدد مملكتهم، مما يختبر روابطهم من خلال التضحية والتفاني الراسخ للواجب الأخلاقي.‬‬"
+      "title": "كيونكي بابا كيهتي هين",
+      "description": "‫م1 ، ح35 : ‫يحمي باوان إخوته الأربعة الصغار بمحبة ورعاية عقب الفقدان المفاجئ للوالدين، ورغم الضائقة المالية الخانقة، يفرض عليهم الأقارب المتزمتون قيما تقليدية تختبر صمود هؤلاء الأطفال.‬‬"
     },
     "starzplay.769872424315": {
       "profile": "arabic_native",
@@ -689,63 +687,63 @@
     },
     "starzplay.770556968172": {
       "profile": "arabic_native",
-      "title": "تانهاجي",
-      "description": "‫‫تانهاجي محارب من إمبراطورية مارثا وهو ملازم موثوق به من قبل شيفاجي مهراج. يقوم المغول بغزو قلعة كوندانا، فينطلق لاستعادتها خدمة لملكه وبلده.‬‬"
+      "title": "سام بهادور",
+      "description": "‫‫سام مانيكشو هو أحد أكثر الضباط المقلدين بأوسمة في الجيش الهندي، إذ خدم لأكثر من أربعة عقود وخاض خمس حروب، وهو أول ضابط جيش يترقى إلى رتبة مشير.‬‬"
     },
     "starzplay.770556968231": {
       "profile": "hybrid",
-      "title": "CNN Newsroom - LIVE",
-      "description": "‫‫يعرض فريق التقديم آخر الأخبار السياسية والاجتماعية والاقتصادية والرياضية والترفيهية والطقس من الولايات المتحدة وحول العالم.‬‬"
+      "title": "CNN This Morning - LIVE",
+      "description": "‫‫يعرض فريق التقديم مجموعة من أبرز الأخبار والمستجدات والتقارير والأحداث الهامة على الصعيدين الوطني والدولي.‬‬"
     },
     "starzplay.770557480315": {
       "profile": "arabic_native",
-      "title": "٣ بي إم نيوز",
-      "description": "‫‫يتحدث فريق التقديم عن آخر وأبرز الأخبار الاقتصادية الاجتماعية والسياسية والمستجدات والتطورات التي تتصدر العناوين.‬‬"
+      "title": "نينغال بارايو",
+      "description": "‫‫يعبر الجمهور عن آرائه بشأن المسائل الاجتماعية من خلال المقابلات المصورة والمكالمات الهاتفية والرسائل النصية والمشاركة في الخطاب.‬‬"
     },
     "starzplay.770557992240": {
       "profile": "arabic_native",
-      "title": "تاسكرا فيران",
-      "description": ""
+      "title": "جاي بهيم",
+      "description": "‫‫يناضل محام شجاع من أجل تحقيق العدالة عندما يختفي رجل قبلي فقير من حجز الشرطة بعد اتهامه زورا بجريمة سرقة.‬‬"
     },
     "starzplay.770559016285": {
       "profile": "arabic_native",
-      "title": "ماهالاكشمي",
-      "description": "‫م1 ، ح618 : ‫تواجه ماهالاكشمي عواقب تصرفات زوج والدتها بشراسة، بينما يصبح كانان الذي ينجو من مأساة غير متوقعة داعما غير متوقع لها في رحلة من أجل البقاء.‬‬"
+      "title": "دانس دهاماكا",
+      "description": "‫م1 ، ح22 : ‫يتنافس عدد من المتسابقين المشاهير برفقة راقصين محترفين لاستعراض مواهبهم ونيل إعجاب لجنة تحكيم من الخبراء، والفوز بالجائزة المنشودة.‬‬"
     },
     "starzplay.770559016375": {
       "profile": "arabic_native",
-      "title": "ذا توم آند جيري شو",
-      "description": "‫‫يطارد القط العنيد توم عدوه اللدود الفأر جيري. ورغم كرههما لبعضهما، إلا أنهما يتشاركان أيضا علاقة وطيدة.‬‬"
+      "title": "تايني تونز لونيفرستي",
+      "description": "‫م1 ، ح2 : ‫يسعى باستر وبابز بني وسويتي بيرد وهامتون جيه بيغ وبلكي دك لتحقيق أحلامهم والالتحاق بجامعة أكمي لونيفرستي، لكي يصبحوا شخصيات كرتونية محترفة.‬‬"
     },
     "starzplay.770559016378": {
       "profile": "arabic_native",
-      "title": "دورايمون",
-      "description": "‫‫يسافر القط الآلي دورايمون من القرن الثاني والعشرين في الوقت إلى القرن العشرين ويساعد أفراد عائلة نوبي باستخدام أدواته المستقبلية.‬‬"
+      "title": "بوليانا",
+      "description": "‫‫تخوض بوليانا المفعمة بالحيوية والمرح مغامرات ممتعة مع سنجابها الأليف، إذ يواجهان الكثير من الحقائق في الحياة ويصبحان أقوى من ذي قبل.‬‬"
     },
     "starzplay.770559016379": {
       "profile": "hybrid",
-      "title": "Movie",
-      "description": ""
+      "title": "Naruto Shippuden the Movie: The Will of Fire",
+      "description": "‫‫عندما يختفي أبطال النينجا الذين يحرسون القرى المخفية من كلاود وستون ومست وساند، تزداد احتمالية اندلاع حرب نينجا أخرى إذا لم يتم العثور عليهم في الوقت المناسب.‬‬"
     },
     "starzplay.770559528171": {
       "profile": "arabic_native",
-      "title": "تشالاكديكاران تشينغاثي",
-      "description": "‫‫سرعان ما ينتهي الأمر بسائق عربة توك توك راجاماني من أفضل ممثلي الأفلام المالايالامية. لاحقا، تقوده رذائله إلى دوامة انحدارية.‬‬"
+      "title": "ناندهان",
+      "description": "‫‫يقوم كوبولينجام وهو رجل من الطبقة العليا بلعب لعبة السياسة من أجل البقاء في السلطة عندما يصبح مجلس القرية بشكل غير متوقع دائرة انتخابية محجوزة.‬‬"
     },
     "starzplay.770735656335": {
       "profile": "arabic_native",
-      "title": "ظل الغافة",
-      "description": "‫م1 ، ح263 : ‫يلتقي فريق التقديم بمجموعة من الشخصيات الثقافية في الإمارات، للحديث عن مواضيع تراثية مثيرة للاهتمام وسرد القصص والشعر.‬‬"
+      "title": "يوميات الوسطى",
+      "description": "‫م1 ، ح2185 : ‫يقوم فريق التقديم بدعوة شخصيات من المنطقة الوسطى في دولة الإمارات العربية المتحدة لمناقشة مجموعة من المواضيع والقضايا، ويسلط الضوء على ثقافة المنطقة.‬‬"
     },
     "starzplay.770738728162": {
       "profile": "arabic_native",
-      "title": "صحابة الرسول",
-      "description": "‫‫يتحدث شيخ عن حياة الصحابة ومواقفهم وقصصهم، والتي يستخلص المستمع منها العديد من العبر ويتعلم دروسا مفيدة في الأخلاق.‬‬"
+      "title": "حديث المساء",
+      "description": "‫‫تقوم المضيفة بدعوة خبراء لمناقشة آخر وأهم الأخبار والمستجدات الاجتماعية والسياسية والاقتصادية والرياضية في مصر.‬‬"
     },
     "starzplay.775252520426": {
       "profile": "arabic_native",
-      "title": "نيوز باز",
-      "description": "‫‫يقدم فريق التقديم تقريرا مفصلا حول مختلف القضايا السائدة في المجتمع ويقدم معلومات حول الأحداث الجارية ذات الصلة.‬‬"
+      "title": "Good Evening With Madhu Saji",
+      "description": ""
     },
     "starzplay.775260200087": {
       "profile": "arabic_native",
@@ -754,13 +752,13 @@
     },
     "starzplay.775600680255": {
       "profile": "arabic_native",
-      "title": "فاطمة",
-      "description": "‫‫لشغفها بالفن والموسيقى، تتعلم فاطمة العزف على الكمان بالرغم من نشأتها في بيئة محافظة لا تحث التعبير عن الذات.‬‬"
+      "title": "لعبة الحظ",
+      "description": "‫‫تعتقد آدا أنها محكوم عليها بالتعاسة ما لم تتزوج من حبها الأول. وبعد أن يتخلى عنها، تعمل كمساعدة لمدير صارم يدعى بورا. ويتوالى سوء الفهم والمشاعر الرومانسية بينما تحاول إعادة كتابة قدرها المأساوي.‬‬"
     },
     "starzplay.777986600371": {
       "profile": "arabic_native",
-      "title": "تيربو",
-      "description": "‫‫يتحدث فريق التقديم ومجموعة من الخبراء في عالم السيارات عن آخر وأحدث التطورات المثيرة في عالم المركبات.‬‬"
+      "title": "سا بو فو أغيفي شي فو",
+      "description": "‫‫يسعى فريق التقديم إلى مساعدة الأشخاص الذين لديهم قضايا لم يتم حلها وتزويدهم بالمشورة القانونية اللازمة لإغلاق القضايا وتحقيق العدالة في حياتهم، ذلك بمساعدة فريقه من المحامين والخبراء.‬‬"
     },
     "starzplay.777986600373": {
       "profile": "arabic_native",
@@ -774,122 +772,132 @@
     },
     "starzplay.777994280349": {
       "profile": "arabic_native",
-      "title": "مي بوتيك تيليشوب",
-      "description": "‫‫يعرض فريق التقديم أحدث وأجمل العروض الحصرية على المجوهرات ومنتجات التجميل والمنتجات المنزلية والمطبخ والمزيد من الأشياء لمحبي التسوق من منازلهم.‬‬"
+      "title": "لا غوب دو ما في",
+      "description": "‫‫يتفاعل منسقو أزياء محترفون مع العرائس ويشاركون آراءهم وخبراتهم لمساعدتهن على اختيار فستان زفاف أحلامهن.‬‬"
     },
     "starzplay.777994280350": {
       "profile": "arabic_native",
-      "title": "Gulli Good",
+      "title": "Gulli midi",
       "description": ""
     },
     "starzplay.777994792182": {
       "profile": "arabic_native",
-      "title": "Génération hit machine",
-      "description": ""
+      "title": "إن سي آي إس",
+      "description": "‫‫يقوم فريق من العملاء الخاصين التابعين لدائرة التحقيقات الجنائية البحرية بالتحقيق في القضايا الجنائية المرتبطة بالبحرية الأمريكية وسلاح مشاة البحرية.‬‬"
     },
     "starzplay.777994792183": {
       "profile": "arabic_native",
-      "title": "لو غانش",
-      "description": "‫م1 ، ح25 : ‫في أثناء محاولة لينا تخطي صدمة موت فرسها، تعثر على فحل أسود اللون هاربا، فتقوم بمساعدة رفاقها بإخفائه في مزرعة جدها ومحاولة تدريبه.‬‬"
+      "title": "إيزادورا مون",
+      "description": "‫م1 ، ح1 : ‫إيزادورا مون فتاة نصف جنية ونصف مصاصة دماء وتبلغ من العمر ثماني سنوات، تجد نفسها تخوض مغامرات من جميع الأنواع مع أصدقاء جدد عندما تغادر عالمها السحري لتلتحق بمدرسة للبشر.‬‬"
     },
     "starzplay.779016232322": {
       "profile": "arabic_native",
-      "title": "حصل خير",
-      "description": "‫‫تستأجر راقصة منزلا في مبنى تشغله العديد من العائلات، وتدرك أن إقامتها تسببت في حدوث خلافات بين الأزواج الذين يعيشون في نفس المبنى.‬‬"
+      "title": "أولاد حريم كريم",
+      "description": "‫‫يقع شاب في حب فتاة شابة ويقرر أن يتقدم لخطبتها، ولكن يحدث ما هو غير متوقع عند اكتشاف والدها أن الشاب الذي تقدم لها هو ابن محبوبته السابقة.‬‬"
     },
     "starzplay.779016232323": {
       "profile": "arabic_native",
-      "title": "باب الحديد",
-      "description": "‫‫يعاني قناوي من عقدة نفسية بسبب إعاقة في جسده. في وقت لاحق، يقع في غرام فتاة تدعى هنومة، لكنها ترفض عرض الزواج منه.‬‬"
+      "title": "المليونير المزيف",
+      "description": "‫‫يسعى حمدي لابتكار اختراعات جديدة، فيقترض مالا من موصيري الذي يحاول اكتشاف سره. تتصاعد التوترات عندما يقرر أن يزيف خبر موته.‬‬"
     },
     "starzplay.779018792381": {
       "profile": "arabic_native",
-      "title": "وتمت اقواله",
-      "description": "‫‫يعمل عاصم محاضرا في جامعة، ويكافح للحصول على شهادة الدكتوراه بسبب سوء معاملة الدكتور المشرف عليه. تتخذ الأمور منعطفا حادا عندما يلتقي بالسكرتيرة زينب، والتي تحاول مساعدته.‬‬"
+      "title": "حرب كرموز",
+      "description": "‫حادثة تعدي على شابة مصرية بمدينة كرموز إبان الاحتلال البريطاني تحوّل المدينة إلى ساحة حرب مدمرة يخوضها الضابط يوسف المصري بشجاعة ونخوة على أثر رفضه تسليم الجندي المعتدي والرضوخ لأوامر الضابط الإنجليزي.‬"
     },
     "starzplay.779019304384": {
       "profile": "arabic_native",
-      "title": "إطلعولي بره",
-      "description": "‫‫يعثر الرجل العادي يوسف على كتاب سحري تظهر شخصياته في أرض الواقع كلما قرأه. تأخذ الأمور منعطفا غير متوقع عندما تبدأ الشخصيات بالتأثير على قرارات حياته.‬‬"
+      "title": "خط دم",
+      "description": "‫‫يلجأ زوج إلى حل خطير ولا يمكن تصوره، في محاولة يائسة لإنقاذ ابنهما بعد حادث ما تسبب في وقوعه في غيبوبة.‬‬"
+    },
+    "starzplay.780808744214": {
+      "profile": "hybrid",
+      "title": "Corrective Measures",
+      "description": ""
+    },
+    "starzplay.780811816096": {
+      "profile": "hybrid",
+      "title": "The Office",
+      "description": ""
     },
     "starzplay.780814888237": {
       "profile": "hybrid",
-      "title": "The Grand Tour",
-      "description": "‫‫يسافر جيريمي كلاركسون وريتشارد هاموند وجيمس ماي حول العالم لمقابلة شركات تصنيع السيارات المختلفة وقيادة السيارات التي تصنعها هذه الشركات.‬‬"
+      "title": "Humans",
+      "description": "‫‫تقرر عائلة هوكينز المحبة والتي تعاني من عدة مشاكل شراء روبوت يدعى أنيتا وهو خادم آلي متطور للغاية على أمل تغيير نمط حياتهم. ولكن، هل يمكن أن يتسبب الروبوت الجديد في مشاكل أكثر مما يحل؟‬‬"
     },
     "starzplay.788725288003": {
       "profile": "arabic_native",
-      "title": "بيار إمبوسيبل",
-      "description": "‫‫يصادف أبهاي أليشيا، وهي إحدى زميلاته منذ أيام الجامعة، في سنغافورة. عندما يرغب بأن يكون قريبا منها، يقرر العمل كمربية لابنتها.‬‬"
+      "title": "يه هاي جالوا",
+      "description": "‫‫عندما يدرك اليتيم البسيط راج أنه الابن غير الشرعي لرجل الأعمال الناجح راجيش ميتال، يسافر إلى المملكة المتحدة ليطالب بحقه بالانضمام إلى عائلته.‬‬"
     },
     "starzplay.789990440241": {
       "profile": "arabic_native",
-      "title": "لو جوغنال - مباشر",
-      "description": "‫‫يقوم المضيف باستعراض آخر وأهم الأخبار والمستجدات المتعلقة بالسياسة والترفيه والرياضة والأعمال حول العالم.‬‬"
+      "title": "كولتوغ",
+      "description": "‫‫يستكشف المضيف كيف يفهم الفنانون العالم، إذ يمزجون الثقافة بالأحداث الجارية ويقدمون للمجتمع وجهات نظر جديدة من خلال عدسة إبداعية.‬‬"
     },
     "starzplay.789990440242": {
       "profile": "arabic_native",
-      "title": "باريس دايركت",
-      "description": "‫‫يدعو فريق التقديم العديد من الضيوف لمناقشة وتحليل والتعليق على بعض الأخبار والأحداث العالمية، إلى جانب تقديم رؤى قيمة.‬‬"
+      "title": "ألافيش",
+      "description": "‫يتبادل فريق التقديم أطراف الحديث مع العديد من صناع الأفلام والكتاب والفنانين والموسيقيين المشهورين، كما يعطي فكرة مفصلة عن عالمهم.‬"
     },
     "starzplay.811097640257": {
       "profile": "arabic_native",
-      "title": "روبوغوبو",
-      "description": "‫م1 : ‫يتبنى الفتى العبقري داكس خمسة حيوانات أليفة خارقة ويدربها. في وقت لاحق، يتعاون داكس وفريقه معا لإنقاذ حيوانات أخرى معرضة للخطر.‬‬"
+      "title": "صوفيا ذا فيرست: رويال ماجيك",
+      "description": "‫م1 ، ح11 : ‫يتم تتبع قصة صوفيا وهي تلتحق بمدرسة تشارمزويل للسحر الملكي، حيث سيواصل الأمراء والأميرات من جميع أنحاء إيفرريلم دراساتهم الملكية ويتعلمون أيضا جميع أنواع السحر.‬‬"
     },
     "starzplay.811097640258": {
       "profile": "hybrid",
-      "title": "How the Tudors Lost Their Heads",
-      "description": "‫م1 ، ح2 : ‫تعيد سوزانا ليبسكومب ودان سنو النظر في حياة وصراعات السلطة وسقوط بعض أكثر الشخصيات إثارة للجدل وشهرة وسوء فهم في إنجلترا في عهد أسرة تيودور. يتحققان من كل قصة من خلال الرسائل واللوحات والأدلة الجنائية.‬‬"
+      "title": "OceanXplorers",
+      "description": "‫م1 ، ح6 : ‫يكشف صانع الأفلام عن جواهر رائعة في محيطات العالم، ويكتشف أسرارها الخفية ويتعلم عن الأنواع المائية المختلفة.‬‬"
     },
     "starzplay.811097640260": {
       "profile": "arabic_native",
       "title": "ليتل فايرز إيفريوير",
-      "description": "‫م1 ، ح4 : ‫يتتبع العمل المصائر المتشابكة لعائلة ريتشاردسون التي تبدو مثالية، وأم وابنتها الغامضتين اللتين تقلبان حياتهم رأسا على عقب. تدور الأحداث في شيكر هايتس بولاية أوهايو خلال تسعينيات القرن الماضي.‬‬"
+      "description": "‫م1 ، ح8 : ‫يتتبع العمل المصائر المتشابكة لعائلة ريتشاردسون التي تبدو مثالية، وأم وابنتها الغامضتين اللتين تقلبان حياتهم رأسا على عقب. تدور الأحداث في شيكر هايتس بولاية أوهايو خلال تسعينيات القرن الماضي.‬‬"
     },
     "starzplay.811099176169": {
       "profile": "hybrid",
-      "title": "The Incredible Dr. Pol",
-      "description": "‫م21 ، ح6 : ‫يقدم طبيب بيطري ذو خبرة لمحة عن حياته، حيث يعالج الحيوانات المختلفة ويسلط الضوء أيضا على تقنياته لعلاجها.‬‬"
+      "title": "Built To Survive",
+      "description": "‫م1 ، ح7 : ‫يباشر فريق من خمسة أفراد تحديا يتمثل في تشييد مستعمرة وسط البرية القاسية، معتمدين على أنفسهم كليا في تأمين احتياجاتهم، وذلك في غضون عشرين يوما فقط.‬‬"
     },
     "starzplay.811099176170": {
       "profile": "arabic_native",
-      "title": "ذا ديسبرت أور",
-      "description": "‫‫تعيش أم حزينة على فقدان زوجها مع ابنها المراهق في بلدة صغيرة، وبينما تمارس رياضة الجري في الغابة، تلاحظ أن بلدتها غارقة في الفوضى إثر وقوع حادث إطلاق نار في مدرسة ابنها.‬‬"
+      "title": "ذا لاست دول",
+      "description": "‫‫يعجب رجل بزوجة صديقه بعد لقائها ويفتتن بها، ثم يعتدي عليها عندما ترفضه. يتملك الغضب زوجها، فيتحدى المعتدي في قتال ينتهي بالموت.‬‬"
     },
     "starzplay.811099176171": {
       "profile": "arabic_native",
-      "title": "رونز غون رونغ",
-      "description": "‫‫يعتبر بارني هو الطفل الوحيد في المدرسة الذي لا يملك جهاز بي-بوت المبرمج لمساعدته على تكوين الصداقات. مع ذلك، يحصل في النهاية على نسخة معيبة تخفي وراءها مفاجأة غير متوقعة.‬‬"
+      "title": "ماي سالينجر يير",
+      "description": "‫‫أثناء عملها لدى الوكيلة الأدبية فيليس ويستبرغ، تحصل الكاتبة الطموحة جوانا راكوف على نصائح شخصية من الكاتب المنعزل جيه. دي. سالينجر.‬‬"
     },
     "starzplay.811100199996": {
       "profile": "arabic_native",
-      "title": "كيف",
-      "description": "‫م1 ، ح7 : ‫ينطلق أفضل الأصدقاء كيف وباري اللذان يعيشان في بلدة تيبل في مغامرات مختلفة معا ويتعلمون دروسا مهمة في الحياة.‬‬"
+      "title": "فينياس آند فيرب",
+      "description": "‫م3 ، ح324 : ‫يقرر فينياس وفيرب جعل كل يوم من إجازتهما الصيفية أكثر متعة، من خلال القيام بالعديد من المغامرات الشيقة.‬‬"
     },
     "starzplay.812961831972": {
       "profile": "arabic_native",
-      "title": "مستر إكس",
-      "description": "‫‫ينفذ عملاء من النخبة عمليات سرية عالية الخطورة لتحييد خمسة تهديدات وطنية جسيمة، حماية لأمن البلاد في مواجهة عقول مدبرة تتخفى في أعماق شبكات الظل.‬‬"
+      "title": "لاكشمي ماهالاكشمي",
+      "description": "‫‫يعتقد تشاندرابا ان ابنته لاكشمي تلعب دورا كبيرا في جلب الحظ السعيد، وأما ابنته الثانية أنيتا تجلب الحظ السيء.‬‬"
     },
     "starzplay.818304040261": {
       "profile": "arabic_native",
-      "title": "بارسل",
-      "description": "‫‫تعيش طبيبة متزوجة حالة من الفوضى والاضطراب التام مع توالي وصول طرود مريبة تحوي صورا قديمة، إذ سرعان ما تفرض هذه الشحنات الغامضة تهديدا مباشرا على أمان أسرتها.‬‬"
+      "title": "بغ بوس بنغلا",
+      "description": "‫م2026 ، ح64 : ‫يستضيف سوراف غانغولي متسابقين من المشاهير حيث يعيشون معا في بيت واحد، ويتنافسون في تحديات متنوعة، ويتوجب عليهم التعامل مع الاختلافات فيما بينهم للفوز بالجائزة.‬‬"
     },
     "starzplay.818306088440": {
       "profile": "arabic_native",
       "title": "Maa",
-      "description": "‫م1 ، ح8 : ‬"
+      "description": "‫م1 ، ح9 : ‬"
     },
     "starzplay.818309672031": {
       "profile": "arabic_native",
       "title": "روديز",
-      "description": "‫م21 ، ح2 : ‫يزور المشاركون روديز الذين تم اختيارهم أثناء اختبارات الأداء من جميع أنحاء الهند، مواقع وأماكن مختلفة ويتنافسون في تحديات عديدة للفوز بالجائزة.‬‬"
+      "description": "‫م21 ، ح4 : ‫يزور المشاركون روديز الذين تم اختيارهم أثناء اختبارات الأداء من جميع أنحاء الهند، مواقع وأماكن مختلفة ويتنافسون في تحديات عديدة للفوز بالجائزة.‬‬"
     },
     "starzplay.823389224149": {
       "profile": "arabic_native",
-      "title": "Kannur Warriors FC vs. Forca Kochi FC - Super League Kerala Highlights",
+      "title": "Thiruvananthapuram Kombans FC vs. Kannur Warriors FC - Super League Kerala Highlights",
       "description": "‫م2026 : ‬"
     },
     "StarzplaySports3.sa@HD": {
