@@ -1,27 +1,29 @@
 {
   "label": "aljazeera",
   "channels": 5,
-  "active_channels": 3,
-  "zero_epg_channels": 2,
+  "active_channels": 2,
+  "zero_epg_channels": 3,
   "zero_epg_ids": [
+    "AlJazeera2.qa@HD",
     "AlJazeeraDocumentary.qa@SD",
     "AlJazeeraMubasher.qa@SD"
   ],
   "input_channels": 5,
-  "coverage_pct": 60.0,
-  "currently_on_air_channels": 3,
-  "current_coverage_pct": 60.0,
+  "coverage_pct": 40.0,
+  "currently_on_air_channels": 2,
+  "current_coverage_pct": 40.0,
   "currently_uncovered_ids": [
+    "AlJazeera2.qa@HD",
     "AlJazeeraDocumentary.qa@SD",
     "AlJazeeraMubasher.qa@SD"
   ],
-  "programmes": 138,
+  "programmes": 111,
   "rejected_invalid_time": 0,
   "rejected_missing_title": 0,
   "inferred_stop": 0,
   "window_hours": 48,
   "timezone_output": "UTC +0000",
-  "size_bytes": 3919,
-  "sha256": "76176409b265a28b7406b8314f69112af9a094bb59616bdd72d0f01ad2fd9104",
-  "generated_utc": "2026-11-01T11:14:50.050021+00:00"
+  "size_bytes": 2595,
+  "sha256": "83f1987f574fe55c0fee64f59ff6cdf677ba7678193aa784206c3813ef4fd924",
+  "generated_utc": "2026-11-02T12:20:10.221047+00:00"
 }
