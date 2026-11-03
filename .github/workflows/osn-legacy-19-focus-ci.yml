@@ -1,0 +1,101 @@
+name: OSN 19 missing Legacy/Other programme probe — NO PUBLISH
+on:
+  push:
+    branches: [fix/osn-legacy-19-targeted-probe-20261017]
+    paths:
+      - 'tools/osn_legacy_19_focus.py'
+      - 'tools/test_osn_legacy_19_focus.py'
+      - '.github/workflows/osn-legacy-19-focus-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/osn_legacy_19_focus.py'
+      - 'tools/test_osn_legacy_19_focus.py'
+      - '.github/workflows/osn-legacy-19-focus-ci.yml'
+permissions:
+  contents: read
+jobs:
+  offline-unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m py_compile tools/osn_legacy_19_focus.py tools/test_osn_legacy_19_focus.py
+      - run: python -m unittest discover -s tools -p 'test_osn_legacy_19_focus.py' -v
+  official-targeted-source-probe:
+    needs: offline-unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify all 19 official Legacy channel GUIDs
+        run: |
+          python tools/osn_legacy_19_focus.py build \
+            --legacy-report reports/osn-legacy-catalogue-probe.json \
+            --published-meta feeds/osn.json \
+            --output output/source-build/osn-legacy-19-focus.channels.xml
+      - name: Install upstream EPG adapter
+        run: npm ci --no-audit --no-fund
+        working-directory: vendor/iptv-org-epg
+      - name: Try both OSN public Legacy timeline variants (one day only, 19 IDs)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cfg="vendor/iptv-org-epg/sites/osn.com/osn.com.config.js"
+          cp "$cfg" /tmp/original-osn.adapter.js
+          for box in Legacy Android; do
+            cp /tmp/original-osn.adapter.js "$cfg"
+            python - "$cfg" "$box" <<'PY'
+          from pathlib import Path
+          import sys
+          p=Path(sys.argv[1])
+          box=sys.argv[2]
+          s=p.read_text(encoding="utf-8")
+          anchors=["platform=Android", "boxAndroid",
+                   "const _channels = [...allChannels.map(item => item.guid)]"]
+          if any(x not in s for x in anchors):
+              raise SystemExit("upstream OSN adapter changed; no blind patch")
+          s=s.replace("platform=Android","platform=Legacy")
+          s=s.replace("boxAndroid","box"+box)
+          s=s.replace("const _channels = [...allChannels.map(item => item.guid)]",
+                      "const _channels = [...allChannels.map(item => item.guid).filter(Boolean)]")
+          p.write_text(s,encoding="utf-8")
+          print("OSN Legacy target box",box)
+          PY
+            result="$GITHUB_WORKSPACE/output/source-build/osn-legacy-19-${box}.xml"
+            mkdir -p "$GITHUB_WORKSPACE/output/source-build"
+            (
+              cd vendor/iptv-org-epg
+              timeout --signal=TERM --kill-after=20s 240s npm run grab -- \
+                "--channels=$GITHUB_WORKSPACE/output/source-build/osn-legacy-19-focus.channels.xml" \
+                "--output=$result" --days=1 --maxConnections=1 --timeout=20000
+            ) || echo "PROBE_GRAB_FAILED box=$box; no data presumed"
+            if [ -s "$result" ]; then
+              python tools/osn_legacy_19_focus.py inspect --input "$result" || echo "SOURCE_PARSE_FAILED box=$box"
+            else
+              echo "SOURCE_EMPTY box=$box"
+            fi
+            rm -f "$result"
+          done
+          cp /tmp/original-osn.adapter.js "$cfg"
+      - name: Verify published OSN was not touched
+        run: |
+          git diff --exit-code -- feeds/osn.xml.gz feeds/osn.json
+          echo "OSN_PROBE_NO_FEED_PUBLICATION"
